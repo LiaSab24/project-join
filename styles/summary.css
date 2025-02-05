@@ -1,4 +1,11 @@
+main {
+    width: 1208px;
+}
+
 .summary-title {
+    width: 625px;
+    margin-top: 110px;
+    margin-left: 96px;
     display: flex;
     align-items: center;
     gap: 30px;
@@ -20,10 +27,17 @@
     font-weight: 400;
     font-size: 27px;
     line-height: 32.4px;
+    color: #2A3647;
 }
 
 .summary-content {
+    margin-top: 56px;
+    margin-right: 87px;
+    margin-bottom: 127px;
+    margin-left: 96px;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .summary-container {
@@ -48,6 +62,16 @@
     font-weight: 600;
     font-size: 64px;
     line-height: 76.8px;
+    color: #000000;
+    text-align: center;
+}
+
+.number-explanation {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #2A3647;
+    text-align: center;
 }
 
 .to-dos {
@@ -61,10 +85,9 @@
 }
 
 .to-dos div p {
-    
+    width: 63px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
@@ -72,6 +95,47 @@
 
 .deadline {
     width: 560px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.deadline-urgent {
+    flex: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.deadline-urgent p {
+    display: flex;
+    flex-direction: column;
+}
+
+.deadline-seperator{
+    height: 102px;
+    width: 2px;
+    background-color: #D1D1D1;
+}
+
+.deadline-date {
+    flex: 0.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
+}
+
+.deadline-date p {
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25.2px;
+}
+
+.deadline-date span {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
 }
 
 .tasks {
@@ -81,6 +145,17 @@
 
 .tasks div {
     width: 168px;
+}
+
+.tasks div p {
+    width: 83px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #2A3647;
 }
 
 .summary-greeting {
