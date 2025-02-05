@@ -1,0 +1,45 @@
+main {
+    width: 1208px;
+    display: flex;
+}
+
+.address-book {
+    height: 928px;
+    width: 456px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-focus {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    width: 625px;
+    margin-top: 110px;
+    margin-left: 96px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.title h1 {
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 73.2px;
+}
+
+.title-seperator {
+    height: 59px;
+    width: 3px;
+    background-color: #29ABE2;
+}
+
+.title p {
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 32.4px;
+    color: #2A3647;
+}
