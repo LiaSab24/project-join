@@ -13,7 +13,6 @@
   <link rel="stylesheet" href="./fonts/fonts.css">
   <link rel="stylesheet" href="./styles/header.css">
   <link rel="stylesheet" href="./styles/sidebar.css">
-
   <script src="./script.js"></script>
 </head>
 <body>
@@ -21,7 +20,9 @@
     <p>Kanban Project Management Tool</p>
     <div class="header-img-container flex">
       <div class="help">
-        <img class="help-img" src="./assets/img/help.png" alt="Help">
+        <a href="./pages/help.html" target="_blank" rel="noopener noreferrer">
+          <img class="help-img" src="./assets/img/help.png" alt="Help">
+        </a>
       </div>
       <div class="user-initial">
         <div class="kreis">
@@ -30,13 +31,42 @@
       </div>
     </div>
   </header>
-  <nav class="sidebar flex">
-    <ul>
-      <li><a href="#">summary</a></li>
-      <li><a href="#">add Task</a></li>
-      <li><a href="#">board</a></li>
-      <li><a href="#">contacts</a></li>
-    </ul>
+  <div class="submenu">
+    <p>Help</p>
+    <p>Legal Notice</p>
+    <p>Privacy Policy</p>
+    <p>Logout</p>
+  </div>
+  <nav class="sidebar-wrapper">
+    <div class="sidebar-logo">
+      <img src="./assets/icons/joinWhite.svg" alt="Logo">
+    </div>
+    <div class="sidebar-menu">
+      <ul>
+        <li>
+          <img src="./assets/img/summary.png" alt="summary-icon">
+          <a href="#">Summary</a>
+        </li>
+        <li>
+          <img src="./assets/img/add_task.png" alt="add-task-icon">
+          <a href="#">Add Task</a>
+        </li>
+        <li>
+          <img src="./assets/img/board.png" alt="board-icon">
+          <a href="#">Board</a>
+        </li>
+        <li>
+          <img src="./assets/img/contacts.png" alt="contacts-icon">
+          <a href="#">Contacts</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-notice">
+      <ul>
+        <li><a href="./pages/privacy_policy.html" target="_blank">Privacy Policy</a></li>
+        <li><a href="./pages/legal_notice.html" target="_blank">Legal Notice</a></li>
+      </ul>
+    </div>
   </nav>
   <main></main>
   <footer></footer>
