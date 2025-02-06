@@ -6,9 +6,93 @@ main {
 .address-book {
     height: 928px;
     width: 456px;
+    padding: 32px 24px 32px 24px;
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    scrollbar-width: 24px;
+    scrollbar-color: #A8A8A8 #FFFFFF;
+}
+
+.add-new-contact {
+    height: 101px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-new-contact button {
+    height: 56px;
+    width: 352px;
+    border: solid 1px #2A3647;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background-color: #2A3647;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25.2px;
+}
+
+.contacts-list {
+    width: 352px;
+}
+
+.address-book-letter {
+    height: 58px;
+    padding: 17px 36px 17px 36px;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.letter-underline {
+    width: 352px;
+    padding: 7px 0 7px 0;
+}
+
+.contact {
+    height: 78px;
+    padding: 15px 24px 15px 24px;
+    display: flex;
+    gap: 35px;
+}
+
+.contact-profile-badge {
+    height: 42px;
+    width: 42px;
+    border: 2px solid #FFFFFF;
+    border-radius: 45px;
+    text-align: center;
+    align-content: center;
+    background-color: #FF7A00;
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.contact p {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-name {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.contact-mail {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+    color: #007CEE;
+
 }
 
 .contact-focus {
