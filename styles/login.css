@@ -2,8 +2,8 @@
     --bg-color: #f4f5f7;
     --text-color: #000;
     --card-bg: #fff;
-    --border-radius: 8px;
-    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --border-radius: 16px;
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     --task-padding: 16px;
     --button-bg: #2A3647;
     --button-hover-bg: #1E2833;
@@ -16,6 +16,7 @@ body.login-body {
     justify-content: center;
     height: 100vh;
     background: var(--bg-color);
+    font-style: inter;
 }
 
 body.login-body {
@@ -53,11 +54,6 @@ body.login-body {
     }
 }
 
-.log-in-wrapper {
-    opacity: 0;
-    animation: fadeInContent 0.5s ease-in-out 0.5s forwards;
-}
-
 @keyframes fadeInContent {
     0% {
         opacity: 0;
@@ -66,7 +62,6 @@ body.login-body {
         opacity: 1;
     }
 }
-
 
 .overlay {
     height: 100vh;
@@ -109,14 +104,18 @@ body.login-body {
 }
 
 .log-in-wrapper {
+    opacity: 0;
+    animation: fadeInContent 0.5s ease-in-out 0.5s forwards;
     background: white;
     box-shadow: var(--shadow);
     padding: 40px;
     border-radius: var(--border-radius);
-    width: 400px;
+    width: 652px;
+    height: 449px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .hero {
@@ -124,8 +123,8 @@ body.login-body {
     margin-bottom: 20px;
 }
 
-.hero h1 {
-    font-size: 28px;
+h1 {
+    font-size: 61px;
     font-weight: bold;
     margin-bottom: 5px;
 }
@@ -147,8 +146,9 @@ input {
 
 .button-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 15px;
+    gap: 35px;
 }
 
 .blue-btn {
