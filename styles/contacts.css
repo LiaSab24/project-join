@@ -109,6 +109,7 @@ main {
 }
 
 .contact-focus {
+    margin-left: 62px;
     display: flex;
     flex-direction: column;
 }
@@ -116,7 +117,6 @@ main {
 .title {
     width: 625px;
     margin-top: 110px;
-    margin-left: 96px;
     display: flex;
     align-items: center;
     gap: 30px;
@@ -142,6 +142,7 @@ main {
 }
 
 .focused-profile-overview {
+    margin-top: 32px;
     display: flex;
     align-items: center;
     gap: 54px;
@@ -181,8 +182,36 @@ main {
 .focused-contact-btns {
     height: 24px;
     border: none;
+    display: flex;
+    align-items: center;
     gap: 8px;
     font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+}
+
+.focused-profile-information p {
+    height: 74px;
+    align-content: center;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.focused-profile-information div {
+    height: 53px;
+    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+}
+
+
+.contact-opportunity {
+    font-weight: 700;
     font-size: 16px;
     line-height: 19.2px;
 }
