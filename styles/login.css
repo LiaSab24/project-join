@@ -55,7 +55,7 @@ body.login-body {
 
 .log-in-wrapper {
     opacity: 0;
-    animation: fadeInContent 1s ease-in-out 1s forwards;
+    animation: fadeInContent 0.5s ease-in-out 0.5s forwards;
 }
 
 @keyframes fadeInContent {
