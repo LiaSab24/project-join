@@ -1,0 +1,145 @@
+:root {
+    --bg-color: #f4f5f7;
+    --text-color: #000;
+    --card-bg: #fff;
+    --border-radius: 8px;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --task-padding: 16px;
+    --button-bg: #2A3647;
+    --button-hover-bg: #1E2833;
+}
+
+body.login-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: var(--bg-color);
+}
+
+.overlay {
+    height: 100vh;
+    width: 100%;
+    background-color: var(--button-bg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeOut 1s ease-in-out 1s forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; display: none; }
+}
+
+.white-icon {
+    animation: logoShrink 0.8s ease-in-out 0.5s forwards;
+}
+
+@keyframes logoShrink {
+    0% { transform: scale(1.5); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.log-in-wrapper {
+    background: white;
+    box-shadow: var(--shadow);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.blue-btn {
+    background: var(--button-bg);
+    color: white;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.blue-btn:hover {
+    background: var(--button-hover-bg);
+}
+
+.white-btn {
+    background: white;
+    color: var(--button-bg);
+    border: 1px solid var(--button-bg);
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.white-btn:hover {
+    background: #f0f0f0;
+}
+
+.sign-up-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.sign-up-container p {
+    margin-right: 10px;
+}
+
+.policy-container {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.policy-container a {
+    text-decoration: none;
+    color: var(--button-bg);
+}
