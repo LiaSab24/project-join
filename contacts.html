@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./styles/navigation.css">
     <link rel="stylesheet" href="./fonts/fonts.css">
-    <link rel="stylesheet" href="./styles/contact.css">
+    <link rel="stylesheet" href="./styles/contacts.css">
 
     <script src="./script.js"></script>
 </head>
@@ -25,17 +25,17 @@
             <div class="add-new-contact">
                 <button>
                     <span>Add new contact</span>
-                    <img src="./assets/icons/contact-add.svg" alt="add contact">
+                    <img src="./assets/icons/contacts-add.svg" alt="add contact">
                 </button>
             </div>
             <div class="contacts-list">
                 <div class="address-book-letter">A</div>
                 <img src="./assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                 <div>
-                    <div class="contact">
+                    <div class="contact contact-clicked">
                         <div class="contact-profile-badge">AM</div>
                         <p>
-                            <span class="contact-name">Anton Meyer</span>
+                            <span class="contact-name">Anton Mayer</span>
                             <span class="contact-mail">antom@gmail.com</span>
                         </p>
                     </div>
@@ -124,6 +124,37 @@
                 <h1>Contacts</h1>
                 <div class="title-seperator"></div>
                 <p>Better with a team</p>
+            </div>
+
+            <div class="focused-contact-information">
+                <div class="focused-profile-overview">
+                    <div class="focused-profile-badge">AM</div>
+                    <div class="focused-profile-account">
+                        <span class="focused-contact-name">Anton Mayer</span>
+                        <div>
+                            <button class="focused-contact-btns">
+                                <img src="./assets/icons/contacts-edit.svg" alt="edit profile">
+                                <span>Edit</span>
+                            </button>
+                            <button class="focused-contact-btns">
+                                <img src="./assets/icons/contacts-delete.svg" alt="delete profile">
+                                <span>Delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="focused-profile-information">
+                    <p>Contact Information</p>
+                    <div>
+                        <span>Email</span>
+                        <span class="contact-mail">antom@gmail.com</span>
+                    </div>
+                    <div>
+                        <span>Phone</span>
+                        <span class="contact-phone">+49 1111 111 11 1</span>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
