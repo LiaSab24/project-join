@@ -1,4 +1,6 @@
 :root {
+  --FS-L: 61px;
+  --FS-M: 20px;
   --bg-color: #f4f5f7;
   --text-color: #000;
   --card-bg: #fff;
@@ -12,18 +14,29 @@
   --input-radius: 8px;
   --button-bg: #2A3647;
   --button-hover-bg: #1E2833;
+  --task-container-border: #E0E0E0;
 }
 
 body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background: var(--bg-color);
 }
 
 main {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+}
+
+h1 {
+  font-size: var(--FS-L);
+  padding: var(--header-padding);
+}
+
+h2 {
+  font-size: var(--FS-M);
 }
 
 .board-header {
@@ -45,15 +58,14 @@ main {
   background: var(--input-bg);
   border: 1px solid var(--input-border);
   border-radius: var(--input-radius);
-  padding: 10px;
+  padding: 3px;
   gap: 8px;
 }
 
 .divider-container {
-  height: 28px;
+  height: 20px;
   width: 2px;
   background-color: #ccc;
-  margin-bottom: 2px;
 }
 
 .search-input {
@@ -103,12 +115,10 @@ button:hover {
   padding: var(--header-padding);
   gap: var(--gap-size);
   overflow-x: auto;
+  padding: 20px;
 }
 
 .task-wrapper {
-  background: var(--card-bg);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
   padding: var(--task-padding);
   flex: 1;
   min-width: 220px;
@@ -123,13 +133,21 @@ button:hover {
 }
 
 .icon-container img {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 3px;
 }
 
 .no-task-message-container {
   text-align: center;
-  color: gray;
+  color: #a8a8a8;
+  opacity: 0.8;
   padding: 10px;
+  border: 1px dotted #A8A8A8;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: #e7e7e7;
 }
