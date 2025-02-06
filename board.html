@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./styles/navigation.css">
   <link rel="stylesheet" href="./fonts/fonts.css">
+  <link rel="stylesheet" href="./styles/board.css">
 
   <script src="./script.js"></script>
 </head>
@@ -32,55 +33,49 @@
           "Add Task"
           <img src="./assets/icons/add.png" alt="Add">
         </button>
-        <img class="button-plus-icon" src="./assets/icons/Menu button hover.svg" alt="Add Task">
       </div>
     </section>
     <section class="task-container">
       <div class="task-wrapper">
         <div class="task-headline">
-          "To do"
+          "To Do"
           <div class="icon-container"><img src="./assets/icons/plus-button.png" alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTask">No tasks in To Do</div>
         </div>
-        <div class="task-card-container">
-          <div class="task-card">
-            <div class="task-column">
-              <div class="task-type">Headline</div>
-              <div class="task-title">Text here in Bold</div>
-              <div class="task-description">
-                Text here in light and with an opacity maybe in 0.6
-              </div>
-              <div class="subtask-container" id="subTaskContainer">
-                <div class="subtask-bar" id="subTaskBar">
-                  <div class="subtask-bar-filled"></div>
-                </div>
-                <span>0/1 Subtask</span>
-              </div>
-              <div class="task-prio-container">
-                <div class="task-contacts-container">
-                  <div class="task-contact">DM</div>
-                </div>
-                <div class="more-task-container">
-                  <div class="more-task"></div>
-                  <img src="" alt="">
-                </div>
-              </div>
-            </div>
-            <div></div>
-          </div>
-          <div></div>
+      </div>
+      <div class="task-wrapper">
+        <div class="task-headline">
+          "In Progress"
+          <div class="icon-container"><img src="./assets/icons/plus-button.png" alt="Add Button"></div>
+        </div>
+        <div class="no-task-message-container">
+          <div class="no-task-message" id="noTaskInProgress">No tasks in Progress</div>
         </div>
       </div>
-      <div class="task-wrapper"></div>
-      <div class="task-wrapper"></div>
-      <div class="task-wrapper"></div>
+      <div class="task-wrapper">
+        <div class="task-headline">
+          "Await Feedback"
+          <div class="icon-container"><img src="./assets/icons/plus-button.png" alt="Add Button"></div>
+        </div>
+        <div class="no-task-message-container">
+          <div class="no-task-message" id="noTaskAwaitFeedback">No tasks awaiting feedback</div>
+        </div>
+      </div>
+      <div class="task-wrapper">
+        <div class="task-headline">
+          "Done"
+          <div class="icon-container"><img src="./assets/icons/plus-button.png" alt="Add Button"></div>
+        </div>
+        <div class="no-task-message-container">
+          <div class="no-task-message" id="noTaskDone">No tasks done</div>
+        </div>
+      </div>
     </section>
 
     <section class="task-overlay-wrapper"></section>
   </main>
   <footer></footer>
 </body>
-
 </html>
