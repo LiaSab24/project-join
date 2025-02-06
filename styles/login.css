@@ -18,6 +18,56 @@ body.login-body {
     background: var(--bg-color);
 }
 
+body.login-body {
+    background: #ffffff;
+    animation: changeBgToDefault 0.8s ease-in-out 0.8s forwards;
+}
+
+@keyframes changeBgToDefault {
+    0% {
+        background: #ffffff;
+    }
+    100% {
+        background: var(--bg-color);
+    }
+}
+
+.mobile-header-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: moveToTopLeft 1s ease-in-out forwards;
+}
+
+@keyframes moveToTopLeft {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        top: 20px;
+        left: 20px;
+        transform: translate(0, 0);
+    }
+}
+
+.log-in-wrapper {
+    opacity: 0;
+    animation: fadeInContent 0.5s ease-in-out 0.5s forwards;
+}
+
+@keyframes fadeInContent {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
 .overlay {
     height: 100vh;
     width: 100%;
@@ -25,10 +75,11 @@ body.login-body {
     position: fixed;
     top: 0;
     left: 0;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     animation: fadeOut 1s ease-in-out 1s forwards;
+
 }
 
 @keyframes fadeOut {
@@ -36,13 +87,25 @@ body.login-body {
     100% { opacity: 0; display: none; }
 }
 
-.white-icon {
-    animation: logoShrink 0.8s ease-in-out 0.5s forwards;
+.mobile-header-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: moveToTopLeft 1s ease-in-out forwards;
 }
 
-@keyframes logoShrink {
-    0% { transform: scale(1.5); opacity: 1; }
-    100% { transform: scale(1); opacity: 1; }
+@keyframes moveToTopLeft {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        top: 20px;
+        left: 20px;
+        transform: translate(0, 0);
+    }
 }
 
 .log-in-wrapper {
@@ -80,10 +143,6 @@ input {
     border: 1px solid #ccc;
     border-radius: var(--border-radius);
     font-size: 14px;
-}
-
-.password-wrapper {
-    position: relative;
 }
 
 .button-container {
