@@ -1,4 +1,5 @@
 :root {
+  --FS-S: 12px;
   --FS-L: 61px;
   --FS-M: 20px;
   --bg-color: #f4f5f7;
@@ -203,6 +204,11 @@ button img {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.task-progress span {
+  font-size: var(--FS-S);
+  white-space: nowrap;
 }
 
 .progress-bar {
