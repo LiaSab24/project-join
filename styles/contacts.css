@@ -59,8 +59,21 @@ main {
 .contact {
     height: 78px;
     padding: 15px 24px 15px 24px;
+    border-radius: 10px;
     display: flex;
     gap: 35px;
+}
+
+.contact:hover {
+    cursor: pointer;
+    background-color: #2A3647;
+    color: #FFFFFF;
+}
+
+/* class added, when contact is focused */
+.contact-clicked {
+    background-color: #2A3647;
+    color: #FFFFFF;
 }
 
 .contact-profile-badge {
@@ -126,4 +139,50 @@ main {
     font-size: 27px;
     line-height: 32.4px;
     color: #2A3647;
+}
+
+.focused-profile-overview {
+    display: flex;
+    align-items: center;
+    gap: 54px;
+}
+
+.focused-profile-badge {
+    height: 120px;
+    width: 120px;
+    border: 3px solid #FFFFFF;
+    border-radius: 70px;
+    text-align: center;
+    align-content: center;
+    background-color: #FF7A00;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 47px;
+    line-height: 56.4px;
+}
+
+.focused-profile-account {
+    gap: 8px;
+}
+
+.focused-contact-name {
+    font-weight: 500;
+    font-size: 47px;
+    line-height: 56.4px;
+}
+
+.focused-profile-account div{
+    width: 159px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.focused-contact-btns {
+    height: 24px;
+    border: none;
+    gap: 8px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
 }
