@@ -12,8 +12,40 @@ main {
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
-    scrollbar-width: 24px;
-    scrollbar-color: #A8A8A8 #FFFFFF;
+}
+
+.address-book::-webkit-scrollbar {
+    width: 24px;
+}
+
+.address-book::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+
+::-webkit-scrollbar-button {
+    background-size: 100%;
+    height: 10px;
+    width: 10px;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+::-webkit-scrollbar-button:vertical:increment {
+    background-image: url("./assets/icons/scrollbar-btn-up.svg");
+}
+
+::-webkit-scrollbar-button:vertical:decrement {
+    background-image: url("./assets/icons/scrollbar-btn-down.svg");
+}
+
+.address-book::-webkit-scrollbar-thumb {
+    height: 50%;
+    border: 8px solid #FFFFFF;
+    border-radius: 30px;
+    background: #A8A8A8;
+}
+
+.address-book::-webkit-scrollbar-thumb:hover {
+    background: #D1D1D1;
 }
 
 .add-new-contact {
@@ -105,7 +137,6 @@ main {
     font-size: 16px;
     line-height: 19.2px;
     color: #007CEE;
-
 }
 
 .contact-focus {
@@ -172,7 +203,7 @@ main {
     line-height: 56.4px;
 }
 
-.focused-profile-account div{
+.focused-profile-account div {
     width: 159px;
     display: flex;
     align-items: center;
@@ -208,7 +239,6 @@ main {
     font-size: 16px;
     line-height: 19.2px;
 }
-
 
 .contact-opportunity {
     font-weight: 700;
