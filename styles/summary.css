@@ -1,0 +1,183 @@
+main {
+    width: 1208px;
+}
+
+.title {
+    width: 625px;
+    margin-top: 110px;
+    margin-left: 96px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.title h1 {
+    white-space: nowrap;
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 73.2px;
+}
+
+.title-seperator {
+    height: 59px;
+    width: 3px;
+    background-color: #29ABE2;
+}
+
+.title p {
+    white-space: nowrap;
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 32.4px;
+    color: #2A3647;
+}
+
+.summary-content {
+    margin-top: 56px;
+    margin-right: 87px;
+    margin-bottom: 127px;
+    margin-left: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.summary-container {
+    height: 168px;
+    border-radius: 30px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.summary-overview {
+    height: 562px;
+    width: 560px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.summary-number {
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 76.8px;
+    color: #000000;
+    text-align: center;
+}
+
+.number-explanation {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #2A3647;
+    text-align: center;
+}
+
+.to-dos {
+    display: flex;
+    justify-content: space-between;
+}
+
+.to-dos div {
+    width: 264px;
+    gap: 18px;
+}
+
+.to-dos div p {
+    width: 63px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.deadline {
+    width: 560px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.deadline-urgent {
+    flex: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.deadline-urgent p {
+    display: flex;
+    flex-direction: column;
+}
+
+.deadline-seperator{
+    height: 102px;
+    width: 2px;
+    background-color: #D1D1D1;
+}
+
+.deadline-date {
+    flex: 0.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
+}
+
+.deadline-date p {
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25.2px;
+}
+
+.deadline-date span {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+}
+
+.tasks {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tasks div {
+    width: 168px;
+}
+
+.tasks div p {
+    width: 83px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #2A3647;
+}
+
+.summary-greeting {
+    height: 136px;
+    width: 385px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+#greetingDaytime {
+    font-weight: 500;
+    font-size: 47px;
+    line-height: 56.4px;
+    color: #2A3647;
+}
+
+#userName {
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 76.8px;
+    color: #29ABE2;
+}
