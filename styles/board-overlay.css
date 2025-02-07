@@ -43,9 +43,16 @@
 }
 
 .form-grid {
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+}
+
+.divider-column {
+    width: 1px;
+    height: 352px;
+    background-color: #ccc;
+    margin: 20px 0;
 }
 
 .form-column {
