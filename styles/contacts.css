@@ -12,8 +12,52 @@ main {
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
-    scrollbar-width: 24px;
-    scrollbar-color: #A8A8A8 #FFFFFF;
+}
+
+.address-book::-webkit-scrollbar {
+    width: 24px;
+}
+
+.address-book::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+
+.address-book::-webkit-scrollbar-button {
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position: center;
+    width: 10px;
+}
+
+.address-book::-webkit-scrollbar-button:vertical:start:increment {
+    height: 24px;
+    background-image: url('/assets/icons/scrollbar-btn-up.svg');
+    background-position: bottom;
+}
+
+.address-book::-webkit-scrollbar-button:vertical:start:decrement {
+    display: none;
+}
+
+.address-book::-webkit-scrollbar-button:vertical:end:increment {
+    height: 24px;
+    background-image: url('/assets/icons/scrollbar-btn-down.svg');
+    background-position: top;
+}
+
+.address-book::-webkit-scrollbar-button:vertical:end:decrement {
+    display: none;
+}
+
+.address-book::-webkit-scrollbar-thumb {
+    height: 50%;
+    border: 8px solid #FFFFFF;
+    border-radius: 30px;
+    background: #A8A8A8;
+}
+
+.address-book::-webkit-scrollbar-thumb:hover {
+    background: #D1D1D1;
 }
 
 .add-new-contact {
@@ -105,10 +149,10 @@ main {
     font-size: 16px;
     line-height: 19.2px;
     color: #007CEE;
-
 }
 
 .contact-focus {
+    margin-left: 62px;
     display: flex;
     flex-direction: column;
 }
@@ -116,7 +160,6 @@ main {
 .title {
     width: 625px;
     margin-top: 110px;
-    margin-left: 96px;
     display: flex;
     align-items: center;
     gap: 30px;
@@ -142,6 +185,7 @@ main {
 }
 
 .focused-profile-overview {
+    margin-top: 32px;
     display: flex;
     align-items: center;
     gap: 54px;
@@ -171,7 +215,7 @@ main {
     line-height: 56.4px;
 }
 
-.focused-profile-account div{
+.focused-profile-account div {
     width: 159px;
     display: flex;
     align-items: center;
@@ -181,8 +225,35 @@ main {
 .focused-contact-btns {
     height: 24px;
     border: none;
+    display: flex;
+    align-items: center;
     gap: 8px;
     font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+}
+
+.focused-profile-information p {
+    height: 74px;
+    align-content: center;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.focused-profile-information div {
+    height: 53px;
+    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+}
+
+.contact-opportunity {
+    font-weight: 700;
     font-size: 16px;
     line-height: 19.2px;
 }
