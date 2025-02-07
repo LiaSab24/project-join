@@ -25,7 +25,7 @@
       <div class="overlay-content">
           <div class="form-grid">
               <div class="form-column">
-                  <label for="taskTitle">Title *</label>
+                  <label for="taskTitle">Title</label>
                   <input id="taskTitle" type="text" placeholder="Enter a title" required>
 
                   <label for="taskDescription">Description</label>
@@ -41,17 +41,23 @@
               </div>
               <div class="divider-column"></div>
               <div class="form-column">
-                  <label for="taskDueDate">Due Date *</label>
+                  <label for="taskDueDate">Due Date</label>
                   <input id="taskDueDate" type="date" required>
 
                   <label>Priority</label>
                   <div class="prio-container">
-                      <button class="prio-btn urgent" onclick="setPriority('urgent')">Urgent</button>
-                      <button class="prio-btn medium" onclick="setPriority('medium')">Medium</button>
-                      <button class="prio-btn low" onclick="setPriority('low')">Low</button>
+                      <button class="prio-btn urgent" onclick="setPriority('urgent')">Urgent
+                        <img src="/assets/icons/Capa-red.png">
+                      </button>
+                      <button class="prio-btn medium" onclick="setPriority('medium')">Medium
+                        <img src="/assets/icons/Capa-yellow.png">
+                      </button>
+                      <button class="prio-btn low" onclick="setPriority('low')">Low
+                        <img src="/assets/icons/capa-green.png">
+                      </button>
                   </div>
 
-                  <label>Category</label>
+                  <label for="taskDueDate">Category</label>
                   <select id="taskCategory">
                       <option>Select task category</option>
                       <option>User Story</option>
