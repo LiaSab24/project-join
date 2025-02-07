@@ -5,32 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
-    <link rel="icon" type="image/x-icon" href="./assets/img/join_logo.svg">
+    <link rel="icon" type="image/x-icon" href="/assets/img/join_logo.svg">
 
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./styles/navigation.css">
-    <link rel="stylesheet" href="./fonts/fonts.css">
-    <link rel="stylesheet" href="./styles/contacts.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/styles/sidebar.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/fonts/fonts.css">
+    <link rel="stylesheet" href="/styles/contacts.css">
 
-    <script src="./script.js"></script>
+    <script src="/script.js"></script>
+    <script src="/scripts/include.js"></script>
+
+    <!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+  const scrollContainer = document.querySelector('.scroll-container')});
+
+  // Dynamische Anpassung der max-height basierend auf dem Inhalt
+  const contentHeight = scrollContainer.scrollHeight;
+  if (contentHeight < 300) {
+    scrollContainer.style.maxHeight = contentHeight + "px";
+    };
+    </script> -->
+
 </head>
 
 <body>
-    <header></header>
-
-    <nav class="sidebar-wrapper"></nav>
+    <div w3-include-html="header.html"></div>
+    <div w3-include-html="sidebar.html"></div>
 
     <main>
         <section class="address-book">
             <div class="add-new-contact">
                 <button>
                     <span>Add new contact</span>
-                    <img src="./assets/icons/contacts-add.svg" alt="add contact">
+                    <img src="/assets/icons/contacts-add.svg" alt="add contact">
                 </button>
             </div>
             <div class="contacts-list">
                 <div class="address-book-letter">A</div>
-                <img src="./assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                 <div>
                     <div class="contact contact-clicked">
                         <div class="contact-profile-badge">AM</div>
@@ -50,7 +63,7 @@
                 </div>
 
                 <div class="address-book-letter">B</div>
-                <img src="./assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                 <div>
                     <div class="contact">
                         <div class="contact-profile-badge">BZ</div>
@@ -62,7 +75,7 @@
                 </div>
 
                 <div class="address-book-letter">D</div>
-                <img src="./assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                 <div>
                     <div class="contact">
                         <div class="contact-profile-badge">DE</div>
@@ -74,7 +87,7 @@
                 </div>
 
                 <div class="address-book-letter">E</div>
-                <img src="./assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                 <div>
                     <div class="contact">
                         <div class="contact-profile-badge">EF</div>
@@ -94,7 +107,7 @@
                 </div>
 
                 <div class="address-book-letter">M</div>
-                <img src="./assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                 <div>
                     <div class="contact">
                         <div class="contact-profile-badge">MB</div>
@@ -106,7 +119,7 @@
                 </div>
 
                 <div class="address-book-letter">T</div>
-                <img src="./assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                 <div>
                     <div class="contact">
                         <div class="contact-profile-badge">TW</div>
@@ -133,11 +146,11 @@
                         <span class="focused-contact-name">Anton Mayer</span>
                         <div>
                             <button class="focused-contact-btns">
-                                <img src="./assets/icons/contacts-edit.svg" alt="edit profile">
+                                <img src="/assets/icons/contacts-edit.svg" alt="edit profile">
                                 <span>Edit</span>
                             </button>
                             <button class="focused-contact-btns">
-                                <img src="./assets/icons/contacts-delete.svg" alt="delete profile">
+                                <img src="/assets/icons/contacts-delete.svg" alt="delete profile">
                                 <span>Delete</span>
                             </button>
                         </div>
@@ -158,8 +171,10 @@
             </div>
         </section>
     </main>
-    
+
     <footer></footer>
+
+    <script>includeHTML();</script>
 </body>
 
 </html>

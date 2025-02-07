@@ -16,6 +16,7 @@ main {
 
 .address-book::-webkit-scrollbar {
     width: 24px;
+    overflow-y: auto 53px;
 }
 
 .address-book::-webkit-scrollbar-track {
@@ -50,7 +51,6 @@ main {
 }
 
 .address-book::-webkit-scrollbar-thumb {
-    height: 50%;
     border: 8px solid #FFFFFF;
     border-radius: 30px;
     background: #A8A8A8;
