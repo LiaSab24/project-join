@@ -1,13 +1,13 @@
 header {
   height: fit-content;
   max-height: 96px;
+  max-width: 1440px;
   padding: 20px 40px 20px 348px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #FFFFFF;
   box-shadow: 0px 4px 4px 0px #0000001A;
-
   p {
     font-family: Inter;
     font-size: 20px;
@@ -70,5 +70,48 @@ header {
   color: #a8a8a8;
   p {
     margin-bottom: 10px;
+  }
+}
+
+/* header variation 2, umgesetzt in index.html*/
+.header-new {
+  height: fit-content;
+  max-height: 96px;
+  max-width: 1440px;
+  padding: 20px 40px 20px 348px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px 0px #0000001A;
+  p {
+    font-size: 1.25rem;
+    line-height: 24px;
+    text-align: left;
+    text-decoration-skip-ink: none;
+  }
+}
+
+.user-initial-new {
+  width: 56px;
+  height: 56px;
+  border: 3px solid #2A3647;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  color: #29ABE2;
+  font-weight: 700;
+}
+.help-new {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 3px solid #a8a8a8;
+  a{
+    text-decoration: none;
+    color: #a8a8a8;
   }
 }
