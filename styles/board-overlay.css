@@ -1,20 +1,22 @@
 .add-task-overlay {
     position: fixed;
     top: 50%;
-    left: 50%;
+    left: 58%;
     transform: translate(-50%, -50%);
     background: white;
-    width: 600px;
+    width: 1116px;
+    height: 671px;
     padding: 24px;
-    border-radius: 16px;
+    border-radius: 30px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     display: flex;
     flex-direction: column;
     animation: fadeIn 0.3s ease-in-out;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Header */
 .overlay-header {
     display: flex;
     justify-content: space-between;
@@ -33,7 +35,6 @@
     cursor: pointer;
 }
 
-/* Inhalt */
 .overlay-content {
     display: flex;
     flex-direction: column;
@@ -41,14 +42,12 @@
     margin-top: 10px;
 }
 
-/* Zwei-Spalten-Layout */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-/* Spalten */
 .form-column {
     display: flex;
     flex-direction: column;
@@ -60,7 +59,6 @@
     font-size: 14px;
 }
 
-/* Eingabefelder */
 .overlay-content input,
 .overlay-content select,
 .overlay-content textarea {
@@ -72,7 +70,6 @@
     background: #f8f9fa;
 }
 
-/* Prioritäts-Buttons */
 .prio-container {
     display: flex;
     justify-content: space-between;
@@ -93,7 +90,6 @@
 .prio-btn.medium { background: #FFA500; color: white; }
 .prio-btn.low { background: #28A745; color: white; }
 
-/* Subtasks */
 .subtask-container {
     display: flex;
     align-items: center;
@@ -114,7 +110,6 @@
     cursor: pointer;
 }
 
-/* Buttons */
 .overlay-actions {
     display: flex;
     justify-content: space-between;
