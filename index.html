@@ -4,15 +4,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join</title>
-  <link rel="icon" type="image/x-icon" href="./assets/join_logo.svg">
-
+  <link rel="shortcut icon" href="./assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="./assets/icons/site.webmanifest">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./fonts/fonts.css">
-
+  <link rel="stylesheet" href="./styles/header.css">
+  <link rel="stylesheet" href="./styles/sidebar.css">
   <script src="./script.js"></script>
 </head>
 <body>
-  <h1>member join</h1>
+  <header>
+    <p>Kanban Project Management Tool</p>
+    <div class="header-img-container flex">
+      <div class="help">
+        <a href="./pages/help.html" target="_blank" rel="noopener noreferrer">
+          <img class="help-img" src="./assets/img/help.png" alt="Help">
+        </a>
+      </div>
+      <div class="user-initial">
+        <div class="kreis">
+          <img src="./assets/img/SM.svg" alt="User">
+        </div> 
+      </div>
+    </div>
+  </header>
+  <div class="submenu">
+    <p>Help</p>
+    <p>Legal Notice</p>
+    <p>Privacy Policy</p>
+    <p>Logout</p>
+  </div>
+  <nav class="sidebar-wrapper">
+    <div class="sidebar-logo">
+      <img src="./assets/icons/joinWhite.svg" alt="Logo">
+    </div>
+    <div class="sidebar-menu">
+      <ul>
+        <li>
+          <img src="./assets/img/summary.png" alt="summary-icon">
+          <a href="#">Summary</a>
+        </li>
+        <li>
+          <img src="./assets/img/add_task.png" alt="add-task-icon">
+          <a href="#">Add Task</a>
+        </li>
+        <li>
+          <img src="./assets/img/board.png" alt="board-icon">
+          <a href="#">Board</a>
+        </li>
+        <li>
+          <img src="./assets/img/contacts.png" alt="contacts-icon">
+          <a href="#">Contacts</a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-notice">
+      <ul>
+        <li><a href="./pages/privacy_policy.html" target="_blank">Privacy Policy</a></li>
+        <li><a href="./pages/legal_notice.html" target="_blank">Legal Notice</a></li>
+      </ul>
+    </div>
+  </nav>
+  <main></main>
+  <footer></footer>
 </body>
 
 </html>

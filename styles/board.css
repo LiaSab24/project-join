@@ -1,0 +1,253 @@
+:root {
+  --FS-S: 12px;
+  --FS-L: 61px;
+  --FS-M: 20px;
+  --bg-color: #f4f5f7;
+  --text-color: #000;
+  --card-bg: #fff;
+  --border-radius: 8px;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --task-padding: 16px;
+  --gap-size-input: 32px;
+  --gap-size-task: 20px;
+  --header-padding: 16px;
+  --input-border: #ccc;
+  --input-bg: #fff;
+  --input-radius: 8px;
+  --button-bg: #2A3647;
+  --button-hover-bg: #1E2833;
+  --task-container-border: #E0E0E0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-color);
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  /* margin-left: 232px; */
+}
+
+h1 {
+  font-size: var(--FS-L);
+  padding: var(--header-padding);
+}
+
+h2 {
+  font-size: var(--FS-M);
+}
+
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--header-padding);
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-size-input);
+  padding-right: var(--header-padding);
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--input-radius);
+  padding: 3px;
+  gap: 8px;
+  width: 312px;
+  height: 42px;
+}
+
+.divider-container {
+  height: 20px;
+  width: 2px;
+  background-color: #ccc;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  font-size: var(--FS-M);
+  padding: 8px;
+  width: 200px;
+  background: transparent;
+}
+
+.search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.search-icon img {
+  width: 17.58px;
+  height: 17.58px;
+}
+
+button {
+  background: var(--button-bg);
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--input-radius);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--button-hover-bg);
+}
+
+button img {
+  width: 18.67px;
+  height: 18.67px;
+}
+
+.task-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: var(--header-padding);
+  gap: var(--gap-size-task);
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.task-wrapper {
+  padding: var(--task-padding);
+  flex: 1;
+  min-width: 220px;
+}
+
+.task-headline {
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-container img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.no-task-message-container {
+  text-align: center;
+  color: #a8a8a8;
+  opacity: 0.8;
+  border: 1px dotted #A8A8A8;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: #e7e7e7;
+}
+
+.margin {
+  margin-top: 15px;
+}
+
+.task-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: var(--task-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.task-card:hover {
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(5deg); 
+}
+
+.task-badge {
+  background: #0038FF;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  width: fit-content;
+}
+
+.task-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.task-description {
+  font-size: 14px;
+  color: #666;
+}
+
+.task-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.task-progress span {
+  font-size: var(--FS-S);
+  white-space: nowrap;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  background: #ddd;
+  border-radius: 5px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: #0038FF;
+  border-radius: 5px;
+  width: 50%; /* Dynamisch anpassbar */
+}
+
+.task-assignees {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.assignee {
+  background: orange;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.todo-wrapper .task-card {
+  margin-top: 10px;
+  padding: 15px;
+  transition: all 0.3s ease-in-out;
+}
+

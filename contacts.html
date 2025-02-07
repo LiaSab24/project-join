@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/join_logo.svg">
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styles/navigation.css">
+    <link rel="stylesheet" href="./fonts/fonts.css">
+    <link rel="stylesheet" href="./styles/contacts.css">
+
+    <script src="./script.js"></script>
+</head>
+
+<body>
+    <header></header>
+
+    <nav class="sidebar-wrapper"></nav>
+
+    <main>
+        <section class="address-book">
+            <div class="add-new-contact">
+                <button>
+                    <span>Add new contact</span>
+                    <img src="./assets/icons/contacts-add.svg" alt="add contact">
+                </button>
+            </div>
+            <div class="contacts-list">
+                <div class="address-book-letter">A</div>
+                <img src="./assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                <div>
+                    <div class="contact contact-clicked">
+                        <div class="contact-profile-badge">AM</div>
+                        <p>
+                            <span class="contact-name">Anton Mayer</span>
+                            <span class="contact-mail">antom@gmail.com</span>
+                        </p>
+                    </div>
+
+                    <div class="contact">
+                        <div class="contact-profile-badge">AJ</div>
+                        <p>
+                            <span class="contact-name">Anja Schulz</span>
+                            <span class="contact-mail">schulz@hotmail.com</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="address-book-letter">B</div>
+                <img src="./assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                <div>
+                    <div class="contact">
+                        <div class="contact-profile-badge">BZ</div>
+                        <p>
+                            <span class="contact-name">Benedikt Ziegler</span>
+                            <span class="contact-mail">benedikt@gmail.com</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="address-book-letter">D</div>
+                <img src="./assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                <div>
+                    <div class="contact">
+                        <div class="contact-profile-badge">DE</div>
+                        <p>
+                            <span class="contact-name">David Eisenberg</span>
+                            <span class="contact-mail">davidberg@gmail.com</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="address-book-letter">E</div>
+                <img src="./assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                <div>
+                    <div class="contact">
+                        <div class="contact-profile-badge">EF</div>
+                        <p>
+                            <span class="contact-name">Eva Fischer</span>
+                            <span class="contact-mail">eva@gmail.com</span>
+                        </p>
+                    </div>
+
+                    <div class="contact">
+                        <div class="contact-profile-badge">EM</div>
+                        <p>
+                            <span class="contact-name">Emmanuel Mauer</span>
+                            <span class="contact-mail">emmanuelma@gmail.com</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="address-book-letter">M</div>
+                <img src="./assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                <div>
+                    <div class="contact">
+                        <div class="contact-profile-badge">MB</div>
+                        <p>
+                            <span class="contact-name">Marcel Bauer</span>
+                            <span class="contact-mail">bauer@gmail.com</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="address-book-letter">T</div>
+                <img src="./assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                <div>
+                    <div class="contact">
+                        <div class="contact-profile-badge">TW</div>
+                        <p>
+                            <span class="contact-name">Tatjana Wolf</span>
+                            <span class="contact-mail">wolf@gmail.com</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-focus">
+            <div class="title">
+                <h1>Contacts</h1>
+                <div class="title-seperator"></div>
+                <p>Better with a team</p>
+            </div>
+
+            <div class="focused-contact-information">
+                <div class="focused-profile-overview">
+                    <div class="focused-profile-badge">AM</div>
+                    <div class="focused-profile-account">
+                        <span class="focused-contact-name">Anton Mayer</span>
+                        <div>
+                            <button class="focused-contact-btns">
+                                <img src="./assets/icons/contacts-edit.svg" alt="edit profile">
+                                <span>Edit</span>
+                            </button>
+                            <button class="focused-contact-btns">
+                                <img src="./assets/icons/contacts-delete.svg" alt="delete profile">
+                                <span>Delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="focused-profile-information">
+                    <p>Contact Information</p>
+                    <div>
+                        <span class="contact-opportunity">Email</span>
+                        <span class="contact-mail">antom@gmail.com</span>
+                    </div>
+                    <div>
+                        <span class="contact-opportunity">Phone</span>
+                        <span>+49 1111 111 11 1</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer></footer>
+</body>
+
+</html>

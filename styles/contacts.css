@@ -1,0 +1,259 @@
+main {
+    width: 1208px;
+    display: flex;
+}
+
+.address-book {
+    height: 928px;
+    width: 456px;
+    padding: 32px 24px 32px 24px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.address-book::-webkit-scrollbar {
+    width: 24px;
+}
+
+.address-book::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+
+.address-book::-webkit-scrollbar-button {
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position: center;
+    width: 10px;
+}
+
+.address-book::-webkit-scrollbar-button:vertical:start:increment {
+    height: 24px;
+    background-image: url('/assets/icons/scrollbar-btn-up.svg');
+    background-position: bottom;
+}
+
+.address-book::-webkit-scrollbar-button:vertical:start:decrement {
+    display: none;
+}
+
+.address-book::-webkit-scrollbar-button:vertical:end:increment {
+    height: 24px;
+    background-image: url('/assets/icons/scrollbar-btn-down.svg');
+    background-position: top;
+}
+
+.address-book::-webkit-scrollbar-button:vertical:end:decrement {
+    display: none;
+}
+
+.address-book::-webkit-scrollbar-thumb {
+    height: 50%;
+    border: 8px solid #FFFFFF;
+    border-radius: 30px;
+    background: #A8A8A8;
+}
+
+.address-book::-webkit-scrollbar-thumb:hover {
+    background: #D1D1D1;
+}
+
+.add-new-contact {
+    height: 101px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-new-contact button {
+    height: 56px;
+    width: 352px;
+    border: solid 1px #2A3647;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background-color: #2A3647;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25.2px;
+}
+
+.contacts-list {
+    width: 352px;
+}
+
+.address-book-letter {
+    height: 58px;
+    padding: 17px 36px 17px 36px;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.letter-underline {
+    width: 352px;
+    padding: 7px 0 7px 0;
+}
+
+.contact {
+    height: 78px;
+    padding: 15px 24px 15px 24px;
+    border-radius: 10px;
+    display: flex;
+    gap: 35px;
+}
+
+.contact:hover {
+    cursor: pointer;
+    background-color: #2A3647;
+    color: #FFFFFF;
+}
+
+/* class added, when contact is focused */
+.contact-clicked {
+    background-color: #2A3647;
+    color: #FFFFFF;
+}
+
+.contact-profile-badge {
+    height: 42px;
+    width: 42px;
+    border: 2px solid #FFFFFF;
+    border-radius: 45px;
+    text-align: center;
+    align-content: center;
+    background-color: #FF7A00;
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.contact p {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-name {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.contact-mail {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+    color: #007CEE;
+}
+
+.contact-focus {
+    margin-left: 62px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    width: 625px;
+    margin-top: 110px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.title h1 {
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 73.2px;
+}
+
+.title-seperator {
+    height: 59px;
+    width: 3px;
+    background-color: #29ABE2;
+}
+
+.title p {
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 32.4px;
+    color: #2A3647;
+}
+
+.focused-profile-overview {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 54px;
+}
+
+.focused-profile-badge {
+    height: 120px;
+    width: 120px;
+    border: 3px solid #FFFFFF;
+    border-radius: 70px;
+    text-align: center;
+    align-content: center;
+    background-color: #FF7A00;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 47px;
+    line-height: 56.4px;
+}
+
+.focused-profile-account {
+    gap: 8px;
+}
+
+.focused-contact-name {
+    font-weight: 500;
+    font-size: 47px;
+    line-height: 56.4px;
+}
+
+.focused-profile-account div {
+    width: 159px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.focused-contact-btns {
+    height: 24px;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+}
+
+.focused-profile-information p {
+    height: 74px;
+    align-content: center;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.focused-profile-information div {
+    height: 53px;
+    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+}
+
+.contact-opportunity {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19.2px;
+}
