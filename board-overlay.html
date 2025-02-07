@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join</title>
+  <link rel="icon" type="image/x-icon" href="./assets/join_logo.svg">
+
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./styles/navigation.css">
+  <link rel="stylesheet" href="./fonts/fonts.css">
+  <link rel="stylesheet" href="./styles/board-overlay.css">
+
+  <script src="./script.js"></script>
+</head>
+<body>
+  <header></header>
+  <nav class="sidebar-wrapper"></nav>
+  <main>
+    <div class="overlay add-task-overlay">
+      <div class="overlay-header">
+          <h2>Add Task</h2>
+          <button class="close-btn" onclick="closeOverlay()">×</button>
+      </div>
+      <div class="overlay-content">
+          <div class="form-grid">
+              <!-- Linke Spalte -->
+              <div class="form-column">
+                  <label for="taskTitle">Title *</label>
+                  <input id="taskTitle" type="text" placeholder="Enter a title" required>
+
+                  <label for="taskDescription">Description</label>
+                  <textarea id="taskDescription" rows="3" placeholder="Enter a description"></textarea>
+
+                  <label for="taskAssigned">Assigned to</label>
+                  <select id="taskAssigned">
+                      <option>Select contacts to assign</option>
+                      <option>John Doe</option>
+                      <option>Jane Smith</option>
+                  </select>
+              </div>
+
+              <!-- Rechte Spalte -->
+              <div class="form-column">
+                  <label for="taskDueDate">Due Date *</label>
+                  <input id="taskDueDate" type="date" required>
+
+                  <label>Priority</label>
+                  <div class="prio-container">
+                      <button class="prio-btn urgent" onclick="setPriority('urgent')">Urgent</button>
+                      <button class="prio-btn medium" onclick="setPriority('medium')">Medium</button>
+                      <button class="prio-btn low" onclick="setPriority('low')">Low</button>
+                  </div>
+
+                  <label>Category</label>
+                  <select id="taskCategory">
+                      <option>Select task category</option>
+                      <option>User Story</option>
+                      <option>Technical Task</option>
+                  </select>
+
+                  <label>Subtasks</label>
+                  <div class="subtask-container">
+                      <input id="newSubtask" type="text" placeholder="Add new subtask">
+                      <button class="subtask-add-btn">+</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="overlay-actions">
+          <button class="cancel-btn" >Cancel</button>
+          <button class="create-btn" >Create Task</button>
+      </div>
+  </div>
+  </main>
+  <footer></footer>
+</body>
+
+</html>
