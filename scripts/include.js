@@ -26,3 +26,13 @@ function includeHTML() {
     }
   }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  const scrollContainer = document.querySelector('.scroll-container');
+  
+  // Dynamische Anpassung der max-height basierend auf dem Inhalt
+  const contentHeight = scrollContainer.scrollHeight;
+  if (contentHeight < 300) {
+    scrollContainer.style.maxHeight = `${contentHeight}px`;
+  }
+});
