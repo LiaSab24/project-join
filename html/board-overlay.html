@@ -17,7 +17,11 @@
   <header></header>
   <nav class="sidebar-wrapper"></nav>
   <main>
-    <div class="overlay add-task-overlay">
+    <!-- Hintergrund Overlay -->
+    <div class="overlay-wrapper" onclick="closeOverlay()"></div>
+
+    <!-- Das eigentliche Overlay -->
+    <div class="add-task-overlay">
       <div class="overlay-header">
           <h2>Add Task</h2>
           <button class="close-btn" onclick="closeOverlay()">×</button>
@@ -30,16 +34,17 @@
 
                   <label for="taskDescription">Description</label>
                   <textarea id="taskDescription" rows="3" placeholder="Enter a description"></textarea>
-                  <img src="/assets/icons/recurso.png"><b>ttt</b>
+                  <img class="textarea-icon" src="/assets/icons/recurso.png">
                   <label for="taskAssigned">Assigned to</label>
                   <select id="taskAssigned">
                       <option>Select contacts to assign</option>
                       <option>John Doe</option>
                       <option>Jane Smith</option>
                   </select>
-
               </div>
+
               <div class="divider-column"></div>
+
               <div class="form-column">
                   <label for="taskDueDate">Due Date</label>
                   <input id="taskDueDate" type="date" required>
@@ -57,7 +62,7 @@
                       </button>
                   </div>
 
-                  <label for="taskDueDate">Category</label>
+                  <label for="taskCategory">Category</label>
                   <select id="taskCategory">
                       <option>Select task category</option>
                       <option>User Story</option>
@@ -76,7 +81,7 @@
           <button class="cancel-btn" >Cancel</button>
           <button class="create-btn" >Create Task</button>
       </div>
-  </div>
+    </div>
   </main>
   <footer></footer>
 </body>

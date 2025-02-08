@@ -5,16 +5,30 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: white;
     max-width: 1116px;
-    height: 560px;
+    width: 90%;
+    height: auto;
     padding: 32px;
     border-radius: 24px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    z-index: 999;
+    z-index: 9999;
 }
 
+.overlay-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 9998;
+    display: none;
+}
 
 .overlay-header {
     display: flex;
@@ -31,7 +45,6 @@
     align-items: flex-start;
     width: 100%;
 }
-
 
 .overlay-header h2 {
     font-size: 28px;
@@ -92,6 +105,15 @@
 .overlay-content input::placeholder,
 .overlay-content textarea::placeholder {
     color: #999;
+}
+
+.textarea-icon {
+    width: 18.9px;
+    height: 18.9px;
+    position: fixed;
+    right: 25px;
+    top: 357px;
+    left: 727px;
 }
 
 .prio-container {
@@ -207,7 +229,6 @@
     width: 20px;
     height: 14.51px;
 }
-
 
 .prio-btn.urgent img { filter: none; }
 .prio-btn.medium img { filter: none; }
