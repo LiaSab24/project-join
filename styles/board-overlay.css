@@ -57,6 +57,8 @@
     font-size: 22px;
     cursor: pointer;
     color: #555;
+    width: 24px;
+    height: 24px;
 }
 
 .close-btn:hover {
@@ -121,7 +123,7 @@
     height: 18.9px;
     position: fixed;
     right: 25px;
-    top: 370px;
+    top: 405px;
     left: 495px;
 }
 
