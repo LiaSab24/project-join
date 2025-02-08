@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/styles/navigation.css">
   <link rel="stylesheet" href="/fonts/fonts.css">
   <link rel="stylesheet" href="/styles/board-overlay.css">
+  <link rel="stylesheet" href="/styles/board.css">
 
   <script src="/script.js"></script>
 </head>
@@ -17,13 +18,10 @@
   <header></header>
   <nav class="sidebar-wrapper"></nav>
   <main>
-    <!-- Hintergrund Overlay -->
     <div class="overlay-wrapper" onclick="closeOverlay()"></div>
-
-    <!-- Das eigentliche Overlay -->
     <div class="add-task-overlay">
       <div class="overlay-header">
-          <h2>Add Task</h2>
+          <h1>Add Task</h1>
           <button class="close-btn" onclick="closeOverlay()">×</button>
       </div>
       <div class="overlay-content">
@@ -33,7 +31,7 @@
                   <input id="taskTitle" type="text" placeholder="Enter a title" required>
 
                   <label for="taskDescription">Description</label>
-                  <textarea id="taskDescription" rows="3" placeholder="Enter a description"></textarea>
+                  <textarea id="taskDescription" rows="3" placeholder="Enter a description" style="height: 120px;"></textarea>
                   <img class="textarea-icon" src="/assets/icons/recurso.png">
                   <label for="taskAssigned">Assigned to</label>
                   <select id="taskAssigned">
