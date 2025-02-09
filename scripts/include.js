@@ -27,6 +27,7 @@ function includeHTML() {
   }
 }
 
+/*
 document.addEventListener('DOMContentLoaded', function () {
   const scrollContainer = document.querySelector('.scroll-container');
   
@@ -35,4 +36,4 @@ document.addEventListener('DOMContentLoaded', function () {
   if (contentHeight < 300) {
     scrollContainer.style.maxHeight = `${contentHeight}px`;
   }
-});
+}); */

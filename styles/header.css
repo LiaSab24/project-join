@@ -2,11 +2,10 @@
 .submenu {
   width: fit-content;
   max-width: 150px;
-  height: fit-content;
-  max-height: 158px;
+  height: 158px;
   position: absolute;
   top: 96px;
-  right: 10px;
+  right: 20px;
   padding: 20px;
   border-radius: 20px 0px 20px 20px;
   background: #2A3647;

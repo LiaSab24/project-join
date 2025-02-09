@@ -1,0 +1,36 @@
+.help-new {
+  display: none;
+}
+
+.headline-container {
+  justify-content: space-between;
+  padding: 90px 90px 30px;
+  h1 {
+    font-size: 3.7rem;
+  }
+  .arrow-container{
+    display: grid;
+    place-content: center;
+    .arrow-left-line {
+      width: 37px;
+      height: 37px;
+    }
+  }
+}
+
+.main-container {
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 90px;
+  span {
+    color: #29ABE2;
+  }
+}
+
+.help-points {
+  padding-left: 24px;
+}
+
+p {
+  margin-bottom: 16px;
+}
