@@ -8,10 +8,10 @@ function btnUserInitial(){
 
 // kommt später in die templates.js Datei
 function getSubmenuHTML(){
-  return `
-  <p>Legal Notice</p>
-  <p>Privacy Policy</p>
-  <p>Logout</p>
+  return /*html*/`
+  <p><a href="../html/legal_note.html">Legal Notice</a></p>
+  <p><a href="../html/privacy_police.html">Privacy Policy</a></p>
+  <p><a href="../html/signup.html">Logout</a></p>
   `;
 }
 
