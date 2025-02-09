@@ -85,7 +85,7 @@
 .divider-column {
     width: 1px;
     background-color: #E0E0E0;
-    height: 374px;
+    height: 353px;
     align-self: stretch;
 }
 
@@ -238,7 +238,7 @@
 
 .prio-btn img {
     width: 20px;
-    height: 14.51px;
+    height: auto;
 }
 
 .prio-btn.urgent img { filter: none; }
