@@ -3,6 +3,7 @@
     --text-color: #000;
     --card-bg: #fff;
     --border-radius: 8px;
+    --border-radius-bg: 30px;
     --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     --task-padding: 16px;
     --button-bg: #2A3647;
@@ -109,7 +110,7 @@ body.login-body {
     background: white;
     box-shadow: var(--shadow);
     padding: 40px;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-bg);
     width: 652px;
     height: 449px;
     display: flex;
@@ -160,6 +161,7 @@ input {
     border: none;
     font-size: 14px;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .blue-btn:hover {
