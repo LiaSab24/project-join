@@ -1,0 +1,132 @@
+/* Updated CSS to match Demo Layout */
+.overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 390px;
+    height: 769px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.05;
+    display: flex;
+    flex-direction: column;
+}
+
+.overlay-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.badge {
+    background: #0038FF;
+    color: white;
+    padding: 4px 24px;
+    border-radius: 8px;
+    font-size: 23px;
+    width: 164px;
+    height: 36px;
+}
+
+.task-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.task-info {
+    margin-top: 10px;
+    font-size: 16px;
+    display: flex;
+}
+
+.priority {
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    padding: 0 8px;
+}
+
+.assigned-users {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    margin-left: 16px;
+}
+
+.assigned-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.user-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+
+.subtasks {
+    display: flex;
+    flex-direction: column;
+}
+
+.subtask-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    padding: 6px 16px;
+    border-radius: 3px;
+    margin-left: 4px;
+}
+
+.subtask-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: red;
+    cursor: pointer;
+    border: 2px solid #2A3647;
+    border-radius: 3px;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.delete-btn, .edit-btn {
+    background: transparent;
+    padding: 8px 12px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.delete-btn:hover, .edit-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+}

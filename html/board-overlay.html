@@ -7,16 +7,18 @@
   <link rel="icon" type="image/x-icon" href="/assets/img/join_logo.svg">
 
   <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="/styles/navigation.css">
+  <link rel="stylesheet" href="/styles/sidebar.css">
+  <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/fonts/fonts.css">
   <link rel="stylesheet" href="/styles/board-overlay.css">
   <link rel="stylesheet" href="/styles/board.css">
 
   <script src="/script.js"></script>
+  <script src="/scripts/include.js"></script>
 </head>
 <body>
-  <header></header>
-  <nav class="sidebar-wrapper"></nav>
+  <div w3-include-html="header.html"></div>
+  <div w3-include-html="sidebar.html"></div>
   <!-- <img src="/assets/img/required.png" alt="Required Field Warning" class="error-image"> -->
   <main>
     <div class="overlay-wrapper" onclick="closeOverlay()"></div>
@@ -80,6 +82,7 @@
     </div>
   </main>
   <footer></footer>
+  <script>includeHTML();</script>
 </body>
 
 </html>
