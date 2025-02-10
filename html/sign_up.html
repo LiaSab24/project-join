@@ -12,55 +12,57 @@
   <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/fonts/fonts.css">
   <link rel="stylesheet" href="/styles/sign_up.css">
-  <link rel="stylesheet" href="/styles/login.css">
+  <!-- <link rel="stylesheet" href="/styles/login.css"> -->
 
   <script src="/script.js"></script>
   <script src="/scripts/include.js"></script>
 </head>
 
-<body class="login-body">
-  <div class="overlay">
-      <img class="white-icon" src="/assets/icons/joinWhite.svg" alt="Join Logo">
-  </div>
-  <div class="mobile-header-icon">
-      <img class="blue-icon" src="/assets/icons/joinBlue.svg" alt="Join Logo">
-  </div>
-  <div class="log-in-wrapper">
-      <div class="form-wrapper">
-          <form>
-              <div class="hero">
-                  <h1>Sign up</h1>
-                  <img src="/assets/icons/underline.svg" alt="Underline">
-              </div>
-              <div class="input-field">
-                  <input type="text" placeholder="Name" required>
-                  <input type="email" placeholder="Email" required>
-                  <div class="password-wrapper">
-                      <input type="password" placeholder="Password" required>
-                  </div>
-                  <div class="password-wrapper">
-                      <input type="password" placeholder="Confirm Password" required>
-                  </div>
-                  <div class="checkbox-group">
-                      <input type="checkbox" id="privacy">
-                      <label for="privacy">I accept the <a href="#">Privacy policy</a></label>
-                  </div>
-              </div>
-              <div class="button-container">
-                  <button class="blue-btn">Sign up</button>
-              </div>
-          </form>
-      </div>
-  </div>
-  <div class="sign-up-container">
-      <p>Already have an account?</p>
-      <a class="blue-btn" href="./login.html">Log in</a>
+<body class="Body-LogIn">
+
+  <div class="Mobile-Header-Icon">
+      <img class="blue-icon" src="/assets/icons/joinBlue.svg" alt="Main Logo in Blue Color" srcset="">
   </div>
 
-  <div class="policy-container">
+  <div class="log-in-wrapper">
+      <div class="Form-Wrapper">
+          <form>
+              <div class="Head-Line">
+                  <div class="back-arrow">
+                      <a href="./login.html"><img src="/assets/icons/arrow-left-line.png" alt="" srcset=""></a>
+                  </div>
+                  <h1>Sign up</h1>
+                  <img src="/assets/icons/underline.svg" alt="LightBlue Textdecoration Underline" srcset="">
+              </div>
+              <div class="Input-Field">
+                  <input autocomplete="username" id="name" required type="text" placeholder="Name">
+                  <input autocomplete="email" id="mail" required type="email" placeholder="Email">
+                  <div class="password-wrapper">
+                      <input autocomplete="new-password"  id="password" name="password" type="password" placeholder="Password">
+                  </div>
+                  <div class="password-wrapper">
+                      <input autocomplete="current-password" id="confirmed" name="confirmed" required type="password" placeholder="Confirm Password">
+                  </div>
+                  <span id="alert" class="d-none input-error">Your passwords don´t match. Please try again</span>
+                  <div class="Checkbox-Remember-Me">
+                      <input required type="checkbox" name="Remember-me" id="checkbox">
+                      <span>I accept the <a href="/privacypolicy.html" target="_blank">Privacy policy</a></span>
+                  </div>
+              </div>
+              <div class="Button-Area">
+                  <button class="Blue-BTN">Sign up</button>
+              </div>
+          </form>
+
+
+      </div>
+      <div class="Blue-BTN Signed-UP d-none" id="msg-box">You Signed Up succesfully</div>
+  </div>
+
+  <div class="Policy-Area">
       <a href="./privacy_police.html" target="_blank">Privacy Policy</a>
       <a href="./legal_note.html" target="_blank">Legal notice</a>
   </div>
-</body>
 
+</body>
 </html>
