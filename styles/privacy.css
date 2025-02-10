@@ -15,6 +15,9 @@
   flex-direction: column;
   gap: 16px;
   padding: 90px;
+  ul {
+    padding-left: 16px;
+  }
 }
 
 p {
