@@ -39,6 +39,10 @@ main {
     margin-bottom: 20px;
 }
 
+.overlay-header h1 {
+    padding-left: 48px;
+}
+
 .form-grid {
     display: flex;
     flex-direction: row;
@@ -81,6 +85,10 @@ main {
     background-color: #E0E0E0;
     height: 353px;
     align-self: stretch;
+}
+
+.overlay-content {
+    padding: 0 48px;
 }
 
 .overlay-content label {
@@ -159,7 +167,7 @@ main {
     display: flex;
     justify-content: flex-end;
     gap: 12px;
-    margin-top: 20px;
+    padding: 0 48px;
 }
 
 .cancel-btn {
@@ -171,9 +179,7 @@ main {
     cursor: pointer;
     border: 1px solid #D1D1D1;
     border-radius: 8px;
-    padding: 10px 16px;
-    font-weight: bold;
-    font-family: 'Inter', sans-serif;
+    font-weight: 100;
 }
 
 .cancel-btn:hover {
@@ -192,21 +198,22 @@ main {
     font-size: 16px;
     cursor: pointer;
     border: none;
-    font-weight: bold;
 }
 
 .create-btn:hover {
     background: #1F2937;
 }
 
-.create-btn::after {
-    content: " ✔";
+.check-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
 }
 
 .error-image {
     position: fixed;
     bottom: 38px;
-    left: 38px;
+    left: 74px;
     width: auto;
     height: 20px;
     display: block;
