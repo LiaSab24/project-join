@@ -1,15 +1,16 @@
 .sidebar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
   width: 232px;
-  height: 100vh; /*1024px*/
+  background-color: #2A3647;
+  box-shadow: 0px 0px 4px 0px #0000001A;
   padding: 64px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: #2A3647;
-  position: absolute;
-  top: 0px;
-  box-shadow: 0px 0px 4px 0px #0000001A;
 }
 
 .sidebar-logo {
