@@ -12,12 +12,13 @@
     <link rel="stylesheet" href="/styles/header.css">
     <link rel="stylesheet" href="/fonts/fonts.css">
     <link rel="stylesheet" href="/styles/add_task.css">
-  
+
     <script src="/script.js"></script>
     <script src="/scripts/include.js"></script>
-  </head>
-  
-  <body>
+    <script src="/scripts/add_task.js"></script>
+</head>
+
+<body>
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
@@ -26,45 +27,72 @@
 
         <form id="addTaskForm">
             <div>
-                <label for="add-task-title">
-                    Title 
+                <label for="addTaskTitle">
+                    Title
                     <span class="required-star">*</span>
                 </label>
-                <input type="text" id="add-task-title" placeholder="Enter a title" required>
+                <input id="addTaskTitle" type="text" placeholder="Enter a title">
 
-                <label for="add-task-description">Description</label>
-                <textarea type="text" id="add-task-description" maxlength="240" placeholder="Enter a Description"></textarea>
+                <label for="addTaskDescription">Description</label>
+                <textarea type="text" id="addTaskDescription" maxlength="240"
+                    placeholder="Enter a Description"></textarea>
 
-                <label for="add-task-assigned-to">Assigned to</label>
-                <select id="add-task-assigned-to">
+                <label for="addTaskAssignedTo">Assigned to</label>
+                <select id="addTaskAssignedTo" aria-placeholder="Select contacts to assign">
                     <option value="" selected disabled>Select contacts to assign</option>
-                    <option value="" >...</option>
+                    <option value="">...</option>
                 </select>
+
+                <div id="addTaskAssignedToProfiles">
+                    <div class="profile-badge">AS</div>
+                    <div class="profile-badge">DE</div>
+                    <div class="profile-badge">EF</div>
+                </div>
             </div>
 
             <div class="add-task-seperator"></div>
 
             <div>
-                <label for="add-task-title">
+                <label for="addTaskDate">
                     Due date
                     <span class="required-star">*</span>
                 </label>
-                <input type="date" id="add-task-title" min="1920-01-01" max="2100-12-31" required>
+                <input form="dd/mm/yyyy" id="addTaskDate" type="date" min="1920-01-01" max="2100-12-31" required>
 
-                <label for="add-task-title">Prio</label>
-                <input type="text" id="add-task-title" placeholder="">
+                <label for="addTaskPriorities">Prio</label>
+                <div id="addTaskPriorities">
+                    <div id="prioUrgent" onclick="priorityBtnBg('prioUrgent')">
+                        <span>Urgent</span>
+                        <img id="prioUrgentImg" src="/assets/icons/add-task-prioUrgent.svg">
+                    </div>
+                    <div id="prioMedium" onclick="priorityBtnBg('prioMedium')">
+                        <span>Medium</span>
+                        <img id="prioMediumImg" src="/assets/icons/add-task-prioMedium.svg">
+                    </div>
+                    <div id="prioLow" onclick="priorityBtnBg('prioLow')">
+                        <span>Low</span>
+                        <img id="prioLowImg" src="/assets/icons/add-task-prioLow.svg">
+                    </div>
+                </div>
 
-                <label for="add-task-title">
+                <label for="addTaskCategory">
                     Category
                     <span class="required-star">*</span>
                 </label>
-                <select id="add-task-title" required>
+                <select id="addTaskCategory">
                     <option value="" selected disabled>Select task category</option>
-                    <option value="" >...</option>
+                    <option value="">...</option>
                 </select>
 
-                <label for="add-task-title">Subtasks</label>
-                <input type="text" id="add-task-title" placeholder="Add new subtask">
+
+                <label for="addTaskSubtask">Subtasks</label>
+                <input type="text" id="addTaskSubtask" placeholder="Add new subtask">
+                
+                <ul id="addTaskSubtaskList">
+                    <li>Contact Form</li>
+                    <li>Write Legal Imprint</li>
+                </ul>
+                
             </div>
         </form>
 
@@ -73,11 +101,11 @@
                 <span class="required-star">*</span>
                 <p>This field is required</p>
             </div>
-            
+
             <div class="add-task-btns">
                 <button id="addTaskClear">
                     clear
-                    <img src="/assets/icons/add-task-clear.svg">
+                    <div class="add-task-clear-img"></div>
                 </button>
                 <button id="addTaskCreate">
                     Create Task
