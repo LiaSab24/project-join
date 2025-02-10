@@ -1,20 +1,14 @@
-.header-img-container flex {
-  display: none;
-}
-
-.headline-container {
-  justify-content: space-between;
-  padding: 90px 90px 30px;
-
-  h1 {
-    font-size: 3.7rem;
-  }
+.header-new p {
+  margin-bottom: 0;
 }
 
 .main-wrapper {
   flex-direction: column;
   gap: 16px;
   padding: 90px;
+  h1 {
+      font-size: 61px;
+    }
   ul {
     padding-left: 16px;
   }
