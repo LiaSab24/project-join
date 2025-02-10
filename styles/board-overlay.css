@@ -204,12 +204,13 @@ main {
 }
 
 .error-image {
-    position: absolute;
-    bottom: 90px;
-    left: 90px;
+    position: fixed;
+    bottom: 38px;
+    left: 38px;
     width: auto;
     height: 20px;
-    filter: invert(1);
+    display: block;
+    z-index: 9999;
 }
 
 
