@@ -244,12 +244,12 @@ select {
     margin-left: -3px;
 }
 
-.add-task-btns {
+.submit-btns {
     display: flex;
     gap: 16px;
 }
 
-.add-task-btns button {
+.submit-btns button {
     height: 56px;
     padding: 16px;
     border: 1px solid #2A3647;
@@ -260,33 +260,33 @@ select {
     gap: 4px;
 }
 
-#addTaskClear {
-    width: 110px;
+.cancel-btn {
+    background-color: transparent;
     color: #2A3647;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
 }
 
-.add-task-clear-img {
+.cancel-img {
     height: 24px;
     width: 24px;
-    background-image: url("/assets/icons/add-task-clear.svg");
+    margin: 0px !important;
+    background-image: url("/assets/icons/cancel-btn.svg");
 }
 
-#addTaskClear:hover {
+.cancel-btn:hover {
     border: 2px solid #29ABE2;
     color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
     cursor: pointer;
 }
 
-#addTaskClear:hover .add-task-clear-img {
-    background-image: url("/assets/icons/add-task-clear-hover.svg");
+.cancel-btn:hover .cancel-img {
+    background-image: url("/assets/icons/cancel-btn-hover.svg");
 }
 
-#addTaskCreate {
-    width: 183px;
+.create-btn {
     background-color: #2A3647;
     color: #FFFFFF;
     font-weight: 700;
@@ -294,7 +294,7 @@ select {
     line-height: 25.2px;
 }
 
-#addTaskCreate:hover {
+.create-btn:hover {
     border: 1px solid #29ABE2;
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
