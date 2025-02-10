@@ -2,7 +2,7 @@
     --bg-color: #f4f5f7;
     --text-color: #000;
     --card-bg: #fff;
-    --border-radius: 16px;
+    --border-radius: 8px;
     --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     --task-padding: 16px;
     --button-bg: #2A3647;
@@ -202,3 +202,29 @@ input {
     text-decoration: none;
     color: var(--button-bg);
 }
+
+input[type="text"] {
+    background-image: url(../assets/icons/user.svg);
+    background-repeat: no-repeat;
+    background-position: 95%;
+}
+
+input[type="email"] {
+    background-image: url(../assets/icons/mail.svg);
+    background-repeat: no-repeat;
+    background-position: 95%;
+}
+
+input[type="password"] {
+    background-image: url(../assets/icons/lock.svg);
+    background-repeat: no-repeat;
+    background-position: 95%;
+}
+
+input[type="text"][name="password"] {
+    background-image: url('../assets/icons/eye-open.svg');
+    background-repeat: no-repeat;
+    background-position: 95%;
+    background-size: 20px;
+}
+
