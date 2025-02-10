@@ -33,7 +33,7 @@
   background: #FFFFFF;
   box-shadow: 0px 4px 4px 0px #0000001A;
   position: relative;
-  > p {
+  .header-text {
     font-size: 1.25rem;
     line-height: 24px;
     text-align: left;
@@ -93,5 +93,30 @@ background: linear-gradient(0deg, rgba(12, 46, 98, 0.12), rgba(12, 46, 98, 0.12)
   &:hover{
     width: 30px;
     height: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-new {
+    height: 80px;
+    padding: 20px 16px;
+  }
+  .header-logo {
+    width: 32px;
+    height: 39px;
+    animation-timing-function: ease-in-out;
+    animation-duration: 100ms;
+  }
+  .header-text {
+    display: none;
+  }
+  .help-new {
+    display: none;
+  }
+}
+
+@media (min-width: 780px) {
+  .header-logo {
+    display: none;
   }
 }
