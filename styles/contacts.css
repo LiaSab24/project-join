@@ -84,6 +84,13 @@ main {
     line-height: 25.2px;
 }
 
+.add-new-contact button:hover {
+    background-color: #29ABE2;
+    border: solid 1px #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
+}
+
 .contacts-list {
     width: 352px;
 }
@@ -109,9 +116,8 @@ main {
 }
 
 .contact:hover {
+    background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
     cursor: pointer;
-    background-color: #2A3647;
-    color: #FFFFFF;
 }
 
 /* class added, when contact is focused */
@@ -224,6 +230,7 @@ main {
 
 .focused-contact-btns {
     height: 24px;
+    max-width: 83px;
     border: none;
     display: flex;
     align-items: center;
@@ -231,6 +238,33 @@ main {
     font-weight: 400;
     font-size: 16px;
     line-height: 19.2px;
+}
+
+.focused-contact-btns:hover {
+    color: #29ABE2;
+    cursor: pointer;
+}
+
+.focused-contact-btns div {
+    height: 24px;
+    width: 24px;
+    background-repeat: no-repeat;
+}
+
+#contactsEditIcon {
+    background-image: url("/assets/icons/contacts-edit.svg");
+}
+
+.focused-contact-btns:hover #contactsEditIcon {
+    background-image: url("/assets/icons/contacts-edit-hover.svg");
+}
+
+#contactsDeleteIcon {
+    background-image: url("/assets/icons/contacts-delete.svg");
+}
+
+.focused-contact-btns:hover #contactsDeleteIcon {
+    background-image: url("/assets/icons/contacts-delete-hover.svg");
 }
 
 .focused-profile-information p {
@@ -259,12 +293,33 @@ main {
 }
 
 /** Overlay Add Contact and Overlay Edit Contact**/
-.overlay-contact {
+#overlayContact {
     width: 1212px;
     height: 592px;
     border-radius: 30px;
     display: flex;
     background-color: #FFFFFF;
+    position: relative;
+    animation-duration: 300ms;
+    animation-timing-function: ease-out;
+}
+
+.animation-open-overlay {
+    animation: openOverlay;
+}
+
+@keyframes openOverlay {
+    from {right: -100%;}
+    to { right: 0%;}
+}
+
+.animation-close-overlay {
+    animation: closeOverlay;
+}
+
+@keyframes closeOverlay {
+    from {right: 0%;}
+    to { right: -100%;}
 }
 
 .overlay-title {
@@ -325,7 +380,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    color:#FFFFFF;
+    color: #FFFFFF;
     font-weight: 500;
     font-size: 47px;
     line-height: 56.4px;

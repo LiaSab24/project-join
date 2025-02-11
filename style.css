@@ -21,3 +21,7 @@ main {
 .flex {
   display: flex;
 }
+
+.d-none {
+  display: none !important;
+}

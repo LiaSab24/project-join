@@ -19,7 +19,10 @@
 </head>
 
 <body style="margin: 64px;">
-    <section class="overlay-contact">
+
+    <button onclick="toggleOverlay()" style="width: 100px; height: 50px;background-color: tomato;"></button>
+
+    <section id="overlayContact" class="d-none animation-close-overlay">
         <div class="overlay-title">
             <img class="overlay-join-logo" src="/assets/icons/join-logo.svg">
             <h1 id="overlayTitleH1">Add contact</h1>
@@ -27,7 +30,7 @@
             <img src="/assets/icons/contacts-overlay-underline.svg">
         </div>
         <div class="overlay-contact-information">
-            <img src="/assets/icons/contacts-overlay-close.svg" class="overlay-close">
+            <img onclick="toggleOverlay()" src="/assets/icons/contacts-overlay-close.svg" class="overlay-close">
             <div>
                 <div class="overlay-profile-badge">
                     <img src="/assets/icons/contacts-overlay-profile-badge-anonymous.svg">
