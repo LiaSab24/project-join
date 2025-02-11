@@ -15,5 +15,5 @@ function toggleOverlay() {
         overlayContactContentRef.classList.toggle("d-none"); 
         overlayBgContentRef.classList.toggle("d-none");
     }, 300);
-    
+    //change content of overlay, depending of clicked button (add or edit)
 }

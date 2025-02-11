@@ -273,6 +273,7 @@ main {
 
 .focused-profile-information p {
     height: 74px;
+    margin-top: 21px;
     align-content: center;
     font-weight: 400;
     font-size: 20px;
