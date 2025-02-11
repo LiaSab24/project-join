@@ -37,7 +37,7 @@
     <main>
         <section class="address-book">
             <div class="add-new-contact">
-                <button>
+                <button onclick="toggleOverlay()">
                     <span>Add new contact</span>
                     <img src="/assets/icons/contacts-add.svg" alt="add contact">
                 </button>
@@ -146,11 +146,11 @@
                     <div class="focused-profile-account">
                         <span class="focused-contact-name">Anton Mayer</span>
                         <div>
-                            <button class="focused-contact-btns">
+                            <button onclick="toggleOverlay()" class="focused-contact-btns">
                                 <div id="contactsEditIcon"></div>
                                 <span>Edit</span>
                             </button>
-                            <button class="focused-contact-btns">
+                            <button onclick="toggleOverlay()" class="focused-contact-btns">
                                 <div id="contactsDeleteIcon"></div>
                                 <span>Delete</span>
                             </button>
@@ -172,6 +172,46 @@
             </div>
         </section>
     </main>
+
+    <div id="overlayBg" class="d-none">
+        <section id="overlayContact" class="d-none animation-close-overlay">
+            <div class="overlay-title">
+                <img class="overlay-join-logo" src="/assets/icons/join-logo.svg">
+                <h1 id="overlayTitleH1">Add contact</h1>
+                <p id="overlayTitleP">Tasks are better with a team!</p>
+                <img src="/assets/icons/contacts-overlay-underline.svg">
+            </div>
+            <div class="overlay-contact-information">
+                <img onclick="toggleOverlay()" src="/assets/icons/contacts-overlay-close.svg" class="overlay-close">
+                <div>
+                    <div class="overlay-profile-badge">
+                        <img src="/assets/icons/contacts-overlay-profile-badge-anonymous.svg">
+                    </div>
+                    <form class="overlay-form">
+                        <input type="text" placeholder="Name">
+                        <input type="text" placeholder="Email">
+                        <input type="text" placeholder="Phone">
+    
+                        <div class="submit-btns">
+                            <button class="reject-btn" id="contactsOverlayCancel">
+                                Cancel
+                                <div class="reject-img"></div>
+                            </button>
+                            <button class="confirm-btn" id="contactsOverlayCreate">
+                                Create Contact
+                                <img src="/assets/icons/create-btn.svg">
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="overlay-input-icons">
+                <img src="/assets/icons/contacts-overlay-name.svg" alt="Name">
+                <img src="/assets/icons/contacts-overlay-email.svg" alt="Email">
+                <img src="/assets/icons/contacts-overlay-phone.svg" alt="Phone">
+            </div>
+        </section>
+    </div>
 
     <footer></footer>
 

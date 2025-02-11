@@ -7,8 +7,13 @@ function contactClicked(id) {
 }
 
 function toggleOverlay() {
-    let overlayContentRef = document.getElementById("overlayContact");
-    overlayContentRef.classList.toggle("animation-open-overlay");
-    setTimeout(function() { overlayContentRef.classList.toggle("d-none"); }, 300);
-    overlayContentRef.classList.toggle("animation-close-overlay");
+    let overlayBgContentRef = document.getElementById("overlayBg");
+    let overlayContactContentRef = document.getElementById("overlayContact");
+    overlayContactContentRef.classList.toggle("animation-open-overlay");
+    overlayContactContentRef.classList.toggle("animation-close-overlay");
+    setTimeout(function() { 
+        overlayContactContentRef.classList.toggle("d-none"); 
+        overlayBgContentRef.classList.toggle("d-none");
+    }, 300);
+    
 }

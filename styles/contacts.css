@@ -1,3 +1,7 @@
+body {
+    overflow: clip;
+}
+
 main {
     width: 1208px;
     display: flex;
@@ -293,6 +297,22 @@ main {
 }
 
 /** Overlay Add Contact and Overlay Edit Contact**/
+#overlayBg {
+    height: 1024px;
+    width: 1440px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0, 0, 0, 0.3);
+    transition-property: all;
+    transition-duration: 300ms;
+    transition-timing-function: linear;
+}
+
 #overlayContact {
     width: 1212px;
     height: 592px;
@@ -407,6 +427,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 51px;
+    z-index: 3;
 }
 
 .overlay-input-icons img {
@@ -424,6 +445,7 @@ input {
     margin-top: 4px;
     margin-bottom: 20px;
     padding: 12px 16px 12px 16px;
+    z-index: 3;
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     color: #2A3647;
