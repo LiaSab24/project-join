@@ -17,3 +17,7 @@ function toggleOverlay() {
     }, 300);
     //change content of overlay, depending of clicked button (add or edit)
 }
+
+function contactSuccesfullyCreated() {
+    //section #contactSuccesfullyCreated should only appear now (if "Create Contact"-Button is succesfully clicked and contact is added)
+}
