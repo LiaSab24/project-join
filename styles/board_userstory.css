@@ -1,0 +1,185 @@
+/* Updated CSS to match Demo Layout */
+.overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 390px;
+    height: 769px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.05;
+    display: flex;
+    flex-direction: column;
+}
+
+.overlay-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.badge {
+    background: #0038FF;
+    color: white;
+    padding: 4px 24px;
+    border-radius: 8px;
+    font-size: 23px;
+    width: 164px;
+    height: 36px;
+}
+
+.task-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.task-info {
+    margin-top: 10px;
+    font-size: 16px;
+    display: flex;
+}
+
+.priority {
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    padding: 0 8px;
+}
+
+.assigned-users {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    margin-left: 16px;
+}
+
+.assigned-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.user-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: white;
+}
+
+.subtasks {
+    display: flex;
+    flex-direction: column;
+}
+
+.subtask-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    padding: 6px 16px;
+    border-radius: 3px;
+    margin-left: 4px;
+}
+
+.subtask-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: red;
+    cursor: pointer;
+    border: 2px solid #2A3647;
+    border-radius: 3px;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    position: absolute;
+    bottom: 24px;
+    right: 28px;
+}
+
+.delete-btn, .edit-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #2A3647;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.delete-btn {
+    border-right: 1px solid #D1D1D1;
+    padding-right: 16px;
+}
+
+.delete-btn:hover, .edit-btn:hover {
+    color: #1A1F2B;
+}
+
+.delete-btn::before {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.edit-btn::before {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.actions::after {
+    display: inline-block;
+    width: 1px;
+    height: 16px;
+    background: #D1D1D1;
+}
+
+.task-added-overlay {
+    width: 326px;
+    height: 74px;
+    position: fixed;
+    bottom: 400px;
+    right: 20px;
+    background: #2A3647;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.task-added-overlay img {
+    width: 30px;
+    height: 30px;
+}

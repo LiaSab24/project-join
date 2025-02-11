@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join - Sign Up</title>
+  <link rel="icon" type="image/x-icon" href="/assets/img/join_logo.svg">
+
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/styles/sidebar.css">
+  <link rel="stylesheet" href="/styles/header.css">
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <link rel="stylesheet" href="/styles/sign_up.css">
+
+  <script src="/script.js"></script>
+  <script src="/scripts/include.js"></script>
+</head>
+
+<body class="Body-LogIn">
+
+  <div class="Mobile-Header-Icon">
+      <img class="blue-icon" src="/assets/icons/joinBlue.svg" alt="Main Logo in Blue Color" srcset="">
+  </div>
+
+  <div class="log-in-wrapper">
+      <div class="Form-Wrapper">
+          <form>
+              <div class="Head-Line">
+                  <div class="back-arrow">
+                      <a href="./login.html"><img src="/assets/icons/arrow-left-line.png" alt="" srcset=""></a>
+                  </div>
+                  <h1>Sign up</h1>
+                  <img src="/assets/icons/underline.svg" alt="LightBlue Textdecoration Underline" srcset="">
+              </div>
+              <div class="Input-Field">
+                  <input autocomplete="username" id="name" required type="text" placeholder="Name">
+                  <input autocomplete="email" id="mail" required type="email" placeholder="Email">
+                  <div class="password-wrapper">
+                      <input autocomplete="new-password"  id="password" name="password" type="password" placeholder="Password">
+                  </div>
+                  <div class="password-wrapper">
+                      <input autocomplete="current-password" id="confirmed" name="confirmed" required type="password" placeholder="Confirm Password">
+                  </div>
+                  <span id="alert" class="d-none input-error">Your passwords don´t match. Please try again</span>
+                  <div class="Checkbox-Remember-Me">
+                      <input required type="checkbox" name="Remember-me" id="checkbox">
+                      <span>I accept the <a href="/privacypolicy.html" target="_blank">Privacy policy</a></span>
+                  </div>
+              </div>
+              <div class="Button-Area">
+                  <button class="Blue-BTN">Sign up</button>
+              </div>
+          </form>
+
+
+      </div>
+      <div class="Blue-BTN Signed-UP d-none" id="msg-box">You Signed Up succesfully</div>
+  </div>
+
+  <div class="Policy-Area">
+      <a href="./privacy_police.html" target="_blank">Privacy Policy</a>
+      <a href="./legal_note.html" target="_blank">Legal notice</a>
+  </div>
+
+</body>
+</html>

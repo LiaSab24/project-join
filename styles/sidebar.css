@@ -1,15 +1,15 @@
 .sidebar-wrapper {
+  position: fixed;
+  top: 0;
+  height: 100vh;
   width: 232px;
-  height: 1024px;
+  background-color: #2A3647;
+  box-shadow: 0px 0px 4px 0px #0000001A;
   padding: 64px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: #2A3647;
-  position: absolute;
-  top: 0px;
-  box-shadow: 0px 0px 4px 0px #0000001A;
 }
 
 .sidebar-logo {
@@ -56,19 +56,50 @@
   }
 }
 
-/*
-.sidebar-notice 
-ul {
-  list-style: none;
-}
+/* Responsive Design for Sidebar as Footer */
+@media (max-width: 768px) {
+  .sidebar-wrapper {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    height: 80px;
+    padding: 16px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.sidebar-notice 
-li {
-  margin-bottom: 8px;
-}
+  .sidebar-logo {
+    display: none;
+  }
 
-.sidebar-notice li 
-a {
-  color: #a8a8a8;
-  text-decoration: none;
-} */
+  .sidebar-menu {
+    width: 100%;
+    height: auto;
+  }
+
+  .sidebar-menu ul {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidebar-menu li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .sidebar-menu li img {
+    margin-right: 0;
+    margin-bottom: 4px;
+  }
+
+  .sidebar-notice {
+    display: none;
+  }
+}

@@ -1,0 +1,19 @@
+.header-new p {
+  margin-bottom: 0;
+}
+
+.main-wrapper {
+  flex-direction: column;
+  gap: 16px;
+  padding: 90px;
+  h1 {
+      font-size: 61px;
+    }
+  ul {
+    padding-left: 16px;
+  }
+}
+
+p {
+  margin-bottom: 16px;
+}
