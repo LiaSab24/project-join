@@ -13,30 +13,22 @@
   <link rel="stylesheet" href="./fonts/fonts.css">
   <link rel="stylesheet" href="./styles/header.css">
   <link rel="stylesheet" href="./styles/sidebar.css">
-  <script src="./script.js"></script>
+  <script src="./script.js" defer></script>
 </head>
 <body>
-  <header>
+  <header class="header-new">
     <p>Kanban Project Management Tool</p>
     <div class="header-img-container flex">
-      <div class="help">
-        <a href="./pages/help.html" target="_blank" rel="noopener noreferrer">
-          <img class="help-img" src="./assets/img/help.png" alt="Help">
-        </a>
+      <div class="help-new">
+        <a href="./html/help.html" target="_blank">?</a>
       </div>
-      <div class="user-initial">
-        <div class="kreis">
-          <img src="./assets/img/SM.svg" alt="User">
-        </div> 
+      <div class="user-initial-new" onclick="btnUserInitial()">
+        <span>SM</span>
       </div>
     </div>
+    <div class="submenu d-none" id="submenu"></div>
   </header>
-  <div class="submenu">
-    <p>Help</p>
-    <p>Legal Notice</p>
-    <p>Privacy Policy</p>
-    <p>Logout</p>
-  </div>
+  
   <nav class="sidebar-wrapper">
     <div class="sidebar-logo">
       <img src="./assets/icons/joinWhite.svg" alt="Logo">
@@ -68,8 +60,9 @@
       </ul>
     </div>
   </nav>
-  <main></main>
-  <footer></footer>
+  <main>
+    <button onclick="closeSubmenu()">X</button>
+  </main>
 </body>
 
 </html>
