@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
-    <link rel="icon" type="image/x-icon" href="/assets/img/join_logo.svg">
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)"/>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)"/>
 
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/styles/sidebar.css">
@@ -15,6 +16,7 @@
 
     <script src="/script.js"></script>
     <script src="/scripts/include.js"></script>
+    <script src="/scripts/contacts.js"></script>
 
     <!-- <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -36,7 +38,7 @@
     <main>
         <section class="address-book">
             <div class="add-new-contact">
-                <button>
+                <button onclick="toggleOverlay()">
                     <span>Add new contact</span>
                     <img src="/assets/icons/contacts-add.svg" alt="add contact">
                 </button>
@@ -45,7 +47,7 @@
                 <div class="address-book-letter">A</div>
                 <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                 <div>
-                    <div class="contact contact-clicked">
+                    <div id="0" class="contact" onclick="contactClicked(0)">
                         <div class="contact-profile-badge">AM</div>
                         <p>
                             <span class="contact-name">Anton Mayer</span>
@@ -53,7 +55,7 @@
                         </p>
                     </div>
 
-                    <div class="contact">
+                    <div id="1" class="contact" onclick="contactClicked(1)">
                         <div class="contact-profile-badge">AJ</div>
                         <p>
                             <span class="contact-name">Anja Schulz</span>
@@ -65,7 +67,7 @@
                 <div class="address-book-letter">B</div>
                 <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                 <div>
-                    <div class="contact">
+                    <div id="2" class="contact" onclick="contactClicked(2)">
                         <div class="contact-profile-badge">BZ</div>
                         <p>
                             <span class="contact-name">Benedikt Ziegler</span>
@@ -77,7 +79,7 @@
                 <div class="address-book-letter">D</div>
                 <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                 <div>
-                    <div class="contact">
+                    <div id="3" class="contact" onclick="contactClicked(3)">
                         <div class="contact-profile-badge">DE</div>
                         <p>
                             <span class="contact-name">David Eisenberg</span>
@@ -89,7 +91,7 @@
                 <div class="address-book-letter">E</div>
                 <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                 <div>
-                    <div class="contact">
+                    <div id="4" class="contact" onclick="contactClicked(4)">
                         <div class="contact-profile-badge">EF</div>
                         <p>
                             <span class="contact-name">Eva Fischer</span>
@@ -97,7 +99,7 @@
                         </p>
                     </div>
 
-                    <div class="contact">
+                    <div id="5" class="contact" onclick="contactClicked(5)">
                         <div class="contact-profile-badge">EM</div>
                         <p>
                             <span class="contact-name">Emmanuel Mauer</span>
@@ -109,7 +111,7 @@
                 <div class="address-book-letter">M</div>
                 <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                 <div>
-                    <div class="contact">
+                    <div id="6" class="contact" onclick="contactClicked(6)">
                         <div class="contact-profile-badge">MB</div>
                         <p>
                             <span class="contact-name">Marcel Bauer</span>
@@ -121,7 +123,7 @@
                 <div class="address-book-letter">T</div>
                 <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                 <div>
-                    <div class="contact">
+                    <div id="7" class="contact" onclick="contactClicked(7)">
                         <div class="contact-profile-badge">TW</div>
                         <p>
                             <span class="contact-name">Tatjana Wolf</span>
@@ -145,12 +147,12 @@
                     <div class="focused-profile-account">
                         <span class="focused-contact-name">Anton Mayer</span>
                         <div>
-                            <button class="focused-contact-btns">
-                                <img src="/assets/icons/contacts-edit.svg" alt="edit profile">
+                            <button onclick="toggleOverlay()" class="focused-contact-btns">
+                                <div id="contactsEditIcon"></div>
                                 <span>Edit</span>
                             </button>
-                            <button class="focused-contact-btns">
-                                <img src="/assets/icons/contacts-delete.svg" alt="delete profile">
+                            <button onclick="toggleOverlay()" class="focused-contact-btns">
+                                <div id="contactsDeleteIcon"></div>
                                 <span>Delete</span>
                             </button>
                         </div>
@@ -171,6 +173,46 @@
             </div>
         </section>
     </main>
+
+    <div id="overlayBg" class="d-none">
+        <section id="overlayContact" class="d-none animation-close-overlay">
+            <div class="overlay-title">
+                <img class="overlay-join-logo" src="/assets/icons/join-logo.svg">
+                <h1 id="overlayTitleH1">Add contact</h1>
+                <p id="overlayTitleP">Tasks are better with a team!</p>
+                <img src="/assets/icons/contacts-overlay-underline.svg">
+            </div>
+            <div class="overlay-contact-information">
+                <img onclick="toggleOverlay()" src="/assets/icons/contacts-overlay-close.svg" class="overlay-close">
+                <div>
+                    <div class="overlay-profile-badge">
+                        <img src="/assets/icons/contacts-overlay-profile-badge-anonymous.svg">
+                    </div>
+                    <form class="overlay-form">
+                        <input type="text" placeholder="Name">
+                        <input type="text" placeholder="Email">
+                        <input type="text" placeholder="Phone">
+    
+                        <div class="submit-btns">
+                            <button class="reject-btn" id="contactsOverlayCancel">
+                                Cancel
+                                <div class="reject-img"></div>
+                            </button>
+                            <button class="confirm-btn" id="contactsOverlayCreate">
+                                Create Contact
+                                <img src="/assets/icons/create-btn.svg">
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="overlay-input-icons">
+                <img src="/assets/icons/contacts-overlay-name.svg" alt="Name">
+                <img src="/assets/icons/contacts-overlay-email.svg" alt="Email">
+                <img src="/assets/icons/contacts-overlay-phone.svg" alt="Phone">
+            </div>
+        </section>
+    </div>
 
     <footer></footer>
 

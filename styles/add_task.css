@@ -2,15 +2,108 @@ main {
     width: 1208px;
 }
 
-input {
-    height: 48px;
+label {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #2A3647;
+}
+
+textarea {
+    min-height: 120px;
     width: 440px;
+    margin-top: 4px;
+    margin-bottom: 20px;
     padding: 12px 16px 12px 16px;
     border: 1px solid #D1D1D1;
     border-radius: 10px;
+    color: #2A3647;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    resize: vertical
 }
 
-.required-label {
+textarea::-webkit-resizer {
+    height: 19px;
+    width: 19px;
+    position: relative;
+    background-image: url("/assets/icons/textarea-resizer.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: 2px solid transparent;
+}
+
+textarea::-webkit-scrollbar {
+    width: 24px;
+    overflow-y: auto;
+}
+
+textarea::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    border: 8px solid #FFFFFF;
+    border-radius: 30px;
+    background: #A8A8A8;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+    background: #D1D1D1;
+}
+
+input,
+select {
+    height: 48px;
+    width: 440px;
+    margin-top: 4px;
+    margin-bottom: 20px;
+    padding: 12px 16px 12px 16px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    color: #2A3647;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+input::placeholder,
+textarea::placeholder,
+#addTaskDate::-webkit-datetime-edit {
+    color: #D1D1D1;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+    outline: 1px solid #29ABE2;
+    border: 1px solid transparent;
+}
+
+select {
+    height: 48px;
+    width: 440px;
+    appearance: none;
+    /* removes the default arrow */
+    -moz-appearance: none;
+    /* Firefox */
+    -webkit-appearance: none;
+    /* Safari and Chrome */
+    background: #FFFFFF;
+    background-image: url("/assets/icons/add-task-dropdown-down.svg");
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: 50%;
+    cursor: pointer;
+}
+
+.required-star {
     position: relative;
     bottom: 2px;
     right: 4px;
@@ -29,6 +122,7 @@ input {
 }
 
 #addTaskForm {
+    margin-top: 48px;
     margin-left: 96px;
     display: flex;
     justify-content: space-between;
@@ -39,6 +133,103 @@ input {
     flex-direction: column;
 }
 
+#addTaskAssignedTo, #addTaskSubtask {
+    margin-bottom: 0;
+}
+
+.profile-badge {
+    height: 42px;
+    width: 42px;
+    border: 2px solid #FFFFFF;
+    border-radius: 45px;
+    text-align: center;
+    justify-content: center;
+    background-color: #FF7A00;
+    color: #FFFFFF;
+}
+
+#addTaskAssignedToProfiles {
+    height: 42px;
+    width: fit-content;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row !important;
+    gap: 8px;
+}
+
+#addTaskAssignedToProfiles div {
+    height: 42px;
+    width: 42px;
+    border: 2px solid #FFFFFF;
+    border-radius: 45px;
+    text-align: center;
+    justify-content: center;
+    background-color: #FF7A00;
+    color: #FFFFFF;
+}
+
+.add-task-seperator {
+    height: 424px;
+    width: 2px;
+    border-radius: 1px;
+    background-color: #D1D1D1;
+}
+
+#addTaskDate::-webkit-calendar-picker-indicator {
+    background-image: url("/assets/icons/add-task-calendar.svg");
+}
+
+#addTaskPriorities {
+    margin-top: 8px;
+    margin-bottom: 20px;
+    flex-direction: row !important;
+    justify-content: space-between;
+}
+
+#addTaskPriorities div {
+    height: 56px;
+    width: 136px;
+    padding: 16px 10px 16px 10px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+#addTaskPriorities div:hover {
+    box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
+}
+
+#addTaskSubtask {
+    background-image: url("/assets/icons/add-task-subtask-add.svg");
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: 50%;
+    cursor: pointer;
+}
+
+#addTaskSubtaskList {
+    height: 160px;
+    padding-left: 8px;
+    list-style-position: inside;
+}
+
+#addTaskSubtaskList li {
+    padding: 6px 16px 6px 16px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+}
+
 .add-task-submit {
     margin-left: 96px;
     display: flex;
@@ -46,9 +237,92 @@ input {
 }
 
 .add-task-requirements {
+    margin-top: 37px;
     display: flex;
 }
 
-.add-task-requirements p{
+.add-task-requirements p {
     margin-left: -3px;
+}
+
+.submit-btns {
+    display: flex;
+    gap: 16px;
+}
+
+.submit-btns button {
+    height: 56px;
+    padding: 16px;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.cancel-btn {
+    background-color: transparent;
+    color: #2A3647;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.cancel-img {
+    height: 24px;
+    width: 24px;
+    margin: 0px !important;
+    background-image: url("/assets/icons/cancel-btn.svg");
+}
+
+.cancel-btn:hover {
+    border: 2px solid #29ABE2;
+    color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
+}
+
+.cancel-btn:hover .cancel-img {
+    background-image: url("/assets/icons/cancel-btn-hover.svg");
+}
+
+.create-btn {
+    background-color: #2A3647;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 25.2px;
+}
+
+.create-btn:hover {
+    border: 1px solid #29ABE2;
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
+}
+
+/** Those 3 classes are added, when button is clicked **/
+.prioUrgentClicked {
+    background-color: #FF3D00 !important;
+    box-shadow: none !important;
+    color: #FFFFFF;
+}
+
+.prioMediumClicked {
+    background-color: #FFA800 !important;
+    box-shadow: none !important;
+    color: #FFFFFF;
+}
+
+.prioLowClicked {
+    background-color: #7AE229 !important;
+    box-shadow: none !important;
+    color: #FFFFFF;
+}
+
+/** This class is added, when input requirement is unfulfilled**/
+
+.add-task-requirement-unfulfilled {
+    outline: 1px solid #FF8190;
 }

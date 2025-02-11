@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+<<<<<<< Updated upstream
 }
 
 body {
@@ -22,8 +23,13 @@ main {
 
 /* costums css */
 .d-none {
-  display: none;
+  display: none !important;
 }
 .flex {
   display: flex;
 }
+=======
+  margin: 0;
+  padding: 0;
+}
+>>>>>>> Stashed changes
