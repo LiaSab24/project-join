@@ -19,8 +19,6 @@ function closeSubmenu() {
   getSubmenu.classList.add('d-none');
 }
 
-
-
 //"now < 1711407600000", // 2025-3-11
 //______________________________________________________________________________________________//
 
@@ -39,6 +37,18 @@ async function fetchDataJson() {
   contacts = joinDataJson.contacts;
 }
 
+//post-fct for the added data
+async function postData(path = "", data = {}) {
+  let newData = await fetch(BASE_URL + path + ".json", {
+    method: "POST",
+    header: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data)
+  });
+  return newDataToJson = await newData.json();
+}
+
 //add data-fcts. for users, tasks and contacts
 function addUser() {
   let userFirstName = document.getElementById("userfirst").innerHTML;
@@ -52,22 +62,24 @@ function addUser() {
 }
 
 function addTask() {
-  let taskTitle = document.getElementById("taskstitle").innerHTML;
-  let taskDescription = document.getElementById("tasksdescrip").innerHTML;
-  let taskAssignedTo = document.getElementById("tasksassign").innerHTML;
-  let taskDueDate = document.getElementById("tasksdue").innerHTML;
-  let taskPrio = document.getElementById("tasksprio").innerHTML;
-  let taskCategory = document.getElementById("taskscate").innerHTML;
-  let taskSubtasks = document.getElementById("taskssub").innerHTML;
+  let taskTitle = document.getElementById("addTaskTitle").value;
+  let taskDescription = document.getElementById("addTaskDescription").value;
+  let taskAssignedTo = document.getElementById("addTaskAssignedTo").value;
+  let taskDueDate = document.getElementById("addTaskDate").value;
+  let taskPriority = document.querySelector(".clicked").innerText;
+  console.log(taskPriority);
+  let taskCategory = document.getElementById("addTaskCategory").value;
+  let taskSubtasks = document.getElementById("addTaskSubtaskList").value;
   postData("/tasks/", { 
     "title": taskTitle, 
     "description": taskDescription, 
     "assignedTo": taskAssignedTo,
     "dueDate": taskDueDate,
-    "prio": taskPrio,
+    "priority": taskPriority,
     "category": taskCategory,
     "subtasks": taskSubtasks
   });
+  clearForm();
 }
 
 function addContact() {
@@ -83,14 +95,12 @@ function addContact() {
   });
 }
 
-//post-fct for the added data
-async function postData(path = "", data = {}) {
-  let newData = await fetch(BASE_URL + path + ".json", {
-    method: "POST",
-    header: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(data)
-  });
-  return newDataToJson = await newData.json();
+function clearForm() {
+  document.getElementById("addTaskTitle").value = "";
+  document.getElementById("addTaskDescription").value = "";
+  document.getElementById("addTaskAssignedTo").value = "";
+  document.getElementById("addTaskDate").value = "";
+  document.getElementById("addTaskCategory").value = "";
+  document.getElementById("addTaskSubtaskList").value = "";
+  priorityBtnClear();
 }

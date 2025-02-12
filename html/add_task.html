@@ -19,7 +19,7 @@
     <script src="/scripts/add_task.js"></script>
 </head>
 
-<body>
+<body onload="fetchDataJson()">
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
@@ -32,7 +32,7 @@
                     Title
                     <span class="required-star">*</span>
                 </label>
-                <input id="addTaskTitle" type="text" placeholder="Enter a title">
+                <input id="addTaskTitle" type="text" placeholder="Enter a title" required>
 
                 <label for="addTaskDescription">Description</label>
                 <textarea type="text" id="addTaskDescription" maxlength="240"
@@ -63,15 +63,15 @@
                 <label for="addTaskPriorities">Prio</label>
                 <div id="addTaskPriorities">
                     <div id="prioUrgent" onclick="priorityBtnBg('prioUrgent')">
-                        <span>Urgent</span>
+                        Urgent
                         <img id="prioUrgentImg" src="/assets/icons/add-task-prioUrgent.svg">
                     </div>
                     <div id="prioMedium" onclick="priorityBtnBg('prioMedium')">
-                        <span>Medium</span>
+                        Medium
                         <img id="prioMediumImg" src="/assets/icons/add-task-prioMedium.svg">
                     </div>
                     <div id="prioLow" onclick="priorityBtnBg('prioLow')">
-                        <span>Low</span>
+                        Low
                         <img id="prioLowImg" src="/assets/icons/add-task-prioLow.svg">
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                     Category
                     <span class="required-star">*</span>
                 </label>
-                <select id="addTaskCategory">
+                <select id="addTaskCategory" required>
                     <option value="" selected disabled>Select task category</option>
                     <option value="">...</option>
                 </select>
@@ -104,12 +104,12 @@
             </div>
 
             <div class="submit-btns">
-                <button class="cancel-btn" id="contactsOverlayCancel">
+                <button onclick="clearForm(), priorityBtnClear()" class="cancel-btn" id="contactsOverlayCancel">
                     Cancel
                     <div class="cancel-img"></div>
                 </button>
-                <button class="create-btn" id="contactsOverlayCreate">
-                    Create Contact
+                <button onclick="addTask()" class="create-btn" id="contactsOverlayCreate">
+                    Create Task
                     <img src="/assets/icons/create-btn.svg">
                 </button>
             </div>
