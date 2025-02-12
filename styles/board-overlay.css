@@ -59,15 +59,18 @@ main {
 .close-btn {
     background: none;
     border: none;
-    font-size: 22px;
-    cursor: pointer;
-    color: #555;
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s ease-in-out;
 }
 
 .close-btn:hover {
-    color: black;
+    background: rgba(74, 74, 74, 0.1);
+    cursor: pointer;
 }
 
 .form-column {
