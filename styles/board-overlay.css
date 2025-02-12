@@ -182,7 +182,11 @@ main {
 }
 
 .cancel-btn:hover {
-    background: rgba(42, 54, 71, 0.1);
+    border: 1px solid #29ABE2;
+    color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
+    background-color: transparent;
 }
 
 .cancel-btn::after {
@@ -200,7 +204,9 @@ main {
 }
 
 .create-btn:hover {
-    background: #1F2937;
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
 }
 
 .check-icon {

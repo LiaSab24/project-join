@@ -129,16 +129,31 @@ section {
     font-weight: 500;
     color: #2A3647;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease-in-out;
 }
 
 .delete-btn {
-    border-right: 1px solid #D1D1D1;
-    padding-right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.delete-btn::after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 20px;
+    background: #D1D1D1;
+    margin-left: 16px;
 }
 
 .delete-btn:hover, .edit-btn:hover {
-    color: #1A1F2B;
+    color: #29ABE2;
+    transform: scale(1.1); 
+}
+
+.delete-btn:hover img, .edit-btn:hover img {
+    filter: brightness(0) saturate(100%) invert(62%) sepia(66%) saturate(429%) hue-rotate(161deg) brightness(93%) contrast(90%);
 }
 
 .delete-btn::before {
