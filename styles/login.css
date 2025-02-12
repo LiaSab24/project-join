@@ -8,6 +8,7 @@
     --task-padding: 16px;
     --button-bg: #2A3647;
     --button-hover-bg: #1E2833;
+    --Light-Blue: #29ABE2;
 }
 
 body.login-body {
@@ -162,10 +163,13 @@ input {
     font-size: 14px;
     font-weight: bold;
     text-decoration: none;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
 }
 
 .blue-btn:hover {
-    background: var(--button-hover-bg);
+    background-color: var(--Light-Blue);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .white-btn {
@@ -178,7 +182,10 @@ input {
 }
 
 .white-btn:hover {
-    background: #f0f0f0;
+    border: 1px solid #29ABE2;
+    color: #29ABE2;
+    /* box-shadow: 0px 4px 4px 0px #00000040; */
+    cursor: pointer;
 }
 
 .sign-up-container {
