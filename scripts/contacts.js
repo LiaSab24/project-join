@@ -16,6 +16,7 @@ const colors = [
     "#ffbb2b" // Goldenrod
 ];
 
+let BASEURL = "https://join-424-project-default-rtdb.europe-west1.firebasedatabase.app/";
 let availableColors = [...colors];
 let contactColors = {}; 
 
