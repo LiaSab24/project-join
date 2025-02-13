@@ -42,7 +42,7 @@
       </div>
     </section>
     <section class="task-container">
-      <div class="task-wrapper">
+      <div class="task-wrapper" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
         <div class="task-headline">
           <h2>To Do</h2>
           <div class="icon-container"><img src="/assets/icons/plus-button.png" alt="Add Button"></div>
@@ -52,7 +52,7 @@
         </div>
 
       <!-- MARK: Funktion Start -->
-        <div class="task-card">
+      <div class="task-card" id="task1" draggable="true" ondragstart="drag(event)">
           <div class="task-badge">User Story</div>
           <div class="task-title">Kochwelt Page & Recipe Recommender</div>
           <div class="task-description">Build start page with recipe recommendation...</div>
@@ -71,7 +71,7 @@
       <!-- MARK: Funktion Ende -->    
 
       </div>
-      <div class="task-wrapper">
+      <div class="task-wrapper" id="inProgress" ondrop="drop(event)" ondragover="allowDrop(event)">
         <div class="task-headline">
           <h2>In Progress</h2>
           <div class="icon-container"><img src="/assets/icons/plus-button.png" alt="Add Button"></div>
@@ -80,7 +80,7 @@
           <div class="no-task-message" id="noTaskInProgress">No tasks in Progress</div>
         </div>
       </div>
-      <div class="task-wrapper">
+      <div class="task-wrapper" id="awaitFeedback" ondrop="drop(event)" ondragover="allowDrop(event)">
         <div class="task-headline">
           <h2>Await Feedback</h2>
           <div class="icon-container"><img src="/assets/icons/plus-button.png" alt="Add Button"></div>
@@ -89,7 +89,7 @@
           <div class="no-task-message" id="noTaskAwaitFeedback">No tasks awaiting feedback</div>
         </div>
       </div>
-      <div class="task-wrapper">
+      <div class="task-wrapper" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
         <div class="task-headline">
           <h2>Done</h2>
           <br>
