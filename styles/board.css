@@ -136,7 +136,7 @@ button img {
 .task-wrapper {
   padding: var(--task-padding);
   flex: 1;
-  min-width: 252px;
+  min-width: 285px;
 }
 
 .task-headline {
@@ -180,7 +180,7 @@ button img {
   gap: 10px;
   margin-top: 16px;
   position: fixed;
-  width: 252px;
+  max-width: 252px;
   height: 263px;
 }
 
