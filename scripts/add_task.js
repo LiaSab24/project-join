@@ -14,3 +14,18 @@ function priorityBtnBg(priority) {
     clickedPrioBtn.classList.add(priority + "Clicked");
     clickedPrioBtnImg.src="/assets/icons/add-task-"+ priority +"-clicked.svg";
 }
+
+async function init() {
+    const dateInput = document.querySelector("#addTaskDate");
+    if (dateInput && !dateInput.hasAttribute("data-flatpickr-initialized")) {
+        flatpickr(dateInput, {
+            dateFormat: "d/m/y", // Korrektes Format (2-stelliges Jahr)
+            allowInput: true, // Benutzer kann auch tippen
+            clickOpens: true, // Popup öffnet sich automatisch beim Klick
+            defaultDate: null, // Kein voreingestelltes Datum
+        });
+        dateInput.setAttribute("data-flatpickr-initialized", "true");
+    }
+}
+
+

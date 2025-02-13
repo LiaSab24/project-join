@@ -15,10 +15,11 @@
 
     <script src="/script.js"></script>
     <script src="/scripts/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="/scripts/add_task.js"></script>
 </head>
 
-<body>
+<body onload="init()">
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
@@ -57,7 +58,7 @@
                     Due date
                     <span class="required-star">*</span>
                 </label>
-                <input form="dd/mm/yyyy" id="addTaskDate" type="date" min="1920-01-01" max="2100-12-31" required>
+                <input id="addTaskDate" type="text" placeholder="dd/mm/yy" required>
 
                 <label for="addTaskPriorities">Prio</label>
                 <div id="addTaskPriorities">
