@@ -51,14 +51,48 @@ async function postData(path = "", data = {}) {
 
 //add data-fct. and clearForm for users
 function addUser() {
-  let userName = document.getElementById("username").innerHTML;
-  let userMail = document.getElementById("usermail").innerHTML;
-  let userPassword = document.getElementById("userpass").innerHTML;
-  postData("/users/", { 
-    "name": userName, 
-    "mail": userMail, 
-    "password": userPassword 
-  });
+  let userName = document.getElementById("name").value;
+  let userMail = document.getElementById("mail").value;
+  let userPassword = checkPasswordConfirmed();
+  if (userPassword !== undefined) {
+    let checkbox = document.getElementById("checkbox");
+    if (checkbox.checked) {
+      console.log("checkbox");
+      postData("/users/", {
+        "name": userName,
+        "mail": userMail,
+        "password": userPassword
+      });
+      clearSignUpForm();
+      signUpSuccesfully();
+    }
+  }
+}
+
+function checkPasswordConfirmed() {
+  let password = document.getElementById("password").value;
+  let confirmed = document.getElementById("confirmed").value;
+  if (password === confirmed) {
+    console.log("password");
+    return password;
+  }
+}
+
+function signUpSuccesfully() {
+  let signUpMsg = document.getElementById("msgBox");
+  setTimeout(function () {
+    signUpMsg.classList.remove("d-none");
+  }, 800);
+  setTimeout(function () {
+    signUpMsg.classList.add("d-none");
+  }, 2800);
+}
+
+function clearSignUpForm() {
+  document.getElementById("name").value = "";
+  document.getElementById("mail").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("confirmed").value = "";
 }
 
 //add data-fct. and clearForm for tasks
@@ -71,9 +105,9 @@ function addTask() {
   console.log(taskPriority);
   let taskCategory = document.getElementById("addTaskCategory").value;
   let taskSubtasks = document.getElementById("addTaskSubtaskList").value;
-  postData("/tasks/", { 
-    "title": taskTitle, 
-    "description": taskDescription, 
+  postData("/tasks/", {
+    "title": taskTitle,
+    "description": taskDescription,
     "assignedTo": taskAssignedTo,
     "dueDate": taskDueDate,
     "priority": taskPriority,
@@ -97,8 +131,8 @@ function addContact() {
   let contactName = document.getElementById("addContactName").value;
   let contactMail = document.getElementById("addContactMail").value;
   let contactPhone = document.getElementById("addContactPhone").value;
-  postData("/contacts/", { 
-    "name": contactName, 
+  postData("/contacts/", {
+    "name": contactName,
     "mail": contactMail,
     "phone": contactPhone
   });
