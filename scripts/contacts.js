@@ -67,3 +67,4 @@ function contactClicked(id) {
         focusedBadge.textContent = clickedBadge.textContent;
     }
 }
+
