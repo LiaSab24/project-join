@@ -6,6 +6,7 @@
   --text-color: #000;
   --card-bg: #fff;
   --border-radius: 8px;
+  --border-radius-task: 24px;
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   --task-padding: 16px;
   --gap-size-input: 32px;
@@ -135,7 +136,7 @@ button img {
 .task-wrapper {
   padding: var(--task-padding);
   flex: 1;
-  min-width: 220px;
+  min-width: 252px;
 }
 
 .task-headline {
@@ -171,13 +172,16 @@ button img {
 
 .task-card {
   background: var(--card-bg);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-task);
   box-shadow: var(--shadow);
   padding: var(--task-padding);
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 16px;
+  position: fixed;
+  width: 252px;
+  height: 263px;
 }
 
 .task-card:hover {
