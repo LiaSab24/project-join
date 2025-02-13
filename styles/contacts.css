@@ -131,6 +131,11 @@ main {
     color: #FFFFFF;
 }
 
+.contact-clicked:hover {
+    background: #2A3647 !important;
+    color: #FFFFFF !important;   
+}
+
 .contact-profile-badge {
     height: 42px;
     width: 42px;
@@ -195,7 +200,11 @@ main {
     color: #2A3647;
 }
 
-.focused-contact-information {
+#focusedContactInformation {
+    position: relative;
+}
+
+.animation-focused-contact {
     animation: showFocusedContact;
     animation-duration: 300ms;
     animation-timing-function: ease-out;
@@ -484,7 +493,7 @@ main {
     line-height: 24px;
 }
 
-/* This is added to id above, only when create contact was succesfully*/
+/* This is added to #contactSuccesfullyCreated, only when create contact was succesfully*/
 @keyframes contactSuccesfullyCreated {
     0%   {right: -100%;}
     25%  {right: -800px;}

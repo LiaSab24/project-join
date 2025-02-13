@@ -1,9 +1,20 @@
 function contactClicked(id) {
-    for (let indexContacts = 0; indexContacts < contacts.length; indexContacts++) {
-        //remove "contact-clicked" class for all contacts;
+    for (let indexContacts = 0; indexContacts < 8; indexContacts++) {
+        document.getElementById(indexContacts).classList.remove("contact-clicked");
     }
-    //add "contact-clicked" class to clicked contact
-    //show "focused-contact-information" for clicked contact
+    document.getElementById(id).classList.add("contact-clicked");
+    let focusedContactContentRef = document.getElementById("focusedContactInformation");
+    focusedContactContentRef.innerHTML = "";
+    setTimeout(function () {
+        focusedContactContentRef.innerHTML += getFocusedContactTemplate(id);
+        focusedContactContentRef.classList.remove("animation-focused-contact");
+    }, 400);
+}
+
+function deleteContact() {
+    //delete contact from firebase
+    //remove contact from addressbook
+    //clear focused contact
 }
 
 function toggleOverlay() {
