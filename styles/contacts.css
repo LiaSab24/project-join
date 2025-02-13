@@ -482,10 +482,9 @@ main {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
-    animation-name: contactSuccesfullyCreated;
-    animation-duration: 1600ms;
 }
 
+/* This is added to id above, only when create contact was succesfully*/
 @keyframes contactSuccesfullyCreated {
     0%   {right: -100%;}
     25%  {right: -800px;}

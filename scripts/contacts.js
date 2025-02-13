@@ -19,5 +19,11 @@ function toggleOverlay() {
 }
 
 function contactSuccesfullyCreated() {
-    //section #contactSuccesfullyCreated should only appear now (if "Create Contact"-Button is succesfully clicked and contact is added)
+    let successAnimation = document.getElementById("contactSuccesfullyCreated");
+    successAnimation.style.animationName = "contactSuccesfullyCreated";
+    successAnimation.style.animationDuration = "1600ms";
+    setTimeout(function() { 
+        successAnimation.style.animationName = "";
+        successAnimation.style.animationDuration = "";
+    }, 1600);
 }

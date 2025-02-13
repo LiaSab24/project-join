@@ -49,18 +49,19 @@ async function postData(path = "", data = {}) {
   return newDataToJson = await newData.json();
 }
 
-//add data-fcts. for users, tasks and contacts
+//add data-fct. and clearForm for users
 function addUser() {
-  let userFirstName = document.getElementById("userfirst").innerHTML;
-  let userLastName = document.getElementById("userlast").innerHTML;
+  let userName = document.getElementById("username").innerHTML;
+  let userMail = document.getElementById("usermail").innerHTML;
   let userPassword = document.getElementById("userpass").innerHTML;
   postData("/users/", { 
-    "firstName": userFirstName, 
-    "lastName": userLastName, 
+    "name": userName, 
+    "mail": userMail, 
     "password": userPassword 
   });
 }
 
+//add data-fct. and clearForm for tasks
 function addTask() {
   let taskTitle = document.getElementById("addTaskTitle").value;
   let taskDescription = document.getElementById("addTaskDescription").value;
@@ -79,28 +80,33 @@ function addTask() {
     "category": taskCategory,
     "subtasks": taskSubtasks
   });
-  clearForm();
+  clearTaskForm();
 }
 
-function addContact() {
-  let contactFirstName = document.getElementById("contactfirst").innerHTML;
-  let contactLastName = document.getElementById("contactlast").innerHTML;
-  let contactMail = document.getElementById("contactmail").innerHTML;
-  let contactPhone = document.getElementById("contactphone").innerHTML;
-  postData("/contacts/", { 
-    "firstName": contactFirstName, 
-    "lastName": contactLastName, 
-    "mail": contactMail,
-    "phone": contactPhone
-  });
-}
-
-function clearForm() {
+function clearTaskForm() {
   document.getElementById("addTaskTitle").value = "";
   document.getElementById("addTaskDescription").value = "";
   document.getElementById("addTaskAssignedTo").value = "";
   document.getElementById("addTaskDate").value = "";
   document.getElementById("addTaskCategory").value = "";
   document.getElementById("addTaskSubtaskList").value = "";
-  priorityBtnClear();
+}
+
+//add data-fct. and clearForm for contacts
+function addContact() {
+  let contactName = document.getElementById("addContactName").value;
+  let contactMail = document.getElementById("addContactMail").value;
+  let contactPhone = document.getElementById("addContactPhone").value;
+  postData("/contacts/", { 
+    "name": contactName, 
+    "mail": contactMail,
+    "phone": contactPhone
+  });
+  clearContactForm();
+}
+
+function clearContactForm() {
+  document.getElementById("addContactName").value = "";
+  document.getElementById("addContactMail").value = "";
+  document.getElementById("addContactPhone").value = "";
 }
