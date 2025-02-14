@@ -50,7 +50,7 @@ function changeProfileBadgeBackground() {
     let profileBadges = document.querySelectorAll('.contact-profile-badge');
     profileBadges.forEach(function(badge) {
         if (availableColors.length === 0) {
-            availableColors = [...colors]
+            availableColors = [...colors];
         }
         let randomIndex = Math.floor(Math.random() * availableColors.length);
         let randomColor = availableColors[randomIndex];
@@ -59,13 +59,15 @@ function changeProfileBadgeBackground() {
     });
 }
 
-function contactClicked(id) {
-    let focusedBadge = document.querySelector('.focused-profile-badge');
-    let clickedBadge = document.querySelector(`#${id} .contact-profile-badge`);
 
-    if (focusedBadge && clickedBadge) {
-        focusedBadge.style.backgroundColor = contactColors[id];
-        focusedBadge.textContent = clickedBadge.textContent;
-    }
-}
+// Funktioniert noch nicht --> Daten abgleichen bzw. firebase Kontaktdaten ect.
+// function contactClicked(id) {
+//     let focusedBadge = document.querySelector('.focused-profile-badge');
+//     let clickedBadge = document.querySelector(`#${id} .contact-profile-badge`);
+
+//     if (focusedBadge && clickedBadge) {
+//         focusedBadge.style.backgroundColor = contactColors[id];
+//         focusedBadge.textContent = clickedBadge.textContent;
+//     }
+// }
 
