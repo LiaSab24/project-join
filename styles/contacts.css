@@ -1,3 +1,4 @@
+/* for the overlay to not create a vertical scrollbar */
 body {
     overflow: clip;
 }
@@ -130,6 +131,11 @@ main {
     color: #FFFFFF;
 }
 
+.contact-clicked:hover {
+    background: #2A3647 !important;
+    color: #FFFFFF !important;   
+}
+
 .contact-profile-badge {
     height: 42px;
     width: 42px;
@@ -192,6 +198,26 @@ main {
     font-size: 27px;
     line-height: 32.4px;
     color: #2A3647;
+}
+
+#focusedContactInformation {
+    position: relative;
+}
+
+.animation-focused-contact {
+    animation: showFocusedContact;
+    animation-duration: 300ms;
+    animation-timing-function: ease-out;
+}
+
+@keyframes showFocusedContact {
+    from {
+        right: -100%;
+    }
+
+    to {
+        right: 0%;
+    }
 }
 
 .focused-profile-overview {
@@ -297,7 +323,7 @@ main {
     line-height: 19.2px;
 }
 
-/** Overlay Add Contact and Overlay Edit Contact**/
+/** Overlays**/
 #overlayBg {
     height: 1024px;
     width: 1440px;
@@ -330,8 +356,13 @@ main {
 }
 
 @keyframes openOverlay {
-    from {right: -100%;}
-    to { right: 0%;}
+    from {
+        right: -100%;
+    }
+
+    to {
+        right: 0%;
+    }
 }
 
 .animation-close-overlay {
@@ -339,8 +370,13 @@ main {
 }
 
 @keyframes closeOverlay {
-    from {right: 0%;}
-    to { right: -100%;}
+    from {
+        right: 0%;
+    }
+
+    to {
+        right: -100%;
+    }
 }
 
 .overlay-title {
@@ -437,6 +473,32 @@ main {
     left: -68px;
     cursor: text;
     pointer-events: none;
+}
+
+#contactSuccesfullyCreated {
+    width: 326px;
+    height: 74px;
+    border-radius: 20px;
+    position: relative;
+    top: -200px;
+    right: -100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2A3647;
+    box-shadow: 0px 0px 4px 0px #00000026;
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+/* This is added to #contactSuccesfullyCreated, only when create contact was succesfully*/
+@keyframes contactSuccesfullyCreated {
+    0%   {right: -100%;}
+    25%  {right: -800px;}
+    75%  {right: -800px;}
+    100% {right: -100%;}
 }
 
 /** same as add-task (copy&paste)**/

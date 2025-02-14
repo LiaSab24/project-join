@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join</title>
-  <link rel="icon" type="image/x-icon" href="./assets/img/join_logo.svg">
+  <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)"/>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)"/>
 
-  <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./styles/navigation.css">
-  <link rel="stylesheet" href="./fonts/fonts.css">
-  <link rel="stylesheet" href="./styles/summary.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/styles/sidebar.css">
+  <link rel="stylesheet" href="/styles/header.css">
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <link rel="stylesheet" href="/styles/summary.css">
 
-  <script src="./script.js"></script>
+  <script src="/script.js"></script>
+  <script src="/scripts/include.js"></script>
+  <script src="/scripts/templates.js"></script>
 </head>
-<body>
-  <header></header>
 
 <body>
   <div w3-include-html="header.html"></div>
@@ -31,24 +34,24 @@
       <div class="summary-overview">
         <div class="to-dos">
           <div class="summary-container">
-            <img src="./assets/icons/summary-todo.svg" alt="summary-todo">
+            <div id="summaryIconToDo"></div>
             <p>
               <span class="summary-number">1</span>
               <span class="number-explanation">To-Do</span>
-            </p>            
+            </p>
           </div>
           <div class="summary-container">
-            <img src="./assets/icons/summary-done.svg" alt="summary-done">
+            <div id="summaryIconDone"></div>
             <p>
               <span class="summary-number">1</span>
               <span class="number-explanation">Done</span>
-            </p> 
+            </p>
           </div>
         </div>
 
         <div class="deadline summary-container">
           <div class="deadline-urgent">
-            <img src="./assets/icons/summary-deadline-urgent.svg" alt="summary-deadline-urgent">
+            <img src="/assets/icons/summary-deadline-urgent.svg" alt="summary-deadline-urgent">
             <p>
               <span class="summary-number">1</span>
               <span class="number-explanation">Urgent</span>
@@ -90,6 +93,7 @@
     </section>
   </main>
   <footer></footer>
+  <script>includeHTML();</script>
 </body>
 
 </html>

@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Task</title>
-    <link rel="icon" type="image/x-icon" href="/assets/img/join_logo.svg">
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)"/>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)"/>
 
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/styles/sidebar.css">
@@ -15,11 +16,11 @@
 
     <script src="/script.js"></script>
     <script src="/scripts/include.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="/scripts/templates.js"></script>
     <script src="/scripts/add_task.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="fetchDataJson()">
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
@@ -32,7 +33,7 @@
                     Title
                     <span class="required-star">*</span>
                 </label>
-                <input id="addTaskTitle" type="text" placeholder="Enter a title">
+                <input id="addTaskTitle" type="text" placeholder="Enter a title" required>
 
                 <label for="addTaskDescription">Description</label>
                 <textarea type="text" id="addTaskDescription" maxlength="240"
@@ -58,20 +59,20 @@
                     Due date
                     <span class="required-star">*</span>
                 </label>
-                <input id="addTaskDate" type="text" placeholder="dd/mm/yy" required>
+                <input form="dd/mm/yyyy" id="addTaskDate" type="date" min="1920-01-01" max="2100-12-31" required>
 
                 <label for="addTaskPriorities">Prio</label>
                 <div id="addTaskPriorities">
                     <div id="prioUrgent" onclick="priorityBtnBg('prioUrgent')">
-                        <span>Urgent</span>
+                        Urgent
                         <img id="prioUrgentImg" src="/assets/icons/add-task-prioUrgent.svg">
                     </div>
                     <div id="prioMedium" onclick="priorityBtnBg('prioMedium')">
-                        <span>Medium</span>
+                        Medium
                         <img id="prioMediumImg" src="/assets/icons/add-task-prioMedium.svg">
                     </div>
                     <div id="prioLow" onclick="priorityBtnBg('prioLow')">
-                        <span>Low</span>
+                        Low
                         <img id="prioLowImg" src="/assets/icons/add-task-prioLow.svg">
                     </div>
                 </div>
@@ -80,7 +81,7 @@
                     Category
                     <span class="required-star">*</span>
                 </label>
-                <select id="addTaskCategory">
+                <select id="addTaskCategory" required>
                     <option value="" selected disabled>Select task category</option>
                     <option value="">...</option>
                 </select>
@@ -104,12 +105,12 @@
             </div>
 
             <div class="submit-btns">
-                <button class="cancel-btn" id="contactsOverlayCancel">
+                <button onclick="clearTaskForm(), priorityBtnClear()" class="cancel-btn" id="contactsOverlayCancel">
                     Cancel
                     <div class="cancel-img"></div>
                 </button>
-                <button class="create-btn" id="contactsOverlayCreate">
-                    Create Contact
+                <button onclick="addTask()" class="create-btn" id="contactsOverlayCreate">
+                    Create Task
                     <img src="/assets/icons/create-btn.svg">
                 </button>
             </div>

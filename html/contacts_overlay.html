@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
-    <link rel="icon" type="image/x-icon" href="/assets/img/join_logo.svg">
 
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/styles/sidebar.css">
@@ -14,17 +13,47 @@
     <link rel="stylesheet" href="/styles/contacts.css">
 
     <script src="/script.js"></script>
+    <script src="/testscript.js"></script>
     <script src="/scripts/include.js"></script>
     <script src="/scripts/contacts.js"></script>
 </head>
 
-<body style="margin: 64px;">
+<body onload="fetchDataJson()" style="margin: 64px;">
 
-    <button onclick="toggleOverlay()" style="width: 100px; height: 50px;background-color: tomato;"></button>
+    <div style="width: 250px; height: fit-content; padding: 10px; background-color: antiquewhite; color: black; display:flex; flex-direction: column;">
+        <div style="display: flex; align-items: center; justify-content: space-between;"><h3>name: </h3><div id="testusername">Max Mustermann</div></div>
+        <div style="display: flex; align-items: center; justify-content: space-between;"><h3>mail: </h3><div id="testusermail">max.mustermann@testmail.com</div></div>
+        <div style="display: flex; align-items: center; justify-content: space-between;"><h3>password: </h3><div id="testuserpass">123</div></div>
+    </div>
+    <button onclick="addTestUser()" style="width: 100px; height: 50px; margin-bottom: 10px; background-color: tomato;">add user</button>
+
+    <div style="width: 250px; height: fit-content; padding: 10px; background-color:darkgray; color: black; display:flex; flex-direction: column;">
+        <div style="display: flex; align-items: center; justify-content: space-between;"><h3>title: </h3><div id="testtaskstitle">Favicon</div></div>
+        <div style="display: flex; align-items: center; justify-content: space-between;"><h3>description: </h3><div id="testtasksdescrip">Join-Logo for use as favicon</div></div>
+        <div style="display: flex; align-items: center; justify-content: space-between;"><h3>assignedTo: </h3><div id="testtasksassign">Noah Svensson</div></div>
+        <div style="display: flex; align-items: center; justify-content: space-between;"><h3>dueDate: </h3><div id="testtasksdue">2025-05-01</div></div>
+        <div style="display: flex; align-items: center; justify-content: space-between;"><h3>prio: </h3><div id="testtasksprio">Urgent</div></div>
+        <div style="display: flex; align-items: center; justify-content: space-between;"><h3>category: </h3><div id="testtaskscate">Design</div></div>
+        <div style="display: flex; align-items: center; justify-content: space-between;"><h3>subtasks: </h3><div id="testtaskssub">light and dark variante</div></div>
+    </div>
+    <button onclick="addTestTask()" style="width: 100px; height: 50px; margin-bottom: 10px; background-color: tomato;">add task</button>
+
+    <div style="width: 250px; height: fit-content; padding: 10px; background-color:lightblue; color: black; display:flex; flex-direction: column;">
+        <div style="display: flex; align-items: center; justify-content: space-between;"><h3>name: </h3><div id="testcontactname">Paul Richter</div></div>
+        <div style="display: flex; align-items: center; justify-content: space-between;"><h3>mail: </h3><div id="testcontactmail">paul.richter@testmail.com</div></div>
+        <div style="display: flex; align-items: center; justify-content: space-between;"><h3>phone: </h3><div id="testcontactphone">+49 151 44556677</div></div>
+    </div>
+    <button onclick="addTestContact()" style="width: 100px; height: 50px; margin-bottom: 10px; background-color: tomato;">add contact</button>
+    
+    <!-- <button onclick="addUser()" style="width: 100px; height: 50px;background-color: tomato;"></button> -->
+
+    <section id="contactSuccesfullyCreated" class="d-none">
+        <span>Contact succesfully created</span>
+    </section>
 
     <section id="overlayContact" class="d-none animation-close-overlay">
         <div class="overlay-title">
-            <img class="overlay-join-logo" src="/assets/icons/join-logo.svg">
+            <img class="overlay-join-logo" src="/assets/icons/join-logo-dark.svg">
             <h1 id="overlayTitleH1">Add contact</h1>
             <p id="overlayTitleP">Tasks are better with a team!</p>
             <img src="/assets/icons/contacts-overlay-underline.svg">
