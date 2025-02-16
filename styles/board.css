@@ -1,4 +1,4 @@
-:root {
+/*:root {
   --FS-S: 12px;
   --FS-L: 61px;
   --FS-M: 20px;
@@ -25,13 +25,14 @@ body {
   height: 100vh;
   background: var(--bg-color);
 }
+ 
 
 main {
+/* margin-left: 232px; *//*
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  /* margin-left: 232px; */
-}
+ } */
 
 h1 {
   font-size: var(--FS-L);
