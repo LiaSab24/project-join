@@ -40,6 +40,9 @@
 .sidebar-menu li a {
   color: #FFFFFF;
   text-decoration: none;
+  &:hover {
+    color: #C9C9C9;
+  }
 }
 
 .sidebar-notice {
@@ -51,6 +54,11 @@
       a {
         color: #a8a8a8;
         text-decoration: none;
+      }
+    }
+    li:hover {
+      a {
+        color: #FFFFFF;
       }
     }
   }
