@@ -1,33 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join -AddTask overlays</title>
-  <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: light)"/>
-  <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: dark)"/>
-
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="/styles/sidebar.css">
-  <link rel="stylesheet" href="/styles/header.css">
-  <link rel="stylesheet" href="/fonts/fonts.css">
-  <link rel="stylesheet" href="/styles/board-overlay.css">
-  <link rel="stylesheet" href="/styles/board.css">
-
-  <script src="/script.js"></script>
-  <script src="/scripts/include.js"></script>
-</head>
-<body>
-  <div w3-include-html="header.html"></div>
-  <div w3-include-html="sidebar.html"></div>
-  <!-- <img src="/assets/img/required.png" alt="Required Field Warning" class="error-image"> -->
-  <main>
+function getOverlayTemplate() {
+    return `
     <div id="overlayBg" class="overlay-wrapper d-none" onclick="closeOverlay()"></div>
     <div id="addTaskOverlay" class="add-task-overlay d-none">
       <img src="/assets/img/required.png" alt="Required Field Warning" class="error-image">
       <div class="overlay-header">
           <h1>Add Task</h1>
-          <button class="close-btn" onclick="closeOverlay()"><img src="/assets/icons/close.png" alt="Close-Icon"></button>
+          <button class="close-btn" onclick="closeOverlay()">
+              <img src="/assets/icons/close.png" alt="Close-Icon">
+          </button>
       </div>
       <div class="overlay-content">
           <div class="form-grid">
@@ -36,7 +16,6 @@
                   <input id="taskTitle" type="text" placeholder="Enter a title" required>
                   <label for="taskDescription">Description</label>
                   <textarea id="taskDescription" rows="3" placeholder="Enter a description" style="height: 120px;"></textarea>
-                  <!-- <img class="textarea-icon" src="/assets/icons/recurso.png"> -->
                   <label for="taskAssigned">Assigned to</label>
                   <select id="taskAssigned">
                       <option>Select contacts to assign</option>
@@ -50,14 +29,14 @@
                   <input id="taskDueDate" type="date" required placeholder="dd/mm/yy">
                   <label>Priority</label>
                   <div class="prio-container">
-                      <button class="prio-btn urgent" onclick="setPriority('urgent')">Urgent
-                        <img src="/assets/icons/Capa-red.png">
+                      <button class="prio-btn urgent" onclick="setPriority('urgent')">
+                          Urgent <img src="/assets/icons/Capa-red.png">
                       </button>
-                      <button class="prio-btn medium" onclick="setPriority('medium')">Medium
-                        <img src="/assets/icons/Capa-yellow.png">
+                      <button class="prio-btn medium" onclick="setPriority('medium')">
+                          Medium <img src="/assets/icons/Capa-yellow.png">
                       </button>
-                      <button class="prio-btn low" onclick="setPriority('low')">Low
-                        <img src="/assets/icons/capa-green.png">
+                      <button class="prio-btn low" onclick="setPriority('low')">
+                          Low <img src="/assets/icons/capa-green.png">
                       </button>
                   </div>
                   <label for="taskCategory">Category</label>
@@ -75,15 +54,11 @@
           </div>
       </div>
       <div class="overlay-actions">
-          <button class="cancel-btn" >Cancel</button>
-          <button class="create-btn" >
+          <button class="cancel-btn">Cancel</button>
+          <button class="create-btn">
             Create Task <img src="/assets/icons/check.png" alt="Checkmark" class="check-icon">
           </button>
       </div>
     </div>
-  </main>
-  <footer></footer>
-  <script>includeHTML();</script>
-</body>
-
-</html>
+    `;
+}

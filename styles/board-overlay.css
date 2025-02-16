@@ -330,3 +330,6 @@ main {
     transition: 0.2s ease-in-out;
 }
 
+.d-none {
+    display: none !important;
+}
