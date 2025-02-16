@@ -1,0 +1,24 @@
+/* roots size */
+.root {
+  --FS-S: 12px;
+  --FS-L: 61px;
+  --FS-M: 20px;
+  --gap-size-input: 32px;
+  --gap-size-task: 20px;
+  --header-padding: 16px;
+  --border-radius: 8px;
+  --input-radius: 8px;
+}
+
+/* colors */
+:root { 
+  --bg-color: #f4f5f7;
+  --text-color: #000;
+  --card-bg: #fff;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --input-border: #ccc;
+  --input-bg: #fff;
+  --button-bg: #2A3647;
+  --button-hover-bg: #1E2833;
+  --task-container-border: #E0E0E0;
+}
