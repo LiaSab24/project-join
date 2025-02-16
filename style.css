@@ -20,6 +20,14 @@ main {
   margin-left: 232px;
 }
 
+h1 {
+  font-size: var(--fs-l);
+}
+
+h2 {
+  font-size: var(--fs-m);
+}
+
 /* costums css */
 .d-none {
   display: none !important;
