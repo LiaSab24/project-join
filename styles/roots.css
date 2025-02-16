@@ -1,5 +1,5 @@
-/* roots size */
 .root {
+/* size */
   --FS-S: 12px;
   --FS-L: 61px;
   --FS-M: 20px;
@@ -8,10 +8,7 @@
   --header-padding: 16px;
   --border-radius: 8px;
   --input-radius: 8px;
-}
-
 /* colors */
-:root { 
   --bg-color: #f4f5f7;
   --text-color: #000;
   --card-bg: #fff;
