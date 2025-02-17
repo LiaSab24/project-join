@@ -29,15 +29,14 @@ function changeProfileBadgeBackground() {
     let profileBadges = document.querySelectorAll('.contact-profile-badge');
     profileBadges.forEach(function(badge) {
         if (availableColors.length === 0) {
-            availableColors = colors.slice();
+            availableColors = [...colors];
         }
         let randomIndex = Math.floor(Math.random() * availableColors.length);
         let randomColor = availableColors[randomIndex];
         badge.style.backgroundColor = randomColor;
         availableColors.splice(randomIndex, 1);
     });
-}
-
+  
 function contactClicked(id) {
     for (let indexContacts = 0; indexContacts < 8; indexContacts++) {
         document.getElementById(indexContacts).classList.remove("contact-clicked");
