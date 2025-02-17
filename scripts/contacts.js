@@ -6,7 +6,7 @@ const colors = [
     "#00bee8", // Sky Blue
     "#1fd7c1", // Turquoise
     "#ff745e", // Coral
-    "#ffa335e", // Amber
+    "#ffa335", // Amber
     "#fc71ff", // Fuchsia
     "#ffc701", // Golden Yellow
     "#0038ff", // Royal Blue
@@ -26,29 +26,52 @@ function init() {
 
 // Funktion zum zufälligen Auswählen einer Farbe aus den verfügbaren Farben
 function changeProfileBadgeBackground() {
-    let profileBadges = document.querySelectorAll('.contact-profile-badge');
-    profileBadges.forEach(function(badge) {
-        if (availableColors.length === 0) {
-            availableColors = [...colors];
-        }
-        let randomIndex = Math.floor(Math.random() * availableColors.length);
-        let randomColor = availableColors[randomIndex];
-        badge.style.backgroundColor = randomColor;
-        availableColors.splice(randomIndex, 1);
+    document.querySelectorAll('.contact-profile-badge').forEach(badge => {
+        let contactId = badge.parentElement.id;
+        badge.style.backgroundColor = contactColors[contactId] || assignRandomColor(contactId);
     });
-  
+}
+
+function assignRandomColor(contactId) {
+    if (availableColors.length === 0) availableColors = [...colors];
+
+    let randomIndex = Math.floor(Math.random() * availableColors.length);
+    let assignedColor = availableColors.splice(randomIndex, 1)[0];
+
+    contactColors[contactId] = assignedColor;
+    return assignedColor;
+}
+
 function contactClicked(id) {
-    for (let indexContacts = 0; indexContacts < 8; indexContacts++) {
-        document.getElementById(indexContacts).classList.remove("contact-clicked");
-    }
+    clearActiveContacts();
+    highlightContact(id);
+    updateFocusedContact(id);
+}
+
+function clearActiveContacts() {
+    document.querySelectorAll('.contact').forEach(contact => contact.classList.remove("contact-clicked"));
+}
+
+function highlightContact(id) {
     document.getElementById(id).classList.add("contact-clicked");
-    let focusedContactContentRef = document.getElementById("focusedContactInformation");
-    focusedContactContentRef.innerHTML = "";
-    setTimeout(function () {
-        focusedContactContentRef.innerHTML += getFocusedContactTemplate(id);
-        focusedContactContentRef.classList.remove("animation-focused-contact");
+}
+
+function updateFocusedContact(id) {
+    let focusedContactContent = document.getElementById("focusedContactInformation");
+    focusedContactContent.innerHTML = "";
+
+    setTimeout(() => {
+        focusedContactContent.innerHTML = getFocusedContactTemplate(id);
+        applyFocusedProfileColor(id);
     }, 400);
 }
+
+function applyFocusedProfileColor(id) {
+    let focusedBadge = document.querySelector('.focused-profile-badge');
+    if (focusedBadge) focusedBadge.style.backgroundColor = contactColors[id] || "#ccc";
+}
+
+
 
 function deleteContact() {
     //delete contact from firebase
