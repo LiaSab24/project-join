@@ -23,17 +23,18 @@ function insertOverlay() {
 function toggleOverlay() {
   let overlayBg = document.getElementById("overlayBg");
   let overlay = document.getElementById("addTaskOverlay");
-
-  if (overlayBg && overlay) {
-      overlay.classList.toggle("d-none");
-      overlayBg.classList.toggle("d-none");
-  } else {
+  if (!overlay || !overlayBg) {
       insertOverlay();
       toggleOverlay();
+      return;
   }
+  overlay.classList.toggle("d-none");
+  overlayBg.classList.toggle("overlay-active");
 }
 
 function closeOverlay() {
-  document.getElementById("overlayBg")?.classList.add("d-none");
+  document.getElementById("overlayBg")?.classList.remove("overlay-active");
   document.getElementById("addTaskOverlay")?.classList.add("d-none");
 }
+
+

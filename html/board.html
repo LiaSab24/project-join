@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join</title>
+  <title>Join - Board</title>
   <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: light)"/>
   <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: dark)"/>
 
@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/styles/board.css">
   <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/styles/sidebar.css">
+  <link rel="stylesheet" href="/styles/board-overlay.css">
 
   <script src="/script.js"></script>
   <script src="/scripts/include.js"></script>
@@ -21,6 +22,7 @@
 </head>
 
 <body>
+  <div id="overlayBg" class="overlay-bg"></div> 
   <div w3-include-html="header.html"></div>
   <div w3-include-html="sidebar.html"></div>
   <main>
@@ -36,7 +38,8 @@
             <img src="/assets/icons/search.png" alt="Search">
           </div>
         </div>
-        <button onclick="toggleOverlay()">
+        
+        <button class="button" onclick="toggleOverlay()">
           <h2>Add Task</h2>
           <img src="/assets/icons/add.png" alt="Add">
         </button>
