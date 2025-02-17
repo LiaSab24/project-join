@@ -1,24 +1,3 @@
-function getTaskCardTemplate(id, category, title, description, progress, subtasks, assignees) {
-    return `
-    <div class="task-card" id="${id}" draggable="true" ondragstart="drag(event)">
-        <div class="task-badge">${category}</div>
-        <div class="task-title">${title}</div>
-        <div class="task-description">${description}</div>
-        <div class="task-progress">
-            <div class="progress-bar">
-                <div class="progress-bar-fill" style="width: ${progress}%;"></div>
-            </div>
-            <span>${subtasks.completed}/${subtasks.total} Subtasks</span>
-        </div>
-        <div class="task-assignees">
-            ${assignees.map(name => `<div class="assignee">${name}</div>`).join('')}
-        </div>
-    </div>
-    `;
-}
-
-
-
 function getOverlayTemplate() {
     return `
     <div id="overlayBg" class="overlay-wrapper d-none" onclick="closeOverlay()"></div>
@@ -80,64 +59,5 @@ function getOverlayTemplate() {
           </button>
       </div>
     </div>
-    `;
-}
-
-function getBoardUserStoryOverlayTemplate() {
-    return `
-        <div id="overlayBg" class="overlay-wrapper d-none" onclick="closeBoardUserStoryOverlay()"></div>
-        <div id="boardUserStoryOverlay" class="overlay d-none">
-            <section>
-                <div class="overlay-header">
-                    <span class="badge">User Story</span>
-                    <button class="close-btn" onclick="closeBoardUserStoryOverlay()">
-                        <img src="/assets/icons/close.png" alt="Close-Icon">
-                    </button>
-                </div>
-                <h1 class="task-title">Kochwelt Page & Recipe Recommender</h1>
-                <p class="task-info">Build start page with recipe recommendation.</p>
-                <p class="task-info">Due Date: 10/05/2023</p>
-                <p class="task-info">Priority: 
-                    <span class="priority">Medium 
-                        <img src="/assets/icons/Prio media.png" style="padding: 0 4px;">
-                    </span>
-                </p>
-                
-                <p class="task-info">Assigned To:</p>
-                <div class="assigned-users">
-                    <div class="assigned-user">
-                        <div class="user-badge" style="background: green;">EM</div>
-                        <span class="user-name">Emmanuel Mauer</span>
-                    </div>
-                    <div class="assigned-user">
-                        <div class="user-badge" style="background: purple;">MB</div>
-                        <span class="user-name">Marcel Bauer</span>
-                    </div>
-                    <div class="assigned-user">
-                        <div class="user-badge" style="background: blue;">AM</div>
-                        <span class="user-name">Anton Mayer</span>
-                    </div>
-                </div>
-                
-                <p class="task-info">Subtasks:</p>
-                <div class="subtasks">
-                    <div class="subtask-item">
-                        <input type="checkbox"> Implement Recipe Recommendation
-                    </div>
-                    <div class="subtask-item">
-                        <input type="checkbox"> 
-                        <img src="/assets/icons/check-cube.png" alt="checked"> Start Page Layout
-                    </div>
-                </div>
-                <div class="actions">
-                    <button class="delete-btn">
-                        <img class="delete-btn" src="/assets/icons/delete.png" alt="Delete-Icon"> Delete
-                    </button>
-                    <button class="edit-btn">
-                        <img class="edit-btn" src="/assets/icons/edit.png" alt="Edit-Icon"> Edit
-                    </button>
-                </div>
-            </section>
-        </div>
     `;
 }

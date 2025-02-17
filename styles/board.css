@@ -25,6 +25,7 @@ body {
   flex-direction: column;
   height: 100vh;
   background: var(--bg-color);
+
 }
 
 main {
@@ -32,6 +33,7 @@ main {
   display: flex;
   flex-direction: column;
   /* margin-left: 232px; */
+  overflows: hidden;
 }
 
 h1 {
