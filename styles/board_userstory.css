@@ -1,5 +1,5 @@
-/* Updated CSS to match Demo Layout */
-.overlay {
+/* Updated CSS to match Feedback Overlay */
+.feedback-overlay {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -16,21 +16,21 @@
     flex-direction: column;
 }
 
-.overlay-header {
+.feedback-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
 
-section {
+.feedback-hidden {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.badge {
+.feedback-badge {
     background: #0038FF;
     color: white;
     padding: 4px 24px;
@@ -40,26 +40,26 @@ section {
     height: 36px;
 }
 
-.task-title {
+.feedback-title {
     font-size: 36px;
     font-weight: bold;
     margin-top: 10px;
 }
 
-.task-info {
+.feedback-info {
     margin-top: 10px;
     font-size: 16px;
     display: flex;
 }
 
-.priority {
+.feedback-priority {
     display: flex;
     align-items: center;
     border-radius: 6px;
     padding: 0 8px;
 }
 
-.assigned-users {
+.feedback-users {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -67,14 +67,14 @@ section {
     margin-left: 16px;
 }
 
-.assigned-user {
+.feedback-user {
     display: flex;
     align-items: center;
     gap: 10px;
     font-size: 16px;
 }
 
-.user-badge {
+.feedback-user-badge {
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -85,12 +85,12 @@ section {
     color: white;
 }
 
-.subtasks {
+.feedback-subtasks {
     display: flex;
     flex-direction: column;
 }
 
-.subtask-item {
+.feedback-subtask-item {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -100,7 +100,7 @@ section {
     margin-left: 4px;
 }
 
-.subtask-item input[type="checkbox"] {
+.feedback-subtask-item input[type="checkbox"] {
     width: 16px;
     height: 16px;
     accent-color: red;
@@ -109,7 +109,7 @@ section {
     border-radius: 3px;
 }
 
-.actions {
+.feedback-actions {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -119,7 +119,7 @@ section {
     right: 28px;
 }
 
-.delete-btn, .edit-btn {
+.feedback-delete-btn, .feedback-edit-btn {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -132,50 +132,16 @@ section {
     transition: all 0.3s ease-in-out;
 }
 
-.delete-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.delete-btn::after {
-    content: "";
-    display: inline-block;
-    width: 1px;
-    height: 20px;
-    background: #D1D1D1;
-    margin-left: 16px;
-}
-
-.delete-btn:hover, .edit-btn:hover {
+.feedback-delete-btn:hover, .feedback-edit-btn:hover {
     color: #29ABE2;
     transform: scale(1.1); 
 }
 
-.delete-btn:hover img, .edit-btn:hover img {
+.feedback-delete-btn:hover img, .feedback-edit-btn:hover img {
     filter: brightness(0) saturate(100%) invert(62%) sepia(66%) saturate(429%) hue-rotate(161deg) brightness(93%) contrast(90%);
 }
 
-.delete-btn::before {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-}
-
-.edit-btn::before {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-}
-
-.actions::after {
-    display: inline-block;
-    width: 1px;
-    height: 16px;
-    background: #D1D1D1;
-}
-
-.task-added-overlay {
+.feedback-task-added-overlay {
     width: 326px;
     height: 74px;
     position: fixed;
@@ -194,7 +160,7 @@ section {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.task-added-overlay img {
+.feedback-task-added-overlay img {
     width: 30px;
     height: 30px;
 }

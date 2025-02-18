@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/styles/sidebar.css">
   <link rel="stylesheet" href="/styles/board-overlay.css">
+  <link rel="stylesheet" href="/styles/board_userstory.css">
 
   <script src="/script.js"></script>
   <script src="/scripts/include.js"></script>
@@ -56,7 +57,7 @@
         </div>
 
       <!-- MARK: Funktion Start -->
-      <div class="task-card" id="task1" draggable="true" ondragstart="drag(event)">
+      <div class="task-card" id="task1" draggable="true" ondragstart="drag(event)" onclick="toggleUserFeedback()">
           <div class="task-badge">User Story</div>
           <div class="task-title">Kochwelt Page & Recipe Recommender</div>
           <div class="task-description">Build start page with recipe recommendation...</div>
@@ -90,7 +91,7 @@
           <div class="icon-container"><img src="/assets/icons/plus-button.png" alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
-          <div class="no-task-message" id="noTaskAwaitFeedback">No tasks awaiting feedback</div>
+          <div class="no-task-message" id="noTaskAwaitFeedback">No tasks in awaiting feedback</div>
         </div>
       </div>
       <div class="task-wrapper" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
@@ -99,12 +100,13 @@
           <br>
         </div>
         <div class="no-task-message-container margin">
-          <div class="no-task-message" id="noTaskDone">No tasks done</div>
+          <div class="no-task-message" id="noTaskDone">No tasks in done</div>
         </div>
       </div>
     </section>
 
     <section class="task-overlay-wrapper"></section>
+    <section class="user-feedback-wrapper"></section>
   </main>
   <footer></footer>
   <script>includeHTML();</script>
