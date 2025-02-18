@@ -68,7 +68,7 @@ function createFeedbackOverlay() {
         <section id="userFeedbackOverlay" class="feedback-hidden">
             <div class="feedback-header">
             <span class="feedback-badge">User Story</span>
-            <button class="feedback-close-btn"><img src="/assets/icons/close.png" alt="Close-Icon"></button>
+            <button class="close-btn"><img src="/assets/icons/close.png" alt="Close-Icon"></button>
         </div>
             <h1 class="feedback-title">Kochwelt Page & Recipe Recommender</h1>
             <p class="feedback-info">Build start page with recipe recommendation.</p>

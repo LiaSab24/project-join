@@ -41,7 +41,8 @@ function closeOverlay() {
 }
 
 function insertUserFeedback() {
-  const userFeedbackWrapper = document.querySelector('.user-feedback-wrapper');
+  console.log("insertUserFeedback() wurde aufgerufen");
+  let userFeedbackWrapper = document.querySelector('.user-feedback-wrapper');
   userFeedbackWrapper.innerHTML = createFeedbackOverlay();
 }
 
@@ -52,12 +53,12 @@ function toggleUserFeedback() {;
       insertUserFeedback();
       feedbackOverlay = document.getElementById("userFeedbackOverlay");
   }
-  feedbackOverlay.classList.toggle("d-none");
+  feedbackOverlay.classList.toggle("overlay-active");
 }
 
 function closeOverlay() {
-  document.getElementById("feedbackOverlay")?.classList.remove("overlay-active");
-  document.getElementById("feedbackOverlay")?.classList.add("d-none");
+  document.getElementById("feedbackOverlay")?.classList.add("overlay-active");
+  document.getElementById("feedbackOverlay")?.classList.remove("d-none");
 }
 
 // /**
