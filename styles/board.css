@@ -260,3 +260,26 @@ button img {
   transition: all 0.3s ease-in-out;
 }
 
+.animation-open-overlay {
+  animation: openOverlay;
+}
+@keyframes openOverlay {
+  from {
+      right: -100%;
+  }
+  to {
+      right: 0%;
+  }
+}
+
+.animation-close-overlay {
+  animation: closeOverlay;
+}
+@keyframes closeOverlay {
+  from {
+      right: 0%;
+  }
+  to {
+      right: -100%;
+  }
+}
