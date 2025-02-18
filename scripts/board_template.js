@@ -1,6 +1,6 @@
 function getOverlayTemplate() {
     return `
-    <div id="overlayBg" class="overlay-wrapper d-none" onclick="closeOverlay()"></div>
+    <div id="overlayBg" class="overlay-wrapper d-none"></div>
     <div id="addTaskOverlay" class="add-task-overlay d-none">
       <img src="/assets/img/required.png" alt="Required Field Warning" class="error-image">
       <div class="overlay-header">
@@ -68,7 +68,7 @@ function createFeedbackOverlay() {
         <section id="userFeedbackOverlay" class="feedback-hidden">
             <div class="feedback-header">
             <span class="feedback-badge">User Story</span>
-            <button class="close-btn"><img src="/assets/icons/close.png" alt="Close-Icon"></button>
+            <button class="close-btn" onclick="closeFeedbackOverlay()"><img src="/assets/icons/close.png" alt="Close-Icon"></button>
         </div>
             <h1 class="feedback-title">Kochwelt Page & Recipe Recommender</h1>
             <p class="feedback-info">Build start page with recipe recommendation.</p>

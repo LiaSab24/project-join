@@ -11,8 +11,8 @@ function drag(event) {
 
 function drop(event) {
   event.preventDefault();
-  var data = event.dataTransfer.getData("text")
-  var draggedElement = document.getElementById(data);
+  let data = event.dataTransfer.getData("text")
+  let draggedElement = document.getElementById(data);
   if (event.target.className === 'task-wrapper' || event.target.className === 'task-headline') {
     event.target.appendChild(draggedElement);
   }
@@ -47,51 +47,34 @@ function insertUserFeedback() {
 }
 
 
-function toggleUserFeedback() {;
+function toggleUserFeedback() {
   let feedbackOverlay = document.getElementById("userFeedbackOverlay");
+
+  // Falls das Feedback-Overlay noch nicht existiert, fügen wir es ein
   if (!feedbackOverlay) {
-      insertUserFeedback();
-      feedbackOverlay = document.getElementById("userFeedbackOverlay");
+      insertUserFeedback();  // Falls noch nicht vorhanden, fügen wir es hinzu
+      feedbackOverlay = document.getElementById("userFeedbackOverlay");  // Feedback-Overlay erneut holen
   }
-  feedbackOverlay.classList.toggle("overlay-active");
+
+  // Den Zustand des Feedback-Overlays umschalten (zeige oder verstecke)
+  feedbackOverlay.classList.toggle("feedback-hidden");
 }
 
-function closeOverlay() {
-  document.getElementById("feedbackOverlay")?.classList.add("overlay-active");
-  document.getElementById("feedbackOverlay")?.classList.remove("d-none");
+
+function closeFeedbackOverlay() {
+  console.log("closeFeedbackOverlay wurde aufgerufen");
+  const feedbackOverlay = document.getElementById("feedbackOverlay");
+  console.log("closeFeedbackOverlay bis hierhin durchgelaufen");
+  feedbackOverlay?.classList.add("d-none");
+  console.log("closeFeedbackOverlay fertig");
+
 }
 
-// /**
-//  * Open a user story by ID.
-//  * 
-//  * @param {string} id - The ID of the user story to open.
-//  */
-// function openUserStory(id) {
-//   setupOverlayAndContainer();
-//   clearContainerContent();
-//   if (isValidFirebaseTasks(firebaseTasks)) {
-//       const tasksData = firebaseTasks[0].dataExtracted;
-//       processTasksData(id, tasksData);
-//       addOutsideClickListener();
-//   } else {
-//       console.error("firebaseTasks or firebaseTasks[0].dataExtracted is undefined or null.");
+// function toggleUserFeedback() {
+//   let feedbackOverlay = document.getElementById("userFeedbackOverlay");
+//   if (!feedbackOverlay) {
+//       insertUserFeedback();
+//       feedbackOverlay = document.getElementById("userFeedbackOverlay");
 //   }
-// }
-
-// /**
-// * Setup the overlay and container for the user story.
-// */
-// function setupOverlayAndContainer() {
-//   let overlay = document.getElementById('overlay');
-//   let boardBodyContainer = document.querySelector('.boardBodyContainer');
-//   boardBodyContainer.style.overflow = "hidden";
-//   overlay.classList.add("overlay");
-// }
-
-// /**
-// * Clear the content of the user story container.
-// */
-// function clearContainerContent() {
-//   const container = document.getElementById('userStoryWindow');
-//   container.innerHTML = ''; // Clear previous content
+//   feedbackOverlay.classList.toggle("feedback-hidden");
 // }
