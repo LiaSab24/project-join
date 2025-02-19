@@ -1,15 +1,77 @@
+const colors = [
+    "#ff7a00", // Vivid Orange
+    "#ff5eb3", // Deep Pink
+    "#6e52ff", // Lavender Blue
+    "#9327ff", // Violet
+    "#00bee8", // Sky Blue
+    "#1fd7c1", // Turquoise
+    "#ff745e", // Coral
+    "#ffa335", // Amber
+    "#fc71ff", // Fuchsia
+    "#ffc701", // Golden Yellow
+    "#0038ff", // Royal Blue
+    "#c3ff2b", // Lime Green
+    "#ffe625", // Sun Yellow
+    "#ff4646", // Red
+    "#ffbb2b" // Goldenrod
+];
+
+let BASEURL = "https://join-424-project-default-rtdb.europe-west1.firebasedatabase.app/";
+let availableColors = [...colors];
+let contactColors = {}; 
+
+function init() {
+    changeProfileBadgeBackground();
+}
+
+// Funktion zum zufälligen Auswählen einer Farbe aus den verfügbaren Farben
+function changeProfileBadgeBackground() {
+    document.querySelectorAll('.contact-profile-badge').forEach(badge => {
+        let contactId = badge.parentElement.id;
+        badge.style.backgroundColor = contactColors[contactId] || assignRandomColor(contactId);
+    });
+}
+
+function assignRandomColor(contactId) {
+    if (availableColors.length === 0) availableColors = [...colors];
+
+    let randomIndex = Math.floor(Math.random() * availableColors.length);
+    let assignedColor = availableColors.splice(randomIndex, 1)[0];
+
+    contactColors[contactId] = assignedColor;
+    return assignedColor;
+}
+
 function contactClicked(id) {
-    for (let indexContacts = 0; indexContacts < 8; indexContacts++) {
-        document.getElementById(indexContacts).classList.remove("contact-clicked");
-    }
+    clearActiveContacts();
+    highlightContact(id);
+    updateFocusedContact(id);
+}
+
+function clearActiveContacts() {
+    document.querySelectorAll('.contact').forEach(contact => contact.classList.remove("contact-clicked"));
+}
+
+function highlightContact(id) {
     document.getElementById(id).classList.add("contact-clicked");
-    let focusedContactContentRef = document.getElementById("focusedContactInformation");
-    focusedContactContentRef.innerHTML = "";
-    setTimeout(function () {
-        focusedContactContentRef.innerHTML += getFocusedContactTemplate(id);
-        focusedContactContentRef.classList.remove("animation-focused-contact");
+}
+
+function updateFocusedContact(id) {
+    let focusedContactContent = document.getElementById("focusedContactInformation");
+    focusedContactContent.innerHTML = "";
+
+    setTimeout(() => {
+        focusedContactContent.innerHTML = getFocusedContactTemplate(id);
+        applyFocusedProfileColor(id);
     }, 400);
 }
+
+function applyFocusedProfileColor(id) {
+    let focusedBadge = document.querySelector('.focused-profile-badge');
+    if (focusedBadge) focusedBadge.style.backgroundColor = contactColors[id] || "#ccc";
+}
+
+
 
 function deleteContact() {
     //delete contact from firebase

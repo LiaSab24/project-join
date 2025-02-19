@@ -1,28 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join -AddTask overlays</title>
-  <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: light)"/>
-  <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: dark)"/>
-
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="/styles/sidebar.css">
-  <link rel="stylesheet" href="/styles/header.css">
-  <link rel="stylesheet" href="/fonts/fonts.css">
-  <link rel="stylesheet" href="/styles/board-overlay.css">
-  <link rel="stylesheet" href="/styles/board.css">
-
-  <script src="/script.js"></script>
-  <script src="/scripts/include.js"></script>
-</head>
-<body>
-  <div w3-include-html="header.html"></div>
-  <div w3-include-html="sidebar.html"></div>
-  <!-- <img src="/assets/img/required.png" alt="Required Field Warning" class="error-image"> -->
-  <main>
-    <div id="overlayBg" class="overlay-wrapper d-none" onclick="closeOverlay()"></div>
+function getOverlayTemplate() {
+    return `
+    <div id="overlayBg" class="overlay-wrapper d-none"></div>
     <div id="addTaskOverlay" class="add-task-overlay d-none">
       <img src="/assets/img/required.png" alt="Required Field Warning" class="error-image">
       <div class="overlay-header">
@@ -81,9 +59,51 @@
           </button>
       </div>
     </div>
-  </main>
-  <footer></footer>
-  <script>includeHTML();</script>
-</body>
+    `;
+}
 
-</html>
+function createFeedbackOverlay() {
+    return `
+        <div class="feedback-overlay" id="feedbackOverlay">
+        <section id="userFeedbackOverlay" class="feedback-hidden">
+            <div class="feedback-header">
+            <span class="feedback-badge">User Story</span>
+            <button class="close-btn" onclick="closeFeedbackOverlay()"><img src="/assets/icons/close.png" alt="Close-Icon"></button>
+        </div>
+            <h1 class="feedback-title">Kochwelt Page & Recipe Recommender</h1>
+            <p class="feedback-info">Build start page with recipe recommendation.</p>
+            <p class="feedback-info">Due Date: 10/05/2023</p>
+            <p class="feedback-info">Priority: <span class="feedback-priority">Medium <img src="/assets/icons/Prio media.png" style="padding: 0 4px;"></span></p>
+            
+            <p class="feedback-info">Assigned To:</p>
+            <div class="feedback-users">
+                <div class="feedback-user">
+                    <div class="feedback-user-badge" style="background: green;">EM</div>
+                    <span class="feedback-user-name">Emmanuel Mauer</span>
+                </div>
+                <div class="feedback-user">
+                    <div class="feedback-user-badge" style="background: purple;">MB</div>
+                    <span class="feedback-user-name">Marcel Bauer</span>
+                </div>
+                <div class="feedback-user">
+                    <div class="feedback-user-badge" style="background: blue;">AM</div>
+                    <span class="feedback-user-name">Anton Mayer</span>
+                </div>
+            </div>
+            <p class="feedback-info">Subtasks:</p>
+            <div class="feedback-subtasks">
+                <div class="feedback-subtask-item"><input type="checkbox"> Implement Recipe Recommendation</div>
+                <div class="feedback-subtask-item"><input type="checkbox"> <img src="/assets/icons/check-cube.png" alt="checked"> Start Page Layout</div>
+            </div>
+            <div class="feedback-actions">
+                <button class="feedback-delete-btn"><img class="feedback-delete-btn" src="/assets/icons/delete.png" alt="Delete-Icon"> Delete</button>
+                <button class="feedback-edit-btn"><img class="feedback-edit-btn" src="/assets/icons/edit.png" alt="Edit-Icon"> Edit</button>
+            </div>
+        </section>
+        </div>
+        <div class="feedback-task-added-overlay">
+            Task added to board
+            <img src="/assets/icons/Icons.png" alt="Board Icon">
+        </div>
+    `;
+}
