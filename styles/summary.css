@@ -137,6 +137,10 @@ main {
     justify-content: space-between;
 }
 
+.deadline:hover {
+    transform: scaleX(105%) scaleY(110%);
+}
+
 .deadline-urgent {
     flex: 0.5;
     display: flex;
