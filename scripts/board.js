@@ -62,11 +62,10 @@ function toggleUserFeedback() {
 
 
 function closeFeedbackOverlay() {
-  console.log("closeFeedbackOverlay wurde aufgerufen");
   const feedbackOverlay = document.getElementById("feedbackOverlay");
-  console.log("closeFeedbackOverlay bis hierhin durchgelaufen");
+
   feedbackOverlay?.classList.add("d-none");
-  console.log("closeFeedbackOverlay fertig");
+
 
 }
 
