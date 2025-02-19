@@ -41,7 +41,7 @@
 
                 <label for="addTaskAssignedTo">Assigned to</label>
                 <select id="addTaskAssignedTo" aria-placeholder="Select contacts to assign">
-                    <option value="" selected disabled>Select contacts to assign</option>
+                    <option selected disabled hidden>Select contacts to assign</option>
                     <option value="">...</option>
                 </select>
 
@@ -81,9 +81,12 @@
                     Category
                     <span class="required-star">*</span>
                 </label>
-                <select id="addTaskCategory" required>
-                    <option value="" selected disabled>Select task category</option>
-                    <option value="">...</option>
+                <select id="addTaskCategory" >
+                    <option selected disabled hidden>Select task category</option>
+                    <option value="bug fix">bug fix</option>
+                    <option value="documentation">documentation</option>
+                    <option value="technical task">technical task</option>
+                    <option value="user story">user story</option>
                 </select>
 
 
