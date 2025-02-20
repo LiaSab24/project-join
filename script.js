@@ -28,6 +28,10 @@ let users = [];
 let tasks = [];
 let contacts = [];
 
+async function init() {
+  await fetchDataJson();
+}
+
 //fetch-Fct.
 async function fetchDataJson() {
   let joinData = await fetch(BASE_URL + ".json");
@@ -35,11 +39,11 @@ async function fetchDataJson() {
   filArrays(joinDataJson);
 }
 
-//add fetched Data to local array
+//add fetched Data to local arrays
 function filArrays(joinDataJson) {
   users = Object.values(joinDataJson.users);
   tasks = Object.values(joinDataJson.tasks);
-  contacts = Object.values(joinDataJson.contacts);
+  contacts = Object.values(joinDataJson.contacts);  
 }
 
 //post-fct for the added data

@@ -32,7 +32,7 @@
 
 </head>
 
-<body onload="init()">
+<body onload="initContacts()">
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
@@ -44,10 +44,10 @@
                     <img src="/assets/icons/contacts-add.svg" alt="add contact">
                 </button>
             </div>
-            <div class="contacts-list">
+            <div id="addressBook" class="contacts-list">
                 <div class="address-book-letter">A</div>
                 <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
-                <div>
+                <div id="letterA">
                     <div id="0" class="contact" onclick="contactClicked(0)">
                         <div class="contact-profile-badge">AM</div>
                         <p>

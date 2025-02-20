@@ -18,12 +18,22 @@ const colors = [
 
 let BASEURL = "https://join-424-project-default-rtdb.europe-west1.firebasedatabase.app/";
 let availableColors = [...colors];
-let contactColors = {}; 
+let contactColors = {};
 
-function init() {
-    fetchDataJson();
+async function initContacts() {
+    await init();
+    renderAddressBook();
     changeProfileBadgeBackground();
 }
+
+function renderAddressBook() {
+    const addressBookContentRef = document.getElementById("letterA")
+    addressBookContentRef.innerHTML = "";
+    //console.log(contacts)
+    for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
+        //addressBookContentRef.innerHTML += getAddressbookContactTemplate(indexContact);
+    }
+  }
 
 // Funktion zum zufälligen Auswählen einer Farbe aus den verfügbaren Farben
 function changeProfileBadgeBackground() {
