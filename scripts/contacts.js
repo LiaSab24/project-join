@@ -62,8 +62,6 @@ function nameAbbreviation(indexContact) {
     return firstLetter + secondLetter
 }
 
-
-
 // Funktion zum zufälligen Auswählen einer Farbe aus den verfügbaren Farben
 function changeProfileBadgeBackground() {
     document.querySelectorAll('.contact-profile-badge').forEach(badge => {
@@ -111,8 +109,6 @@ function applyFocusedProfileColor(indexContact) {
     if (focusedBadge) focusedBadge.style.backgroundColor = contactColors[indexContact] || "#ccc";
 }
 
-
-
 function deleteContact() {
     //delete contact from firebase
     //remove contact from addressbook
@@ -139,11 +135,15 @@ function adjustOverlayToEdit(id) {
     let inputNameContentRef = document.getElementById("addContactName");
     let inputMailContentRef = document.getElementById("addContactMail");
     let inputPhoneContentRef = document.getElementById("addContactPhone");
+    let rejectBtnContenRef = document.getElementById("contactsOverlayCancel");
+    let confirmBtnContenRef = document.getElementById("contactsOverlayCreate");
     titleContentRef.innerHTML = "Edit contact";
     titleAdditionContentRef.innerHTML = "";
     inputNameContentRef.value = contacts[id].name;
-    inputMailContentRef.value = contacts[id].name;
-    inputPhoneContentRef.value = contacts[id].name;
+    inputMailContentRef.value = contacts[id].mail;
+    inputPhoneContentRef.value = contacts[id].phone;
+    rejectBtnContenRef.innerHTML = "Delete";
+    confirmBtnContenRef.innerHTML = "Save" + "<img src='/assets/icons/create-btn.svg'></img>";
 }
 
 function contactSuccesfullyCreated() {
