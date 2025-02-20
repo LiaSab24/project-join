@@ -21,6 +21,7 @@ let availableColors = [...colors];
 let contactColors = {}; 
 
 function init() {
+    fetchDataJson();
     changeProfileBadgeBackground();
 }
 
@@ -89,6 +90,21 @@ function toggleOverlay() {
         overlayBgContentRef.classList.toggle("d-none");
     }, 300);
     //change content of overlay, depending of clicked button (add or edit)
+}
+
+function adjustOverlayToEdit(id) {
+    console.log(id);
+    console.log(contacts);
+    let titleContentRef = document.getElementById("overlayTitleH1");
+    let titleAdditionContentRef = document.getElementById("overlayTitleP");
+    let inputNameContentRef = document.getElementById("addContactName");
+    let inputMailContentRef = document.getElementById("addContactMail");
+    let inputPhoneContentRef = document.getElementById("addContactPhone");
+    titleContentRef.innerHTML = "Edit contact";
+    titleAdditionContentRef.innerHTML = "";
+    inputNameContentRef.value = contacts[id].name;
+    inputMailContentRef.value = contacts[id].name;
+    inputPhoneContentRef.value = contacts[id].name;
 }
 
 function contactSuccesfullyCreated() {

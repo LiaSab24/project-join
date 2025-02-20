@@ -18,7 +18,7 @@ function getFocusedContactTemplate(id) {
                     <div class="focused-profile-account">
                         <span class="focused-contact-name">${"Anton Mayer"}</span>
                         <div>
-                            <button onclick="toggleOverlay()" class="focused-contact-btns">
+                            <button onclick="toggleOverlay(), adjustOverlayToEdit(${id})" class="focused-contact-btns">
                                 <div id="contactsEditIcon"></div>
                                 <span>Edit</span>
                             </button>

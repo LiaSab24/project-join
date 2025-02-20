@@ -32,8 +32,14 @@ let contacts = [];
 async function fetchDataJson() {
   let joinData = await fetch(BASE_URL + ".json");
   let joinDataJson = await joinData.json();
-  users = joinDataJson.users;
-  tasks = joinDataJson.tasks;
+  filArray(joinDataJson);
+}
+
+//add fetched Data to local array
+function filArray(joinDataJson) {
+  console.log(joinDataJson.contacts)
+  //users = joinDataJson.users;
+  //tasks = joinDataJson.tasks;
   contacts = joinDataJson.contacts;
 }
 

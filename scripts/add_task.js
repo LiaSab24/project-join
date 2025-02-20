@@ -28,5 +28,3 @@ async function init() {
         dateInput.setAttribute("data-flatpickr-initialized", "true");
     }
 }
-
-
