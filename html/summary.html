@@ -17,9 +17,10 @@
   <script src="/script.js"></script>
   <script src="/scripts/include.js"></script>
   <script src="/scripts/templates.js"></script>
+  <script src="/scripts/summary.js"></script>
 </head>
 
-<body>
+<body onload="initSummary()">
   <div w3-include-html="header.html"></div>
   <div w3-include-html="sidebar.html"></div>
 
@@ -88,7 +89,7 @@
 
       <div class="summary-greeting">
         <p id="greetingDaytime">Good morning,</p>
-        <p id="userName">Sofia Müller</p>
+        <p id="userName"></p>
       </div>
     </section>
   </main>
