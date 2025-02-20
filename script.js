@@ -32,15 +32,18 @@ let contacts = [];
 async function fetchDataJson() {
   let joinData = await fetch(BASE_URL + ".json");
   let joinDataJson = await joinData.json();
-  filArray(joinDataJson);
+  filArrays(joinDataJson);
 }
 
 //add fetched Data to local array
-function filArray(joinDataJson) {
-  console.log(joinDataJson.contacts)
+function filArrays(joinDataJson) {
+  users = Object.values(joinDataJson.users);
+  tasks = Object.values(joinDataJson.tasks);
+  contacts = Object.values(joinDataJson.contacts);
+  console.log(users, tasks, contacts)
   //users = joinDataJson.users;
   //tasks = joinDataJson.tasks;
-  contacts = joinDataJson.contacts;
+  //contacts = joinDataJson.contacts;
 }
 
 //post-fct for the added data
