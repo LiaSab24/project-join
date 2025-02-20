@@ -1,22 +1,22 @@
 // contacts: adressbook-contact
 function getAddressbookContactTemplate(indexContact) {
     return `<div id="${indexContact}" class="contact" onclick="contactClicked(${indexContact})">
-                <div class="contact-profile-badge">${indexContact}</div>
+                <div class="contact-profile-badge">${nameAbbreviation(indexContact)}</div>
                 <p>
-                    <span class="contact-name">${indexContact}</span>
-                    <span class="contact-mail">${indexContact}/span>
+                    <span class="contact-name">${contacts[indexContact].name}</span>
+                    <span class="contact-mail">${contacts[indexContact].mail}</span>
                 </p>
             </div>`
 }
 
 // contacts: focused contact
-function getFocusedContactTemplate(id) {
+function getFocusedContactTemplate(indexContact) {
     return `<div class="focused-profile-overview">
-                <div class="focused-profile-badge">${"AM"}</div>
+                <div class="focused-profile-badge">${nameAbbreviation(indexContact)}</div>
                     <div class="focused-profile-account">
-                        <span class="focused-contact-name">${contacts[id].name}</span>
+                        <span class="focused-contact-name">${contacts[indexContact].name}</span>
                         <div>
-                            <button onclick="toggleOverlay(), adjustOverlayToEdit(${id})" class="focused-contact-btns">
+                            <button onclick="toggleOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
                                 <div id="contactsEditIcon"></div>
                                 <span>Edit</span>
                             </button>
@@ -32,11 +32,11 @@ function getFocusedContactTemplate(id) {
                 <p>Contact Information</p>
                 <div>
                     <span class="contact-opportunity">Email</span>
-                    <span class="contact-mail">${"antom@gmail.com"}</span>
+                    <span class="contact-mail">${contacts[indexContact].mail}</span>
                 </div>
                 <div>
                     <span class="contact-opportunity">Phone</span>
-                    <span>${"+49 1111 111 11 1"}</span>
+                    <span>${contacts[indexContact].phone}</span>
                 </div>
             </div>`
                       

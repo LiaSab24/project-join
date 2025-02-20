@@ -31,9 +31,22 @@ function renderAddressBook() {
     addressBookContentRef.innerHTML = "";
     //console.log(contacts)
     for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
-        //addressBookContentRef.innerHTML += getAddressbookContactTemplate(indexContact);
+        addressBookContentRef.innerHTML += getAddressbookContactTemplate(indexContact);
     }
-  }
+}
+
+function nameAbbreviation(indexContact){
+    let contactFullName = contacts[indexContact].name.toUpperCase();
+    let contactFirstName = contactFullName.substring(0, contactFullName.indexOf(' '));
+    let contactLastName = contactFullName.substring(contactFullName.indexOf(' ') + 1);
+    let firstLetter = contactFirstName.charAt(0);
+    let secondLetter = contactLastName.charAt(0);
+    return firstLetter + secondLetter
+}
+
+function contactFirstLetter() {
+
+}
 
 // Funktion zum zufälligen Auswählen einer Farbe aus den verfügbaren Farben
 function changeProfileBadgeBackground() {
@@ -53,33 +66,33 @@ function assignRandomColor(contactId) {
     return assignedColor;
 }
 
-function contactClicked(id) {
+function contactClicked(indexContact) {
     clearActiveContacts();
-    highlightContact(id);
-    updateFocusedContact(id);
+    highlightContact(indexContact);
+    updateFocusedContact(indexContact);
 }
 
 function clearActiveContacts() {
     document.querySelectorAll('.contact').forEach(contact => contact.classList.remove("contact-clicked"));
 }
 
-function highlightContact(id) {
-    document.getElementById(id).classList.add("contact-clicked");
+function highlightContact(indexContact) {
+    document.getElementById(indexContact).classList.add("contact-clicked");
 }
 
-function updateFocusedContact(id) {
+function updateFocusedContact(indexContact) {
     let focusedContactContent = document.getElementById("focusedContactInformation");
     focusedContactContent.innerHTML = "";
 
     setTimeout(() => {
-        focusedContactContent.innerHTML = getFocusedContactTemplate(id);
-        applyFocusedProfileColor(id);
+        focusedContactContent.innerHTML = getFocusedContactTemplate(indexContact);
+        applyFocusedProfileColor(indexContact);
     }, 400);
 }
 
-function applyFocusedProfileColor(id) {
+function applyFocusedProfileColor(indexContact) {
     let focusedBadge = document.querySelector('.focused-profile-badge');
-    if (focusedBadge) focusedBadge.style.backgroundColor = contactColors[id] || "#ccc";
+    if (focusedBadge) focusedBadge.style.backgroundColor = contactColors[indexContact] || "#ccc";
 }
 
 
