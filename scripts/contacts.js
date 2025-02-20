@@ -28,15 +28,11 @@ async function initContacts() {
 
 function renderAddressBook() {
     const addressBookContentRef = document.getElementsByClassName("contactsLetter");
-    //console.log(addressBookContentRef)
     for (let indexLetter = 0; indexLetter < addressBookContentRef.length; indexLetter++) {
         addressBookContentRef[indexLetter].innerHTML = "";
     }
     renderContacts();
     hideNotUsedLetters(addressBookContentRef);
-    // let letter = document.getElementById("contactsLetterA")
-    // letter.innerHTML = "";
-    // 
 }
 
 function renderContacts() {
