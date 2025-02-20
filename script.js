@@ -40,10 +40,6 @@ function filArrays(joinDataJson) {
   users = Object.values(joinDataJson.users);
   tasks = Object.values(joinDataJson.tasks);
   contacts = Object.values(joinDataJson.contacts);
-  console.log(users, tasks, contacts)
-  //users = joinDataJson.users;
-  //tasks = joinDataJson.tasks;
-  //contacts = joinDataJson.contacts;
 }
 
 //post-fct for the added data
