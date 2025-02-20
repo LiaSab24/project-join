@@ -27,15 +27,37 @@ async function initContacts() {
 }
 
 function renderAddressBook() {
-    const addressBookContentRef = document.getElementById("letterA")
-    addressBookContentRef.innerHTML = "";
-    //console.log(contacts)
+    const addressBookContentRef = document.getElementsByClassName("contactsLetter");
+    //console.log(addressBookContentRef)
+    for (let indexLetter = 0; indexLetter < addressBookContentRef.length; indexLetter++) {
+        addressBookContentRef[indexLetter].innerHTML = "";
+    }
+    renderContacts();
+    hideNotUsedLetters(addressBookContentRef);
+    // let letter = document.getElementById("contactsLetterA")
+    // letter.innerHTML = "";
+    // 
+}
+
+function renderContacts() {
     for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
-        addressBookContentRef.innerHTML += getAddressbookContactTemplate(indexContact);
+        let letter = contacts[indexContact].name.charAt(0);
+        //console.log(letter);
+        document.getElementById("contactsLetter" + letter).innerHTML += getAddressbookContactTemplate(indexContact);
     }
 }
 
-function nameAbbreviation(indexContact){
+function hideNotUsedLetters(addressBookContentRef) {
+    const letterContentRef = document.getElementsByClassName("address-book-letter");
+    for (let indexLetter = 0; indexLetter < letterContentRef.length; indexLetter++) {
+        console.log(letterContentRef[indexLetter]);
+        if (addressBookContentRef[indexLetter].innerHTML == "") {
+        letterContentRef[indexLetter].classList.add("d-none");
+        }
+    }
+}
+
+function nameAbbreviation(indexContact) {
     let contactFullName = contacts[indexContact].name.toUpperCase();
     let contactFirstName = contactFullName.substring(0, contactFullName.indexOf(' '));
     let contactLastName = contactFullName.substring(contactFullName.indexOf(' ') + 1);
@@ -44,9 +66,7 @@ function nameAbbreviation(indexContact){
     return firstLetter + secondLetter
 }
 
-function contactFirstLetter() {
 
-}
 
 // Funktion zum zufälligen Auswählen einer Farbe aus den verfügbaren Farben
 function changeProfileBadgeBackground() {
