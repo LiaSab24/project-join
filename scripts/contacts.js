@@ -46,7 +46,7 @@ function renderContacts() {
 function hideNotUsedLetters(addressBookContentRef) {
     const letterContentRef = document.getElementsByClassName("address-book-letter");
     for (let indexLetter = 0; indexLetter < letterContentRef.length; indexLetter++) {
-        console.log(letterContentRef[indexLetter]);
+        //console.log(letterContentRef[indexLetter]);
         if (addressBookContentRef[indexLetter].innerHTML == "") {
         letterContentRef[indexLetter].classList.add("d-none");
         }
@@ -115,6 +115,12 @@ function deleteContact() {
     //clear focused contact
 }
 
+function editContact() {
+    //change data in firebase
+    //change contact in addressbook
+    //closeOverlay
+}
+
 function toggleOverlay() {
     let overlayBgContentRef = document.getElementById("overlayBg");
     let overlayContactContentRef = document.getElementById("overlayContact");
@@ -128,14 +134,13 @@ function toggleOverlay() {
 }
 
 function adjustOverlayToEdit(id) {
-    console.log(id);
-    console.log(contacts);
     let titleContentRef = document.getElementById("overlayTitleH1");
     let titleAdditionContentRef = document.getElementById("overlayTitleP");
     let inputNameContentRef = document.getElementById("addContactName");
     let inputMailContentRef = document.getElementById("addContactMail");
     let inputPhoneContentRef = document.getElementById("addContactPhone");
     let rejectBtnContenRef = document.getElementById("contactsOverlayCancel");
+    console.log(rejectBtnContenRef);
     let confirmBtnContenRef = document.getElementById("contactsOverlayCreate");
     titleContentRef.innerHTML = "Edit contact";
     titleAdditionContentRef.innerHTML = "";
@@ -143,7 +148,10 @@ function adjustOverlayToEdit(id) {
     inputMailContentRef.value = contacts[id].mail;
     inputPhoneContentRef.value = contacts[id].phone;
     rejectBtnContenRef.innerHTML = "Delete";
+    //rejectBtnContenRef.onclick = deleteContact();        
     confirmBtnContenRef.innerHTML = "Save" + "<img src='/assets/icons/create-btn.svg'></img>";
+    //confirmBtnContenRef.onclick = editContact(); 
+    console.log(rejectBtnContenRef);
 }
 
 function contactSuccesfullyCreated() {
@@ -157,7 +165,6 @@ function contactSuccesfullyCreated() {
 }
 
 // TEST-DATEN
-
 function addTestContact() {
     let testContactName = document.getElementById("testcontactname").innerHTML;
     let testContactMail = document.getElementById("testcontactmail").innerHTML;

@@ -1,24 +1,3 @@
-let getSubmenu = document.getElementById('submenu');
-
-function btnUserInitial() {
-  getSubmenu.innerHTML = '';
-  getSubmenu.classList.remove('d-none');
-  getSubmenu.innerHTML += getSubmenuHTML();
-}
-
-// kommt später in die templates.js Datei
-function getSubmenuHTML() {
-  return /*html*/`
-  <p><a href="../html/legal_note.html">Legal Notice</a></p>
-  <p><a href="../html/privacy_police.html">Privacy Policy</a></p>
-  <p><a href="../html/signup.html">Logout</a></p>
-  `;
-}
-
-function closeSubmenu() {
-  getSubmenu.classList.add('d-none');
-}
-
 //"now < 1711407600000", // 2025-3-11
 //______________________________________________________________________________________________//
 
@@ -152,4 +131,25 @@ function clearContactForm() {
   document.getElementById("addContactName").value = "";
   document.getElementById("addContactMail").value = "";
   document.getElementById("addContactPhone").value = "";
+}
+
+function btnUserInitial() {
+  let subMenu = document.getElementById("submenu");
+  console.log(subMenu);
+  // subMenu.innerHTML = '';
+  // subMenu.classList.remove('d-none');
+  // subMenu.innerHTML += getSubmenuHTML();
+}
+
+// kommt später in die templates.js Datei
+function getSubmenuHTML() {
+  return /*html*/`
+  <p><a href="../html/legal_note.html">Legal Notice</a></p>
+  <p><a href="../html/privacy_police.html">Privacy Policy</a></p>
+  <p><a href="../html/signup.html">Logout</a></p>
+  `;
+}
+
+function closeSubmenu() {
+  getSubmenu.classList.add('d-none');
 }
