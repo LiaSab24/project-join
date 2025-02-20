@@ -128,7 +128,12 @@
     right: 28px;
 }
 
-.feedback-delete-btn, .feedback-edit-btn {
+.feedback-delete-btn {
+    border-right: 1px solid #2A3647;
+}
+
+.feedback-delete-btn, 
+.feedback-edit-btn {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -138,13 +143,24 @@
     font-weight: 500;
     color: #2A3647;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    /* transition: all 0.3s ease-in-out; */
 }
 
-.feedback-delete-btn:hover, .feedback-edit-btn:hover {
+.feedback-delete-btn:hover, 
+.feedback-edit-btn:hover {
     color: #29ABE2;
-    transform: scale(1.1); 
+    transform: scale(1.1);
 }
+
+.feedback-delete-btn:focus, 
+.feedback-edit-btn:focus,
+.feedback-delete-btn:active, 
+.feedback-edit-btn:active {
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
 
 .feedback-delete-btn:hover img, .feedback-edit-btn:hover img {
     filter: brightness(0) saturate(100%) invert(62%) sepia(66%) saturate(429%) hue-rotate(161deg) brightness(93%) contrast(90%);

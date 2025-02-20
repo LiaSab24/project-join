@@ -96,8 +96,8 @@ function createFeedbackOverlay() {
                 <div class="feedback-subtask-item"><input type="checkbox"> <img src="/assets/icons/check-cube.png" alt="checked"> Start Page Layout</div>
             </div>
             <div class="feedback-actions">
-                <button class="feedback-delete-btn"><img class="feedback-delete-btn" src="/assets/icons/delete.png" alt="Delete-Icon"> Delete</button>
-                <button class="feedback-edit-btn"><img class="feedback-edit-btn" src="/assets/icons/edit.png" alt="Edit-Icon"> Edit</button>
+                <button class="feedback-delete-btn"><img src="/assets/icons/delete.png" alt="Delete-Icon"> Delete</button>
+                <button class="feedback-edit-btn"><img src="/assets/icons/edit.png" alt="Edit-Icon"> Edit</button>
             </div>
         </section>
         </div>
