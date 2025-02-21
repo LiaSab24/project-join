@@ -58,8 +58,7 @@ function addSubtaskToList() {
     let newSubtask = subtasksInputContentRef.value.trim();
     const subtasksListContentRef = document.getElementById("addTaskSubtaskList");
     if (newSubtask !== "") {
-        console.log(newSubtask);
-        subtasksListContentRef.innerHTML += `<li>${newSubtask}</li>`;
+        subtasksListContentRef.innerHTML += `<li class="subtask">${newSubtask}</li>`;
         clearSubtasksInput();
     }
 }

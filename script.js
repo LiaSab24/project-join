@@ -98,7 +98,7 @@ function addTask() {
   let taskPriority = document.querySelector(".clicked").innerText;
   console.log(taskPriority);
   let taskCategory = document.getElementById("addTaskCategory").value;
-  let taskSubtasks = document.getElementById("addTaskSubtaskList").value;
+  let taskSubtasks = getSubtasks();
   postData("/tasks/", {
     "title": taskTitle,
     "description": taskDescription,
@@ -109,6 +109,16 @@ function addTask() {
     "subtasks": taskSubtasks
   });
   clearTaskForm();
+}
+
+function getSubtasks() {
+  let subtasks = document.querySelectorAll(".subtask");
+  let subtaskArray = [];
+  for (let indexSubtask = 0; indexSubtask < subtasks.length; indexSubtask++) {
+    subtaskArray.push(subtasks[indexSubtask].innerHTML)
+  }
+  console.log(subtaskArray);
+  return subtaskArray;
 }
 
 function clearTaskForm() {

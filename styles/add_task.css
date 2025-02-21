@@ -240,7 +240,7 @@ select {
     list-style-position: inside;
 }
 
-#addTaskSubtaskList li {
+.subtask {
     padding: 6px 16px 6px 16px;
     font-weight: 400;
     font-size: 16px;
