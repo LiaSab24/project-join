@@ -10,20 +10,25 @@ function showTasksNumbers() {
 }
 
 function greetingDaytime() {
-
+    const greetingContentRef = document.getElementById("greetingDaytime");
+    let daytime = new Date().getHours();
+    let greeting = (daytime >= 3 && daytime <= 12)? "Good morning,":
+                   ((daytime >= 13 && daytime <= 18)? "Good afternoon," : "Good evening,");
+    greetingContentRef.innerHTML = greeting;
 }
 
 function showUserName() {
-    console.log(users)
     let userNameContentRef = document.getElementById("userName");
     userNameContentRef.innerHTML = "";
     userNameContentRef.innerHTML = users[0].name;
     if (userNameContentRef.innerHTML == " ") {
         const greetingContentRef = document.getElementById("greetingDaytime");
         let originallyGreeting = greetingContentRef.innerHTML;
-        console.log(originallyGreeting);
-        let newGreeting = originallyGreeting.slice(0, originallyGreeting.length-1);
-        console.log(newGreeting);
+        let newGreeting = originallyGreeting.slice(0, originallyGreeting.length - 1);
         greetingContentRef.innerHTML = newGreeting;
     }
+}
+
+function redirectionToBoard() {
+    window.location.href = "board.html";
 }

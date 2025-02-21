@@ -74,6 +74,12 @@ function signUpSuccesfully() {
   setTimeout(function () {
     signUpMsg.classList.add("d-none");
   }, 2800);
+  redirectionToLogIn();
+}
+
+//Redirection from SignUp to LogIn
+function redirectionToLogIn() {
+  window.location.href = "login.html";
 }
 
 function clearSignUpForm() {
