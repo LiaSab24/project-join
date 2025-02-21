@@ -40,40 +40,39 @@ function closeOverlay() {
   document.getElementById("addTaskOverlay")?.classList.add("d-none");
 }
 
-function insertUserFeedback() {
-  console.log("insertUserFeedback() wurde aufgerufen");
-  let userFeedbackWrapper = document.querySelector('.user-feedback-wrapper');
-  userFeedbackWrapper.innerHTML = createFeedbackOverlay();
+
+
+
+function closeFeedbackOverlay() {
+  let feedbackOverlay = document.getElementById("feedbackOverlay");
+  if (feedbackOverlay) {
+      feedbackOverlay.remove();
+  }
 }
 
+function insertUserFeedback() {
+  let existingOverlay = document.getElementById(".user-feedback-wrapper");
+
+  if (!existingOverlay) {
+      document.body.insertAdjacentHTML("beforeend", createFeedbackOverlay());
+  }
+}
 
 function toggleUserFeedback() {
   let feedbackOverlay = document.getElementById("userFeedbackOverlay");
 
-  // Falls das Feedback-Overlay noch nicht existiert, fügen wir es ein
   if (!feedbackOverlay) {
-      insertUserFeedback();  // Falls noch nicht vorhanden, fügen wir es hinzu
-      feedbackOverlay = document.getElementById("userFeedbackOverlay");  // Feedback-Overlay erneut holen
+      insertUserFeedback();
+      feedbackOverlay = document.getElementById("userFeedbackOverlay");
   }
 
-  // Den Zustand des Feedback-Overlays umschalten (zeige oder verstecke)
   feedbackOverlay.classList.toggle("feedback-hidden");
 }
 
-
 function closeFeedbackOverlay() {
-  const feedbackOverlay = document.getElementById("feedbackOverlay");
+  let feedbackOverlay = document.getElementById("feedbackOverlay");
 
-  feedbackOverlay?.classList.add("d-none");
-
-
+  if (feedbackOverlay) {
+      feedbackOverlay.remove();
+  }
 }
-
-// function toggleUserFeedback() {
-//   let feedbackOverlay = document.getElementById("userFeedbackOverlay");
-//   if (!feedbackOverlay) {
-//       insertUserFeedback();
-//       feedbackOverlay = document.getElementById("userFeedbackOverlay");
-//   }
-//   feedbackOverlay.classList.toggle("feedback-hidden");
-// }
