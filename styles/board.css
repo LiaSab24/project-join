@@ -131,13 +131,13 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background: var(--button-hover-bg);
-}
-
 button img {
   width: 18.67px;
   height: 18.67px;
+}
+
+.button:hover {
+  background-color: var(--button-hover-bg);
 }
 
 .task-container {

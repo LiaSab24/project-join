@@ -213,6 +213,10 @@ input {
     color: var(--button-bg);
 }
 
+.policy-container a:hover {
+    color: var(--Light-Blue);
+}
+
 input[type="text"] {
     background-image: url(../assets/icons/user.svg);
     background-repeat: no-repeat;
