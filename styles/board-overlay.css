@@ -1,3 +1,8 @@
+html, body {
+    overflow-x: hidden;
+}
+
+
 body {
     transition: background-color 0.3s ease;
     overflow: clip;
@@ -59,7 +64,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background: rgba(0, 0, 0, 0.2);
     z-index: 9998;

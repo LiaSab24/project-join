@@ -103,6 +103,8 @@
 .feedback-subtasks {
     display: flex;
     flex-direction: column;
+    padding: 16px 16px;
+    gap: 10px;
 }
 
 .feedback-subtask-item {
@@ -110,9 +112,15 @@
     align-items: center;
     gap: 10px;
     font-size: 16px;
-    padding: 6px 16px;
+
     border-radius: 3px;
     margin-left: 4px;
+}
+
+.feedback-subtask-item:hover {
+    background: rgba(74, 74, 74, 0.1);
+    cursor: pointer;
+    border-radius: 8px;
 }
 
 .feedback-subtask-item input[type="checkbox"] {
@@ -128,14 +136,16 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 16px;
     position: absolute;
     bottom: 24px;
     right: 28px;
 }
 
-.feedback-delete-btn {
-    border-right: 1px solid #2A3647;
+.divider {
+    height: 24px;
+    width: 1px;
+    background-color: #2A3647;
+    opacity: 0.35;
 }
 
 .feedback-delete-btn, 
@@ -167,7 +177,6 @@
     background: transparent !important;
 }
 
-
 .feedback-delete-btn:hover img, .feedback-edit-btn:hover img {
     filter: brightness(0) saturate(100%) invert(62%) sepia(66%) saturate(429%) hue-rotate(161deg) brightness(93%) contrast(90%);
 }
@@ -195,3 +204,7 @@
     width: 30px;
     height: 30px;
 }
+
+button:hover {
+    background: transparent;
+  }

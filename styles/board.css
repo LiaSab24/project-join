@@ -16,16 +16,21 @@
   --input-bg: #fff;
   --input-radius: 8px;
   --button-bg: #2A3647;
-  --button-hover-bg: #1E2833;
+  --button-hover-bg: #29ABE2;
   --task-container-border: #E0E0E0;
 }
+
+html, body {
+  overflow-x: hidden;
+}
+
 
 body {
   display: flex;
   flex-direction: column;
   height: 100vh;
   background: var(--bg-color);
-
+  overflow-x: hidden !important;
 }
 
 main {
@@ -33,7 +38,7 @@ main {
   display: flex;
   flex-direction: column;
   /* margin-left: 232px; */
-  overflows: hidden;
+  overflow: hidden;
 }
 
 h1 {
@@ -72,6 +77,11 @@ h2 {
   height: 42px;
 }
 
+.input:hover {
+  border-width: 0.3px;
+  transform: scale(1.005);
+}
+
 .divider-container {
   height: 20px;
   width: 2px;
@@ -99,6 +109,12 @@ h2 {
 .search-icon img {
   width: 17.58px;
   height: 17.58px;
+}
+
+.search-icon:hover {
+  background: rgba(74, 74, 74, 0.1);
+  cursor: pointer;
+  border-radius: 50%;
 }
 
 button {
@@ -149,6 +165,10 @@ button img {
   align-items: center;
 }
 
+.icon-container {
+  position: relative;
+}
+
 .icon-container img {
   width: 24px;
   height: 24px;
@@ -156,6 +176,11 @@ button img {
   border: 2px solid black;
   border-radius: 8px;
   padding: 3px;
+}
+
+.icon-container:hover {
+  filter: brightness(0) saturate(100%) invert(62%) sepia(66%) saturate(429%) hue-rotate(161deg) brightness(93%) contrast(90%);
+
 }
 
 .no-task-message-container {
@@ -232,7 +257,7 @@ button img {
   height: 100%;
   background: #0038FF;
   border-radius: 5px;
-  width: 50%; /* Dynamisch anpassbar */
+  width: 50%;
 }
 
 .task-assignees {
