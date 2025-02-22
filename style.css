@@ -10,10 +10,11 @@ body {
   max-width: 1440px;
   font-family: 'Inter';
   font-size: 16px;
+  line-height: 1.2;   /* oder 120% */
   font-weight: 400;
   margin: 0 auto;
   padding: 0;
-  background-color: #f0f0f0;
+  background-color: rgb(246, 247, 248); /* #f6f7f8 */
 }
 
 main {
