@@ -108,12 +108,10 @@ function insertUserFeedback() {
 
 function toggleUserFeedback() {
   let feedbackOverlay = document.getElementById("userFeedbackOverlay");
-
   if (!feedbackOverlay) {
       insertUserFeedback();
       feedbackOverlay = document.getElementById("userFeedbackOverlay");
   }
-
   feedbackOverlay.classList.toggle("feedback-hidden");
 }
 
