@@ -44,6 +44,8 @@ function renderContacts() {
     }
 }
 
+
+
 function hideNotUsedLetters(addressBookContentRef) {
     const letterContentRef = document.getElementsByClassName("address-book-letter");
     for (let indexLetter = 0; indexLetter < letterContentRef.length; indexLetter++) {
