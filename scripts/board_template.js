@@ -1,4 +1,4 @@
-function getOverlayTemplate() {
+function getAddTaskOverlayTemplate() {
     return `
     <div id="overlayBg" class="overlay-wrapper d-none"></div>
     <div id="addTaskOverlay" class="add-task-overlay d-none">
@@ -62,7 +62,7 @@ function getOverlayTemplate() {
     `;
 }
 
-function createFeedbackOverlay() {
+function getFeedbackOverlayTemplate() {
     return `
         <div class="feedback-overlay" id="feedbackOverlay">
         <section id="userFeedbackOverlay" class="feedback-hidden">
@@ -115,7 +115,7 @@ function createFeedbackOverlay() {
     `;
 }
 
-function createFeedbackButton() {
+function getFeedbackButtonTemplate() {
     return `
         <div class="feedback-task-added-overlay">
             Task added to board
@@ -124,7 +124,7 @@ function createFeedbackButton() {
     `;
 }
 
-function userStoryEditHtmlTemplate(taskData, formattedContacts) {
+function getEditTaskTemplate (taskData, formattedContacts) {
     return `
     <div class="userStoryBodyContainer">
     <div class="userStoryEditContainer">

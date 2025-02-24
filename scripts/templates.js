@@ -1,7 +1,6 @@
-// contacts: adressbook-contact
 function getAddressbookContactTemplate(indexContact) {
     return `<div id="${indexContact}" class="contact" onclick="contactClicked(${indexContact})">
-                <div class="contact-profile-badge">${nameAbbreviation(indexContact)}</div>
+                <div id="profileBadge${indexContact}" class="contact-profile-badge">${nameAbbreviation(indexContact)}</div>
                 <p>
                     <span class="contact-name">${contacts[indexContact].name}</span>
                     <span class="contact-mail">${contacts[indexContact].mail}</span>
@@ -9,14 +8,13 @@ function getAddressbookContactTemplate(indexContact) {
             </div>`
 }
 
-// contacts: focused contact
 function getFocusedContactTemplate(indexContact) {
     return `<div class="focused-profile-overview">
                 <div class="focused-profile-badge">${nameAbbreviation(indexContact)}</div>
                     <div class="focused-profile-account">
                         <span class="focused-contact-name">${contacts[indexContact].name}</span>
                         <div>
-                            <button onclick="toggleOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
+                            <button onclick="toggleContactsOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
                                 <div id="contactsEditIcon"></div>
                                 <span>Edit</span>
                             </button>

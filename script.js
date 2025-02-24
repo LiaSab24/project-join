@@ -1,13 +1,34 @@
-//"now < 1711407600000", // 2025-3-11
-//______________________________________________________________________________________________//
-
 const BASE_URL = "https://join-424-project-default-rtdb.europe-west1.firebasedatabase.app/"
 
 let users = [];
 let tasks = [];
 let contacts = [];
 
+let currentUser = 1;                    //0=max mustermann, 1=Guest
+
+const colors = [
+  "#ff7a00", // Vivid Orange
+  "#ff5eb3", // Deep Pink
+  "#6e52ff", // Lavender Blue
+  "#9327ff", // Violet
+  "#00bee8", // Sky Blue
+  "#1fd7c1", // Turquoise
+  "#ff745e", // Coral
+  "#ffa335", // Amber
+  "#fc71ff", // Fuchsia
+  "#ffc701", // Golden Yellow
+  "#0038ff", // Royal Blue
+  "#c3ff2b", // Lime Green
+  "#ffe625", // Sun Yellow
+  "#ff4646", // Red
+  "#ffbb2b" // Goldenrod
+];
+
+let availableColors = [...colors];
+let contactColors = {};
+
 async function init() {
+  //LOADING SCREEN;
   await fetchDataJson();
 }
 
@@ -25,6 +46,7 @@ function filArrays(joinDataJson) {
   contacts = Object.values(joinDataJson.contacts);  
 }
 
+
 //post-fct for the added data
 async function postData(path = "", data = {}) {
   let newData = await fetch(BASE_URL + path + ".json", {
@@ -35,121 +57,6 @@ async function postData(path = "", data = {}) {
     body: JSON.stringify(data)
   });
   return newDataToJson = await newData.json();
-}
-
-//add data-fct. and clearForm for users
-function addUser() {
-  let userName = document.getElementById("name").value;
-  let userMail = document.getElementById("mail").value;
-  let userPassword = checkPasswordConfirmed();
-  if (userPassword !== undefined) {
-    let checkbox = document.getElementById("checkbox");
-    if (checkbox.checked) {
-      console.log("checkbox");
-      postData("/users/", {
-        "name": userName,
-        "mail": userMail,
-        "password": userPassword
-      });
-      clearSignUpForm();
-      signUpSuccesfully();
-    }
-  }
-}
-
-function checkPasswordConfirmed() {
-  let password = document.getElementById("password").value;
-  let confirmed = document.getElementById("confirmed").value;
-  if (password === confirmed) {
-    console.log("password");
-    return password;
-  }
-}
-
-function signUpSuccesfully() {
-  let signUpMsg = document.getElementById("msgBox");
-  setTimeout(function () {
-    signUpMsg.classList.remove("d-none");
-  }, 800);
-  setTimeout(function () {
-    signUpMsg.classList.add("d-none");
-  }, 2800);
-  redirectionToLogIn();
-}
-
-//Redirection from SignUp to LogIn
-function redirectionToLogIn() {
-  window.location.href = "login.html";
-}
-
-function clearSignUpForm() {
-  document.getElementById("name").value = "";
-  document.getElementById("mail").value = "";
-  document.getElementById("password").value = "";
-  document.getElementById("confirmed").value = "";
-}
-
-//add data-fct. and clearForm for tasks
-function addTask() {
-  let taskTitle = document.getElementById("addTaskTitle").value;
-  let taskDescription = document.getElementById("addTaskDescription").value;
-  let taskAssignedTo = document.getElementById("addTaskAssignedTo").value;
-  let taskDueDate = document.getElementById("addTaskDate").value;
-  let taskPriority = document.querySelector(".clicked").innerText;
-  console.log(taskPriority);
-  let taskCategory = document.getElementById("addTaskCategory").value;
-  let taskSubtasks = getSubtasks();
-  postData("/tasks/", {
-    "title": taskTitle,
-    "description": taskDescription,
-    "assignedTo": taskAssignedTo,
-    "dueDate": taskDueDate,
-    "priority": taskPriority,
-    "category": taskCategory,
-    "subtasks": taskSubtasks
-  });
-  clearTaskForm();
-}
-
-function getSubtasks() {
-  let subtasks = document.querySelectorAll(".subtask");
-  let subtaskArray = [];
-  for (let indexSubtask = 0; indexSubtask < subtasks.length; indexSubtask++) {
-    subtaskArray.push(subtasks[indexSubtask].innerHTML)
-  }
-  console.log(subtaskArray);
-  return subtaskArray;
-}
-
-function clearTaskForm() {
-  document.getElementById("addTaskTitle").value = "";
-  document.getElementById("addTaskDescription").value = "";
-  document.getElementById("addTaskAssignedTo").value = "";
-  document.getElementById("addTaskDate").value = "";
-  document.getElementById("addTaskCategory").value = "";
-  document.getElementById("addTaskSubtaskList").value = "";
-}
-
-//add data-fct. and clearForm for contacts
-function addContact() {
-  let contactName = document.getElementById("addContactName").value;
-  let contactMail = document.getElementById("addContactMail").value;
-  let contactPhone = document.getElementById("addContactPhone").value;
-  let contactColors = assignRandomColor(contacts.length + 1);
-  postData("/contacts/", {
-    "name": contactName,
-    "mail": contactMail,
-    "phone": contactPhone,
-    "background": contactColors
-  });
-  clearContactForm();
-  renderContacts();
-}
-
-function clearContactForm() {
-  document.getElementById("addContactName").value = "";
-  document.getElementById("addContactMail").value = "";
-  document.getElementById("addContactPhone").value = "";
 }
 
 function btnUserInitial() {
@@ -172,3 +79,20 @@ function getSubmenuHTML() {
 function closeSubmenu() {
   getSubmenu.classList.add('d-none');
 }
+
+function profileBadgeColor(indexContact) {
+  let profileBadge = document.getElementById("profileBadge"+indexContact);
+  profileBadge.style.backgroundColor = contacts[indexContact].color;
+}
+
+// function loadContactColors() {
+//   let savedColors = localStorage.getItem("contactColors");
+//   if (savedColors) {
+//       contactColors = JSON.parse(savedColors);
+//   }
+// }
+
+// function applyProfileColor(indexContact) {
+//   let focusedBadge = document.querySelector('.focused-profile-badge');
+//   if (focusedBadge) focusedBadge.style.backgroundColor = contactColors[indexContact] || "#ccc";
+// }

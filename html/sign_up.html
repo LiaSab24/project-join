@@ -15,10 +15,11 @@
   <link rel="stylesheet" href="/styles/sign_up.css">
 
   <script src="/script.js"></script>
+  <script src="/scripts/signup.js"></script>
   <script src="/scripts/include.js"></script>
 </head>
 
-<body class="Body-LogIn">
+<body onload="initSignUp()" class="Body-LogIn">
 
   <div class="Mobile-Header-Icon">
       <img class="blue-icon" src="/assets/icons/joinBlue.svg" alt="Main Logo in Blue Color" srcset="">
@@ -45,7 +46,7 @@
                   </div>
                   <span id="alert" class="d-none input-error">Your passwords don´t match. Please try again</span>
                   <div class="Checkbox-Remember-Me">
-                      <input required type="checkbox" name="Remember-me" id="checkbox">
+                      <input required type="checkbox" name="Remember-me" id="checkboxSignUp">
                       <span>I accept the <a href="/privacypolicy.html" target="_blank">Privacy policy</a></span>
                   </div>
               </div>
@@ -56,7 +57,7 @@
 
 
       </div>
-      <div class="Blue-BTN Signed-UP d-none" id="msgBox">You Signed Up succesfully</div>
+      <div class="Blue-BTN Signed-UP d-none" id="msgSignUp">You Signed Up succesfully</div>
   </div>
 
   <div class="Policy-Area">

@@ -6,7 +6,7 @@ async function initSummary() {
 }
 
 function showTasksNumbers() {
-    //shows tasksnumbers
+    //...
 }
 
 function greetingDaytime() {
@@ -20,7 +20,7 @@ function greetingDaytime() {
 function showUserName() {
     let userNameContentRef = document.getElementById("userName");
     userNameContentRef.innerHTML = "";
-    userNameContentRef.innerHTML = users[0].name;
+    userNameContentRef.innerHTML = users[currentUser].name;
     if (userNameContentRef.innerHTML == " ") {
         const greetingContentRef = document.getElementById("greetingDaytime");
         let originallyGreeting = greetingContentRef.innerHTML;

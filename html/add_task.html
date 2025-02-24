@@ -20,7 +20,7 @@
     <script src="/scripts/add_task.js"></script>
 </head>
 
-<body onload="fetchDataJson(), initAddTask()">
+<body onload="initAddTask()">
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
@@ -41,7 +41,7 @@
 
                 <label for="addTaskAssignedTo">Assigned to</label>
                 <select onfocus="assignedToDropDownMenu()" onfocusout="assignedToDropDownMenu()" id="addTaskAssignedTo" aria-placeholder="Select contacts to assign">
-                    <option selected disabled hidden>Select contacts to assign</option>
+                    <option value="default" selected disabled hidden>Select contacts to assign</option>
                     <option value="">
                         <div class="profile-badge">AS</div>
                         <span>Anja Schulz</span>
@@ -88,7 +88,7 @@
                     <span class="required-star">*</span>
                 </label>
                 <select id="addTaskCategory" >
-                    <option selected disabled hidden>Select task category</option>
+                    <option value="default" selected disabled hidden>Select task category</option>
                     <option value="bug fix">bug fix</option>
                     <option value="documentation">documentation</option>
                     <option value="technical task">technical task</option>
@@ -104,7 +104,6 @@
                     <img onclick="addSubtaskToList()" id="subtaskIconySubmit" class="subtask-icon" src="/assets/icons/add-task-subtask-submit.svg">
                 </div>
                 <ul id="addTaskSubtaskList"></ul>
-                
             </div>
         </form>
 
@@ -115,7 +114,7 @@
             </div>
 
             <div class="submit-btns">
-                <button onclick="clearTaskForm(), priorityBtnClear()" class="cancel-btn" id="contactsOverlayCancel">
+                <button onclick="clearTaskForm()" class="cancel-btn" id="contactsOverlayCancel">
                     Cancel
                     <div class="cancel-img"></div>
                 </button>
