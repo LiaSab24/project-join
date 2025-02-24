@@ -19,6 +19,7 @@ const colors = [
 let BASEURL = "https://join-424-project-default-rtdb.europe-west1.firebasedatabase.app/";
 let availableColors = [...colors];
 let contactColors = {};
+// let contacts = [];
 
 async function initContacts() {
     await init();
@@ -71,14 +72,26 @@ function changeProfileBadgeBackground() {
 }
 
 function assignRandomColor(contactId) {
+    if (contactColors[contactId]) {
+        return contactColors[contactId];
+    }
     if (availableColors.length === 0) availableColors = [...colors];
 
     let randomIndex = Math.floor(Math.random() * availableColors.length);
     let assignedColor = availableColors.splice(randomIndex, 1)[0];
 
     contactColors[contactId] = assignedColor;
+    localStorage.setItem("contactColors", JSON.stringify(contactColors));
     return assignedColor;
 }
+
+function loadContactColors() {
+    let savedColors = localStorage.getItem("contactColors");
+    if (savedColors) {
+        contactColors = JSON.parse(savedColors);
+    }
+}
+loadContactColors();
 
 function contactClicked(indexContact) {
     clearActiveContacts();
@@ -163,6 +176,27 @@ function contactSuccesfullyCreated() {
         successAnimation.style.animationDuration = "";
     }, 1600);
 }
+
+// async function loadContacts() {
+//     contacts = [];
+//     let contactsData = await getAddressbookContactTemplate('conntacts');
+//     if (!contactsData) {
+//         console.error("Keine Kontakte gefunden");
+//         return;
+//     }
+//     for (let key in contactsData) {
+//         let singleContact = contactsData[key];
+//         let contact = {
+//             "id": key,
+//             "name": singleContact.name,
+//             "mail": singleContact.mail,
+//             "phone": singleContact.phone,
+//             "background": singleContact.background,
+//         }
+//         contacts.push(contact);
+//     }
+//     contacts.sort((a, b) => a.name.localeCompare(b.name));
+// }
 
 // TEST-DATEN
 function addTestContact() {

@@ -14,13 +14,57 @@ function drag(event) {
 
 function drop(event) {
   event.preventDefault();
-  let data = event.dataTransfer.getData("text")
+  let data = event.dataTransfer.getData("text");
   let draggedElement = document.getElementById(data);
-  if (event.target.className === 'task-wrapper' || event.target.className === 'task-headline') {
-    event.target.appendChild(draggedElement);
+  let dropContainer = event.target.closest(".task-wrapper");
+  if (dropContainer) {
+    dropContainer.innerHTML += draggedElement.outerHTML;
+    draggedElement.remove();
+    let noTaskMessage = dropContainer.querySelector(".no-task-message-container");
+    if (noTaskMessage) {
+      noTaskMessage.style.display = "none";
+    }
+    saveBoardState();
   }
   removeMessageNoTasks()
 }
+
+function saveBoardState() {
+  let boardState = {};
+  document.querySelectorAll(".task-wrapper").forEach(wrapper => {
+    let tasks = Array.from(wrapper.querySelectorAll(".task-card")).map(task => task.id);
+    boardState[wrapper.id] = tasks;
+  });
+  localStorage.setItem("boardState", JSON.stringify(boardState));
+}
+
+function restoreBoardState() {
+  let boardState = JSON.parse(localStorage.getItem("boardState"));
+  if (boardState) {
+    Object.keys(boardState).forEach(containerId => {
+      let container = document.getElementById(containerId);
+      let noTaskMessage = container.querySelector(".no-task-message-container");
+      let taskHTML = "";
+      boardState[containerId].forEach(taskId => {
+        let taskElement = document.getElementById(taskId);
+        if (taskElement) {
+          taskHTML += taskElement.outerHTML;}});
+      container.innerHTML += taskHTML;
+      if (taskHTML.trim() !== "" && noTaskMessage) {
+        noTaskMessage.style.display = "none";}});
+  }
+}
+
+// Funktion beim Laden aufrufen
+restoreBoardState();
+
+
+// Funktion beim Laden aufrufen
+restoreBoardState();
+
+
+restoreBoardState();
+
 
 function insertOverlay() {
   document.body.insertAdjacentHTML("beforeend", getOverlayTemplate());
@@ -44,33 +88,39 @@ function closeOverlay() {
   document.getElementById("addTaskOverlay")?.classList.add("d-none");
 }
 
-function insertUserFeedback() {
-  console.log("insertUserFeedback() wurde aufgerufen");
-  let userFeedbackWrapper = document.querySelector('.user-feedback-wrapper');
-  userFeedbackWrapper.innerHTML = createFeedbackOverlay();
-}
 
-
-function toggleUserFeedback() {
-  let feedbackOverlay = document.getElementById("userFeedbackOverlay");
-
-  // Falls das Feedback-Overlay noch nicht existiert, fügen wir es ein
-  if (!feedbackOverlay) {
-    insertUserFeedback();  // Falls noch nicht vorhanden, fügen wir es hinzu
-    feedbackOverlay = document.getElementById("userFeedbackOverlay");  // Feedback-Overlay erneut holen
-  }
-
-  // Den Zustand des Feedback-Overlays umschalten (zeige oder verstecke)
-  feedbackOverlay.classList.toggle("feedback-hidden");
-}
 
 
 function closeFeedbackOverlay() {
-  const feedbackOverlay = document.getElementById("feedbackOverlay");
+  let feedbackOverlay = document.getElementById("feedbackOverlay");
+  if (feedbackOverlay) {
+      feedbackOverlay.remove();
+  }
+}
 
-  feedbackOverlay?.classList.add("d-none");
+function insertUserFeedback() {
+  let existingOverlay = document.getElementById(".user-feedback-wrapper");
 
+  if (!existingOverlay) {
+      document.body.insertAdjacentHTML("beforeend", createFeedbackOverlay());
+  }
+}
 
+function toggleUserFeedback() {
+  let feedbackOverlay = document.getElementById("userFeedbackOverlay");
+  if (!feedbackOverlay) {
+      insertUserFeedback();
+      feedbackOverlay = document.getElementById("userFeedbackOverlay");
+  }
+  feedbackOverlay.classList.toggle("feedback-hidden");
+}
+
+function closeFeedbackOverlay() {
+  let feedbackOverlay = document.getElementById("feedbackOverlay");
+
+  if (feedbackOverlay) {
+      feedbackOverlay.remove();
+  }
 }
 
 // function toggleUserFeedback() {
