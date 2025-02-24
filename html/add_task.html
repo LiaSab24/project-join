@@ -20,7 +20,7 @@
     <script src="/scripts/add_task.js"></script>
 </head>
 
-<body onload="fetchDataJson()">
+<body onload="fetchDataJson(), initAddTask()">
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
@@ -91,12 +91,13 @@
 
 
                 <label for="addTaskSubtask">Subtasks</label>
-                <input type="text" id="addTaskSubtask" placeholder="Add new subtask">
-                
-                <ul id="addTaskSubtaskList">
-                    <li>Contact Form</li>
-                    <li>Write Legal Imprint</li>
-                </ul>
+                <input onfocus="changeSubtaskIcons()" onfocusout="changeSubtaskIcons()" type="text" id="addTaskSubtask" placeholder="Add new subtask">
+                <img id="subtaskIconAdd" class="subtask-icon" src="/assets/icons/add-task-subtask-add.svg">
+                <div id="subtaskIconsFocus" class="d-none">
+                    <img onclick="clearSubtasksInput()" id="subtaskIconReject" class="subtask-icon" src="/assets/icons/add-task-subtask-reject.svg">
+                    <img onclick="addSubtaskToList()" id="subtaskIconySubmit" class="subtask-icon" src="/assets/icons/add-task-subtask-submit.svg">
+                </div>
+                <ul id="addTaskSubtaskList"></ul>
                 
             </div>
         </form>

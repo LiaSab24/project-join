@@ -1,19 +1,20 @@
 //"now < 1711407600000", // 2025-3-11
 //______________________________________________________________________________________________//
 
-const BASE_URL = "https://join-424-project-default-rtdb.europe-west1.firebasedatabase.app/"
+const BASEs_URL = "https://join-424-project-default-rtdb.europe-west1.firebasedatabase.app/"
 
-let users = [];
-let tasks = [];
-let contacts = [];
+let tusers = [];
+let ttasks = [];
+let tcontacts = [];
 
 //fetch-Fct.
 async function fetchDataJson() {
-  let joinData = await fetch(BASE_URL + ".json");
+  let joinData = await fetch(BASEs_URL + ".json");
   let joinDataJson = await joinData.json();
-  users = joinDataJson.users;
-  tasks = joinDataJson.tasks;
-  contacts = joinDataJson.contacts;
+  tusers = joinDataJson.users;
+  ttasks = joinDataJson.tasks;
+  tcontacts = joinDataJson.contacts;
+  daytime()
 }
 
 //add data-fcts. for users, tasks and contacts
@@ -70,4 +71,13 @@ async function postData(path = "", data = {}) {
     body: JSON.stringify(data)
   });
   return newDataToJson = await newData.json();
+}
+
+//Test Daytime
+
+function daytime() {
+  let timeContentRef = document.getElementById("testDaytime");
+  const time = new Date();
+  timeContentRef.innerHTML = time.getHours();
+  console.log(time);
 }

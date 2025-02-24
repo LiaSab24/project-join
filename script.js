@@ -1,24 +1,3 @@
-let getSubmenu = document.getElementById('submenu');
-
-function btnUserInitial() {
-  getSubmenu.innerHTML = '';
-  getSubmenu.classList.remove('d-none');
-  getSubmenu.innerHTML += getSubmenuHTML();
-}
-
-// kommt später in die templates.js Datei
-function getSubmenuHTML() {
-  return /*html*/`
-  <p><a href="../html/legal_note.html">Legal Notice</a></p>
-  <p><a href="../html/privacy_police.html">Privacy Policy</a></p>
-  <p><a href="../html/signup.html">Logout</a></p>
-  `;
-}
-
-function closeSubmenu() {
-  getSubmenu.classList.add('d-none');
-}
-
 //"now < 1711407600000", // 2025-3-11
 //______________________________________________________________________________________________//
 
@@ -95,6 +74,12 @@ function signUpSuccesfully() {
   setTimeout(function () {
     signUpMsg.classList.add("d-none");
   }, 2800);
+  redirectionToLogIn();
+}
+
+//Redirection from SignUp to LogIn
+function redirectionToLogIn() {
+  window.location.href = "login.html";
 }
 
 function clearSignUpForm() {
@@ -113,7 +98,7 @@ function addTask() {
   let taskPriority = document.querySelector(".clicked").innerText;
   console.log(taskPriority);
   let taskCategory = document.getElementById("addTaskCategory").value;
-  let taskSubtasks = document.getElementById("addTaskSubtaskList").value;
+  let taskSubtasks = getSubtasks();
   postData("/tasks/", {
     "title": taskTitle,
     "description": taskDescription,
@@ -124,6 +109,16 @@ function addTask() {
     "subtasks": taskSubtasks
   });
   clearTaskForm();
+}
+
+function getSubtasks() {
+  let subtasks = document.querySelectorAll(".subtask");
+  let subtaskArray = [];
+  for (let indexSubtask = 0; indexSubtask < subtasks.length; indexSubtask++) {
+    subtaskArray.push(subtasks[indexSubtask].innerHTML)
+  }
+  console.log(subtaskArray);
+  return subtaskArray;
 }
 
 function clearTaskForm() {
@@ -152,4 +147,25 @@ function clearContactForm() {
   document.getElementById("addContactName").value = "";
   document.getElementById("addContactMail").value = "";
   document.getElementById("addContactPhone").value = "";
+}
+
+function btnUserInitial() {
+  let subMenu = document.getElementById("submenu");
+  console.log(subMenu);
+  // subMenu.innerHTML = '';
+  // subMenu.classList.remove('d-none');
+  // subMenu.innerHTML += getSubmenuHTML();
+}
+
+// kommt später in die templates.js Datei
+function getSubmenuHTML() {
+  return /*html*/`
+  <p><a href="../html/legal_note.html">Legal Notice</a></p>
+  <p><a href="../html/privacy_police.html">Privacy Policy</a></p>
+  <p><a href="../html/signup.html">Logout</a></p>
+  `;
+}
+
+function closeSubmenu() {
+  getSubmenu.classList.add('d-none');
 }

@@ -1,5 +1,8 @@
 const BASEURL = "https://join-424-project-default-rtdb.europe-west1.firebasedatabase.app/";
 
+function initBoard() {
+  removeMessageNoTasks()
+}
 
 function allowDrop(event) {
   event.preventDefault();
@@ -23,6 +26,7 @@ function drop(event) {
     }
     saveBoardState();
   }
+  removeMessageNoTasks()
 }
 
 function saveBoardState() {
@@ -71,9 +75,9 @@ function toggleOverlay() {
   let overlayBg = document.getElementById("overlayBg");
   let overlay = document.getElementById("addTaskOverlay");
   if (!overlay || !overlayBg) {
-      insertOverlay();
-      toggleOverlay();
-      return;
+    insertOverlay();
+    toggleOverlay();
+    return;
   }
   overlay.classList.toggle("d-none");
   overlayBg.classList.toggle("overlay-active");
@@ -118,5 +122,31 @@ function closeFeedbackOverlay() {
 
   if (feedbackOverlay) {
       feedbackOverlay.remove();
+  }
+}
+
+// function toggleUserFeedback() {
+//   let feedbackOverlay = document.getElementById("userFeedbackOverlay");
+//   if (!feedbackOverlay) {
+//       insertUserFeedback();
+//       feedbackOverlay = document.getElementById("userFeedbackOverlay");
+//   }
+//   feedbackOverlay.classList.toggle("feedback-hidden");
+// }
+
+
+function removeMessageNoTasks() {
+  //console.log("LSDAF");
+  const taskCategoryContentRef = document.getElementsByClassName("task-wrapper");
+  const noTaskMessagesContentRef = document.getElementsByClassName("no-task-message-container");
+  let taskCard = document.querySelector(".task-card");
+  for (let indexMessage = 0; indexMessage < taskCategoryContentRef.length; indexMessage++) {
+    //console.log(taskCategoryContentRef[indexMessage]);
+    if (taskCategoryContentRef[indexMessage].contains(taskCard)) {
+      //console.log(indexMessage)
+      noTaskMessagesContentRef[indexMessage].classList.add("d-none");
+    } else {
+      noTaskMessagesContentRef[indexMessage].classList.remove("d-none");
+    }
   }
 }
