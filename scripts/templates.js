@@ -10,7 +10,7 @@ function getAddressbookContactTemplate(indexContact) {
 
 function getFocusedContactTemplate(indexContact) {
     return `<div class="focused-profile-overview">
-                <div class="focused-profile-badge">${nameAbbreviation(indexContact)}</div>
+                <div id="focusedProfileBadge" class="focused-profile-badge">${nameAbbreviation(indexContact)}</div>
                     <div class="focused-profile-account">
                         <span class="focused-contact-name">${contacts[indexContact].name}</span>
                         <div>

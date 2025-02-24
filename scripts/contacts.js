@@ -18,7 +18,7 @@ function renderContacts() {
     for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
         let letter = contacts[indexContact].name.charAt(0).toUpperCase();
         document.getElementById("contactsLetter" + letter).innerHTML += getAddressbookContactTemplate(indexContact);
-        profileBadgeColor(indexContact);
+        profileBadgeColor("profileBadge" + indexContact, indexContact);
     }
 }
 
@@ -104,8 +104,9 @@ function updateFocusedContact(indexContact) {
     let focusedContactContent = document.getElementById("focusedContactInformation");
     focusedContactContent.innerHTML = "";
     setTimeout(() => {
-        focusedContactContent.innerHTML = getFocusedContactTemplate(indexContact);                   //needs to render in template instead
-    }, 400);
+        focusedContactContent.innerHTML = getFocusedContactTemplate(indexContact); 
+        profileBadgeColor("focusedProfileBadge", indexContact);
+    }, 400)
 }
 
 function deleteContact() {
@@ -114,12 +115,12 @@ function deleteContact() {
     //clear focused contact
 }
 
-function adjustOverlayToEdit(id) {
+function adjustOverlayToEdit(indexContact) {
     document.getElementById("overlayTitleH1").innerHTML = "Edit contact";
     document.getElementById("overlayTitleP").innerHTML = "";
-    document.getElementById("addContactName").value = contacts[id].name;
-    document.getElementById("addContactMail").value = contacts[id].mail;
-    document.getElementById("addContactPhone").value = contacts[id].phone;
+    document.getElementById("addContactName").value = contacts[indexContact].name;
+    document.getElementById("addContactMail").value = contacts[indexContact].mail;
+    document.getElementById("addContactPhone").value = contacts[indexContact].phone;
     document.getElementById("contactsOverlayCancel").innerHTML = "Delete";
     document.getElementById("contactsOverlayCreate").innerHTML = "Save" + "<img src='/assets/icons/create-btn.svg'></img>";
     confirmBtnContenRef.onclick = saveEditContact();

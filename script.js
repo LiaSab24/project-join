@@ -59,6 +59,16 @@ async function postData(path = "", data = {}) {
   return newDataToJson = await newData.json();
 }
 
+function profileBadgeColor(contentRef, indexContact) {
+  document.getElementById(contentRef).style.backgroundColor = contacts[indexContact].color;
+}
+
+
+
+
+
+//__________________________________________
+
 function btnUserInitial() {
   let subMenu = document.getElementById("submenu");
   console.log(subMenu);
@@ -79,20 +89,3 @@ function getSubmenuHTML() {
 function closeSubmenu() {
   getSubmenu.classList.add('d-none');
 }
-
-function profileBadgeColor(indexContact) {
-  let profileBadge = document.getElementById("profileBadge"+indexContact);
-  profileBadge.style.backgroundColor = contacts[indexContact].color;
-}
-
-// function loadContactColors() {
-//   let savedColors = localStorage.getItem("contactColors");
-//   if (savedColors) {
-//       contactColors = JSON.parse(savedColors);
-//   }
-// }
-
-// function applyProfileColor(indexContact) {
-//   let focusedBadge = document.querySelector('.focused-profile-badge');
-//   if (focusedBadge) focusedBadge.style.backgroundColor = contactColors[indexContact] || "#ccc";
-// }

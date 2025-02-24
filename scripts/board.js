@@ -1,7 +1,7 @@
 async function initBoard() {
   await init();
   restoreBoardState();
-  removeMessageNoTasks();
+  toggleMessageNoTasks();
 }
 
 function restoreBoardState() {
@@ -21,7 +21,7 @@ function restoreBoardState() {
   }
 }
 
-function removeMessageNoTasks() {
+function toggleMessageNoTasks() {
   const taskCategoryContentRef = document.getElementsByClassName("task-wrapper");
   const noTaskMessagesContentRef = document.getElementsByClassName("no-task-message-container");
   let taskCard = document.querySelector(".task-card");
@@ -56,7 +56,7 @@ function drop(event) {
     }
     saveBoardState();
   }
-  removeMessageNoTasks();
+  toggleMessageNoTasks();
 }
 
 function saveBoardState() {
