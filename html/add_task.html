@@ -40,7 +40,7 @@
                     placeholder="Enter a Description"></textarea>
 
                 <label for="addTaskAssignedTo">Assigned to</label>
-                <select id="addTaskAssignedTo" aria-placeholder="Select contacts to assign">
+                <select onfocus="assignedToDropDownMenu()" onfocusout="assignedToDropDownMenu()" id="addTaskAssignedTo" aria-placeholder="Select contacts to assign">
                     <option selected disabled hidden>Select contacts to assign</option>
                     <option value="">...</option>
                 </select>
