@@ -1,39 +1,53 @@
-//W3school include
+// include.js
 function includeHTML() {
-  var z, i, elmnt, file, xhttp;
-  /* Loop through a collection of all HTML elements: */
-  z = document.getElementsByTagName("*");
-  for (i = 0; i < z.length; i++) {
-    elmnt = z[i];
-    /*search for elements with a certain attribute:*/
-    file = elmnt.getAttribute("w3-include-html");
-    if (file) {
-      /* Make an HTTP request using the attribute value as the file name: */
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4) {
-          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-          /* Remove the attribute, and call this function once more: */
-          elmnt.removeAttribute("w3-include-html");
-          includeHTML();
+  return new Promise(async (resolve) => {
+    const elements = document.querySelectorAll("[w3-include-html]");
+
+    const fetchAndInclude = async (element) => {
+      const file = element.getAttribute("w3-include-html");
+      if (!file) return;
+
+      try {
+        const response = await fetch(file);
+        if (!response.ok) {
+          throw new Error("Page not found.");
         }
+        element.innerHTML = await response.text();
+      } catch (error) {
+        element.innerHTML = error.message;
+      } finally {
+        element.removeAttribute("w3-include-html");
       }
-      xhttp.open("GET", file, true);
-      xhttp.send();
-      /* Exit the function: */
-      return;
-    }
-  }
+    };
+
+    await Promise.all([...elements].map(fetchAndInclude));
+    resolve(); // Promise wird aufgelöst, wenn die Einbindung abgeschlossen ist
+  });
 }
 
+
+
 /*
-document.addEventListener('DOMContentLoaded', function () {
-  const scrollContainer = document.querySelector('.scroll-container');
-  
-  // Dynamische Anpassung der max-height basierend auf dem Inhalt
-  const contentHeight = scrollContainer.scrollHeight;
-  if (contentHeight < 300) {
-    scrollContainer.style.maxHeight = `${contentHeight}px`;
-  }
-}); */
+async function includeHTML() {
+  const elements = document.querySelectorAll("[w3-include-html]");
+
+  const fetchAndInclude = async (element) => {
+    const file = element.getAttribute("w3-include-html");
+    if (!file) return;
+
+    try {
+      const response = await fetch(file);
+      if (!response.ok) {
+        throw new Error("Page not found.");
+      }
+      element.innerHTML = await response.text();
+    } catch (error) {
+      element.innerHTML = error.message;
+    } finally {
+      element.removeAttribute("w3-include-html");
+    }
+  };
+
+  await Promise.all([...elements].map(fetchAndInclude));
+}
+*/
