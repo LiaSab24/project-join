@@ -153,24 +153,14 @@ function toggleOverlay() {
 }
 
 function adjustOverlayToEdit(id) {
-    let titleContentRef = document.getElementById("overlayTitleH1");
-    let titleAdditionContentRef = document.getElementById("overlayTitleP");
-    let inputNameContentRef = document.getElementById("addContactName");
-    let inputMailContentRef = document.getElementById("addContactMail");
-    let inputPhoneContentRef = document.getElementById("addContactPhone");
-    let rejectBtnContenRef = document.getElementById("contactsOverlayCancel");
-    console.log(rejectBtnContenRef);
-    let confirmBtnContenRef = document.getElementById("contactsOverlayCreate");
-    titleContentRef.innerHTML = "Edit contact";
-    titleAdditionContentRef.innerHTML = "";
-    inputNameContentRef.value = contacts[id].name;
-    inputMailContentRef.value = contacts[id].mail;
-    inputPhoneContentRef.value = contacts[id].phone;
-    rejectBtnContenRef.innerHTML = "Delete";
-    //rejectBtnContenRef.onclick = deleteContact();        
-    confirmBtnContenRef.innerHTML = "Save" + "<img src='/assets/icons/create-btn.svg'></img>";
-    //confirmBtnContenRef.onclick = editContact(); 
-    console.log(rejectBtnContenRef);
+    document.getElementById("overlayTitleH1").innerHTML = "Edit contact";
+    document.getElementById("overlayTitleP").innerHTML = "";
+    document.getElementById("addContactName").value = contacts[id].name;
+    document.getElementById("addContactMail").value = contacts[id].mail;
+    document.getElementById("addContactPhone").value = contacts[id].phone;
+    document.getElementById("contactsOverlayCancel").innerHTML = "Delete";
+    document.getElementById("contactsOverlayCreate").innerHTML = "Save" + "<img src='/assets/icons/create-btn.svg'></img>";
+    confirmBtnContenRef.onclick = editContact(); 
 }
 
 function contactSuccesfullyCreated() {
