@@ -135,12 +135,15 @@ function addContact() {
   let contactName = document.getElementById("addContactName").value;
   let contactMail = document.getElementById("addContactMail").value;
   let contactPhone = document.getElementById("addContactPhone").value;
+  let contactColors = assignRandomColor(contacts.length + 1);
   postData("/contacts/", {
     "name": contactName,
     "mail": contactMail,
-    "phone": contactPhone
+    "phone": contactPhone,
+    "background": contactColors
   });
   clearContactForm();
+  renderContacts();
 }
 
 function clearContactForm() {
