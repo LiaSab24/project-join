@@ -143,6 +143,12 @@ function toggleOverlay() {
         overlayContactContentRef.classList.toggle("d-none");
         overlayBgContentRef.classList.toggle("d-none");
     }, 300);
+    let inputNameContentRef = document.getElementById("addContactName");
+    let inputMailContentRef = document.getElementById("addContactMail");
+    let inputPhoneContentRef = document.getElementById("addContactPhone");
+    inputNameContentRef.value = "";
+    inputMailContentRef.value = "";
+    inputPhoneContentRef.value = "";
     //change content of overlay, depending of clicked button (add or edit)
 }
 
