@@ -103,6 +103,10 @@ select {
     cursor: pointer;
 }
 
+select:focus {
+    background-image: url("/assets/icons/add-task-dropdown-up.svg");
+}
+
 .required-star {
     position: relative;
     bottom: 2px;
