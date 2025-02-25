@@ -24,6 +24,9 @@ function restoreBoardState() {
   }
 }
 
+/**
+ * This function checks if a task-category contains tasks and toggles the 'no task'-message accordingly
+ */
 function toggleMessageNoTasks() {
   const taskCategoryContentRef = document.getElementsByClassName("task-wrapper");
   const noTaskMessagesContentRef = document.getElementsByClassName("no-task-message-container");

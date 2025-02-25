@@ -6,6 +6,9 @@ async function initLogIn() {
     clearLogInForm();
 }
 
+/**
+ * This function clears the input-values of the login-form
+ */
 function clearLogInForm() {
     document.getElementById("mail").value = "";
     document.getElementById("password").value = "";
@@ -17,6 +20,9 @@ function LogIn() {
     //currentUser gets ID of logged in user
 }
 
+/**
+ * This function redirects the user to the summary (Login succesfull)
+ */
 function redirectionToSummary() {
     window.location.href = "summary.html";
 }

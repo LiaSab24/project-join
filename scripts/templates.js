@@ -1,3 +1,8 @@
+/**
+ * This template creates an address book entrie for a contact
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
 function getAddressbookContactTemplate(indexContact) {
     return `<div id="${indexContact}" class="contact" onclick="contactClicked(${indexContact})">
                 <div id="profileBadge${indexContact}" class="contact-profile-badge">${nameAbbreviation(indexContact)}</div>
@@ -8,6 +13,11 @@ function getAddressbookContactTemplate(indexContact) {
             </div>`
 }
 
+/**
+ * This template creates an overlay for the focused-contact-area with the current contacts information
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
 function getFocusedContactTemplate(indexContact) {
     return `<div class="focused-profile-overview">
                 <div id="focusedProfileBadge" class="focused-profile-badge">${nameAbbreviation(indexContact)}</div>

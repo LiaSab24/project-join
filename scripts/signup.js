@@ -6,6 +6,9 @@ async function initSignUp() {
     clearSignUpForm();
 }
 
+/**
+ * This function clears the input values of the sign-up-form and unchecks the checkbox
+ */
 function clearSignUpForm() {
     document.getElementById("name").value = "";
     document.getElementById("mail").value = "";
@@ -14,6 +17,10 @@ function clearSignUpForm() {
     document.getElementById("checkboxSignUp").checked = false;
 }
 
+/**
+ * This function reads out the input-values of the sign-up form.
+ * If the user checked the checkbox and assigned a confirmed password, a name and a mail-address the data is added to firebase.
+ */
 async function addUser() {
     let userName = document.getElementById("name").value;
     let userMail = document.getElementById("mail").value;
@@ -32,6 +39,10 @@ async function addUser() {
     }
 }
 
+/**
+ * This function is part of the addUser()-function and reads out the input-values of the password- and confirm-password-inputs.
+ * If they are the same, the password is returned
+ */
 function checkPasswordConfirmed() {
     let password = document.getElementById("password").value;
     let confirmed = document.getElementById("confirmed").value;
@@ -40,6 +51,9 @@ function checkPasswordConfirmed() {
     }
 }
 
+/**
+ * This function shows the 'sign-up succesfull'-message after adding the user to the users-array and firebase was succesfull
+ */
 function signUpSuccesfully() {
     let signUpMsg = document.getElementById("msgSignUp");
         signUpMsg.classList.remove("d-none");
@@ -49,6 +63,9 @@ function signUpSuccesfully() {
     }, 2400);
 }
 
+/**
+ * This function redirects the user to the log-in-page
+ */
 function redirectionToLogIn() {
     window.location.href = "login.html";
 }

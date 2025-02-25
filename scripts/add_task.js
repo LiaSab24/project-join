@@ -117,10 +117,8 @@ function addSubtaskToList() {
     }
 }
 
-//EDIT SUBTASKS
-
 /**
- * This function reads out the data of the form and sends it to firebase
+ * This function reads out the data of the add-task-form and adds the task to tasks-array and firebase
  */
 function addTask() {
     let taskTitle = document.getElementById("addTaskTitle").value;
