@@ -118,3 +118,18 @@ function toggleUserFeedback() {
   }
   feedbackOverlay.classList.toggle("feedback-hidden");
 }
+
+/**
+ * Opens the feedback edit overlay by removing hidden classes.
+ * 
+ * @function editFeedbackCard
+ * @returns {void} Does not return anything.
+ */
+function editFeedbackCard() {
+    let overlay = document.getElementById("userStoryBodyContainer");
+    let feedbackSection = document.getElementById("userStoryEditContainerInside");
+    if (overlay && feedbackSection) {
+        overlay.classList.remove("d-none");
+        feedbackSection.classList.remove("feedback-hidden");
+    }
+}
