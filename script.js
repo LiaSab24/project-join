@@ -53,6 +53,9 @@ function filArrays(joinDataJson) {
   users = Object.values(joinDataJson.users);
   tasks = Object.values(joinDataJson.tasks);
   contacts = Object.values(joinDataJson.contacts);  
+  for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
+    contacts[indexContact].url = Object.keys(joinDataJson.contacts)[indexContact];
+  }
 }
 
 /**
