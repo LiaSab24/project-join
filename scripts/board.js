@@ -1,3 +1,6 @@
+/**
+ * This function is the inital function, when board.html is loading and executes the init()-function and furher necessary board-functions
+ */
 async function initBoard() {
   await init();
   restoreBoardState();

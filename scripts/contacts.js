@@ -1,5 +1,8 @@
 const addressBookContentRef = document.getElementsByClassName("contactsLetter");
 
+/**
+ * This function is the inital function, when contacts.html is loading and executes the init()-function and furher necessary contacts-functions
+ */
 async function initContacts() {
     await init();
     renderAddressBook();

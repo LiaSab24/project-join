@@ -1,3 +1,6 @@
+/**
+ * This function is the inital function, when login.html is loading and executes the init()-function and furher necessary login-functions
+ */
 async function initLogIn() {
     await init();
     clearLogInForm();

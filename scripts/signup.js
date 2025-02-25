@@ -1,3 +1,6 @@
+/**
+ * This function is the inital function, when sign_up.html is loading and executes the init()-function and furher necessary sign-up-functions
+ */
 async function initSignUp() {
     await init();
     clearSignUpForm();

@@ -1,3 +1,6 @@
+/**
+ * This function is the inital function, when summary.html is loading and executes the init()-function and furher necessary summary-functions
+ */
 async function initSummary() {
     await init();
     showTasksNumbers();
