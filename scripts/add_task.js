@@ -90,10 +90,10 @@ function priorityBtnBg(priority) {
 function changeSubtaskIcons() {
     let subtaskIconAdd = document.getElementById("subtaskIconAdd");
     let subtaskIconsFocus = document.getElementById("subtaskIconsFocus");
-    // setTimeout(() => {                                                      
+    setTimeout(() => {                                                      
         subtaskIconAdd.classList.toggle("d-none");
         subtaskIconsFocus.classList.toggle("d-none");
-    // }, 100);
+    }, 100);
 }
 
 /**
