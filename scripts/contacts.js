@@ -32,11 +32,24 @@ function renderContacts() {
     }
 }
 
+<<<<<<< HEAD
 /**
  * This function extracts the first letter of the contacts first and of the contacts last name and returns them 
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
+=======
+function hideNotUsedLetters(addressBookContentRef) {
+    const letterContentRef = document.getElementsByClassName("address-book-letter");
+    for (let indexLetter = 0; indexLetter < letterContentRef.length; indexLetter++) {
+        //console.log(letterContentRef[indexLetter]);
+        if (addressBookContentRef[indexLetter].innerHTML == "") {
+        letterContentRef[indexLetter].classList.add("d-none");
+        }
+    }
+}
+
+>>>>>>> parent of aa83e9b (Update contacts.js)
 function nameAbbreviation(indexContact) {
     let contactFullName = contacts[indexContact].name.toUpperCase();
     let contactFirstName = contactFullName.substring(0, contactFullName.indexOf(' '));
