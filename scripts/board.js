@@ -51,16 +51,7 @@ function restoreBoardState() {
   }
 }
 
-// Funktion beim Laden aufrufen
-restoreBoardState();
-
-
-// Funktion beim Laden aufrufen
-restoreBoardState();
-
-
-restoreBoardState();
-
+restoreBoardState();s
 
 function insertOverlay() {
   document.body.insertAdjacentHTML("beforeend", getOverlayTemplate());
