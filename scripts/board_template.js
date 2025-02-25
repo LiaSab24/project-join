@@ -106,7 +106,7 @@ function createFeedbackOverlay() {
                     <img src="/assets/icons/delete.png" alt="Delete-Icon"> Delete
                 </button>
                 <div class="divider"></div>
-                <button class="feedback-edit-btn">
+                <button class="feedback-edit-btn" onclick="editFeedbackCard()">
                     <img src="/assets/icons/edit.png" alt="Edit-Icon"> Edit
                 </button>
             </div>
