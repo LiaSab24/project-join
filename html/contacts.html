@@ -200,10 +200,15 @@
                                 Cancel
                                 <div class="reject-img"></div>
                             </button>
-                            <button onclick="addContact()"
-                                class="confirm-btn" id="contactsOverlayCreate">
+                            <button id="contactsOverlayCreate" onclick="addContact()"
+                                class="confirm-btn" >
                                 Create Contact
                                 <img src="/assets/icons/create-btn.svg">
+                            </button>
+                            <button id="contactsOverlaySave" onclick="saveEditContact()"
+                                class="confirm-btn d-none" >
+                                Save
+                                <img src='/assets/icons/create-btn.svg'>
                             </button>
                         </div>
                     </form>

@@ -74,10 +74,12 @@ function adjustOverlayToAdd() {
     document.getElementById("overlayTitleH1").innerHTML = "Add contact";
     document.getElementById("overlayTitleP").innerHTML = "Tasks are better with a team!";
     document.getElementById("contactsOverlayCancel").innerHTML = "Cancel";
-    document.getElementById("contactsOverlayCreate").innerHTML = "Create Contact" + "<img src='/assets/icons/create-btn.svg'>";
+    // document.getElementById("contactsOverlayCreate").innerHTML = "Create Contact" + "<img src='/assets/icons/create-btn.svg'>";
     document.getElementById("overlayProfileBadge").style.backgroundColor = "#D1D1D1";
     document.getElementById("overlayProfileBadge").innerHTML = "<img src='/assets/icons/contacts-overlay-profile-badge-anonymous.svg'>";
-    confirmBtnContenRef.onclick = addContact();
+    // document.getElementById("contactsOverlayCreate").onclick = addContact();
+    document.getElementById("contactsOverlayCreate").classList.remove("d-none");
+    document.getElementById("contactsOverlaySave").classList.add("d-none");
 }
 
 /**
@@ -196,16 +198,47 @@ function adjustOverlayToEdit(indexContact) {
     document.getElementById("addContactMail").value = contacts[indexContact].mail;
     document.getElementById("addContactPhone").value = contacts[indexContact].phone;
     document.getElementById("contactsOverlayCancel").innerHTML = "Delete";
-    document.getElementById("contactsOverlayCreate").innerHTML = "Save" + "<img src='/assets/icons/create-btn.svg'>";
+    // document.getElementById("contactsOverlayCreate").innerHTML = "Save" + "<img src='/assets/icons/create-btn.svg'>";
     profileBadgeColor("overlayProfileBadge", indexContact)
     document.getElementById("overlayProfileBadge").innerHTML = nameAbbreviation(indexContact)
-    confirmBtnContenRef.onclick = saveEditContact();
+    // document.getElementById("contactsOverlayCreate").onclicks = saveEditContact(indexContact);
+    document.getElementById("contactsOverlayCreate").classList.add("d-none");
+    document.getElementById("contactsOverlaySave").classList.remove("d-none");
 }
 
 function saveEditContact() {
-
+    let contactName = document.getElementById("addContactName").value;
+    let contactMail = document.getElementById("addContactMail").value;
+    let contactPhone = document.getElementById("addContactPhone").value;
+    //contact color is the one from the badge
+    //search function for data (beforehand)
+    putData("/contacts/", {
+        "name": contactName,
+        "mail": contactMail,
+        "phone": contactPhone,
+        "color": contactColor
+    });
     //change data in firebase
     //change contact in addressbook
     //closeOverlay
-    renderAddressBook();
+    //renderAddressBook();
 }
+
+// async function addContact() {
+//     let contactName = document.getElementById("addContactName").value;
+//     let contactMail = document.getElementById("addContactMail").value;
+//     let contactPhone = document.getElementById("addContactPhone").value;
+//     let contactColor = assignRandomColor(contacts.length + 1);
+//     if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
+//         postData("/contacts/", {
+//             "name": contactName,
+//             "mail": contactMail,
+//             "phone": contactPhone,
+//             "color": contactColor
+//         });
+//         contactSuccesfullyCreated();
+//         toggleContactsOverlay();
+//         await init()
+//         renderAddressBook();
+//     }
+// }
