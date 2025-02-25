@@ -27,7 +27,7 @@
     <main>
         <section class="address-book">
             <div class="add-new-contact">
-                <button onclick="toggleContactsOverlay()">
+                <button onclick="toggleContactsOverlay(), adjustOverlayToAdd()">
                     <span>Add new contact</span>
                     <img src="/assets/icons/contacts-add.svg" alt="add contact">
                 </button>
@@ -187,7 +187,7 @@
             <div class="overlay-contact-information">
                 <img onclick="toggleContactsOverlay()" src="/assets/icons/contacts-overlay-close.svg" class="overlay-close">
                 <div>
-                    <div class="overlay-profile-badge">
+                    <div id="overlayProfileBadge">
                         <img src="/assets/icons/contacts-overlay-profile-badge-anonymous.svg">
                     </div>
                     <form class="overlay-form">
@@ -200,7 +200,7 @@
                                 Cancel
                                 <div class="reject-img"></div>
                             </button>
-                            <button onclick="addContact(), toggleContactsOverlay()"
+                            <button onclick="addContact()"
                                 class="confirm-btn" id="contactsOverlayCreate">
                                 Create Contact
                                 <img src="/assets/icons/create-btn.svg">

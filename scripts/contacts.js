@@ -33,20 +33,6 @@ function renderContacts() {
 }
 
 /**
- * This function extracts the first letter of the contacts first and of the contacts last name and returns them 
- * 
- * @param {number} indexContact - the index of the contact in the contacts-array
- */
-function nameAbbreviation(indexContact) {
-    let contactFullName = contacts[indexContact].name.toUpperCase();
-    let contactFirstName = contactFullName.substring(0, contactFullName.indexOf(' '));
-    let contactLastName = contactFullName.substring(contactFullName.indexOf(' ') + 1);
-    let firstLetter = contactFirstName.charAt(0);
-    let secondLetter = contactLastName.charAt(0);
-    return firstLetter + secondLetter
-}
-
-/**
  * This function is executed after the address book finished rendering and iterates through each letter and hides it, if it does not contain any contact
  */
 function hideNotUsedLetters() {
@@ -81,6 +67,20 @@ function toggleContactsOverlay() {
 }
 
 /**
+ * This function is used, when the user wants to add a new contact instead of editing one.
+ * The contacts-overlay adjusts accordingly.
+ */
+function adjustOverlayToAdd() {
+    document.getElementById("overlayTitleH1").innerHTML = "Add contact";
+    document.getElementById("overlayTitleP").innerHTML = "Tasks are better with a team!";
+    document.getElementById("contactsOverlayCancel").innerHTML = "Cancel";
+    document.getElementById("contactsOverlayCreate").innerHTML = "Create Contact" + "<img src='/assets/icons/create-btn.svg'>";
+    document.getElementById("overlayProfileBadge").style.backgroundColor = "#D1D1D1";
+    document.getElementById("overlayProfileBadge").innerHTML = "<img src='/assets/icons/contacts-overlay-profile-badge-anonymous.svg'>";
+    confirmBtnContenRef.onclick = addContact();
+}
+
+/**
  * This function clears the input-values of the contact-overlay-form
  */
 function clearContactForm() {
@@ -92,19 +92,23 @@ function clearContactForm() {
 /**
  * This function reads out the data of the add-contact-form and sends it to firebase
  */
-function addContact() {
+async function addContact() {
     let contactName = document.getElementById("addContactName").value;
     let contactMail = document.getElementById("addContactMail").value;
     let contactPhone = document.getElementById("addContactPhone").value;
     let contactColor = assignRandomColor(contacts.length + 1);
-    postData("/contacts/", {
-        "name": contactName,
-        "mail": contactMail,
-        "phone": contactPhone,
-        "color": contactColor
-    });
-    renderAddressBook();
-    contactSuccesfullyCreated();
+    if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
+        postData("/contacts/", {
+            "name": contactName,
+            "mail": contactMail,
+            "phone": contactPhone,
+            "color": contactColor
+        });
+        contactSuccesfullyCreated();
+        toggleContactsOverlay();
+        await init()
+        renderAddressBook();
+    }
 }
 
 /**
@@ -168,7 +172,7 @@ function updateFocusedContact(indexContact) {
     let focusedContactContent = document.getElementById("focusedContactInformation");
     focusedContactContent.innerHTML = "";
     setTimeout(() => {
-        focusedContactContent.innerHTML = getFocusedContactTemplate(indexContact); 
+        focusedContactContent.innerHTML = getFocusedContactTemplate(indexContact);
         profileBadgeColor("focusedProfileBadge", indexContact);
     }, 400)
 }
@@ -192,11 +196,14 @@ function adjustOverlayToEdit(indexContact) {
     document.getElementById("addContactMail").value = contacts[indexContact].mail;
     document.getElementById("addContactPhone").value = contacts[indexContact].phone;
     document.getElementById("contactsOverlayCancel").innerHTML = "Delete";
-    document.getElementById("contactsOverlayCreate").innerHTML = "Save" + "<img src='/assets/icons/create-btn.svg'></img>";
+    document.getElementById("contactsOverlayCreate").innerHTML = "Save" + "<img src='/assets/icons/create-btn.svg'>";
+    profileBadgeColor("overlayProfileBadge", indexContact)
+    document.getElementById("overlayProfileBadge").innerHTML = nameAbbreviation(indexContact)
     confirmBtnContenRef.onclick = saveEditContact();
 }
 
 function saveEditContact() {
+
     //change data in firebase
     //change contact in addressbook
     //closeOverlay

@@ -76,6 +76,26 @@ async function postData(path = "", data = {}) {
 }
 
 /**
+ * This function changes edited data in firebase
+ * 
+ * @param {string} path - the path, where the data should be added in firebase (users, tasks, contacts)
+ * @param {object} data - an object, that contains all the key-value-pairs that should be added to firebase
+ */
+async function postData(path = "", data = {}) {
+  console.log(path);
+  console.log(data);
+  
+  let newData = await fetch(BASE_URL + path + ".json", {
+    method: "POST",
+    header: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data)
+  });
+  return newDataToJson = await newData.json();
+}
+
+/**
  * This function changes the profile-badge-color according to the deposited color for the contact
  * 
  * @param {string} contentRef - the id of the element that should get the deposited color as the background-color
@@ -85,8 +105,19 @@ function profileBadgeColor(contentRef, indexContact) {
   document.getElementById(contentRef).style.backgroundColor = contacts[indexContact].color;
 }
 
-
-
+/**
+ * This function extracts the first letter of the contacts first and of the contacts last name and returns them 
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function nameAbbreviation(indexContact) {
+  let contactFullName = contacts[indexContact].name.toUpperCase();
+  let contactFirstName = contactFullName.substring(0, contactFullName.indexOf(' '));
+  let contactLastName = contactFullName.substring(contactFullName.indexOf(' ') + 1);
+  let firstLetter = contactFirstName.charAt(0);
+  let secondLetter = contactLastName.charAt(0);
+  return firstLetter + secondLetter
+}
 
 //__________________________________________
 
