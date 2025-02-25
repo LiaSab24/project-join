@@ -129,6 +129,7 @@
                     <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                     <div id="contactsLetterQ" class="contactsLetter"></div>
                 </div>
+                
                 <div id="letterR" class="address-book-letter">R
                     <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                     <div id="contactsLetterR" class="contactsLetter"></div>
@@ -207,7 +208,7 @@
                         <input id="addContactPhone" type="text" placeholder="Phone" required>
 
                         <div class="submit-btns">
-                            <button onclick="clearContactForm()" class="reject-btn" id="contactsOverlayCancel">
+                            <button onclick="clearContactForm(); return false" class="reject-btn" id="contactsOverlayCancel">
                                 Cancel
                                 <div class="reject-img"></div>
                             </button>

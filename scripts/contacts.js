@@ -19,6 +19,7 @@ const colors = [
 let BASEURL = "https://join-424-project-default-rtdb.europe-west1.firebasedatabase.app/";
 let availableColors = [...colors];
 let contactColors = {};
+// let contacts = [];
 
 async function initContacts() {
     await init();
@@ -43,10 +44,12 @@ function renderContacts() {
     }
 }
 
+
+
 function hideNotUsedLetters(addressBookContentRef) {
     const letterContentRef = document.getElementsByClassName("address-book-letter");
     for (let indexLetter = 0; indexLetter < letterContentRef.length; indexLetter++) {
-        console.log(letterContentRef[indexLetter]);
+        //console.log(letterContentRef[indexLetter]);
         if (addressBookContentRef[indexLetter].innerHTML == "") {
         letterContentRef[indexLetter].classList.add("d-none");
         }
@@ -71,14 +74,26 @@ function changeProfileBadgeBackground() {
 }
 
 function assignRandomColor(contactId) {
+    if (contactColors[contactId]) {
+        return contactColors[contactId];
+    }
     if (availableColors.length === 0) availableColors = [...colors];
 
     let randomIndex = Math.floor(Math.random() * availableColors.length);
     let assignedColor = availableColors.splice(randomIndex, 1)[0];
 
     contactColors[contactId] = assignedColor;
+    localStorage.setItem("contactColors", JSON.stringify(contactColors));
     return assignedColor;
 }
+
+function loadContactColors() {
+    let savedColors = localStorage.getItem("contactColors");
+    if (savedColors) {
+        contactColors = JSON.parse(savedColors);
+    }
+}
+loadContactColors();
 
 function contactClicked(indexContact) {
     clearActiveContacts();
@@ -115,6 +130,12 @@ function deleteContact() {
     //clear focused contact
 }
 
+function editContact() {
+    //change data in firebase
+    //change contact in addressbook
+    //closeOverlay
+}
+
 function toggleOverlay() {
     let overlayBgContentRef = document.getElementById("overlayBg");
     let overlayContactContentRef = document.getElementById("overlayContact");
@@ -124,18 +145,23 @@ function toggleOverlay() {
         overlayContactContentRef.classList.toggle("d-none");
         overlayBgContentRef.classList.toggle("d-none");
     }, 300);
+    let inputNameContentRef = document.getElementById("addContactName");
+    let inputMailContentRef = document.getElementById("addContactMail");
+    let inputPhoneContentRef = document.getElementById("addContactPhone");
+    inputNameContentRef.value = "";
+    inputMailContentRef.value = "";
+    inputPhoneContentRef.value = "";
     //change content of overlay, depending of clicked button (add or edit)
 }
 
 function adjustOverlayToEdit(id) {
-    console.log(id);
-    console.log(contacts);
     let titleContentRef = document.getElementById("overlayTitleH1");
     let titleAdditionContentRef = document.getElementById("overlayTitleP");
     let inputNameContentRef = document.getElementById("addContactName");
     let inputMailContentRef = document.getElementById("addContactMail");
     let inputPhoneContentRef = document.getElementById("addContactPhone");
     let rejectBtnContenRef = document.getElementById("contactsOverlayCancel");
+    console.log(rejectBtnContenRef);
     let confirmBtnContenRef = document.getElementById("contactsOverlayCreate");
     titleContentRef.innerHTML = "Edit contact";
     titleAdditionContentRef.innerHTML = "";
@@ -143,7 +169,10 @@ function adjustOverlayToEdit(id) {
     inputMailContentRef.value = contacts[id].mail;
     inputPhoneContentRef.value = contacts[id].phone;
     rejectBtnContenRef.innerHTML = "Delete";
+    //rejectBtnContenRef.onclick = deleteContact();        
     confirmBtnContenRef.innerHTML = "Save" + "<img src='/assets/icons/create-btn.svg'></img>";
+    //confirmBtnContenRef.onclick = editContact(); 
+    console.log(rejectBtnContenRef);
 }
 
 function contactSuccesfullyCreated() {
@@ -156,8 +185,28 @@ function contactSuccesfullyCreated() {
     }, 1600);
 }
 
-// TEST-DATEN
+// async function loadContacts() {
+//     contacts = [];
+//     let contactsData = await getAddressbookContactTemplate('conntacts');
+//     if (!contactsData) {
+//         console.error("Keine Kontakte gefunden");
+//         return;
+//     }
+//     for (let key in contactsData) {
+//         let singleContact = contactsData[key];
+//         let contact = {
+//             "id": key,
+//             "name": singleContact.name,
+//             "mail": singleContact.mail,
+//             "phone": singleContact.phone,
+//             "background": singleContact.background,
+//         }
+//         contacts.push(contact);
+//     }
+//     contacts.sort((a, b) => a.name.localeCompare(b.name));
+// }
 
+// TEST-DATEN
 function addTestContact() {
     let testContactName = document.getElementById("testcontactname").innerHTML;
     let testContactMail = document.getElementById("testcontactmail").innerHTML;

@@ -20,7 +20,7 @@
     <script src="/scripts/add_task.js"></script>
 </head>
 
-<body onload="fetchDataJson()">
+<body onload="fetchDataJson(), initAddTask()">
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
@@ -40,9 +40,15 @@
                     placeholder="Enter a Description"></textarea>
 
                 <label for="addTaskAssignedTo">Assigned to</label>
-                <select id="addTaskAssignedTo" aria-placeholder="Select contacts to assign">
+                <select onfocus="assignedToDropDownMenu()" onfocusout="assignedToDropDownMenu()" id="addTaskAssignedTo" aria-placeholder="Select contacts to assign">
                     <option selected disabled hidden>Select contacts to assign</option>
-                    <option value="">...</option>
+                    <option value="">
+                        <div class="profile-badge">AS</div>
+                        <span>Anja Schulz</span>
+                        <div class="Checkbox-Remember-Me">
+                            <input required type="checkbox" name="Remember-me" id="checkbox">
+                        </div>
+                    </option>
                 </select>
 
                 <div id="addTaskAssignedToProfiles">
@@ -91,12 +97,13 @@
 
 
                 <label for="addTaskSubtask">Subtasks</label>
-                <input type="text" id="addTaskSubtask" placeholder="Add new subtask">
-                
-                <ul id="addTaskSubtaskList">
-                    <li>Contact Form</li>
-                    <li>Write Legal Imprint</li>
-                </ul>
+                <input onfocus="changeSubtaskIcons()" onfocusout="changeSubtaskIcons()" type="text" id="addTaskSubtask" placeholder="Add new subtask">
+                <img id="subtaskIconAdd" class="subtask-icon" src="/assets/icons/add-task-subtask-add.svg">
+                <div id="subtaskIconsFocus" class="d-none">
+                    <img onclick="clearSubtasksInput()" id="subtaskIconReject" class="subtask-icon" src="/assets/icons/add-task-subtask-reject.svg">
+                    <img onclick="addSubtaskToList()" id="subtaskIconySubmit" class="subtask-icon" src="/assets/icons/add-task-subtask-submit.svg">
+                </div>
+                <ul id="addTaskSubtaskList"></ul>
                 
             </div>
         </form>
