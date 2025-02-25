@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacts</title>
-    <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)" />
-    <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)" />
+    <title>Join Contacts</title>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)"/>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)"/>
 
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/styles/sidebar.css">
@@ -18,18 +18,6 @@
     <script src="/scripts/include.js"></script>
     <script src="/scripts/templates.js"></script>
     <script src="/scripts/contacts.js"></script>
-
-    <!-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-  const scrollContainer = document.querySelector('.scroll-container')});
-
-  // Dynamische Anpassung der max-height basierend auf dem Inhalt
-  const contentHeight = scrollContainer.scrollHeight;
-  if (contentHeight < 300) {
-    scrollContainer.style.maxHeight = contentHeight + "px";
-    };
-    </script> -->
-
 </head>
 
 <body onload="initContacts()">
@@ -39,7 +27,7 @@
     <main>
         <section class="address-book">
             <div class="add-new-contact">
-                <button onclick="toggleOverlay()">
+                <button onclick="toggleContactsOverlay()">
                     <span>Add new contact</span>
                     <img src="/assets/icons/contacts-add.svg" alt="add contact">
                 </button>
@@ -197,7 +185,7 @@
                 <img src="/assets/icons/contacts-overlay-underline.svg">
             </div>
             <div class="overlay-contact-information">
-                <img onclick="toggleOverlay()" src="/assets/icons/contacts-overlay-close.svg" class="overlay-close">
+                <img onclick="toggleContactsOverlay()" src="/assets/icons/contacts-overlay-close.svg" class="overlay-close">
                 <div>
                     <div class="overlay-profile-badge">
                         <img src="/assets/icons/contacts-overlay-profile-badge-anonymous.svg">
@@ -212,7 +200,7 @@
                                 Cancel
                                 <div class="reject-img"></div>
                             </button>
-                            <button onclick="addContact(), contactSuccesfullyCreated(), toggleOverlay()"
+                            <button onclick="addContact(), toggleContactsOverlay()"
                                 class="confirm-btn" id="contactsOverlayCreate">
                                 Create Contact
                                 <img src="/assets/icons/create-btn.svg">

@@ -1,7 +1,11 @@
-// contacts: adressbook-contact
+/**
+ * This template creates an address book entrie for a contact
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
 function getAddressbookContactTemplate(indexContact) {
     return `<div id="${indexContact}" class="contact" onclick="contactClicked(${indexContact})">
-                <div class="contact-profile-badge">${nameAbbreviation(indexContact)}</div>
+                <div id="profileBadge${indexContact}" class="contact-profile-badge">${nameAbbreviation(indexContact)}</div>
                 <p>
                     <span class="contact-name">${contacts[indexContact].name}</span>
                     <span class="contact-mail">${contacts[indexContact].mail}</span>
@@ -9,14 +13,18 @@ function getAddressbookContactTemplate(indexContact) {
             </div>`
 }
 
-// contacts: focused contact
+/**
+ * This template creates an overlay for the focused-contact-area with the current contacts information
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
 function getFocusedContactTemplate(indexContact) {
     return `<div class="focused-profile-overview">
-                <div class="focused-profile-badge">${nameAbbreviation(indexContact)}</div>
+                <div id="focusedProfileBadge" class="focused-profile-badge">${nameAbbreviation(indexContact)}</div>
                     <div class="focused-profile-account">
                         <span class="focused-contact-name">${contacts[indexContact].name}</span>
                         <div>
-                            <button onclick="toggleOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
+                            <button onclick="toggleContactsOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
                                 <div id="contactsEditIcon"></div>
                                 <span>Edit</span>
                             </button>

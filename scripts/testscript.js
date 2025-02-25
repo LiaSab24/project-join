@@ -81,3 +81,45 @@ function daytime() {
   timeContentRef.innerHTML = time.getHours();
   console.log(time);
 }
+
+// TEST-DATEN
+function addTestContact() {
+  let testContactName = document.getElementById("testcontactname").innerHTML;
+  let testContactMail = document.getElementById("testcontactmail").innerHTML;
+  let testContactPhone = document.getElementById("testcontactphone").innerHTML;
+  postData("/contacts/", {
+      "name": testContactName,
+      "mail": testContactMail,
+      "phone": testContactPhone
+  });
+}
+
+function addTestTask() {
+  let testTaskTitle = document.getElementById("testtaskstitle").innerHTML;
+  let testTaskDescription = document.getElementById("testtasksdescrip").innerHTML;
+  let testTaskAssignedTo = document.getElementById("testtasksassign").innerHTML;
+  let testTaskDueDate = document.getElementById("testtasksdue").innerHTML;
+  let testTaskPriority = document.getElementById("testtasksprio").innerHTML;
+  let testTaskCategory = document.getElementById("testtaskscate").innerHTML;
+  let testTaskSubtasks = document.getElementById("testtaskssub").innerHTML;
+  postData("/tasks/", {
+      "title": testTaskTitle,
+      "description": testTaskDescription,
+      "assignedTo": testTaskAssignedTo,
+      "dueDate": testTaskDueDate,
+      "priority": testTaskPriority,
+      "category": testTaskCategory,
+      "subtasks": testTaskSubtasks
+  });
+}
+
+function addTestUser() {
+  let testUserName = document.getElementById("testusername").innerHTML;
+  let testUserMail = document.getElementById("testusermail").innerHTML;
+  let testUserPassword = document.getElementById("testuserpass").innerHTML;
+  postData("/users/", {
+      "name": testUserName,
+      "mail": testUserMail,
+      "password": testUserPassword
+  });
+}
