@@ -110,27 +110,26 @@ async function addContact() {
     let contactName = document.getElementById("addContactName").value;
     let contactMail = document.getElementById("addContactMail").value;
     let contactPhone = document.getElementById("addContactPhone").value;
-    let contactColor = assignRandomColor(contacts.length + 1);
+    let indexContact = contacts.length +1;
     if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
+        let contactColor = await assignRandomColor(indexContact);
         postData("/contacts/", {
             "name": contactName,
             "mail": contactMail,
             "phone": contactPhone,
             "color": contactColor
         });
-        contactSuccesfullyCreated();
-        toggleContactsOverlay();
-        await init()
-        renderAddressBook();
+        contactSuccesfullMsg("contactSuccesfullyCreated");  
     }
 }
+
 
 /**
  * This function is part of the 'addContact'-function and assigns a random color of the given colors-palette
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function assignRandomColor(indexContact) {
+async function assignRandomColor(indexContact) {
     if (contactColors[indexContact]) {
         return contactColors[indexContact];
     }
@@ -147,13 +146,15 @@ function assignRandomColor(indexContact) {
 /**
  * This function shows the 'contact succesfully created'-message after adding the contact to the contacts-array firebase was succesfull
  */
-function contactSuccesfullyCreated() {
-    let successAnimation = document.getElementById("contactSuccesfullyCreated");
-    successAnimation.style.animationName = "contactSuccesfullyCreated";
+async function contactSuccesfullMsg(msgId) {
+    let successAnimation = document.getElementById(msgId);
+    successAnimation.style.animationName = "contactSuccesfull";
     successAnimation.style.animationDuration = "1600ms";
+    toggleContactsOverlay();
     setTimeout(function () {
         successAnimation.style.animationName = "";
         successAnimation.style.animationDuration = "";
+        initContacts();
     }, 1600);
 }
 
@@ -188,7 +189,7 @@ function updateFocusedContact(indexContact) {
     setTimeout(() => {
         focusedContactContent.innerHTML = getFocusedContactTemplate(indexContact);
         profileBadgeColor("focusedProfileBadge", indexContact);
-    }, 400)
+    }, 800)
 }
 
 function deleteContact() {
@@ -202,15 +203,17 @@ async function saveEditContact(indexContact) {
     let contactMail = document.getElementById("addContactMail").value;
     let contactPhone = document.getElementById("addContactPhone").value;
     let contactColor = contacts[indexContact].color;
-    await putData("/contacts/" +  contacts[indexContact].url, {
-        "name": contactName,
-        "mail": contactMail,
-        "phone": contactPhone,
-        "color": contactColor
-    });
-    await initContacts();
-    toggleContactsOverlay();
-    contactClicked(indexContact);
+    if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
+        await putData("/contacts/" + contacts[indexContact].url, {
+            "name": contactName,
+            "mail": contactMail,
+            "phone": contactPhone,
+            "color": contactColor
+        });
+        contactClicked(indexContact);
+        contactSuccesfullMsg("contactSuccesfullyEdited");
+    }
+
 }
 
 // async function addContact() {

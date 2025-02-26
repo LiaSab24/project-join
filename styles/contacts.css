@@ -472,7 +472,11 @@ main {
     pointer-events: none;
 }
 
-#contactSuccesfullyCreated {
+.contact-messages {
+
+}
+
+.contact-succesfull-msg {
     width: 326px;
     height: 74px;
     border-radius: 20px;
@@ -490,12 +494,12 @@ main {
     line-height: 24px;
 }
 
-/* This is added to #contactSuccesfullyCreated, only when create contact was succesfully*/
-@keyframes contactSuccesfullyCreated {
-    0%   {right: -100%;}
-    25%  {right: -800px;}
-    75%  {right: -800px;}
-    100% {right: -100%;}
+/* This is added to the contact-successfull-messages, when create/edit/delete was succesfully*/
+@keyframes contactSuccesfull {
+    0%   {top: -200px; right: -100%;}
+    25%  {top: -200px;right: -800px;}
+    75%  {top: -200px;right: -800px;}
+    100% {top: -200px;right: -100%;}
 }
 
 /** same as add-task (copy&paste)**/

@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Contacts</title>
-    <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)"/>
-    <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)"/>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)" />
 
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/styles/sidebar.css">
@@ -117,7 +117,7 @@
                     <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                     <div id="contactsLetterQ" class="contactsLetter"></div>
                 </div>
-                
+
                 <div id="letterR" class="address-book-letter">R
                     <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                     <div id="contactsLetterR" class="contactsLetter"></div>
@@ -185,7 +185,8 @@
                 <img src="/assets/icons/contacts-overlay-underline.svg">
             </div>
             <div class="overlay-contact-information">
-                <img onclick="toggleContactsOverlay()" src="/assets/icons/contacts-overlay-close.svg" class="overlay-close">
+                <img onclick="toggleContactsOverlay()" src="/assets/icons/contacts-overlay-close.svg"
+                    class="overlay-close">
                 <div>
                     <div id="overlayProfileBadge">
                         <img src="/assets/icons/contacts-overlay-profile-badge-anonymous.svg">
@@ -207,10 +208,17 @@
         </section>
     </div>
 
-    <section id="contactSuccesfullyCreated">
-        <span>Contact succesfully created</span>
+    <section class="contact-messages">
+        <div id="contactSuccesfullyCreated" class="contact-succesfull-msg">
+            <span>Contact succesfully created</span>
+        </div>
+        <div id="contactSuccesfullyEdited" class="contact-succesfull-msg">
+            <span>Contact succesfully edited</span>
+        </div>
+        <div id="contactSuccesfullyDeleted" class="contact-succesfull-msg">
+            <span>Contact succesfully deleted</span>
+        </div>
     </section>
-
     <footer></footer>
 
     <script>includeHTML();</script>

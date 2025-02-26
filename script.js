@@ -65,9 +65,6 @@ function filArrays(joinDataJson) {
  * @param {object} data - an object, that contains all the key-value-pairs that should be added to firebase
  */
 async function postData(path = "", data = {}) {
-  console.log(path);
-  console.log(data);
-  
   let newData = await fetch(BASE_URL + path + ".json", {
     method: "POST",
     header: {
@@ -75,6 +72,7 @@ async function postData(path = "", data = {}) {
     },
     body: JSON.stringify(data)
   });
+  await init();
   return newDataToJson = await newData.json();
 }
 
@@ -92,6 +90,7 @@ async function putData(path = "", data = {}) {
     },
     body: JSON.stringify(data)
   });
+  await init();
   return newDataToJson = await newData.json();
 }
 
