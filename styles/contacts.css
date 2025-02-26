@@ -457,10 +457,6 @@ main {
     padding: 13px 21px 13px 21px !important;
 }
 
-.submit-btns {
-    margin-top: 28px !important;
-}
-
 .overlay-input-icons {
     display: flex;
     flex-direction: column;
@@ -530,12 +526,13 @@ input:focus {
     border: 1px solid transparent;
 }
 
-.submit-btns {
-    display: flex;
+#contactsSubmitBtns {
+    margin-top: 28px !important;
     gap: 16px;
+    display: flex;
 }
 
-.submit-btns button {
+#contactsSubmitBtns button {
     height: 56px;
     padding: 16px;
     border: 1px solid #2A3647;

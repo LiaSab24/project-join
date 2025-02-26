@@ -47,7 +47,38 @@ function getFocusedContactTemplate(indexContact) {
                     <span>${contacts[indexContact].phone}</span>
                 </div>
             </div>`
+}
 
+/**
+ * This template creates the two necessary buttons for the contacts-overlay 'Add contact'
+ */
+function getContactsOverlayAddBtnsTemplate() {
+    return `<button onclick="clearContactForm(); return false" class="reject-btn" id="contactsOverlayCancel">
+                Cancel
+                <div class="reject-img"></div>
+            </button>
+            <button id="contactsOverlayCreate" onclick="addContact()"
+                class="confirm-btn" >
+                Create Contact
+                <img src="/assets/icons/create-btn.svg">
+            </button>`
+}
+
+/**
+ * This template creates the two necessary buttons for the contacts-overlay 'Edit contact'
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function getContactsOverlayEditBtnsTemplate(indexContact) {
+    return `<button onclick="clearContactForm(); return false" class="reject-btn" id="contactsOverlayDelete">
+                Delete
+                <div class="reject-img"></div>
+            </button>
+            <button id="contactsOverlaySave" onclick="saveEditContact(${indexContact})"
+                class="confirm-btn">
+                Save
+                <img src='/assets/icons/create-btn.svg'>
+            </button>`
 }
 
 /**
@@ -69,14 +100,12 @@ function getAddTaskSubtaskTemplate(subtask, indexSubtask) {
  * @param {number} indexSubtask - the index of the subtask in the subtasks-list
  */
 function getAddTaskSubtaskListElementTemplate(subtask, indexSubtask) {
-    return `
-                <li class="subtask-element">${subtask}</li>
-                <div class="subtask-list-icons">
-                    <img onclick="editSubtask(${indexSubtask})" class="subtask-icon" src="/assets/icons/add-task-subtask-edit.svg">
-                    <div class="subtask-list-icons-seperator"></div>
-                    <img onclick="deleteSubtask(${indexSubtask})" class="subtask-icon" src="/assets/icons/add-task-subtask-delete.svg">
-                </div>
-            `
+    return `<li class="subtask-element">${subtask}</li>
+            <div class="subtask-list-icons">
+                <img onclick="editSubtask(${indexSubtask})" class="subtask-icon" src="/assets/icons/add-task-subtask-edit.svg">
+                <div class="subtask-list-icons-seperator"></div>
+                <img onclick="deleteSubtask(${indexSubtask})" class="subtask-icon" src="/assets/icons/add-task-subtask-delete.svg">
+            </div>`
 }
 
 /**

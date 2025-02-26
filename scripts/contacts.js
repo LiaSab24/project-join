@@ -73,11 +73,25 @@ function toggleContactsOverlay() {
 function adjustOverlayToAdd() {
     document.getElementById("overlayTitleH1").innerHTML = "Add contact";
     document.getElementById("overlayTitleP").innerHTML = "Tasks are better with a team!";
-    document.getElementById("contactsOverlayCancel").innerHTML = "Cancel";
     document.getElementById("overlayProfileBadge").style.backgroundColor = "#D1D1D1";
     document.getElementById("overlayProfileBadge").innerHTML = "<img src='/assets/icons/contacts-overlay-profile-badge-anonymous.svg'>";
-    document.getElementById("contactsOverlayCreate").classList.remove("d-none");
-    document.getElementById("contactsOverlaySave").classList.add("d-none");
+    document.getElementById("contactsSubmitBtns").innerHTML = getContactsOverlayAddBtnsTemplate();
+}
+
+/**
+ * This function is used, when the user wants to edit a contact instead of adding a new one.
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function adjustOverlayToEdit(indexContact) {
+    document.getElementById("overlayTitleH1").innerHTML = "Edit contact";
+    document.getElementById("overlayTitleP").innerHTML = "";
+    document.getElementById("addContactName").value = contacts[indexContact].name;
+    document.getElementById("addContactMail").value = contacts[indexContact].mail;
+    document.getElementById("addContactPhone").value = contacts[indexContact].phone;
+    profileBadgeColor("overlayProfileBadge", indexContact)
+    document.getElementById("overlayProfileBadge").innerHTML = nameAbbreviation(indexContact)
+    document.getElementById("contactsSubmitBtns").innerHTML = getContactsOverlayEditBtnsTemplate(indexContact);
 }
 
 /**
@@ -181,25 +195,6 @@ function deleteContact() {
     //delete contact from firebase
     //remove contact from addressbook
     //clear focused contact
-}
-
-/**
- * This function is used, when the user wants to edit a contact instead of adding a new one.
- * The contacts-overlay adjusts accordingly
- * 
- * @param {number} indexContact - the index of the contact in the contacts-array
- */
-function adjustOverlayToEdit(indexContact) {
-    document.getElementById("overlayTitleH1").innerHTML = "Edit contact";
-    document.getElementById("overlayTitleP").innerHTML = "";
-    document.getElementById("addContactName").value = contacts[indexContact].name;
-    document.getElementById("addContactMail").value = contacts[indexContact].mail;
-    document.getElementById("addContactPhone").value = contacts[indexContact].phone;
-    document.getElementById("contactsOverlayCancel").innerHTML = "Delete";
-    profileBadgeColor("overlayProfileBadge", indexContact)
-    document.getElementById("overlayProfileBadge").innerHTML = nameAbbreviation(indexContact)
-    document.getElementById("contactsOverlayCreate").classList.add("d-none");
-    document.getElementById("contactsOverlaySave").classList.remove("d-none");
 }
 
 function saveEditContact() {
