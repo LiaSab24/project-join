@@ -124,7 +124,12 @@ function getFeedbackButtonTemplate() {
     `;
 }
 
-function getEditTaskTemplate() {
+function subtaskEditSample(taskData) {
+    return taskData.subtasks.map(subtask => `<div>${subtask}</div>`).join('');
+}
+
+
+function getEditTaskTemplate(taskData) {
     return `
     <div class="userStoryBodyContainer">
     <div class="userStoryEditContainer">
@@ -210,7 +215,9 @@ function getEditTaskTemplate() {
                             <div class="small-icon-div" onclick="aproveSubtaskEdit()"><img class="smaller-icon" src="./img/check_dark_icon.svg"></div>
                         </div>
                     </div>
-                    <div id="subtaskDisplayEdit" class="subtaskDisplay flex-column"> ${subtaskEditSample(taskData)}</div>
+                    <div id="subtaskDisplayEdit" class="subtaskDisplay flex-column"> 
+                        ${typeof subtaskEditSample === 'function' ? subtaskEditSample(taskData) : 'Subtasks could not be loaded'}
+                    </div>
                 </div>
                 <div class="userStoryEditOkButtonContainer">
                     <button class="userStoryEditOkButton" type="button" onclick="saveTaskChanges(${taskData.id})">Save <img src="./img/userStoryEdit/ok.png" alt="Save"></button>

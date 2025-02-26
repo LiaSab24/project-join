@@ -41,7 +41,7 @@ async function init() {
 async function fetchDataJson() {
   let joinData = await fetch(BASE_URL + ".json");
   let joinDataJson = await joinData.json();
-  fillArrays(joinDataJson);
+  filArrays(joinDataJson);
 }
 
 /**
