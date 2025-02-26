@@ -40,22 +40,19 @@
                     placeholder="Enter a Description"></textarea>
 
                 <label for="addTaskAssignedTo">Assigned to</label>
-                <select onfocus="assignedToDropDownMenu()" onfocusout="assignedToDropDownMenu()" id="addTaskAssignedTo"
-                    aria-placeholder="Select contacts to assign">
+                <select onfocus="assignedToDropDownMenu()" onfocusout="assignedToDropDownMenu()" id="addTaskAssignedTo">
                     <option value="default" selected disabled hidden>Select contacts to assign</option>
-                    <option value="">
-                        <div class="profile-badge">AS</div>
-                        <span>Anja Schulz</span>
-                        <!-- <div class="Checkbox-Remember-Me">
-                            <input required type="checkbox" name="Remember-me" id="checkbox">
-                        </div> -->
-                    </option>
                 </select>
+                <div id="addTaskDropdownContacts" class="d-none">
+                    <div class="addTaskDropdownOption"></div>
+                    <div class="addTaskDropdownOption"></div>
+                    <div class="addTaskDropdownOption"></div>
+                    <div class="addTaskDropdownOption"></div>
+                    <div class="addTaskDropdownOption"></div>
+                </div>
 
                 <div id="addTaskAssignedToProfiles">
-                    <div class="profile-badge">AS</div>
-                    <div class="profile-badge">DE</div>
-                    <div class="profile-badge">EF</div>
+                    <!-- s -->
                 </div>
             </div>
 

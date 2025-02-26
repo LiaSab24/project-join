@@ -66,7 +66,7 @@ function fixDateInput() {
 }
 
 function assignedToDropDownMenu() {
-    //...
+    document.getElementById("addTaskDropdownContacts").classList.toggle("d-none");
 }
 
 /**

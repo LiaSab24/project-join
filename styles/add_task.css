@@ -100,6 +100,7 @@ select {
     background-repeat: no-repeat;
     background-position-x: 98%;
     background-position-y: 50%;
+    z-index: 2;
     cursor: pointer;
 }
 
@@ -139,6 +140,21 @@ select:focus {
 
 #addTaskAssignedTo, #addTaskSubtask {
     margin-bottom: 0;
+}
+
+#addTaskDropdownContacts {
+    max-height: 280px;
+    width: 440px;
+    /* margin-top: -8px; */
+    padding-top: 8px;
+    position: absolute;
+    top: 659px;
+    background-color: #FFFFFF;
+    z-index: 1;
+}
+
+.addTaskDropdownOption {
+    height: 56px;
 }
 
 .profile-badge {

@@ -122,3 +122,7 @@ function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
                 <img onclick="confirmEditSubtask(${indexSubtask})" class="subtask-icon" src="/assets/icons/add-task-subtask-submit.svg">
             </div>`
 }
+
+function getAddTaskDropdownListContacts() {
+    
+}
