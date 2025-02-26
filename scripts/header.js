@@ -3,19 +3,8 @@ let getSubmenu;
 let help;
 
 function initializeScripts() {
-  // Elemente nach der Einbindung abrufen
   getSubmenu = document.getElementById('submenu');
-  help = document.getElementById('help');
-
-  // Prüfen, ob die Elemente existieren
-  if (getSubmenu && help) {
-    // Event Listener einrichten
-    window.onresize = handleResize;
-    handleResize(); // Initialer Aufruf, um den korrekten Zustand zu setzen
-  } else {
-    console.error('Elemente nicht im DOM gefunden.');
-  }
-}
+  help = document.getElementById('help');}
 
 document.addEventListener('DOMContentLoaded', async () => {
   await includeHTML();
@@ -27,14 +16,14 @@ function btnUserInitial() {
     getSubmenu.classList.remove('d-none');
     getSubmenu.innerHTML = getSubmenuHTML();
   }
+  handleResize();
 }
 
 function getSubmenuHTML() {
   return /*html*/`
-    <p id="help" class="d-none"><a href="../html/help.html">Help</a></p>
-    <p><a href="../html/legal_note.html">Legal Notice</a></p>
-    <p><a href="../html/privacy_police.html">Privacy Policy</a></p>
-    <p><a href="../html/signup.html">Logout</a></p>
+    <p class="submenu-content"><a href="../html/legal_note.html">Legal Notice</a></p>
+    <p class="submenu-content"><a href="../html/privacy_police.html">Privacy Policy</a></p>
+    <p class="submenu-content"><a href="../html/signup.html">Logout</a></p>
   `;
 }
 
@@ -45,9 +34,10 @@ function closeSubmenu() {
 }
 
 function handleResize() {
-  if (window.innerWidth <= 780) {
-    help?.classList.remove('d-none');
-  } else {
-    help?.classList.add('d-none');
-  }
-}
+  if (window.innerWidth <= 768) {
+    if (document.querySelectorAll('.submenu-content').length = 3) {
+      getSubmenu.innerHTML += /*html*/ `
+      <p class="submenu-content" id="help"><a href="../html/help.html">Help</a></p>`;
+    }
+  }  
+} 
