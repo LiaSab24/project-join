@@ -49,11 +49,12 @@ async function fetchDataJson() {
  * 
  * @param {Object} joinDataJson - the fetched object containing the users-, tasks-, and contacts-data
  */
-function filArrays(joinDataJson) {
-  users = Object.values(joinDataJson.users);
-  tasks = Object.values(joinDataJson.tasks);
-  contacts = Object.values(joinDataJson.contacts);  
+function fillArrays(joinDataJson) {
+  users = joinDataJson.users ? Object.values(joinDataJson.users) : [];
+  tasks = joinDataJson.tasks ? Object.values(joinDataJson.tasks) : [];
+  contacts = joinDataJson.contacts ? Object.values(joinDataJson.contacts) : [];
 }
+
 
 /**
  * This function is used for the addUser()-, addTask()- and addContact()-function to transfer the added data to firebase
@@ -67,12 +68,14 @@ async function postData(path = "", data = {}) {
   
   let newData = await fetch(BASE_URL + path + ".json", {
     method: "POST",
-    header: {
+    headers: {
       "Content-type": "application/json",
     },
     body: JSON.stringify(data)
   });
-  return newDataToJson = await newData.json();
+  let result = await newData.json();
+  console.log("Data posted:", result);
+  return result;
 }
 
 /**

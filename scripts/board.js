@@ -48,22 +48,30 @@ function drag(event) {
   event.dataTransfer.setData("text", event.target.id);
 }
 
-function drop(event) {
+async function drop(event) {
   event.preventDefault();
   let data = event.dataTransfer.getData("text");
   let draggedElement = document.getElementById(data);
   let dropContainer = event.target.closest(".task-wrapper");
+
   if (dropContainer) {
-    dropContainer.innerHTML += draggedElement.outerHTML;
-    draggedElement.remove();
+    dropContainer.innerHTML += draggedElement.outerHTML; // Element kopieren
+    draggedElement.remove(); // Altes Element löschen
+
     let noTaskMessage = dropContainer.querySelector(".no-task-message-container");
     if (noTaskMessage) {
       noTaskMessage.style.display = "none";
     }
+
+    let taskId = draggedElement.getAttribute("data-task-id");
+    let newStatus = dropContainer.getAttribute("data-status"); // Status des Containers
+
+    await updateTaskStatus(taskId, newStatus); // Firebase aktualisieren
     saveBoardState();
   }
   toggleMessageNoTasks();
 }
+
 
 function saveBoardState() {
   let boardState = {};
@@ -73,6 +81,22 @@ function saveBoardState() {
   });
   localStorage.setItem("boardState", JSON.stringify(boardState));
 }
+
+async function updateTaskStatus(taskId, newStatus) {
+  let taskIndex = tasks.findIndex(task => task.id === taskId);
+  if (taskIndex !== -1) {
+    tasks[taskIndex].status = newStatus;
+
+    await fetch(`${BASE_URL}tasks/${taskId}.json`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status: newStatus })
+    });
+
+    console.log(`Task ${taskId} wurde in ${newStatus} verschoben`);
+  }
+}
+
 
 function toggleBoardAddTaskOverlay() {
   let overlayBg = document.getElementById("overlayBg");
@@ -126,10 +150,18 @@ function toggleUserFeedback() {
  * @returns {void} Does not return anything.
  */
 function editFeedbackCard() {
-    let overlay = document.getElementById("userStoryBodyContainer");
-    let feedbackSection = document.getElementById("userStoryEditContainerInside");
-    if (overlay && feedbackSection) {
-        overlay.classList.remove("d-none");
-        feedbackSection.classList.remove("feedback-hidden");
-    }
+
+
+    let overlayEdit = document.getElementById("userStoryBodyContainer");
+
+
+    // let EditSection = document.getElementById("userStoryEditContainerInside");
+
+
+    if (!overlayEdit) {
+      console.log("Fuktioniert");
+      
+      document.body.insertAdjacentHTML("beforeend", getEditTaskTemplate());
+  }
+
 }

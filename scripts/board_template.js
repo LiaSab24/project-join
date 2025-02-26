@@ -106,7 +106,7 @@ function getFeedbackOverlayTemplate() {
                     <img src="/assets/icons/delete.png" alt="Delete-Icon"> Delete
                 </button>
                 <div class="divider"></div>
-                <button class="feedback-edit-btn">
+                <button class="feedback-edit-btn" onclick="editFeedbackCard()">
                     <img src="/assets/icons/edit.png" alt="Edit-Icon"> Edit
                 </button>
             </div>
@@ -124,7 +124,7 @@ function getFeedbackButtonTemplate() {
     `;
 }
 
-function getEditTaskTemplate (taskData, formattedContacts) {
+function getEditTaskTemplate() {
     return `
     <div class="userStoryBodyContainer">
     <div class="userStoryEditContainer">
@@ -138,7 +138,7 @@ function getEditTaskTemplate (taskData, formattedContacts) {
                         <label class="editTitleHeadlineContainer" for="title">Title</label>
                     </div>
                     <div class="editTitleInputContainer">
-                        <input type="text" id="editTitle" required value="${taskData.taskTitle}">
+                        <input type="text" id="editTitle" required >
                     </div>
                 </div>
                 <div>
@@ -146,7 +146,7 @@ function getEditTaskTemplate (taskData, formattedContacts) {
                         <label class="editDescriptionContainer" for="description">Description</label>
                     </div>
                     <div class="editDescriptionTextAreaContainer mTop8">
-                        <textarea name="description" id="editDescription" rows="5" cols="25">${taskData.taskDescription}</textarea>
+                        <textarea name="description" id="editDescription" rows="5" cols="25"></textarea>
                     </div>
                 </div>
                 <div>
@@ -154,7 +154,7 @@ function getEditTaskTemplate (taskData, formattedContacts) {
                         <label class="editDueDateContainer" for="Due date">Due date</label>
                     </div>
                     <div class="editDueDateInputContainer mTop8">
-                        <input type="date" id="editDueDate" required value="${taskData.taskDate}">
+                        <input type="date" id="editDueDate" required value="">
                     </div>
                 </div>
                 <div>
@@ -162,19 +162,19 @@ function getEditTaskTemplate (taskData, formattedContacts) {
                         <label class="editPriorityHeadline" for="priority">Priority</label>
                     </div>
                     <div class="editPriorityAllButtonsContainer">
-                        <div onclick="addUrgent(), addUrgentPrio()" id="editUrgent" class="editPriorityButtonContainer ${taskData.taskPrioAlt}">
+                        <div onclick="addUrgent(), addUrgentPrio()" id="editUrgent" class="editPriorityButtonContainer ">
                             <div>Urgent</div>
                             <div>
                                 <img id="editActiveUrg" src="./img/userStoryEdit/urgent-prio-icon-inactive.svg" alt="High priority">
                             </div>
                         </div>
-                        <div onclick="addMedium(), addMediumPrio()" id="editMedium" class="editPriorityButtonContainer ${taskData.taskPrioAlt}">
+                        <div onclick="addMedium(), addMediumPrio()" id="editMedium" class="editPriorityButtonContainer">
                             <div>Medium</div>
                             <div>
                                 <img id="editActiveMed" src="./img/userStoryEdit/prio_medium_inactive.svg" alt="Medium priority">
                             </div>
                         </div>
-                        <div onclick="addLow(), addLowPrio()" id="editLow" class="editPriorityButtonContainer ${taskData.taskPrioAlt}">
+                        <div onclick="addLow(), addLowPrio()" id="editLow" class="editPriorityButtonContainer ">
                             <div>Low</div>
                             <div>
                                 <img id="editActiveLow" src="./img/userStoryEdit/low-prio-icon-inactive.png" alt="Low priority">
