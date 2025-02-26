@@ -240,15 +240,77 @@ select:focus {
 
 #addTaskSubtaskList {
     height: 160px;
-    padding-left: 8px;
-    list-style-position: inside;
+    width: 440px;
+    margin-top: -16px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: start;
 }
 
 .subtask {
-    padding: 6px 16px 6px 16px;
+    width: 100%;
+    margin-bottom: 6px;
+    padding: 6px 0 4px 24px;
+    padding-right: 56px;
     font-weight: 400;
     font-size: 16px;
-    line-height: 19.2px;
+    line-height: 24px;
+    border-radius: 10px;
+    list-style-position: inside;
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+    word-break: break-all;
+}
+
+.subtask:hover {
+    background-color: #D1D1D1;
+    padding-right: 0;
+}
+
+.subtask-list-icons {
+    display: none !important;
+}
+
+.subtask-edit-icons {
+    flex-direction: row !important;
+}
+
+.subtask:hover .subtask-list-icons {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.subtask-list-icons-seperator {
+    height: 24px;
+    width: 1px;
+    margin: 0 3px 0 3px;
+    background-color: #A8A8A8;
+}
+
+.subtask-edit {
+    height: 32px;
+    width: 100%;
+    padding: 0;
+    background-color: #FFFFFF;
+    border-bottom: solid 1px #29ABE2;
+    border-radius: 0;
+}
+
+.subtask-edit:hover {
+    background-color: #FFFFFF;
+}
+
+#subtaskEditInput {
+    height: 100%;
+    margin: 0;
+    padding: 4px 16px 4px 16px;
+    border: none;
+}
+
+#subtaskEditInput:focus {
+    outline: none;
 }
 
 .add-task-submit {

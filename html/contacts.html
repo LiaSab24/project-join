@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Contacts</title>
-    <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)"/>
-    <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)"/>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)" />
 
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/styles/sidebar.css">
@@ -27,7 +27,7 @@
     <main>
         <section class="address-book">
             <div class="add-new-contact">
-                <button onclick="toggleContactsOverlay()">
+                <button onclick="toggleContactsOverlay(), adjustOverlayToAdd()">
                     <span>Add new contact</span>
                     <img src="/assets/icons/contacts-add.svg" alt="add contact">
                 </button>
@@ -117,7 +117,7 @@
                     <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                     <div id="contactsLetterQ" class="contactsLetter"></div>
                 </div>
-                
+
                 <div id="letterR" class="address-book-letter">R
                     <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
                     <div id="contactsLetterR" class="contactsLetter"></div>
@@ -185,9 +185,10 @@
                 <img src="/assets/icons/contacts-overlay-underline.svg">
             </div>
             <div class="overlay-contact-information">
-                <img onclick="toggleContactsOverlay()" src="/assets/icons/contacts-overlay-close.svg" class="overlay-close">
+                <img onclick="toggleContactsOverlay()" src="/assets/icons/contacts-overlay-close.svg"
+                    class="overlay-close">
                 <div>
-                    <div class="overlay-profile-badge">
+                    <div id="overlayProfileBadge">
                         <img src="/assets/icons/contacts-overlay-profile-badge-anonymous.svg">
                     </div>
                     <form class="overlay-form">
@@ -195,17 +196,7 @@
                         <input id="addContactMail" type="text" placeholder="Email" required>
                         <input id="addContactPhone" type="text" placeholder="Phone" required>
 
-                        <div class="submit-btns">
-                            <button onclick="clearContactForm(); return false" class="reject-btn" id="contactsOverlayCancel">
-                                Cancel
-                                <div class="reject-img"></div>
-                            </button>
-                            <button onclick="addContact(), toggleContactsOverlay()"
-                                class="confirm-btn" id="contactsOverlayCreate">
-                                Create Contact
-                                <img src="/assets/icons/create-btn.svg">
-                            </button>
-                        </div>
+                        <div id="contactsSubmitBtns"></div>
                     </form>
                 </div>
             </div>
@@ -217,10 +208,17 @@
         </section>
     </div>
 
-    <section id="contactSuccesfullyCreated">
-        <span>Contact succesfully created</span>
+    <section class="contact-messages">
+        <div id="contactSuccesfullyCreated" class="contact-succesfull-msg">
+            <span>Contact succesfully created</span>
+        </div>
+        <div id="contactSuccesfullyEdited" class="contact-succesfull-msg">
+            <span>Contact succesfully edited</span>
+        </div>
+        <div id="contactSuccesfullyDeleted" class="contact-succesfull-msg">
+            <span>Contact succesfully deleted</span>
+        </div>
     </section>
-
     <footer></footer>
 
     <script>includeHTML();</script>

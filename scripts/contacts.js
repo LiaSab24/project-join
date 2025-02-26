@@ -32,33 +32,6 @@ function renderContacts() {
     }
 }
 
-<<<<<<< HEAD
-/**
- * This function extracts the first letter of the contacts first and of the contacts last name and returns them 
- * 
- * @param {number} indexContact - the index of the contact in the contacts-array
- */
-=======
-function hideNotUsedLetters(addressBookContentRef) {
-    const letterContentRef = document.getElementsByClassName("address-book-letter");
-    for (let indexLetter = 0; indexLetter < letterContentRef.length; indexLetter++) {
-        //console.log(letterContentRef[indexLetter]);
-        if (addressBookContentRef[indexLetter].innerHTML == "") {
-        letterContentRef[indexLetter].classList.add("d-none");
-        }
-    }
-}
-
->>>>>>> parent of aa83e9b (Update contacts.js)
-function nameAbbreviation(indexContact) {
-    let contactFullName = contacts[indexContact].name.toUpperCase();
-    let contactFirstName = contactFullName.substring(0, contactFullName.indexOf(' '));
-    let contactLastName = contactFullName.substring(contactFullName.indexOf(' ') + 1);
-    let firstLetter = contactFirstName.charAt(0);
-    let secondLetter = contactLastName.charAt(0);
-    return firstLetter + secondLetter
-}
-
 /**
  * This function is executed after the address book finished rendering and iterates through each letter and hides it, if it does not contain any contact
  */
@@ -94,6 +67,34 @@ function toggleContactsOverlay() {
 }
 
 /**
+ * This function is used, when the user wants to add a new contact instead of editing one.
+ * The contacts-overlay adjusts accordingly.
+ */
+function adjustOverlayToAdd() {
+    document.getElementById("overlayTitleH1").innerHTML = "Add contact";
+    document.getElementById("overlayTitleP").innerHTML = "Tasks are better with a team!";
+    document.getElementById("overlayProfileBadge").style.backgroundColor = "#D1D1D1";
+    document.getElementById("overlayProfileBadge").innerHTML = "<img src='/assets/icons/contacts-overlay-profile-badge-anonymous.svg'>";
+    document.getElementById("contactsSubmitBtns").innerHTML = getContactsOverlayAddBtnsTemplate();
+}
+
+/**
+ * This function is used, when the user wants to edit a contact instead of adding a new one.
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function adjustOverlayToEdit(indexContact) {
+    document.getElementById("overlayTitleH1").innerHTML = "Edit contact";
+    document.getElementById("overlayTitleP").innerHTML = "";
+    document.getElementById("addContactName").value = contacts[indexContact].name;
+    document.getElementById("addContactMail").value = contacts[indexContact].mail;
+    document.getElementById("addContactPhone").value = contacts[indexContact].phone;
+    profileBadgeColor("overlayProfileBadge", indexContact)
+    document.getElementById("overlayProfileBadge").innerHTML = nameAbbreviation(indexContact)
+    document.getElementById("contactsSubmitBtns").innerHTML = getContactsOverlayEditBtnsTemplate(indexContact);
+}
+
+/**
  * This function clears the input-values of the contact-overlay-form
  */
 function clearContactForm() {
@@ -105,27 +106,30 @@ function clearContactForm() {
 /**
  * This function reads out the data of the add-contact-form and sends it to firebase
  */
-function addContact() {
+async function addContact() {
     let contactName = document.getElementById("addContactName").value;
     let contactMail = document.getElementById("addContactMail").value;
     let contactPhone = document.getElementById("addContactPhone").value;
-    let contactColor = assignRandomColor(contacts.length + 1);
-    postData("/contacts/", {
-        "name": contactName,
-        "mail": contactMail,
-        "phone": contactPhone,
-        "color": contactColor
-    });
-    renderAddressBook();
-    contactSuccesfullyCreated();
+    let indexContact = contacts.length +1;
+    if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
+        let contactColor = await assignRandomColor(indexContact);
+        postData("/contacts/", {
+            "name": contactName,
+            "mail": contactMail,
+            "phone": contactPhone,
+            "color": contactColor
+        });
+        contactSuccesfullMsg("contactSuccesfullyCreated");  
+    }
 }
+
 
 /**
  * This function is part of the 'addContact'-function and assigns a random color of the given colors-palette
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function assignRandomColor(indexContact) {
+async function assignRandomColor(indexContact) {
     if (contactColors[indexContact]) {
         return contactColors[indexContact];
     }
@@ -142,13 +146,15 @@ function assignRandomColor(indexContact) {
 /**
  * This function shows the 'contact succesfully created'-message after adding the contact to the contacts-array firebase was succesfull
  */
-function contactSuccesfullyCreated() {
-    let successAnimation = document.getElementById("contactSuccesfullyCreated");
-    successAnimation.style.animationName = "contactSuccesfullyCreated";
+async function contactSuccesfullMsg(msgId) {
+    let successAnimation = document.getElementById(msgId);
+    successAnimation.style.animationName = "contactSuccesfull";
     successAnimation.style.animationDuration = "1600ms";
+    toggleContactsOverlay();
     setTimeout(function () {
         successAnimation.style.animationName = "";
         successAnimation.style.animationDuration = "";
+        initContacts();
     }, 1600);
 }
 
@@ -181,9 +187,9 @@ function updateFocusedContact(indexContact) {
     let focusedContactContent = document.getElementById("focusedContactInformation");
     focusedContactContent.innerHTML = "";
     setTimeout(() => {
-        focusedContactContent.innerHTML = getFocusedContactTemplate(indexContact); 
+        focusedContactContent.innerHTML = getFocusedContactTemplate(indexContact);
         profileBadgeColor("focusedProfileBadge", indexContact);
-    }, 400)
+    }, 800)
 }
 
 function deleteContact() {
@@ -192,26 +198,39 @@ function deleteContact() {
     //clear focused contact
 }
 
-/**
- * This function is used, when the user wants to edit a contact instead of adding a new one.
- * The contacts-overlay adjusts accordingly
- * 
- * @param {number} indexContact - the index of the contact in the contacts-array
- */
-function adjustOverlayToEdit(indexContact) {
-    document.getElementById("overlayTitleH1").innerHTML = "Edit contact";
-    document.getElementById("overlayTitleP").innerHTML = "";
-    document.getElementById("addContactName").value = contacts[indexContact].name;
-    document.getElementById("addContactMail").value = contacts[indexContact].mail;
-    document.getElementById("addContactPhone").value = contacts[indexContact].phone;
-    document.getElementById("contactsOverlayCancel").innerHTML = "Delete";
-    document.getElementById("contactsOverlayCreate").innerHTML = "Save" + "<img src='/assets/icons/create-btn.svg'></img>";
-    confirmBtnContenRef.onclick = saveEditContact();
+async function saveEditContact(indexContact) {
+    let contactName = document.getElementById("addContactName").value;
+    let contactMail = document.getElementById("addContactMail").value;
+    let contactPhone = document.getElementById("addContactPhone").value;
+    let contactColor = contacts[indexContact].color;
+    if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
+        await putData("/contacts/" + contacts[indexContact].url, {
+            "name": contactName,
+            "mail": contactMail,
+            "phone": contactPhone,
+            "color": contactColor
+        });
+        contactClicked(indexContact);
+        contactSuccesfullMsg("contactSuccesfullyEdited");
+    }
+
 }
 
-function saveEditContact() {
-    //change data in firebase
-    //change contact in addressbook
-    //closeOverlay
-    renderAddressBook();
-}
+// async function addContact() {
+//     let contactName = document.getElementById("addContactName").value;
+//     let contactMail = document.getElementById("addContactMail").value;
+//     let contactPhone = document.getElementById("addContactPhone").value;
+//     let contactColor = assignRandomColor(contacts.length + 1);
+//     if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
+//         postData("/contacts/", {
+//             "name": contactName,
+//             "mail": contactMail,
+//             "phone": contactPhone,
+//             "color": contactColor
+//         });
+//         contactSuccesfullyCreated();
+//         toggleContactsOverlay();
+//         await init()
+//         renderAddressBook();
+//     }
+// }

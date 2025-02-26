@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Add Task</title>
-    <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)"/>
-    <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)"/>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)" />
 
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/styles/sidebar.css">
@@ -40,7 +40,8 @@
                     placeholder="Enter a Description"></textarea>
 
                 <label for="addTaskAssignedTo">Assigned to</label>
-                <select onfocus="assignedToDropDownMenu()" onfocusout="assignedToDropDownMenu()" id="addTaskAssignedTo" aria-placeholder="Select contacts to assign">
+                <select onfocus="assignedToDropDownMenu()" onfocusout="assignedToDropDownMenu()" id="addTaskAssignedTo"
+                    aria-placeholder="Select contacts to assign">
                     <option value="default" selected disabled hidden>Select contacts to assign</option>
                     <option value="">
                         <div class="profile-badge">AS</div>
@@ -87,7 +88,7 @@
                     Category
                     <span class="required-star">*</span>
                 </label>
-                <select id="addTaskCategory" >
+                <select id="addTaskCategory">
                     <option value="default" selected disabled hidden>Select task category</option>
                     <option value="bug fix">bug fix</option>
                     <option value="documentation">documentation</option>
@@ -97,11 +98,14 @@
 
 
                 <label for="addTaskSubtask">Subtasks</label>
-                <input onfocus="changeSubtaskIcons()" onfocusout="changeSubtaskIcons()" type="text" id="addTaskSubtask" placeholder="Add new subtask">
+                <input onfocus="changeSubtaskIcons()" onfocusout="changeSubtaskIcons()" type="text" id="addTaskSubtask"
+                    placeholder="Add new subtask">
                 <img id="subtaskIconAdd" class="subtask-icon" src="/assets/icons/add-task-subtask-add.svg">
                 <div id="subtaskIconsFocus" class="d-none">
-                    <img onclick="clearSubtasksInput()" id="subtaskIconReject" class="subtask-icon" src="/assets/icons/add-task-subtask-reject.svg">
-                    <img onclick="addSubtaskToList()" id="subtaskIconySubmit" class="subtask-icon" src="/assets/icons/add-task-subtask-submit.svg">
+                    <img onclick="clearSubtasksInput()" class="subtask-icon"
+                        src="/assets/icons/add-task-subtask-reject.svg">
+                    <img onclick="addSubtaskToList()" class="subtask-icon"
+                        src="/assets/icons/add-task-subtask-submit.svg">
                 </div>
                 <ul id="addTaskSubtaskList"></ul>
             </div>

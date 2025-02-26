@@ -19,7 +19,7 @@ function clearTaskForm() {
     clearPriorityBtns();
     document.getElementById("addTaskCategory").value = "default";
     document.getElementById("addTaskSubtask").value = "";
-    clearSubtaskList();
+    //clearSubtaskList();
 }
 
 /**
@@ -90,10 +90,10 @@ function priorityBtnBg(priority) {
 function changeSubtaskIcons() {
     let subtaskIconAdd = document.getElementById("subtaskIconAdd");
     let subtaskIconsFocus = document.getElementById("subtaskIconsFocus");
-    // setTimeout(() => {                                                      
+    setTimeout(() => {
         subtaskIconAdd.classList.toggle("d-none");
         subtaskIconsFocus.classList.toggle("d-none");
-    // }, 100);
+    }, 100);
 }
 
 /**
@@ -104,16 +104,57 @@ function clearSubtasksInput() {
     subtasksInputRef.value = "";
 }
 
-/**
- * This function reads out the input-value from the subtask-input and adds this subtask in the list below
+/**sd
+ * This function reads out the input-value from the subtask-input and adds this subtask in the list below (template)
  */
 function addSubtaskToList() {
     const subtasksInputContentRef = document.getElementById("addTaskSubtask");
-    let newSubtask = subtasksInputContentRef.value.trim();
+    let subtask = subtasksInputContentRef.value.trim();
     const subtasksListContentRef = document.getElementById("addTaskSubtaskList");
-    if (newSubtask !== "") {
-        subtasksListContentRef.innerHTML += `<li class="subtask">${newSubtask}</li>`;
+    let indexSubtask = document.querySelectorAll(".subtask").length;
+    if (subtask !== "") {
+        subtasksListContentRef.innerHTML += getAddTaskSubtaskTemplate(subtask, indexSubtask);
         clearSubtasksInput();
+    }
+}
+
+/**
+ * This function replaces the subtask-list element with an input (template).
+ * This way the user is able to edit the subtask-content.
+ * 
+ * @param {number} indexSubtask - the index of the subtask in the subtasks-list
+ */
+function editSubtask(indexSubtask) {
+    let subtaskContentRef = document.getElementById("subtask" + indexSubtask);
+    // console.log(subtaskContentRef);
+    let subtask = subtaskContentRef.innerText;
+    // console.log(subtask);
+    subtaskContentRef.classList.add("subtask-edit");
+    subtaskContentRef.innerHTML = getAddTaskSubtaskEditTemplate(subtask, indexSubtask);
+}
+
+/**
+ * This function deletes the the chosen subtask from the subtasks-list
+ * 
+* @param {number} indexSubtask - the index of the subtask in the subtasks-list
+ */
+function deleteSubtask(indexSubtask) {
+    let subtaskContentRef = document.getElementById("subtask" + indexSubtask);
+    subtaskContentRef.remove();
+}
+
+/**
+ * This function replaces the subtask-edit element with an list element (template) and includes the edited input-value. 
+ * 
+* @param {number} indexSubtask - the index of the subtask in the subtasks-list
+ */
+function confirmEditSubtask(indexSubtask) {
+    let subtaskContentRef = document.getElementById("subtask" + indexSubtask);
+    let subtask = document.getElementById("subtaskEditInput").value;
+    console.log(subtask)
+    if (subtask !== "") {
+        subtaskContentRef.classList.remove("subtask-edit");
+        subtaskContentRef.innerHTML = getAddTaskSubtaskListElementTemplate(subtask, indexSubtask);
     }
 }
 
@@ -145,7 +186,7 @@ function addTask() {
  * This function is part of the add-task-function and creates and returns an array with all the subtasks in the subtask-list
  */
 function getSubtasks() {
-    let subtasks = document.querySelectorAll(".subtask");
+    let subtasks = document.querySelectorAll(".subtask-element");
     let subtaskArray = [];
     for (let indexSubtask = 0; indexSubtask < subtasks.length; indexSubtask++) {
         subtaskArray.push(subtasks[indexSubtask].innerHTML)
