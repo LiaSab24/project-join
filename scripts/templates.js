@@ -74,7 +74,7 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
                 Delete
                 <div class="reject-img"></div>
             </button>
-            <button id="contactsOverlaySave" onclick="saveEditContact(${indexContact})"
+            <button id="contactsOverlaySave" onclick="saveEditContact(${indexContact}); return false"
                 class="confirm-btn">
                 Save
                 <img src='/assets/icons/create-btn.svg'>

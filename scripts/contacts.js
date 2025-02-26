@@ -197,18 +197,17 @@ function deleteContact() {
     //clear focused contact
 }
 
-function saveEditContact() {
-    let indexContact 
+function saveEditContact(indexContact) {
     let contactName = document.getElementById("addContactName").value;
     let contactMail = document.getElementById("addContactMail").value;
     let contactPhone = document.getElementById("addContactPhone").value;
-
-    // putData("/contacts/" +  contacts[indexContact].url, {
-    //     "name": contactName,
-    //     "mail": contactMail,
-    //     "phone": contactPhone,
-    //     "color": contactColor
-    // });
+    let contactColor = contacts[indexContact].color;
+    putData("/contacts/" +  contacts[indexContact].url, {
+        "name": contactName,
+        "mail": contactMail,
+        "phone": contactPhone,
+        "color": contactColor
+    });
     //change data in firebase
     //change contact in addressbook
     //closeOverlay

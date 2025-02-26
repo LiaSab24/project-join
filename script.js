@@ -85,17 +85,14 @@ async function postData(path = "", data = {}) {
  * @param {object} data - an object, that contains all the key-value-pairs that should be added to firebase
  */
 async function putData(path = "", data = {}) {
-  console.log(path);
-  console.log(data);
-  
-  // let newData = await fetch(BASE_URL + path + ".json", {
-  //   method: "PUT",
-  //   header: {
-  //     "Content-type": "application/json",
-  //   },
-  //   body: JSON.stringify(data)
-  // });
-  // return newDataToJson = await newData.json();
+  let newData = await fetch(BASE_URL + path + ".json", {
+    method: "PUT",
+    header: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data)
+  });
+  return newDataToJson = await newData.json();
 }
 
 /**
