@@ -123,6 +123,16 @@ function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
             </div>`
 }
 
-function getAddTaskDropdownListContacts() {
-    
+function getAddTaskDropdownListContacts(indexContact) {
+    return `<div onclick="contactAssigned(${indexContact})" id="assignedToOption${indexContact}" class="add-task-dropdown-option">
+                <div>
+                    <div id="assignedToPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
+                    <span>${contacts[indexContact].name}</span>
+                </div>
+                <div id="assignedToCheckbox${indexContact}" class="add-task-assigned-to-checkbox"></div>
+            </div>`
+}
+
+function getAddTaskContactPB(indexContact) {
+    return `<div id="assignedToListPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>`
 }

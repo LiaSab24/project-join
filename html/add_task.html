@@ -40,20 +40,19 @@
                     placeholder="Enter a Description"></textarea>
 
                 <label for="addTaskAssignedTo">Assigned to</label>
-                <select onfocus="assignedToDropDownMenu()" onfocusout="assignedToDropDownMenu()" id="addTaskAssignedTo">
-                    <option value="default" selected disabled hidden>Select contacts to assign</option>
-                </select>
-                <div id="addTaskDropdownContacts" class="d-none">
-                    <div class="addTaskDropdownOption"></div>
-                    <div class="addTaskDropdownOption"></div>
-                    <div class="addTaskDropdownOption"></div>
-                    <div class="addTaskDropdownOption"></div>
-                    <div class="addTaskDropdownOption"></div>
+                <input onfocus="assignedToDropDownMenu()" id="addTaskAssignedTo" class="add-task-select-menu"
+                    type="text" placeholder="Select contacts to assign">
+                <div id="addTaskDropdownContacts" class="custom-scrollbar">
+                    <!-- <div class="addTaskDropdownOption">
+                        <div>
+                            <div class="profile-badge">AM</div>
+                            <span>Anton Mayer</span>
+                        </div>
+                        <div onclick="assignedToCheckbox(0)" id="assignedToCheckbox0" class="add-task-assigned-to-checkbox"></div>
+                    </div> -->
                 </div>
 
-                <div id="addTaskAssignedToProfiles">
-                    <!-- s -->
-                </div>
+                <div id="addTaskAssignedToList"></div>
             </div>
 
             <div class="add-task-seperator"></div>
@@ -85,7 +84,7 @@
                     Category
                     <span class="required-star">*</span>
                 </label>
-                <select id="addTaskCategory">
+                <select id="addTaskCategory" class="add-task-select-menu">
                     <option value="default" selected disabled hidden>Select task category</option>
                     <option value="bug fix">bug fix</option>
                     <option value="documentation">documentation</option>
@@ -115,7 +114,7 @@
             </div>
 
             <div class="submit-btns">
-                <button onclick="clearTaskForm()" class="cancel-btn" id="contactsOverlayCancel">
+                <button onclick="initAddTask()" class="cancel-btn" id="contactsOverlayCancel">
                     Cancel
                     <div class="cancel-img"></div>
                 </button>

@@ -27,3 +27,49 @@ main {
 .flex {
   display: flex;
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 24px;
+  overflow-y: auto 53px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button {
+  background-repeat: no-repeat;
+  background-size: 10px;
+  background-position: center;
+  width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:vertical:start:increment {
+  height: 24px;
+  background-image: url('/assets/icons/scrollbar-btn-up.svg');
+  background-position: bottom;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:vertical:start:decrement {
+  display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:vertical:end:increment {
+  height: 24px;
+  background-image: url('/assets/icons/scrollbar-btn-down.svg');
+  background-position: top;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:vertical:end:decrement {
+  display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  border: 8px solid #FFFFFF;
+  border-radius: 30px;
+  background: #A8A8A8;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #D1D1D1;
+}

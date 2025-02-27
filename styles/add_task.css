@@ -96,15 +96,18 @@ select {
     -webkit-appearance: none;
     /* Safari and Chrome */
     background: #FFFFFF;
-    background-image: url("/assets/icons/add-task-dropdown-down.svg");
-    background-repeat: no-repeat;
-    background-position-x: 98%;
-    background-position-y: 50%;
     z-index: 2;
     cursor: pointer;
 }
 
-select:focus {
+.add-task-select-menu {
+    background-image: url("/assets/icons/add-task-dropdown-down.svg");
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: 50%;
+}
+
+.add-task-select-menu:focus {
     background-image: url("/assets/icons/add-task-dropdown-up.svg");
 }
 
@@ -138,23 +141,58 @@ select:focus {
     flex-direction: column;
 }
 
-#addTaskAssignedTo, #addTaskSubtask {
+#addTaskAssignedTo,
+#addTaskSubtask {
     margin-bottom: 0;
 }
 
-#addTaskDropdownContacts {
-    max-height: 280px;
-    width: 440px;
-    /* margin-top: -8px; */
-    padding-top: 8px;
-    position: absolute;
-    top: 659px;
-    background-color: #FFFFFF;
+#addTaskAssignedTo {
     z-index: 1;
 }
 
-.addTaskDropdownOption {
+#addTaskAssignedTo::placeholder {
+    color: #000000;
+}
+
+#addTaskAssignedTo:focus::placeholder {
+    visibility: hidden;
+}
+
+#addTaskDropdownContacts {
+    max-height: 290px;
+    width: 440px;
+    padding-top: 10px;
+    position: absolute;
+    top: 656px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    z-index: 0;
+    box-shadow: 0px 0px 14px 3px #0000000A;
+    overflow-y: scroll;
+}
+
+.add-task-dropdown-option {
     height: 56px;
+    padding: 7px 16px 7px 16px;
+    border-radius: 10px;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.add-task-dropdown-option:hover {
+    background-color: #EEEEEE;
+    ;
+}
+
+.add-task-dropdown-option div {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 16px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
 }
 
 .profile-badge {
@@ -162,30 +200,47 @@ select:focus {
     width: 42px;
     border: 2px solid #FFFFFF;
     border-radius: 45px;
-    text-align: center;
+    display: flex;
+    align-items: center;
     justify-content: center;
     background-color: #FF7A00;
     color: #FFFFFF;
+    font-size: 12px !important;
 }
 
-#addTaskAssignedToProfiles {
-    height: 42px;
-    width: fit-content;
+.add-task-assigned-to-checkbox {
+    height: 24px;
+    width: 24px;
+    background-image: url("/assets/icons/checkbox-icon-unchecked.svg");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+}
+
+.option-contact-assigned {
+    background-color: #2A3647;
+    color: #FFFFFF;
+}
+
+.option-contact-assigned:hover {
+    background-color: #091931;
+}
+
+.checkbox-contact-assigned {
+    background-image: url("/assets/icons/checkbox-icon-checked-light.svg");
+}
+
+#addTaskAssignedToList {
+    height: fit-content;
+    width: 440px;
     margin-top: 8px;
-    display: flex;
     flex-direction: row !important;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
-#addTaskAssignedToProfiles div {
-    height: 42px;
-    width: 42px;
-    border: 2px solid #FFFFFF;
-    border-radius: 45px;
-    text-align: center;
-    justify-content: center;
-    background-color: #FF7A00;
-    color: #FFFFFF;
+#addTaskAssignedToList div {
+    cursor: pointer;
 }
 
 .add-task-seperator {

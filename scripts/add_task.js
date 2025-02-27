@@ -4,7 +4,8 @@
 async function initAddTask() {
     await init();
     clearTaskForm()
-    fixDateInput();
+    //fixDateInput();
+    fillAssignedToDropDownMenu();
 }
 
 /**
@@ -13,22 +14,22 @@ async function initAddTask() {
 function clearTaskForm() {
     document.getElementById("addTaskTitle").value = "";
     document.getElementById("addTaskDescription").value = "";
-    document.getElementById("addTaskAssignedTo").value = "default";
-    clearAssignedToList();
+    document.getElementById("addTaskAssignedTo").value = "";
+    clearAssignedTo();
     document.getElementById("addTaskDate").value = "";
     clearPriorityBtns();
     document.getElementById("addTaskCategory").value = "default";
     document.getElementById("addTaskSubtask").value = "";
-    //clearSubtaskList();
+    document.getElementById("addTaskSubtaskList").innerHTML = "";
 }
 
 /**
  * This function is part of the clearTaskForm-function and resets the select-input and list for the assigned contacts
  */
-function clearAssignedToList() {
-    //remove all profile Badges from #addTaskAssignedToProfiles
-    //remove all checks from checkboxes
-    //show placeholder
+function clearAssignedTo() {
+    document.getElementById("addTaskDropdownContacts").classList.add("d-none");
+    document.getElementById("addTaskDropdownContacts").innerHTML = "";
+    document.getElementById("addTaskAssignedToList").innerHTML= "";
 }
 
 /**
@@ -43,30 +44,70 @@ function clearPriorityBtns() {
     document.getElementById("prioLowImg").src = "/assets/icons/add-task-prioLow.svg";
 }
 
-/**
- * This function is part of the clearTaskForm-function and clears the subtasks-list and input
- */
-function clearSubtaskList() {
-    const subtasksListContentRef = document.getElementById("addTaskSubtaskList");
-    subtasksListContentRef.innerHTML = "";
-    //show placeholder
-}
+// function fixDateInput() {
+//     const dateInput = document.querySelector("#addTaskDate");
+//     if (dateInput && !dateInput.hasAttribute("data-flatpickr-initialized")) {
+//         flatpickr(dateInput, {
+//             dateFormat: "d/m/y", // Korrektes Format (2-stelliges Jahr)
+//             allowInput: true, // Benutzer kann auch tippen
+//             clickOpens: true, // Popup öffnet sich automatisch beim Klick
+//             defaultDate: null, // Kein voreingestelltes Datum
+//         });
+//         dateInput.setAttribute("data-flatpickr-initialized", "true");
+//     }
+// }
 
-function fixDateInput() {
-    const dateInput = document.querySelector("#addTaskDate");
-    if (dateInput && !dateInput.hasAttribute("data-flatpickr-initialized")) {
-        flatpickr(dateInput, {
-            dateFormat: "d/m/y", // Korrektes Format (2-stelliges Jahr)
-            allowInput: true, // Benutzer kann auch tippen
-            clickOpens: true, // Popup öffnet sich automatisch beim Klick
-            defaultDate: null, // Kein voreingestelltes Datum
-        });
-        dateInput.setAttribute("data-flatpickr-initialized", "true");
+/**
+ * This function fills the assigned-to-dropdown-menu with the contacts from the contact-array(template)
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function fillAssignedToDropDownMenu() {
+    let assignedToSelect = document.getElementById("addTaskDropdownContacts");
+    for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
+        assignedToSelect.innerHTML += getAddTaskDropdownListContacts(indexContact);
+        profileBadgeColor("assignedToPB" + indexContact, indexContact);
     }
 }
 
+/**
+ * This function toggles the visibility of the assigned-to-dropdown-menu
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
 function assignedToDropDownMenu() {
-    document.getElementById("addTaskDropdownContacts").classList.toggle("d-none");
+    let assignedToSelect = document.getElementById("addTaskDropdownContacts");
+    assignedToSelect.classList.toggle("d-none");
+}
+
+/**
+ * This function gives the user the ability to see, which contacts are currently assigned
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function contactAssigned(indexContact) {
+    let assignedContact = document.getElementById("assignedToOption" + indexContact);
+    assignedContact.classList.toggle("option-contact-assigned");
+    let assignedToCheckbox = document.getElementById("assignedToCheckbox" + indexContact);
+    assignedToCheckbox.classList.toggle("checkbox-contact-assigned");
+    addAssignedContactToList(indexContact);
+}
+
+/**
+ * This function removes the assigned contact profile badge from the assigned-contacts-list, if it is in the list.
+ * Otherwise it adds the assigned contact profile badge to the list.
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function addAssignedContactToList(indexContact) {
+    let assignedContactsList = document.getElementById("addTaskAssignedToList");
+    let assignedContact = document.getElementById("assignedToListPB" + indexContact);
+    if (assignedContact) {
+        assignedContact.remove();
+    } else {
+        assignedContactsList.innerHTML += getAddTaskContactPB(indexContact);
+        profileBadgeColor("assignedToListPB" + indexContact, indexContact);
+    }
 }
 
 /**
