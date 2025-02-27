@@ -123,6 +123,11 @@ function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
             </div>`
 }
 
+/**
+ * This template displays a contact in the add-task-assigned-to-dropdown-menu
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
 function getAddTaskDropdownListContacts(indexContact) {
     return `<div onclick="contactAssigned(${indexContact})" id="assignedToOption${indexContact}" class="add-task-dropdown-option">
                 <div>
@@ -133,6 +138,11 @@ function getAddTaskDropdownListContacts(indexContact) {
             </div>`
 }
 
+/**
+ * This template displays a contacts profile badge in the add-task-assigned-to-list
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
 function getAddTaskContactPB(indexContact) {
-    return `<div id="assignedToListPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>`
+    return `<div id="assignedToListPB${indexContact}" class="profile-badge assigned-element">${nameAbbreviation(indexContact)}</div>`
 }

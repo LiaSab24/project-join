@@ -44,6 +44,8 @@ function clearPriorityBtns() {
     document.getElementById("prioLowImg").src = "/assets/icons/add-task-prioLow.svg";
 }
 
+
+
 // function fixDateInput() {
 //     const dateInput = document.querySelector("#addTaskDate");
 //     if (dateInput && !dateInput.hasAttribute("data-flatpickr-initialized")) {
@@ -56,6 +58,8 @@ function clearPriorityBtns() {
 //         dateInput.setAttribute("data-flatpickr-initialized", "true");
 //     }
 // }
+
+
 
 /**
  * This function fills the assigned-to-dropdown-menu with the contacts from the contact-array(template)
@@ -205,10 +209,9 @@ function confirmEditSubtask(indexSubtask) {
 function addTask() {
     let taskTitle = document.getElementById("addTaskTitle").value;
     let taskDescription = document.getElementById("addTaskDescription").value;
-    let taskAssignedTo = document.getElementById("addTaskAssignedTo").value;
+    let taskAssignedTo = getAssignedContacts();
     let taskDueDate = document.getElementById("addTaskDate").value;
     let taskPriority = document.querySelector(".clicked").innerText;
-    console.log(taskPriority);
     let taskCategory = document.getElementById("addTaskCategory").value;
     let taskSubtasks = getSubtasks();
     postData("/tasks/", {
@@ -224,14 +227,27 @@ function addTask() {
 }
 
 /**
- * This function is part of the add-task-function and creates and returns an array with all the subtasks in the subtask-list
+ * This function is part of the addTask()-function and creates and returns an array with all the assigned contacts in the assigned-contacts-list
+ */
+function getAssignedContacts() {
+    let assignedContactsList = document.querySelectorAll(".assigned-element");
+    let assignedContactsIndexArray = [];
+    let assignedContactsArray = [];
+    for (let indexAssignedContact = 0; indexAssignedContact < assignedContactsList.length; indexAssignedContact++) {
+        assignedContactsIndexArray.push(assignedContactsList[indexAssignedContact].id.slice(-1));
+        assignedContactsArray.push(contacts[assignedContactsIndexArray[indexAssignedContact]]);
+    }
+    return assignedContactsArray;
+}
+
+/**
+ * This function is part of the addTask()-function and creates and returns an array with all the subtasks in the subtask-list
  */
 function getSubtasks() {
     let subtasks = document.querySelectorAll(".subtask-element");
-    let subtaskArray = [];
+    let subtasksArray = [];
     for (let indexSubtask = 0; indexSubtask < subtasks.length; indexSubtask++) {
-        subtaskArray.push(subtasks[indexSubtask].innerHTML)
+        subtasksArray.push(subtasks[indexSubtask].innerHTML)
     }
-    console.log(subtaskArray);
-    return subtaskArray;
+    return subtasksArray;
 }
