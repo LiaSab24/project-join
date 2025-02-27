@@ -124,6 +124,21 @@ function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
 }
 
 /**
+ * This template displays the users profile in the add-task-assigned-to-dropdown-menu
+ * 
+ * @param {number} indexUser - the index of the user in the contacts-array
+ */
+function getAddTaskDropdownListUserOption(indexUser) {
+    return `<div onclick="contactAssigned(${indexUser})" id="assignedToOption${indexUser}" class="add-task-dropdown-option">
+                <div>
+                    <div id="assignedToPB${indexUser}" class="profile-badge">You</div>
+                    <span>You</span>
+                </div>
+                <div id="assignedToCheckbox${indexUser}" class="add-task-assigned-to-checkbox"></div>
+            </div>`
+}
+
+/**
  * This template displays a contact in the add-task-assigned-to-dropdown-menu
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array

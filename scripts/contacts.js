@@ -123,7 +123,6 @@ async function addContact() {
     }
 }
 
-
 /**
  * This function is part of the 'addContact'-function and assigns a random color of the given colors-palette
  * 

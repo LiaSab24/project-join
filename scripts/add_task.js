@@ -68,6 +68,9 @@ function clearPriorityBtns() {
  */
 function fillAssignedToDropDownMenu() {
     let assignedToSelect = document.getElementById("addTaskDropdownContacts");
+    let indexUser = contacts.length;
+    assignedToSelect.innerHTML = getAddTaskDropdownListUserOption(indexUser);
+    document.getElementById("assignedToPB" + indexUser,).style.backgroundColor = "#D1D1D1";
     for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
         assignedToSelect.innerHTML += getAddTaskDropdownListContacts(indexContact);
         profileBadgeColor("assignedToPB" + indexContact, indexContact);
