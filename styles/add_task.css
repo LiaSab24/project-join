@@ -147,20 +147,23 @@ select {
 }
 
 #addTaskAssignedTo,
-#addTaskDate {
+#addTaskDate,
+#addTaskCategory {
     cursor: pointer;
 }
 
 #addTaskAssignedTo:focus,
 #addTaskDate:focus {
-    cursor:text;
+    cursor: text;
 }
 
-#addTaskAssignedTo {
-    z-index: 1;
+#addTaskAssignedTo,
+#addTaskCategory {
+    z-index: 3;
 }
 
-#addTaskAssignedTo::placeholder {
+#addTaskAssignedTo::placeholder,
+#addTaskCategory::placeholder {
     color: #000000;
 }
 
@@ -168,17 +171,27 @@ select {
     visibility: hidden;
 }
 
-#addTaskDropdownContacts {
+.add-task-dropdown {
     max-height: 290px;
     width: 440px;
     padding-top: 10px;
     position: absolute;
-    top: 656px;
     border-radius: 10px;
     background-color: #FFFFFF;
-    z-index: 0;
+    z-index: 2;
     box-shadow: 0px 0px 14px 3px #0000000A;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+#addTaskDropdownContacts {
+    top: 656px;
     overflow-y: scroll;
+}
+
+#addTaskDropdownCategories {
+    top: 595px;
 }
 
 .add-task-dropdown-option {

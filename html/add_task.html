@@ -40,9 +40,9 @@
                     placeholder="Enter a Description"></textarea>
 
                 <label for="addTaskAssignedTo">Assigned to</label>
-                <input onfocus="assignedToDropDownMenu()" id="addTaskAssignedTo" class="add-task-select-menu"
+                <input onfocus="toggleAddTaskToDropDownMenu('addTaskDropdownContacts')" id="addTaskAssignedTo" class="add-task-select-menu"
                     type="text" placeholder="Select contacts to assign">
-                <div id="addTaskDropdownContacts" class="custom-scrollbar"></div>
+                <div id="addTaskDropdownContacts" class="add-task-dropdown custom-scrollbar"></div>
                 <div id="addTaskAssignedToList"></div>
             </div>
 
@@ -75,14 +75,13 @@
                     Category
                     <span class="required-star">*</span>
                 </label>
-                <select id="addTaskCategory" class="add-task-select-menu">
-                    <option value="default" selected disabled hidden>Select task category</option>
-                    <option value="bug fix">bug fix</option>
-                    <option value="documentation">documentation</option>
-                    <option value="technical task">technical task</option>
-                    <option value="user story">user story</option>
-                </select>
-
+                <input onfocus="toggleAddTaskToDropDownMenu('addTaskDropdownCategories')" id="addTaskCategory" class="add-task-select-menu" placeholder="Select task category" readonly>                    
+                <div id="addTaskDropdownCategories" class="add-task-dropdown d-none">
+                    <div onclick="selectTaskCategory('bug fix')" class="add-task-dropdown-option">bug fix</div>
+                    <div onclick="selectTaskCategory('documentation')" class="add-task-dropdown-option">documentation</div>
+                    <div onclick="selectTaskCategory('technical task')" class="add-task-dropdown-option">technical task</div>
+                    <div onclick="selectTaskCategory('user story')" class="add-task-dropdown-option">user story</div>
+                </div>
 
                 <label for="addTaskSubtask">Subtasks</label>
                 <input onfocus="changeSubtaskIcons()" onfocusout="changeSubtaskIcons()" type="text" id="addTaskSubtask"

@@ -18,7 +18,7 @@ function clearTaskForm() {
     clearAssignedTo();
     document.getElementById("addTaskDate").value = "";
     clearPriorityBtns();
-    document.getElementById("addTaskCategory").value = "default";
+    document.getElementById("addTaskCategory").placeholder = "Select task category";
     document.getElementById("addTaskSubtask").value = "";
     document.getElementById("addTaskSubtaskList").innerHTML = "";
 }
@@ -62,6 +62,16 @@ function clearPriorityBtns() {
 
 
 /**
+ * This function toggles the visibility of the dropdown-menu for "assigned to" and "category"
+ * 
+* @param {string} contentRef - the id of the dropdown-menu, that is clicked
+ */
+function toggleAddTaskToDropDownMenu(contentRef) {
+    let dropDownMenu = document.getElementById(contentRef);
+    dropDownMenu.classList.toggle("d-none");
+}
+
+/**
  * This function fills the assigned-to-dropdown-menu with the contacts from the contact-array(template)
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
@@ -75,16 +85,6 @@ function fillAssignedToDropDownMenu() {
         assignedToSelect.innerHTML += getAddTaskDropdownListContacts(indexContact);
         profileBadgeColor("assignedToPB" + indexContact, indexContact);
     }
-}
-
-/**
- * This function toggles the visibility of the assigned-to-dropdown-menu
- * 
- * @param {number} indexContact - the index of the contact in the contacts-array
- */
-function assignedToDropDownMenu() {
-    let assignedToSelect = document.getElementById("addTaskDropdownContacts");
-    assignedToSelect.classList.toggle("d-none");
 }
 
 /**
@@ -129,6 +129,17 @@ function priorityBtnBg(priority) {
     clickedPrioBtn.classList.add(priority + "Clicked");
     clickedPrioBtn.classList.add("clicked");
     clickedPrioBtnImg.src = "/assets/icons/add-task-" + priority + "-clicked.svg";
+}
+
+/**
+ * This function shows the currently clicked task-category
+ * 
+ * @param {string} category - This is the chosen category for the task
+ */
+function selectTaskCategory(category) {
+    let categoryInput = document.getElementById("addTaskCategory");
+    categoryInput.placeholder = category;
+    toggleAddTaskToDropDownMenu('addTaskDropdownCategories');
 }
 
 /**
@@ -215,7 +226,7 @@ function addTask() {
     let taskAssignedTo = getAssignedContacts();
     let taskDueDate = document.getElementById("addTaskDate").value;
     let taskPriority = document.querySelector(".clicked").innerText;
-    let taskCategory = document.getElementById("addTaskCategory").value;
+    let taskCategory = checkTaskCategory();
     let taskSubtasks = getSubtasks();
     postData("/tasks/", {
         "title": taskTitle,
@@ -227,6 +238,17 @@ function addTask() {
         "subtasks": taskSubtasks
     });
     clearTaskForm();
+}
+
+/**
+ * This function is part of the addTask()-function and if a task-category is selected and returns it
+ */
+function checkTaskCategory() {
+    let taskCategory = document.getElementById("addTaskCategory").placeholder;
+    if (taskCategory !== "Select task category") {
+        console.log(taskCategory)
+        return taskCategory;
+    }
 }
 
 /**
