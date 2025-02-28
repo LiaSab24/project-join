@@ -345,7 +345,7 @@ main {
     display: flex;
     background-color: #FFFFFF;
     position: relative;
-    top: -60vb;
+    top: -70vb;
     right: -10vb;
     animation-duration: 300ms;
     animation-timing-function: ease-out;

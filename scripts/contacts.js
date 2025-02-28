@@ -7,6 +7,7 @@ async function initContacts() {
     await init();
     renderAddressBook();
     clearActiveContacts();
+    hideCurrentUser(indexUser.toString());
     hideNotUsedLetters();
 }
 
@@ -121,25 +122,6 @@ async function addContact() {
         });
         contactSuccesfullMsg("contactSuccesfullyCreated");  
     }
-}
-
-/**
- * This function is part of the 'addContact'-function and assigns a random color of the given colors-palette
- * 
- * @param {number} indexContact - the index of the contact in the contacts-array
- */
-async function assignRandomColor(indexContact) {
-    if (contactColors[indexContact]) {
-        return contactColors[indexContact];
-    }
-    if (availableColors.length === 0) availableColors = [...colors];
-
-    let randomIndex = Math.floor(Math.random() * availableColors.length);
-    let assignedColor = availableColors.splice(randomIndex, 1)[0];
-
-    contactColors[indexContact] = assignedColor;
-    localStorage.setItem("contactColors", JSON.stringify(contactColors));
-    return assignedColor;
 }
 
 /**

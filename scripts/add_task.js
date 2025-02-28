@@ -100,22 +100,23 @@ function toggleAddTaskToDropDownMenu(inputContentRef, DropdownContentRef) {
  */
 function fillAssignedToDropDownMenu() {
     let assignedToSelect = document.getElementById("addTaskDropdownContacts");
-    let indexUser = contacts.length;
-    assignedToSelect.innerHTML = getAddTaskDropdownListUserOption(indexUser);
-    document.getElementById("assignedToPB" + indexUser,).style.backgroundColor = "#D1D1D1";
+    assignedToSelect.innerHTML += getAddTaskDropdownListUserOption(indexUser);
+    profileBadgeColor("assignedToPB" + indexUser, indexUser);
     for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
         assignedToSelect.innerHTML += getAddTaskDropdownListContacts(indexContact);
         profileBadgeColor("assignedToPB" + indexContact, indexContact);
     }
+    hideCurrentUser("assignedToOption" + indexUser);
 }
 
 /**
  * This function gives the user the ability to see, which contacts are currently assigned
  * 
+ * @param {string} contentRef - the id of the assigned contact
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function contactAssigned(indexContact) {
-    let assignedContact = document.getElementById("assignedToOption" + indexContact);
+function contactAssigned(contentRef, indexContact) {
+    let assignedContact = document.getElementById(contentRef + indexContact);
     assignedContact.classList.toggle("option-contact-assigned");
     let assignedToCheckbox = document.getElementById("assignedToCheckbox" + indexContact);
     assignedToCheckbox.classList.toggle("checkbox-contact-assigned");
@@ -282,10 +283,11 @@ function getAssignedContacts() {
     let assignedContactsIndexArray = [];
     let assignedContactsArray = [];
     for (let indexAssignedContact = 0; indexAssignedContact < assignedContactsList.length; indexAssignedContact++) {
-        assignedContactsIndexArray.push(assignedContactsList[indexAssignedContact].id.slice(-1));
+        let assignedContactId =assignedContactsList[indexAssignedContact].id.replace("assignedToListPB", " ").trim();
+        assignedContactsIndexArray.push(assignedContactId);
         assignedContactsArray.push(contacts[assignedContactsIndexArray[indexAssignedContact]]);
     }
-    return assignedContactsArray;
+    return assignedContactsArray ;
 }
 
 /**

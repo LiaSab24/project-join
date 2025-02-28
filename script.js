@@ -4,7 +4,8 @@ let users = [];
 let tasks = [];
 let contacts = [];
 
-let currentUser = 1;                    //0=max mustermann, 1=Guest
+let currentUser = 0;                                              //0=max mustermann, 1==Guest
+let indexUser                    
 
 const colors = [
   "#ff7a00", // Vivid Orange
@@ -33,6 +34,7 @@ let contactColors = {};
 async function init() {
   //LOADING SCREEN;
   await fetchDataJson();
+  userIndexInContactsArray(currentUser);
 }
 
 /**
@@ -56,6 +58,17 @@ function filArrays(joinDataJson) {
   for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
     contacts[indexContact].url = Object.keys(joinDataJson.contacts)[indexContact];
   }
+}
+
+/**
+ * This function iterates through the contacts-array and finds the index of the contact of the current user
+ * 
+ * @param {number} currentUser - the index of the user in the user-array
+ */
+function userIndexInContactsArray(currentUser) {
+  let userName = users[currentUser].name;
+  let indexContactUser = contacts.findIndex(index => index.name === userName);
+  indexUser = indexContactUser;
 }
 
 /**
@@ -95,6 +108,25 @@ async function putData(path = "", data = {}) {
 }
 
 /**
+ * This function assigns a random color of the given colors-palette
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+async function assignRandomColor(indexContact) {
+  if (contactColors[indexContact]) {
+      return contactColors[indexContact];
+  }
+  if (availableColors.length === 0) availableColors = [...colors];
+
+  let randomIndex = Math.floor(Math.random() * availableColors.length);
+  let assignedColor = availableColors.splice(randomIndex, 1)[0];
+
+  contactColors[indexContact] = assignedColor;
+  localStorage.setItem("contactColors", JSON.stringify(contactColors));
+  return assignedColor;
+}
+
+/**
  * This function changes the profile-badge-color according to the deposited color for the contact
  * 
  * @param {string} contentRef - the id of the element that should get the deposited color as the background-color
@@ -116,6 +148,16 @@ function nameAbbreviation(indexContact) {
   let firstLetter = contactFirstName.charAt(0);
   let secondLetter = contactLastName.charAt(0);
   return firstLetter + secondLetter
+}
+
+/**
+ * This function hides the address book entrie of the user
+ * 
+ * @param {string} contentRef - the id of the element that should hide
+ */
+function hideCurrentUser(contentRef) {
+  let usersAddressBookEntrie = document.getElementById(contentRef);
+  usersAddressBookEntrie.remove();
 }
 
 //__________________________________________

@@ -129,9 +129,9 @@ function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
  * @param {number} indexUser - the index of the user in the contacts-array
  */
 function getAddTaskDropdownListUserOption(indexUser) {
-    return `<div onclick="contactAssigned(${indexUser})" id="assignedToOption${indexUser}" class="add-task-dropdown-option">
+    return `<div onclick="contactAssigned('assignedToUserOption', ${indexUser})" id="assignedToUserOption${indexUser}" class="add-task-dropdown-option">
                 <div>
-                    <div id="assignedToPB${indexUser}" class="profile-badge">You</div>
+                    <div id="assignedToPB${indexUser}" class="profile-badge">${nameAbbreviation(indexUser)}</div>
                     <span>You</span>
                 </div>
                 <div id="assignedToCheckbox${indexUser}" class="add-task-assigned-to-checkbox"></div>
@@ -144,7 +144,7 @@ function getAddTaskDropdownListUserOption(indexUser) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function getAddTaskDropdownListContacts(indexContact) {
-    return `<div onclick="contactAssigned(${indexContact})" id="assignedToOption${indexContact}" class="add-task-dropdown-option">
+    return `<div onclick="contactAssigned('assignedToOption', ${indexContact})" id="assignedToOption${indexContact}" class="add-task-dropdown-option">
                 <div>
                     <div id="assignedToPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
                     <span>${contacts[indexContact].name}</span>
