@@ -1,6 +1,8 @@
 :root {
+  /* font-size */
   --fs-s: 12px;
   --fs-m: 20px;
+<<<<<<< Updated upstream
   --fs-l: 61px;
   --clr-gray: #ccc;
   --bg-color: #f4f5f7;
@@ -25,4 +27,53 @@
   --clr-black: #000;
   
 
+=======
+  --fs-ml: 27px;
+  --fs-l: 61px;
+  /* dynamische font-size */
+  --fs-basic: clamp(0.75rem, 0.617rem + 0.4255vw, 1rem);          /* 12px - 16px */
+  --fs-4764: clamp(2.9375rem, 2.3723rem + 1.8085vw, 4rem);        /* 47px - 64px */
+  --fs-4761: clamp(2.9375rem, 2.4721rem + 1.4894vw, 3.8125rem);   /* 47px - 61px */
+  --fs-3661: clamp(2.25rem, 1.4189rem + 2.6596vw, 3.8125rem);     /* 36px - 61px */
+  --fs-3647: clamp(2.25rem, 1.8843rem + 1.1702vw, 2.9375rem);     /* 36px - 47px */
+  --fs-2027: clamp(1.25rem, 1.0173rem + 0.7447vw, 1.6875rem);     /* 20px - 27px */
+  --fs-1620: clamp(1rem, 0.867rem + 0.4255vw, 1.25rem);           /* 16px - 20px */
+  --fs-1420: clamp(0.875rem, 0.6755rem + 0.6383vw, 1.25rem);      /* 14px - 20px */
+  --fs-1416: clamp(0.875rem, 0.8085rem + 0.2128vw, 1rem);         /* 14px - 16px */
+  /* font-weight */
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-600: 600;
+  --fw-700: 700;
+/* color elemente, background & text */
+  --clr-white: #fff;
+  --clr-black: #000;
+  --clr-primary: #2A3647;
+  --clr-lightBlue: #29abe2;
+  --clr-lightGray: #A8A8A8;
+  --clr-lighterGray: #D1D1D1;
+/* colors user*/
+  --clr-anton: #ff7a00;
+  --clr-benedikt: #6e52ff;
+  --clr-anja: #9327ff;
+  --clr-sofia: #00bee8;
+  --clr-emanuel: #1fd7c1;
+  --clr-david: #fc71ff;
+  --clr-tatjana: #ff4646;
+  --clr-eva: #ffbb2b;
+  --clr-marcel: #462f8a;
+/* colors prio */
+  --medium-clr: #FFA800;
+  --urgent-clr: #FF3D00;
+  --low-clr: #7AE229;
+/* colors background */
+  --bg-blue: #0038FF;
+  --bg-green: #1FD7C1;
+  --bg-click: #091931;
+/* shadows */
+  --shadow-stronger: rgba(0, 0, 0, 0.251);                          /* #00000040 */
+  --shadow-barrasuperior: 0px 4px 4px 0px rgba(0, 0, 0, 0.102);     /* #0000001A */
+  --shadow-nuevo: 0px 0px 4px rgba(0, 0, 0, 0.16);
+  --shadow-backlog: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+>>>>>>> Stashed changes
 }
