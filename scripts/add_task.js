@@ -259,7 +259,8 @@ function addTask() {
         "dueDate": taskDueDate,
         "priority": taskPriority,
         "category": taskCategory,
-        "subtasks": taskSubtasks
+        "subtasks": taskSubtasks,
+        "progress": "toDo"
     });
     clearTaskForm();
 }
