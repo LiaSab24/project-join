@@ -4,7 +4,7 @@
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function getAddressbookContactTemplate(indexContact) {
-    return `<div id="${indexContact}" class="contact" onclick="contactClicked(${indexContact})">
+    return `<div id="id${indexContact}" class="contact" onclick="contactClicked(${indexContact})">
                 <div id="profileBadge${indexContact}" class="contact-profile-badge">${nameAbbreviation(indexContact)}</div>
                 <p>
                     <span class="contact-name">${contacts[indexContact].name}</span>

@@ -151,13 +151,16 @@ function nameAbbreviation(indexContact) {
 }
 
 /**
- * This function hides the address book entrie of the user
+ * This function hides the address book entrie of all users
  * 
- * @param {string} contentRef - the id of the element that should hide
+ * @param {string} contentRef - the repetetive part of the id that is used to find the element to remove
  */
-function hideCurrentUser(contentRef) {
-  let usersAddressBookEntrie = document.getElementById(contentRef);
-  usersAddressBookEntrie.remove();
+function hideAllUsers(contentRef) {
+  for (let indexUser = 0; indexUser < users.length-1; indexUser++) {
+    let usersInContactsIds = contacts.findIndex(index => index.name === users[indexUser].name).toString();
+    let usersAddressBookEntrie = document.getElementById(contentRef + usersInContactsIds);
+    usersAddressBookEntrie.remove();
+  }
 }
 
 //__________________________________________

@@ -7,7 +7,7 @@ async function initContacts() {
     await init();
     renderAddressBook();
     clearActiveContacts();
-    hideCurrentUser(indexUser.toString());
+    hideAllUsers("id");
     hideNotUsedLetters();
 }
 

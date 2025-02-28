@@ -123,3 +123,26 @@ function addTestUser() {
       "password": testUserPassword
   });
 }
+
+
+
+
+
+
+async function initContacts() {
+  await init();
+  renderAddressBook();
+  clearActiveContacts();
+  hideAllUsers(indexUser.toString());
+  hideNotUsedLetters();
+}
+
+/**
+ * This function hides the address book entrie of the user
+ * 
+ * @param {string} contentRef - the id of the element that should hide
+ */
+function hideCurrentUser(contentRef) {
+  let usersAddressBookEntrie = document.getElementById(contentRef);
+  usersAddressBookEntrie.remove();
+}

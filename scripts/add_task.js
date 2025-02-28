@@ -106,7 +106,7 @@ function fillAssignedToDropDownMenu() {
         assignedToSelect.innerHTML += getAddTaskDropdownListContacts(indexContact);
         profileBadgeColor("assignedToPB" + indexContact, indexContact);
     }
-    hideCurrentUser("assignedToOption" + indexUser);
+    hideAllUsers("assignedToOption");
 }
 
 /**
