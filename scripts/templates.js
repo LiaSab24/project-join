@@ -161,3 +161,22 @@ function getAddTaskDropdownListContacts(indexContact) {
 function getAddTaskContactPB(indexContact) {
     return `<div id="assignedToListPB${indexContact}" class="profile-badge assigned-element">${nameAbbreviation(indexContact)}</div>`
 }
+
+function getBoardTaskTemplate(indexTask) {
+    return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="toggleUserFeedback()">
+          <div class="task-badge">User Story</div>
+          <div class="task-title">${tasks[indexTask].title}</div>
+          <div class="task-description">Build start page with recipe recommendation...</div>
+          <div class="task-progress">
+            <div class="progress-bar">
+              <div class="progress-bar-fill" style="width: 50%;"></div>
+            </div>
+            <span>1/2 Subtasks</span>
+          </div>
+          <div class="task-assignees">
+            <div class="assignee">AM</div>
+            <div class="assignee">EM</div>
+            <div class="assignee">MB</div>
+          </div>
+        </div>`
+}
