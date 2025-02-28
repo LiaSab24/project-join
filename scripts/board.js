@@ -150,18 +150,17 @@ function toggleUserFeedback() {
  * @returns {void} Does not return anything.
  */
 function editFeedbackCard() {
-
+  // let taskData = document.get
+  //   if (!taskData) {
+  //       console.error("taskData is undefined or null");
+  //       return;
+  //   }
 
     let overlayEdit = document.getElementById("userStoryBodyContainer");
 
-
-    // let EditSection = document.getElementById("userStoryEditContainerInside");
-
-
     if (!overlayEdit) {
-      console.log("Fuktioniert");
-      
-      document.body.insertAdjacentHTML("beforeend", getEditTaskTemplate());
-  }
-
+        document.body.insertAdjacentHTML("beforeend", getEditTaskTemplate());
+    }
 }
+
+

@@ -124,18 +124,16 @@ function getFeedbackButtonTemplate() {
     `;
 }
 
-function subtaskEditSample(taskData) {
-    return taskData.subtasks.map(subtask => `<div>${subtask}</div>`).join('');
-}
 
 
-function getEditTaskTemplate(taskData) {
+
+function getEditTaskTemplate() {
     return `
     <div class="userStoryBodyContainer">
     <div class="userStoryEditContainer">
         <div class="userStoryEditContainerInside">
             <div class="userStoryEditCloseButtonContainer">
-                <img onclick="closeUserStoryEdit()" src="./img/userStoryEdit/close.png" alt="Close">
+                <img onclick="closeUserStoryEdit()" src="#" alt="Close">
             </div>
             <form id="editTaskForm" action="">
                 <div>
@@ -170,19 +168,19 @@ function getEditTaskTemplate(taskData) {
                         <div onclick="addUrgent(), addUrgentPrio()" id="editUrgent" class="editPriorityButtonContainer ">
                             <div>Urgent</div>
                             <div>
-                                <img id="editActiveUrg" src="./img/userStoryEdit/urgent-prio-icon-inactive.svg" alt="High priority">
+                                <img id="editActiveUrg" src="/assets/icons/add-task-prioUrgent.svg" alt="High priority">
                             </div>
                         </div>
                         <div onclick="addMedium(), addMediumPrio()" id="editMedium" class="editPriorityButtonContainer">
                             <div>Medium</div>
                             <div>
-                                <img id="editActiveMed" src="./img/userStoryEdit/prio_medium_inactive.svg" alt="Medium priority">
+                                <img id="editActiveMed" src="/assets/icons/add-task-prioMedium.svg" alt="Medium priority">
                             </div>
                         </div>
                         <div onclick="addLow(), addLowPrio()" id="editLow" class="editPriorityButtonContainer ">
                             <div>Low</div>
                             <div>
-                                <img id="editActiveLow" src="./img/userStoryEdit/low-prio-icon-inactive.png" alt="Low priority">
+                                <img id="editActiveLow" src="/assets/icons/add-task-prioLow.svg" alt="Low priority">
                             </div>
                         </div>
                     </div>
@@ -193,7 +191,7 @@ function getEditTaskTemplate(taskData) {
                 <div class="userStoryAssignedToInputAndImageContainer mTop8">
                     <input oninput="searchPersonAt()" onclick="showPersonsAt(), renderAssignedListAt()" autocomplete="off" id="assigned"type="text" placeholder="Select contacts to assign">
                     <div id="rotate" onclick="showPersonsAt(), renderAssignedListAt()" class="userStoryAssignedToDropdownMenuImageContainer">
-                        <img src="./img/userStoryEdit/drop-down-arrow.png" alt="dropdownmenu">
+                        <img src="#" alt="dropdownmenu">
                     </div>
                 </div>
                 <div id="dropdown-list" class="editDropDownList">
@@ -207,20 +205,19 @@ function getEditTaskTemplate(taskData) {
                         <div class="userStoryAssignedToInputAndImageContainer">
                         <input id="subtask" type="text" class="subtask-input medium-font subtaskInput" placeholder="Add new subtask">
                         <div class="add-new-subtask small-icon-div" id="addSubtaskIcon" onclick="addSubtask()">
-                            <img class="smaller-icon" src="./img/add-plus-icon.png">
+                            <img class="smaller-icon" src=".#">
                         </div>
                         <div class="close-approve-container hide" id="addRemoveContainer">
-                            <div class="small-icon-div" onclick="closeSubtask()"><img class="small-icon" src="./img/Close.png"></div>
+                            <div class="small-icon-div" onclick="closeSubtask()"><img class="small-icon" src="#"></div>
                             <span class="small-input-vertical-vector"></span>
-                            <div class="small-icon-div" onclick="aproveSubtaskEdit()"><img class="smaller-icon" src="./img/check_dark_icon.svg"></div>
+                            <div class="small-icon-div" onclick="aproveSubtaskEdit()"><img class="smaller-icon" src="#"></div>
                         </div>
                     </div>
                     <div id="subtaskDisplayEdit" class="subtaskDisplay flex-column"> 
-                        ${typeof subtaskEditSample === 'function' ? subtaskEditSample(taskData) : 'Subtasks could not be loaded'}
                     </div>
                 </div>
                 <div class="userStoryEditOkButtonContainer">
-                    <button class="userStoryEditOkButton" type="button" onclick="saveTaskChanges(${taskData.id})">Save <img src="./img/userStoryEdit/ok.png" alt="Save"></button>
+                    <button class="userStoryEditOkButton" type="button" onclick="saveTaskChanges()">Save <img src="#" alt="Save"></button>
                 </div>
             </form>
         </div>
