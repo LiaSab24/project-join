@@ -146,6 +146,16 @@ select {
     margin-bottom: 0;
 }
 
+#addTaskAssignedTo,
+#addTaskDate {
+    cursor: pointer;
+}
+
+#addTaskAssignedTo:focus,
+#addTaskDate:focus {
+    cursor:text;
+}
+
 #addTaskAssignedTo {
     z-index: 1;
 }
@@ -292,6 +302,7 @@ select {
 .subtask-icon:hover {
     background-color: #EEEEEE;
     transform: scale(110%);
+    cursor: pointer;
 }
 
 #subtaskIconAdd {
