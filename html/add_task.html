@@ -40,7 +40,7 @@
                     placeholder="Enter a Description"></textarea>
 
                 <label for="addTaskAssignedTo">Assigned to</label>
-                <input onfocus="toggleAddTaskToDropDownMenu('addTaskDropdownContacts')" id="addTaskAssignedTo" class="add-task-select-menu"
+                <input onfocus="toggleAddTaskToDropDownMenu('addTaskAssignedTo', 'addTaskDropdownContacts')" id="addTaskAssignedTo" class="add-task-select-menu"
                     type="text" placeholder="Select contacts to assign">
                 <div id="addTaskDropdownContacts" class="add-task-dropdown custom-scrollbar"></div>
                 <div id="addTaskAssignedToList"></div>
@@ -75,7 +75,7 @@
                     Category
                     <span class="required-star">*</span>
                 </label>
-                <input onfocus="toggleAddTaskToDropDownMenu('addTaskDropdownCategories')" id="addTaskCategory" class="add-task-select-menu" placeholder="Select task category" readonly>                    
+                <input onfocus="toggleAddTaskToDropDownMenu('addTaskCategory','addTaskDropdownCategories')" id="addTaskCategory" class="add-task-select-menu" placeholder="Select task category" readonly>                    
                 <div id="addTaskDropdownCategories" class="add-task-dropdown d-none">
                     <div onclick="selectTaskCategory('bug fix')" class="add-task-dropdown-option">bug fix</div>
                     <div onclick="selectTaskCategory('documentation')" class="add-task-dropdown-option">documentation</div>
@@ -114,6 +114,8 @@
                 </button>
             </div>
         </div>
+
+        <div onclick="removeAddTaskOverlay()" id="addTaskOverlayBg" class="d-none"></div>
     </main>
 
     <footer></footer>

@@ -62,13 +62,35 @@ function clearPriorityBtns() {
 
 
 /**
+ * This function adds the invisible overlay behind the dropdown-menu for "assigned to" and "category"
+ * This way, the user is able to close those menues by clicking outside the menu
+ */
+function addAddTaskOverlay() {
+    let overlayBgContentRef = document.getElementById("addTaskOverlayBg");
+    overlayBgContentRef.classList.remove("d-none");
+}
+
+/**
+ * This function removes the invisible overlay behind the dropdown-menu for "assigned to" and "category"
+ * Furthermore it hides both dropdown-menus
+ */
+function removeAddTaskOverlay() {
+    document.getElementById("addTaskOverlayBg").classList.add("d-none");
+    document.getElementById('addTaskDropdownContacts').classList.add("d-none");
+    document.getElementById('addTaskAssignedTo').classList.remove("add-task-current-select");
+    document.getElementById('addTaskDropdownCategories').classList.add("d-none");
+    document.getElementById('addTaskCategory').classList.remove("add-task-current-select");
+}
+
+/**
  * This function toggles the visibility of the dropdown-menu for "assigned to" and "category"
  * 
-* @param {string} contentRef - the id of the dropdown-menu, that is clicked
+ * @param {string} contentRef - the id of the dropdown-menu, that is clicked
  */
-function toggleAddTaskToDropDownMenu(contentRef) {
-    let dropDownMenu = document.getElementById(contentRef);
-    dropDownMenu.classList.toggle("d-none");
+function toggleAddTaskToDropDownMenu(inputContentRef, DropdownContentRef) {
+    addAddTaskOverlay();
+    document.getElementById(inputContentRef).classList.add("add-task-current-select");
+    document.getElementById(DropdownContentRef).classList.remove("d-none");
 }
 
 /**
@@ -139,7 +161,8 @@ function priorityBtnBg(priority) {
 function selectTaskCategory(category) {
     let categoryInput = document.getElementById("addTaskCategory");
     categoryInput.placeholder = category;
-    toggleAddTaskToDropDownMenu('addTaskDropdownCategories');
+    toggleAddTaskToDropDownMenu('addTaskCategory', 'addTaskDropdownCategories');
+    removeAddTaskOverlay();
 }
 
 /**

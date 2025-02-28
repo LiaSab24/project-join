@@ -159,7 +159,7 @@ select {
 
 #addTaskAssignedTo,
 #addTaskCategory {
-    z-index: 3;
+    z-index: 1;
 }
 
 #addTaskAssignedTo::placeholder,
@@ -183,6 +183,10 @@ select {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+}
+
+.add-task-current-select {
+    z-index: 3 !important;
 }
 
 #addTaskDropdownContacts {
@@ -502,4 +506,14 @@ select {
 
 .add-task-requirement-unfulfilled {
     outline: 1px solid #FF8190;
+}
+
+#addTaskOverlayBg {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: transparent;
 }
