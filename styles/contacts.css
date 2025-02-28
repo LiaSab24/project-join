@@ -326,8 +326,8 @@ main {
 
 /** Overlays**/
 #overlayBg {
-    height: 1024px;
-    width: 1440px;
+    height: 100%;
+    width: 100%;
     position: fixed;
     top: 0;
     left: 0;
@@ -348,8 +348,11 @@ main {
     display: flex;
     background-color: #FFFFFF;
     position: relative;
+    top: -60vb;
+    right: -10vb;
     animation-duration: 300ms;
     animation-timing-function: ease-out;
+    z-index: 1;
 }
 
 .animation-open-overlay {
