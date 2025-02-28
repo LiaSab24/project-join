@@ -229,7 +229,7 @@ function deleteSubtask(indexSubtask) {
 /**
  * This function replaces the subtask-edit element with an list element (template) and includes the edited input-value. 
  * 
-* @param {number} indexSubtask - the index of the subtask in the subtasks-list
+ * @param {number} indexSubtask - the index of the subtask in the subtasks-list
  */
 function confirmEditSubtask(indexSubtask) {
     let subtaskContentRef = document.getElementById("subtask" + indexSubtask);
@@ -260,7 +260,7 @@ function addTask() {
         "priority": taskPriority,
         "category": taskCategory,
         "subtasks": taskSubtasks,
-        "progress": "toDo"
+        "progress": {"progress": "toDo"}
     });
     clearTaskForm();
 }
@@ -298,7 +298,10 @@ function getSubtasks() {
     let subtasks = document.querySelectorAll(".subtask-element");
     let subtasksArray = [];
     for (let indexSubtask = 0; indexSubtask < subtasks.length; indexSubtask++) {
-        subtasksArray.push(subtasks[indexSubtask].innerHTML)
+        subtasksArray.push({
+            "subtask": subtasks[indexSubtask].innerHTML,
+            "completed": false
+        })
     }
     return subtasksArray;
 }

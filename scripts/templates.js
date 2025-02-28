@@ -164,14 +164,14 @@ function getAddTaskContactPB(indexContact) {
 
 function getBoardTaskTemplate(indexTask) {
     return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="toggleUserFeedback()">
-          <div class="task-badge">User Story</div>
+          <div class="task-badge">${tasks[indexTask].category}</div>
           <div class="task-title">${tasks[indexTask].title}</div>
-          <div class="task-description">Build start page with recipe recommendation...</div>
+          <div class="task-description">${tasks[indexTask].description}</div>
           <div class="task-progress">
             <div class="progress-bar">
-              <div class="progress-bar-fill" style="width: 50%;"></div>
+              <div class="progress-bar-fill" style="width:${progressSubtasksPercentage(indexTask)};"></div>
             </div>
-            <span>1/2 Subtasks</span>
+            <span>${progressSubtasksNumbers(3)} Subtasks</span>
           </div>
           <div class="task-assignees">
             <div class="assignee">AM</div>

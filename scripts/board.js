@@ -7,12 +7,73 @@ async function initBoard() {
   toggleMessageNoTasks();
 }
 
+/**
+ * This function renders the tasks and adds a task-template for each each element in the tasks-array
+ */
 function renderTasks() {
-  let taskProgressContentRef = document.getElementById("inProgress");
   for (let indexTask = 0; indexTask < tasks.length; indexTask++) {
+    let taskProgress = tasks[indexTask].progress.progress;
+    let taskProgressContentRef = document.getElementById(taskProgress);
     taskProgressContentRef.innerHTML += getBoardTaskTemplate(indexTask);
   }
 }
+
+/**
+ * This function calculates the progress of the subtasks of a task in percents
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function progressSubtasksPercentage(indexTask) {
+  //...
+}
+
+/**
+ * This function calculates the progress of the subtasks and returns it in the following form:
+ * finishedSubtasks/subtasks-number
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function progressSubtasksNumbers(indexTask) {
+  let tasksSubtasks = tasks[indexTask].subtasks;
+  //console.log(tasksSubtasks)
+  let subtasksNumber;
+  let finishedSubtasks;
+
+  if (tasksSubtasks == undefined) {
+    subtasksNumber = 0;
+    finishedSubtasks = 0;
+  } else {
+    subtasksNumber = tasksSubtasks.length;
+    //countCompletedSubtasks(tasksSubtasks);
+  }
+
+  return finishedSubtasks + "/" + subtasksNumber;
+}
+
+// function countCompletedSubtasks(tasksSubtasks) {
+//   console.log(tasksSubtasks.length);
+//   for (let indexSubtask = 0; indexSubtask < tasksSubtasks.length; indexSubtask++) {
+//     console.log(tasksSubtasks[indexSubtask].filter(completed => completed == "true"))
+//     console.log(subtasksNumber)
+//     let completedSubtasks = tasksSubtasks[indexSubtask].completed;
+//     console.log(completedSubtasks);
+//       finishedSubtasks
+//   }
+//   return finishedSubtasks;
+// }
+
+
+// for (let indexSubtask = 0; indexSubtask < tasksSubtasks.length; indexSubtask++) {
+//   console.log(tasksSubtasks[indexSubtask])
+//   console.log(tasksSubtasks[indexSubtask].filter(completed => completed == true).length)
+//   console.log(subtasksNumber)
+//   let completedSubtasks = tasksSubtasks[indexSubtask].completed;
+//   console.log(completedSubtasks);
+//     finishedSubtasks
+// }
+
+
+
 
 /**
  * This function checks if a task-category contains tasks and toggles the 'no task'-message accordingly
@@ -43,10 +104,27 @@ function drop(event) {
   let data = event.dataTransfer.getData("text");
   let draggedElement = document.getElementById(data);
   let dropContainer = event.target.closest(".board-tasks-list");
-  if (dropContainer) {
+  if (dropContainer.contains(draggedElement) == false) {
+    let indexTask = draggedElement.id.replace("task", " ").trim();
+    updateTaskProgress(dropContainer.id, indexTask);
     dropContainer.innerHTML += draggedElement.outerHTML;
     draggedElement.remove();
     toggleMessageNoTasks();
+  }
+}
+
+/**
+ * This function checks, if the progress of a task had changed.
+ * If yes, it updates the data in firebase
+ * 
+ * @param {string} progress - the progress of the task (toDo, inProgress, awaitFeedback, done)
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function updateTaskProgress(progress, indexTask) {
+  if (tasks[indexTask].progress !== progress) {
+    putData("/tasks/" + tasks[indexTask].url + "/progress", {
+      "progress": progress
+    });
   }
 }
 

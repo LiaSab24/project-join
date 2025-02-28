@@ -194,7 +194,6 @@ async function saveEditContact(indexContact) {
         contactClicked(indexContact);
         contactSuccesfullMsg("contactSuccesfullyEdited");
     }
-
 }
 
 // async function addContact() {
