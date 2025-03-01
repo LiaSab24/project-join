@@ -235,6 +235,9 @@ button:hover {
     flex-direction: column;
     gap: 20px;
     padding: 0 4px;
+    overflow: auto; /* Ermöglicht das Scrollen des Inhalts */
+    flex-grow: 1; /* Der Inhalt nimmt den verbleibenden Platz ein */
+    padding-bottom: 80px;
 }
 
 .edit-grid {
@@ -258,18 +261,17 @@ button:hover {
 
 .userStoryEditOkButtonContainer {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
     padding-top: 20px;
-    position: fixed;
+    position: sticky;
+    bottom: 48px;
     right: 25px;
-    position: fixed;
-    right: 25px;
-    z-index: 3;
+    left: 78px;
+    z-index: 2;
+    background-color: white;
+    height: 78px;
 }
 
 .userStoryEditOkButton {
-    padding: 12px 24px;
     border-radius: 8px;
     cursor: pointer;
     border: none;
