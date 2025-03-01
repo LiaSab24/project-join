@@ -15,6 +15,7 @@ function renderTasks() {
     let taskProgress = tasks[indexTask].progress.progress;
     let taskProgressContentRef = document.getElementById(taskProgress);
     taskProgressContentRef.innerHTML += getBoardTaskTemplate(indexTask);
+    hideSubtasksProgressForNoSubtasks(indexTask);
   }
 }
 
@@ -24,56 +25,53 @@ function renderTasks() {
  * @param {number} indexTask - the index of the task in the tasks-array
  */
 function progressSubtasksPercentage(indexTask) {
-  //...
+  let totalSubtasks = countTotalSubtasks(indexTask);
+  let completedSubtasks = countCompletedSubtasks(indexTask);
+  if (totalSubtasks !== 0) {
+    return (completedSubtasks / totalSubtasks) * 100;
+  } else {
+    return 0;
+  }
 }
 
 /**
- * This function calculates the progress of the subtasks and returns it in the following form:
- * finishedSubtasks/subtasks-number
+ * This function counts the number of subtasks of a task and returns the value
  * 
  * @param {number} indexTask - the index of the task in the tasks-array
  */
-function progressSubtasksNumbers(indexTask) {
+function countTotalSubtasks(indexTask) {
   let tasksSubtasks = tasks[indexTask].subtasks;
-  //console.log(tasksSubtasks)
-  let subtasksNumber;
-  let finishedSubtasks;
-
-  if (tasksSubtasks == undefined) {
-    subtasksNumber = 0;
-    finishedSubtasks = 0;
-  } else {
-    subtasksNumber = tasksSubtasks.length;
-    //countCompletedSubtasks(tasksSubtasks);
+  let totalSubtasks = 0;
+  if (tasksSubtasks !== undefined) {
+    totalSubtasks = tasksSubtasks.length;
   }
-
-  return finishedSubtasks + "/" + subtasksNumber;
+  return totalSubtasks;
 }
 
-// function countCompletedSubtasks(tasksSubtasks) {
-//   console.log(tasksSubtasks.length);
-//   for (let indexSubtask = 0; indexSubtask < tasksSubtasks.length; indexSubtask++) {
-//     console.log(tasksSubtasks[indexSubtask].filter(completed => completed == "true"))
-//     console.log(subtasksNumber)
-//     let completedSubtasks = tasksSubtasks[indexSubtask].completed;
-//     console.log(completedSubtasks);
-//       finishedSubtasks
-//   }
-//   return finishedSubtasks;
-// }
+/**
+ * This function counts the number of completed subtasks of a task and returns the value
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function countCompletedSubtasks(indexTask) {
+  let tasksSubtasks = tasks[indexTask].subtasks;
+  let completedSubtasks = 0;
 
+  if (tasksSubtasks !== undefined) {
+    for (let indexSubtask = 0; indexSubtask < tasksSubtasks.length; indexSubtask++) {
+      if (tasksSubtasks[indexSubtask].completed === true) {
+        completedSubtasks++;
+      }
+    }
+  }
+  return completedSubtasks;
+}
 
-// for (let indexSubtask = 0; indexSubtask < tasksSubtasks.length; indexSubtask++) {
-//   console.log(tasksSubtasks[indexSubtask])
-//   console.log(tasksSubtasks[indexSubtask].filter(completed => completed == true).length)
-//   console.log(subtasksNumber)
-//   let completedSubtasks = tasksSubtasks[indexSubtask].completed;
-//   console.log(completedSubtasks);
-//     finishedSubtasks
-// }
-
-
-
+function hideSubtasksProgressForNoSubtasks(indexTask) {
+  if (tasks[indexTask].subtasks == undefined) {
+    document.getElementById("boardProgressSubtask" + indexTask).classList.add("d-none");
+  }
+}
 
 /**
  * This function checks if a task-category contains tasks and toggles the 'no task'-message accordingly

@@ -167,16 +167,14 @@ function getBoardTaskTemplate(indexTask) {
           <div class="task-badge">${tasks[indexTask].category}</div>
           <div class="task-title">${tasks[indexTask].title}</div>
           <div class="task-description">${tasks[indexTask].description}</div>
-          <div class="task-progress">
+          <div id="boardProgressSubtask${indexTask}" class="task-progress">
             <div class="progress-bar">
-              <div class="progress-bar-fill" style="width:${progressSubtasksPercentage(indexTask)};"></div>
+              <div class="progress-bar-fill" style="width:${progressSubtasksPercentage(indexTask)}%;"></div>
             </div>
-            <span>${progressSubtasksNumbers(3)} Subtasks</span>
+            <span>${countCompletedSubtasks(indexTask)}/${countTotalSubtasks(indexTask)} </span>
           </div>
           <div class="task-assignees">
-            <div class="assignee">AM</div>
-            <div class="assignee">EM</div>
-            <div class="assignee">MB</div>
+            <div class="assignee">XX</div>
           </div>
         </div>`
 }
