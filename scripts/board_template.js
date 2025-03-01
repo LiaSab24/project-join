@@ -225,3 +225,27 @@ function getEditTaskTemplate() {
     </div>
     `;
 }
+
+/**
+ * Erstellt die HTML-Vorlage für eine Task Card.
+ * @param {Object} task - Ein Task-Objekt aus Firebase.
+ * @returns {string} - HTML-Code der Task Card.
+ */
+function createTaskCardTemplate(task) {
+    return `
+      <div class="task-card" draggable="true" ondragstart="drag(event)" onclick="toggleUserFeedback()">
+        <div class="task-badge">${task.category || "Task"}</div>
+        <div class="task-title">${task.title}</div>
+        <div class="task-description">${task.description || "No description available"}</div>
+        <div class="task-progress">
+          <div class="progress-bar">
+            <div class="progress-bar-fill" style="width: ${calculateProgress(task)}%;"></div>
+          </div>
+          <span>${task.subtasksCompleted || 0}/${task.subtasksTotal || 1} Subtasks</span>
+        </div>
+        <div class="task-assignees">
+          ${generateAssigneesHTML(task.assignees)}
+        </div>
+      </div>
+    `;
+  }

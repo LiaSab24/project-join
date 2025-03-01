@@ -2,23 +2,26 @@
  * This function is the inital function, when board.html is loading and executes the init()-function and furher necessary board-functions
  */
 async function initBoard() {
-  await init();
+  await init();  // Lädt die Daten
+  await new Promise((resolve) => setTimeout(resolve, 500)); // 500ms Verzögerung zum Testen
   restoreBoardState();
   toggleMessageNoTasks();
 }
+
 
 function restoreBoardState() {
   let boardState = JSON.parse(localStorage.getItem("boardState"));
   if (boardState) {
     Object.keys(boardState).forEach(containerId => {
       let container = document.getElementById(containerId);
+      container.innerHTML = "";
       let noTaskMessage = container.querySelector(".no-task-message-container");
       let taskHTML = "";
       boardState[containerId].forEach(taskId => {
         let taskElement = document.getElementById(taskId);
         if (taskElement) {
           taskHTML += taskElement.outerHTML;}});
-      container.innerHTML += taskHTML;
+      container.innerHTML = taskHTML;
       if (taskHTML.trim() !== "" && noTaskMessage) {
         noTaskMessage.style.display = "none";}});
   }
@@ -31,11 +34,21 @@ function toggleMessageNoTasks() {
   const taskCategoryContentRef = document.getElementsByClassName("task-wrapper");
   const noTaskMessagesContentRef = document.getElementsByClassName("no-task-message-container");
   let taskCard = document.querySelector(".task-card");
+
+  if (!taskCard) {
+    console.warn("Keine Task-Card gefunden!");
+    return; // Fehler vermeiden
+  }
+
   for (let indexMessage = 0; indexMessage < taskCategoryContentRef.length; indexMessage++) {
     if (taskCategoryContentRef[indexMessage].contains(taskCard)) {
-      noTaskMessagesContentRef[indexMessage].classList.add("d-none");
+      if (noTaskMessagesContentRef[indexMessage]) {
+        noTaskMessagesContentRef[indexMessage].classList.add("d-none");
+      }
     } else {
-      noTaskMessagesContentRef[indexMessage].classList.remove("d-none");
+      if (noTaskMessagesContentRef[indexMessage]) {
+        noTaskMessagesContentRef[indexMessage].classList.remove("d-none");
+      }
     }
   }
 }
@@ -53,20 +66,15 @@ async function drop(event) {
   let data = event.dataTransfer.getData("text");
   let draggedElement = document.getElementById(data);
   let dropContainer = event.target.closest(".task-wrapper");
-
   if (dropContainer) {
-    dropContainer.innerHTML += draggedElement.outerHTML; // Element kopieren
-    draggedElement.remove(); // Altes Element löschen
-
+    dropContainer.appendChild(draggedElement);
     let noTaskMessage = dropContainer.querySelector(".no-task-message-container");
     if (noTaskMessage) {
       noTaskMessage.style.display = "none";
     }
-
     let taskId = draggedElement.getAttribute("data-task-id");
-    let newStatus = dropContainer.getAttribute("data-status"); // Status des Containers
-
-    await updateTaskStatus(taskId, newStatus); // Firebase aktualisieren
+    let newStatus = dropContainer.getAttribute("data-status");
+    await updateTaskStatus(taskId, newStatus);
     saveBoardState();
   }
   toggleMessageNoTasks();
@@ -163,4 +171,7 @@ function editFeedbackCard() {
     }
 }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
