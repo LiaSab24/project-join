@@ -5,7 +5,7 @@ function getAddTaskOverlayTemplate() {
       <img src="/assets/img/required.png" alt="Required Field Warning" class="error-image">
       <div class="overlay-header">
           <h1>Add Task</h1>
-          <button class="close-btn" onclick="closeOverlay()"><img src="/assets/icons/close.png" alt="Close-Icon"></button>
+          <button class="close-btn" onclick="closeFeedbackOverlay()"><img src="/assets/icons/close.png" alt="Close-Icon"></button>
       </div>
       <div class="overlay-content">
           <div class="form-grid">
@@ -68,7 +68,7 @@ function getFeedbackOverlayTemplate() {
         <section id="userFeedbackOverlay" class="feedback-hidden">
             <div class="feedback-header">
                 <span class="feedback-badge">User Story</span>
-                <button class="close-btn" onclick="closeFeedbackOverlay()">
+                <button class="close-btn" onclick="closeBoardOverlay()">
                     <img src="/assets/icons/close.png" alt="Close-Icon">
                 </button>
             </div>
@@ -106,7 +106,7 @@ function getFeedbackOverlayTemplate() {
                     <img src="/assets/icons/delete.png" alt="Delete-Icon"> Delete
                 </button>
                 <div class="divider"></div>
-                <button class="feedback-edit-btn" onclick="editFeedbackCard()">
+                <button class="feedback-edit-btn" onclick="toggleEditOverlay()">
                     <img src="/assets/icons/edit.png" alt="Edit-Icon"> Edit
                 </button>
             </div>
@@ -124,128 +124,71 @@ function getFeedbackButtonTemplate() {
     `;
 }
 
-
-
-
 function getEditTaskTemplate() {
     return `
-    <div class="userStoryBodyContainer">
-    <div class="userStoryEditContainer">
-        <div class="userStoryEditContainerInside">
-            <div class="userStoryEditCloseButtonContainer">
-                <img onclick="closeUserStoryEdit()" src="#" alt="Close">
+    <div class="userStoryBodyContainer" id="editTaskOverlay">
+        <div class="userStoryEditContainer">
+            <div class="overlay-header">
+                <button class="close-btn" onclick="closeFeedbackOverlay()">
+                    <img src="/assets/icons/close.png" alt="Close-Icon">
+                </button>
             </div>
-            <form id="editTaskForm" action="">
-                <div>
-                    <div class="mTop16">
-                        <label class="editTitleHeadlineContainer" for="title">Title</label>
+            <div class="overlay-edit-content overlay-content">
+                <div class="edit-grid form-grid">
+                    <div class="edit-column form-column">
+                        <label for="taskTitle">Title</label>
+                        <input id="taskTitle" type="text" placeholder="Enter a title" required>
+                        
+                        <label for="taskDescription">Description</label>
+                        <textarea id="taskDescription" rows="3" placeholder="Enter a description" style="height: 120px;"></textarea>
+                        
+                        <label for="taskAssigned">Assigned to</label>
+                        <select id="taskAssigned">
+                            <option>Select contacts to assign</option>
+                            <option>John Doe</option>
+                            <option>Jane Smith</option>
+                        </select>
                     </div>
-                    <div class="editTitleInputContainer">
-                        <input type="text" id="editTitle" required >
-                    </div>
-                </div>
-                <div>
-                    <div class="mTop16">
-                        <label class="editDescriptionContainer" for="description">Description</label>
-                    </div>
-                    <div class="editDescriptionTextAreaContainer mTop8">
-                        <textarea name="description" id="editDescription" rows="5" cols="25"></textarea>
-                    </div>
-                </div>
-                <div>
-                    <div class="mTop16">
-                        <label class="editDueDateContainer" for="Due date">Due date</label>
-                    </div>
-                    <div class="editDueDateInputContainer mTop8">
-                        <input type="date" id="editDueDate" required value="">
-                    </div>
-                </div>
-                <div>
-                    <div class="mTop16">
-                        <label class="editPriorityHeadline" for="priority">Priority</label>
-                    </div>
-                    <div class="editPriorityAllButtonsContainer">
-                        <div onclick="addUrgent(), addUrgentPrio()" id="editUrgent" class="editPriorityButtonContainer ">
-                            <div>Urgent</div>
-                            <div>
-                                <img id="editActiveUrg" src="/assets/icons/add-task-prioUrgent.svg" alt="High priority">
-                            </div>
+                    <div class="divider-edit divider-column"></div>
+                    <div class="form-column edit-column">
+                        <label for="taskDueDate">Due Date</label>
+                        <input id="taskDueDate" type="date" required placeholder="dd/mm/yy">
+                        
+                        <label>Priority</label>
+                        <div class="prio-container">
+                            <button class="prio-btn urgent" onclick="setPriority('urgent')">
+                                Urgent <img src="/assets/icons/Capa-red.png">
+                            </button>
+                            <button class="prio-btn medium" onclick="setPriority('medium')">
+                                Medium <img src="/assets/icons/Capa-yellow.png">
+                            </button>
+                            <button class="prio-btn low" onclick="setPriority('low')">
+                                Low <img src="/assets/icons/capa-green.png">
+                            </button>
                         </div>
-                        <div onclick="addMedium(), addMediumPrio()" id="editMedium" class="editPriorityButtonContainer">
-                            <div>Medium</div>
-                            <div>
-                                <img id="editActiveMed" src="/assets/icons/add-task-prioMedium.svg" alt="Medium priority">
-                            </div>
-                        </div>
-                        <div onclick="addLow(), addLowPrio()" id="editLow" class="editPriorityButtonContainer ">
-                            <div>Low</div>
-                            <div>
-                                <img id="editActiveLow" src="/assets/icons/add-task-prioLow.svg" alt="Low priority">
-                            </div>
+                        
+                        <label for="taskCategory">Category</label>
+                        <select id="taskCategory">
+                            <option>Select task category</option>
+                            <option>User Story</option>
+                            <option>Technical Task</option>
+                        </select>
+
+                        <label>Subtasks</label>
+                        <div class="subtask-container">
+                            <input id="newSubtask" type="text" placeholder="Add new subtask">
+                            <button class="subtask-add-btn">+</button>
                         </div>
                     </div>
                 </div>
-                <div class="mTop24">
-                    <label class="userStory_assignedToHeadline" for="assignedTo">Assigned to</label>
-                </div>
-                <div class="userStoryAssignedToInputAndImageContainer mTop8">
-                    <input oninput="searchPersonAt()" onclick="showPersonsAt(), renderAssignedListAt()" autocomplete="off" id="assigned"type="text" placeholder="Select contacts to assign">
-                    <div id="rotate" onclick="showPersonsAt(), renderAssignedListAt()" class="userStoryAssignedToDropdownMenuImageContainer">
-                        <img src="#" alt="dropdownmenu">
-                    </div>
-                </div>
-                <div id="dropdown-list" class="editDropDownList">
-                </div>
-                <div id="assigned-persons" class="userStoryContactsContainer mTop8">
-                </div>
-                <div class="userStorySubtaskHeadlineContainer mTop16">
-                    <label class="userStorySubtaskHeadline" for="subtasks">Subtasks</label>
-                </div>
-                <div class="userStorySubtasksContainerEdit mTop8">
-                        <div class="userStoryAssignedToInputAndImageContainer">
-                        <input id="subtask" type="text" class="subtask-input medium-font subtaskInput" placeholder="Add new subtask">
-                        <div class="add-new-subtask small-icon-div" id="addSubtaskIcon" onclick="addSubtask()">
-                            <img class="smaller-icon" src=".#">
-                        </div>
-                        <div class="close-approve-container hide" id="addRemoveContainer">
-                            <div class="small-icon-div" onclick="closeSubtask()"><img class="small-icon" src="#"></div>
-                            <span class="small-input-vertical-vector"></span>
-                            <div class="small-icon-div" onclick="aproveSubtaskEdit()"><img class="smaller-icon" src="#"></div>
-                        </div>
-                    </div>
-                    <div id="subtaskDisplayEdit" class="subtaskDisplay flex-column"> 
-                    </div>
-                </div>
-                <div class="userStoryEditOkButtonContainer">
-                    <button class="userStoryEditOkButton" type="button" onclick="saveTaskChanges()">Save <img src="#" alt="Save"></button>
-                </div>
-            </form>
+            </div>
+            <!-- Buttons Section -->
+            <div class="userStoryEditOkButtonContainer">
+                <button class="userStoryEditOkButton" type="button" onclick="saveTaskChanges()">
+                    OK <img class="check-image" src="/assets/icons/check.png" alt="check">
+                </button>
+            </div>
         </div>
-    </div>
     </div>
     `;
 }
-
-/**
- * Erstellt die HTML-Vorlage für eine Task Card.
- * @param {Object} task - Ein Task-Objekt aus Firebase.
- * @returns {string} - HTML-Code der Task Card.
- */
-function createTaskCardTemplate(task) {
-    return `
-      <div class="task-card" draggable="true" ondragstart="drag(event)" onclick="toggleUserFeedback()">
-        <div class="task-badge">${task.category || "Task"}</div>
-        <div class="task-title">${task.title}</div>
-        <div class="task-description">${task.description || "No description available"}</div>
-        <div class="task-progress">
-          <div class="progress-bar">
-            <div class="progress-bar-fill" style="width: ${calculateProgress(task)}%;"></div>
-          </div>
-          <span>${task.subtasksCompleted || 0}/${task.subtasksTotal || 1} Subtasks</span>
-        </div>
-        <div class="task-assignees">
-          ${generateAssigneesHTML(task.assignees)}
-        </div>
-      </div>
-    `;
-  }

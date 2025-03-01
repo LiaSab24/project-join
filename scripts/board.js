@@ -145,20 +145,39 @@ function insertBoardOverlay() {
 }
 
 function closeBoardOverlay() {
-  document.getElementById("overlayBg")?.classList.remove("overlay-active");
-  document.getElementById("addTaskOverlay")?.classList.add("d-none");
-}
+  let overlayBg = document.getElementById("overlayBg");
+  let overlay = document.getElementById("addTaskOverlay");
 
-function closeFeedbackOverlay() {
-  let feedbackOverlay = document.getElementById("feedbackOverlay");
-  if (feedbackOverlay) {
-    feedbackOverlay.remove();
+  if (overlay) {
+    overlay.classList.add("d-none");
+    overlay.style.display = "none";  // Sicherstellen, dass es auch per CSS versteckt ist
+  }
+  if (overlayBg) {
+    overlayBg.classList.remove("overlay-active");
+    overlayBg.style.display = "none";
   }
 }
 
+
+// function closeBoardOverlay() {
+//   document.getElementById("overlayBg")?.classList.remove("overlay-active");
+//   document.getElementById("addTaskOverlay")?.classList.add("d-none");
+// }
+
+/**
+ * Closes the feedback overlay.
+ */
+function closeFeedbackOverlay() {
+  let feedbackOverlay = document.getElementById("feedbackOverlay");
+  if (feedbackOverlay) {
+    feedbackOverlay.classList.add("feedback-hidden");
+  }
+}
+
+
+
 function insertUserFeedback() {
   let existingOverlay = document.getElementById(".user-feedback-wrapper");
-
   if (!existingOverlay) {
     document.body.insertAdjacentHTML("beforeend", getFeedbackOverlayTemplate());
   }
@@ -172,3 +191,48 @@ function toggleUserFeedback() {
   }
   feedbackOverlay.classList.toggle("feedback-hidden");
 }
+
+/**
+ * Öffnet oder schließt das Edit-Overlay für eine Aufgabe.
+ */
+function toggleEditOverlay() {
+  closeFeedbackOverlay();
+  let editOverlay = document.getElementById("editTaskOverlay");
+
+  if (!editOverlay) {
+      insertEditOverlay();
+      setTimeout(() => {
+          editOverlay = document.getElementById("editTaskOverlay");
+          if (editOverlay) {
+              editOverlay.classList.remove("d-none");
+          }
+      }, 100);
+  } else {
+      editOverlay.classList.toggle("d-none");
+  }
+}
+
+/**
+ * Fügt das Edit-Overlay in das DOM ein, falls es noch nicht existiert.
+ */
+function insertEditOverlay() {
+  let container = document.querySelector(".user-feedback-wrapper");
+
+  if (!container) return;
+
+  if (!document.getElementById("editTaskOverlay")) {
+      container.insertAdjacentHTML("beforeend", getEditTaskTemplate());
+  }
+}
+
+/**
+ * Schließt das Edit-Overlay.
+ */
+function closeEditOverlay() {
+  let editOverlay = document.getElementById("editTaskOverlay");
+
+  if (editOverlay) {
+      editOverlay.classList.add("d-none");
+  }
+}
+

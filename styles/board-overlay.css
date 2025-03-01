@@ -99,8 +99,8 @@ body {
 .close-btn {
     background: none;
     border: none;
-    width: 40px;
-    height: 40px;
+    width: 13.15px;
+    height: 13.15px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,7 +113,7 @@ body {
     cursor: pointer;
 }
 
-.form-column {
+.edit-column {
     display: flex;
     flex-direction: column;
     gap: 12px;
