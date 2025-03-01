@@ -4,7 +4,7 @@
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function getAddressbookContactTemplate(indexContact) {
-    return `<div id="${indexContact}" class="contact" onclick="contactClicked(${indexContact})">
+    return `<div id="id${indexContact}" class="contact" onclick="contactClicked(${indexContact})">
                 <div id="profileBadge${indexContact}" class="contact-profile-badge">${nameAbbreviation(indexContact)}</div>
                 <p>
                     <span class="contact-name">${contacts[indexContact].name}</span>
@@ -121,4 +121,62 @@ function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
                 <div class="subtask-list-icons-seperator"></div>
                 <img onclick="confirmEditSubtask(${indexSubtask})" class="subtask-icon" src="/assets/icons/add-task-subtask-submit.svg">
             </div>`
+}
+
+/**
+ * This template displays the users profile in the add-task-assigned-to-dropdown-menu
+ * 
+ * @param {number} indexUser - the index of the user in the contacts-array
+ */
+function getAddTaskDropdownListUserOption(indexUser) {
+    return `<div onclick="contactAssigned('assignedToUserOption', ${indexUser})" id="assignedToUserOption${indexUser}" class="add-task-dropdown-option">
+                <div>
+                    <div id="assignedToPB${indexUser}" class="profile-badge">${nameAbbreviation(indexUser)}</div>
+                    <span>You</span>
+                </div>
+                <div id="assignedToCheckbox${indexUser}" class="add-task-assigned-to-checkbox"></div>
+            </div>`
+}
+
+/**
+ * This template displays a contact in the add-task-assigned-to-dropdown-menu
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function getAddTaskDropdownListContacts(indexContact) {
+    return `<div onclick="contactAssigned('assignedToOption', ${indexContact})" id="assignedToOption${indexContact}" class="add-task-dropdown-option">
+                <div>
+                    <div id="assignedToPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
+                    <span>${contacts[indexContact].name}</span>
+                </div>
+                <div id="assignedToCheckbox${indexContact}" class="add-task-assigned-to-checkbox"></div>
+            </div>`
+}
+
+/**
+ * This template displays a contacts profile badge in the add-task-assigned-to-list
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function getAddTaskContactPB(indexContact) {
+    return `<div id="assignedToListPB${indexContact}" class="profile-badge assigned-element">${nameAbbreviation(indexContact)}</div>`
+}
+
+function getBoardTaskTemplate(indexTask) {
+    return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="toggleUserFeedback()">
+          <div class="task-badge">${tasks[indexTask].category}</div>
+          <div class="task-title">${tasks[indexTask].title}</div>
+          <div class="task-description">${tasks[indexTask].description}</div>
+          <div class="task-progress">
+            <div class="progress-bar">
+              <div class="progress-bar-fill" style="width:${progressSubtasksPercentage(indexTask)};"></div>
+            </div>
+            <span>${progressSubtasksNumbers(3)} Subtasks</span>
+          </div>
+          <div class="task-assignees">
+            <div class="assignee">AM</div>
+            <div class="assignee">EM</div>
+            <div class="assignee">MB</div>
+          </div>
+        </div>`
 }

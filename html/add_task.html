@@ -25,7 +25,7 @@
     <div w3-include-html="sidebar.html"></div>
 
     <main>
-        <h1 class="title">Add Task</h1>
+        <h1 class="title" onclick="getSubtasks()">Add Task</h1>
 
         <form id="addTaskForm">
             <div>
@@ -40,23 +40,10 @@
                     placeholder="Enter a Description"></textarea>
 
                 <label for="addTaskAssignedTo">Assigned to</label>
-                <select onfocus="assignedToDropDownMenu()" onfocusout="assignedToDropDownMenu()" id="addTaskAssignedTo"
-                    aria-placeholder="Select contacts to assign">
-                    <option value="default" selected disabled hidden>Select contacts to assign</option>
-                    <option value="">
-                        <div class="profile-badge">AS</div>
-                        <span>Anja Schulz</span>
-                        <!-- <div class="Checkbox-Remember-Me">
-                            <input required type="checkbox" name="Remember-me" id="checkbox">
-                        </div> -->
-                    </option>
-                </select>
-
-                <div id="addTaskAssignedToProfiles">
-                    <div class="profile-badge">AS</div>
-                    <div class="profile-badge">DE</div>
-                    <div class="profile-badge">EF</div>
-                </div>
+                <input onfocus="toggleAddTaskToDropDownMenu('addTaskAssignedTo', 'addTaskDropdownContacts')" id="addTaskAssignedTo" class="add-task-select-menu"
+                    type="text" placeholder="Select contacts to assign">
+                <div id="addTaskDropdownContacts" class="add-task-dropdown custom-scrollbar"></div>
+                <div id="addTaskAssignedToList"></div>
             </div>
 
             <div class="add-task-seperator"></div>
@@ -88,14 +75,13 @@
                     Category
                     <span class="required-star">*</span>
                 </label>
-                <select id="addTaskCategory">
-                    <option value="default" selected disabled hidden>Select task category</option>
-                    <option value="bug fix">bug fix</option>
-                    <option value="documentation">documentation</option>
-                    <option value="technical task">technical task</option>
-                    <option value="user story">user story</option>
-                </select>
-
+                <input onfocus="toggleAddTaskToDropDownMenu('addTaskCategory','addTaskDropdownCategories')" id="addTaskCategory" class="add-task-select-menu" placeholder="Select task category" readonly>                    
+                <div id="addTaskDropdownCategories" class="add-task-dropdown d-none">
+                    <div onclick="selectTaskCategory('bug fix')" class="add-task-dropdown-option">bug fix</div>
+                    <div onclick="selectTaskCategory('documentation')" class="add-task-dropdown-option">documentation</div>
+                    <div onclick="selectTaskCategory('technical task')" class="add-task-dropdown-option">technical task</div>
+                    <div onclick="selectTaskCategory('user story')" class="add-task-dropdown-option">user story</div>
+                </div>
 
                 <label for="addTaskSubtask">Subtasks</label>
                 <input onfocus="changeSubtaskIcons()" onfocusout="changeSubtaskIcons()" type="text" id="addTaskSubtask"
@@ -107,7 +93,7 @@
                     <img onclick="addSubtaskToList()" class="subtask-icon"
                         src="/assets/icons/add-task-subtask-submit.svg">
                 </div>
-                <ul id="addTaskSubtaskList"></ul>
+                <ul id="addTaskSubtaskList" class="custom-scrollbar"></ul>
             </div>
         </form>
 
@@ -118,7 +104,7 @@
             </div>
 
             <div class="submit-btns">
-                <button onclick="clearTaskForm()" class="cancel-btn" id="contactsOverlayCancel">
+                <button onclick="initAddTask()" class="cancel-btn" id="contactsOverlayCancel">
                     Cancel
                     <div class="cancel-img"></div>
                 </button>
@@ -128,6 +114,8 @@
                 </button>
             </div>
         </div>
+
+        <div onclick="removeAddTaskOverlay()" id="addTaskOverlayBg" class="d-none"></div>
     </main>
 
     <footer></footer>

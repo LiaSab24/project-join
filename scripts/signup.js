@@ -27,12 +27,13 @@ async function addUser() {
     let userPassword = checkPasswordConfirmed();
     if (userPassword !== undefined) {
         let checkbox = document.getElementById("checkboxSignUp");
-        if (checkbox.checked && userName !== "" && userMail !== "" ) {
+        if (checkbox.checked && userName !== "" && userMail !== "") {
             await postData("/users/", {
                 "name": userName,
                 "mail": userMail,
                 "password": userPassword
             });
+            await addUserToContacts(userName, userMail);
             signUpSuccesfully();
             clearSignUpForm();
         }
@@ -56,7 +57,7 @@ function checkPasswordConfirmed() {
  */
 function signUpSuccesfully() {
     let signUpMsg = document.getElementById("msgSignUp");
-        signUpMsg.classList.remove("d-none");
+    signUpMsg.classList.remove("d-none");
     setTimeout(function () {
         signUpMsg.classList.add("d-none");
         redirectionToLogIn();
@@ -68,4 +69,18 @@ function signUpSuccesfully() {
  */
 function redirectionToLogIn() {
     window.location.href = "login.html";
+}
+
+/**
+ * This function reads out the data of the add-contact-form and sends it to firebase
+ */
+async function addUserToContacts(userName, userMail) {
+    let indexContact = contacts.length + 1;
+    let contactColor = await assignRandomColor(indexContact);
+    postData("/contacts/", {
+        "name": userName,
+        "mail": userMail,
+        "phone": "",
+        "color": contactColor
+    });
 }

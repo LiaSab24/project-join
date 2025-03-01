@@ -25,7 +25,7 @@
     <div w3-include-html="sidebar.html"></div>
 
     <main>
-        <section class="address-book">
+        <section class="address-book custom-scrollbar">
             <div class="add-new-contact">
                 <button onclick="toggleContactsOverlay(), adjustOverlayToAdd()">
                     <span>Add new contact</span>
@@ -176,37 +176,37 @@
         </section>
     </main>
 
-    <div id="overlayBg" class="d-none">
-        <section id="overlayContact" class="d-none animation-close-overlay">
-            <div class="overlay-title">
-                <img class="overlay-join-logo" src="/assets/icons/join-logo-light.svg">
-                <h1 id="overlayTitleH1">Add contact</h1>
-                <p id="overlayTitleP">Tasks are better with a team!</p>
-                <img src="/assets/icons/contacts-overlay-underline.svg">
-            </div>
-            <div class="overlay-contact-information">
-                <img onclick="toggleContactsOverlay()" src="/assets/icons/contacts-overlay-close.svg"
-                    class="overlay-close">
-                <div>
-                    <div id="overlayProfileBadge">
-                        <img src="/assets/icons/contacts-overlay-profile-badge-anonymous.svg">
-                    </div>
-                    <form class="overlay-form">
-                        <input id="addContactName" type="text" placeholder="Name" required>
-                        <input id="addContactMail" type="text" placeholder="Email" required>
-                        <input id="addContactPhone" type="text" placeholder="Phone" required>
-
-                        <div id="contactsSubmitBtns"></div>
-                    </form>
+    <div onclick="toggleContactsOverlay()" id="overlayBg" class="d-none"></div>
+    
+    <section id="overlayContact" class="d-none animation-close-overlay">
+        <div class="overlay-title">
+            <img class="overlay-join-logo" src="/assets/icons/join-logo-light.svg">
+            <h1 id="overlayTitleH1">Add contact</h1>
+            <p id="overlayTitleP">Tasks are better with a team!</p>
+            <img src="/assets/icons/contacts-overlay-underline.svg">
+        </div>
+        <div class="overlay-contact-information">
+            <img onclick="toggleContactsOverlay()" src="/assets/icons/contacts-overlay-close.svg" class="overlay-close">
+            <div>
+                <div id="overlayProfileBadge">
+                    <img src="/assets/icons/contacts-overlay-profile-badge-anonymous.svg">
                 </div>
+                <form class="overlay-form">
+                    <input id="addContactName" type="text" placeholder="Name" required>
+                    <input id="addContactMail" type="text" placeholder="Email" required>
+                    <input id="addContactPhone" type="text" placeholder="Phone">
+
+                    <div id="contactsSubmitBtns"></div>
+                </form>
             </div>
-            <div class="overlay-input-icons">
-                <img src="/assets/icons/contacts-overlay-name.svg" alt="Name">
-                <img src="/assets/icons/contacts-overlay-email.svg" alt="Email">
-                <img src="/assets/icons/contacts-overlay-phone.svg" alt="Phone">
-            </div>
-        </section>
-    </div>
+        </div>
+        <div class="overlay-input-icons">
+            <img src="/assets/icons/contacts-overlay-name.svg" alt="Name">
+            <img src="/assets/icons/contacts-overlay-email.svg" alt="Email">
+            <img src="/assets/icons/contacts-overlay-phone.svg" alt="Phone">
+        </div>
+    </section>
+
 
     <section class="contact-messages">
         <div id="contactSuccesfullyCreated" class="contact-succesfull-msg">

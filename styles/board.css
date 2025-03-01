@@ -193,6 +193,10 @@ button img {
   background-color: #e7e7e7;
 }
 
+.board-tasks-list {
+  height: 688px;
+}
+
 .margin {
   margin-top: 15px;
 }
@@ -206,7 +210,6 @@ button img {
   flex-direction: column;
   gap: 10px;
   margin-top: 16px;
-  position: fixed;
   max-width: 252px;
   height: 263px;
 }

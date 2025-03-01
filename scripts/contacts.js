@@ -7,6 +7,7 @@ async function initContacts() {
     await init();
     renderAddressBook();
     clearActiveContacts();
+    hideAllUsers("id");
     hideNotUsedLetters();
 }
 
@@ -123,26 +124,6 @@ async function addContact() {
     }
 }
 
-
-/**
- * This function is part of the 'addContact'-function and assigns a random color of the given colors-palette
- * 
- * @param {number} indexContact - the index of the contact in the contacts-array
- */
-async function assignRandomColor(indexContact) {
-    if (contactColors[indexContact]) {
-        return contactColors[indexContact];
-    }
-    if (availableColors.length === 0) availableColors = [...colors];
-
-    let randomIndex = Math.floor(Math.random() * availableColors.length);
-    let assignedColor = availableColors.splice(randomIndex, 1)[0];
-
-    contactColors[indexContact] = assignedColor;
-    localStorage.setItem("contactColors", JSON.stringify(contactColors));
-    return assignedColor;
-}
-
 /**
  * This function shows the 'contact succesfully created'-message after adding the contact to the contacts-array firebase was succesfull
  */
@@ -213,7 +194,6 @@ async function saveEditContact(indexContact) {
         contactClicked(indexContact);
         contactSuccesfullMsg("contactSuccesfullyEdited");
     }
-
 }
 
 // async function addContact() {

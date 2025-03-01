@@ -4,7 +4,8 @@ let users = [];
 let tasks = [];
 let contacts = [];
 
-let currentUser = 1;                    //0=max mustermann, 1=Guest
+let currentUser = 0;                                              //0=max mustermann, 1==Guest
+let indexUser                    
 
 const colors = [
   "#ff7a00", // Vivid Orange
@@ -33,6 +34,7 @@ let contactColors = {};
 async function init() {
   //LOADING SCREEN;
   await fetchDataJson();
+  userIndexInContactsArray(currentUser);
 }
 
 /**
@@ -41,7 +43,7 @@ async function init() {
 async function fetchDataJson() {
   let joinData = await fetch(BASE_URL + ".json");
   let joinDataJson = await joinData.json();
-  fillArrays(joinDataJson); 
+  filArrays(joinDataJson);
 }
 
 /**
@@ -49,12 +51,28 @@ async function fetchDataJson() {
  * 
  * @param {Object} joinDataJson - the fetched object containing the users-, tasks-, and contacts-data
  */
-function fillArrays(joinDataJson) {
-  users = joinDataJson.users ? Object.values(joinDataJson.users) : [];
-  tasks = joinDataJson.tasks ? Object.values(joinDataJson.tasks) : [];
-  contacts = joinDataJson.contacts ? Object.values(joinDataJson.contacts) : [];
+function filArrays(joinDataJson) {
+  users = Object.values(joinDataJson.users);
+  tasks = Object.values(joinDataJson.tasks);
+  for (let indexTask = 0; indexTask < tasks.length; indexTask++) {
+    tasks[indexTask].url = Object.keys(joinDataJson.tasks)[indexTask];
+  }
+  contacts = Object.values(joinDataJson.contacts);
+  for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
+    contacts[indexContact].url = Object.keys(joinDataJson.contacts)[indexContact];
+  }
 }
 
+/**
+ * This function iterates through the contacts-array and finds the index of the contact of the current user
+ * 
+ * @param {number} currentUser - the index of the user in the user-array
+ */
+function userIndexInContactsArray(currentUser) {
+  let userName = users[currentUser].name;
+  let indexContactUser = contacts.findIndex(index => index.name === userName);
+  indexUser = indexContactUser;
+}
 
 /**
  * This function is used for the addUser()-, addTask()- and addContact()-function to transfer the added data to firebase
@@ -63,19 +81,52 @@ function fillArrays(joinDataJson) {
  * @param {object} data - an object, that contains all the key-value-pairs that should be added to firebase
  */
 async function postData(path = "", data = {}) {
-  console.log(path);
-  console.log(data);
-  
   let newData = await fetch(BASE_URL + path + ".json", {
     method: "POST",
-    headers: {
+    header: {
       "Content-type": "application/json",
     },
     body: JSON.stringify(data)
   });
-  let result = await newData.json();
-  console.log("Data posted:", result);
-  return result;
+  await init();
+  return newDataToJson = await newData.json();
+}
+
+/**
+ * This function changes edited data in firebase
+ * 
+ * @param {string} path - the path, where the data should be added in firebase (users, tasks, contacts)
+ * @param {object} data - an object, that contains all the key-value-pairs that should be added to firebase
+ */
+async function putData(path = "", data = {}) {
+  let newData = await fetch(BASE_URL + path + ".json", {
+    method: "PUT",
+    header: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data)
+  });
+  await init();
+  return newDataToJson = await newData.json();
+}
+
+/**
+ * This function assigns a random color of the given colors-palette
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+async function assignRandomColor(indexContact) {
+  if (contactColors[indexContact]) {
+      return contactColors[indexContact];
+  }
+  if (availableColors.length === 0) availableColors = [...colors];
+
+  let randomIndex = Math.floor(Math.random() * availableColors.length);
+  let assignedColor = availableColors.splice(randomIndex, 1)[0];
+
+  contactColors[indexContact] = assignedColor;
+  localStorage.setItem("contactColors", JSON.stringify(contactColors));
+  return assignedColor;
 }
 
 /**
@@ -88,8 +139,32 @@ function profileBadgeColor(contentRef, indexContact) {
   document.getElementById(contentRef).style.backgroundColor = contacts[indexContact].color;
 }
 
+/**
+ * This function extracts the first letter of the contacts first and of the contacts last name and returns them 
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function nameAbbreviation(indexContact) {
+  let contactFullName = contacts[indexContact].name.toUpperCase();
+  let contactFirstName = contactFullName.substring(0, contactFullName.indexOf(' '));
+  let contactLastName = contactFullName.substring(contactFullName.indexOf(' ') + 1);
+  let firstLetter = contactFirstName.charAt(0);
+  let secondLetter = contactLastName.charAt(0);
+  return firstLetter + secondLetter
+}
 
-
+/**
+ * This function hides the address book entrie of all users
+ * 
+ * @param {string} contentRef - the repetetive part of the id that is used to find the element to remove
+ */
+function hideAllUsers(contentRef) {
+  for (let indexUser = 0; indexUser < users.length-1; indexUser++) {
+    let usersInContactsIds = contacts.findIndex(index => index.name === users[indexUser].name).toString();
+    let usersAddressBookEntrie = document.getElementById(contentRef + usersInContactsIds);
+    usersAddressBookEntrie.remove();
+  }
+}
 
 //__________________________________________
 

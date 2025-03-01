@@ -123,3 +123,81 @@ function addTestUser() {
       "password": testUserPassword
   });
 }
+
+
+
+
+
+
+async function initContacts() {
+  await init();
+  renderAddressBook();
+  clearActiveContacts();
+  hideAllUsers(indexUser.toString());
+  hideNotUsedLetters();
+}
+
+/**
+ * This function hides the address book entrie of the user
+ * 
+ * @param {string} contentRef - the id of the element that should hide
+ */
+function hideCurrentUser(contentRef) {
+  let usersAddressBookEntrie = document.getElementById(contentRef);
+  usersAddressBookEntrie.remove();
+}
+
+
+
+
+
+
+
+
+
+//initBoard()
+
+function restoreBoardState() {
+  let boardState = JSON.parse(localStorage.getItem("boardState"));
+  if (boardState) {
+    Object.keys(boardState).forEach(containerId => {
+      let container = document.getElementById(containerId);
+      let noTaskMessage = container.querySelector(".no-task-message-container");
+      let taskHTML = "";
+      boardState[containerId].forEach(taskId => {
+        let taskElement = document.getElementById(taskId);
+        if (taskElement) {
+          taskHTML += taskElement.outerHTML;}});
+      container.innerHTML += taskHTML;
+      if (taskHTML.trim() !== "" && noTaskMessage) {
+        noTaskMessage.style.display = "none";}});
+  }
+}
+
+
+function drop(event) {
+  event.preventDefault();
+  let data = event.dataTransfer.getData("text");
+  let draggedElement = document.getElementById(data);
+  let dropContainer = event.target.closest(".task-wrapper");
+  if (dropContainer) {
+    dropContainer.innerHTML += draggedElement.outerHTML;
+    draggedElement.remove();
+    // let noTaskMessage = dropContainer.querySelector(".no-task-message-container");
+    // if (noTaskMessage) {
+    //   noTaskMessage.style.display = "none";
+    // }
+    //saveBoardState();
+  }
+  toggleMessageNoTasks();
+}
+
+
+function saveBoardState() {
+  let boardState = {};
+  document.querySelectorAll(".task-wrapper").forEach(wrapper => {
+    let tasks = Array.from(wrapper.querySelectorAll(".task-card")).map(task => task.id);
+    boardState[wrapper.id] = tasks;
+  });
+  localStorage.setItem("boardState", JSON.stringify(boardState));
+}

@@ -4,7 +4,8 @@
 async function initAddTask() {
     await init();
     clearTaskForm()
-    fixDateInput();
+    //fixDateInput();
+    fillAssignedToDropDownMenu();
 }
 
 /**
@@ -13,22 +14,22 @@ async function initAddTask() {
 function clearTaskForm() {
     document.getElementById("addTaskTitle").value = "";
     document.getElementById("addTaskDescription").value = "";
-    document.getElementById("addTaskAssignedTo").value = "default";
-    clearAssignedToList();
+    document.getElementById("addTaskAssignedTo").value = "";
+    clearAssignedTo();
     document.getElementById("addTaskDate").value = "";
     clearPriorityBtns();
-    document.getElementById("addTaskCategory").value = "default";
+    document.getElementById("addTaskCategory").placeholder = "Select task category";
     document.getElementById("addTaskSubtask").value = "";
-    //clearSubtaskList();
+    document.getElementById("addTaskSubtaskList").innerHTML = "";
 }
 
 /**
  * This function is part of the clearTaskForm-function and resets the select-input and list for the assigned contacts
  */
-function clearAssignedToList() {
-    //remove all profile Badges from #addTaskAssignedToProfiles
-    //remove all checks from checkboxes
-    //show placeholder
+function clearAssignedTo() {
+    document.getElementById("addTaskDropdownContacts").classList.add("d-none");
+    document.getElementById("addTaskDropdownContacts").innerHTML = "";
+    document.getElementById("addTaskAssignedToList").innerHTML= "";
 }
 
 /**
@@ -43,30 +44,100 @@ function clearPriorityBtns() {
     document.getElementById("prioLowImg").src = "/assets/icons/add-task-prioLow.svg";
 }
 
+
+
+// function fixDateInput() {
+//     const dateInput = document.querySelector("#addTaskDate");
+//     if (dateInput && !dateInput.hasAttribute("data-flatpickr-initialized")) {
+//         flatpickr(dateInput, {
+//             dateFormat: "d/m/y", // Korrektes Format (2-stelliges Jahr)
+//             allowInput: true, // Benutzer kann auch tippen
+//             clickOpens: true, // Popup öffnet sich automatisch beim Klick
+//             defaultDate: null, // Kein voreingestelltes Datum
+//         });
+//         dateInput.setAttribute("data-flatpickr-initialized", "true");
+//     }
+// }
+
+
+
 /**
- * This function is part of the clearTaskForm-function and clears the subtasks-list and input
+ * This function adds the invisible overlay behind the dropdown-menu for "assigned to" and "category"
+ * This way, the user is able to close those menues by clicking outside the menu
  */
-function clearSubtaskList() {
-    const subtasksListContentRef = document.getElementById("addTaskSubtaskList");
-    subtasksListContentRef.innerHTML = "";
-    //show placeholder
+function addAddTaskOverlay() {
+    let overlayBgContentRef = document.getElementById("addTaskOverlayBg");
+    overlayBgContentRef.classList.remove("d-none");
 }
 
-function fixDateInput() {
-    const dateInput = document.querySelector("#addTaskDate");
-    if (dateInput && !dateInput.hasAttribute("data-flatpickr-initialized")) {
-        flatpickr(dateInput, {
-            dateFormat: "d/m/y", // Korrektes Format (2-stelliges Jahr)
-            allowInput: true, // Benutzer kann auch tippen
-            clickOpens: true, // Popup öffnet sich automatisch beim Klick
-            defaultDate: null, // Kein voreingestelltes Datum
-        });
-        dateInput.setAttribute("data-flatpickr-initialized", "true");
+/**
+ * This function removes the invisible overlay behind the dropdown-menu for "assigned to" and "category"
+ * Furthermore it hides both dropdown-menus
+ */
+function removeAddTaskOverlay() {
+    document.getElementById("addTaskOverlayBg").classList.add("d-none");
+    document.getElementById('addTaskDropdownContacts').classList.add("d-none");
+    document.getElementById('addTaskAssignedTo').classList.remove("add-task-current-select");
+    document.getElementById('addTaskDropdownCategories').classList.add("d-none");
+    document.getElementById('addTaskCategory').classList.remove("add-task-current-select");
+}
+
+/**
+ * This function toggles the visibility of the dropdown-menu for "assigned to" and "category"
+ * 
+ * @param {string} contentRef - the id of the dropdown-menu, that is clicked
+ */
+function toggleAddTaskToDropDownMenu(inputContentRef, DropdownContentRef) {
+    addAddTaskOverlay();
+    document.getElementById(inputContentRef).classList.add("add-task-current-select");
+    document.getElementById(DropdownContentRef).classList.remove("d-none");
+}
+
+/**
+ * This function fills the assigned-to-dropdown-menu with the contacts from the contact-array(template)
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function fillAssignedToDropDownMenu() {
+    let assignedToSelect = document.getElementById("addTaskDropdownContacts");
+    assignedToSelect.innerHTML += getAddTaskDropdownListUserOption(indexUser);
+    profileBadgeColor("assignedToPB" + indexUser, indexUser);
+    for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
+        assignedToSelect.innerHTML += getAddTaskDropdownListContacts(indexContact);
+        profileBadgeColor("assignedToPB" + indexContact, indexContact);
     }
+    hideAllUsers("assignedToOption");
 }
 
-function assignedToDropDownMenu() {
-    //...
+/**
+ * This function gives the user the ability to see, which contacts are currently assigned
+ * 
+ * @param {string} contentRef - the id of the assigned contact
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function contactAssigned(contentRef, indexContact) {
+    let assignedContact = document.getElementById(contentRef + indexContact);
+    assignedContact.classList.toggle("option-contact-assigned");
+    let assignedToCheckbox = document.getElementById("assignedToCheckbox" + indexContact);
+    assignedToCheckbox.classList.toggle("checkbox-contact-assigned");
+    addAssignedContactToList(indexContact);
+}
+
+/**
+ * This function removes the assigned contact profile badge from the assigned-contacts-list, if it is in the list.
+ * Otherwise it adds the assigned contact profile badge to the list.
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function addAssignedContactToList(indexContact) {
+    let assignedContactsList = document.getElementById("addTaskAssignedToList");
+    let assignedContact = document.getElementById("assignedToListPB" + indexContact);
+    if (assignedContact) {
+        assignedContact.remove();
+    } else {
+        assignedContactsList.innerHTML += getAddTaskContactPB(indexContact);
+        profileBadgeColor("assignedToListPB" + indexContact, indexContact);
+    }
 }
 
 /**
@@ -81,6 +152,18 @@ function priorityBtnBg(priority) {
     clickedPrioBtn.classList.add(priority + "Clicked");
     clickedPrioBtn.classList.add("clicked");
     clickedPrioBtnImg.src = "/assets/icons/add-task-" + priority + "-clicked.svg";
+}
+
+/**
+ * This function shows the currently clicked task-category
+ * 
+ * @param {string} category - This is the chosen category for the task
+ */
+function selectTaskCategory(category) {
+    let categoryInput = document.getElementById("addTaskCategory");
+    categoryInput.placeholder = category;
+    toggleAddTaskToDropDownMenu('addTaskCategory', 'addTaskDropdownCategories');
+    removeAddTaskOverlay();
 }
 
 /**
@@ -146,7 +229,7 @@ function deleteSubtask(indexSubtask) {
 /**
  * This function replaces the subtask-edit element with an list element (template) and includes the edited input-value. 
  * 
-* @param {number} indexSubtask - the index of the subtask in the subtasks-list
+ * @param {number} indexSubtask - the index of the subtask in the subtasks-list
  */
 function confirmEditSubtask(indexSubtask) {
     let subtaskContentRef = document.getElementById("subtask" + indexSubtask);
@@ -164,11 +247,10 @@ function confirmEditSubtask(indexSubtask) {
 function addTask() {
     let taskTitle = document.getElementById("addTaskTitle").value;
     let taskDescription = document.getElementById("addTaskDescription").value;
-    let taskAssignedTo = document.getElementById("addTaskAssignedTo").value;
+    let taskAssignedTo = getAssignedContacts();
     let taskDueDate = document.getElementById("addTaskDate").value;
     let taskPriority = document.querySelector(".clicked").innerText;
-    console.log(taskPriority);
-    let taskCategory = document.getElementById("addTaskCategory").value;
+    let taskCategory = checkTaskCategory();
     let taskSubtasks = getSubtasks();
     postData("/tasks/", {
         "title": taskTitle,
@@ -177,20 +259,49 @@ function addTask() {
         "dueDate": taskDueDate,
         "priority": taskPriority,
         "category": taskCategory,
-        "subtasks": taskSubtasks
+        "subtasks": taskSubtasks,
+        "progress": {"progress": "toDo"}
     });
     clearTaskForm();
 }
 
 /**
- * This function is part of the add-task-function and creates and returns an array with all the subtasks in the subtask-list
+ * This function is part of the addTask()-function and if a task-category is selected and returns it
+ */
+function checkTaskCategory() {
+    let taskCategory = document.getElementById("addTaskCategory").placeholder;
+    if (taskCategory !== "Select task category") {
+        console.log(taskCategory)
+        return taskCategory;
+    }
+}
+
+/**
+ * This function is part of the addTask()-function and creates and returns an array with all the assigned contacts in the assigned-contacts-list
+ */
+function getAssignedContacts() {
+    let assignedContactsList = document.querySelectorAll(".assigned-element");
+    let assignedContactsIndexArray = [];
+    let assignedContactsArray = [];
+    for (let indexAssignedContact = 0; indexAssignedContact < assignedContactsList.length; indexAssignedContact++) {
+        let assignedContactId =assignedContactsList[indexAssignedContact].id.replace("assignedToListPB", " ").trim();
+        assignedContactsIndexArray.push(assignedContactId);
+        assignedContactsArray.push(contacts[assignedContactsIndexArray[indexAssignedContact]]);
+    }
+    return assignedContactsArray ;
+}
+
+/**
+ * This function is part of the addTask()-function and creates and returns an array with all the subtasks in the subtask-list
  */
 function getSubtasks() {
     let subtasks = document.querySelectorAll(".subtask-element");
-    let subtaskArray = [];
+    let subtasksArray = [];
     for (let indexSubtask = 0; indexSubtask < subtasks.length; indexSubtask++) {
-        subtaskArray.push(subtasks[indexSubtask].innerHTML)
+        subtasksArray.push({
+            "subtask": subtasks[indexSubtask].innerHTML,
+            "completed": false
+        })
     }
-    console.log(subtaskArray);
-    return subtaskArray;
+    return subtasksArray;
 }
