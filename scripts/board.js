@@ -111,6 +111,9 @@ function toggleMessageNoTasks() {
   }
 }
 
+/**
+ * This function is closes all Board-Overlays
+ */
 function closeOverlays() {
   document.getElementById("boardOverlayBg").classList.add("d-none");
   document.getElementById("boardOverlayBg").classList.remove("overlay-active");
@@ -196,13 +199,6 @@ async function openBoardAddTaskOverlay(addTaskOverlay) {
   addTaskOverlayContentRef.classList.remove("d-none");
   addTaskOverlayContentRef.innerHTML = "";
   addTaskOverlayContentRef.innerHTML = addTaskOverlay;
-}
-
-function closeFeedbackOverlay() {
-  let feedbackOverlay = document.getElementById("feedbackOverlay");
-  if (feedbackOverlay) {
-    feedbackOverlay.remove();
-  }
 }
 
 // function insertUserFeedback() {

@@ -380,7 +380,3 @@ button img {
 #addTaskOverlay #addTaskDropdownCategories {
   top: 487px !important;
 }
-
-#addTaskOverlay .cancel-img {
-  display: none;
-}
