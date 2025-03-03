@@ -222,6 +222,9 @@ function adjustAddTaskProgress(progress) {
   addTaskCreateBtnClassList.add("progress-" + progress);
 }
 
+/**
+ * This function adds an onclick-event to the #addTaskCreate-Button for the #addTaskOverlay
+ */
 function addOnclickToCreateBtn() {
   let addTaskCreateBtn = document.getElementById("addTaskCreate");
   addTaskCreateBtn.addEventListener("click", event => {

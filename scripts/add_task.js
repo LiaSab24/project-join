@@ -306,6 +306,9 @@ function getSubtasks() {
     return subtasksArray;
 }
 
+/**
+ * This function is part of the addTask()-function returns the progress-category, where the new task should be added
+ */
 function getProgress() {
     let progressContentRef = document.getElementById("addTaskCreate").classList[1];
     switch (progressContentRef) {
