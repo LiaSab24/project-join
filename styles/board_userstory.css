@@ -235,8 +235,8 @@ button:hover {
     flex-direction: column;
     gap: 20px;
     padding: 0 4px;
-    overflow: auto; /* Ermöglicht das Scrollen des Inhalts */
-    flex-grow: 1; /* Der Inhalt nimmt den verbleibenden Platz ein */
+    overflow: auto;
+    flex-grow: 1;
     padding-bottom: 80px;
 }
 
@@ -262,12 +262,10 @@ button:hover {
 .userStoryEditOkButtonContainer {
     display: flex;
     padding-top: 20px;
-    position: sticky;
-    bottom: 48px;
-    right: 25px;
-    left: 78px;
+    position: fixed;
+    bottom: 16px;
+    left: 274px;
     z-index: 2;
-    background-color: white;
     height: 78px;
 }
 

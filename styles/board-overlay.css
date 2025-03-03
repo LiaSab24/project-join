@@ -71,13 +71,6 @@ body {
     display: none;
 }
 
-.overlay-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
 .overlay-header h1 {
     padding-left: 48px;
 }
@@ -91,21 +84,19 @@ body {
     width: 100%;
 }
 
-.overlay-header h2 {
-    font-size: 28px;
-    font-weight: bold;
-}
-
 .close-btn {
     background: none;
     border: none;
-    width: 13.15px;
-    height: 13.15px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: end;
     border-radius: 50%;
     transition: background 0.2s ease-in-out;
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    left: 530px;
 }
 
 .close-btn:hover {
@@ -134,9 +125,9 @@ body {
 }
 
 .overlay-content label {
-    font-weight: 600;
-    font-size: 14px;
-    color: #333;
+    font-weight: 400;
+    font-size: 16px;
+    color: #2A3647;
 }
 
 .overlay-content label[for="taskTitle"]::after,

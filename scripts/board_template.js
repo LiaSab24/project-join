@@ -7,7 +7,7 @@ function getAddTaskOverlayTemplate() {
           <h1>Add Task</h1>
           <button class="close-btn" onclick="closeFeedbackOverlay()"><img src="/assets/icons/close.png" alt="Close-Icon"></button>
       </div>
-      <div class="overlay-content">
+      <div>
           <div class="form-grid">
               <div class="form-column">
                   <label for="taskTitle">Title</label>
@@ -127,8 +127,8 @@ function getFeedbackButtonTemplate() {
 function getEditTaskTemplate() {
     return `
     <div class="userStoryBodyContainer" id="editTaskOverlay">
-        <div class="userStoryEditContainer">
-            <div class="overlay-header">
+        <div>
+            <div>
                 <button class="close-btn" onclick="closeFeedbackOverlay()">
                     <img src="/assets/icons/close.png" alt="Close-Icon">
                 </button>
@@ -136,25 +136,19 @@ function getEditTaskTemplate() {
             <div class="overlay-edit-content overlay-content">
                 <div class="edit-grid form-grid">
                     <div class="edit-column form-column">
-                        <label for="taskTitle">Title</label>
-                        <input id="taskTitle" type="text" placeholder="Enter a title" required>
+                        <label class="edit-hero">Title</label>
+                        <input id="taskTitle" type="text" placeholder="#">
                         
-                        <label for="taskDescription">Description</label>
+                        <label class="edit-hero">Description</label>
                         <textarea id="taskDescription" rows="3" placeholder="Enter a description" style="height: 120px;"></textarea>
-                        
-                        <label for="taskAssigned">Assigned to</label>
-                        <select id="taskAssigned">
-                            <option>Select contacts to assign</option>
-                            <option>John Doe</option>
-                            <option>Jane Smith</option>
-                        </select>
+                    
                     </div>
                     <div class="divider-edit divider-column"></div>
                     <div class="form-column edit-column">
-                        <label for="taskDueDate">Due Date</label>
+                        <label class="edit-hero">Due Date</label>
                         <input id="taskDueDate" type="date" required placeholder="dd/mm/yy">
                         
-                        <label>Priority</label>
+                        <label class="edit-hero">Priority</label>
                         <div class="prio-container">
                             <button class="prio-btn urgent" onclick="setPriority('urgent')">
                                 Urgent <img src="/assets/icons/Capa-red.png">
@@ -167,14 +161,14 @@ function getEditTaskTemplate() {
                             </button>
                         </div>
                         
-                        <label for="taskCategory">Category</label>
+                        <label class="edit-hero">Category</label>
                         <select id="taskCategory">
                             <option>Select task category</option>
                             <option>User Story</option>
                             <option>Technical Task</option>
                         </select>
 
-                        <label>Subtasks</label>
+                        <label class="edit-hero">Subtasks</label>
                         <div class="subtask-container">
                             <input id="newSubtask" type="text" placeholder="Add new subtask">
                             <button class="subtask-add-btn">+</button>
