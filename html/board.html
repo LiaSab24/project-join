@@ -44,7 +44,7 @@
           </div>
         </div>
 
-        <button class="button" onclick="openAddTaskOverlays()">
+        <button class="button" onclick="boardAddTask('toDo')">
           <h2>Add Task</h2>
           <img src="/assets/icons/add.png" alt="Add">
         </button>
@@ -54,7 +54,7 @@
       <div class="task-wrapper">
         <div class="task-headline">
           <h2>To Do</h2>
-          <div onclick="openAddTaskOverlays()" class="icon-container"><img src="/assets/icons/plus-button.png" alt="Add Button"></div>
+          <div onclick="boardAddTask('toDo')" class="icon-container"><img src="/assets/icons/plus-button.png" alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTask">No tasks in To Do</div>
@@ -65,7 +65,7 @@
       <div class="task-wrapper">
         <div class="task-headline">
           <h2>In Progress</h2>
-          <div onclick="openAddTaskOverlays()" class="icon-container"><img src="/assets/icons/plus-button.png" alt="Add Button"></div>
+          <div onclick="boardAddTask('inProgress')" class="icon-container"><img src="/assets/icons/plus-button.png" alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTaskInProgress">No tasks in Progress</div>
@@ -76,7 +76,7 @@
       <div class="task-wrapper">
         <div class="task-headline">
           <h2>Await Feedback</h2>
-          <div onclick="openAddTaskOverlays()" class="icon-container"><img src="/assets/icons/plus-button.png" alt="Add Button"></div>
+          <div onclick="boardAddTask('awaitFeedback')" class="icon-container"><img src="/assets/icons/plus-button.png" alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTaskAwaitFeedback">No tasks in awaiting feedback</div>

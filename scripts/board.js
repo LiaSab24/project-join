@@ -11,6 +11,10 @@ async function initBoard() {
  * This function renders the tasks and adds a task-template for each each element in the tasks-array
  */
 function renderTasks() {
+  document.getElementById("toDo").innerHTML = "";
+  document.getElementById("inProgress").innerHTML = "";
+  document.getElementById("awaitFeedback").innerHTML = "";
+  document.getElementById("done").innerHTML = "";
   for (let indexTask = 0; indexTask < tasks.length; indexTask++) {
     let taskProgress = tasks[indexTask].progress.progress;
     let taskProgressContentRef = document.getElementById(taskProgress);
@@ -159,8 +163,10 @@ function updateTaskProgress(progress, indexTask) {
 
 /**
  * This function fetches the main-part of the add_task.html and implementes it in the #addTaskOverlay-section
+ * 
+ * @param {string} progress - the progress-category, where the new task should be in after submitting
  */
-async function openAddTaskOverlays() {
+async function boardAddTask(progress) {
   fetch('add_task.html')
     .then(response => {
       return response.text()
@@ -168,10 +174,10 @@ async function openAddTaskOverlays() {
     .then(html => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, "text/html");
-      let addTaskOverlay = doc.querySelector('#addTask').innerHTML;
+      let addTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
       initAddTask();
       openBoardBgOverlay();
-      openBoardAddTaskOverlay(addTaskOverlay);
+      openBoardAddTaskOverlay(addTaskOverlayContent, progress);
     })
     .catch(error => {
       console.error('Failed to fetch page: add_task.html')
@@ -179,7 +185,7 @@ async function openAddTaskOverlays() {
 }
 
 /**
- * This function is part of the openAddTaskOverlay()-function and adds visibility of the #boardOverlayBg
+ * This function is part of the boardAddTask()-function and adds visibility of the #boardOverlayBg
  */
 function openBoardBgOverlay() {
   let boardOverlayBgContentRef = document.getElementById("boardOverlayBg");
@@ -190,15 +196,39 @@ function openBoardBgOverlay() {
 }
 
 /**
- * This function is part of the openAddTaskOverlay()-function and adds visibility of the #addTaskOverlay
+ * This function is part of the boardAddTask()-function and adds visibility of the #addTaskOverlay
  * 
  * @param {html} addTaskOverlay - the html of the main-part of the add_task.html
+ * @param {string} progress - the progress-category, where the new task should be in after submitting
  */
-async function openBoardAddTaskOverlay(addTaskOverlay) {
+async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
   let addTaskOverlayContentRef = document.getElementById("addTaskOverlay");
   addTaskOverlayContentRef.classList.remove("d-none");
   addTaskOverlayContentRef.innerHTML = "";
-  addTaskOverlayContentRef.innerHTML = addTaskOverlay;
+  addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
+  adjustAddTaskProgress(progress);
+  addOnclickToCreateBtn();
+}
+
+/**
+ * This function is part of the openBoardAddTaskOverlay()-function.
+ * It changes the classList of the #addTaskCreate-Button, so the added task is added in the right progress-category
+ * 
+ * @param {string} progress - the progress-category, where the new task should be in after submitting
+ */
+function adjustAddTaskProgress(progress) {
+  let addTaskCreateBtnClassList = document.getElementById("addTaskCreate").classList;
+  addTaskCreateBtnClassList.remove("progress-toDo");
+  addTaskCreateBtnClassList.add("progress-" + progress);
+}
+
+function addOnclickToCreateBtn() {
+  let addTaskCreateBtn = document.getElementById("addTaskCreate");
+  addTaskCreateBtn.addEventListener("click", event => {
+    closeOverlays();
+    initBoard();
+    event.stopImmediatePropagation();
+  })
 }
 
 // function insertUserFeedback() {

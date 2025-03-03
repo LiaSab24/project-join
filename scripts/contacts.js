@@ -125,7 +125,9 @@ async function addContact() {
 }
 
 /**
- * This function shows the 'contact succesfully created'-message after adding the contact to the contacts-array firebase was succesfull
+ * This function shows the 'contact succesfully created/edited/deleted'-message after adding/editing/deleting the contact in the contacts-array and firebase was succesfull
+ * 
+ * @param {number} msgId - the id of the message that should be shown
  */
 async function contactSuccesfullMsg(msgId) {
     let successAnimation = document.getElementById(msgId);

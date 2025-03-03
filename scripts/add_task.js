@@ -29,7 +29,7 @@ function clearTaskForm() {
 function clearAssignedTo() {
     document.getElementById("addTaskDropdownContacts").classList.add("d-none");
     document.getElementById("addTaskDropdownContacts").innerHTML = "";
-    document.getElementById("addTaskAssignedToList").innerHTML= "";
+    document.getElementById("addTaskAssignedToList").innerHTML = "";
 }
 
 /**
@@ -252,6 +252,7 @@ function addTask() {
     let taskPriority = document.querySelector(".clicked").innerText;
     let taskCategory = checkTaskCategory();
     let taskSubtasks = getSubtasks();
+    let taskProgress = getProgress();
     postData("/tasks/", {
         "title": taskTitle,
         "description": taskDescription,
@@ -260,7 +261,7 @@ function addTask() {
         "priority": taskPriority,
         "category": taskCategory,
         "subtasks": taskSubtasks,
-        "progress": {"progress": "toDo"}
+        "progress": {"progress": taskProgress}
     });
     initAddTask();
 }
@@ -283,11 +284,11 @@ function getAssignedContacts() {
     let assignedContactsIndexArray = [];
     let assignedContactsArray = [];
     for (let indexAssignedContact = 0; indexAssignedContact < assignedContactsList.length; indexAssignedContact++) {
-        let assignedContactId =assignedContactsList[indexAssignedContact].id.replace("assignedToListPB", " ").trim();
+        let assignedContactId = assignedContactsList[indexAssignedContact].id.replace("addTaskAssignedToListPB", " ").trim();
         assignedContactsIndexArray.push(assignedContactId);
         assignedContactsArray.push(contacts[assignedContactsIndexArray[indexAssignedContact]]);
     }
-    return assignedContactsArray ;
+    return assignedContactsArray;
 }
 
 /**
@@ -303,4 +304,17 @@ function getSubtasks() {
         })
     }
     return subtasksArray;
+}
+
+function getProgress() {
+    let progressContentRef = document.getElementById("addTaskCreate").classList[1];
+    switch (progressContentRef) {
+        default:
+        case "progress-toDo":
+            return "toDo"
+        case "progress-inProgress":
+            return "inProgress"
+        case "progress-awaitFeedback":
+            return "awaitFeedback"
+    }
 }
