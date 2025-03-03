@@ -79,8 +79,8 @@ function displayAssignedContacts(indexTask) {
   let assignedContacts = tasks[indexTask].assignedTo;
   for (let indexAssignedContact = 0; indexAssignedContact < assignedContacts.length; indexAssignedContact++) {
     let indexContact = contacts.findIndex(index => index.name === assignedContacts[indexAssignedContact].name);
-    assignedContactsContentRef.innerHTML += getContactPB(indexContact);
-    profileBadgeColor("assignedToListPB" + indexContact, indexContact);
+    assignedContactsContentRef.innerHTML += getBoardContactPB(indexContact);
+    profileBadgeColor("boardAssignedToListPB" + indexContact, indexContact);
   }
 }
 
@@ -109,6 +109,12 @@ function toggleMessageNoTasks() {
       noTaskMessagesContentRef.classList.add("d-none");
     }
   }
+}
+
+function closeOverlays() {
+  document.getElementById("boardOverlayBg").classList.add("d-none");
+  document.getElementById("boardOverlayBg").classList.remove("overlay-active");
+  document.getElementById("addTaskOverlay").classList.add("d-none");
 }
 
 function allowDrop(event) {
@@ -148,25 +154,48 @@ function updateTaskProgress(progress, indexTask) {
   }
 }
 
-function toggleBoardAddTaskOverlay() {
-  let overlayBg = document.getElementById("overlayBg");
-  let overlay = document.getElementById("addTaskOverlay");
-  if (!overlay || !overlayBg) {
-    insertBoardOverlay();
-    toggleBoardAddTaskOverlay();
-    return;
-  }
-  overlay.classList.toggle("d-none");
-  overlayBg.classList.toggle("overlay-active");
+/**
+ * This function fetches the main-part of the add_task.html and implementes it in the #addTaskOverlay-section
+ */
+async function openAddTaskOverlays() {
+  fetch('add_task.html')
+    .then(response => {
+      return response.text()
+    })
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      let addTaskOverlay = doc.querySelector('#addTask').innerHTML;
+      initAddTask();
+      openBoardBgOverlay();
+      openBoardAddTaskOverlay(addTaskOverlay);
+    })
+    .catch(error => {
+      console.error('Failed to fetch page: add_task.html')
+    })
 }
 
-function insertBoardOverlay() {
-  document.body.insertAdjacentHTML("beforeend", getAddTaskOverlayTemplate());
+/**
+ * This function is part of the openAddTaskOverlay()-function and adds visibility of the #boardOverlayBg
+ */
+function openBoardBgOverlay() {
+  let boardOverlayBgContentRef = document.getElementById("boardOverlayBg");
+  boardOverlayBgContentRef.classList.remove("d-none");
+  setTimeout(function () {
+    boardOverlayBgContentRef.classList.add("overlay-active");
+  });
 }
 
-function closeBoardOverlay() {
-  document.getElementById("overlayBg")?.classList.remove("overlay-active");
-  document.getElementById("addTaskOverlay")?.classList.add("d-none");
+/**
+ * This function is part of the openAddTaskOverlay()-function and adds visibility of the #addTaskOverlay
+ * 
+ * @param {html} addTaskOverlay - the html of the main-part of the add_task.html
+ */
+async function openBoardAddTaskOverlay(addTaskOverlay) {
+  let addTaskOverlayContentRef = document.getElementById("addTaskOverlay");
+  addTaskOverlayContentRef.classList.remove("d-none");
+  addTaskOverlayContentRef.innerHTML = "";
+  addTaskOverlayContentRef.innerHTML = addTaskOverlay;
 }
 
 function closeFeedbackOverlay() {
@@ -176,13 +205,13 @@ function closeFeedbackOverlay() {
   }
 }
 
-function insertUserFeedback() {
-  let existingOverlay = document.getElementById(".user-feedback-wrapper");
+// function insertUserFeedback() {
+//   let existingOverlay = document.getElementById(".user-feedback-wrapper");
 
-  if (!existingOverlay) {
-    document.body.insertAdjacentHTML("beforeend", getFeedbackOverlayTemplate());
-  }
-}
+//   if (!existingOverlay) {
+//     document.body.insertAdjacentHTML("beforeend", getFeedbackOverlayTemplate());
+//   }
+// }
 
 function toggleUserFeedback() {
   let feedbackOverlay = document.getElementById("userFeedbackOverlay");

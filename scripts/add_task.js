@@ -131,12 +131,12 @@ function contactAssigned(contentRef, indexContact) {
  */
 function addAssignedContactToList(indexContact) {
     let assignedContactsList = document.getElementById("addTaskAssignedToList");
-    let assignedContact = document.getElementById("assignedToListPB" + indexContact);
+    let assignedContact = document.getElementById("addTaskAssignedToListPB" + indexContact);
     if (assignedContact) {
         assignedContact.remove();
     } else {
-        assignedContactsList.innerHTML += getContactPB(indexContact);
-        profileBadgeColor("assignedToListPB" + indexContact, indexContact);
+        assignedContactsList.innerHTML += getAddTaskContactPB(indexContact);
+        profileBadgeColor("addTaskAssignedToListPB" + indexContact, indexContact);
     }
 }
 
@@ -262,7 +262,7 @@ function addTask() {
         "subtasks": taskSubtasks,
         "progress": {"progress": "toDo"}
     });
-    clearTaskForm();
+    initAddTask();
 }
 
 /**

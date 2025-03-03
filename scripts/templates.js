@@ -154,12 +154,21 @@ function getAddTaskDropdownListContacts(indexContact) {
 }
 
 /**
- * This template displays a contacts profile badge in the add-task-assigned-to-list and on the board's task-card
+ * This template displays a contacts profile badge in the add-task-assigned-to-list
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function getContactPB(indexContact) {
-    return `<div id="assignedToListPB${indexContact}" class="profile-badge assigned-contact">${nameAbbreviation(indexContact)}</div>`
+function getAddTaskContactPB(indexContact) {
+    return `<div id="addTaskAssignedToListPB${indexContact}" class="profile-badge assigned-contact">${nameAbbreviation(indexContact)}</div>`
+}
+
+/**
+ * This template displays a contacts profile badge on the board's task-card
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function getBoardContactPB(indexContact) {
+    return `<div id="boardAssignedToListPB${indexContact}" class="profile-badge profile-badge-small">${nameAbbreviation(indexContact)}</div>`
 }
 
 function getBoardTaskTemplate(indexTask) {

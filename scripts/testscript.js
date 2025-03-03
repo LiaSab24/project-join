@@ -201,3 +201,19 @@ function saveBoardState() {
   });
   localStorage.setItem("boardState", JSON.stringify(boardState));
 }
+
+
+
+
+
+function toggleBoardAddTaskOverlay() {
+  // let overlayBg = document.getElementById("overlayBg");
+  // let overlay = document.getElementById("addTaskOverlay");
+  // if (!overlay || !overlayBg) {
+  //   insertBoardOverlay();
+  //   toggleBoardAddTaskOverlay();
+  //   return;
+  // }
+  // overlay.classList.toggle("d-none");
+  // overlayBg.classList.toggle("overlay-active");
+}
