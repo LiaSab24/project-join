@@ -231,13 +231,13 @@ function addOnclickToCreateBtn() {
   })
 }
 
-// function insertUserFeedback() {
-//   let existingOverlay = document.getElementById(".user-feedback-wrapper");
+function insertUserFeedback() {
+  let existingOverlay = document.getElementById(".user-feedback-wrapper");
 
-//   if (!existingOverlay) {
-//     document.body.insertAdjacentHTML("beforeend", getFeedbackOverlayTemplate());
-//   }
-// }
+  if (!existingOverlay) {
+    document.body.insertAdjacentHTML("beforeend", getFeedbackOverlayTemplate());
+  }
+}
 
 function toggleUserFeedback() {
   let feedbackOverlay = document.getElementById("userFeedbackOverlay");

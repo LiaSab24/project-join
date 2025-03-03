@@ -282,16 +282,16 @@ button img {
 }
 
 .task-assignees {
-  margin-left: 8px;
+  margin-left: 10px;
   display: flex;
   gap: 5px;
   align-items: center;
 }
 
 .profile-badge-small {
-  height: 32px;
-  width: 32px;
-  margin-left: -12px;
+  height: 32px !important;
+  width: 32px !important;
+  margin-left: -14px;
 }
 
 .assigned-contacts-and-priority {
