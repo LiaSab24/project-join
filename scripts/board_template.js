@@ -7,7 +7,7 @@ function getAddTaskOverlayTemplate() {
           <h1>Add Task</h1>
           <button class="close-btn" onclick="closeFeedbackOverlay()"><img src="/assets/icons/close.png" alt="Close-Icon"></button>
       </div>
-      <div>
+      <div class="overlay-content">
           <div class="form-grid">
               <div class="form-column">
                   <label for="taskTitle">Title</label>
@@ -129,7 +129,7 @@ function getEditTaskTemplate() {
     <div class="userStoryBodyContainer" id="editTaskOverlay">
         <div>
             <div>
-                <button class="close-btn" onclick="closeFeedbackOverlay()">
+                <button class="close-btn edit-btn" onclick="closeFeedbackOverlay()">
                     <img src="/assets/icons/close.png" alt="Close-Icon">
                 </button>
             </div>

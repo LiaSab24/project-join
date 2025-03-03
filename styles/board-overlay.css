@@ -71,6 +71,13 @@ body {
     display: none;
 }
 
+.overlay-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 .overlay-header h1 {
     padding-left: 48px;
 }
@@ -84,19 +91,32 @@ body {
     width: 100%;
 }
 
+.form-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    width: 440px;
+    height: 416px;
+}
+
+
+.overlay-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
 .close-btn {
     background: none;
     border: none;
     display: flex;
-    justify-content: end;
     border-radius: 50%;
     transition: background 0.2s ease-in-out;
     width: 32px;
     height: 32px;
+    padding: 8px;
     align-items: center;
     justify-content: center;
-    position: sticky;
-    left: 530px;
 }
 
 .close-btn:hover {

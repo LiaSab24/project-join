@@ -227,7 +227,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .overlay-edit-content {
@@ -235,7 +235,6 @@ button:hover {
     flex-direction: column;
     gap: 20px;
     padding: 0 4px;
-    overflow: auto;
     flex-grow: 1;
     padding-bottom: 80px;
 }
@@ -257,6 +256,14 @@ button:hover {
 
 .divider-edit {
     display: none;
+}
+
+.edit-btn {
+    position: sticky;
+    left: 348px;
+    top: 8px;
+    bottom: 38px;
+    padding: 28px 0;
 }
 
 .userStoryEditOkButtonContainer {
