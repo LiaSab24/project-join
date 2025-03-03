@@ -208,10 +208,10 @@ button img {
   padding: var(--task-padding);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 24px;
   margin-top: 16px;
   max-width: 252px;
-  height: 263px;
+  max-height: 263px;
 }
 
 .task-card:hover {
@@ -219,7 +219,7 @@ button img {
 }
 
 .task-badge {
-  background: #0038FF;
+  background: #D1D1D1;
   color: white;
   padding: 4px 8px;
   border-radius: 5px;
@@ -228,14 +228,32 @@ button img {
   width: fit-content;
 }
 
+.category-bug-fix {
+  background: #D1D1D1;
+}
+
+.category-documentation {
+  background: #D1D1D1;
+}
+
+.category-technical-task {
+  background: #1FD7C1;
+}
+
+.category-user-story {
+  background: #0038FF;
+}
+
 .task-title {
   font-weight: bold;
   font-size: 16px;
 }
 
 .task-description {
-  font-size: 14px;
-  color: #666;
+  height: 38px;
+  font-size: 16px;
+  color: #A8A8A8;
+  overflow: hidden;
 }
 
 .task-progress {
@@ -264,22 +282,24 @@ button img {
 }
 
 .task-assignees {
+  margin-left: 8px;
   display: flex;
   gap: 5px;
   align-items: center;
 }
 
-.assignee {
-  background: orange;
-  color: white;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+.profile-badge {
+  height: 32px;
+  width: 32px;
+}
+
+.assigned-contact {
+  margin-left: -12px;
+}
+
+.assigned-contacts-and-priority {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: bold;
+  justify-content: space-between;
 }
 
 .todo-wrapper .task-card {

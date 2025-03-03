@@ -154,29 +154,28 @@ function getAddTaskDropdownListContacts(indexContact) {
 }
 
 /**
- * This template displays a contacts profile badge in the add-task-assigned-to-list
+ * This template displays a contacts profile badge in the add-task-assigned-to-list and on the board's task-card
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function getAddTaskContactPB(indexContact) {
-    return `<div id="assignedToListPB${indexContact}" class="profile-badge assigned-element">${nameAbbreviation(indexContact)}</div>`
+function getContactPB(indexContact) {
+    return `<div id="assignedToListPB${indexContact}" class="profile-badge assigned-contact">${nameAbbreviation(indexContact)}</div>`
 }
 
 function getBoardTaskTemplate(indexTask) {
     return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="toggleUserFeedback()">
-          <div class="task-badge">${tasks[indexTask].category}</div>
+          <div class="task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ','-')}">${tasks[indexTask].category}</div>
           <div class="task-title">${tasks[indexTask].title}</div>
           <div class="task-description">${tasks[indexTask].description}</div>
-          <div class="task-progress">
+          <div id="boardProgressSubtask${indexTask}" class="task-progress">
             <div class="progress-bar">
-              <div class="progress-bar-fill" style="width:${progressSubtasksPercentage(indexTask)};"></div>
+              <div class="progress-bar-fill" style="width:${progressSubtasksPercentage(indexTask)}%;"></div>
             </div>
-            <span>${progressSubtasksNumbers(3)} Subtasks</span>
+            <span>${countCompletedSubtasks(indexTask)}/${countTotalSubtasks(indexTask)} </span>
           </div>
-          <div class="task-assignees">
-            <div class="assignee">AM</div>
-            <div class="assignee">EM</div>
-            <div class="assignee">MB</div>
+          <div class="assigned-contacts-and-priority">
+            <div id="assignedContacts${indexTask}" class="task-assignees"></div>
+            <div><img src="/assets/icons/prio${tasks[indexTask].priority}.svg"></div>
           </div>
         </div>`
 }
