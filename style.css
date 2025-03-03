@@ -17,15 +17,37 @@ body {
   background-color: rgb(246, 247, 248); /* #f6f7f8 */
 }
 
+h1 {
+  font-size: var(--fs-61-47);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: var(--fs-h3);
+}
+
 main {
   margin-left: 232px;
 }
 
 /* costums css */
 .d-none {
-  display: none !important;
+  display: none;
 }
 .flex {
   display: flex;
 }
-
+.just-center {
+  justify-content: center;
+}
+.just-space-b {
+  justify-content: space-between;
+}
+.align-center {
+  align-items: center;
+}
