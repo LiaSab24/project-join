@@ -263,15 +263,14 @@ button:hover {
     left: 348px;
     top: 8px;
     bottom: 38px;
-    padding: 28px 0;
 }
 
 .userStoryEditOkButtonContainer {
     display: flex;
     padding-top: 20px;
     position: fixed;
-    bottom: 16px;
-    left: 274px;
+    bottom: 5px;
+    left: 288px;
     z-index: 2;
     height: 78px;
 }

@@ -114,7 +114,6 @@ body {
     transition: background 0.2s ease-in-out;
     width: 32px;
     height: 32px;
-    padding: 8px;
     align-items: center;
     justify-content: center;
 }

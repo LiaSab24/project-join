@@ -5,7 +5,7 @@ function getAddTaskOverlayTemplate() {
       <img src="/assets/img/required.png" alt="Required Field Warning" class="error-image">
       <div class="overlay-header">
           <h1>Add Task</h1>
-          <button class="close-btn" onclick="closeFeedbackOverlay()"><img src="/assets/icons/close.png" alt="Close-Icon"></button>
+          <button class="close-btn" onclick="closeOverlay(event)"><img src="/assets/icons/close.png" alt="Close-Icon"></button>
       </div>
       <div class="overlay-content">
           <div class="form-grid">
@@ -68,7 +68,7 @@ function getFeedbackOverlayTemplate() {
         <section id="userFeedbackOverlay" class="feedback-hidden">
             <div class="feedback-header">
                 <span class="feedback-badge">User Story</span>
-                <button class="close-btn" onclick="closeBoardOverlay()">
+                <button class="close-btn" onclick="closeOverlay(event)">
                     <img src="/assets/icons/close.png" alt="Close-Icon">
                 </button>
             </div>
@@ -102,7 +102,7 @@ function getFeedbackOverlayTemplate() {
                 </div>
             </div>
             <div class="feedback-actions">
-                <button class="feedback-delete-btn">
+                <button class="feedback-delete-btn" onclick="deleteTask(event)">
                     <img src="/assets/icons/delete.png" alt="Delete-Icon"> Delete
                 </button>
                 <div class="divider"></div>
@@ -129,7 +129,7 @@ function getEditTaskTemplate() {
     <div class="userStoryBodyContainer" id="editTaskOverlay">
         <div>
             <div>
-                <button class="close-btn edit-btn" onclick="closeFeedbackOverlay()">
+                <button class="close-btn edit-btn" onclick="closeOverlay(event)">
                     <img src="/assets/icons/close.png" alt="Close-Icon">
                 </button>
             </div>
@@ -176,9 +176,8 @@ function getEditTaskTemplate() {
                     </div>
                 </div>
             </div>
-            <!-- Buttons Section -->
             <div class="userStoryEditOkButtonContainer">
-                <button class="userStoryEditOkButton" type="button" onclick="saveTaskChanges()">
+                <button class="userStoryEditOkButton" type="button" onclick="saveTaskChanges(event)">
                     OK <img class="check-image" src="/assets/icons/check.png" alt="check">
                 </button>
             </div>

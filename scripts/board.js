@@ -164,38 +164,6 @@ function insertBoardOverlay() {
   document.body.insertAdjacentHTML("beforeend", getAddTaskOverlayTemplate());
 }
 
-function closeBoardOverlay() {
-  let overlayBg = document.getElementById("overlayBg");
-  let overlay = document.getElementById("addTaskOverlay");
-
-  if (overlay) {
-    overlay.classList.add("d-none");
-    overlay.style.display = "none";  // Sicherstellen, dass es auch per CSS versteckt ist
-  }
-  if (overlayBg) {
-    overlayBg.classList.remove("overlay-active");
-    overlayBg.style.display = "none";
-  }
-}
-
-
-// function closeBoardOverlay() {
-//   document.getElementById("overlayBg")?.classList.remove("overlay-active");
-//   document.getElementById("addTaskOverlay")?.classList.add("d-none");
-// }
-
-/**
- * Closes the feedback overlay.
- */
-function closeFeedbackOverlay() {
-  let feedbackOverlay = document.getElementById("feedbackOverlay");
-  if (feedbackOverlay) {
-    feedbackOverlay.classList.add("feedback-hidden");
-  }
-}
-
-
-
 function insertUserFeedback() {
   let existingOverlay = document.getElementById(".user-feedback-wrapper");
   if (!existingOverlay) {
@@ -216,43 +184,91 @@ function toggleUserFeedback() {
  * Öffnet oder schließt das Edit-Overlay für eine Aufgabe.
  */
 function toggleEditOverlay() {
-  closeFeedbackOverlay();
   let editOverlay = document.getElementById("editTaskOverlay");
-
   if (!editOverlay) {
       insertEditOverlay();
       setTimeout(() => {
           editOverlay = document.getElementById("editTaskOverlay");
-          if (editOverlay) {
+          if (editOverlay && !editOverlay.classList.contains("d-none")) {
               editOverlay.classList.remove("d-none");
+              editOverlay.style.display = "";
           }
-      }, 100);
+      }, 200);
+  } else if (!editOverlay.classList.contains("d-none")) {
+      return;
   } else {
       editOverlay.classList.toggle("d-none");
+      editOverlay.style.display = editOverlay.classList.contains("d-none") ? "none" : "";
   }
 }
+
+
 
 /**
  * Fügt das Edit-Overlay in das DOM ein, falls es noch nicht existiert.
  */
 function insertEditOverlay() {
-  let container = document.querySelector(".user-feedback-wrapper");
-
-  if (!container) return;
-
+  let container = document.body;
   if (!document.getElementById("editTaskOverlay")) {
       container.insertAdjacentHTML("beforeend", getEditTaskTemplate());
   }
 }
 
-/**
- * Schließt das Edit-Overlay.
- */
-function closeEditOverlay() {
-  let editOverlay = document.getElementById("editTaskOverlay");
 
-  if (editOverlay) {
-      editOverlay.classList.add("d-none");
+function saveTaskChanges(event) {
+  event.stopPropagation();
+  let button = event.target.closest(".userStoryEditOkButton");
+  if (!button) return;
+  let overlay = button.closest("#editTaskOverlay");
+  if (overlay) {
+      overlay.classList.add("d-none");
   }
 }
 
+function closeOverlay(event) {
+  event.stopPropagation();
+  let button = event.target.closest(".close-btn");
+  if (!button) return;
+
+  let overlay = button.closest("#editTaskOverlay, #addTaskOverlay, #feedbackOverlay, .overlay-wrapper, .userStoryBodyContainer");
+  if (overlay) {
+      overlay.classList.add("d-none");
+  }
+}
+
+async function deleteTask(event, indexTask) {
+  event.stopPropagation();
+  let button = event.target.closest(".feedback-delete-btn");
+  if (!button) return;
+  let taskCard = document.getElementById(`task${indexTask}`);
+  if (!taskCard) {
+      console.log("Fehler: Task-Card nicht gefunden!");
+      return;
+  }
+  taskCard.remove();
+  console.log(`Task ${indexTask} aus dem DOM entfernt`);
+  let taskId = tasks[indexTask]?.url;
+  tasks.splice(indexTask, 1);
+  console.log(`Task ${indexTask} aus dem Array entfernt`);
+  if (taskId) {
+      await deleteTaskFromFirebase(taskId);
+  }
+  renderTasks();
+  toggleMessageNoTasks();
+}
+
+async function deleteTaskFromFirebase(taskId) {
+  try {
+      let response = await fetch(`${BASE_URL}tasks/${taskId}.json`, {
+          method: "DELETE"
+      });
+
+      if (response.ok) {
+          console.log(`Task mit ID ${taskId} erfolgreich aus Firebase gelöscht`);
+      } else {
+          console.error("Fehler beim Löschen aus Firebase:", response.status);
+      }
+  } catch (error) {
+      console.error("Fehler bei der Verbindung mit Firebase:", error);
+  }
+}
