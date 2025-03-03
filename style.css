@@ -73,3 +73,15 @@ main {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #D1D1D1;
 }
+
+/* for addTasks and board */
+.profile-badge {
+  border: 2px solid #FFFFFF;
+  border-radius: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FF7A00;
+  color: #FFFFFF;
+  font-size: 12px !important;
+}

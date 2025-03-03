@@ -224,14 +224,6 @@ select {
 .profile-badge {
     height: 42px;
     width: 42px;
-    border: 2px solid #FFFFFF;
-    border-radius: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #FF7A00;
-    color: #FFFFFF;
-    font-size: 12px !important;
 }
 
 .add-task-assigned-to-checkbox {

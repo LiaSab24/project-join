@@ -37,11 +37,11 @@ function clearAssignedTo() {
  */
 function clearPriorityBtns() {
     document.getElementById("prioUrgent").classList.remove("prioUrgentClicked", "clicked");
-    document.getElementById("prioUrgentImg").src = "/assets/icons/add-task-prioUrgent.svg";
+    document.getElementById("prioUrgentImg").src = "/assets/icons/prioUrgent.svg";
     document.getElementById("prioMedium").classList.remove("prioMediumClicked", "clicked");
-    document.getElementById("prioMediumImg").src = "/assets/icons/add-task-prioMedium.svg";
+    document.getElementById("prioMediumImg").src = "/assets/icons/prioMedium.svg";
     document.getElementById("prioLow").classList.remove("prioLowClicked", "clicked");
-    document.getElementById("prioLowImg").src = "/assets/icons/add-task-prioLow.svg";
+    document.getElementById("prioLowImg").src = "/assets/icons/prioLow.svg";
 }
 
 
@@ -135,7 +135,7 @@ function addAssignedContactToList(indexContact) {
     if (assignedContact) {
         assignedContact.remove();
     } else {
-        assignedContactsList.innerHTML += getAddTaskContactPB(indexContact);
+        assignedContactsList.innerHTML += getContactPB(indexContact);
         profileBadgeColor("assignedToListPB" + indexContact, indexContact);
     }
 }
@@ -151,7 +151,7 @@ function priorityBtnBg(priority) {
     let clickedPrioBtnImg = document.getElementById(priority + "Img");
     clickedPrioBtn.classList.add(priority + "Clicked");
     clickedPrioBtn.classList.add("clicked");
-    clickedPrioBtnImg.src = "/assets/icons/add-task-" + priority + "-clicked.svg";
+    clickedPrioBtnImg.src = "/assets/icons/" + priority + "-clicked.svg";
 }
 
 /**
@@ -271,7 +271,6 @@ function addTask() {
 function checkTaskCategory() {
     let taskCategory = document.getElementById("addTaskCategory").placeholder;
     if (taskCategory !== "Select task category") {
-        console.log(taskCategory)
         return taskCategory;
     }
 }
@@ -280,7 +279,7 @@ function checkTaskCategory() {
  * This function is part of the addTask()-function and creates and returns an array with all the assigned contacts in the assigned-contacts-list
  */
 function getAssignedContacts() {
-    let assignedContactsList = document.querySelectorAll(".assigned-element");
+    let assignedContactsList = document.querySelectorAll(".assigned-contact");
     let assignedContactsIndexArray = [];
     let assignedContactsArray = [];
     for (let indexAssignedContact = 0; indexAssignedContact < assignedContactsList.length; indexAssignedContact++) {

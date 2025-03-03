@@ -16,6 +16,7 @@ function renderTasks() {
     let taskProgressContentRef = document.getElementById(taskProgress);
     taskProgressContentRef.innerHTML += getBoardTaskTemplate(indexTask);
     hideSubtasksProgressForNoSubtasks(indexTask);
+    displayAssignedContacts(indexTask);
   }
 }
 
@@ -67,6 +68,27 @@ function countCompletedSubtasks(indexTask) {
   return completedSubtasks;
 }
 
+/**
+ * This function displays the assigned contacts for a task
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function displayAssignedContacts(indexTask) {
+  let assignedContactsContentRef = document.getElementById("assignedContacts" + indexTask);
+  assignedContactsContentRef.innerHTML = "";
+  let assignedContacts = tasks[indexTask].assignedTo;
+  for (let indexAssignedContact = 0; indexAssignedContact < assignedContacts.length; indexAssignedContact++) {
+    let indexContact = contacts.findIndex(index => index.name === assignedContacts[indexAssignedContact].name);
+    assignedContactsContentRef.innerHTML += getContactPB(indexContact);
+    profileBadgeColor("assignedToListPB" + indexContact, indexContact);
+  }
+}
+
+/**
+ * This function hides the representation of the subtasks-progress, if a task has no subtasks assigned
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
 function hideSubtasksProgressForNoSubtasks(indexTask) {
   if (tasks[indexTask].subtasks == undefined) {
     document.getElementById("boardProgressSubtask" + indexTask).classList.add("d-none");
