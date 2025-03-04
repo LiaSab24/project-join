@@ -188,3 +188,66 @@ function getBoardTaskTemplate(indexTask) {
           </div>
         </div>`
 }
+
+function getFeedbackOverlayTemplate() {
+    return `
+        <div class="feedback-overlay" id="feedbackOverlay">
+        <section id="userFeedbackOverlay" class="feedback-hidden">
+            <div class="feedback-header">
+                <span class="feedback-badge">User Story</span>
+                <button class="close-btn" onclick="closeOverlay(event)">
+                    <img src="/assets/icons/close.png" alt="Close-Icon">
+                </button>
+            </div>
+            <h1 class="feedback-title">Kochwelt Page & Recipe Recommender</h1>
+            <p class="feedback-info">Build start page with recipe recommendation.</p>
+            <p class="feedback-info">Due Date: 10/05/2023</p>
+            <p class="feedback-info">Priority: <span class="feedback-priority">Medium 
+                <img src="/assets/icons/Prio media.png" style="padding: 0 4px;">
+            </span></p>
+            
+            <p class="feedback-info">Assigned To:</p>
+            <div class="feedback-users">
+                <div class="feedback-user">
+                    <div class="feedback-user-badge" style="background: green;">EM</div>
+                    <span class="feedback-user-name">Emmanuel Mauer</span>
+                </div>
+                <div class="feedback-user">
+                    <div class="feedback-user-badge" style="background: purple;">MB</div>
+                    <span class="feedback-user-name">Marcel Bauer</span>
+                </div>
+                <div class="feedback-user">
+                    <div class="feedback-user-badge" style="background: blue;">AM</div>
+                    <span class="feedback-user-name">Anton Mayer</span>
+                </div>
+            </div>
+            <p class="feedback-info">Subtasks:</p>
+            <div class="feedback-subtasks">
+                <div class="feedback-subtask-item"><input type="checkbox"> Implement Recipe Recommendation</div>
+                <div class="feedback-subtask-item"><input type="checkbox"> 
+                    <img src="/assets/icons/check-cube.png" alt="checked"> Start Page Layout
+                </div>
+            </div>
+            <div class="feedback-actions">
+                <button class="feedback-delete-btn" onclick="deleteTask(event)">
+                    <img src="/assets/icons/delete.png" alt="Delete-Icon"> Delete
+                </button>
+                <div class="divider"></div>
+                <button class="feedback-edit-btn" onclick="toggleEditOverlay()">
+                    <img src="/assets/icons/edit.png" alt="Edit-Icon"> Edit
+                </button>
+            </div>
+        </section>
+          <section id="addTaskOverlay" class="d-none"></section>
+        </div>
+    `;
+}
+
+function getFeedbackButtonTemplate() {
+    return `
+        <div class="feedback-task-added-overlay">
+            Task added to board
+            <img src="/assets/icons/Icons.png" alt="Board Icon">
+        </div>
+    `;
+}

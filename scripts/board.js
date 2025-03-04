@@ -175,14 +175,20 @@ async function boardAddTask(progress) {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, "text/html");
       let addTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
+      let addEditOverlayContent = doc.querySelector('#addTask').innerHTML;
       initAddTask();
       openBoardBgOverlay();
       openBoardAddTaskOverlay(addTaskOverlayContent, progress);
+      openBoardAddTaskOverlay(addEditOverlayContent, progress);
+      op
     })
     .catch(error => {
       console.error('Failed to fetch page: add_task.html')
     })
 }
+
+
+
 
 /**
  * This function is part of the boardAddTask()-function and adds visibility of the #boardOverlayBg
@@ -209,7 +215,9 @@ async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
   document.getElementById("addTaskTitle").innerHTML += `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close"></img>`
   adjustAddTaskProgress(progress);
   addOnclickToCreateBtn();
+  editOnclickToCreateBtn();
 }
+
 
 /**
  * This function is part of the openBoardAddTaskOverlay()-function.
@@ -228,6 +236,7 @@ function adjustAddTaskProgress(progress) {
  */
 function addOnclickToCreateBtn() {
   let addTaskCreateBtn = document.getElementById("addTaskCreate");
+  let editTaskCreateBtn = document.getElementById("editTastCreate");
   addTaskCreateBtn.addEventListener("click", event => {
     closeOverlays();
     initBoard();
@@ -235,8 +244,20 @@ function addOnclickToCreateBtn() {
   })
 }
 
+/**
+ * This function adds an onclick-event to the #addTaskCreate-Button for the #addTaskOverlay
+ */
+function editOnclickToCreateBtn() {
+  let editTaskCreateBtn = document.getElementById("editTastCreate");
+  editTaskCreateBtn.addEventListener("click", event => {
+    closeOverlays();
+    initBoard();
+    event.stopImmediatePropagation();
+  })
+}
+
 function insertUserFeedback() {
-  let existingOverlay = document.getElementById(".user-feedback-wrapper");
+  let existingOverlay = document.getElementById("feedbackOverlay");
 
   if (!existingOverlay) {
     document.body.insertAdjacentHTML("beforeend", getFeedbackOverlayTemplate());
@@ -250,4 +271,97 @@ function toggleUserFeedback() {
     feedbackOverlay = document.getElementById("userFeedbackOverlay");
   }
   feedbackOverlay.classList.toggle("feedback-hidden");
+}
+
+// /**
+//  * Öffnet oder schließt das Edit-Overlay für eine Aufgabe.
+//  */
+// function toggleEditOverlay() {
+//   let editOverlay = document.getElementById("editTaskOverlay");
+//   if (!editOverlay) {
+//       insertEditOverlay();
+//       setTimeout(() => {
+//           editOverlay = document.getElementById("editTaskOverlay");
+//           if (editOverlay && !editOverlay.classList.contains("d-none")) {
+//               editOverlay.classList.remove("d-none");
+//               editOverlay.style.display = "";
+//           }
+//       }, 200);
+//   } else if (!editOverlay.classList.contains("d-none")) {
+//       return;
+//   } else {
+//       editOverlay.classList.toggle("d-none");
+//       editOverlay.style.display = editOverlay.classList.contains("d-none") ? "none" : "";
+//   }
+// }
+
+
+
+// /**
+//  * Fügt das Edit-Overlay in das DOM ein, falls es noch nicht existiert.
+//  */
+// function insertEditOverlay() {
+//   let container = document.body;
+//   if (!document.getElementById("editTaskOverlay")) {
+//       container.insertAdjacentHTML("beforeend", getEditTaskTemplate());
+//   }
+// }
+
+
+function saveTaskChanges(event) {
+  event.stopPropagation();
+  let button = event.target.closest(".userStoryEditOkButton");
+  if (!button) return;
+  let overlay = button.closest("#editTaskOverlay");
+  if (overlay) {
+      overlay.classList.add("d-none");
+  }
+}
+
+function closeOverlay(event) {
+  event.stopPropagation();
+  let button = event.target.closest(".close-btn");
+  if (!button) return;
+
+  let overlay = button.closest("#editTaskOverlay, #addTaskOverlay, #feedbackOverlay, .overlay-wrapper, .userStoryBodyContainer");
+  if (overlay) {
+      overlay.classList.add("d-none");
+  }
+}
+
+async function deleteTask(event, indexTask) {
+  event.stopPropagation();
+  let button = event.target.closest(".feedback-delete-btn");
+  if (!button) return;
+  let taskCard = document.getElementById(`task${indexTask}`);
+  if (!taskCard) {
+      console.log("Fehler: Task-Card nicht gefunden!");
+      return;
+  }
+  taskCard.remove();
+  console.log(`Task ${indexTask} aus dem DOM entfernt`);
+  let taskId = tasks[indexTask]?.url;
+  tasks.splice(indexTask, 1);
+  console.log(`Task ${indexTask} aus dem Array entfernt`);
+  if (taskId) {
+      await deleteTaskFromFirebase(taskId);
+  }
+  renderTasks();
+  toggleMessageNoTasks();
+}
+
+async function deleteTaskFromFirebase(taskId) {
+  try {
+      let response = await fetch(`${BASE_URL}tasks/${taskId}.json`, {
+          method: "DELETE"
+      });
+
+      if (response.ok) {
+          console.log(`Task mit ID ${taskId} erfolgreich aus Firebase gelöscht`);
+      } else {
+          console.error("Fehler beim Löschen aus Firebase:", response.status);
+      }
+  } catch (error) {
+      console.error("Fehler bei der Verbindung mit Firebase:", error);
+  }
 }
