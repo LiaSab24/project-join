@@ -229,27 +229,69 @@ async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
 }
 
 
+// async function openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex) {
+//   let editTaskOverlayRef = document.getElementById("editTaskOverlay");
+//   editTaskOverlayRef.classList.remove("d-none");
+//   editTaskOverlayRef.innerHTML = editTaskOverlayContent;
+//   // editTaskOverlayRef.classList.add("editTaskOverlay");
+//   let addTaskTitle = document.getElementById("addTaskTitle");
+//   if (addTaskTitle) addTaskTitle.remove();
+//   let editBtn = document.getElementById("addTaskCreate");
+//   editBtn.innerText = "OK";
+//   editBtn.classList.add("userStoryEditOkButton");
+//   editBtn.onclick = function() { saveTaskChanges(taskIndex); };
+
+// }
+
 async function openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex) {
   let editTaskOverlayRef = document.getElementById("editTaskOverlay");
   editTaskOverlayRef.classList.remove("d-none");
   editTaskOverlayRef.innerHTML = editTaskOverlayContent;
-  editTaskOverlayRef.classList.add("editTaskOverlay");
+
+  adjustOverlayToEditTask(taskIndex); // Füge den Funktionsaufruf hinzu
+}
+
+
+function adjustOverlayToEditTask(taskIndex) {
+  let task = tasks[taskIndex];
   let addTaskTitle = document.getElementById("addTaskTitle");
   if (addTaskTitle) addTaskTitle.remove();
-  let editBtn = document.getElementById("addTaskCreate");
-  editBtn.innerText = "OK";
-  editBtn.classList.add("userStoryEditOkButton");
-  editBtn.onclick = function() { saveTaskChanges(taskIndex); };
-  loadTaskData(taskIndex);
+  let divider = document.querySelector(".add-task-seperator");
+  if (divider) divider.style.display = "none";
+  let assignedSection = document.getElementById("addTaskAssignedTo");
+  if (assignedSection) assignedSection.style.display = "none";
+  let titleInput = document.getElementById("taskTitle") || document.getElementById("addTaskTitle");
+  let descriptionInput = document.getElementById("addTaskDescription");
+  let dueDateInput = document.getElementById("addTaskDate");
+  if (titleInput) titleInput.value = task.title;
+  if (descriptionInput) descriptionInput.value = task.description;
+  if (dueDateInput) dueDateInput.value = task.dueDate;
+  let priorityBtns = document.querySelectorAll("#addTaskPriorities div");
+  priorityBtns.forEach(btn => {
+      btn.classList.remove("active");
+      if (btn.innerText.trim().toLowerCase() === task.priority.toLowerCase()) {
+          btn.classList.add("active");
+      }
+  });
+  let createBtn = document.getElementById("addTaskCreate");
+  if (createBtn) {
+      createBtn.innerText = "OK";
+      createBtn.id = "editTaskConfirm";
+      createBtn.classList.add("userStoryEditOkButton");
+      createBtn.onclick = function () { saveTaskChanges(taskIndex); };
+  }
+  let overlayContent = document.querySelector("#addTaskForm");
+  if (overlayContent) {
+      overlayContent.style.display = "flex";
+      overlayContent.style.flexDirection = "column";
+      overlayContent.style.gap = "15px";
+  }
 }
 
-function loadTaskData(taskIndex) {
-  let task = tasks[taskIndex];
 
-  document.getElementById("taskTitle").value = task.title;
-  document.getElementById("taskDescription").value = task.description;
-  document.getElementById("taskDueDate").value = task.dueDate;
-}
+
+
+
 
 
 /**
@@ -293,48 +335,19 @@ function toggleUserFeedback() {
   feedbackOverlay.classList.toggle("feedback-hidden");
 }
 
-/**
- * Öffnet oder schließt das Edit-Overlay für eine Aufgabe.
- */
-function toggleEditOverlay() {
-  let editOverlay = document.getElementById("editTaskOverlay");
-  if (!editOverlay) {
-      insertEditOverlay();
-      setTimeout(() => {
-          editOverlay = document.getElementById("editTaskOverlay");
-          if (editOverlay && !editOverlay.classList.contains("d-none")) {
-              editOverlay.classList.remove("d-none");
-              editOverlay.style.display = "";
-          }
-      }, 200);
-  } else if (!editOverlay.classList.contains("d-none")) {
-      return;
-  } else {
-      editOverlay.classList.toggle("d-none");
-      editOverlay.style.display = editOverlay.classList.contains("d-none") ? "none" : "";
-  }
-}
-
-/**
- * Fügt das Edit-Overlay in das DOM ein, falls es noch nicht existiert.
- */
-function insertEditOverlay() {
-  let container = document.body;
-  if (!document.getElementById("editTaskOverlay")) {
-      container.insertAdjacentHTML("beforeend", getEditTaskTemplate());
-  }
-}
-
-
-function saveTaskChanges(event) {
-  event.stopPropagation();
-  let button = event.target.closest(".userStoryEditOkButton");
-  if (!button) return;
-  let overlay = button.closest("#editTaskOverlay");
+function saveTaskChanges(taskIndex) {
+  let task = tasks[taskIndex];
+  task.title = document.getElementById("taskTitle").value;
+  task.description = document.getElementById("addTaskDescription").value;
+  task.dueDate = document.getElementById("addTaskDate").value;
+  let overlay = document.getElementById("addTaskOverlay"); // Weil das Edit-Overlay aus addTask kommt
   if (overlay) {
       overlay.classList.add("d-none");
   }
+  renderTasks();
 }
+
+
 
 function closeOverlay(event) {
   event.stopPropagation();

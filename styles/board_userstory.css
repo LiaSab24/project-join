@@ -216,86 +216,73 @@ button:hover {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    height: 769px;
+    transform: translate(-51%, -50%);
+    width: 525px;
+    height: 796px;
     background: white;
     border-radius: 16px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: hidden;
+    overflow: auto;
 }
 
-.overlay-edit-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 0 4px;
-    flex-grow: 1;
-    padding-bottom: 80px;
+
+
+#addTaskForm {
+    margin-left: 16px !important;
+    margin-right: 16px;
 }
 
-.edit-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
+#addTaskForm input,
+#addTaskForm textarea,
+#addTaskForm select {
+    padding: 6px;
+    font-size: 14px !important;
+    width: 100% !important;
 }
 
-.edit-column {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    flex: 1;
+#addTaskForm label {
+    font-size: 14px !important;
+    margin-bottom: 2px;
 }
 
-.divider-edit {
+#addTaskAssignedTo,
+#addTaskAssignedToList {
     display: none;
 }
 
-.edit-btn {
-    position: sticky;
-    left: 348px;
-    top: 8px;
-    bottom: 38px;
+#addTaskAssignedTo {
+    margin-bottom: 5px;
 }
 
-.userStoryEditOkButtonContainer {
-    display: flex;
-    padding-top: 20px;
-    position: fixed;
-    bottom: 5px;
-    left: 288px;
-    z-index: 2;
-    height: 78px;
+#addTaskPriorities {
+    justify-content: flex-start !important;
+    gap: 32px;
 }
+
+.add-task-requirements {
+    display: none !important;
+}
+
+#addTaskCancel {
+    display: none !important;
+}
+
+#addTaskAssignedTo,
+#addTaskAssignedToList,
+label[for="addTaskAssignedTo"] {
+    display: none !important;
+}
+
 
 .userStoryEditOkButton {
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-    font-size: 16px;
-    background-color: #2A3647;
-    color: white;
-}
-
-.userStoryEditOkButton:hover {
-    background-color: #1e8dbb;
-}
-
-.cancel-btn {
-    background-color: transparent;
-    color: #333;
-    border: 1px solid #ddd;
-}
-
-.cancel-btn:hover {
-    background-color: #f1f1f1;
+    position: fixed;
+    bottom: 5px;
+    z-index: 10;
+    left: 428px;
 }
 
 .check-image {
