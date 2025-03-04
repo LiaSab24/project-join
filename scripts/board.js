@@ -99,7 +99,7 @@ function hideSubtasksProgressForNoSubtasks(indexTask) {
  * This function checks if a task-category contains tasks and toggles the 'no task'-message accordingly
  */
 function toggleMessageNoTasks() {
-  const taskProgressCategories = document.querySelectorAll(".board-tasks-list");
+  let taskProgressCategories = document.querySelectorAll(".board-tasks-list");
   for (let indexProgressCategory = 0; indexProgressCategory < taskProgressCategories.length; indexProgressCategory++) {
     let taskProgressContentRef = document.getElementsByClassName("board-tasks-list")[indexProgressCategory];
     let noTaskMessagesContentRef = document.getElementsByClassName("no-task-message-container")[indexProgressCategory];
@@ -193,7 +193,7 @@ function toggleEditOverlay() {
               editOverlay.classList.remove("d-none");
               editOverlay.style.display = "";
           }
-      }, 200);
+      }, 2000);
   } else if (!editOverlay.classList.contains("d-none")) {
       return;
   } else {
@@ -201,7 +201,6 @@ function toggleEditOverlay() {
       editOverlay.style.display = editOverlay.classList.contains("d-none") ? "none" : "";
   }
 }
-
 
 
 /**
@@ -213,7 +212,6 @@ function insertEditOverlay() {
       container.insertAdjacentHTML("beforeend", getEditTaskTemplate());
   }
 }
-
 
 function saveTaskChanges(event) {
   event.stopPropagation();
