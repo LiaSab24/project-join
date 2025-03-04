@@ -184,6 +184,23 @@ async function boardAddTask(progress) {
     })
 }
 
+async function boardEditTask(taskIndex) {
+  fetch('add_task.html')
+  .then(response => {
+    return response.text()
+  })
+  .then(html => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    let editTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
+    initAddTask();
+    openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex);
+  })
+  .catch(error => {
+    console.error('Failed to fetch page: add_task.html', error);
+  });
+}
+
 /**
  * This function is part of the boardAddTask()-function and adds visibility of the #boardOverlayBg
  */
@@ -212,6 +229,29 @@ async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
 }
 
 
+async function openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex) {
+  let editTaskOverlayRef = document.getElementById("editTaskOverlay");
+  editTaskOverlayRef.classList.remove("d-none");
+  editTaskOverlayRef.innerHTML = editTaskOverlayContent;
+  editTaskOverlayRef.classList.add("editTaskOverlay");
+  let addTaskTitle = document.getElementById("addTaskTitle");
+  if (addTaskTitle) addTaskTitle.remove();
+  let editBtn = document.getElementById("addTaskCreate");
+  editBtn.innerText = "OK";
+  editBtn.classList.add("userStoryEditOkButton");
+  editBtn.onclick = function() { saveTaskChanges(taskIndex); };
+  loadTaskData(taskIndex);
+}
+
+function loadTaskData(taskIndex) {
+  let task = tasks[taskIndex];
+
+  document.getElementById("taskTitle").value = task.title;
+  document.getElementById("taskDescription").value = task.description;
+  document.getElementById("taskDueDate").value = task.dueDate;
+}
+
+
 /**
  * This function is part of the openBoardAddTaskOverlay()-function.
  * It changes the classList of the #addTaskCreate-Button, so the added task is added in the right progress-category
@@ -229,7 +269,6 @@ function adjustAddTaskProgress(progress) {
  */
 function addOnclickToCreateBtn() {
   let addTaskCreateBtn = document.getElementById("addTaskCreate");
-  let editTaskCreateBtn = document.getElementById("editTastCreate");
   addTaskCreateBtn.addEventListener("click", event => {
     closeOverlays();
     initBoard();
