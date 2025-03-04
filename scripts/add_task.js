@@ -78,6 +78,11 @@ function toggleAddTaskToDropDownMenu(inputContentRef, DropdownContentRef) {
     addAddTaskOverlay();
     document.getElementById(inputContentRef).classList.add("add-task-current-select");
     document.getElementById(DropdownContentRef).classList.remove("d-none");
+    // let assignedContactsInput = document.getElementById("addTaskAssignedTo");
+    // assignedContactsInput.addEventListener("onkeyup", event => {
+    //     startSearching();
+    //     event.stopImmediatePropagation();
+    // })
 }
 
 /**
@@ -186,22 +191,7 @@ function addSubtaskToList() {
         subtasksListContentRef.innerHTML += getAddTaskSubtaskTemplate(subtask, indexSubtask);
         clearSubtasksInput();
     }
-    // checkOverflow(indexSubtask);
 }
-
-// /**
-//  * This function checks, if there are too many subtasks in the subtasks list and adds/removes a scrollbar if necessary
-//  * 
-//  * @param {number} indexSubtask - the index of the subtask in the subtasks-list
-//  */
-// function checkOverflow(indexSubtask) {
-//     const subtasksListContentRef = document.getElementById("addTaskSubtaskList");
-//     if (indexSubtask >= 3) {
-//         subtasksListContentRef.style.overflowY="scroll"
-//     } else {
-//         subtasksListContentRef.style.overflowY="auto"
-//     }
-// }
 
 /**
  * This function replaces the subtask-list element with an input (template).

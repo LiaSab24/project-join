@@ -70,6 +70,11 @@ select {
     line-height: 24px;
 }
 
+input:disabled,
+select:disabled {
+    background-color: #FFFFFF;
+}
+
 input::placeholder,
 textarea::placeholder,
 #addTaskDate::-webkit-datetime-edit {

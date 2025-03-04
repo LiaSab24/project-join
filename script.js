@@ -191,6 +191,35 @@ async function successfullMsg(msgId) {
   }, 1600);
 }
 
+/**
+ * This function reads out the search-input and shows only those elements, that contain the input-value
+ * 
+ * @param {string} inputId - the id of the input-element, that should trigger the search-function
+ * @param {string} displayId - the id of the area, where the filtered elements should be shown
+ */
+function startSearching(inputId, displayId) {
+  let searchInputRef = document.getElementById(inputId);
+  let searchInput = searchInputRef.value;
+  let displayContentRef = document.getElementById(displayId);
+  if (searchInput.length >= 3) {
+      searchInputRef.disabled = true;
+      displayContentRef.innerHTML = "";
+      showFilteredElements(displayId, searchInput);
+  }
+  document.getElementById(inputId).disabled = false;
+}
+
+/**
+ * This function is part of the StartSearching()-Function.
+ * It filteres the elements, that contain the searchInput and renders them into the displayContentRef
+ * 
+ * @param {string} displayId - the id of the area, where the filtered elements should be shown
+ * @param {string} searchInput - the value of the searchInputRef
+ */
+function showFilteredElements(displayId, searchInput) {
+
+}
+
 //__________________________________________
 
 function btnUserInitial() {
