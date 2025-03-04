@@ -174,7 +174,7 @@ function clearSubtasksInput() {
     subtasksInputRef.value = "";
 }
 
-/**sd
+/**
  * This function reads out the input-value from the subtask-input and adds this subtask in the list below (template)
  */
 function addSubtaskToList() {
@@ -186,7 +186,22 @@ function addSubtaskToList() {
         subtasksListContentRef.innerHTML += getAddTaskSubtaskTemplate(subtask, indexSubtask);
         clearSubtasksInput();
     }
+    // checkOverflow(indexSubtask);
 }
+
+// /**
+//  * This function checks, if there are too many subtasks in the subtasks list and adds/removes a scrollbar if necessary
+//  * 
+//  * @param {number} indexSubtask - the index of the subtask in the subtasks-list
+//  */
+// function checkOverflow(indexSubtask) {
+//     const subtasksListContentRef = document.getElementById("addTaskSubtaskList");
+//     if (indexSubtask >= 3) {
+//         subtasksListContentRef.style.overflowY="scroll"
+//     } else {
+//         subtasksListContentRef.style.overflowY="auto"
+//     }
+// }
 
 /**
  * This function replaces the subtask-list element with an input (template).

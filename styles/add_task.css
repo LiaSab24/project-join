@@ -329,10 +329,18 @@ select {
     left: 377px;
 }
 
-#addTaskSubtaskList {
+.subtask-scrollbar {
     height: 160px;
     width: 440px;
     margin-top: -16px;
+    overflow-y: scroll;
+}
+
+.subtask-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+#addTaskSubtaskList {
     display: flex;
     flex-direction: column-reverse;
     justify-content: start;
@@ -497,7 +505,6 @@ select {
 }
 
 /** This class is added, when input requirement is unfulfilled**/
-
 .add-task-requirement-unfulfilled {
     outline: 1px solid #FF8190;
 }
