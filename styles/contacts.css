@@ -1,3 +1,4 @@
+/* for the overlay to not create a vertical scrollbar */
 body {
     overflow: clip;
 }
@@ -100,19 +101,20 @@ main {
 }
 
 .address-book-letter {
-    height: 58px;
-    padding: 17px 36px 17px 36px;
+    padding: 17px 0 0 36px;
     font-weight: 400;
     font-size: 20px;
 }
 
 .letter-underline {
     width: 352px;
-    padding: 7px 0 7px 0;
+    margin-left: -36px;
+    padding: 24px 0 7px 0;
 }
 
 .contact {
     height: 78px;
+    margin-left: -36px;
     padding: 15px 24px 15px 24px;
     border-radius: 10px;
     display: flex;
@@ -130,9 +132,14 @@ main {
     color: #FFFFFF;
 }
 
+.contact-clicked:hover {
+    background: #2A3647 !important;
+    color: #FFFFFF !important;
+}
+
 .contact-profile-badge {
     height: 42px;
-    width: 42px;
+    min-width: 42px;
     border: 2px solid #FFFFFF;
     border-radius: 45px;
     text-align: center;
@@ -192,6 +199,26 @@ main {
     font-size: 27px;
     line-height: 32.4px;
     color: #2A3647;
+}
+
+#focusedContactInformation {
+    position: relative;
+}
+
+.animation-focused-contact {
+    animation: showFocusedContact;
+    animation-duration: 300ms;
+    animation-timing-function: ease-out;
+}
+
+@keyframes showFocusedContact {
+    from {
+        right: -100%;
+    }
+
+    to {
+        right: 0%;
+    }
 }
 
 .focused-profile-overview {
@@ -297,17 +324,14 @@ main {
     line-height: 19.2px;
 }
 
-/** Overlay Add Contact and Overlay Edit Contact**/
+/** Overlays**/
 #overlayBg {
-    height: 1024px;
-    width: 1440px;
+    height: 100%;
+    width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: rgb(0, 0, 0, 0.3);
     transition-property: all;
     transition-duration: 300ms;
@@ -321,8 +345,11 @@ main {
     display: flex;
     background-color: #FFFFFF;
     position: relative;
+    top: -70vb;
+    right: -10vb;
     animation-duration: 300ms;
     animation-timing-function: ease-out;
+    z-index: 1;
 }
 
 .animation-open-overlay {
@@ -330,8 +357,13 @@ main {
 }
 
 @keyframes openOverlay {
-    from {right: -100%;}
-    to { right: 0%;}
+    from {
+        right: -100%;
+    }
+
+    to {
+        right: 0%;
+    }
 }
 
 .animation-close-overlay {
@@ -339,8 +371,13 @@ main {
 }
 
 @keyframes closeOverlay {
-    from {right: 0%;}
-    to { right: -100%;}
+    from {
+        right: 0%;
+    }
+
+    to {
+        right: -100%;
+    }
 }
 
 .overlay-title {
@@ -379,20 +416,12 @@ main {
     flex-direction: column;
 }
 
-.overlay-close {
-    align-self: flex-end;
-}
-
-.overlay-close:hover {
-    cursor: pointer;
-}
-
 .overlay-contact-information div {
     margin-top: 57px;
     display: flex;
 }
 
-.overlay-profile-badge {
+#overlayProfileBadge {
     height: 120px;
     width: 120px;
     border: 3px solid #FFFFFF;
@@ -420,10 +449,6 @@ main {
     padding: 13px 21px 13px 21px !important;
 }
 
-.submit-btns {
-    margin-top: 28px !important;
-}
-
 .overlay-input-icons {
     display: flex;
     flex-direction: column;
@@ -437,6 +462,47 @@ main {
     left: -68px;
     cursor: text;
     pointer-events: none;
+}
+
+.contact-succesfull-msg {
+    width: 326px;
+    height: 74px;
+    border-radius: 20px;
+    position: relative;
+    top: -200px;
+    right: -100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2A3647;
+    box-shadow: 0px 0px 4px 0px #00000026;
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+/* This is added to the contact-successfull-messages, when create/edit/delete was succesfully*/
+@keyframes contactSuccesfull {
+    0% {
+        top: -200px;
+        right: -100%;
+    }
+
+    25% {
+        top: -200px;
+        right: -800px;
+    }
+
+    75% {
+        top: -200px;
+        right: -800px;
+    }
+
+    100% {
+        top: -200px;
+        right: -100%;
+    }
 }
 
 /** same as add-task (copy&paste)**/
@@ -467,12 +533,13 @@ input:focus {
     border: 1px solid transparent;
 }
 
-.submit-btns {
-    display: flex;
+#contactsSubmitBtns {
+    margin-top: 28px !important;
     gap: 16px;
+    display: flex;
 }
 
-.submit-btns button {
+#contactsSubmitBtns button {
     height: 56px;
     padding: 16px;
     border: 1px solid #2A3647;
