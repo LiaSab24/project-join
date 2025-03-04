@@ -275,7 +275,7 @@ function adjustOverlayToEditTask(taskIndex) {
   });
   let createBtn = document.getElementById("addTaskCreate");
   if (createBtn) {
-      createBtn.innerText = "OK";
+    createBtn.innerHTML = `OK <img class="check-image" src="/assets/icons/check.png">`;
       createBtn.id = "editTaskConfirm";
       createBtn.classList.add("userStoryEditOkButton");
       createBtn.onclick = function () { saveTaskChanges(taskIndex); };
