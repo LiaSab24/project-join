@@ -175,20 +175,14 @@ async function boardAddTask(progress) {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, "text/html");
       let addTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
-      let addEditOverlayContent = doc.querySelector('#addTask').innerHTML;
       initAddTask();
       openBoardBgOverlay();
       openBoardAddTaskOverlay(addTaskOverlayContent, progress);
-      openBoardAddTaskOverlay(addEditOverlayContent, progress);
-      op
     })
     .catch(error => {
       console.error('Failed to fetch page: add_task.html')
     })
 }
-
-
-
 
 /**
  * This function is part of the boardAddTask()-function and adds visibility of the #boardOverlayBg
@@ -215,7 +209,6 @@ async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
   document.getElementById("addTaskTitle").innerHTML += `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close"></img>`
   adjustAddTaskProgress(progress);
   addOnclickToCreateBtn();
-  editOnclickToCreateBtn();
 }
 
 
@@ -244,18 +237,6 @@ function addOnclickToCreateBtn() {
   })
 }
 
-/**
- * This function adds an onclick-event to the #addTaskCreate-Button for the #addTaskOverlay
- */
-function editOnclickToCreateBtn() {
-  let editTaskCreateBtn = document.getElementById("editTastCreate");
-  editTaskCreateBtn.addEventListener("click", event => {
-    closeOverlays();
-    initBoard();
-    event.stopImmediatePropagation();
-  })
-}
-
 function insertUserFeedback() {
   let existingOverlay = document.getElementById("feedbackOverlay");
 
@@ -273,39 +254,37 @@ function toggleUserFeedback() {
   feedbackOverlay.classList.toggle("feedback-hidden");
 }
 
-// /**
-//  * Öffnet oder schließt das Edit-Overlay für eine Aufgabe.
-//  */
-// function toggleEditOverlay() {
-//   let editOverlay = document.getElementById("editTaskOverlay");
-//   if (!editOverlay) {
-//       insertEditOverlay();
-//       setTimeout(() => {
-//           editOverlay = document.getElementById("editTaskOverlay");
-//           if (editOverlay && !editOverlay.classList.contains("d-none")) {
-//               editOverlay.classList.remove("d-none");
-//               editOverlay.style.display = "";
-//           }
-//       }, 200);
-//   } else if (!editOverlay.classList.contains("d-none")) {
-//       return;
-//   } else {
-//       editOverlay.classList.toggle("d-none");
-//       editOverlay.style.display = editOverlay.classList.contains("d-none") ? "none" : "";
-//   }
-// }
+/**
+ * Öffnet oder schließt das Edit-Overlay für eine Aufgabe.
+ */
+function toggleEditOverlay() {
+  let editOverlay = document.getElementById("editTaskOverlay");
+  if (!editOverlay) {
+      insertEditOverlay();
+      setTimeout(() => {
+          editOverlay = document.getElementById("editTaskOverlay");
+          if (editOverlay && !editOverlay.classList.contains("d-none")) {
+              editOverlay.classList.remove("d-none");
+              editOverlay.style.display = "";
+          }
+      }, 200);
+  } else if (!editOverlay.classList.contains("d-none")) {
+      return;
+  } else {
+      editOverlay.classList.toggle("d-none");
+      editOverlay.style.display = editOverlay.classList.contains("d-none") ? "none" : "";
+  }
+}
 
-
-
-// /**
-//  * Fügt das Edit-Overlay in das DOM ein, falls es noch nicht existiert.
-//  */
-// function insertEditOverlay() {
-//   let container = document.body;
-//   if (!document.getElementById("editTaskOverlay")) {
-//       container.insertAdjacentHTML("beforeend", getEditTaskTemplate());
-//   }
-// }
+/**
+ * Fügt das Edit-Overlay in das DOM ein, falls es noch nicht existiert.
+ */
+function insertEditOverlay() {
+  let container = document.body;
+  if (!document.getElementById("editTaskOverlay")) {
+      container.insertAdjacentHTML("beforeend", getEditTaskTemplate());
+  }
+}
 
 
 function saveTaskChanges(event) {
