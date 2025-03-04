@@ -206,6 +206,7 @@ async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
   addTaskOverlayContentRef.classList.remove("d-none");
   addTaskOverlayContentRef.innerHTML = "";
   addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
+  document.getElementById("addTaskTitle").innerHTML += `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close"></img>`
   adjustAddTaskProgress(progress);
   addOnclickToCreateBtn();
 }

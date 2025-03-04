@@ -34,13 +34,12 @@
     <section class="board-header">
       <h1>Board</h1>
       <div class="input-container">
-        <div class="input">
-          <input id="searchInput" class="search-input" type="text" placeholder="Find task">
-          <div class="divider-container">
-            <div class="input-divider"></div>
-          </div>
-          <div class="search-icon">
-            <img src="/assets/icons/search.png" alt="Search">
+
+        <div class="search-container">
+          <input id="searchInput" type="text" placeholder="Find task">
+          <div class="search-input-icons">
+            <div class="search-container-seperator"></div>
+            <img src="/assets/icons/search.png" alt="Search" class="search-icon">
           </div>
         </div>
 
@@ -54,7 +53,8 @@
       <div class="task-wrapper">
         <div class="task-headline">
           <h2>To Do</h2>
-          <div onclick="boardAddTask('toDo')" class="icon-container"><img src="/assets/icons/plus-button.png" alt="Add Button"></div>
+          <div onclick="boardAddTask('toDo')" class="icon-container"><img src="/assets/icons/plus-button.png"
+              alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTask">No tasks in To Do</div>
@@ -65,7 +65,8 @@
       <div class="task-wrapper">
         <div class="task-headline">
           <h2>In Progress</h2>
-          <div onclick="boardAddTask('inProgress')" class="icon-container"><img src="/assets/icons/plus-button.png" alt="Add Button"></div>
+          <div onclick="boardAddTask('inProgress')" class="icon-container"><img src="/assets/icons/plus-button.png"
+              alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTaskInProgress">No tasks in Progress</div>
@@ -76,7 +77,8 @@
       <div class="task-wrapper">
         <div class="task-headline">
           <h2>Await Feedback</h2>
-          <div onclick="boardAddTask('awaitFeedback')" class="icon-container"><img src="/assets/icons/plus-button.png" alt="Add Button"></div>
+          <div onclick="boardAddTask('awaitFeedback')" class="icon-container"><img src="/assets/icons/plus-button.png"
+              alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTaskAwaitFeedback">No tasks in awaiting feedback</div>

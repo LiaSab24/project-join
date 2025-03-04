@@ -123,6 +123,7 @@ select {
 
 .title {
     margin-top: 110px;
+    margin-right: 32px;
     margin-left: 96px;
     font-weight: 700;
     font-size: 61px;

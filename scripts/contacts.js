@@ -158,7 +158,7 @@ function contactClicked(indexContact) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function highlightContact(indexContact) {
-    document.getElementById(indexContact).classList.add("contact-clicked");
+    document.getElementById("id" + indexContact).classList.add("contact-clicked");
 }
 
 /**
