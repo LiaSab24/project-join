@@ -175,6 +175,22 @@ function hideAllUsers(contentRef) {
   }
 }
 
+/**
+ * This function shows the 'succesfully created/edited/deleted'-message after adding/editing/deleting a contact or task was succesfull
+ * 
+ * @param {number} msgId - the id of the message that should be shown
+ */
+async function successfullMsg(msgId) {
+  let successAnimation = document.getElementById(msgId);
+  successAnimation.style.animationName = "msgSuccesfull";
+  successAnimation.style.animationDuration = "1600ms";
+  setTimeout(function () {
+      successAnimation.style.animationName = "";
+      successAnimation.style.animationDuration = "";
+      init();
+  }, 1600);
+}
+
 //__________________________________________
 
 function btnUserInitial() {

@@ -96,3 +96,33 @@ main {
   border-radius: 56px;
   background-color: #D9D9D9;
 }
+
+.messages {
+  height: 0;
+}
+
+.succesfull-msg {
+  width: 326px;
+  height: 74px;
+  border-radius: 20px;
+  position: relative;
+  top: -300px;
+  right: -100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2A3647;
+  box-shadow: 0px 0px 4px 0px #00000026;
+  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* This is added to the success-messages, when create/edit/delete was succesfully*/
+@keyframes msgSuccesfull {
+  0%   {top: -300px; right: -100%;}
+  25%  {top: -300px; right: -800px;}
+  75%  {top: -300px; right: -800px;}
+  100% {top: -300px; right: -100%;}
+}
