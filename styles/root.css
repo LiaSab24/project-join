@@ -20,9 +20,9 @@
   --fw-600: 600;
   --fw-700: 700;
 
-  /* color elemente, background & text */
+  /* color elemente, background & text(T) */
   --clr-white: #fff;
-  --clr-black: #000;
+  --clr-black: #000; /* verd.PW (*)(10T), Tel.nr(2T), | Trenner (3), 0/2 Subtasks (46T), Datum (10T)*/
   --clr-primary: #2A3647;
   --clr-click: #091931;
   --clr-lightBlue: #29abe2;
@@ -30,7 +30,7 @@
   --clr-lighterGray: #DCDCDC;
   
   /* colors user*/
-  --clr-anton: #ff7a00;
+  --clr-user1: #ff7a00;
   --clr-benedikt: #6e52ff;
   --clr-anja: #9327ff;
   --clr-sofia: #00bee8;
