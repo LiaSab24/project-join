@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacts</title>
-    <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)"/>
-    <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)"/>
+    <title>Join Contacts</title>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)" />
 
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/styles/sidebar.css">
@@ -16,120 +16,151 @@
 
     <script src="/script.js"></script>
     <script src="/scripts/include.js"></script>
+    <script src="/scripts/templates.js"></script>
     <script src="/scripts/contacts.js"></script>
-
-    <!-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-  const scrollContainer = document.querySelector('.scroll-container')});
-
-  // Dynamische Anpassung der max-height basierend auf dem Inhalt
-  const contentHeight = scrollContainer.scrollHeight;
-  if (contentHeight < 300) {
-    scrollContainer.style.maxHeight = contentHeight + "px";
-    };
-    </script> -->
-
 </head>
 
-<body>
+<body onload="initContacts()">
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
     <main>
-        <section class="address-book">
+        <section class="address-book custom-scrollbar">
             <div class="add-new-contact">
-                <button onclick="toggleOverlay()">
+                <button onclick="toggleContactsOverlay(), adjustOverlayToAdd()">
                     <span>Add new contact</span>
                     <img src="/assets/icons/contacts-add.svg" alt="add contact">
                 </button>
             </div>
-            <div class="contacts-list">
-                <div class="address-book-letter">A</div>
-                <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
-                <div>
-                    <div id="0" class="contact" onclick="contactClicked(0)">
-                        <div class="contact-profile-badge">AM</div>
-                        <p>
-                            <span class="contact-name">Anton Mayer</span>
-                            <span class="contact-mail">antom@gmail.com</span>
-                        </p>
-                    </div>
-
-                    <div id="1" class="contact" onclick="contactClicked(1)">
-                        <div class="contact-profile-badge">AJ</div>
-                        <p>
-                            <span class="contact-name">Anja Schulz</span>
-                            <span class="contact-mail">schulz@hotmail.com</span>
-                        </p>
-                    </div>
+            <div id="addressBook" class="contacts-list">
+                <div id="letterA" class="address-book-letter">A
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterA" class="contactsLetter"></div>
                 </div>
 
-                <div class="address-book-letter">B</div>
-                <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
-                <div>
-                    <div id="2" class="contact" onclick="contactClicked(2)">
-                        <div class="contact-profile-badge">BZ</div>
-                        <p>
-                            <span class="contact-name">Benedikt Ziegler</span>
-                            <span class="contact-mail">benedikt@gmail.com</span>
-                        </p>
-                    </div>
+                <div id="letterB" class="address-book-letter">B
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterB" class="contactsLetter"></div>
                 </div>
 
-                <div class="address-book-letter">D</div>
-                <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
-                <div>
-                    <div id="3" class="contact" onclick="contactClicked(3)">
-                        <div class="contact-profile-badge">DE</div>
-                        <p>
-                            <span class="contact-name">David Eisenberg</span>
-                            <span class="contact-mail">davidberg@gmail.com</span>
-                        </p>
-                    </div>
+                <div id="letterC" class="address-book-letter">C
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterC" class="contactsLetter"></div>
                 </div>
 
-                <div class="address-book-letter">E</div>
-                <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
-                <div>
-                    <div id="4" class="contact" onclick="contactClicked(4)">
-                        <div class="contact-profile-badge">EF</div>
-                        <p>
-                            <span class="contact-name">Eva Fischer</span>
-                            <span class="contact-mail">eva@gmail.com</span>
-                        </p>
-                    </div>
-
-                    <div id="5" class="contact" onclick="contactClicked(5)">
-                        <div class="contact-profile-badge">EM</div>
-                        <p>
-                            <span class="contact-name">Emmanuel Mauer</span>
-                            <span class="contact-mail">emmanuelma@gmail.com</span>
-                        </p>
-                    </div>
+                <div id="letterD" class="address-book-letter">D
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterD" class="contactsLetter"></div>
                 </div>
 
-                <div class="address-book-letter">M</div>
-                <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
-                <div>
-                    <div id="6" class="contact" onclick="contactClicked(6)">
-                        <div class="contact-profile-badge">MB</div>
-                        <p>
-                            <span class="contact-name">Marcel Bauer</span>
-                            <span class="contact-mail">bauer@gmail.com</span>
-                        </p>
-                    </div>
+                <div id="letterE" class="address-book-letter">E
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterE" class="contactsLetter"></div>
                 </div>
 
-                <div class="address-book-letter">T</div>
-                <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
-                <div>
-                    <div id="7" class="contact" onclick="contactClicked(7)">
-                        <div class="contact-profile-badge">TW</div>
-                        <p>
-                            <span class="contact-name">Tatjana Wolf</span>
-                            <span class="contact-mail">wolf@gmail.com</span>
-                        </p>
-                    </div>
+                <div id="letterF" class="address-book-letter">F
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterF" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterG" class="address-book-letter">G
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterG" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterH" class="address-book-letter">H
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterH" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterI" class="address-book-letter">I
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterI" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterJ" class="address-book-letter">J
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterJ" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterK" class="address-book-letter">K
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterK" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterL" class="address-book-letter">L
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterL" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterM" class="address-book-letter">M
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterM" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterN" class="address-book-letter">N
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterN" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterO" class="address-book-letter">O
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterO" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterP" class="address-book-letter">P
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterP" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterQ" class="address-book-letter">Q
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterQ" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterR" class="address-book-letter">R
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterR" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterS" class="address-book-letter">S
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterS" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterT" class="address-book-letter">T
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterT" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterU" class="address-book-letter">U
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterU" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterV" class="address-book-letter">V
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterV" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterW" class="address-book-letter">W
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterW" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterX" class="address-book-letter">X
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterX" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterY" class="address-book-letter">Y
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterY" class="contactsLetter"></div>
+                </div>
+
+                <div id="letterZ" class="address-book-letter">Z
+                    <img src="/assets/icons/letter-underline.svg" alt="letter underline" class="letter-underline">
+                    <div id="contactsLetterZ" class="contactsLetter"></div>
                 </div>
             </div>
         </section>
@@ -141,79 +172,53 @@
                 <p>Better with a team</p>
             </div>
 
-            <div class="focused-contact-information">
-                <div class="focused-profile-overview">
-                    <div class="focused-profile-badge">AM</div>
-                    <div class="focused-profile-account">
-                        <span class="focused-contact-name">Anton Mayer</span>
-                        <div>
-                            <button onclick="toggleOverlay()" class="focused-contact-btns">
-                                <div id="contactsEditIcon"></div>
-                                <span>Edit</span>
-                            </button>
-                            <button onclick="toggleOverlay()" class="focused-contact-btns">
-                                <div id="contactsDeleteIcon"></div>
-                                <span>Delete</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="focused-profile-information">
-                    <p>Contact Information</p>
-                    <div>
-                        <span class="contact-opportunity">Email</span>
-                        <span class="contact-mail">antom@gmail.com</span>
-                    </div>
-                    <div>
-                        <span class="contact-opportunity">Phone</span>
-                        <span>+49 1111 111 11 1</span>
-                    </div>
-                </div>
-            </div>
+            <div id="focusedContactInformation" class="animation-focused-contact"></div>
         </section>
     </main>
 
-    <div id="overlayBg" class="d-none">
-        <section id="overlayContact" class="d-none animation-close-overlay">
-            <div class="overlay-title">
-                <img class="overlay-join-logo" src="/assets/icons/join-logo.svg">
-                <h1 id="overlayTitleH1">Add contact</h1>
-                <p id="overlayTitleP">Tasks are better with a team!</p>
-                <img src="/assets/icons/contacts-overlay-underline.svg">
-            </div>
-            <div class="overlay-contact-information">
-                <img onclick="toggleOverlay()" src="/assets/icons/contacts-overlay-close.svg" class="overlay-close">
-                <div>
-                    <div class="overlay-profile-badge">
-                        <img src="/assets/icons/contacts-overlay-profile-badge-anonymous.svg">
-                    </div>
-                    <form class="overlay-form">
-                        <input type="text" placeholder="Name">
-                        <input type="text" placeholder="Email">
-                        <input type="text" placeholder="Phone">
+    <div onclick="toggleContactsOverlay()" id="overlayBg" class="d-none"></div>
     
-                        <div class="submit-btns">
-                            <button class="reject-btn" id="contactsOverlayCancel">
-                                Cancel
-                                <div class="reject-img"></div>
-                            </button>
-                            <button class="confirm-btn" id="contactsOverlayCreate">
-                                Create Contact
-                                <img src="/assets/icons/create-btn.svg">
-                            </button>
-                        </div>
-                    </form>
+    <section id="overlayContact" class="d-none animation-close-overlay">
+        <div class="overlay-title">
+            <img class="overlay-join-logo" src="/assets/icons/join-logo-light.svg">
+            <h1 id="overlayTitleH1">Add contact</h1>
+            <p id="overlayTitleP">Tasks are better with a team!</p>
+            <img src="/assets/icons/contacts-overlay-underline.svg">
+        </div>
+        <div class="overlay-contact-information">
+            <img onclick="toggleContactsOverlay()" src="/assets/icons/overlay-close.svg" class="overlay-close">
+            <div>
+                <div id="overlayProfileBadge">
+                    <img src="/assets/icons/contacts-overlay-profile-badge-anonymous.svg">
                 </div>
-            </div>
-            <div class="overlay-input-icons">
-                <img src="/assets/icons/contacts-overlay-name.svg" alt="Name">
-                <img src="/assets/icons/contacts-overlay-email.svg" alt="Email">
-                <img src="/assets/icons/contacts-overlay-phone.svg" alt="Phone">
-            </div>
-        </section>
-    </div>
+                <form class="overlay-form">
+                    <input id="addContactName" type="text" placeholder="Name" required>
+                    <input id="addContactMail" type="text" placeholder="Email" required>
+                    <input id="addContactPhone" type="text" placeholder="Phone">
 
+                    <div id="contactsSubmitBtns"></div>
+                </form>
+            </div>
+        </div>
+        <div class="overlay-input-icons">
+            <img src="/assets/icons/contacts-overlay-name.svg" alt="Name">
+            <img src="/assets/icons/contacts-overlay-email.svg" alt="Email">
+            <img src="/assets/icons/contacts-overlay-phone.svg" alt="Phone">
+        </div>
+    </section>
+
+
+    <section class="contact-messages">
+        <div id="contactSuccesfullyCreated" class="contact-succesfull-msg">
+            <span>Contact succesfully created</span>
+        </div>
+        <div id="contactSuccesfullyEdited" class="contact-succesfull-msg">
+            <span>Contact succesfully edited</span>
+        </div>
+        <div id="contactSuccesfullyDeleted" class="contact-succesfull-msg">
+            <span>Contact succesfully deleted</span>
+        </div>
+    </section>
     <footer></footer>
 
     <script>includeHTML();</script>
