@@ -78,6 +78,11 @@ function toggleAddTaskToDropDownMenu(inputContentRef, DropdownContentRef) {
     addAddTaskOverlay();
     document.getElementById(inputContentRef).classList.add("add-task-current-select");
     document.getElementById(DropdownContentRef).classList.remove("d-none");
+    // let assignedContactsInput = document.getElementById("addTaskAssignedTo");
+    // assignedContactsInput.addEventListener("onkeyup", event => {
+    //     startSearching();
+    //     event.stopImmediatePropagation();
+    // })
 }
 
 /**
@@ -174,7 +179,7 @@ function clearSubtasksInput() {
     subtasksInputRef.value = "";
 }
 
-/**sd
+/**
  * This function reads out the input-value from the subtask-input and adds this subtask in the list below (template)
  */
 function addSubtaskToList() {
@@ -250,6 +255,9 @@ function addTask() {
         "progress": { "progress": taskProgress }
     });
     initAddTask();
+    if (window.location.href !== "http://127.0.0.1:5500/html/add_task.html") {
+        successfullMsg("taskSuccesfullyCreated");
+    }
 }
 
 /**

@@ -29,7 +29,7 @@ main {
 }
 
 .address-book::-webkit-scrollbar-button {
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; 
     background-size: 10px;
     background-position: center;
     width: 10px;
@@ -462,32 +462,6 @@ main {
     left: -68px;
     cursor: text;
     pointer-events: none;
-}
-
-.contact-succesfull-msg {
-    width: 326px;
-    height: 74px;
-    border-radius: 20px;
-    position: relative;
-    top: -200px;
-    right: -100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #2A3647;
-    box-shadow: 0px 0px 4px 0px #00000026;
-    color: #FFFFFF;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-}
-
-/* This is added to the contact-successfull-messages, when create/edit/delete was succesfully*/
-@keyframes contactSuccesfull {
-    0%   {top: -200px; right: -100%;}
-    25%  {top: -200px;right: -800px;}
-    75%  {top: -200px;right: -800px;}
-    100% {top: -200px;right: -100%;}
 }
 
 /** same as add-task (copy&paste)**/

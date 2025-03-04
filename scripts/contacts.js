@@ -120,25 +120,9 @@ async function addContact() {
             "phone": contactPhone,
             "color": contactColor
         });
-        contactSuccesfullMsg("contactSuccesfullyCreated");  
+        toggleContactsOverlay();
+        successfullMsg("contactSuccesfullyCreated");
     }
-}
-
-/**
- * This function shows the 'contact succesfully created/edited/deleted'-message after adding/editing/deleting the contact in the contacts-array and firebase was succesfull
- * 
- * @param {number} msgId - the id of the message that should be shown
- */
-async function contactSuccesfullMsg(msgId) {
-    let successAnimation = document.getElementById(msgId);
-    successAnimation.style.animationName = "contactSuccesfull";
-    successAnimation.style.animationDuration = "1600ms";
-    toggleContactsOverlay();
-    setTimeout(function () {
-        successAnimation.style.animationName = "";
-        successAnimation.style.animationDuration = "";
-        initContacts();
-    }, 1600);
 }
 
 /**
@@ -194,7 +178,8 @@ async function saveEditContact(indexContact) {
             "color": contactColor
         });
         contactClicked(indexContact);
-        contactSuccesfullMsg("contactSuccesfullyEdited");
+        successfullMsg("contactSuccesfullyEdited");
+        toggleContactsOverlay();
     }
 }
 
