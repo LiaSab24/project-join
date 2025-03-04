@@ -5,7 +5,7 @@ let tasks = [];
 let contacts = [];
 
 let currentUser = 0;                                              //0=max mustermann, 1=Guest
-let indexUser                    
+let indexUser
 
 const colors = [
   "#ff7a00", // Vivid Orange
@@ -117,7 +117,7 @@ async function putData(path = "", data = {}) {
  */
 async function assignRandomColor(indexContact) {
   if (contactColors[indexContact]) {
-      return contactColors[indexContact];
+    return contactColors[indexContact];
   }
   if (availableColors.length === 0) availableColors = [...colors];
 
@@ -136,7 +136,11 @@ async function assignRandomColor(indexContact) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function profileBadgeColor(contentRef, indexContact) {
-  document.getElementById(contentRef).style.backgroundColor = contacts[indexContact].color;
+  if (indexContact == -1) {
+    document.getElementById(contentRef).style.backgroundColor = "#D9D9D9";
+  } else {
+    document.getElementById(contentRef).style.backgroundColor = contacts[indexContact].color;
+  }
 }
 
 /**
@@ -145,12 +149,17 @@ function profileBadgeColor(contentRef, indexContact) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function nameAbbreviation(indexContact) {
-  let contactFullName = contacts[indexContact].name.toUpperCase();
-  let contactFirstName = contactFullName.substring(0, contactFullName.indexOf(' '));
-  let contactLastName = contactFullName.substring(contactFullName.indexOf(' ') + 1);
-  let firstLetter = contactFirstName.charAt(0);
-  let secondLetter = contactLastName.charAt(0);
-  return firstLetter + secondLetter
+  if (indexContact == -1) {
+    return "  "
+  } else {
+    let contactFullName = contacts[indexContact].name.toUpperCase();
+    let contactFirstName = contactFullName.substring(0, contactFullName.indexOf(' '));
+    let contactLastName = contactFullName.substring(contactFullName.indexOf(' ') + 1);
+    let firstLetter = contactFirstName.charAt(0);
+    let secondLetter = contactLastName.charAt(0);
+    return firstLetter + secondLetter
+  }
+
 }
 
 /**
@@ -159,7 +168,7 @@ function nameAbbreviation(indexContact) {
  * @param {string} contentRef - the repetetive part of the id that is used to find the element to remove
  */
 function hideAllUsers(contentRef) {
-  for (let indexUser = 0; indexUser < users.length-1; indexUser++) {
+  for (let indexUser = 0; indexUser < users.length - 1; indexUser++) {
     let usersInContactsIds = contacts.findIndex(index => index.name === users[indexUser].name).toString();
     let usersAddressBookEntrie = document.getElementById(contentRef + usersInContactsIds);
     usersAddressBookEntrie.remove();

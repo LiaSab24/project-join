@@ -62,6 +62,10 @@ function removeAddTaskOverlay() {
     document.getElementById('addTaskAssignedTo').classList.remove("add-task-current-select");
     document.getElementById('addTaskDropdownCategories').classList.add("d-none");
     document.getElementById('addTaskCategory').classList.remove("add-task-current-select");
+    let subtasksNumber = document.querySelectorAll(".subtask");
+    for (let indexSubtask = 0; indexSubtask < subtasksNumber.length; indexSubtask++) {
+        confirmEditSubtask(indexSubtask)
+    }
 }
 
 /**
@@ -191,10 +195,9 @@ function addSubtaskToList() {
  * @param {number} indexSubtask - the index of the subtask in the subtasks-list
  */
 function editSubtask(indexSubtask) {
+    addAddTaskOverlay();
     let subtaskContentRef = document.getElementById("subtask" + indexSubtask);
-    // console.log(subtaskContentRef);
     let subtask = subtaskContentRef.innerText;
-    // console.log(subtask);
     subtaskContentRef.classList.add("subtask-edit");
     subtaskContentRef.innerHTML = getAddTaskSubtaskEditTemplate(subtask, indexSubtask);
 }
@@ -244,7 +247,7 @@ function addTask() {
         "priority": taskPriority,
         "category": taskCategory,
         "subtasks": taskSubtasks,
-        "progress": {"progress": taskProgress}
+        "progress": { "progress": taskProgress }
     });
     initAddTask();
 }
@@ -269,7 +272,16 @@ function getAssignedContacts() {
     for (let indexAssignedContact = 0; indexAssignedContact < assignedContactsList.length; indexAssignedContact++) {
         let assignedContactId = assignedContactsList[indexAssignedContact].id.replace("addTaskAssignedToListPB", " ").trim();
         assignedContactsIndexArray.push(assignedContactId);
-        assignedContactsArray.push(contacts[assignedContactsIndexArray[indexAssignedContact]]);
+        if (assignedContactId == -1) {
+            assignedContactsArray.push({
+                "color": "#D9D9D9",
+                "mail": "",
+                "name": "",
+                "phone": ""
+            });
+        } else {
+            assignedContactsArray.push(contacts[assignedContactsIndexArray[indexAssignedContact]]);
+        }
     }
     return assignedContactsArray;
 }

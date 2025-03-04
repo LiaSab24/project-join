@@ -30,8 +30,7 @@ function showUserName() {
     let userNameContentRef = document.getElementById("userName");
     userNameContentRef.innerHTML = "";
     userNameContentRef.innerHTML = users[currentUser].name;
-    if (userNameContentRef.innerHTML == "Guest") {
-        userNameContentRef.innerHTML = "";
+    if (userNameContentRef.innerHTML == "") {
         guestGreeting();
     }
 }

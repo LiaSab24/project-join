@@ -88,7 +88,7 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
  * @param {number} indexSubtask - the index of the subtask in the subtasks-list
  */
 function getAddTaskSubtaskTemplate(subtask, indexSubtask) {
-    return `<div id="subtask${indexSubtask}" class="subtask">
+    return `<div ondblclick="editSubtask(${indexSubtask})" id="subtask${indexSubtask}" class="subtask">
             ${getAddTaskSubtaskListElementTemplate(subtask, indexSubtask)}
             </div>`
 }
@@ -180,7 +180,7 @@ function getBoardTaskTemplate(indexTask) {
             <div class="progress-bar">
               <div class="progress-bar-fill" style="width:${progressSubtasksPercentage(indexTask)}%;"></div>
             </div>
-            <span>${countCompletedSubtasks(indexTask)}/${countTotalSubtasks(indexTask)} </span>
+            <span>${countCompletedSubtasks(indexTask)}/${countTotalSubtasks(indexTask)} Subtasks</span>
           </div>
           <div class="assigned-contacts-and-priority">
             <div id="assignedContacts${indexTask}" class="task-assignees"></div>
