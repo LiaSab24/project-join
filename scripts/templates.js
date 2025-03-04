@@ -88,7 +88,7 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
  * @param {number} indexSubtask - the index of the subtask in the subtasks-list
  */
 function getAddTaskSubtaskTemplate(subtask, indexSubtask) {
-    return `<div id="subtask${indexSubtask}" class="subtask">
+    return `<div ondblclick="editSubtask(${indexSubtask})" id="subtask${indexSubtask}" class="subtask">
             ${getAddTaskSubtaskListElementTemplate(subtask, indexSubtask)}
             </div>`
 }

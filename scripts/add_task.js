@@ -62,6 +62,10 @@ function removeAddTaskOverlay() {
     document.getElementById('addTaskAssignedTo').classList.remove("add-task-current-select");
     document.getElementById('addTaskDropdownCategories').classList.add("d-none");
     document.getElementById('addTaskCategory').classList.remove("add-task-current-select");
+    let subtasksNumber = document.querySelectorAll(".subtask");
+    for (let indexSubtask = 0; indexSubtask < subtasksNumber.length; indexSubtask++) {
+        confirmEditSubtask(indexSubtask)
+    }
 }
 
 /**
@@ -191,6 +195,7 @@ function addSubtaskToList() {
  * @param {number} indexSubtask - the index of the subtask in the subtasks-list
  */
 function editSubtask(indexSubtask) {
+    addAddTaskOverlay();
     let subtaskContentRef = document.getElementById("subtask" + indexSubtask);
     let subtask = subtaskContentRef.innerText;
     subtaskContentRef.classList.add("subtask-edit");

@@ -387,6 +387,7 @@ select {
     background-color: #FFFFFF;
     border-bottom: solid 1px #29ABE2;
     border-radius: 0;
+    z-index: 2;
 }
 
 .subtask-edit:hover {
