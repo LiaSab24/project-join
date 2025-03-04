@@ -233,12 +233,12 @@ function getFeedbackOverlayTemplate() {
                     <img src="/assets/icons/delete.png" alt="Delete-Icon"> Delete
                 </button>
                 <div class="divider"></div>
-                <button class="feedback-edit-btn" id="editTaskCreate" onclick="openEditTaskOverlay()">
+                <button class="feedback-edit-btn" id="editTaskCreate" onclick="boardEditTask(3)">
                     <img src="/assets/icons/edit.png" alt="Edit-Icon"> Edit
                 </button>
             </div>
         </section>
-          <section id="addTaskOverlay" class="d-none"></section>
+        <section id="editTaskOverlay" class="d-none"></section>
         </div>
     `;
 }
