@@ -25,7 +25,7 @@ function getFocusedContactTemplate(indexContact) {
                         <span class="focused-contact-name">${contacts[indexContact].name}</span>
                         <div>
                             <button onclick="toggleContactsOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
-                                <div id="contactsEditIcon"></div>
+                             <div id="contactsEditIcon"></div>
                                 <span>Edit</span>
                             </button>
                             <button onclick="deleteContact()" class="focused-contact-btns">

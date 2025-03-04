@@ -180,7 +180,7 @@ button img {
 
 }
 
-.no-task-age-container {
+.no-task-message-container {
   text-align: center;
   color: #a8a8a8;
   opacity: 0.8;
@@ -247,10 +247,15 @@ button img {
 }
 
 .task-description {
-  height: 38px;
+  max-height: 38px;
   font-size: 16px;
   color: #A8A8A8;
   overflow: hidden;
+  white-space: break-spaces;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
 }
 
 .task-progress {
