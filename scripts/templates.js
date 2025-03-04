@@ -225,7 +225,6 @@ function getFeedbackOverlayTemplate() {
             <div class="feedback-subtasks">
                 <div class="feedback-subtask-item"><input type="checkbox"> Implement Recipe Recommendation</div>
                 <div class="feedback-subtask-item"><input type="checkbox"> 
-                    <img src="/assets/icons/check-cube.png" alt="checked"> Start Page Layout
                 </div>
             </div>
             <div class="feedback-actions">
