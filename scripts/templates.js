@@ -180,7 +180,7 @@ function getBoardTaskTemplate(indexTask) {
             <div class="progress-bar">
               <div class="progress-bar-fill" style="width:${progressSubtasksPercentage(indexTask)}%;"></div>
             </div>
-            <span>${countCompletedSubtasks(indexTask)}/${countTotalSubtasks(indexTask)} </span>
+            <span>${countCompletedSubtasks(indexTask)}/${countTotalSubtasks(indexTask)} Subtasks</span>
           </div>
           <div class="assigned-contacts-and-priority">
             <div id="assignedContacts${indexTask}" class="task-assignees"></div>
