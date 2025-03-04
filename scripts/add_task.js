@@ -4,7 +4,6 @@
 async function initAddTask() {
     await init();
     clearTaskForm()
-    //fixDateInput();
     fillAssignedToDropDownMenu();
 }
 
@@ -44,23 +43,6 @@ function clearPriorityBtns() {
     document.getElementById("prioLowImg").src = "/assets/icons/prioLow.svg";
 }
 
-
-
-// function fixDateInput() {
-//     const dateInput = document.querySelector("#addTaskDate");
-//     if (dateInput && !dateInput.hasAttribute("data-flatpickr-initialized")) {
-//         flatpickr(dateInput, {
-//             dateFormat: "d/m/y", // Korrektes Format (2-stelliges Jahr)
-//             allowInput: true, // Benutzer kann auch tippen
-//             clickOpens: true, // Popup öffnet sich automatisch beim Klick
-//             defaultDate: null, // Kein voreingestelltes Datum
-//         });
-//         dateInput.setAttribute("data-flatpickr-initialized", "true");
-//     }
-// }
-
-
-
 /**
  * This function adds the invisible overlay behind the dropdown-menu for "assigned to" and "category"
  * This way, the user is able to close those menues by clicking outside the menu
@@ -85,6 +67,7 @@ function removeAddTaskOverlay() {
 /**
  * This function toggles the visibility of the dropdown-menu for "assigned to" and "category"
  * 
+ * @param {string} contentRef - the id of the dropdown-menu, that is clicked
  * @param {string} contentRef - the id of the dropdown-menu, that is clicked
  */
 function toggleAddTaskToDropDownMenu(inputContentRef, DropdownContentRef) {

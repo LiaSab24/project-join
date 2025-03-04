@@ -4,7 +4,7 @@ let users = [];
 let tasks = [];
 let contacts = [];
 
-let currentUser = 0;                                              //0=max mustermann, 1==Guest
+let currentUser = 0;                                              //0=max mustermann, 1=Guest
 let indexUser                    
 
 const colors = [
