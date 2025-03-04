@@ -60,53 +60,50 @@ h2 {
 .input-container {
   display: flex;
   align-items: center;
-  gap: var(--gap-size-input);
-  padding-right: var(--header-padding);
+  justify-content: space-between;
+  width: 504px;
 }
 
-.input {
+.search-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: var(--input-bg);
   border: 1px solid var(--input-border);
   border-radius: var(--input-radius);
-  padding: 3px;
-  gap: 8px;
   width: 312px;
-  height: 42px;
+  height: 48px;
+  margin: 0;
 }
 
-.input:hover {
-  border-width: 0.3px;
-  transform: scale(1.005);
-}
-
-.divider-container {
-  height: 20px;
-  width: 2px;
-  background-color: #ccc;
-  margin-left: 48px;
-}
-
-.search-input {
-  border: none;
-  outline: none;
-  font-size: var(--FS-M);
-  padding: 8px;
-  width: 200px;
-  background: transparent;
-}
-
-.search-icon {
+.search-container input{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px;
-  margin-right: 10px;
+  border: none;
+  outline: none;
+  font-size: var(--FS-M);
+  background: transparent;
+  margin: 0 !important;
+  padding: 8px 0 8px 16px;
+  width: 232px;
 }
 
-.search-icon img {
+.search-input-icons {
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 16px;
+}
+
+.search-container-seperator {
+  height: 32px;
+  width: 2px;
+  background-color: #ccc;
+}
+
+.search-icon {
   width: 17.58px;
   height: 17.58px;
 }
@@ -115,7 +112,7 @@ h2 {
   background: rgba(74, 74, 74, 0.1);
   cursor: pointer;
   border-radius: 50%;
-}
+} 
 
 button {
   background: var(--button-bg);
@@ -282,19 +279,16 @@ button img {
 }
 
 .task-assignees {
-  margin-left: 8px;
+  margin-left: 10px;
   display: flex;
   gap: 5px;
   align-items: center;
 }
 
-.profile-badge {
-  height: 32px;
-  width: 32px;
-}
-
-.assigned-contact {
-  margin-left: -12px;
+.profile-badge-small {
+  height: 32px !important;
+  width: 32px !important;
+  margin-left: -14px;
 }
 
 .assigned-contacts-and-priority {
@@ -330,4 +324,64 @@ button img {
   to {
       right: -100%;
   }
+}
+
+.overlay-active {
+  opacity: 1 !important;
+  z-index: 3;
+}
+
+#boardOverlayBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#addTaskOverlay {
+  height: 870px;
+  width: 1116px;
+  border-radius: 30px;
+  background: #FFFFFF;
+  z-index: 4;
+  position: fixed;
+  top: 5%;
+  align-self: center;
+}
+
+#addTaskOverlay .title {
+  margin-top: 64px;
+  margin-right: 32px;
+  margin-left: 74px;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+#addTaskOverlay #addTaskForm,
+#addTaskOverlay .add-task-submit {
+  margin-left: 74px;
+  margin-right: 74px;
+}
+
+#addTaskOverlay .overlay-close {
+  align-self: baseline;
+}
+
+#addTaskOverlay #addTaskDropdownContacts {
+  top: 551px !important;
+}
+
+#addTaskOverlay #addTaskAssignedToList {
+  margin-left: 10px;
+}
+
+#addTaskOverlay #addTaskDropdownCategories {
+  top: 487px !important;
 }

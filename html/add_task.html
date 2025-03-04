@@ -24,8 +24,8 @@
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
-    <main>
-        <h1 class="title" onclick="getSubtasks()">Add Task</h1>
+    <main id="addTask">
+        <h1 id="addTaskTitle" class="title" onclick="getSubtasks()">Add Task</h1>
 
         <form id="addTaskForm">
             <div>
@@ -104,11 +104,11 @@
             </div>
 
             <div class="submit-btns">
-                <button onclick="initAddTask()" class="cancel-btn" id="contactsOverlayCancel">
+                <button onclick="initAddTask()" class="cancel-btn" id="addTaskCancel">
                     Cancel
                     <div class="cancel-img"></div>
                 </button>
-                <button onclick="addTask()" class="create-btn" id="contactsOverlayCreate">
+                <button onclick="addTask()" class="create-btn progress-toDo" id="addTaskCreate">
                     Create Task
                     <img src="/assets/icons/create-btn.svg">
                 </button>

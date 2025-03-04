@@ -201,3 +201,36 @@ function saveBoardState() {
   });
   localStorage.setItem("boardState", JSON.stringify(boardState));
 }
+
+
+
+
+
+function toggleBoardAddTaskOverlay() {
+  // let overlayBg = document.getElementById("overlayBg");
+  // let overlay = document.getElementById("addTaskOverlay");
+  // if (!overlay || !overlayBg) {
+  //   insertBoardOverlay();
+  //   toggleBoardAddTaskOverlay();
+  //   return;
+  // }
+  // overlay.classList.toggle("d-none");
+  // overlayBg.classList.toggle("overlay-active");
+}
+
+/**
+ * This function shows the 'task succesfully created/edited/deleted'-message after adding/editing/deleting the task in the tasks-array and firebase was succesfull
+ * 
+ * @param {number} msgId - the id of the message that should be shown
+ */
+async function taskSuccesfullMsg(msgId) {
+  // let successAnimation = document.getElementById(msgId);
+  // successAnimation.style.animationName = "contactSuccesfull";
+  // successAnimation.style.animationDuration = "1600ms";
+  // toggleContactsOverlay();
+  // setTimeout(function () {
+  //     successAnimation.style.animationName = "";
+  //     successAnimation.style.animationDuration = "";
+  //     initContacts();
+  // }, 1600);
+}

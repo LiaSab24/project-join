@@ -416,14 +416,6 @@ main {
     flex-direction: column;
 }
 
-.overlay-close {
-    align-self: flex-end;
-}
-
-.overlay-close:hover {
-    cursor: pointer;
-}
-
 .overlay-contact-information div {
     margin-top: 57px;
     display: flex;

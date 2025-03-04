@@ -29,7 +29,7 @@ function clearTaskForm() {
 function clearAssignedTo() {
     document.getElementById("addTaskDropdownContacts").classList.add("d-none");
     document.getElementById("addTaskDropdownContacts").innerHTML = "";
-    document.getElementById("addTaskAssignedToList").innerHTML= "";
+    document.getElementById("addTaskAssignedToList").innerHTML = "";
 }
 
 /**
@@ -131,12 +131,12 @@ function contactAssigned(contentRef, indexContact) {
  */
 function addAssignedContactToList(indexContact) {
     let assignedContactsList = document.getElementById("addTaskAssignedToList");
-    let assignedContact = document.getElementById("assignedToListPB" + indexContact);
+    let assignedContact = document.getElementById("addTaskAssignedToListPB" + indexContact);
     if (assignedContact) {
         assignedContact.remove();
     } else {
-        assignedContactsList.innerHTML += getContactPB(indexContact);
-        profileBadgeColor("assignedToListPB" + indexContact, indexContact);
+        assignedContactsList.innerHTML += getAddTaskContactPB(indexContact);
+        profileBadgeColor("addTaskAssignedToListPB" + indexContact, indexContact);
     }
 }
 
@@ -252,6 +252,7 @@ function addTask() {
     let taskPriority = document.querySelector(".clicked").innerText;
     let taskCategory = checkTaskCategory();
     let taskSubtasks = getSubtasks();
+    let taskProgress = getProgress();
     postData("/tasks/", {
         "title": taskTitle,
         "description": taskDescription,
@@ -260,9 +261,9 @@ function addTask() {
         "priority": taskPriority,
         "category": taskCategory,
         "subtasks": taskSubtasks,
-        "progress": {"progress": "toDo"}
+        "progress": {"progress": taskProgress}
     });
-    clearTaskForm();
+    initAddTask();
 }
 
 /**
@@ -283,11 +284,11 @@ function getAssignedContacts() {
     let assignedContactsIndexArray = [];
     let assignedContactsArray = [];
     for (let indexAssignedContact = 0; indexAssignedContact < assignedContactsList.length; indexAssignedContact++) {
-        let assignedContactId =assignedContactsList[indexAssignedContact].id.replace("assignedToListPB", " ").trim();
+        let assignedContactId = assignedContactsList[indexAssignedContact].id.replace("addTaskAssignedToListPB", " ").trim();
         assignedContactsIndexArray.push(assignedContactId);
         assignedContactsArray.push(contacts[assignedContactsIndexArray[indexAssignedContact]]);
     }
-    return assignedContactsArray ;
+    return assignedContactsArray;
 }
 
 /**
@@ -303,4 +304,20 @@ function getSubtasks() {
         })
     }
     return subtasksArray;
+}
+
+/**
+ * This function is part of the addTask()-function returns the progress-category, where the new task should be added
+ */
+function getProgress() {
+    let progressContentRef = document.getElementById("addTaskCreate").classList[1];
+    switch (progressContentRef) {
+        default:
+        case "progress-toDo":
+            return "toDo"
+        case "progress-inProgress":
+            return "inProgress"
+        case "progress-awaitFeedback":
+            return "awaitFeedback"
+    }
 }
