@@ -238,7 +238,7 @@ function getFeedbackOverlayTemplate() {
                 </button>
             </div>
         </section>
-        <section id="editTaskOverlay" class="d-none"></section>
+        <section id="editTaskOverlay" class="editTaskOverlay d-none"></section>
         </div>
     `;
 }

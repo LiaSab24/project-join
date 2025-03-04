@@ -233,13 +233,14 @@ async function openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex) {
   let editTaskOverlayRef = document.getElementById("editTaskOverlay");
   editTaskOverlayRef.classList.remove("d-none");
   editTaskOverlayRef.innerHTML = editTaskOverlayContent;
-  let addTaskTitle = document.getElementById("editTaskCreate");
+  editTaskOverlayRef.classList.add("editTaskOverlay");
+  let addTaskTitle = document.getElementById("addTaskTitle");
   if (addTaskTitle) addTaskTitle.remove();
-  let editBtn = document.getElementById("editTaskCreate");
+  let editBtn = document.getElementById("addTaskCreate");
   editBtn.innerText = "OK";
+  editBtn.classList.add("userStoryEditOkButton");
   editBtn.onclick = function() { saveTaskChanges(taskIndex); };
   loadTaskData(taskIndex);
-  editTaskOverlayRef.classList.add("#editTaskOverlay");
 }
 
 function loadTaskData(taskIndex) {
