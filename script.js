@@ -83,7 +83,7 @@ function userIndexInContactsArray(currentUser) {
  * @param {object} data - an object, that contains all the key-value-pairs that should be added to firebase
  */
 async function postData(path = "", data = {}) {
-  let newData = await fetch(BASE_URL + path + ".json", {
+  let response = await fetch(BASE_URL + path + ".json", {
     method: "POST",
     header: {
       "Content-type": "application/json",
@@ -91,17 +91,17 @@ async function postData(path = "", data = {}) {
     body: JSON.stringify(data)
   });
   await init();
-  return newDataToJson = await newData.json();
+  return resonseToJson = await response.json();
 }
 
 /**
  * This function changes edited data in firebase
  * 
- * @param {string} path - the path, where the data should be added in firebase (users, tasks, contacts)
- * @param {object} data - an object, that contains all the key-value-pairs that should be added to firebase
+ * @param {string} path - the path, where the data should be edited in firebase
+ * @param {object} data - an object, that contains all the key-value-pairs that should replace the previous object in firebase
  */
 async function putData(path = "", data = {}) {
-  let newData = await fetch(BASE_URL + path + ".json", {
+  let response = await fetch(BASE_URL + path + ".json", {
     method: "PUT",
     header: {
       "Content-type": "application/json",
@@ -109,7 +109,20 @@ async function putData(path = "", data = {}) {
     body: JSON.stringify(data)
   });
   await init();
-  return newDataToJson = await newData.json();
+  return resonseToJson = await response.json();
+}
+
+/**
+ * This function changes edited data in firebase
+ * 
+ * @param {string} path - the path, where the data should be deleted in firebase
+ */
+async function deleteData(path = "") {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "DELETE",
+  });
+  await init();
+  return resonseToJson = await response.json();
 }
 
 /**
