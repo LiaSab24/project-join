@@ -78,6 +78,7 @@ async function removeAddTaskOverlay() {
  */
 function toggleAddTaskToDropDownMenu(inputContentRef, DropdownContentRef) {
     addAddTaskOverlay();
+    classListAssignedContacts();
     document.getElementById(inputContentRef).classList.add("add-task-current-select");
     document.getElementById(DropdownContentRef).classList.remove("d-none");
 }
@@ -89,6 +90,7 @@ function toggleAddTaskToDropDownMenu(inputContentRef, DropdownContentRef) {
  */
 function fillAssignedToDropDownMenu() {
     let assignedToSelect = document.getElementById("addTaskDropdownContacts");
+    assignedToSelect.innerHTML = "";
     assignedToSelect.innerHTML += getAddTaskDropdownListUserOption(indexUser);
     profileBadgeColor("assignedToPB" + indexUser, indexUser);
     for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
@@ -136,17 +138,23 @@ function contactsStartSearching() {
     let searchInputRef = document.getElementById("addTaskAssignedTo");
     let searchInput = searchInputRef.value;
     let assignedToSelect = document.getElementById("addTaskDropdownContacts");
+    assignedToSelect.innerHTML = "";
     if (searchInput.length >= 1) {
         searchInputRef.disabled = true;
-        assignedToSelect.innerHTML = "";
         filterElements(searchInput);
-        for (let indexFilteredContact = 0; indexFilteredContact < filteredContacts.length; indexFilteredContact++) {
-            assignedToSelect.innerHTML += getAddTaskDropdownListFiltered(indexFilteredContact);
-            document.getElementById("assignedToPB" + indexFilteredContact).style.backgroundColor = filteredContacts[indexFilteredContact].color;
+        for (let indexContact = 0; indexContact < filteredContacts.length; indexContact++) {
+            if (filteredContacts[indexContact] != 0) {
+                assignedToSelect.innerHTML += getAddTaskDropdownListContacts(indexContact);
+                document.getElementById("assignedToPB" + indexContact).style.backgroundColor = contacts[indexContact].color;
+            }
         }
+    } else {
+        assignedToSelect.innerHTML = "";
+        fillAssignedToDropDownMenu()
     }
     searchInputRef.disabled = false;
     searchInputRef.focus();
+    classListAssignedContacts();
 }
 
 /**
@@ -160,7 +168,28 @@ function filterElements(searchInput) {
         let contactsName = contacts[indexContact].name.toLowerCase();
         if (contactsName.includes(searchInput.toLowerCase())) {
             filteredContacts.push(contacts[indexContact]);
+        } else {
+            filteredContacts.push(0)
         }
+    }
+}
+
+function classListAssignedContacts() {
+    let assignedContactsList = document.querySelectorAll(".assigned-contact");
+    for (let indexAssignedContact = 0; indexAssignedContact < assignedContactsList.length; indexAssignedContact++) {
+        let indexContact = assignedContactsList[indexAssignedContact].id.replace("addTaskAssignedToListPB", " ").trim();
+        if (document.getElementById("assignedToOption" + indexContact)) {
+            let contentRef = document.getElementById("assignedToOption" + indexContact);
+            contentRef.classList.add("option-contact-assigned");
+            let assignedToCheckbox = document.getElementById("assignedToCheckbox" + indexContact);
+            assignedToCheckbox.classList.add("checkbox-contact-assigned");
+        }
+    }
+    if (document.getElementById("addTaskAssignedToListPB" + indexUser)) {
+        let contentRef = document.getElementById("assignedToUserOption" + indexUser);
+        contentRef.classList.add("option-contact-assigned");
+        let assignedToCheckbox = document.getElementById("assignedToCheckbox" + indexUser);
+        assignedToCheckbox.classList.add("checkbox-contact-assigned");
     }
 }
 

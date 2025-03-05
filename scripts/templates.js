@@ -153,20 +153,20 @@ function getAddTaskDropdownListContacts(indexContact) {
             </div>`
 }
 
-/**
- * This template displays a contact in the add-task-assigned-to-dropdown-menu
- * 
- * @param {number} indexContact - the index of the contact in the contacts-array
- */
-function getAddTaskDropdownListFiltered(indexFilteredContact) {
-    return `<div onclick="contactAssigned('assignedToOption', ${indexFilteredContact})" id="assignedToOption${indexFilteredContact}" class="add-task-dropdown-option">
-                <div>
-                    <div id="assignedToPB${indexFilteredContact}" class="profile-badge">${nameAbbreviation(indexFilteredContact)}</div>
-                    <span>${filteredContacts[indexFilteredContact].name}</span>
-                </div>
-                <div id="assignedToCheckbox${indexFilteredContact}" class="add-task-assigned-to-checkbox"></div>
-            </div>`
-}
+// /**
+//  * This template displays a contact in the add-task-assigned-to-dropdown-menu
+//  * 
+//  * @param {number} indexContact - the index of the contact in the contacts-array
+//  */
+// function getAddTaskDropdownListFiltered(indexFilteredContact) {
+//     return `<div onclick="contactAssigned('assignedToOption', ${indexFilteredContact})" id="assignedToOption${indexFilteredContact}" class="add-task-dropdown-option">
+//                 <div>
+//                     <div id="assignedToPB${indexFilteredContact}" class="profile-badge">${nameAbbreviation(indexFilteredContact)}</div>
+//                     <span>${filteredContacts[indexFilteredContact].name}</span>
+//                 </div>
+//                 <div id="assignedToCheckbox${indexFilteredContact}" class="add-task-assigned-to-checkbox"></div>
+//             </div>`
+// }
 
 /**
  * This template displays a contacts profile badge in the add-task-assigned-to-list
