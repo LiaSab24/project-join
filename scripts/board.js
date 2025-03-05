@@ -11,6 +11,7 @@ async function initBoard() {
  * This function removes all HTML-elements from the progress-categories
  * This function renders the tasks and adds a task-template for each each element in the tasks-array
  */
+function renderTasks() {
   document.getElementById("toDo").innerHTML = "";
   document.getElementById("inProgress").innerHTML = "";
   document.getElementById("awaitFeedback").innerHTML = "";
@@ -243,19 +244,6 @@ async function boardAddTask(progress) {
 
 async function boardEditTask(taskIndex) {
   fetch('add_task.html')
-    .then(response => {
-      return response.text()
-    })
-    .then(html => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
-      let editTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
-      initAddTask();
-      openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex);
-    })
-    .catch(error => {
-      console.error('Failed to fetch page: add_task.html', error);
-    });
   .then(response => {
     return response.text()
   })
@@ -303,7 +291,6 @@ async function openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex) {
   editTaskOverlayRef.classList.remove("d-none");
   editTaskOverlayRef.innerHTML = editTaskOverlayContent;
 
-  adjustOverlayToEditTask(taskIndex); // Füge den Funktionsaufruf hinzu
   adjustOverlayToEditTask(taskIndex);
 }
 
@@ -316,8 +303,6 @@ function adjustOverlayToEditTask(taskIndex) {
   let task = tasks[taskIndex];
   let overlay = document.getElementById("editTaskOverlay");
   document.getElementById("editTaskOverlay").insertAdjacentHTML(
-  "afterbegin",
-  `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close">`
     "afterbegin",
     `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close">`
   );
@@ -338,8 +323,13 @@ function adjustOverlayToEditTask(taskIndex) {
   fillTaskFields(task);
   updatePriorityButtons(task.priority);
   updateEditButton(taskIndex);
+  
+  // Falls updateEditButton das HTML überschreibt, verzögert ausführen
+  setTimeout(() => updateEditButton(taskIndex), 100);
+  
   styleOverlay();
 }
+
 
 /**
  * Removes an element from the DOM if it exists.
@@ -385,46 +375,6 @@ function updatePriorityButtons(priority) {
   });
 }
 
-<<<<<<< Updated upstream
-=======
-
-
-function updateEditButton(taskIndex) {
-  let btn = document.getElementById("addTaskCreate");
-
-  if (btn) {
-    let btnContainer = document.createElement("div");
-    btnContainer.id = "editButtonContainer";
-    btnContainer.innerHTML = `
-      <div id="editButtonContainer">
-      <button id="editTaskConfirm" class="userStoryEditOkButton">
-        OK <img class="check-image" src="/assets/icons/check.png">
-      </button>
-      </div>
-    `;
-    btn.replaceWith(btnContainer);
-    let newBtn = document.getElementById("editTaskConfirm");
-    if (newBtn) {
-      newBtn.onclick = () => saveTaskChanges(taskIndex);
-    }
-  }
-}
-
-
-
-
-/**
- * Applies styling to the task overlay to make it more readable and structured.
- */
-function styleOverlay() {
-  Object.assign(document.querySelector("#addTaskForm")?.style || {}, { 
-    display: "flex", flexDirection: "column", gap: "15px" 
-  });
-}
-
-
-
->>>>>>> Stashed changes
 /**
  * This function is part of the openBoardAddTaskOverlay()-function.
  * It changes the classList of the #addTaskCreate-Button, so the added task is added in the right progress-category
@@ -473,7 +423,6 @@ function saveTaskChanges(taskIndex) {
   task.dueDate = document.getElementById("addTaskDate").value;
   let overlay = document.getElementById("addTaskOverlay"); // Weil das Edit-Overlay aus addTask kommt
   if (overlay) {
-    overlay.classList.add("d-none");
       overlay.classList.add("d-none");
   }
   renderTasks();
@@ -488,59 +437,11 @@ function closeOverlay(event) {
 
   let overlay = button.closest("#editTaskOverlay, #addTaskOverlay, #feedbackOverlay, .overlay-wrapper, .userStoryBodyContainer");
   if (overlay) {
-    overlay.classList.add("d-none");
       overlay.classList.add("d-none");
   }
 }
 
-/**
- * This function sends the path of the task that should be deleted to firebase
- * 
- * @param {number} indexTask - the index of the task in the tasks-array
- */
-async function deleteTask(indexTask) {
-  await deleteData("/tasks/" + tasks[indexTask].url);
-  successfullMsg("taskSuccesfullyDeleted");
-  closeOverlays();
-  initBoard();
-}
-
-// async function deleteTask(event, indexTask) {
-//   event.stopPropagation();
-//   let button = event.target.closest(".feedback-delete-btn");
-//   if (!button) return;
-//   let taskCard = document.getElementById(`task${indexTask}`);
-//   if (!taskCard) {
-//     console.log("Fehler: Task-Card nicht gefunden!");
-//     return;
-//   }
-//   taskCard.remove();
-//   console.log(`Task ${indexTask} aus dem DOM entfernt`);
-//   let taskId = tasks[indexTask]?.url;
-//   tasks.splice(indexTask, 1);
-//   console.log(`Task ${indexTask} aus dem Array entfernt`);
-//   if (taskId) {
-//     await deleteTaskFromFirebase(taskId);
-//   }
-//   renderTasks();
-//   toggleMessageNoTasks();
-// }
-
-// async function deleteTaskFromFirebase(taskId) {
-//   try {
-//     let response = await fetch(`${BASE_URL}tasks/${taskId}.json`, {
-//       method: "DELETE"
-//     });
-
-//     if (response.ok) {
-//       console.log(`Task mit ID ${taskId} erfolgreich aus Firebase gelöscht`);
-//     } else {
-//       console.error("Fehler beim Löschen aus Firebase:", response.status);
-//     }
-//   } catch (error) {
-//     console.error("Fehler bei der Verbindung mit Firebase:", error);
-//   }
-// }async function deleteTask(event, indexTask) {
+async function deleteTask(event, indexTask) {
   event.stopPropagation();
   let button = event.target.closest(".feedback-delete-btn");
   if (!button) return;
