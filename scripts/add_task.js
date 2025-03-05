@@ -157,7 +157,7 @@ function startSearchingContacts() {
  */
 function displayFilteredContacts(searchInput) {
     let assignedToSelect = document.getElementById("addTaskDropdownContacts");
-    filterElements(searchInput);
+    filterContacts(searchInput);
     for (let indexContact = 0; indexContact < filteredContacts.length; indexContact++) {
         if (filteredContacts[indexContact] != 0) {
             assignedToSelect.innerHTML += getAddTaskDropdownListContacts(indexContact);
@@ -171,7 +171,7 @@ function displayFilteredContacts(searchInput) {
  * 
  * @param {string} searchInput - the value of the searchInputRef
  */
-function filterElements(searchInput) {
+function filterContacts(searchInput) {
     filteredContacts = [];
     for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
         let contactsName = contacts[indexContact].name.toLowerCase();
