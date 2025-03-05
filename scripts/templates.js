@@ -195,7 +195,7 @@ function getFeedbackOverlayTemplate(indexTask) {
         <section id="userFeedbackOverlay" class="feedback-hidden">
             <div class="feedback-header">
                 <span class="feedback-badge">User Story</span>
-                <button class="close-btn" onclick="closeOverlay(event)">
+                <button class="overlay-close" onclick="closeOverlay(event)">
                     <img src="/assets/icons/close.png" alt="Close-Icon">
                 </button>
             </div>
@@ -238,7 +238,8 @@ function getFeedbackOverlayTemplate(indexTask) {
                 </button>
             </div>
         </section>
-        <section id="editTaskOverlay" class="editTaskOverlay d-none"></section>
+        <section id="editTaskOverlay" class="editTaskOverlay d-none">
+        </section>
         </div>
     `;
 }

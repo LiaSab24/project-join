@@ -1,8 +1,8 @@
 #userFeedbackOverlay {
     position: fixed;
     top: 0;
-    right: 0;
-    width: 400px;
+    right: 10px;
+    width: 500px;
     height: 100%;
     background-color: white;
     border-radius: 16px;
@@ -17,10 +17,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 390px;
-    height: 769px;
+    width: 500px;
+    height: 796px;
     background: white;
-    border-radius: 16px 0 0 16px;
+    border-radius: 16px;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
     font-family: 'Inter', sans-serif;
@@ -141,6 +141,7 @@
     position: absolute;
     bottom: 24px;
     right: 28px;
+    gap: 5px;
 }
 
 .divider {
@@ -154,7 +155,7 @@
 .feedback-edit-btn {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 17px;
     background: transparent;
     border: none;
     font-size: 16px;
@@ -211,12 +212,26 @@ button:hover {
     background: transparent;
 }
 
+.overlay-close {
+    position: absolute;
+    top: 15px;
+    right: 40px;
+    padding: 8px;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.overlay-close:hover {
+    background: rgba(74, 74, 74, 0.1);
+    cursor: pointer;
+} */
+
 /* Edit-overlay */
-.editTaskOverlay {
+#editTaskOverlay {
     position: fixed;
     top: 50%;
-    left: 50%;
-    transform: translate(-51%, -50%);
+    left: 49%;
+    transform: translate(-50%, -50%);
     width: 525px;
     height: 796px;
     background: white;
@@ -226,25 +241,35 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+#editTaskOverlay .overlay-close {
+    position: absolute;
+    top: 15px;
+    right: 40px;
+}
+
+#editTaskOverlay #addTaskForm {
+    margin-left: 20px;
+    margin-right: 12px;
     overflow: auto;
+    padding-right: 24px;
 }
 
-
-
-#addTaskForm {
+#editTaskOverlay  {
     margin-left: 16px !important;
-    margin-right: 16px;
+    margin-right: 20px;
 }
 
-#addTaskForm input,
-#addTaskForm textarea,
-#addTaskForm select {
+#editTaskOverlay input,
+#editTaskOverlay textarea,
+#editTaskOverlay select {
     padding: 6px;
     font-size: 14px !important;
     width: 100% !important;
 }
 
-#addTaskForm label {
+#editTaskOverlay label {
     font-size: 14px !important;
     margin-bottom: 2px;
 }
@@ -263,13 +288,14 @@ button:hover {
     gap: 32px;
 }
 
-.add-task-requirements {
+#editTaskOverlay .add-task-requirements {
     display: none !important;
 }
 
-#addTaskCancel {
+#editTaskOverlay #addTaskCancel {
     display: none !important;
 }
+
 
 #addTaskAssignedTo,
 #addTaskAssignedToList,
@@ -277,12 +303,33 @@ label[for="addTaskAssignedTo"] {
     display: none !important;
 }
 
+#editTaskOverlay .subtask-scrollbar {
+    overflow: auto !important;
+}
+
+#editButtonContainer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 16px;
+    text-align: center;
+    z-index: 1000;
+    padding-left: 420px;
+    border-radius: 8px;
+}
 
 .userStoryEditOkButton {
-    position: fixed;
-    bottom: 5px;
-    z-index: 10;
-    left: 428px;
+    cursor: pointer;
+    border: none !important;
+    font-size: 16px;
+    background-color: #2A3647;
+    color: white;
+}
+
+.userStoryEditOkButton:hover {
+    background-color: #29ABE2;
 }
 
 .check-image {
@@ -290,3 +337,63 @@ label[for="addTaskAssignedTo"] {
     height: 13.67px;
     padding-bottom: 3px;
 }
+
+
+/* Gesamtgröße der Scrollbar */
+::-webkit-scrollbar {
+    width: 60px; /* Breite der Scrollbar */
+    height: 60px; 
+    margin-right: -10px;/* Höhe für horizontale Scrollbars */
+}
+
+/* Farbe des Scrollbalkens */
+::-webkit-scrollbar-thumb {
+    background: #A8A8A8; /* Farbe der Scrollbar */
+    border-radius: 10px;
+    margin-right: -10px; /* Abgerundete Ecken */
+}
+
+/* Hintergrund der Scrollbar */
+::-webkit-scrollbar-track {
+    background: #F0F0F0; /* Farbe des Hintergrunds */
+    border-radius: 10px;
+}
+
+/* Wenn die Maus über die Scrollbar geht */
+::-webkit-scrollbar-thumb:hover {
+    background: #7D7D7D;
+}
+
+/* Für Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #A8A8A8 #F0F0F0;
+    margin-right: -10px;
+}
+
+
+
+
+/* Scrollbar nach rechts verschieben */
+#editTaskOverlay::-webkit-scrollbar {
+    width: 6px; /* Schmale Scrollbar */
+    margin-right: -10px; /* Nach rechts verschieben */
+}
+
+/* Scrollbar-Track */
+#editTaskOverlay::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Scrollbar Daumen */
+#editTaskOverlay::-webkit-scrollbar-thumb {
+    background: #A8A8A8;
+    border-radius: 10px;
+    right: 0;
+}
+
+/* Scrollbar-Hover */
+#editTaskOverlay::-webkit-scrollbar-thumb:hover {
+    background: #7D7D7D;
+}
+
