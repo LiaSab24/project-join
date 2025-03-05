@@ -3,25 +3,18 @@
  */
 async function initBoard() {
   await init();
-  clearTaskProgressCategories();
   renderTasks();
   toggleMessageNoTasks();
 }
 
 /**
  * This function removes all HTML-elements from the progress-categories
+ * This function renders the tasks and adds a task-template for each each element in the tasks-array
  */
-function clearTaskProgressCategories() {
   document.getElementById("toDo").innerHTML = "";
   document.getElementById("inProgress").innerHTML = "";
   document.getElementById("awaitFeedback").innerHTML = "";
   document.getElementById("done").innerHTML = "";
-}
-
-/**
- * This function renders the tasks and adds a task-template for each each element in the tasks-array
- */
-function renderTasks() {
   for (let indexTask = 0; indexTask < tasks.length; indexTask++) {
     let taskProgress = tasks[indexTask].progress.progress;
     let taskProgressContentRef = document.getElementById(taskProgress);
@@ -263,6 +256,19 @@ async function boardEditTask(taskIndex) {
     .catch(error => {
       console.error('Failed to fetch page: add_task.html', error);
     });
+  .then(response => {
+    return response.text()
+  })
+  .then(html => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    let editTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
+    initAddTask();
+    openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex);
+  })
+  .catch(error => {
+    console.error('Failed to fetch page: add_task.html', error);
+  });
 }
 
 /**
@@ -298,6 +304,7 @@ async function openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex) {
   editTaskOverlayRef.innerHTML = editTaskOverlayContent;
 
   adjustOverlayToEditTask(taskIndex); // Füge den Funktionsaufruf hinzu
+  adjustOverlayToEditTask(taskIndex);
 }
 
 
@@ -307,10 +314,24 @@ async function openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex) {
  */
 function adjustOverlayToEditTask(taskIndex) {
   let task = tasks[taskIndex];
+  let overlay = document.getElementById("editTaskOverlay");
   document.getElementById("editTaskOverlay").insertAdjacentHTML(
   "afterbegin",
   `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close">`
-);
+    "afterbegin",
+    `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close">`
+  );
+  if (!overlay) {
+      console.error("editTaskOverlay nicht gefunden!");
+      return;
+  }
+  overlay.classList.remove("d-none");
+  if (!overlay.querySelector(".overlay-close")) {
+      overlay.insertAdjacentHTML(
+          "afterbegin",
+          `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close">`
+      );
+  }
 
   removeElement("addTaskTitle");
   hideElements([".add-task-seperator", "addTaskAssignedTo"]);
@@ -364,6 +385,46 @@ function updatePriorityButtons(priority) {
   });
 }
 
+<<<<<<< Updated upstream
+=======
+
+
+function updateEditButton(taskIndex) {
+  let btn = document.getElementById("addTaskCreate");
+
+  if (btn) {
+    let btnContainer = document.createElement("div");
+    btnContainer.id = "editButtonContainer";
+    btnContainer.innerHTML = `
+      <div id="editButtonContainer">
+      <button id="editTaskConfirm" class="userStoryEditOkButton">
+        OK <img class="check-image" src="/assets/icons/check.png">
+      </button>
+      </div>
+    `;
+    btn.replaceWith(btnContainer);
+    let newBtn = document.getElementById("editTaskConfirm");
+    if (newBtn) {
+      newBtn.onclick = () => saveTaskChanges(taskIndex);
+    }
+  }
+}
+
+
+
+
+/**
+ * Applies styling to the task overlay to make it more readable and structured.
+ */
+function styleOverlay() {
+  Object.assign(document.querySelector("#addTaskForm")?.style || {}, { 
+    display: "flex", flexDirection: "column", gap: "15px" 
+  });
+}
+
+
+
+>>>>>>> Stashed changes
 /**
  * This function is part of the openBoardAddTaskOverlay()-function.
  * It changes the classList of the #addTaskCreate-Button, so the added task is added in the right progress-category
@@ -413,9 +474,12 @@ function saveTaskChanges(taskIndex) {
   let overlay = document.getElementById("addTaskOverlay"); // Weil das Edit-Overlay aus addTask kommt
   if (overlay) {
     overlay.classList.add("d-none");
+      overlay.classList.add("d-none");
   }
   renderTasks();
 }
+
+
 
 function closeOverlay(event) {
   event.stopPropagation();
@@ -425,6 +489,7 @@ function closeOverlay(event) {
   let overlay = button.closest("#editTaskOverlay, #addTaskOverlay, #feedbackOverlay, .overlay-wrapper, .userStoryBodyContainer");
   if (overlay) {
     overlay.classList.add("d-none");
+      overlay.classList.add("d-none");
   }
 }
 
@@ -475,4 +540,39 @@ async function deleteTask(indexTask) {
 //   } catch (error) {
 //     console.error("Fehler bei der Verbindung mit Firebase:", error);
 //   }
-// }
+// }async function deleteTask(event, indexTask) {
+  event.stopPropagation();
+  let button = event.target.closest(".feedback-delete-btn");
+  if (!button) return;
+  let taskCard = document.getElementById(`task${indexTask}`);
+  if (!taskCard) {
+      console.log("Fehler: Task-Card nicht gefunden!");
+      return;
+  }
+  taskCard.remove();
+  console.log(`Task ${indexTask} aus dem DOM entfernt`);
+  let taskId = tasks[indexTask]?.url;
+  tasks.splice(indexTask, 1);
+  console.log(`Task ${indexTask} aus dem Array entfernt`);
+  if (taskId) {
+      await deleteTaskFromFirebase(taskId);
+  }
+  renderTasks();
+  toggleMessageNoTasks();
+}
+
+async function deleteTaskFromFirebase(taskId) {
+  try {
+      let response = await fetch(`${BASE_URL}tasks/${taskId}.json`, {
+          method: "DELETE"
+      });
+
+      if (response.ok) {
+          console.log(`Task mit ID ${taskId} erfolgreich aus Firebase gelöscht`);
+      } else {
+          console.error("Fehler beim Löschen aus Firebase:", response.status);
+      }
+  } catch (error) {
+      console.error("Fehler bei der Verbindung mit Firebase:", error);
+  }
+}
