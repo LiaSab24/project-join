@@ -375,6 +375,43 @@ function updatePriorityButtons(priority) {
   });
 }
 
+
+
+function updateEditButton(taskIndex) {
+  let btn = document.getElementById("addTaskCreate");
+
+  if (btn) {
+    let btnContainer = document.createElement("div");
+    btnContainer.id = "editButtonContainer";
+    btnContainer.innerHTML = `
+      <div id="editButtonContainer">
+      <button id="editTaskConfirm" class="userStoryEditOkButton">
+        OK <img class="check-image" src="/assets/icons/check.png">
+      </button>
+      </div>
+    `;
+    btn.replaceWith(btnContainer);
+    let newBtn = document.getElementById("editTaskConfirm");
+    if (newBtn) {
+      newBtn.onclick = () => saveTaskChanges(taskIndex);
+    }
+  }
+}
+
+
+
+
+/**
+ * Applies styling to the task overlay to make it more readable and structured.
+ */
+function styleOverlay() {
+  Object.assign(document.querySelector("#addTaskForm")?.style || {}, { 
+    display: "flex", flexDirection: "column", gap: "15px" 
+  });
+}
+
+
+
 /**
  * This function is part of the openBoardAddTaskOverlay()-function.
  * It changes the classList of the #addTaskCreate-Button, so the added task is added in the right progress-category
