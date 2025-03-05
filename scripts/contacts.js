@@ -195,5 +195,6 @@ async function deleteContact(indexContact) {
     console.log("/contacts/" + contacts[indexContact].url)
     await deleteData("/contacts/" + contacts[indexContact].url);
     successfullMsg("contactSuccesfullyDeleted");
+    document.getElementById("focusedContactInformation").innerHTML="";
     initContacts();
 }

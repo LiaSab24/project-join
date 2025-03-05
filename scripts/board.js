@@ -353,11 +353,6 @@ function adjustOverlayToEditTask(taskIndex) {
 }
 
 
-
-
-
-
-
 /**
  * This function is part of the openBoardAddTaskOverlay()-function.
  * It changes the classList of the #addTaskCreate-Button, so the added task is added in the right progress-category
