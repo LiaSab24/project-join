@@ -187,7 +187,7 @@ async function saveEditContact(indexContact) {
 }
 
 /**
- * This function sends the path of the contact, that should be deleted to firebase
+ * This function sends the path of the contact that should be deleted to firebase
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
  */

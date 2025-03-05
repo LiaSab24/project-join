@@ -174,7 +174,6 @@ function nameAbbreviation(indexContact) {
     let secondLetter = contactLastName.charAt(0);
     return firstLetter + secondLetter
   }
-
 }
 
 /**

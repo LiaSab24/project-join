@@ -382,18 +382,18 @@ function addOnclickToCreateBtn() {
   })
 }
 
-function insertUserFeedback() {
+function insertUserFeedback(indexTask) {
   let existingOverlay = document.getElementById("feedbackOverlay");
 
   if (!existingOverlay) {
-    document.body.insertAdjacentHTML("beforeend", getFeedbackOverlayTemplate());
+    document.body.insertAdjacentHTML("beforeend", getFeedbackOverlayTemplate(indexTask));
   }
 }
 
-function toggleUserFeedback() {
+function toggleUserFeedback(indexTask) {
   let feedbackOverlay = document.getElementById("userFeedbackOverlay");
   if (!feedbackOverlay) {
-    insertUserFeedback();
+    insertUserFeedback(indexTask);
     feedbackOverlay = document.getElementById("userFeedbackOverlay");
   }
   feedbackOverlay.classList.toggle("feedback-hidden");
@@ -411,8 +411,6 @@ function saveTaskChanges(taskIndex) {
   renderTasks();
 }
 
-
-
 function closeOverlay(event) {
   event.stopPropagation();
   let button = event.target.closest(".close-btn");
@@ -424,39 +422,51 @@ function closeOverlay(event) {
   }
 }
 
-async function deleteTask(event, indexTask) {
-  event.stopPropagation();
-  let button = event.target.closest(".feedback-delete-btn");
-  if (!button) return;
-  let taskCard = document.getElementById(`task${indexTask}`);
-  if (!taskCard) {
-    console.log("Fehler: Task-Card nicht gefunden!");
-    return;
-  }
-  taskCard.remove();
-  console.log(`Task ${indexTask} aus dem DOM entfernt`);
-  let taskId = tasks[indexTask]?.url;
-  tasks.splice(indexTask, 1);
-  console.log(`Task ${indexTask} aus dem Array entfernt`);
-  if (taskId) {
-    await deleteTaskFromFirebase(taskId);
-  }
-  renderTasks();
-  toggleMessageNoTasks();
+/**
+ * This function sends the path of the task that should be deleted to firebase
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+async function deleteTask(indexTask) {
+  await deleteData("/tasks/" + tasks[indexTask].url);
+  successfullMsg("taskSuccesfullyDeleted");
+  closeOverlays();
+  initBoard();
 }
 
-async function deleteTaskFromFirebase(taskId) {
-  try {
-    let response = await fetch(`${BASE_URL}tasks/${taskId}.json`, {
-      method: "DELETE"
-    });
+// async function deleteTask(event, indexTask) {
+//   event.stopPropagation();
+//   let button = event.target.closest(".feedback-delete-btn");
+//   if (!button) return;
+//   let taskCard = document.getElementById(`task${indexTask}`);
+//   if (!taskCard) {
+//     console.log("Fehler: Task-Card nicht gefunden!");
+//     return;
+//   }
+//   taskCard.remove();
+//   console.log(`Task ${indexTask} aus dem DOM entfernt`);
+//   let taskId = tasks[indexTask]?.url;
+//   tasks.splice(indexTask, 1);
+//   console.log(`Task ${indexTask} aus dem Array entfernt`);
+//   if (taskId) {
+//     await deleteTaskFromFirebase(taskId);
+//   }
+//   renderTasks();
+//   toggleMessageNoTasks();
+// }
 
-    if (response.ok) {
-      console.log(`Task mit ID ${taskId} erfolgreich aus Firebase gelöscht`);
-    } else {
-      console.error("Fehler beim Löschen aus Firebase:", response.status);
-    }
-  } catch (error) {
-    console.error("Fehler bei der Verbindung mit Firebase:", error);
-  }
-}
+// async function deleteTaskFromFirebase(taskId) {
+//   try {
+//     let response = await fetch(`${BASE_URL}tasks/${taskId}.json`, {
+//       method: "DELETE"
+//     });
+
+//     if (response.ok) {
+//       console.log(`Task mit ID ${taskId} erfolgreich aus Firebase gelöscht`);
+//     } else {
+//       console.error("Fehler beim Löschen aus Firebase:", response.status);
+//     }
+//   } catch (error) {
+//     console.error("Fehler bei der Verbindung mit Firebase:", error);
+//   }
+// }
