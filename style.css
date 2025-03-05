@@ -36,6 +36,15 @@ main {
 }
 
 /* costums css */
+.responsive-main {
+  padding: min(1rem, 0.617rem + 0.4255vw);
+  p {
+    margin: 8px 0 16px;
+  }
+  @media (max-width: 900px) {
+      margin: 0;
+  }
+}
 .d-none {
   display: none;
 }
