@@ -3,14 +3,14 @@
  */
 async function initAddTask() {
     await init();
-    clearTaskForm()
+    clearTaskForm();
     fillAssignedToDropDownMenu();
 }
 
 /**
  * This function clears and resets the add-task-form (input-values, drop-down-menus and buttons)
  */
-function clearTaskForm() {
+async function clearTaskForm() {
     document.getElementById("addTaskTitle").value = "";
     document.getElementById("addTaskDescription").value = "";
     document.getElementById("addTaskAssignedTo").value = "";
@@ -56,16 +56,18 @@ function addAddTaskOverlay() {
  * This function removes the invisible overlay behind the dropdown-menu for "assigned to" and "category"
  * Furthermore it hides both dropdown-menus
  */
-function removeAddTaskOverlay() {
+async function removeAddTaskOverlay() {
     document.getElementById("addTaskOverlayBg").classList.add("d-none");
+    document.getElementById("addTaskAssignedTo").value = "";
     document.getElementById('addTaskDropdownContacts').classList.add("d-none");
     document.getElementById('addTaskAssignedTo').classList.remove("add-task-current-select");
     document.getElementById('addTaskDropdownCategories').classList.add("d-none");
     document.getElementById('addTaskCategory').classList.remove("add-task-current-select");
     let subtasksNumber = document.querySelectorAll(".subtask");
     for (let indexSubtask = 0; indexSubtask < subtasksNumber.length; indexSubtask++) {
-        confirmEditSubtask(indexSubtask)
+        confirmEditSubtask(indexSubtask);
     }
+    fillAssignedToDropDownMenu()
 }
 
 /**
@@ -78,11 +80,6 @@ function toggleAddTaskToDropDownMenu(inputContentRef, DropdownContentRef) {
     addAddTaskOverlay();
     document.getElementById(inputContentRef).classList.add("add-task-current-select");
     document.getElementById(DropdownContentRef).classList.remove("d-none");
-    // let assignedContactsInput = document.getElementById("addTaskAssignedTo");
-    // assignedContactsInput.addEventListener("onkeyup", event => {
-    //     startSearching();
-    //     event.stopImmediatePropagation();
-    // })
 }
 
 /**
@@ -129,6 +126,41 @@ function addAssignedContactToList(indexContact) {
     } else {
         assignedContactsList.innerHTML += getAddTaskContactPB(indexContact);
         profileBadgeColor("addTaskAssignedToListPB" + indexContact, indexContact);
+    }
+}
+
+/**
+ * This function 
+ */
+function contactsStartSearching() {
+    let searchInputRef = document.getElementById("addTaskAssignedTo");
+    let searchInput = searchInputRef.value;
+    let assignedToSelect = document.getElementById("addTaskDropdownContacts");
+    if (searchInput.length >= 1) {
+        searchInputRef.disabled = true;
+        assignedToSelect.innerHTML = "";
+        filterElements(searchInput);
+        for (let indexFilteredContact = 0; indexFilteredContact < filteredContacts.length; indexFilteredContact++) {
+            assignedToSelect.innerHTML += getAddTaskDropdownListFiltered(indexFilteredContact);
+            document.getElementById("assignedToPB" + indexFilteredContact).style.backgroundColor = filteredContacts[indexFilteredContact].color;
+        }
+    }
+    searchInputRef.disabled = false;
+    searchInputRef.focus();
+}
+
+/**
+ * This function 
+ * 
+ * @param {string} searchInput - the value of the searchInputRef
+ */
+function filterElements(searchInput) {
+    filteredContacts = [];
+    for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
+        let contactsName = contacts[indexContact].name.toLowerCase();
+        if (contactsName.includes(searchInput.toLowerCase())) {
+            filteredContacts.push(contacts[indexContact]);
+        }
     }
 }
 
