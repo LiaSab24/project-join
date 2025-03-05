@@ -4,35 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join</title>
-    <link rel="icon" type="image/x-icon" href="/assets/img/join_logo.svg">
-
+    <title>Help</title>
+    <link rel="shortcut icon" href="./assets/icons/favicon.ico" type="image/x-icon"/>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/icons/apple-touch-icon.png"/>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/icons/favicon-32x32.png"/>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/icons/favicon-16x16.png"/>
+    <link rel="manifest" href="./assets/icons/site.webmanifest" />
     <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="/styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/root.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../fonts/fonts.css">
     <link rel="stylesheet" href="../styles/help.css">
   
-    <script src="/script.js"></script>
-    <script src="../scripts/include.js"></script>
+    <script src="../scripts/header.js" defer></script>
+    <script src="../scripts/include.js" defer></script>
   </head>
   
   <body>
-    <header class="header-new">
-      <p>Kanban Project Management Tool</p>
-      <div class="header-img-container flex">
-        <div class="help-new">
-          <a href="./html/help.html" target="_blank">?</a>
-        </div>
-        <div class="user-initial-new" onclick="btnUserInitial()">
-          <span>SM</span>
-        </div>
-      </div>
-      <div class="submenu d-none" id="submenu"></div>
-    </header>
-    <div w3-include-html="sidebar.html"></div>
+    <div w3-include-html="./header.html"></div>
+    <div w3-include-html="./sidebar.html"></div>
     
-    <main>
+    <main class="responsive-main">
       <div class="headline-container flex">
         <h1>Help</h1>
         <div class="arrow-container">
@@ -97,7 +101,7 @@
       
       
     </main>
-    <script>includeHTML();</script>
+    <script></script>
 </body>
 
 </html>

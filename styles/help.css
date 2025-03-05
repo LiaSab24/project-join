@@ -1,12 +1,8 @@
-.help-new {
-  display: none;
-}
-
 .headline-container {
   justify-content: space-between;
   padding: 90px 90px 30px;
   h1 {
-    font-size: 61px;
+    font-size: var(--fs-61-47);
   }
   .arrow-container{
     display: grid;
