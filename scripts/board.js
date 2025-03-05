@@ -1,21 +1,25 @@
-/**
- * This function is the inital function, when board.html is loading and executes the init()-function and furher necessary board-functions
- */
 async function initBoard() {
   await init();
+  clearTaskProgressCategories();
   renderTasks();
   toggleMessageNoTasks();
 }
 
 /**
- * This function removes all HTML-elements from the progress-categories
- * This function renders the tasks and adds a task-template for each each element in the tasks-array
+ * Löscht alle Tasks aus den Spalten.
  */
-function renderTasks() {
+function clearTaskProgressCategories() {
   document.getElementById("toDo").innerHTML = "";
   document.getElementById("inProgress").innerHTML = "";
   document.getElementById("awaitFeedback").innerHTML = "";
   document.getElementById("done").innerHTML = "";
+}
+
+/**
+ * Erstellt die Tasks in den Spalten.
+ */
+function renderTasks() {
+  clearTaskProgressCategories(); // Falls nötig
   for (let indexTask = 0; indexTask < tasks.length; indexTask++) {
     let taskProgress = tasks[indexTask].progress.progress;
     let taskProgressContentRef = document.getElementById(taskProgress);
@@ -24,6 +28,7 @@ function renderTasks() {
     displayAssignedContacts(indexTask);
   }
 }
+
 
 /**
  * This function calculates the progress of the subtasks of a task in percents
