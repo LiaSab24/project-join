@@ -228,21 +228,6 @@ async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
   addOnclickToCreateBtn();
 }
 
-
-// async function openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex) {
-//   let editTaskOverlayRef = document.getElementById("editTaskOverlay");
-//   editTaskOverlayRef.classList.remove("d-none");
-//   editTaskOverlayRef.innerHTML = editTaskOverlayContent;
-//   // editTaskOverlayRef.classList.add("editTaskOverlay");
-//   let addTaskTitle = document.getElementById("addTaskTitle");
-//   if (addTaskTitle) addTaskTitle.remove();
-//   let editBtn = document.getElementById("addTaskCreate");
-//   editBtn.innerText = "OK";
-//   editBtn.classList.add("userStoryEditOkButton");
-//   editBtn.onclick = function() { saveTaskChanges(taskIndex); };
-
-// }
-
 async function openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex) {
   let editTaskOverlayRef = document.getElementById("editTaskOverlay");
   editTaskOverlayRef.classList.remove("d-none");
@@ -252,45 +237,99 @@ async function openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex) {
 }
 
 
+/**
+ * Adjusts the addTask overlay to edit mode for a given task.
+ * @param {number} taskIndex - Index of the task in the tasks array.
+ */
 function adjustOverlayToEditTask(taskIndex) {
   let task = tasks[taskIndex];
-  let addTaskTitle = document.getElementById("addTaskTitle");
-  if (addTaskTitle) addTaskTitle.remove();
-  let divider = document.querySelector(".add-task-seperator");
-  if (divider) divider.style.display = "none";
-  let assignedSection = document.getElementById("addTaskAssignedTo");
-  if (assignedSection) assignedSection.style.display = "none";
-  let titleInput = document.getElementById("taskTitle") || document.getElementById("addTaskTitle");
-  let descriptionInput = document.getElementById("addTaskDescription");
-  let dueDateInput = document.getElementById("addTaskDate");
-  if (titleInput) titleInput.value = task.title;
-  if (descriptionInput) descriptionInput.value = task.description;
-  if (dueDateInput) dueDateInput.value = task.dueDate;
-  let priorityBtns = document.querySelectorAll("#addTaskPriorities div");
-  priorityBtns.forEach(btn => {
-      btn.classList.remove("active");
-      if (btn.innerText.trim().toLowerCase() === task.priority.toLowerCase()) {
-          btn.classList.add("active");
-      }
+  document.getElementById("editTaskOverlay").insertAdjacentHTML(
+  "afterbegin",
+  `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close">`
+);
+
+  removeElement("addTaskTitle");
+  hideElements([".add-task-seperator", "addTaskAssignedTo"]);
+  fillTaskFields(task);
+  updatePriorityButtons(task.priority);
+  updateEditButton(taskIndex);
+  styleOverlay();
+}
+
+/**
+ * Removes an element from the DOM if it exists.
+ * @param {string} id - The ID of the element to remove.
+ */
+function removeElement(id) {
+  let el = document.getElementById(id);
+  if (el) el.remove();
+}
+
+/**
+ * Hides multiple elements by setting their display property to "none".
+ * @param {string[]} selectors - Array of CSS selectors for elements to hide.
+ */
+function hideElements(selectors) {
+  selectors.forEach(selector => {
+    let el = document.querySelector(selector);
+    if (el) el.style.display = "none";
   });
-  let createBtn = document.getElementById("addTaskCreate");
-  if (createBtn) {
-    createBtn.innerHTML = `OK <img class="check-image" src="/assets/icons/check.png">`;
-      createBtn.id = "editTaskConfirm";
-      createBtn.classList.add("userStoryEditOkButton");
-      createBtn.onclick = function () { saveTaskChanges(taskIndex); };
-  }
-  let overlayContent = document.querySelector("#addTaskForm");
-  if (overlayContent) {
-      overlayContent.style.display = "flex";
-      overlayContent.style.flexDirection = "column";
-      overlayContent.style.gap = "15px";
-  }
+}
+
+/**
+ * Fills the task fields (title, description, due date) with task data.
+ * @param {Object} task - The task object containing the necessary data.
+ * @param {string} task.title - The title of the task.
+ * @param {string} task.description - The description of the task.
+ * @param {string} task.dueDate - The due date of the task.
+ */
+function fillTaskFields(task) {
+  let titleInput = document.getElementById("taskTitle") || document.getElementById("addTaskTitle");
+  if (titleInput) titleInput.value = task.title;
+  document.getElementById("addTaskDescription").value = task.description;
+  document.getElementById("addTaskDate").value = task.dueDate;
+}
+
+/**
+ * Updates the priority button selection based on the task's priority.
+ * @param {string} priority - The priority level of the task (e.g., "urgent", "medium", "low").
+ */
+function updatePriorityButtons(priority) {
+  document.querySelectorAll("#addTaskPriorities div").forEach(btn => {
+    btn.classList.toggle("active", btn.innerText.trim().toLowerCase() === priority.toLowerCase());
+  });
 }
 
 
+function updateEditButton(taskIndex) {
+  let btn = document.getElementById("addTaskCreate");
 
+  if (btn) {
+    let btnContainer = document.createElement("div");
+    btnContainer.id = "editButtonContainer";
+    btnContainer.innerHTML = `
+      <div id="editButtonContainer">
+      <button id="editTaskConfirm" class="userStoryEditOkButton">
+        OK <img class="check-image" src="/assets/icons/check.png">
+      </button>
+      </div>
+    `;
+    btn.replaceWith(btnContainer);
+    let newBtn = document.getElementById("editTaskConfirm");
+    if (newBtn) {
+      newBtn.onclick = () => saveTaskChanges(taskIndex);
+    }
+  }
+}
 
+/**
+ * Applies styling to the task overlay to make it more readable and structured.
+ */
+function styleOverlay() {
+  Object.assign(document.querySelector("#addTaskForm")?.style || {}, { 
+    display: "flex", flexDirection: "column", gap: "15px" 
+  });
+}
 
 
 
@@ -346,8 +385,6 @@ function saveTaskChanges(taskIndex) {
   }
   renderTasks();
 }
-
-
 
 function closeOverlay(event) {
   event.stopPropagation();
