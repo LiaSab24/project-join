@@ -499,18 +499,4 @@ async function deleteTask(event, indexTask) {
   toggleMessageNoTasks();
 }
 
-async function deleteTaskFromFirebase(taskId) {
-  try {
-      let response = await fetch(`${BASE_URL}tasks/${taskId}.json`, {
-          method: "DELETE"
-      });
 
-      if (response.ok) {
-          console.log(`Task mit ID ${taskId} erfolgreich aus Firebase gelöscht`);
-      } else {
-          console.error("Fehler beim Löschen aus Firebase:", response.status);
-      }
-  } catch (error) {
-      console.error("Fehler bei der Verbindung mit Firebase:", error);
-  }
-}
