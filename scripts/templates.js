@@ -28,7 +28,7 @@ function getFocusedContactTemplate(indexContact) {
                              <div id="contactsEditIcon"></div>
                                 <span>Edit</span>
                             </button>
-                            <button onclick="deleteContact()" class="focused-contact-btns">
+                            <button onclick="deleteContact(${indexContact})" class="focused-contact-btns">
                                 <div id="contactsDeleteIcon"></div>
                                 <span>Delete</span>
                             </button>
@@ -129,7 +129,7 @@ function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
  * @param {number} indexUser - the index of the user in the contacts-array
  */
 function getAddTaskDropdownListUserOption(indexUser) {
-    return `<div onclick="contactAssigned('assignedToUserOption', ${indexUser})" id="assignedToUserOption${indexUser}" class="add-task-dropdown-option">
+    return `<div onclick="contactAssigned('assignedToUserOption', ${indexUser})" id="assignedToUserOption${indexUser}" class="add-task-dropdown-option user-option">
                 <div>
                     <div id="assignedToPB${indexUser}" class="profile-badge">${nameAbbreviation(indexUser)}</div>
                     <span>You</span>
@@ -172,7 +172,7 @@ function getBoardContactPB(indexContact) {
 }
 
 function getBoardTaskTemplate(indexTask) {
-    return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="toggleUserFeedback()">
+    return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="toggleUserFeedback(${indexTask})">
           <div class="task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ','-')}">${tasks[indexTask].category}</div>
           <div class="task-title">${tasks[indexTask].title}</div>
           <div class="task-description">${tasks[indexTask].description}</div>
@@ -189,7 +189,7 @@ function getBoardTaskTemplate(indexTask) {
         </div>`
 }
 
-function getFeedbackOverlayTemplate() {
+function getFeedbackOverlayTemplate(indexTask) {
     return `
         <div class="feedback-overlay" id="feedbackOverlay">
         <section id="userFeedbackOverlay" class="feedback-hidden">
@@ -229,7 +229,7 @@ function getFeedbackOverlayTemplate() {
                 </div>
             </div>
             <div class="feedback-actions">
-                <button class="feedback-delete-btn" onclick="deleteTask(event)">
+                <button class="feedback-delete-btn" onclick="deleteTask(${indexTask})">
                     <img src="/assets/icons/delete.png" alt="Delete-Icon"> Delete
                 </button>
                 <div class="divider"></div>

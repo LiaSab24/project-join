@@ -3,14 +3,14 @@
  */
 async function initAddTask() {
     await init();
-    clearTaskForm()
+    clearTaskForm();
     fillAssignedToDropDownMenu();
 }
 
 /**
  * This function clears and resets the add-task-form (input-values, drop-down-menus and buttons)
  */
-function clearTaskForm() {
+async function clearTaskForm() {
     document.getElementById("addTaskTitle").value = "";
     document.getElementById("addTaskDescription").value = "";
     document.getElementById("addTaskAssignedTo").value = "";
@@ -56,16 +56,18 @@ function addAddTaskOverlay() {
  * This function removes the invisible overlay behind the dropdown-menu for "assigned to" and "category"
  * Furthermore it hides both dropdown-menus
  */
-function removeAddTaskOverlay() {
+async function removeAddTaskOverlay() {
     document.getElementById("addTaskOverlayBg").classList.add("d-none");
+    document.getElementById("addTaskAssignedTo").value = "";
     document.getElementById('addTaskDropdownContacts').classList.add("d-none");
     document.getElementById('addTaskAssignedTo').classList.remove("add-task-current-select");
     document.getElementById('addTaskDropdownCategories').classList.add("d-none");
     document.getElementById('addTaskCategory').classList.remove("add-task-current-select");
     let subtasksNumber = document.querySelectorAll(".subtask");
     for (let indexSubtask = 0; indexSubtask < subtasksNumber.length; indexSubtask++) {
-        confirmEditSubtask(indexSubtask)
+        confirmEditSubtask(indexSubtask);
     }
+    fillAssignedToDropDownMenu()
 }
 
 /**
@@ -76,13 +78,9 @@ function removeAddTaskOverlay() {
  */
 function toggleAddTaskToDropDownMenu(inputContentRef, DropdownContentRef) {
     addAddTaskOverlay();
+    classListAssignedContacts();
     document.getElementById(inputContentRef).classList.add("add-task-current-select");
     document.getElementById(DropdownContentRef).classList.remove("d-none");
-    // let assignedContactsInput = document.getElementById("addTaskAssignedTo");
-    // assignedContactsInput.addEventListener("onkeyup", event => {
-    //     startSearching();
-    //     event.stopImmediatePropagation();
-    // })
 }
 
 /**
@@ -92,6 +90,7 @@ function toggleAddTaskToDropDownMenu(inputContentRef, DropdownContentRef) {
  */
 function fillAssignedToDropDownMenu() {
     let assignedToSelect = document.getElementById("addTaskDropdownContacts");
+    assignedToSelect.innerHTML = "";
     assignedToSelect.innerHTML += getAddTaskDropdownListUserOption(indexUser);
     profileBadgeColor("assignedToPB" + indexUser, indexUser);
     for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
@@ -129,6 +128,81 @@ function addAssignedContactToList(indexContact) {
     } else {
         assignedContactsList.innerHTML += getAddTaskContactPB(indexContact);
         profileBadgeColor("addTaskAssignedToListPB" + indexContact, indexContact);
+    }
+}
+
+/**
+ * This function checks if the searchInput contains one or more characters. If so, it executes the displayFilteredContacts()-function
+ * If not, it fills the dropdown-list with all contacts.
+ */
+function startSearchingContacts() {
+    let searchInputRef = document.getElementById("addTaskAssignedTo");
+    let searchInput = searchInputRef.value;
+    document.getElementById("addTaskDropdownContacts").innerHTML = "";
+    searchInputRef.disabled = true;
+    if (searchInput.length >= 1) {
+        displayFilteredContacts(searchInput);
+    } else {
+        fillAssignedToDropDownMenu()
+    }
+    searchInputRef.disabled = false;
+    searchInputRef.focus();
+    classListAssignedContacts();
+}
+
+/**
+ * This function fills the dropdownlist with the filtered elements.
+ * 
+ * @param {string} searchInput - the value of the searchInputRef
+ */
+function displayFilteredContacts(searchInput) {
+    let assignedToSelect = document.getElementById("addTaskDropdownContacts");
+    filterContacts(searchInput);
+    for (let indexContact = 0; indexContact < filteredContacts.length; indexContact++) {
+        if (filteredContacts[indexContact] != 0) {
+            assignedToSelect.innerHTML += getAddTaskDropdownListContacts(indexContact);
+            document.getElementById("assignedToPB" + indexContact).style.backgroundColor = contacts[indexContact].color;
+        }
+    }
+}
+
+/**
+ * This function filters those contacts from the contacts-array, whose name contains the searchInput
+ * 
+ * @param {string} searchInput - the value of the searchInputRef
+ */
+function filterContacts(searchInput) {
+    filteredContacts = [];
+    for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
+        let contactsName = contacts[indexContact].name.toLowerCase();
+        if (contactsName.includes(searchInput.toLowerCase())) {
+            filteredContacts.push(contacts[indexContact]);
+        } else {
+            filteredContacts.push(0)
+        }
+    }
+}
+
+/**
+ * This function checks, wich contacts are currently in the assignedTo-List and gives those contacts the "option-contact-assigned"-class in the dropdownlist.
+ * The same applies to the user-option in the dropdown-list
+ */
+function classListAssignedContacts() {
+    let assignedContactsList = document.querySelectorAll(".assigned-contact");
+    for (let indexAssignedContact = 0; indexAssignedContact < assignedContactsList.length; indexAssignedContact++) {
+        let indexContact = assignedContactsList[indexAssignedContact].id.replace("addTaskAssignedToListPB", " ").trim();
+        if (document.getElementById("assignedToOption" + indexContact)) {
+            let contentRef = document.getElementById("assignedToOption" + indexContact);
+            contentRef.classList.add("option-contact-assigned");
+            let assignedToCheckbox = document.getElementById("assignedToCheckbox" + indexContact);
+            assignedToCheckbox.classList.add("checkbox-contact-assigned");
+        }
+    }
+    if (document.getElementById("addTaskAssignedToListPB" + indexUser)) {
+        let contentRef = document.getElementById("assignedToUserOption" + indexUser);
+        contentRef.classList.add("option-contact-assigned");
+        let assignedToCheckbox = document.getElementById("assignedToCheckbox" + indexUser);
+        assignedToCheckbox.classList.add("checkbox-contact-assigned");
     }
 }
 

@@ -7,6 +7,9 @@ let contacts = [];
 let currentUser = 0;                                              //0=max mustermann, 1=Guest
 let indexUser
 
+let filteredContacts = [];
+let filteredTasks = [];
+
 const colors = [
   "#ff7a00", // Vivid Orange
   "#ff5eb3", // Deep Pink
@@ -32,7 +35,6 @@ let contactColors = {};
  * This function is the global initialisation-function for all pages and executes the loading-screen-function and the fetch-data-function
  */
 async function init() {
-  //LOADING SCREEN;
   await fetchDataJson();
   userIndexInContactsArray(currentUser);
 }
@@ -81,7 +83,7 @@ function userIndexInContactsArray(currentUser) {
  * @param {object} data - an object, that contains all the key-value-pairs that should be added to firebase
  */
 async function postData(path = "", data = {}) {
-  let newData = await fetch(BASE_URL + path + ".json", {
+  let response = await fetch(BASE_URL + path + ".json", {
     method: "POST",
     header: {
       "Content-type": "application/json",
@@ -89,17 +91,17 @@ async function postData(path = "", data = {}) {
     body: JSON.stringify(data)
   });
   await init();
-  return newDataToJson = await newData.json();
+  return resonseToJson = await response.json();
 }
 
 /**
  * This function changes edited data in firebase
  * 
- * @param {string} path - the path, where the data should be added in firebase (users, tasks, contacts)
- * @param {object} data - an object, that contains all the key-value-pairs that should be added to firebase
+ * @param {string} path - the path, where the data should be edited in firebase
+ * @param {object} data - an object, that contains all the key-value-pairs that should replace the previous object in firebase
  */
 async function putData(path = "", data = {}) {
-  let newData = await fetch(BASE_URL + path + ".json", {
+  let response = await fetch(BASE_URL + path + ".json", {
     method: "PUT",
     header: {
       "Content-type": "application/json",
@@ -107,7 +109,20 @@ async function putData(path = "", data = {}) {
     body: JSON.stringify(data)
   });
   await init();
-  return newDataToJson = await newData.json();
+  return resonseToJson = await response.json();
+}
+
+/**
+ * This function changes edited data in firebase
+ * 
+ * @param {string} path - the path, where the data should be deleted in firebase
+ */
+async function deleteData(path = "") {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "DELETE",
+  });
+  await init();
+  return resonseToJson = await response.json();
 }
 
 /**
@@ -159,7 +174,6 @@ function nameAbbreviation(indexContact) {
     let secondLetter = contactLastName.charAt(0);
     return firstLetter + secondLetter
   }
-
 }
 
 /**
@@ -185,39 +199,10 @@ async function successfullMsg(msgId) {
   successAnimation.style.animationName = "msgSuccesfull";
   successAnimation.style.animationDuration = "1600ms";
   setTimeout(function () {
-      successAnimation.style.animationName = "";
-      successAnimation.style.animationDuration = "";
-      init();
+    successAnimation.style.animationName = "";
+    successAnimation.style.animationDuration = "";
+    init();
   }, 1600);
-}
-
-/**
- * This function reads out the search-input and shows only those elements, that contain the input-value
- * 
- * @param {string} inputId - the id of the input-element, that should trigger the search-function
- * @param {string} displayId - the id of the area, where the filtered elements should be shown
- */
-function startSearching(inputId, displayId) {
-  let searchInputRef = document.getElementById(inputId);
-  let searchInput = searchInputRef.value;
-  let displayContentRef = document.getElementById(displayId);
-  if (searchInput.length >= 3) {
-      searchInputRef.disabled = true;
-      displayContentRef.innerHTML = "";
-      showFilteredElements(displayId, searchInput);
-  }
-  document.getElementById(inputId).disabled = false;
-}
-
-/**
- * This function is part of the StartSearching()-Function.
- * It filteres the elements, that contain the searchInput and renders them into the displayContentRef
- * 
- * @param {string} displayId - the id of the area, where the filtered elements should be shown
- * @param {string} searchInput - the value of the searchInputRef
- */
-function showFilteredElements(displayId, searchInput) {
-
 }
 
 //__________________________________________

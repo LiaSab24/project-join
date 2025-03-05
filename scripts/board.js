@@ -3,18 +3,25 @@
  */
 async function initBoard() {
   await init();
+  clearTaskProgressCategories();
   renderTasks();
   toggleMessageNoTasks();
+}
+
+/**
+ * This function removes all HTML-elements from the progress-categories
+ */
+function clearTaskProgressCategories() {
+  document.getElementById("toDo").innerHTML = "";
+  document.getElementById("inProgress").innerHTML = "";
+  document.getElementById("awaitFeedback").innerHTML = "";
+  document.getElementById("done").innerHTML = "";
 }
 
 /**
  * This function renders the tasks and adds a task-template for each each element in the tasks-array
  */
 function renderTasks() {
-  document.getElementById("toDo").innerHTML = "";
-  document.getElementById("inProgress").innerHTML = "";
-  document.getElementById("awaitFeedback").innerHTML = "";
-  document.getElementById("done").innerHTML = "";
   for (let indexTask = 0; indexTask < tasks.length; indexTask++) {
     let taskProgress = tasks[indexTask].progress.progress;
     let taskProgressContentRef = document.getElementById(taskProgress);
@@ -116,6 +123,63 @@ function toggleMessageNoTasks() {
 }
 
 /**
+ * This function checks if the searchInput contains three or more characters. If so, it executes the displayFilteredTasks()-function
+ * If not, it fills the progress-categories with the corresponding tasks.
+ */
+function startSearchingTasks() {
+  let searchInputRef = document.getElementById("searchInput");
+  let searchInput = searchInputRef.value.toLowerCase();
+  clearTaskProgressCategories();
+  searchInputRef.disabled = true;
+  if (searchInput.length >= 3) {
+    //console.log(searchInput)
+    displayFilteredTasks(searchInput);
+  } else {
+    clearTaskProgressCategories();
+    renderTasks();
+  }
+  searchInputRef.disabled = false;
+  searchInputRef.focus();
+  toggleMessageNoTasks();
+}
+
+/**
+* This function fills the progress-categories with the filtered elements.
+* 
+* @param {string} searchInput - the value of the searchInputRef
+*/
+function displayFilteredTasks(searchInput) {
+  filterTasks(searchInput);
+  for (let indexTask = 0; indexTask < filteredTasks.length; indexTask++) {
+    if (filteredTasks[indexTask] != 0) {
+      let taskProgress = tasks[indexTask].progress.progress;
+      let taskProgressContentRef = document.getElementById(taskProgress);
+      taskProgressContentRef.innerHTML += getBoardTaskTemplate(indexTask);
+      hideSubtasksProgressForNoSubtasks(indexTask);
+      displayAssignedContacts(indexTask);
+    }
+  }
+}
+
+/**
+* This function filters those tasks from the tasks-array, whose title or description contain the searchInput
+* 
+* @param {string} searchInput - the value of the searchInputRef
+*/
+function filterTasks(searchInput) {
+  filteredTasks = [];
+  for (let indexTask = 0; indexTask < tasks.length; indexTask++) {
+    let tasksTitle = tasks[indexTask].title.toLowerCase();
+    let tasksDescription = tasks[indexTask].description.toLowerCase();
+    if (tasksTitle.includes(searchInput) || tasksDescription.includes(searchInput)) {
+      filteredTasks.push(tasks[indexTask]);
+    } else {
+      filteredTasks.push(0)
+    }
+  }
+}
+
+/**
  * This function is closes all Board-Overlays
  */
 function closeOverlays() {
@@ -186,19 +250,19 @@ async function boardAddTask(progress) {
 
 async function boardEditTask(taskIndex) {
   fetch('add_task.html')
-  .then(response => {
-    return response.text()
-  })
-  .then(html => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
-    let editTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
-    initAddTask();
-    openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex);
-  })
-  .catch(error => {
-    console.error('Failed to fetch page: add_task.html', error);
-  });
+    .then(response => {
+      return response.text()
+    })
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      let editTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
+      initAddTask();
+      openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex);
+    })
+    .catch(error => {
+      console.error('Failed to fetch page: add_task.html', error);
+    });
 }
 
 /**
@@ -357,18 +421,18 @@ function addOnclickToCreateBtn() {
   })
 }
 
-function insertUserFeedback() {
+function insertUserFeedback(indexTask) {
   let existingOverlay = document.getElementById("feedbackOverlay");
 
   if (!existingOverlay) {
-    document.body.insertAdjacentHTML("beforeend", getFeedbackOverlayTemplate());
+    document.body.insertAdjacentHTML("beforeend", getFeedbackOverlayTemplate(indexTask));
   }
 }
 
-function toggleUserFeedback() {
+function toggleUserFeedback(indexTask) {
   let feedbackOverlay = document.getElementById("userFeedbackOverlay");
   if (!feedbackOverlay) {
-    insertUserFeedback();
+    insertUserFeedback(indexTask);
     feedbackOverlay = document.getElementById("userFeedbackOverlay");
   }
   feedbackOverlay.classList.toggle("feedback-hidden");
@@ -381,7 +445,7 @@ function saveTaskChanges(taskIndex) {
   task.dueDate = document.getElementById("addTaskDate").value;
   let overlay = document.getElementById("addTaskOverlay"); // Weil das Edit-Overlay aus addTask kommt
   if (overlay) {
-      overlay.classList.add("d-none");
+    overlay.classList.add("d-none");
   }
   renderTasks();
 }
@@ -393,43 +457,55 @@ function closeOverlay(event) {
 
   let overlay = button.closest("#editTaskOverlay, #addTaskOverlay, #feedbackOverlay, .overlay-wrapper, .userStoryBodyContainer");
   if (overlay) {
-      overlay.classList.add("d-none");
+    overlay.classList.add("d-none");
   }
 }
 
-async function deleteTask(event, indexTask) {
-  event.stopPropagation();
-  let button = event.target.closest(".feedback-delete-btn");
-  if (!button) return;
-  let taskCard = document.getElementById(`task${indexTask}`);
-  if (!taskCard) {
-      console.log("Fehler: Task-Card nicht gefunden!");
-      return;
-  }
-  taskCard.remove();
-  console.log(`Task ${indexTask} aus dem DOM entfernt`);
-  let taskId = tasks[indexTask]?.url;
-  tasks.splice(indexTask, 1);
-  console.log(`Task ${indexTask} aus dem Array entfernt`);
-  if (taskId) {
-      await deleteTaskFromFirebase(taskId);
-  }
-  renderTasks();
-  toggleMessageNoTasks();
+/**
+ * This function sends the path of the task that should be deleted to firebase
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+async function deleteTask(indexTask) {
+  await deleteData("/tasks/" + tasks[indexTask].url);
+  successfullMsg("taskSuccesfullyDeleted");
+  closeOverlays();
+  initBoard();
 }
 
-async function deleteTaskFromFirebase(taskId) {
-  try {
-      let response = await fetch(`${BASE_URL}tasks/${taskId}.json`, {
-          method: "DELETE"
-      });
+// async function deleteTask(event, indexTask) {
+//   event.stopPropagation();
+//   let button = event.target.closest(".feedback-delete-btn");
+//   if (!button) return;
+//   let taskCard = document.getElementById(`task${indexTask}`);
+//   if (!taskCard) {
+//     console.log("Fehler: Task-Card nicht gefunden!");
+//     return;
+//   }
+//   taskCard.remove();
+//   console.log(`Task ${indexTask} aus dem DOM entfernt`);
+//   let taskId = tasks[indexTask]?.url;
+//   tasks.splice(indexTask, 1);
+//   console.log(`Task ${indexTask} aus dem Array entfernt`);
+//   if (taskId) {
+//     await deleteTaskFromFirebase(taskId);
+//   }
+//   renderTasks();
+//   toggleMessageNoTasks();
+// }
 
-      if (response.ok) {
-          console.log(`Task mit ID ${taskId} erfolgreich aus Firebase gelöscht`);
-      } else {
-          console.error("Fehler beim Löschen aus Firebase:", response.status);
-      }
-  } catch (error) {
-      console.error("Fehler bei der Verbindung mit Firebase:", error);
-  }
-}
+// async function deleteTaskFromFirebase(taskId) {
+//   try {
+//     let response = await fetch(`${BASE_URL}tasks/${taskId}.json`, {
+//       method: "DELETE"
+//     });
+
+//     if (response.ok) {
+//       console.log(`Task mit ID ${taskId} erfolgreich aus Firebase gelöscht`);
+//     } else {
+//       console.error("Fehler beim Löschen aus Firebase:", response.status);
+//     }
+//   } catch (error) {
+//     console.error("Fehler bei der Verbindung mit Firebase:", error);
+//   }
+// }

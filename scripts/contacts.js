@@ -105,13 +105,13 @@ function clearContactForm() {
 }
 
 /**
- * This function reads out the data of the add-contact-form and sends it to firebase
+ * This function reads out the data of the add-contact-form and sends it to firebase to add a new contact
  */
 async function addContact() {
     let contactName = document.getElementById("addContactName").value;
     let contactMail = document.getElementById("addContactMail").value;
     let contactPhone = document.getElementById("addContactPhone").value;
-    let indexContact = contacts.length +1;
+    let indexContact = contacts.length + 1;
     if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
         let contactColor = await assignRandomColor(indexContact);
         postData("/contacts/", {
@@ -122,7 +122,9 @@ async function addContact() {
         });
         toggleContactsOverlay();
         successfullMsg("contactSuccesfullyCreated");
+        initContacts();
     }
+    
 }
 
 /**
@@ -159,18 +161,18 @@ function updateFocusedContact(indexContact) {
     }, 800)
 }
 
-function deleteContact() {
-    //delete contact from firebase
-    //remove contact from addressbook
-    //clear focused contact
-}
-
+/**
+ * This function reads out the data of the add-contact-form and sends it to firebase to replace the previous contacts-data
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
 async function saveEditContact(indexContact) {
     let contactName = document.getElementById("addContactName").value;
     let contactMail = document.getElementById("addContactMail").value;
     let contactPhone = document.getElementById("addContactPhone").value;
     let contactColor = contacts[indexContact].color;
     if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
+        console.log("/contacts/" + contacts[indexContact].url)
         await putData("/contacts/" + contacts[indexContact].url, {
             "name": contactName,
             "mail": contactMail,
@@ -180,24 +182,18 @@ async function saveEditContact(indexContact) {
         contactClicked(indexContact);
         successfullMsg("contactSuccesfullyEdited");
         toggleContactsOverlay();
+        initContacts();
     }
 }
 
-// async function addContact() {
-//     let contactName = document.getElementById("addContactName").value;
-//     let contactMail = document.getElementById("addContactMail").value;
-//     let contactPhone = document.getElementById("addContactPhone").value;
-//     let contactColor = assignRandomColor(contacts.length + 1);
-//     if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
-//         postData("/contacts/", {
-//             "name": contactName,
-//             "mail": contactMail,
-//             "phone": contactPhone,
-//             "color": contactColor
-//         });
-//         contactSuccesfullyCreated();
-//         toggleContactsOverlay();
-//         await init()
-//         renderAddressBook();
-//     }
-// }
+/**
+ * This function sends the path of the contact that should be deleted to firebase
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+async function deleteContact(indexContact) {
+    console.log("/contacts/" + contacts[indexContact].url)
+    await deleteData("/contacts/" + contacts[indexContact].url);
+    successfullMsg("contactSuccesfullyDeleted");
+    initContacts();
+}
