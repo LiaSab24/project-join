@@ -132,30 +132,38 @@ function addAssignedContactToList(indexContact) {
 }
 
 /**
- * This function checks if the searchInput contains one or more characters. If so, it executes the filterElements()-function and fills the dropdownlist with the filtered elements.
+ * This function checks if the searchInput contains one or more characters. If so, it executes the displayFilteredContacts()-function
  * If not, it fills the dropdown-list with all contacts.
  */
-function contactsStartSearching() {
+function startSearchingContacts() {
     let searchInputRef = document.getElementById("addTaskAssignedTo");
     let searchInput = searchInputRef.value;
-    let assignedToSelect = document.getElementById("addTaskDropdownContacts");
-    assignedToSelect.innerHTML = "";
+    document.getElementById("addTaskDropdownContacts").innerHTML = "";
+    searchInputRef.disabled = true;
     if (searchInput.length >= 1) {
-        searchInputRef.disabled = true;
-        filterElements(searchInput);
-        for (let indexContact = 0; indexContact < filteredContacts.length; indexContact++) {
-            if (filteredContacts[indexContact] != 0) {
-                assignedToSelect.innerHTML += getAddTaskDropdownListContacts(indexContact);
-                document.getElementById("assignedToPB" + indexContact).style.backgroundColor = contacts[indexContact].color;
-            }
-        }
+        displayFilteredContacts(searchInput);
     } else {
-        assignedToSelect.innerHTML = "";
         fillAssignedToDropDownMenu()
     }
     searchInputRef.disabled = false;
     searchInputRef.focus();
     classListAssignedContacts();
+}
+
+/**
+ * This function fills the dropdownlist with the filtered elements.
+ * 
+ * @param {string} searchInput - the value of the searchInputRef
+ */
+function displayFilteredContacts(searchInput) {
+    let assignedToSelect = document.getElementById("addTaskDropdownContacts");
+    filterElements(searchInput);
+    for (let indexContact = 0; indexContact < filteredContacts.length; indexContact++) {
+        if (filteredContacts[indexContact] != 0) {
+            assignedToSelect.innerHTML += getAddTaskDropdownListContacts(indexContact);
+            document.getElementById("assignedToPB" + indexContact).style.backgroundColor = contacts[indexContact].color;
+        }
+    }
 }
 
 /**
