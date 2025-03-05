@@ -11,11 +11,11 @@ main {
 .address-book {
     height: 928px;
     width: 456px;
-    padding: 32px 24px 32px 24px;
+    padding: 32px 24px;
     background-color: var(--clr-white);
-    display: flex;
+ /*  display: flex; */
     flex-direction: column;
-    align-items: center;
+ /*  align-items: center; */
     overflow-y: scroll;
 }
 
