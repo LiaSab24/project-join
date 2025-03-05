@@ -132,7 +132,8 @@ function addAssignedContactToList(indexContact) {
 }
 
 /**
- * This function 
+ * This function checks if the searchInput contains one or more characters. If so, it executes the filterElements()-function and fills the dropdownlist with the filtered elements.
+ * If not, it fills the dropdown-list with all contacts.
  */
 function contactsStartSearching() {
     let searchInputRef = document.getElementById("addTaskAssignedTo");
@@ -158,7 +159,7 @@ function contactsStartSearching() {
 }
 
 /**
- * This function 
+ * This function filters those contacts from the contacts-array, whose name contains the searchInput
  * 
  * @param {string} searchInput - the value of the searchInputRef
  */
@@ -174,6 +175,10 @@ function filterElements(searchInput) {
     }
 }
 
+/**
+ * This function checks, wich contacts are currently in the assignedTo-List and gives those contacts the "option-contact-assigned"-class in the dropdownlist.
+ * The same applies to the user-option in the dropdown-list
+ */
 function classListAssignedContacts() {
     let assignedContactsList = document.querySelectorAll(".assigned-contact");
     for (let indexAssignedContact = 0; indexAssignedContact < assignedContactsList.length; indexAssignedContact++) {
