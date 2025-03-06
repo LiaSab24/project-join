@@ -412,7 +412,7 @@ function styleOverlay() {
   });
 }
 
-
+ 
 
 /**
  * This function is part of the openBoardAddTaskOverlay()-function.

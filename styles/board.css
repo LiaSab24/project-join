@@ -251,6 +251,8 @@ button img {
   font-size: 16px;
   color: #A8A8A8;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .task-progress {
@@ -265,7 +267,7 @@ button img {
 
 .progress-bar {
   width: 128px;
-  height: 8px;
+  height: 8px; 
   background: #ddd;
   border-radius: 5px;
 }

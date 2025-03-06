@@ -132,7 +132,7 @@ function addAssignedContactToList(indexContact) {
 }
 
 /**
- * This function checks if the searchInput contains one or more characters. If so, it executes the displayFilteredContacts()-function
+ * This function checks if the searchInput contains two or more characters. If so, it executes the displayFilteredContacts()-function
  * If not, it fills the dropdown-list with all contacts.
  */
 function startSearchingContacts() {
@@ -140,14 +140,14 @@ function startSearchingContacts() {
     let searchInput = searchInputRef.value;
     document.getElementById("addTaskDropdownContacts").innerHTML = "";
     searchInputRef.disabled = true;
-    if (searchInput.length >= 1) {
+    if (searchInput.length >= 2) {
         displayFilteredContacts(searchInput);
     } else {
         fillAssignedToDropDownMenu()
     }
     searchInputRef.disabled = false;
     searchInputRef.focus();
-    classListAssignedContacts();
+    classListAssignedContacts(); 
 }
 
 /**

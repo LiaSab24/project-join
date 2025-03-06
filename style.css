@@ -39,7 +39,7 @@ main {
 
 .custom-scrollbar::-webkit-scrollbar-button {
   background-repeat: no-repeat;
-  background-size: 10px;
+  background-size: 10px; 
   background-position: center;
   width: 10px;
 }

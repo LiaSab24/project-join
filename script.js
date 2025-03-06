@@ -161,7 +161,7 @@ function profileBadgeColor(contentRef, indexContact) {
 /**
  * This function extracts the first letter of the contacts first and of the contacts last name and returns them 
  * 
- * @param {number} indexContact - the index of the contact in the contacts-array
+ * @param {number} indexContact - the index of the contact in the contacts-array 
  */
 function nameAbbreviation(indexContact) {
   if (indexContact == -1) {

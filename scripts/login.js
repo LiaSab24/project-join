@@ -24,13 +24,13 @@ function LogIn() {
     if (userMail !== "" && userPassword !== "") {
         let currentUserId = checkUserDataExists();
         if (currentUserId !== -1) {
-            console.log(currentUserId);
+            // console.log(currentUserId);
             redirectionToSummary(currentUserId)
         } else {
             document.getElementById("alert").classList.remove("d-none");
         }
     } else {
-        document.getElementById("alert").classList.remove("d-none");
+        document.getElementById("alert").classList.remove("d-none"); 
         checkFilledInput('mail');
         checkFilledInput('password');
     }

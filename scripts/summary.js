@@ -16,8 +16,7 @@ async function initSummary() {
     showNextDeadline()
     greetingDaytime();
     showUserName();
-    console.log(currentUser)
-}
+} 
 
 /**
  * This function fills the according tasks-numbers in the different "counterTasks"-container
@@ -75,6 +74,7 @@ function showNextDeadline() {
     let upCommingDeadline = deadlines.reduce((upCommingDeadline, date) =>
         Math.abs(date - today) < Math.abs(upCommingDeadline - today) ? date : upCommingDeadline
     );
+    console.log(upCommingDeadline)
     let upCommingDeadlineMonth = upCommingDeadline.toLocaleString('en-us', { month: 'long' });
     let upCommingDeadlineDay = upCommingDeadline.getDate();
     let upCommingDeadlineYear = upCommingDeadline.getFullYear();
