@@ -289,7 +289,7 @@ function editSubtask(indexSubtask) {
 function deleteSubtask(indexSubtask) {
     let subtaskContentRef = document.getElementById("subtask" + indexSubtask);
     subtaskContentRef.remove();
-}
+} 
 
 /**
  * This function replaces the subtask-edit element with an list element (template) and includes the edited input-value. 

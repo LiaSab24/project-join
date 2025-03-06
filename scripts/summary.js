@@ -16,6 +16,7 @@ async function initSummary() {
     showNextDeadline()
     greetingDaytime();
     showUserName();
+    console.log(currentUser)
 }
 
 /**
