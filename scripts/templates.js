@@ -89,7 +89,7 @@ function getBoardCloseBtnTemplate() {
 /**
  * This template creates a task-card with some information vor a task
  * 
- * @param {number} indexTask - the index of the task in the contacts-array
+ * @param {number} indexTask - the index of the task in the tasks-array
  */
 function getBoardTaskTemplate(indexTask) {
     return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="openTaskOverview(${indexTask})">
@@ -112,16 +112,16 @@ function getBoardTaskTemplate(indexTask) {
 /**
  * This template displays a contacts profile badge on the board's task-card
  * 
- * @param {number} xxx - the index of the task in the contacts-array
+ * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function getBoardContactPB(xxx) {
+function getBoardContactPB(indexContact) {
     return `<div id="boardAssignedToListPB${indexContact}" class="profile-badge profile-badge-small">${nameAbbreviation(indexContact)}</div>`
 }
 
 /**
  * This template displays a task in a larger view showing all its necessary information
  * 
- * @param {number} indexTask - the index of the task in the contacts-array
+ * @param {number} indexTask - the index of the task in the tasks-array
  */
 function getTaskOverviewOverlayTemplate(indexTask) {
     return `<div class="overview-header">
@@ -148,7 +148,7 @@ function getTaskOverviewOverlayTemplate(indexTask) {
                     <div class="overview-task-delete"></div> Delete
                 </button>
                 <div class="overview-btns-seperator"></div>
-                <button id="editTaskCreate" onclick="editTask(${indexTask})">
+                <button onclick="openEditTaskOverlay(${indexTask})">
                     <div class="overview-task-edit"></div> Edit
                 </button>
             </div>`
@@ -159,7 +159,7 @@ function getTaskOverviewOverlayTemplate(indexTask) {
  * 
  * @param {number} xxx - the index of the task in the contacts-array
  */
-function  getBoardOverviewContactPB(xxx) {
+function getBoardOverviewContactPB(xxx) {
     return `<div class="overview-contact-assigned">
                 <div id="boardAssignedToListPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
                 <p>${contacts[indexContact].name}</p>
@@ -171,12 +171,55 @@ function  getBoardOverviewContactPB(xxx) {
  * 
  * @param {string} subtask - the content of the current subtask
  * @param {number} indexSubtask - the index of the subtask in the subtasks-list
- * @param {number} indexTask - the index of the task in the contacts-array
+ * @param {number} indexTask - the index of the task in the tasks-array
  */
-function  getBoardOverviewSubtask(subtask, indexSubtask, indexTask) {
+function getBoardOverviewSubtask(subtask, indexSubtask, indexTask) {
     return `<div id="overviewAssignedSubtask" class="overview-subtasks-assigned">
                 <div id="overviewCheckbox${indexSubtask}" class="board-overview-checkbox checkbox-completed-${tasks[indexTask].subtasks[indexSubtask].completed}"></div>
                 <p>${subtask}</p>
+            </div>`
+}
+
+/**
+ * This template gives the user the ability to edit a task in the board
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function getTaskEditOverlayTemplate(indexTask) {
+    return `<div class="overview-header edit-task-header">
+                ${getBoardCloseBtnTemplate()}
+            </div>
+            <div class="overview-info">Title
+                <input>
+            </div>
+            <div class="overview-info">Description
+                <input>
+            </div>
+
+
+            <h1>${tasks[indexTask].title}</h1>
+            <div class="overview-task-description">${tasks[indexTask].description}</div>
+            
+                <span>Due Date:</span>
+                <p>${tasks[indexTask].dueDate}</p>
+            
+            <div class="overview-info">
+                <span>Priority:</span>
+                <p>${tasks[indexTask].priority}<img src="/assets/icons/prio${tasks[indexTask].priority}.svg"></p>
+            </div>
+            <div class="overview-info">Assigned To:</div>
+            <div id="overviewAssignedContacts${indexTask}" class="overview-contacts">
+            </div>
+            <div class="overview-info">Subtasks:</div>
+            <div id="overviewSubtasks${indexTask}" class="overview-subtasks"></div>
+            <div class="overview-btns">
+                <button onclick="deleteTask(${indexTask})">
+                    <div class="overview-task-delete"></div> Delete
+                </button>
+                <div class="overview-btns-seperator"></div>
+                <button onclick="">
+                    <div class="overview-task-edit"></div> Edit
+                </button>
             </div>`
 }
 

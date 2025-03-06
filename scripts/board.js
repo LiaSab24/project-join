@@ -188,8 +188,7 @@ function closeOverlays() {
   document.getElementById("boardOverlayBg").classList.remove("overlay-active");
   document.getElementById("addTaskOverlay").classList.add("d-none");
   document.getElementById("overviewOverlay").classList.add("d-none");
-  // document.getElementById("feedbackOverlay").classList.add("d-none");
-  // document.getElementById("editTaskOverlay").classList.add("d-none");
+  document.getElementById("editTaskOverlay").classList.add("d-none");
 }
 
 function allowDrop(event) {
@@ -277,7 +276,7 @@ function addOnclickToCreateBtn() {
 }
 
 /**
- * This function opens the overviewOverlay for the clicked task
+ * This function opens the overviewOverlay for the clicked task, which gives an overview over the task-information
  * 
  * @param {number} indexTask - the index of the task in the tasks-array
  */
@@ -287,6 +286,19 @@ function openTaskOverview(indexTask) {
   overlayContentRef.classList.remove("d-none");
   overlayContentRef.innerHTML = "";
   overlayContentRef.innerHTML += getTaskOverviewOverlayTemplate(indexTask);
+}
+
+/**
+ * This function opens the editTaskOverlay for the clicked task, which gives the user the ability to edit the information
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function openEditTaskOverlay(indexTask) {
+  document.getElementById("overviewOverlay").classList.add("d-none");
+  let overlayContentRef = document.getElementById("editTaskOverlay");
+  overlayContentRef.classList.remove("d-none");
+  overlayContentRef.innerHTML = "";
+  overlayContentRef.innerHTML += getTaskEditOverlayTemplate(indexTask);
 }
 
 /**

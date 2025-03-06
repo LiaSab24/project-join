@@ -289,7 +289,7 @@ button img {
   display: flex;
   align-items: center;
 }
-
+ 
 .profile-badge-small {
   height: 32px !important;
   width: 32px !important;
@@ -401,7 +401,8 @@ button img {
   top: 455px !important;
 }
 
-#overviewOverlay {
+#overviewOverlay,
+#editTaskOverlay {
   width: 525px;
   position: fixed;
   top: 50px;
@@ -410,7 +411,7 @@ button img {
   flex-direction: column;
   align-self: center;
   background-color: white;
-  border-radius: 16px;
+  border-radius: 30px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 3;
   transition: right 0.5s ease-in-out;
@@ -562,4 +563,23 @@ button img {
   height: 100%;
   width: 1px;
   background-color: #D1D1D1;
+}
+
+#editTaskOverlay {
+  height: 930px !important;
+}
+
+.edit-task-header {
+  justify-content: flex-end !important;
+  margin-bottom: 0;
+}
+
+#editTaskOverlay .overview-info {
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+#editTaskOverlay .overview-info input {
+  margin-bottom: 0;
 }
