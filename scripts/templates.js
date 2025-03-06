@@ -89,7 +89,7 @@ function getBoardContactPB(indexContact) {
 }
 
 function getBoardTaskTemplate(indexTask) {
-    return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="toggleUserFeedback(${indexTask})">
+    return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="openTaskOverview(${indexTask})">
                 <div class="task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ', '-')}">${tasks[indexTask].category}</div>
                 <div class="task-title">${tasks[indexTask].title}</div>
                 <div class="task-description">${tasks[indexTask].description}</div>
@@ -106,18 +106,13 @@ function getBoardTaskTemplate(indexTask) {
             </div>`
 }
 
-function getFeedbackOverlayTemplate(indexTask) {
-    return `
-        <div class="feedback-overlay" id="feedbackOverlay">
-        <section id="userFeedbackOverlay" class="feedback-hidden">
-            <div class="feedback-header">
-                <span class="feedback-badge">User Story</span>
-                <button class="overlay-close" onclick="closeOverlay(event)">
-                    <img src="/assets/icons/close.png" alt="Close-Icon">
-                </button>
+function getTaskOverviewOverlayTemplate(indexTask) {
+    return `<div class="overview-header">
+                <div class="overview-task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ', '-')}">${tasks[indexTask].category}</div>
+                <button>X</button>
             </div>
-            <h1 class="feedback-title">Kochwelt Page & Recipe Recommender</h1>
-            <p class="feedback-info">Build start page with recipe recommendation.</p>
+            <h1>${tasks[indexTask].title}</h1>
+            <div class="overview-task-description">${tasks[indexTask].description}</div>
             <p class="feedback-info">Due Date: 10/05/2023</p>
             <p class="feedback-info">Priority: <span class="feedback-priority">Medium 
                 <img src="/assets/icons/Prio media.png" style="padding: 0 4px;">
@@ -154,21 +149,19 @@ function getFeedbackOverlayTemplate(indexTask) {
                     <img src="/assets/icons/edit.png" alt="Edit-Icon"> Edit
                 </button>
             </div>
-        </section>
         <section id="editTaskOverlay" class="editTaskOverlay d-none">
         </section>
-        </div>
     `;
 }
 
-function getFeedbackButtonTemplate() {
-    return `
-        <div class="feedback-task-added-overlay">
-            Task added to board
-            <img src="/assets/icons/Icons.png" alt="Board Icon">
-        </div>
-    `;
-}
+// function getFeedbackButtonTemplate() {
+//     return `
+//         <div class="feedback-task-added-overlay">
+//             Task added to board
+//             <img src="/assets/icons/Icons.png" alt="Board Icon">
+//         </div>
+//     `;
+// }
 
 /**
  * This template creates an address book entrie for a contact

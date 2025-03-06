@@ -1,4 +1,4 @@
-#userFeedbackOverlay {
+#taskOverviewOverlay {
     position: fixed;
     top: 0;
     right: 10px;
@@ -11,7 +11,7 @@
     transition: right 0.5s ease-in-out;
     padding: 20px;
 }
-
+ 
 .feedback-overlay {
     position: fixed;
     top: 50%;

@@ -185,6 +185,7 @@ function closeOverlays() {
   document.getElementById("boardOverlayBg").classList.add("d-none");
   document.getElementById("boardOverlayBg").classList.remove("overlay-active");
   document.getElementById("addTaskOverlay").classList.add("d-none");
+  document.getElementById("overviewOverlay").classList.add("d-none");
   // document.getElementById("feedbackOverlay").classList.add("d-none");
   // document.getElementById("editTaskOverlay").classList.add("d-none");
 }
@@ -298,121 +299,6 @@ async function openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex) {
   adjustOverlayToEditTask(taskIndex);
 }
 
-
-/**
- * Adjusts the addTask overlay to edit mode for a given task.
- * @param {number} taskIndex - Index of the task in the tasks array.
- */
-function adjustOverlayToEditTask(taskIndex) {
-  let task = tasks[taskIndex];
-  let overlay = document.getElementById("editTaskOverlay");
-  document.getElementById("editTaskOverlay").insertAdjacentHTML(
-    "afterbegin",
-    `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close">`
-  );
-  if (!overlay) {
-    console.error("editTaskOverlay nicht gefunden!");
-    return;
-  }
-  overlay.classList.remove("d-none");
-  if (!overlay.querySelector(".overlay-close")) {
-    overlay.insertAdjacentHTML(
-      "afterbegin",
-      `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close">`
-    );
-  }
-
-  removeElement("addTaskTitle");
-  hideElements([".add-task-seperator", "addTaskAssignedTo"]);
-  fillTaskFields(task);
-  updatePriorityButtons(task.priority);
-  updateEditButton(taskIndex);
-  setTimeout(() => updateEditButton(taskIndex), 100);
-  styleOverlay();
-}
-
-
-/**
- * Removes an element from the DOM if it exists.
- * @param {string} id - The ID of the element to remove.
- */
-function removeElement(id) {
-  let el = document.getElementById(id);
-  if (el) el.remove();
-}
-
-/**
- * Hides multiple elements by setting their display property to "none".
- * @param {string[]} selectors - Array of CSS selectors for elements to hide.
- */
-function hideElements(selectors) {
-  selectors.forEach(selector => {
-    let el = document.querySelector(selector);
-    if (el) el.style.display = "none";
-  });
-}
-
-/**
- * Fills the task fields (title, description, due date) with task data.
- * @param {Object} task - The task object containing the necessary data.
- * @param {string} task.title - The title of the task.
- * @param {string} task.description - The description of the task.
- * @param {string} task.dueDate - The due date of the task.
- */
-function fillTaskFields(task) {
-  let titleInput = document.getElementById("taskTitle") || document.getElementById("addTaskTitle");
-  if (titleInput) titleInput.value = task.title;
-  document.getElementById("addTaskDescription").value = task.description;
-  document.getElementById("addTaskDate").value = task.dueDate;
-}
-
-/**
- * Updates the priority button selection based on the task's priority.
- * @param {string} priority - The priority level of the task (e.g., "urgent", "medium", "low").
- */
-function updatePriorityButtons(priority) {
-  document.querySelectorAll("#addTaskPriorities div").forEach(btn => {
-    btn.classList.toggle("active", btn.innerText.trim().toLowerCase() === priority.toLowerCase());
-  });
-}
-
-
-
-function updateEditButton(taskIndex) {
-  let btn = document.getElementById("addTaskCreate");
-
-  if (btn) {
-    let btnContainer = document.createElement("div");
-    btnContainer.id = "editButtonContainer";
-    btnContainer.innerHTML = `
-      <div id="editButtonContainer">
-      <button id="editTaskConfirm" class="userStoryEditOkButton">
-        OK <img class="check-image" src="/assets/icons/check.png">
-      </button>
-      </div>
-    `;
-    btn.replaceWith(btnContainer);
-    let newBtn = document.getElementById("editTaskConfirm");
-    if (newBtn) {
-      newBtn.onclick = () => saveTaskChanges(taskIndex);
-    }
-  }
-}
-
-
-
-
-/**
- * Applies styling to the task overlay to make it more readable and structured.
- */
-function styleOverlay() {
-  Object.assign(document.querySelector("#addTaskForm")?.style || {}, {
-    display: "flex", flexDirection: "column", gap: "15px"
-  });
-}
-
-
-
 /**
  * This function is part of the openBoardAddTaskOverlay()-function.
  * It changes the classList of the #addTaskCreate-Button, so the added task is added in the right progress-category
@@ -433,6 +319,144 @@ function addOnclickToCreateBtn() {
   addTaskCreateBtn.addEventListener("click", closeOverlays());
   addTaskCreateBtn.addEventListener("click", initBoard()());
 }
+
+/**
+ * This function opens the overviewOverlay for the clicked task
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function openTaskOverview(indexTask) {
+  openBoardBgOverlay();
+  let overlayContentRef = document.getElementById("overviewOverlay");
+  overlayContentRef.classList.remove("d-none");
+  overlayContentRef.innerHTML = "";
+  overlayContentRef.innerHTML += getTaskOverviewOverlayTemplate(indexTask);
+}
+
+
+
+
+
+/**
+ * This function sends the path of the task that should be deleted to firebase
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+async function deleteTask(indexTask) {
+  await deleteData("/tasks/" + tasks[indexTask].url);
+  successfullMsg("taskSuccesfullyDeleted");
+  closeOverlays();
+  initBoard();
+}
+
+// /**
+//  * Adjusts the addTask overlay to edit mode for a given task.
+//  * @param {number} taskIndex - Index of the task in the tasks array.
+//  */
+// function adjustOverlayToEditTask(taskIndex) {
+//   let task = tasks[taskIndex];
+//   let overlay = document.getElementById("editTaskOverlay");
+//   document.getElementById("editTaskOverlay").insertAdjacentHTML(
+//     "afterbegin",
+//     `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close">`
+//   );
+//   if (!overlay) {
+//     console.error("editTaskOverlay nicht gefunden!");
+//     return;
+//   }
+//   overlay.classList.remove("d-none");
+//   if (!overlay.querySelector(".overlay-close")) {
+//     overlay.insertAdjacentHTML(
+//       "afterbegin",
+//       `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close">`
+//     );
+//   }
+
+//   removeElement("addTaskTitle");
+//   hideElements([".add-task-seperator", "addTaskAssignedTo"]);
+//   fillTaskFields(task);
+//   updatePriorityButtons(task.priority);
+//   updateEditButton(taskIndex);
+//   setTimeout(() => updateEditButton(taskIndex), 100);
+//   styleOverlay();
+// }
+
+
+// /**
+//  * Removes an element from the DOM if it exists.
+//  * @param {string} id - The ID of the element to remove.
+//  */
+// function removeElement(id) {
+//   let el = document.getElementById(id);
+//   if (el) el.remove();
+// }
+
+// /**
+//  * Hides multiple elements by setting their display property to "none".
+//  * @param {string[]} selectors - Array of CSS selectors for elements to hide.
+//  */
+// function hideElements(selectors) {
+//   selectors.forEach(selector => {
+//     let el = document.querySelector(selector);
+//     if (el) el.style.display = "none";
+//   });
+// }
+
+// /**
+//  * Fills the task fields (title, description, due date) with task data.
+//  * @param {Object} task - The task object containing the necessary data.
+//  * @param {string} task.title - The title of the task.
+//  * @param {string} task.description - The description of the task.
+//  * @param {string} task.dueDate - The due date of the task.
+//  */
+// function fillTaskFields(task) {
+//   let titleInput = document.getElementById("taskTitle") || document.getElementById("addTaskTitle");
+//   if (titleInput) titleInput.value = task.title;
+//   document.getElementById("addTaskDescription").value = task.description;
+//   document.getElementById("addTaskDate").value = task.dueDate;
+// }
+
+// /**
+//  * Updates the priority button selection based on the task's priority.
+//  * @param {string} priority - The priority level of the task (e.g., "urgent", "medium", "low").
+//  */
+// function updatePriorityButtons(priority) {
+//   document.querySelectorAll("#addTaskPriorities div").forEach(btn => {
+//     btn.classList.toggle("active", btn.innerText.trim().toLowerCase() === priority.toLowerCase());
+//   });
+// }
+
+
+
+// function updateEditButton(taskIndex) {
+//   let btn = document.getElementById("addTaskCreate");
+
+//   if (btn) {
+//     let btnContainer = document.createElement("div");
+//     btnContainer.id = "editButtonContainer";
+//     btnContainer.innerHTML = `
+//       <div id="editButtonContainer">
+//       <button id="editTaskConfirm" class="userStoryEditOkButton">
+//         OK <img class="check-image" src="/assets/icons/check.png">
+//       </button>
+//       </div>
+//     `;
+//     btn.replaceWith(btnContainer);
+//     let newBtn = document.getElementById("editTaskConfirm");
+//     if (newBtn) {
+//       newBtn.onclick = () => saveTaskChanges(taskIndex);
+//     }
+//   }
+// }
+
+// /**
+//  * Applies styling to the task overlay to make it more readable and structured.
+//  */
+// function styleOverlay() {
+//   Object.assign(document.querySelector("#addTaskForm")?.style || {}, {
+//     display: "flex", flexDirection: "column", gap: "15px"
+//   });
+// }
 
 // function insertUserFeedback(indexTask) {
 //   let existingOverlay = document.getElementById("feedbackOverlay");
@@ -473,15 +497,3 @@ function addOnclickToCreateBtn() {
 //     overlay.classList.add("d-none");
 //   }
 // }
-
-/**
- * This function sends the path of the task that should be deleted to firebase
- * 
- * @param {number} indexTask - the index of the task in the tasks-array
- */
-async function deleteTask(indexTask) {
-  await deleteData("/tasks/" + tasks[indexTask].url);
-  successfullMsg("taskSuccesfullyDeleted");
-  closeOverlays();
-  initBoard();
-}

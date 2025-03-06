@@ -217,12 +217,13 @@ button img {
 }
 
 .task-badge {
-  color: white;
-  padding: 4px 8px;
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: bold;
+  height: 27px;
   width: fit-content;
+  color: white;
+  padding: 4px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 400;
 } 
 
 .category-bug-fix {
@@ -393,4 +394,55 @@ button img {
 
 #addTaskOverlay #addTaskDropdownCategories {
   top: 455px !important;
+}
+
+#overviewOverlay {
+  width: 525px;
+  display: flex;
+  height: fit-content; 
+  top: 100px;
+  flex-direction: column;
+  align-self: center;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+  transition: right 0.5s ease-in-out;
+  padding: 48px 40px 48px 40px;
+  gap: 12px;
+}
+
+.overview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.overview-task-badge {
+  height: 36px;
+  width: fit-content;
+  color: white;
+  padding: 4px 20px;
+  border-radius: 8px;
+  font-size: 23px;
+  font-weight: 400;
+} 
+
+#overviewOverlay h1 {
+  padding: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.overview-task-description {
+  font-size: 20px;
+  overflow: hidden;
+  white-space: break-spaces;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
 }
