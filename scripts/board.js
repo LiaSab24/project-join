@@ -1,3 +1,6 @@
+/**
+ * This function is the inital function, when board.html is loading and executes the init()-function and further necessary board-functions
+ */
 async function initBoard() {
   await init();
   clearTaskProgressCategories();
@@ -6,7 +9,7 @@ async function initBoard() {
 }
 
 /**
- * Löscht alle Tasks aus den Spalten.
+ * This function clears each of the progress-catergories
  */
 function clearTaskProgressCategories() {
   document.getElementById("toDo").innerHTML = ""; 
@@ -16,10 +19,10 @@ function clearTaskProgressCategories() {
 }
 
 /**
- * Erstellt die Tasks in den Spalten.
+ * This function creates a task-card for each task in its corresponding progress-category
  */
 function renderTasks() {
-  clearTaskProgressCategories(); // Falls nötig
+  clearTaskProgressCategories();
   for (let indexTask = 0; indexTask < tasks.length; indexTask++) {
     let taskProgress = tasks[indexTask].progress.progress;
     let taskProgressContentRef = document.getElementById(taskProgress);
@@ -28,7 +31,6 @@ function renderTasks() {
     displayAssignedContacts(indexTask);
   }
 }
-
 
 /**
  * This function calculates the progress of the subtasks of a task in percents
@@ -228,44 +230,6 @@ function updateTaskProgress(progress, indexTask) {
 }
 
 /**
- * This function fetches the main-part of the add_task.html and implementes it in the #addTaskOverlay-section
- * 
- * @param {string} progress - the progress-category, where the new task should be in after submitting
- */
-async function boardAddTask(progress) {
-  fetch('add_task.html')
-    .then(response => {
-      return response.text()
-    })
-    .then(html => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
-      let addTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
-      initBoard();
-      openBoardBgOverlay();
-      openBoardAddTaskOverlay(addTaskOverlayContent, progress);
-      clearTaskForm();
-      fillAssignedToDropDownMenu();
-    })
-}
-
-// async function boardEditTask(taskIndex) {
-//   fetch('add_task.html')
-//     .then(response => response.text())
-
-//     .then(html => {
-//       const parser = new DOMParser();
-//       const doc = parser.parseFromString(html, "text/html");
-//       let editTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
-//       initBoard();
-//       openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex);
-//     })
-//     .catch(error => {
-//       console.error('Failed to fetch page: add_task.html', error);
-//     });
-// }
-
-/**
  * This function is part of the boardAddTask()-function and adds visibility of the #boardOverlayBg
  */
 function openBoardBgOverlay() {
@@ -289,14 +253,6 @@ async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
   addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
   document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
   adjustAddTaskProgress(progress);
-}
-
-async function openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex) {
-  let editTaskOverlayRef = document.getElementById("editTaskOverlay");
-  editTaskOverlayRef.classList.remove("d-none");
-  editTaskOverlayRef.innerHTML = editTaskOverlayContent;
-
-  adjustOverlayToEditTask(taskIndex);
 }
 
 /**
@@ -333,10 +289,6 @@ function openTaskOverview(indexTask) {
   overlayContentRef.innerHTML += getTaskOverviewOverlayTemplate(indexTask);
 }
 
-
-
-
-
 /**
  * This function sends the path of the task that should be deleted to firebase
  * 
@@ -349,7 +301,9 @@ async function deleteTask(indexTask) {
   initBoard();
 }
 
-// /**
+
+
+// /** 
 //  * Adjusts the addTask overlay to edit mode for a given task.
 //  * @param {number} taskIndex - Index of the task in the tasks array.
 //  */
@@ -496,4 +450,45 @@ async function deleteTask(indexTask) {
 //   if (overlay) {
 //     overlay.classList.add("d-none");
 //   }
+// }
+
+
+
+
+// /**
+//  * This function fetches the main-part of the add_task.html and implementes it in the #addTaskOverlay-section
+//  * 
+//  * @param {string} progress - the progress-category, where the new task should be in after submitting
+//  */
+// async function boardAddTask(progress) {
+//   fetch('add_task.html')
+//     .then(response => {
+//       return response.text()
+//     })
+//     .then(html => {
+//       const parser = new DOMParser();
+//       const doc = parser.parseFromString(html, "text/html");
+//       let addTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
+//       initBoard();
+//       openBoardBgOverlay();
+//       openBoardAddTaskOverlay(addTaskOverlayContent, progress);
+//       clearTaskForm();
+//       fillAssignedToDropDownMenu();
+//     })
+// }
+
+// async function boardEditTask(taskIndex) {
+//   fetch('add_task.html')
+//     .then(response => response.text())
+
+//     .then(html => {
+//       const parser = new DOMParser();
+//       const doc = parser.parseFromString(html, "text/html");
+//       let editTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
+//       initBoard();
+//       openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex);
+//     })
+//     .catch(error => {
+//       console.error('Failed to fetch page: add_task.html', error);
+//     });
 // }

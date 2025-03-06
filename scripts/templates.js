@@ -13,7 +13,7 @@ function getAddTaskDropdownListUserOption(indexUser) {
             </div>`
 }
 
-/**
+/** 
  * This template displays a contact in the add-task-assigned-to-dropdown-menu
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
@@ -86,6 +86,11 @@ function getBoardCloseBtnTemplate() {
     return `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close"></img>`
 }
 
+/**
+ * This template creates a task-card with some information vor a task
+ * 
+ * @param {number} indexTask - the index of the task in the contacts-array
+ */
 function getBoardTaskTemplate(indexTask) {
     return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="openTaskOverview(${indexTask})">
                 <div class="task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ', '-')}">${tasks[indexTask].category}</div>
@@ -107,12 +112,17 @@ function getBoardTaskTemplate(indexTask) {
 /**
  * This template displays a contacts profile badge on the board's task-card
  * 
- * @param {number} indexContact - the index of the contact in the contacts-array
+ * @param {number} xxx - the index of the task in the contacts-array
  */
-function getBoardContactPB(indexContact) {
+function getBoardContactPB(xxx) {
     return `<div id="boardAssignedToListPB${indexContact}" class="profile-badge profile-badge-small">${nameAbbreviation(indexContact)}</div>`
 }
 
+/**
+ * This template displays a task in a larger view showing all its necessary information
+ * 
+ * @param {number} indexTask - the index of the task in the contacts-array
+ */
 function getTaskOverviewOverlayTemplate(indexTask) {
     return `<div class="overview-header">
                 <div class="overview-task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ', '-')}">${tasks[indexTask].category}</div>
@@ -147,9 +157,9 @@ function getTaskOverviewOverlayTemplate(indexTask) {
 /**
  * This template displays a contacts profile badge on the board's task-overview-overlay
  * 
- * @param {number} indexContact - the index of the contact in the contacts-array
+ * @param {number} xxx - the index of the task in the contacts-array
  */
-function  getBoardOverviewContactPB(indexContact) {
+function  getBoardOverviewContactPB(xxx) {
     return `<div class="overview-contact-assigned">
                 <div id="boardAssignedToListPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
                 <p>${contacts[indexContact].name}</p>
@@ -159,23 +169,16 @@ function  getBoardOverviewContactPB(indexContact) {
 /**
  * This template displays a contacts profile badge on the board's task-overview-overlay
  * 
+ * @param {string} subtask - the content of the current subtask
+ * @param {number} indexSubtask - the index of the subtask in the subtasks-list
  * @param {number} indexTask - the index of the task in the contacts-array
  */
-function  getBoardOverviewSubtask(indexTask) {
+function  getBoardOverviewSubtask(subtask, indexSubtask, indexTask) {
     return `<div id="overviewAssignedSubtask" class="overview-subtasks-assigned">
-                <div id="overviewCheckbox${0}" class="board-overview-checkbox checkbox-completed-${tasks[indexTask].subtasks[0].completed}"></div>
-                <p>${tasks[indexTask].subtasks[0].subtask}</p>
+                <div id="overviewCheckbox${indexSubtask}" class="board-overview-checkbox checkbox-completed-${tasks[indexTask].subtasks[indexSubtask].completed}"></div>
+                <p>${subtask}</p>
             </div>`
 }
-
-// function getFeedbackButtonTemplate() {
-//     return `
-//         <div class="feedback-task-added-overlay">
-//             Task added to board
-//             <img src="/assets/icons/Icons.png" alt="Board Icon">
-//         </div>
-//     `;
-// }
 
 /**
  * This template creates an address book entrie for a contact
