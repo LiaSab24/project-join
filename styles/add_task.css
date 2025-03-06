@@ -70,6 +70,11 @@ select {
     line-height: 24px;
 }
 
+input:disabled,
+select:disabled {
+    background-color: #FFFFFF;
+}
+
 input::placeholder,
 textarea::placeholder,
 #addTaskDate::-webkit-datetime-edit {
@@ -96,11 +101,19 @@ select {
     -webkit-appearance: none;
     /* Safari and Chrome */
     background: #FFFFFF;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.add-task-select-menu {
     background-image: url("/assets/icons/add-task-dropdown-down.svg");
     background-repeat: no-repeat;
     background-position-x: 98%;
     background-position-y: 50%;
-    cursor: pointer;
+}
+
+.add-task-select-menu:focus {
+    background-image: url("/assets/icons/add-task-dropdown-up.svg");
 }
 
 .required-star {
@@ -115,6 +128,7 @@ select {
 
 .title {
     margin-top: 110px;
+    margin-right: 32px;
     margin-left: 96px;
     font-weight: 700;
     font-size: 61px;
@@ -133,39 +147,124 @@ select {
     flex-direction: column;
 }
 
-#addTaskAssignedTo, #addTaskSubtask {
+#addTaskAssignedTo,
+#addTaskSubtask {
     margin-bottom: 0;
+}
+
+#addTaskAssignedTo,
+#addTaskDate,
+#addTaskCategory {
+    cursor: pointer;
+}
+
+#addTaskAssignedTo:focus,
+#addTaskDate:focus {
+    cursor: text;
+}
+
+#addTaskAssignedTo,
+#addTaskCategory {
+    z-index: 1;
+}
+
+#addTaskAssignedTo::placeholder,
+#addTaskCategory::placeholder {
+    color: #000000;
+}
+
+#addTaskAssignedTo:focus::placeholder {
+    visibility: hidden;
+}
+
+.add-task-dropdown {
+    max-height: 290px;
+    width: 440px;
+    padding-top: 10px;
+    position: absolute;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    z-index: 2;
+    box-shadow: 0px 0px 14px 3px #0000000A;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.add-task-current-select {
+    z-index: 3 !important;
+}
+
+#addTaskDropdownContacts {
+    top: 656px;
+    overflow-y: scroll;
+}
+
+#addTaskDropdownCategories {
+    top: 595px;
+}
+
+.add-task-dropdown-option {
+    height: 56px;
+    padding: 7px 16px 7px 16px;
+    border-radius: 10px;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.add-task-dropdown-option:hover {
+    background-color: #EEEEEE;
+}
+
+.add-task-dropdown-option div {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 16px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
 }
 
 .profile-badge {
     height: 42px;
     width: 42px;
-    border: 2px solid #FFFFFF;
-    border-radius: 45px;
-    text-align: center;
-    justify-content: center;
-    background-color: #FF7A00;
+}
+
+.add-task-assigned-to-checkbox {
+    height: 24px;
+    width: 24px;
+    background-image: url("/assets/icons/checkbox-icon-unchecked.svg");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+}
+
+.option-contact-assigned {
+    background-color: #2A3647;
     color: #FFFFFF;
 }
 
-#addTaskAssignedToProfiles {
-    height: 42px;
-    width: fit-content;
+.option-contact-assigned:hover {
+    background-color: #091931;
+}
+
+.checkbox-contact-assigned {
+    background-image: url("/assets/icons/checkbox-icon-checked-light.svg");
+}
+
+#addTaskAssignedToList {
+    height: fit-content;
+    width: 440px;
     margin-top: 8px;
-    display: flex;
     flex-direction: row !important;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
-#addTaskAssignedToProfiles div {
-    height: 42px;
-    width: 42px;
-    border: 2px solid #FFFFFF;
-    border-radius: 45px;
-    text-align: center;
-    justify-content: center;
-    background-color: #FF7A00;
-    color: #FFFFFF;
+#addTaskAssignedToList div {
+    cursor: pointer;
 }
 
 .add-task-seperator {
@@ -209,25 +308,114 @@ select {
     cursor: pointer;
 }
 
-#addTaskSubtask {
-    background-image: url("/assets/icons/add-task-subtask-add.svg");
-    background-repeat: no-repeat;
-    background-position-x: 98%;
-    background-position-y: 50%;
+.subtask-icon {
+    height: 24px;
+    width: 24px;
+    border-radius: 50px;
+}
+
+.subtask-icon:hover {
+    background-color: #EEEEEE;
+    transform: scale(110%);
     cursor: pointer;
 }
 
-#addTaskSubtaskList {
-    height: 160px;
-    padding-left: 8px;
-    list-style-position: inside;
+#subtaskIconAdd {
+    position: relative;
+    bottom: 36px;
+    left: 405px;
 }
 
-#addTaskSubtaskList li {
-    padding: 6px 16px 6px 16px;
+#subtaskIconsFocus {
+    flex-direction: row !important;
+    gap: 6px;
+    position: relative;
+    bottom: 36px;
+    left: 377px;
+}
+
+.subtask-scrollbar {
+    height: 160px;
+    width: 440px;
+    margin-top: -16px;
+    overflow-y: scroll;
+}
+
+.subtask-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+#addTaskSubtaskList {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: start;
+}
+
+.subtask {
+    width: 100%;
+    margin-bottom: 6px;
+    padding: 6px 0 4px 24px;
+    padding-right: 56px;
     font-weight: 400;
     font-size: 16px;
-    line-height: 19.2px;
+    line-height: 24px;
+    border-radius: 10px;
+    list-style-position: inside;
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+    word-break: break-all;
+}
+
+.subtask:hover {
+    background-color: #D1D1D1;
+    padding-right: 0;
+}
+
+.subtask-list-icons {
+    display: none !important;
+}
+
+.subtask-edit-icons {
+    flex-direction: row !important;
+}
+
+.subtask:hover .subtask-list-icons {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.subtask-list-icons-seperator {
+    height: 24px;
+    width: 1px;
+    margin: 0 3px 0 3px;
+    background-color: #A8A8A8;
+}
+
+.subtask-edit {
+    height: 32px;
+    width: 100%;
+    padding: 0;
+    background-color: #FFFFFF;
+    border-bottom: solid 1px #29ABE2;
+    border-radius: 0;
+    z-index: 2;
+}
+
+.subtask-edit:hover {
+    background-color: #FFFFFF;
+}
+
+#subtaskEditInput {
+    height: 100%;
+    margin: 0;
+    padding: 4px 16px 4px 16px;
+    border: none;
+}
+
+#subtaskEditInput:focus {
+    outline: none;
 }
 
 .add-task-submit {
@@ -321,8 +509,12 @@ select {
     color: #FFFFFF;
 }
 
-/** This class is added, when input requirement is unfulfilled**/
-
-.add-task-requirement-unfulfilled {
-    outline: 1px solid #FF8190;
+#addTaskOverlayBg {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: transparent;
 }

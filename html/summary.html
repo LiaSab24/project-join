@@ -4,9 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join</title>
-  <link rel="icon" type="image/x-icon" href="/assets/img/join_logo.svg">
-
+  <title>Join Summary</title>
+  <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)"/>
+  <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)"/>
+  
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/styles/sidebar.css">
   <link rel="stylesheet" href="/styles/header.css">
@@ -15,9 +16,11 @@
 
   <script src="/script.js"></script>
   <script src="/scripts/include.js"></script>
+  <script src="/scripts/templates.js"></script>
+  <script src="/scripts/summary.js"></script>
 </head>
 
-<body>
+<body onload="initSummary()">
   <div w3-include-html="header.html"></div>
   <div w3-include-html="sidebar.html"></div>
 
@@ -31,53 +34,53 @@
     <section class="summary-content">
       <div class="summary-overview">
         <div class="to-dos">
-          <div class="summary-container">
-            <img src="/assets/icons/summary-todo.svg" alt="summary-todo">
+          <div onclick="redirectionToBoard()" class="summary-container">
+            <div id="summaryIconToDo"></div>
             <p>
-              <span class="summary-number">1</span>
+              <span id="counterTasksToDo" class="summary-number">0</span>
               <span class="number-explanation">To-Do</span>
             </p>
           </div>
-          <div class="summary-container">
-            <img src="/assets/icons/summary-done.svg" alt="summary-done">
+          <div onclick="redirectionToBoard()" class="summary-container">
+            <div id="summaryIconDone"></div>
             <p>
-              <span class="summary-number">1</span>
+              <span id="counterTasksDone" class="summary-number">0</span>
               <span class="number-explanation">Done</span>
             </p>
           </div>
         </div>
 
-        <div class="deadline summary-container">
+        <div onclick="redirectionToBoard()" class="deadline summary-container">
           <div class="deadline-urgent">
             <img src="/assets/icons/summary-deadline-urgent.svg" alt="summary-deadline-urgent">
             <p>
-              <span class="summary-number">1</span>
+              <span id="counterTasksUrgent" class="summary-number">0</span>
               <span class="number-explanation">Urgent</span>
             </p>
           </div>
           <div class="deadline-seperator"></div>
           <div class="deadline-date">
-            <p>October 16, 2025</p>
-            <span>Upcoming Deadline</span>
+            <p id="nextDeadline">October 16, 2025</p>
+            <span id="nextDeadlineSpan">Upcoming Deadline</span>
           </div>
         </div>
 
         <div class="tasks">
-          <div class="summary-container">
+          <div onclick="redirectionToBoard()" class="summary-container">
             <p>
-              <span class="summary-number">5</span>
+              <span id="counterTasksTotal" class="summary-number">0</span>
               <span class="number-explanation">Tasks in Board</span>
             </p>
           </div>
-          <div class="summary-container">
+          <div onclick="redirectionToBoard()" class="summary-container">
             <p>
-              <span class="summary-number">2</span>
+              <span id="counterTasksInProgress" class="summary-number">0</span>
               <span class="number-explanation">Tasks in Progress</span>
             </p>
           </div>
-          <div class="summary-container">
+          <div onclick="redirectionToBoard()" class="summary-container">
             <p>
-              <span class="summary-number">2</span>
+              <span id="counterTasksAwaitingFeedback" class="summary-number">0</span>
               <span class="number-explanation">Awaiting Feedback</span>
             </p>
           </div>
@@ -85,8 +88,8 @@
       </div>
 
       <div class="summary-greeting">
-        <p id="greetingDaytime">Good morning,</p>
-        <p id="userName">Sofia Müller</p>
+        <p id="greetingDaytime"></p>
+        <p id="userName"></p>
       </div>
     </section>
   </main>

@@ -1,36 +1,48 @@
-/* Updated CSS to match Demo Layout */
-.overlay {
+#userFeedbackOverlay {
+    position: fixed;
+    top: 0;
+    right: 10px;
+    width: 500px;
+    height: 100%;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: right 0.5s ease-in-out;
+    padding: 20px;
+}
+
+.feedback-overlay {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 390px;
-    height: 769px;
+    width: 500px;
+    height: 796px;
     background: white;
     border-radius: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
     font-family: 'Inter', sans-serif;
     line-height: 1.05;
     display: flex;
     flex-direction: column;
+    transition: right 0.5s ease-in-out;
+    z-index: 1000;
 }
 
-.overlay-header {
+.feedback-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
 
-section {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.feedback-hidden {
+    display: none !important;
 }
 
-.badge {
+.feedback-badge {
     background: #0038FF;
     color: white;
     padding: 4px 24px;
@@ -40,26 +52,26 @@ section {
     height: 36px;
 }
 
-.task-title {
+.feedback-title {
     font-size: 36px;
     font-weight: bold;
     margin-top: 10px;
 }
 
-.task-info {
+.feedback-info {
     margin-top: 10px;
     font-size: 16px;
     display: flex;
 }
 
-.priority {
+.feedback-priority {
     display: flex;
     align-items: center;
     border-radius: 6px;
     padding: 0 8px;
 }
 
-.assigned-users {
+.feedback-users {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -67,14 +79,14 @@ section {
     margin-left: 16px;
 }
 
-.assigned-user {
+.feedback-user {
     display: flex;
     align-items: center;
     gap: 10px;
     font-size: 16px;
 }
 
-.user-badge {
+.feedback-user-badge {
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -85,22 +97,31 @@ section {
     color: white;
 }
 
-.subtasks {
+.feedback-subtasks {
     display: flex;
     flex-direction: column;
+    padding: 16px 16px;
+    gap: 10px;
 }
 
-.subtask-item {
+.feedback-subtask-item {
     display: flex;
     align-items: center;
     gap: 10px;
     font-size: 16px;
-    padding: 6px 16px;
     border-radius: 3px;
     margin-left: 4px;
+    width: fit-content;
+    padding: 6px;
 }
 
-.subtask-item input[type="checkbox"] {
+.feedback-subtask-item:hover {
+    background: rgba(74, 74, 74, 0.1);
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.feedback-subtask-item input[type="checkbox"] {
     width: 16px;
     height: 16px;
     accent-color: red;
@@ -109,58 +130,61 @@ section {
     border-radius: 3px;
 }
 
-.actions {
+.feedback-subtask-item img {
+    height: 18px;
+}
+
+.feedback-actions {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 16px;
     position: absolute;
     bottom: 24px;
     right: 28px;
+    gap: 5px;
 }
 
-.delete-btn, .edit-btn {
+.divider {
+    height: 24px;
+    width: 1px;
+    background-color: #2A3647;
+    opacity: 0.35;
+}
+
+.feedback-delete-btn, 
+.feedback-edit-btn {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 17px;
     background: transparent;
     border: none;
     font-size: 16px;
     font-weight: 500;
     color: #2A3647;
     cursor: pointer;
-    transition: 0.3s;
+    /* transition: all 0.3s ease-in-out; */
 }
 
-.delete-btn {
-    border-right: 1px solid #D1D1D1;
-    padding-right: 16px;
+.feedback-delete-btn:hover, 
+.feedback-edit-btn:hover {
+    color: #29ABE2;
+    transform: scale(1.1);
 }
 
-.delete-btn:hover, .edit-btn:hover {
-    color: #1A1F2B;
+.feedback-delete-btn:focus, 
+.feedback-edit-btn:focus,
+.feedback-delete-btn:active, 
+.feedback-edit-btn:active {
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
 }
 
-.delete-btn::before {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
+.feedback-delete-btn:hover img, .feedback-edit-btn:hover img {
+    filter: brightness(0) saturate(100%) invert(62%) sepia(66%) saturate(429%) hue-rotate(161deg) brightness(93%) contrast(90%);
 }
 
-.edit-btn::before {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-}
-
-.actions::after {
-    display: inline-block;
-    width: 1px;
-    height: 16px;
-    background: #D1D1D1;
-}
-
-.task-added-overlay {
+.feedback-task-added-overlay {
     width: 326px;
     height: 74px;
     position: fixed;
@@ -179,7 +203,197 @@ section {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.task-added-overlay img {
+.feedback-task-added-overlay img {
     width: 30px;
     height: 30px;
 }
+
+button:hover {
+    background: transparent;
+}
+
+/* .overlay-close {
+    position: absolute;
+    top: 15px;
+    right: 40px;
+    padding: 8px;
+    background-color: transparent;
+    border-radius: 50%;
+} */
+
+/* .overlay-close:hover {
+    background: rgba(74, 74, 74, 0.1);
+    cursor: pointer;
+} */ */
+
+/* Edit-overlay */
+#editTaskOverlay {
+    position: fixed;
+    top: 50%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    width: 525px;
+    height: 796px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#editTaskOverlay .overlay-close {
+    position: absolute;
+    top: 15px;
+    right: 40px;
+}
+
+#editTaskOverlay #addTaskForm {
+    margin-left: 20px;
+    margin-right: 12px;
+    overflow: auto;
+    padding-right: 24px;
+}
+
+#editTaskOverlay  {
+    margin-left: 16px !important;
+    margin-right: 20px;
+}
+
+#editTaskOverlay input,
+#editTaskOverlay textarea,
+#editTaskOverlay select {
+    padding: 6px;
+    font-size: 14px !important;
+    width: 100% !important;
+}
+
+#editTaskOverlay label {
+    font-size: 14px !important;
+    margin-bottom: 2px;
+}
+
+/* #addTaskAssignedTo,
+#addTaskAssignedToList {
+    display: none;
+}
+
+#addTaskAssignedTo {
+    margin-bottom: 5px;
+}
+
+#addTaskPriorities {
+    justify-content: flex-start !important;
+    gap: 32px;
+} */
+
+#editTaskOverlay .add-task-requirements {
+    display: none !important;
+}
+
+#editTaskOverlay #addTaskCancel {
+    display: none !important;
+}
+
+
+/* #editTaskOverlay #addTaskAssignedTo,
+#editTaskOverlay #addTaskAssignedToList,
+label[for="addTaskAssignedTo"] {
+    display: none !important;
+} */
+
+#editTaskOverlay .subtask-scrollbar {
+    overflow: auto !important;
+}
+
+#editButtonContainer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 16px;
+    text-align: center;
+    z-index: 1000;
+    padding-left: 420px;
+    border-radius: 8px;
+}
+
+.userStoryEditOkButton {
+    cursor: pointer;
+    border: none !important;
+    font-size: 16px;
+    background-color: #2A3647;
+    color: white;
+}
+
+.userStoryEditOkButton:hover {
+    background-color: #29ABE2;
+}
+
+.check-image {
+    width: 13.67px;
+    height: 13.67px;
+    padding-bottom: 3px;
+}
+
+
+/* Gesamtgröße der Scrollbar */
+::-webkit-scrollbar {
+    width: 60px; /* Breite der Scrollbar */
+    height: 60px; 
+    margin-right: -10px; /*Höhe für horizontale Scrollbars */
+}
+
+/* Farbe des Scrollbalkens */
+::-webkit-scrollbar-thumb {
+    background: #A8A8A8; /* Farbe der Scrollbar */
+    border-radius: 10px;
+    margin-right: -10px; /* Abgerundete Ecken */
+}
+
+/* Hintergrund der Scrollbar */
+::-webkit-scrollbar-track {
+    background: #F0F0F0; /* Farbe des Hintergrunds */
+    border-radius: 10px;
+}
+
+/* Wenn die Maus über die Scrollbar geht */
+::-webkit-scrollbar-thumb:hover {
+    background: #7D7D7D;
+}
+
+/* Für Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #A8A8A8 #F0F0F0;
+    /* margin-right: -10px; */
+}
+
+
+
+
+/* Scrollbar nach rechts verschieben */
+#editTaskOverlay::-webkit-scrollbar {
+    width: 6px; /* Schmale Scrollbar */
+    margin-right: -10px; /* Nach rechts verschieben */
+}
+
+/* Scrollbar-Track */
+#editTaskOverlay::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Scrollbar Daumen */
+#editTaskOverlay::-webkit-scrollbar-thumb {
+    background: #A8A8A8;
+    border-radius: 10px;
+    right: 0;
+}
+
+/* Scrollbar-Hover */
+#editTaskOverlay::-webkit-scrollbar-thumb:hover {
+    background: #7D7D7D;
+}
+

@@ -4,26 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Task</title>
-    <link rel="icon" type="image/x-icon" href="/assets/img/join_logo.svg">
+    <title>Join Add Task</title>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)" />
 
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/styles/sidebar.css">
     <link rel="stylesheet" href="/styles/header.css">
     <link rel="stylesheet" href="/fonts/fonts.css">
     <link rel="stylesheet" href="/styles/add_task.css">
+<<<<<<< Updated upstream
+=======
+    <!-- <link rel="stylesheet" href="/styles/board_userstory.css"> -->
+>>>>>>> Stashed changes
 
     <script src="/script.js"></script>
     <script src="/scripts/include.js"></script>
+    <script src="/scripts/templates.js"></script>
     <script src="/scripts/add_task.js"></script>
-</head>
+</head> 
 
-<body>
+<body onload="initAddTask()">
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
-    <main>
-        <h1 class="title">Add Task</h1>
+    <main id="addTask">
+        <h1 id="addTaskH1" class="title">Add Task</h1>
 
         <form id="addTaskForm">
             <div>
@@ -31,23 +37,17 @@
                     Title
                     <span class="required-star">*</span>
                 </label>
-                <input id="addTaskTitle" type="text" placeholder="Enter a title">
+                <input onblur="checkFilledInput('addTaskTitle')" id="addTaskTitle" type="text" placeholder="Enter a title" required>
 
                 <label for="addTaskDescription">Description</label>
                 <textarea type="text" id="addTaskDescription" maxlength="240"
                     placeholder="Enter a Description"></textarea>
 
                 <label for="addTaskAssignedTo">Assigned to</label>
-                <select id="addTaskAssignedTo" aria-placeholder="Select contacts to assign">
-                    <option value="" selected disabled>Select contacts to assign</option>
-                    <option value="">...</option>
-                </select>
-
-                <div id="addTaskAssignedToProfiles">
-                    <div class="profile-badge">AS</div>
-                    <div class="profile-badge">DE</div>
-                    <div class="profile-badge">EF</div>
-                </div>
+                <input onkeyup="startSearchingContacts()" onfocus="toggleAddTaskToDropDownMenu('addTaskAssignedTo', 'addTaskDropdownContacts')" id="addTaskAssignedTo" class="add-task-select-menu"
+                    type="text" placeholder="Select contacts to assign">
+                <div id="addTaskDropdownContacts" class="add-task-dropdown custom-scrollbar"></div>
+                <div id="addTaskAssignedToList"></div>
             </div>
 
             <div class="add-task-seperator"></div>
@@ -57,21 +57,21 @@
                     Due date
                     <span class="required-star">*</span>
                 </label>
-                <input form="dd/mm/yyyy" id="addTaskDate" type="date" min="1920-01-01" max="2100-12-31" required>
+                <input onblur="checkFilledInput('addTaskDate')" form="dd/mm/yyyy" id="addTaskDate" type="date" min="1920-01-01" max="2100-12-31" required>
 
                 <label for="addTaskPriorities">Prio</label>
                 <div id="addTaskPriorities">
                     <div id="prioUrgent" onclick="priorityBtnBg('prioUrgent')">
-                        <span>Urgent</span>
-                        <img id="prioUrgentImg" src="/assets/icons/add-task-prioUrgent.svg">
+                        Urgent
+                        <img id="prioUrgentImg" src="/assets/icons/prioUrgent.svg">
                     </div>
                     <div id="prioMedium" onclick="priorityBtnBg('prioMedium')">
-                        <span>Medium</span>
-                        <img id="prioMediumImg" src="/assets/icons/add-task-prioMedium.svg">
+                        Medium
+                        <img id="prioMediumImg" src="/assets/icons/prioMedium.svg">
                     </div>
                     <div id="prioLow" onclick="priorityBtnBg('prioLow')">
-                        <span>Low</span>
-                        <img id="prioLowImg" src="/assets/icons/add-task-prioLow.svg">
+                        Low
+                        <img id="prioLowImg" src="/assets/icons/prioLow.svg">
                     </div>
                 </div>
 
@@ -79,20 +79,27 @@
                     Category
                     <span class="required-star">*</span>
                 </label>
-                <select id="addTaskCategory">
-                    <option value="" selected disabled>Select task category</option>
-                    <option value="">...</option>
-                </select>
-
+                <input onblur="checkFilledInput('addTaskCategory')" onfocus="toggleAddTaskToDropDownMenu('addTaskCategory','addTaskDropdownCategories')" id="addTaskCategory" class="add-task-select-menu" placeholder="Select task category" readonly>                    
+                <div id="addTaskDropdownCategories" class="add-task-dropdown d-none">
+                    <div onclick="selectTaskCategory('Bug Fix')" class="add-task-dropdown-option">Bug Fix</div>
+                    <div onclick="selectTaskCategory('Documentation')" class="add-task-dropdown-option">Documentation</div>
+                    <div onclick="selectTaskCategory('Technical Task')" class="add-task-dropdown-option">Technical Task</div>
+                    <div onclick="selectTaskCategory('User Story')" class="add-task-dropdown-option">User Story</div>
+                </div>
 
                 <label for="addTaskSubtask">Subtasks</label>
-                <input type="text" id="addTaskSubtask" placeholder="Add new subtask">
-                
-                <ul id="addTaskSubtaskList">
-                    <li>Contact Form</li>
-                    <li>Write Legal Imprint</li>
-                </ul>
-                
+                <input onfocus="changeSubtaskIcons()" onfocusout="changeSubtaskIcons()" type="text" id="addTaskSubtask"
+                    placeholder="Add new subtask">
+                <img id="subtaskIconAdd" class="subtask-icon" src="/assets/icons/add-task-subtask-add.svg">
+                <div id="subtaskIconsFocus" class="d-none">
+                    <img onclick="clearSubtasksInput()" class="subtask-icon"
+                        src="/assets/icons/add-task-subtask-reject.svg">
+                    <img onclick="addSubtaskToList()" class="subtask-icon"
+                        src="/assets/icons/add-task-subtask-submit.svg">
+                </div>
+                <div class="subtask-scrollbar">
+                    <ul id="addTaskSubtaskList"></ul>
+                </div>
             </div>
         </form>
 
@@ -103,16 +110,18 @@
             </div>
 
             <div class="submit-btns">
-                <button class="cancel-btn" id="contactsOverlayCancel">
+                <button onclick="initAddTask()" class="cancel-btn" id="addTaskCancel">
                     Cancel
                     <div class="cancel-img"></div>
                 </button>
-                <button class="create-btn" id="contactsOverlayCreate">
-                    Create Contact
+                <button onclick="addTask()" class="create-btn progress-toDo" id="addTaskCreate">
+                    Create Task
                     <img src="/assets/icons/create-btn.svg">
                 </button>
             </div>
         </div>
+
+        <div onclick="removeAddTaskOverlay()" id="addTaskOverlayBg" class="d-none"></div>
     </main>
 
     <script>includeHTML();</script>

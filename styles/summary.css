@@ -9,7 +9,7 @@ main {
     margin-left: 96px;
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 27px;
 }
 
 .title h1 {
@@ -51,6 +51,41 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#summaryIconToDo {
+    height: 70px;
+    width: 70px;
+    background-image: url("/assets/icons/summary-todo.svg");
+    background-repeat: no-repeat;
+}
+
+#summaryIconDone {
+    height: 70px;
+    width: 70px;
+    background-image: url("/assets/icons/summary-done.svg");
+    background-repeat: no-repeat;
+}
+
+.summary-container:hover {
+    transform: scale(110%);
+    color: #FFFFFF;
+    background-color: #2A3647;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
+}
+
+.summary-container:hover .summary-number,
+.summary-container:hover .number-explanation {
+    color: #FFFFFF;
+}
+
+.summary-container:hover #summaryIconToDo {
+    background-image: url("/assets/icons/summary-todo-hover.svg");
+}
+
+.summary-container:hover #summaryIconDone {
+    background-image: url("/assets/icons/summary-done-hover.svg");
 }
 
 .summary-overview {
@@ -100,6 +135,10 @@ main {
     width: 560px;
     display: flex;
     justify-content: space-between;
+}
+
+.deadline:hover {
+    transform: scaleX(105%) scaleY(110%);
 }
 
 .deadline-urgent {

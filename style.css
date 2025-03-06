@@ -4,7 +4,6 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-<<<<<<< Updated upstream
 }
 
 body {
@@ -28,8 +27,107 @@ main {
 .flex {
   display: flex;
 }
-=======
-  margin: 0;
-  padding: 0;
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 24px;
+  overflow-y: auto 53px;
 }
->>>>>>> Stashed changes
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button {
+  background-repeat: no-repeat;
+  background-size: 10px; 
+  background-position: center;
+  width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:vertical:start:increment {
+  height: 24px;
+  background-image: url('/assets/icons/scrollbar-btn-up.svg');
+  background-position: bottom;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:vertical:start:decrement {
+  display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:vertical:end:increment {
+  height: 24px;
+  background-image: url('/assets/icons/scrollbar-btn-down.svg');
+  background-position: top;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:vertical:end:decrement {
+  display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  border: 8px solid #FFFFFF;
+  border-radius: 30px;
+  background: #D9D9D9;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #D1D1D1;
+}
+
+/* for addTasks and board */
+.profile-badge {
+  border: 2px solid #FFFFFF;
+  border-radius: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FF7A00;
+  color: #FFFFFF;
+  font-size: 12px !important;
+}
+
+/* for contacts and board */
+.overlay-close {
+  align-self: flex-end;
+}
+
+.overlay-close:hover {
+  cursor: pointer;
+  border-radius: 56px;
+  background-color: #D9D9D9;
+}
+
+.messages {
+  height: 0;
+}
+
+.succesfull-msg {
+  width: 326px;
+  height: 74px;
+  border-radius: 20px;
+  position: relative;
+  top: -300px;
+  right: -100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2A3647;
+  box-shadow: 0px 0px 4px 0px #00000026;
+  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* This is added to the success-messages, when create/edit/delete was succesfully*/
+@keyframes msgSuccesfull {
+  0%   {top: -300px; right: -100%;}
+  25%  {top: -300px; right: -800px;}
+  75%  {top: -300px; right: -800px;}
+  100% {top: -300px; right: -100%;}
+}
+
+/** This class is added, when input requirement is unfulfilled**/
+.requirement-unfulfilled {
+  outline: 1px solid #FF8190;
+}
