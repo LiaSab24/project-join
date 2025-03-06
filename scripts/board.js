@@ -257,9 +257,6 @@ async function boardEditTask(taskIndex) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
     let editTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
-    if (!document.getElementById("editTaskOverlay")) {
-      document.body.insertAdjacentHTML("beforeend", '<section id="editTaskOverlay" class="editTaskOverlay d-none"></section>');
-    }
     initBoard();
     openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex);
   })
