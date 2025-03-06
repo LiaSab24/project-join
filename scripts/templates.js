@@ -1,84 +1,40 @@
 /**
- * This template creates an address book entrie for a contact
+ * This template displays the users profile in the add-task-assigned-to-dropdown-menu
  * 
- * @param {number} indexContact - the index of the contact in the contacts-array
+ * @param {number} indexUser - the index of the user in the contacts-array
  */
-function getAddressbookContactTemplate(indexContact) {
-    return `<div id="id${indexContact}" class="contact" onclick="contactClicked(${indexContact})">
-                <div id="profileBadge${indexContact}" class="contact-profile-badge">${nameAbbreviation(indexContact)}</div>
-                <p>
-                    <span class="contact-name">${contacts[indexContact].name}</span>
-                    <span class="contact-mail">${contacts[indexContact].mail}</span>
-                </p>
+function getAddTaskDropdownListUserOption(indexUser) {
+    return `<div onclick="contactAssigned('assignedToUserOption', ${indexUser})" id="assignedToUserOption${indexUser}" class="add-task-dropdown-option user-option">
+                <div>
+                    <div id="assignedToPB${indexUser}" class="profile-badge">${nameAbbreviation(indexUser)}</div>
+                    <span>You</span>
+                </div>
+                <div id="assignedToCheckbox${indexUser}" class="add-task-assigned-to-checkbox"></div>
             </div>`
 }
 
 /**
- * This template creates an overlay for the focused-contact-area with the current contacts information
+ * This template displays a contact in the add-task-assigned-to-dropdown-menu
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function getFocusedContactTemplate(indexContact) {
-    return `<div class="focused-profile-overview">
-                <div id="focusedProfileBadge" class="focused-profile-badge">${nameAbbreviation(indexContact)}</div>
-                    <div class="focused-profile-account">
-                        <span class="focused-contact-name">${contacts[indexContact].name}</span>
-                        <div>
-                            <button onclick="toggleContactsOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
-                             <div id="contactsEditIcon"></div>
-                                <span>Edit</span>
-                            </button>
-                            <button onclick="deleteContact(${indexContact})" class="focused-contact-btns">
-                                <div id="contactsDeleteIcon"></div>
-                                <span>Delete</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="focused-profile-information">
-                <p>Contact Information</p>
+function getAddTaskDropdownListContacts(indexContact) {
+    return `<div onclick="contactAssigned('assignedToOption', ${indexContact})" id="assignedToOption${indexContact}" class="add-task-dropdown-option">
                 <div>
-                    <span class="contact-opportunity">Email</span>
-                    <span class="contact-mail">${contacts[indexContact].mail}</span>
+                    <div id="assignedToPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
+                    <span>${contacts[indexContact].name}</span>
                 </div>
-                <div>
-                    <span class="contact-opportunity">Phone</span>
-                    <span>${contacts[indexContact].phone}</span>
-                </div>
+                <div id="assignedToCheckbox${indexContact}" class="add-task-assigned-to-checkbox"></div>
             </div>`
 }
 
 /**
- * This template creates the two necessary buttons for the contacts-overlay 'Add contact'
- */
-function getContactsOverlayAddBtnsTemplate() {
-    return `<button onclick="clearContactForm(); return false" class="reject-btn" id="contactsOverlayCancel">
-                Cancel
-                <div class="reject-img"></div>
-            </button>
-            <button id="contactsOverlayCreate" onclick="addContact(); return false"
-                class="confirm-btn" >
-                Create Contact
-                <img src="/assets/icons/create-btn.svg">
-            </button>`
-}
-
-/**
- * This template creates the two necessary buttons for the contacts-overlay 'Edit contact'
+ * This template displays a contacts profile badge in the add-task-assigned-to-list
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function getContactsOverlayEditBtnsTemplate(indexContact) {
-    return `<button onclick="clearContactForm(); return false" class="reject-btn" id="contactsOverlayDelete">
-                Delete
-                <div class="reject-img"></div>
-            </button>
-            <button id="contactsOverlaySave" onclick="saveEditContact(${indexContact}); return false"
-                class="confirm-btn">
-                Save
-                <img src='/assets/icons/create-btn.svg'>
-            </button>`
+function getAddTaskContactPB(indexContact) {
+    return `<div id="addTaskAssignedToListPB${indexContact}" class="profile-badge assigned-contact">${nameAbbreviation(indexContact)}</div>`
 }
 
 /**
@@ -121,45 +77,6 @@ function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
                 <div class="subtask-list-icons-seperator"></div>
                 <img onclick="confirmEditSubtask(${indexSubtask})" class="subtask-icon" src="/assets/icons/add-task-subtask-submit.svg">
             </div>`
-}
-
-/**
- * This template displays the users profile in the add-task-assigned-to-dropdown-menu
- * 
- * @param {number} indexUser - the index of the user in the contacts-array
- */
-function getAddTaskDropdownListUserOption(indexUser) {
-    return `<div onclick="contactAssigned('assignedToUserOption', ${indexUser})" id="assignedToUserOption${indexUser}" class="add-task-dropdown-option user-option">
-                <div>
-                    <div id="assignedToPB${indexUser}" class="profile-badge">${nameAbbreviation(indexUser)}</div>
-                    <span>You</span>
-                </div>
-                <div id="assignedToCheckbox${indexUser}" class="add-task-assigned-to-checkbox"></div>
-            </div>`
-}
-
-/**
- * This template displays a contact in the add-task-assigned-to-dropdown-menu
- * 
- * @param {number} indexContact - the index of the contact in the contacts-array
- */
-function getAddTaskDropdownListContacts(indexContact) {
-    return `<div onclick="contactAssigned('assignedToOption', ${indexContact})" id="assignedToOption${indexContact}" class="add-task-dropdown-option">
-                <div>
-                    <div id="assignedToPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
-                    <span>${contacts[indexContact].name}</span>
-                </div>
-                <div id="assignedToCheckbox${indexContact}" class="add-task-assigned-to-checkbox"></div>
-            </div>`
-}
-
-/**
- * This template displays a contacts profile badge in the add-task-assigned-to-list
- * 
- * @param {number} indexContact - the index of the contact in the contacts-array
- */
-function getAddTaskContactPB(indexContact) {
-    return `<div id="addTaskAssignedToListPB${indexContact}" class="profile-badge assigned-contact">${nameAbbreviation(indexContact)}</div>`
 }
 
 /**
@@ -251,4 +168,87 @@ function getFeedbackButtonTemplate() {
             <img src="/assets/icons/Icons.png" alt="Board Icon">
         </div>
     `;
+}
+
+/**
+ * This template creates an address book entrie for a contact
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function getAddressbookContactTemplate(indexContact) {
+    return `<div id="id${indexContact}" class="contact" onclick="contactClicked(${indexContact})">
+                <div id="profileBadge${indexContact}" class="contact-profile-badge">${nameAbbreviation(indexContact)}</div>
+                <p>
+                    <span class="contact-name">${contacts[indexContact].name}</span>
+                    <span class="contact-mail">${contacts[indexContact].mail}</span>
+                </p>
+            </div>`
+}
+
+/**
+ * This template creates an overlay for the focused-contact-area with the current contacts information
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function getFocusedContactTemplate(indexContact) {
+    return `<div class="focused-profile-overview">
+                <div id="focusedProfileBadge" class="focused-profile-badge">${nameAbbreviation(indexContact)}</div>
+                    <div class="focused-profile-account">
+                        <span class="focused-contact-name">${contacts[indexContact].name}</span>
+                        <div>
+                            <button onclick="toggleContactsOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
+                             <div id="contactsEditIcon"></div>
+                                <span>Edit</span>
+                            </button>
+                            <button onclick="deleteContact(${indexContact})" class="focused-contact-btns">
+                                <div id="contactsDeleteIcon"></div>
+                                <span>Delete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="focused-profile-information">
+                <p>Contact Information</p>
+                <div>
+                    <span class="contact-opportunity">Email</span>
+                    <span class="contact-mail">${contacts[indexContact].mail}</span>
+                </div>
+                <div>
+                    <span class="contact-opportunity">Phone</span>
+                    <span>${contacts[indexContact].phone}</span>
+                </div>
+            </div>`
+}
+
+/**
+ * This template creates the two necessary buttons for the contacts-overlay 'Add contact'
+ */
+function getContactsOverlayAddBtnsTemplate() {
+    return `<button onclick="clearContactForm(); return false" class="reject-btn" id="contactsOverlayCancel">
+                Cancel
+                <div class="reject-img"></div>
+            </button>
+            <button id="contactsOverlayCreate" onclick="addContact(); return false"
+                class="confirm-btn" >
+                Create Contact
+                <img src="/assets/icons/create-btn.svg">
+            </button>`
+}
+
+/**
+ * This template creates the two necessary buttons for the contacts-overlay 'Edit contact'
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function getContactsOverlayEditBtnsTemplate(indexContact) {
+    return `<button onclick="clearContactForm(); return false" class="reject-btn" id="contactsOverlayDelete">
+                Delete
+                <div class="reject-img"></div>
+            </button>
+            <button id="contactsOverlaySave" onclick="saveEditContact(${indexContact}); return false"
+                class="confirm-btn">
+                Save
+                <img src='/assets/icons/create-btn.svg'>
+            </button>`
 }
