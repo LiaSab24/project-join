@@ -250,7 +250,7 @@ async function boardAddTask(progress) {
 }
 
 async function boardEditTask(taskIndex) {
-  ffetch('add_task.html')
+  fetch('add_task.html')
   .then(response => response.text())
 
   .then(html => {
