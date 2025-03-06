@@ -289,7 +289,7 @@ select {
     height: 56px;
     width: 136px;
     padding: 16px 10px 16px 10px;
-    border: none;
+    border: none; 
     border-radius: 10px;
     display: flex;
     flex-direction: row;
