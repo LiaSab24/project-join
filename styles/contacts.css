@@ -14,7 +14,7 @@ main {
     padding: 32px 24px 32px 24px;
     background-color: #FFFFFF;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     align-items: center;
     overflow-y: scroll;
 }
@@ -283,19 +283,19 @@ main {
 }
 
 #contactsEditIcon {
-    background-image: url("/assets/icons/contacts-edit.svg");
+    background-image: url("/assets/icons/edit.svg");
 }
 
 .focused-contact-btns:hover #contactsEditIcon {
-    background-image: url("/assets/icons/contacts-edit-hover.svg");
+    background-image: url("/assets/icons/edit-hover.svg");
 }
 
 #contactsDeleteIcon {
-    background-image: url("/assets/icons/contacts-delete.svg");
+    background-image: url("/assets/icons/delete.svg");
 }
 
 .focused-contact-btns:hover #contactsDeleteIcon {
-    background-image: url("/assets/icons/contacts-delete-hover.svg");
+    background-image: url("/assets/icons/delete-hover.svg");
 }
 
 .focused-profile-information p {

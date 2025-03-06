@@ -79,6 +79,13 @@ function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
             </div>`
 }
 
+/**
+ * This template includes a button to close board's overlays
+ */
+function getBoardCloseBtnTemplate() {
+    return `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close"></img>`
+}
+
 function getBoardTaskTemplate(indexTask) {
     return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="openTaskOverview(${indexTask})">
                 <div class="task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ', '-')}">${tasks[indexTask].category}</div>
@@ -109,14 +116,18 @@ function getBoardContactPB(indexContact) {
 function getTaskOverviewOverlayTemplate(indexTask) {
     return `<div class="overview-header">
                 <div class="overview-task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ', '-')}">${tasks[indexTask].category}</div>
-                <button>X</button>
+                ${getBoardCloseBtnTemplate()}
             </div>
             <h1>${tasks[indexTask].title}</h1>
             <div class="overview-task-description">${tasks[indexTask].description}</div>
-            <div class="overview-info">Due Date:<p>${tasks[indexTask].dueDate}</p></div>
-            <div class="overview-info">Priority:
-            <p>${tasks[indexTask].priority} 
-            <img src="/assets/icons/prio${tasks[indexTask].priority}.svg"></p></div>
+            <div class="overview-info">
+                <span>Due Date:</span>
+                <p>${tasks[indexTask].dueDate}</p>
+            </div>
+            <div class="overview-info">
+                <span>Priority:</span>
+                <p>${tasks[indexTask].priority}<img src="/assets/icons/prio${tasks[indexTask].priority}.svg"></p>
+            </div>
             <div class="overview-info">Assigned To:</div>
             <div id="overviewAssignedContacts${indexTask}" class="overview-contacts">
             </div>
@@ -124,11 +135,11 @@ function getTaskOverviewOverlayTemplate(indexTask) {
             <div id="overviewSubtasks${indexTask}" class="overview-subtasks"></div>
             <div class="overview-btns">
                 <button onclick="deleteTask(${indexTask})">
-                    <img src="/assets/icons/delete.png" alt="Delete-Icon"> Delete
+                    <div class="overview-task-delete"></div> Delete
                 </button>
                 <div class="overview-btns-seperator"></div>
                 <button id="editTaskCreate" onclick="editTask(${indexTask})">
-                    <img src="/assets/icons/edit.png" alt="Edit-Icon"> Edit
+                    <div class="overview-task-edit"></div> Edit
                 </button>
             </div>`
 }

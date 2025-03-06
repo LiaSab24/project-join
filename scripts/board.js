@@ -9,7 +9,7 @@ async function initBoard() {
  * Löscht alle Tasks aus den Spalten.
  */
 function clearTaskProgressCategories() {
-  document.getElementById("toDo").innerHTML = "";
+  document.getElementById("toDo").innerHTML = ""; 
   document.getElementById("inProgress").innerHTML = "";
   document.getElementById("awaitFeedback").innerHTML = "";
   document.getElementById("done").innerHTML = "";
@@ -287,7 +287,7 @@ async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
   addTaskOverlayContentRef.classList.remove("d-none");
   addTaskOverlayContentRef.innerHTML = "";
   addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
-  document.getElementById("addTaskTitle").innerHTML += `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close"></img>`
+  document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
   adjustAddTaskProgress(progress);
 }
 
