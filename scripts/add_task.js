@@ -141,7 +141,7 @@ function startSearchingContacts() {
     document.getElementById("addTaskDropdownContacts").innerHTML = "";
     searchInputRef.disabled = true;
     if (searchInput.length >= 2) {
-        displayFilteredContacts(searchInput);
+        displayFilteredContacts(searchInput); 
     } else {
         fillAssignedToDropDownMenu()
     }

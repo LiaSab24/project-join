@@ -185,8 +185,8 @@ function closeOverlays() {
   document.getElementById("boardOverlayBg").classList.add("d-none");
   document.getElementById("boardOverlayBg").classList.remove("overlay-active");
   document.getElementById("addTaskOverlay").classList.add("d-none");
-  document.getElementById("feedbackOverlay").classList.add("d-none");
-  document.getElementById("editTaskOverlay").classList.add("d-none");
+  // document.getElementById("feedbackOverlay").classList.add("d-none");
+  // document.getElementById("editTaskOverlay").classList.add("d-none");
 }
 
 function allowDrop(event) {
@@ -243,26 +243,25 @@ async function boardAddTask(progress) {
       initBoard();
       openBoardBgOverlay();
       openBoardAddTaskOverlay(addTaskOverlayContent, progress);
-    })
-    .catch(error => {
-      console.error('Failed to fetch page: add_task.html')
+      clearTaskForm();
+      fillAssignedToDropDownMenu();
     })
 }
 
 async function boardEditTask(taskIndex) {
   fetch('add_task.html')
-  .then(response => response.text())
+    .then(response => response.text())
 
-  .then(html => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
-    let editTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
-    initBoard();
-    openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex);
-  })
-  .catch(error => {
-    console.error('Failed to fetch page: add_task.html', error);
-  });
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      let editTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
+      initBoard();
+      openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex);
+    })
+    .catch(error => {
+      console.error('Failed to fetch page: add_task.html', error);
+    });
 }
 
 /**
@@ -312,15 +311,15 @@ function adjustOverlayToEditTask(taskIndex) {
     `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close">`
   );
   if (!overlay) {
-      console.error("editTaskOverlay nicht gefunden!");
-      return;
+    console.error("editTaskOverlay nicht gefunden!");
+    return;
   }
   overlay.classList.remove("d-none");
   if (!overlay.querySelector(".overlay-close")) {
-      overlay.insertAdjacentHTML(
-          "afterbegin",
-          `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close">`
-      );
+    overlay.insertAdjacentHTML(
+      "afterbegin",
+      `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close">`
+    );
   }
 
   removeElement("addTaskTitle");
@@ -407,12 +406,12 @@ function updateEditButton(taskIndex) {
  * Applies styling to the task overlay to make it more readable and structured.
  */
 function styleOverlay() {
-  Object.assign(document.querySelector("#addTaskForm")?.style || {}, { 
-    display: "flex", flexDirection: "column", gap: "15px" 
+  Object.assign(document.querySelector("#addTaskForm")?.style || {}, {
+    display: "flex", flexDirection: "column", gap: "15px"
   });
 }
 
- 
+
 
 /**
  * This function is part of the openBoardAddTaskOverlay()-function.
@@ -459,7 +458,7 @@ function saveTaskChanges(taskIndex) {
   task.dueDate = document.getElementById("addTaskDate").value;
   let overlay = document.getElementById("addTaskOverlay"); // Weil das Edit-Overlay aus addTask kommt
   if (overlay) {
-      overlay.classList.add("d-none");
+    overlay.classList.add("d-none");
   }
   renderTasks();
 }
@@ -473,7 +472,7 @@ function closeOverlay(event) {
 
   let overlay = button.closest("#editTaskOverlay, #addTaskOverlay, #feedbackOverlay, .overlay-wrapper, .userStoryBodyContainer");
   if (overlay) {
-      overlay.classList.add("d-none");
+    overlay.classList.add("d-none");
   }
 }
 
@@ -483,8 +482,8 @@ async function deleteTask(event, indexTask) {
   if (!button) return;
   let taskCard = document.getElementById(`task${indexTask}`);
   if (!taskCard) {
-      console.log("Fehler: Task-Card nicht gefunden!");
-      return;
+    console.log("Fehler: Task-Card nicht gefunden!");
+    return;
   }
   taskCard.remove();
   console.log(`Task ${indexTask} aus dem DOM entfernt`);
@@ -492,7 +491,7 @@ async function deleteTask(event, indexTask) {
   tasks.splice(indexTask, 1);
   console.log(`Task ${indexTask} aus dem Array entfernt`);
   if (taskId) {
-      await deleteTaskFromFirebase(taskId);
+    await deleteTaskFromFirebase(taskId);
   }
   renderTasks();
   toggleMessageNoTasks();
@@ -500,16 +499,16 @@ async function deleteTask(event, indexTask) {
 
 async function deleteTaskFromFirebase(taskId) {
   try {
-      let response = await fetch(`${BASE_URL}tasks/${taskId}.json`, {
-          method: "DELETE"
-      });
+    let response = await fetch(`${BASE_URL}tasks/${taskId}.json`, {
+      method: "DELETE"
+    });
 
-      if (response.ok) {
-          console.log(`Task mit ID ${taskId} erfolgreich aus Firebase gelöscht`);
-      } else {
-          console.error("Fehler beim Löschen aus Firebase:", response.status);
-      }
+    if (response.ok) {
+      console.log(`Task mit ID ${taskId} erfolgreich aus Firebase gelöscht`);
+    } else {
+      console.error("Fehler beim Löschen aus Firebase:", response.status);
+    }
   } catch (error) {
-      console.error("Fehler bei der Verbindung mit Firebase:", error);
+    console.error("Fehler bei der Verbindung mit Firebase:", error);
   }
 }

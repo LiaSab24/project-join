@@ -22,7 +22,7 @@ textarea {
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
-    resize: vertical
+    resize: none;
 }
 
 textarea::-webkit-resizer {
