@@ -79,15 +79,6 @@ function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
             </div>`
 }
 
-/**
- * This template displays a contacts profile badge on the board's task-card
- * 
- * @param {number} indexContact - the index of the contact in the contacts-array
- */
-function getBoardContactPB(indexContact) {
-    return `<div id="boardAssignedToListPB${indexContact}" class="profile-badge profile-badge-small">${nameAbbreviation(indexContact)}</div>`
-}
-
 function getBoardTaskTemplate(indexTask) {
     return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="openTaskOverview(${indexTask})">
                 <div class="task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ', '-')}">${tasks[indexTask].category}</div>
@@ -106,6 +97,15 @@ function getBoardTaskTemplate(indexTask) {
             </div>`
 }
 
+/**
+ * This template displays a contacts profile badge on the board's task-card
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function getBoardContactPB(indexContact) {
+    return `<div id="boardAssignedToListPB${indexContact}" class="profile-badge profile-badge-small">${nameAbbreviation(indexContact)}</div>`
+}
+
 function getTaskOverviewOverlayTemplate(indexTask) {
     return `<div class="overview-header">
                 <div class="overview-task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ', '-')}">${tasks[indexTask].category}</div>
@@ -113,45 +113,48 @@ function getTaskOverviewOverlayTemplate(indexTask) {
             </div>
             <h1>${tasks[indexTask].title}</h1>
             <div class="overview-task-description">${tasks[indexTask].description}</div>
-            <p class="feedback-info">Due Date: 10/05/2023</p>
-            <p class="feedback-info">Priority: <span class="feedback-priority">Medium 
-                <img src="/assets/icons/Prio media.png" style="padding: 0 4px;">
-            </span></p>
-            
-            <p class="feedback-info">Assigned To:</p>
-            <div class="feedback-users">
-                <div class="feedback-user">
-                    <div class="feedback-user-badge" style="background: green;">EM</div>
-                    <span class="feedback-user-name">Emmanuel Mauer</span>
-                </div>
-                <div class="feedback-user">
-                    <div class="feedback-user-badge" style="background: purple;">MB</div>
-                    <span class="feedback-user-name">Marcel Bauer</span>
-                </div>
-                <div class="feedback-user">
-                    <div class="feedback-user-badge" style="background: blue;">AM</div>
-                    <span class="feedback-user-name">Anton Mayer</span>
-                </div>
+            <div class="overview-info">Due Date:<p>${tasks[indexTask].dueDate}</p></div>
+            <div class="overview-info">Priority:
+            <p>${tasks[indexTask].priority} 
+            <img src="/assets/icons/prio${tasks[indexTask].priority}.svg"></p></div>
+            <div class="overview-info">Assigned To:</div>
+            <div id="overviewAssignedContacts${indexTask}" class="overview-contacts">
             </div>
-            <p class="feedback-info">Subtasks:</p>
-            <div class="feedback-subtasks">
-                <div class="feedback-subtask-item"><input type="checkbox"> Implement Recipe Recommendation</div>
-                <div class="feedback-subtask-item"><input type="checkbox"> 
-                    Start Page Layout
-                </div>
-            </div>
-            <div class="feedback-actions">
-                <button class="feedback-delete-btn" onclick="deleteTask(${indexTask})">
+            <div class="overview-info">Subtasks:</div>
+            <div id="overviewSubtasks${indexTask}" class="overview-subtasks"></div>
+            <div class="overview-btns">
+                <button onclick="deleteTask(${indexTask})">
                     <img src="/assets/icons/delete.png" alt="Delete-Icon"> Delete
                 </button>
-                <div class="divider"></div>
-                <button class="feedback-edit-btn" id="editTaskCreate" onclick="boardEditTask(3)">
+                <div class="overview-btns-seperator"></div>
+                <button id="editTaskCreate" onclick="editTask(${indexTask})">
                     <img src="/assets/icons/edit.png" alt="Edit-Icon"> Edit
                 </button>
-            </div>
-        <section id="editTaskOverlay" class="editTaskOverlay d-none">
-        </section>
-    `;
+            </div>`
+}
+
+/**
+ * This template displays a contacts profile badge on the board's task-overview-overlay
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function  getBoardOverviewContactPB(indexContact) {
+    return `<div class="overview-contact-assigned">
+                <div id="boardAssignedToListPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
+                <p>${contacts[indexContact].name}</p>
+            </div>`
+}
+
+/**
+ * This template displays a contacts profile badge on the board's task-overview-overlay
+ * 
+ * @param {number} indexTask - the index of the task in the contacts-array
+ */
+function  getBoardOverviewSubtask(indexTask) {
+    return `<div id="overviewAssignedSubtask" class="overview-subtasks-assigned">
+                <div id="overviewCheckbox${0}" class="board-overview-checkbox checkbox-completed-${tasks[indexTask].subtasks[0].completed}"></div>
+                <p>${tasks[indexTask].subtasks[0].subtask}</p>
+            </div>`
 }
 
 // function getFeedbackButtonTemplate() {
@@ -200,7 +203,6 @@ function getFocusedContactTemplate(indexContact) {
                         </div>
                     </div>
                 </div>
-
                 <div class="focused-profile-information">
                 <p>Contact Information</p>
                 <div>

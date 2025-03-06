@@ -249,21 +249,21 @@ async function boardAddTask(progress) {
     })
 }
 
-async function boardEditTask(taskIndex) {
-  fetch('add_task.html')
-    .then(response => response.text())
+// async function boardEditTask(taskIndex) {
+//   fetch('add_task.html')
+//     .then(response => response.text())
 
-    .then(html => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
-      let editTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
-      initBoard();
-      openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex);
-    })
-    .catch(error => {
-      console.error('Failed to fetch page: add_task.html', error);
-    });
-}
+//     .then(html => {
+//       const parser = new DOMParser();
+//       const doc = parser.parseFromString(html, "text/html");
+//       let editTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
+//       initBoard();
+//       openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex);
+//     })
+//     .catch(error => {
+//       console.error('Failed to fetch page: add_task.html', error);
+//     });
+// }
 
 /**
  * This function is part of the boardAddTask()-function and adds visibility of the #boardOverlayBg
