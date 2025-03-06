@@ -454,7 +454,7 @@ function toggleUserFeedback(indexTask) {
 
 function saveTaskChanges(taskIndex) {
   let task = tasks[taskIndex];
-  task.title = document.getElementById("taskTitle").value;
+  task.title = document.getElementById("addTaskTitle").value;
   task.description = document.getElementById("addTaskDescription").value;
   task.dueDate = document.getElementById("addTaskDate").value;
   let overlay = document.getElementById("addTaskOverlay"); // Weil das Edit-Overlay aus addTask kommt

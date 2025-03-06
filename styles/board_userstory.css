@@ -212,19 +212,19 @@ button:hover {
     background: transparent;
 }
 
-.overlay-close {
+/* .overlay-close {
     position: absolute;
     top: 15px;
     right: 40px;
     padding: 8px;
     background-color: transparent;
     border-radius: 50%;
-}
+} */
 
-.overlay-close:hover {
+/* .overlay-close:hover {
     background: rgba(74, 74, 74, 0.1);
     cursor: pointer;
-} */
+} */ */
 
 /* Edit-overlay */
 #editTaskOverlay {
@@ -274,7 +274,7 @@ button:hover {
     margin-bottom: 2px;
 }
 
-#addTaskAssignedTo,
+/* #addTaskAssignedTo,
 #addTaskAssignedToList {
     display: none;
 }
@@ -286,7 +286,7 @@ button:hover {
 #addTaskPriorities {
     justify-content: flex-start !important;
     gap: 32px;
-}
+} */
 
 #editTaskOverlay .add-task-requirements {
     display: none !important;
@@ -297,11 +297,11 @@ button:hover {
 }
 
 
-#addTaskAssignedTo,
-#addTaskAssignedToList,
+/* #editTaskOverlay #addTaskAssignedTo,
+#editTaskOverlay #addTaskAssignedToList,
 label[for="addTaskAssignedTo"] {
     display: none !important;
-}
+} */
 
 #editTaskOverlay .subtask-scrollbar {
     overflow: auto !important;
