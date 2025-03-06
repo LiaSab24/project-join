@@ -144,11 +144,11 @@ function getTaskOverviewOverlayTemplate(indexTask) {
             <div class="overview-info">Subtasks:</div>
             <div id="overviewSubtasks${indexTask}" class="overview-subtasks"></div>
             <div class="overview-btns">
-                <button onclick="deleteTask(${indexTask})">
+                <button disable onclick="deleteTask(${indexTask})">
                     <div class="overview-task-delete"></div> Delete
                 </button>
                 <div class="overview-btns-seperator"></div>
-                <button onclick="openEditTaskOverlay(${indexTask})">
+                <button onclick="openEditTask('${tasks[indexTask].progress.progress}')">
                     <div class="overview-task-edit"></div> Edit
                 </button>
             </div>`
@@ -193,15 +193,33 @@ function getTaskEditOverlayTemplate(indexTask) {
                 <input>
             </div>
             <div class="overview-info">Description
+                <textarea></textarea>
+            </div>
+            <div class="overview-info">Due Date
+                <input id="editTaskDate" class="edit-task-date" type=date>
+            </div>
+            <div class="overview-info">Priority
+                <div class="edit-task-priority-btns">
+                    <div id="prioUrgent" onclick="priorityBtnBg('prioUrgent')">
+                        Urgent
+                        <img id="prioUrgentImg" src="/assets/icons/prioUrgent.svg">
+                    </div>
+                    <div id="prioMedium" onclick="priorityBtnBg('prioMedium')">
+                        Medium
+                        <img id="prioMediumImg" src="/assets/icons/prioMedium.svg">
+                    </div>
+                    <div id="prioLow" onclick="priorityBtnBg('prioLow')">
+                        Low
+                        <img id="prioLowImg" src="/assets/icons/prioLow.svg">
+                    </div>
+                </div>    
+            </div>
+            <div class="overview-info">Assigned o
                 <input>
             </div>
 
 
-            <h1>${tasks[indexTask].title}</h1>
-            <div class="overview-task-description">${tasks[indexTask].description}</div>
-            
-                <span>Due Date:</span>
-                <p>${tasks[indexTask].dueDate}</p>
+        
             
             <div class="overview-info">
                 <span>Priority:</span>

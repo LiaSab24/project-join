@@ -140,7 +140,7 @@ async function assignRandomColor(indexContact) {
   let assignedColor = availableColors.splice(randomIndex, 1)[0];
 
   contactColors[indexContact] = assignedColor;
-  localStorage.setItem("contactColors", JSON.stringify(contactColors));
+  //localStorage.setItem("contactColors", JSON.stringify(contactColors));
   return assignedColor;
 }
 
