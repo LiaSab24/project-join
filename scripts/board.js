@@ -248,11 +248,26 @@ function updateTaskProgress(progress, indexTask) {
  */
 function openBoardBgOverlay() {
   let boardOverlayBgContentRef = document.getElementById("boardOverlayBg");
-  boardOverlayBgContentRef.classList.remove("d-none");
+  boardOverlayBgContentRef.classList.toggle("animation-open-overlay");
+  boardOverlayBgContentRef.classList.toggle("animation-close-overlay");
   setTimeout(function () {
-    boardOverlayBgContentRef.classList.add("overlay-active");
-  });
+    boardOverlayBgContentRef.classList.toggle("d-none");
+  }, 300);
 }
+
+// /**
+//  * Toggles the visibility of the board overlay.
+//  */
+// function openBoardBgOverlay() {
+//   let overlay = document.getElementById("boardOverlayBg");
+//   if (overlay.classList.contains("overlay-active")) {
+//       overlay.classList.remove("overlay-active");
+//       overlay.classList.add("overlay-hidden"); // Animiertes Schließen
+//   } else {
+//       overlay.classList.remove("overlay-hidden");
+//       overlay.classList.add("overlay-active"); // Animiertes Öffnen
+//   }
+// }
 
 /**
  * This function is part of the boardAddTask()-function and adds visibility of the #addTaskOverlay
