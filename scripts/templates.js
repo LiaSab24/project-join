@@ -57,7 +57,7 @@ function getContactsOverlayAddBtnsTemplate() {
                 Cancel
                 <div class="reject-img"></div>
             </button>
-            <button id="contactsOverlayCreate" onclick="addContact()"
+            <button id="contactsOverlayCreate" onclick="addContact(); return false"
                 class="confirm-btn" >
                 Create Contact
                 <img src="/assets/icons/create-btn.svg">
@@ -173,20 +173,20 @@ function getBoardContactPB(indexContact) {
 
 function getBoardTaskTemplate(indexTask) {
     return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="toggleUserFeedback(${indexTask})">
-          <div class="task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ','-')}">${tasks[indexTask].category}</div>
-          <div class="task-title">${tasks[indexTask].title}</div>
-          <div class="task-description">${tasks[indexTask].description}</div>
-          <div id="boardProgressSubtask${indexTask}" class="task-progress">
-            <div class="progress-bar">
-              <div class="progress-bar-fill" style="width:${progressSubtasksPercentage(indexTask)}%;"></div>
-            </div>
-            <span>${countCompletedSubtasks(indexTask)}/${countTotalSubtasks(indexTask)} Subtasks</span>
-          </div>
-          <div class="assigned-contacts-and-priority">
-            <div id="assignedContacts${indexTask}" class="task-assignees"></div>
-            <div><img src="/assets/icons/prio${tasks[indexTask].priority}.svg"></div>
-          </div>
-        </div>`
+                <div class="task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ', '-')}">${tasks[indexTask].category}</div>
+                <div class="task-title">${tasks[indexTask].title}</div>
+                <div class="task-description">${tasks[indexTask].description}</div>
+                <div id="boardProgressSubtask${indexTask}" class="task-progress">
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width:${progressSubtasksPercentage(indexTask)}%;"></div>
+                    </div>
+                    <span>${countCompletedSubtasks(indexTask)}/${countTotalSubtasks(indexTask)} Subtasks</span>
+                </div>
+                <div class="assigned-contacts-and-priority">
+                    <div id="assignedContacts${indexTask}" class="task-assignees"></div>
+                    <img src="/assets/icons/prio${tasks[indexTask].priority}.svg">
+                </div>
+            </div>`
 }
 
 function getFeedbackOverlayTemplate(indexTask) {

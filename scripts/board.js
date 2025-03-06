@@ -289,7 +289,6 @@ async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
   addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
   document.getElementById("addTaskTitle").innerHTML += `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close"></img>`
   adjustAddTaskProgress(progress);
-  addOnclickToCreateBtn();
 }
 
 async function openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex) {
@@ -432,11 +431,8 @@ function adjustAddTaskProgress(progress) {
  */
 function addOnclickToCreateBtn() {
   let addTaskCreateBtn = document.getElementById("addTaskCreate");
-  addTaskCreateBtn.addEventListener("click", event => {
-    closeOverlays();
-    initBoard();
-    event.stopImmediatePropagation();
-  })
+  addTaskCreateBtn.addEventListener("click", closeOverlays());
+  addTaskCreateBtn.addEventListener("click", initBoard()());
 }
 
 function insertUserFeedback(indexTask) {

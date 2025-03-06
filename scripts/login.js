@@ -4,6 +4,7 @@
 async function initLogIn() {
     await init();
     clearLogInForm();
+    document.getElementById("alert").classList.add("d-none")
 }
 
 /**
@@ -15,14 +16,29 @@ function clearLogInForm() {
 }
 
 function LogIn() {
-    //check if username fits to password
-    //"redirectionToSummary()" if true, msg if not
-    //currentUser gets ID of logged in user
+    let userMail = document.getElementById("mail").value;
+    let userPassword = document.getElementById("password").value;
+    if (userMail !== "" && userPassword !== "") {
+        if (checkUserExists()) {
+            redirectionToSummary(currentUserId)
+        }
+    } else {
+        document.getElementById("alert").classList.remove("d-none");
+        checkFilledInput('mail');
+        checkFilledInput('password');
+    }
+}
+
+function checkUserExists() {
+    
 }
 
 /**
  * This function redirects the user to the summary (Login succesfull)
+ * 
+ * @param {number} currentUserId - the id of the logged in user
  */
-function redirectionToSummary() {
+function redirectionToSummary(currentUserId) {
+    currentUser = currentUserId;
     window.location.href = "summary.html";
 }

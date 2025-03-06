@@ -242,3 +242,11 @@ input[type="text"][name="password"] {
     background-size: 20px;
 }
 
+input {
+    width: 422px;
+}
+
+input:focus {
+    outline: 1px solid #29ABE2;
+    border: 1px solid transparent;
+}

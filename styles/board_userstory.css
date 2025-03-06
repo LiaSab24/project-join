@@ -343,7 +343,7 @@ label[for="addTaskAssignedTo"] {
 ::-webkit-scrollbar {
     width: 60px; /* Breite der Scrollbar */
     height: 60px; 
-    margin-right: -10px;/* Höhe für horizontale Scrollbars */
+    margin-right: -10px; /*Höhe für horizontale Scrollbars */
 }
 
 /* Farbe des Scrollbalkens */
@@ -368,7 +368,7 @@ label[for="addTaskAssignedTo"] {
 * {
     scrollbar-width: thin;
     scrollbar-color: #A8A8A8 #F0F0F0;
-    margin-right: -10px;
+    /* margin-right: -10px; */
 }
 
 
