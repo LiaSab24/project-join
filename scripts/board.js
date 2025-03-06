@@ -12,7 +12,7 @@ async function initBoard() {
  * This function clears each of the progress-catergories
  */
 function clearTaskProgressCategories() {
-  document.getElementById("toDo").innerHTML = "";
+  document.getElementById("toDo").innerHTML = ""; 
   document.getElementById("inProgress").innerHTML = "";
   document.getElementById("awaitFeedback").innerHTML = "";
   document.getElementById("done").innerHTML = "";
@@ -133,6 +133,7 @@ function startSearchingTasks() {
   clearTaskProgressCategories();
   searchInputRef.disabled = true;
   if (searchInput.length >= 3) {
+    //console.log(searchInput)
     displayFilteredTasks(searchInput);
   } else {
     clearTaskProgressCategories();
@@ -247,8 +248,8 @@ function updateTaskProgress(progress, indexTask) {
  */
 function openBoardBgOverlay() {
   let boardOverlayBgContentRef = document.getElementById("boardOverlayBg");
-  boardOverlayBgContentRef.classList.toggle("animation-open-overlay");
-  boardOverlayBgContentRef.classList.toggle("animation-close-overlay");
+  boardOverlayBgContentRef.classList.add("animation-open-overlay");
+  boardOverlayBgContentRef.classList.add("animation-close-overlay");
   setTimeout(function () {
     boardOverlayBgContentRef.classList.toggle("d-none");
   }, 300);
@@ -269,36 +270,9 @@ function openBoardBgOverlay() {
 // }
 
 /**
- * This function fetches the main-part of the add_task.html and implementes it in the #addTaskOverlay-section
- * 
- * @param {string} overlay - the overlay, that should get the fetched html-data
- * @param {string} progress - the progress-category, where the new task should be in after submitting
- */
-async function boardAddTask(overlay, progress) {
-  fetch('add_task.html')
-    .then(response => {
-      return response.text()
-    })
-    .then(html => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
-      let addTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
-      initBoard();
-      openBoardBgOverlay();
-      if (overlay == "add") {
-        openBoardAddTaskOverlay(addTaskOverlayContent, progress);
-      } if (overlay == "edit") {
-        openBoardEditTaskOverlay(addTaskOverlayContent, progress);
-      }
-      clearTaskForm();
-      fillAssignedToDropDownMenu();
-    })
-}
-
-/**
  * This function is part of the boardAddTask()-function and adds visibility of the #addTaskOverlay
  * 
- * @param {html} addTaskOverlayContent - the html-content of the main-part of the add_task.html
+ * @param {html} addTaskOverlay - the html of the main-part of the add_task.html
  * @param {string} progress - the progress-category, where the new task should be in after submitting
  */
 async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
@@ -306,24 +280,6 @@ async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
   addTaskOverlayContentRef.classList.remove("d-none");
   addTaskOverlayContentRef.innerHTML = "";
   addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
-  document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
-  adjustAddTaskProgress(progress);
-}
-
-/**
- * This function is part of the boardAddTask()-function and adds visibility of the #addTaskOverlay
- * 
- * @param {html} addTaskOverlayContent - the html-content of the main-part of the add_task.html
- * @param {string} progress - the progress-category, where the new task should be in after submitting
- */
-async function openBoardEditTaskOverlay(addTaskOverlayContent, progress) {
-  let addTaskOverlayContentRef = document.getElementById("addTaskOverlay");
-  addTaskOverlayContentRef.classList.remove("d-none");
-  addTaskOverlayContentRef.classList.add("edit-task-overlay");
-  //addTaskOverlayContentRef.classList.add("custom-scrollbar");
-  addTaskOverlayContentRef.innerHTML = "";
-  addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
-  document.getElementById("addTaskH1").innerHTML = "";
   document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
   adjustAddTaskProgress(progress);
 }
@@ -365,14 +321,14 @@ function openTaskOverview(indexTask) {
 /**
  * This function opens the editTaskOverlay for the clicked task, which gives the user the ability to edit the information
  * 
- * @param {string} progress - the progress-category, where the new task should be in after submitting
+ * @param {number} indexTask - the index of the task in the tasks-array
  */
-async function openEditTask(progress) {
-  closeOverlays();
+function openEditTaskOverlay(indexTask) {
+  document.getElementById("overviewOverlay").classList.add("d-none");
   let overlayContentRef = document.getElementById("editTaskOverlay");
   overlayContentRef.classList.remove("d-none");
   overlayContentRef.innerHTML = "";
-  overlayContentRef += await boardAddTask('edit', progress);
+  overlayContentRef.innerHTML += getTaskEditOverlayTemplate(indexTask);
 }
 
 /**
@@ -389,7 +345,7 @@ async function deleteTask(indexTask) {
 
 
 
-// /**
+// /** 
 //  * Adjusts the addTask overlay to edit mode for a given task.
 //  * @param {number} taskIndex - Index of the task in the tasks array.
 //  */
@@ -540,6 +496,28 @@ async function deleteTask(indexTask) {
 
 
 
+
+// /**
+//  * This function fetches the main-part of the add_task.html and implementes it in the #addTaskOverlay-section
+//  * 
+//  * @param {string} progress - the progress-category, where the new task should be in after submitting
+//  */
+// async function boardAddTask(progress) {
+//   fetch('add_task.html')
+//     .then(response => {
+//       return response.text()
+//     })
+//     .then(html => {
+//       const parser = new DOMParser();
+//       const doc = parser.parseFromString(html, "text/html");
+//       let addTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
+//       initBoard();
+//       openBoardBgOverlay();
+//       openBoardAddTaskOverlay(addTaskOverlayContent, progress);
+//       clearTaskForm();
+//       fillAssignedToDropDownMenu();
+//     })
+// }
 
 // async function boardEditTask(taskIndex) {
 //   fetch('add_task.html')
