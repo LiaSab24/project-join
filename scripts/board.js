@@ -185,6 +185,8 @@ function closeOverlays() {
   document.getElementById("boardOverlayBg").classList.add("d-none");
   document.getElementById("boardOverlayBg").classList.remove("overlay-active");
   document.getElementById("addTaskOverlay").classList.add("d-none");
+  document.getElementById("feedbackOverlay").classList.add("d-none");
+  document.getElementById("editTaskOverlay").classList.add("d-none");
 }
 
 function allowDrop(event) {
@@ -249,9 +251,8 @@ async function boardAddTask(progress) {
 
 async function boardEditTask(taskIndex) {
   fetch('add_task.html')
-  .then(response => {
-    return response.text()
-  })
+  .then(response => response.text())
+
   .then(html => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
@@ -327,10 +328,7 @@ function adjustOverlayToEditTask(taskIndex) {
   fillTaskFields(task);
   updatePriorityButtons(task.priority);
   updateEditButton(taskIndex);
-  
-  // Falls updateEditButton das HTML überschreibt, verzögert ausführen
   setTimeout(() => updateEditButton(taskIndex), 100);
-  
   styleOverlay();
 }
 
