@@ -4,7 +4,7 @@ let users = [];
 let tasks = [];
 let contacts = [];
 
-let currentUser;                                              
+let currentUser = 0;                                              
 let indexUser;
 
 let filteredContacts = [];

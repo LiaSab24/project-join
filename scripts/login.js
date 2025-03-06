@@ -34,7 +34,6 @@ function LogIn() {
         checkFilledInput('mail');
         checkFilledInput('password');
     }
-    longestArr = []
 }
 
 function checkUserDataExists() {
@@ -68,25 +67,6 @@ function compareMailPassword() {
         }
     }
 return -1
-
-    // if (userMailIndex.length >= userPasswordIndex.length) {
-    //     for (let i = 0; i < userMailIndex.length; i++) {
-
-    //     }
-    // } else {
-    //     for (let i = 0; i < userPasswordIndex.length; i++) {
-
-    //     }
-    // }
-
-    // console.log(new Set (userMailIndex));
-    // console.log(userPasswordIndex);
-
-    // userMailIndex.forEach((element) => if (element = userPasswordIndex) {
-
-    // })
-
-    let
 }
 
 /**
