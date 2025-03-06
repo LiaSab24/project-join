@@ -240,7 +240,7 @@ async function boardAddTask(progress) {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, "text/html");
       let addTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
-      initAddTask();
+      initBoard();
       openBoardBgOverlay();
       openBoardAddTaskOverlay(addTaskOverlayContent, progress);
     })
@@ -257,7 +257,10 @@ async function boardEditTask(taskIndex) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
     let editTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
-    initAddTask();
+    if (!document.getElementById("editTaskOverlay")) {
+      document.body.insertAdjacentHTML("beforeend", '<section id="editTaskOverlay" class="editTaskOverlay d-none"></section>');
+    }
+    initBoard();
     openBoardEditTaskOverlay(editTaskOverlayContent, taskIndex);
   })
   .catch(error => {
