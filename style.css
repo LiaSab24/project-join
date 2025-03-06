@@ -126,3 +126,8 @@ main {
   75%  {top: -300px; right: -800px;}
   100% {top: -300px; right: -100%;}
 }
+
+/** This class is added, when input requirement is unfulfilled**/
+.requirement-unfulfilled {
+  outline: 1px solid #FF8190;
+}

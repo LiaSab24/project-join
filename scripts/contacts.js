@@ -123,8 +123,11 @@ async function addContact() {
         toggleContactsOverlay();
         successfullMsg("contactSuccesfullyCreated");
         initContacts();
+    } else {
+        checkFilledInput("addContactName");
+        checkFilledInput("addContactMail");
+        checkFilledInput("addContactPhone")
     }
-    
 }
 
 /**
@@ -183,6 +186,10 @@ async function saveEditContact(indexContact) {
         successfullMsg("contactSuccesfullyEdited");
         toggleContactsOverlay();
         initContacts();
+    } else {
+        checkFilledInput("addContactName");
+        checkFilledInput("addContactMail");
+        checkFilledInput("addContactPhone")
     }
 }
 

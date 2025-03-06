@@ -205,6 +205,29 @@ async function successfullMsg(msgId) {
   }, 1600);
 }
 
+/**
+ * This function checks, if a required input is filled in and toggles the "requirement-unfulfilled"-class accordingly
+ */
+function checkFilledInput(id) {
+  let contentRef = document.getElementById(id);
+  let unfulfilledRequirement = "requirement-unfulfilled";
+  setTimeout(() => {
+      if (id == "addTaskCategory") {
+          if (contentRef.placeholder == "Select task category") {
+              contentRef.classList.add(unfulfilledRequirement);
+          } else {
+              contentRef.classList.remove(unfulfilledRequirement);
+          }
+      } else {
+          if (contentRef.value == "") {
+              contentRef.classList.add(unfulfilledRequirement);
+          } else {
+              contentRef.classList.remove(unfulfilledRequirement);
+          }
+      }
+  }, 100);
+}
+ 
 //__________________________________________
 
 function btnUserInitial() {

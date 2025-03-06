@@ -169,7 +169,7 @@
             <div class="title">
                 <h1>Contacts</h1>
                 <div class="title-seperator"></div>
-                <p>Better with a team</p>
+                <p>Better with a team</p> 
             </div>
 
             <div id="focusedContactInformation" class="animation-focused-contact"></div>
@@ -192,9 +192,9 @@
                     <img src="/assets/icons/contacts-overlay-profile-badge-anonymous.svg">
                 </div>
                 <form class="overlay-form">
-                    <input id="addContactName" type="text" placeholder="Name" required>
-                    <input id="addContactMail" type="text" placeholder="Email" required>
-                    <input id="addContactPhone" type="text" placeholder="Phone">
+                    <input onblur="checkFilledInput('addContactName')" id="addContactName" type="text" placeholder="Name" required>
+                    <input onblur="checkFilledInput('addContactMail')" id="addContactMail" type="text" placeholder="Email" required>
+                    <input onblur="checkFilledInput('addContactPhone')" id="addContactPhone" type="text" placeholder="Phone">
 
                     <div id="contactsSubmitBtns"></div>
                 </form>

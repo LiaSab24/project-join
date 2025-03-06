@@ -509,11 +509,6 @@ select {
     color: #FFFFFF;
 }
 
-/** This class is added, when input requirement is unfulfilled**/
-.add-task-requirement-unfulfilled {
-    outline: 1px solid #FF8190;
-}
-
 #addTaskOverlayBg {
     height: 100%;
     width: 100%;

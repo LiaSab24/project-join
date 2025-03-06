@@ -36,6 +36,11 @@ async function addUser() {
             await addUserToContacts(userName, userMail);
             signUpSuccesfully();
             clearSignUpForm();
+        } else {
+            checkFilledInput('name');
+            checkFilledInput('mail');
+            checkFilledInput('password');
+            checkFilledInput('confirmed')
         }
     }
 }

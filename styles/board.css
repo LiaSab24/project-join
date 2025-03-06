@@ -192,6 +192,7 @@ button img {
 
 .board-tasks-list {
   height: 688px;
+  width: 252px;
 }
 
 .margin {
@@ -203,12 +204,12 @@ button img {
   border-radius: var(--border-radius-task);
   box-shadow: var(--shadow);
   padding: var(--task-padding);
+  margin-top: 16px;
+  max-height: 263px;
+  width: 100%;
+  gap: 24px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  margin-top: 16px;
-  max-width: 252px;
-  max-height: 263px;
 }
 
 .task-card:hover {
@@ -216,7 +217,6 @@ button img {
 }
 
 .task-badge {
-  background: #D1D1D1;
   color: white;
   padding: 4px 8px;
   border-radius: 5px;
@@ -256,17 +256,15 @@ button img {
 .task-progress {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
 }
 
 .task-progress span {
   font-size: var(--FS-S);
-  white-space: nowrap;
 }
 
 .progress-bar {
-  width: 100%;
-  max-width: 128px;
+  width: 128px;
   height: 8px;
   background: #ddd;
   border-radius: 5px;
@@ -276,25 +274,28 @@ button img {
   height: 100%;
   background: #4589FF;
   border-radius: 5px;
-  width: 50%;
 }
 
 .task-assignees {
   margin-left: 10px;
   display: flex;
-  gap: 5px;
   align-items: center;
 }
 
 .profile-badge-small {
   height: 32px !important;
   width: 32px !important;
-  margin-left: -14px;
+  margin-left: -10px;
 }
 
 .assigned-contacts-and-priority {
   display: flex;
   justify-content: space-between;
+  max-width: 220px;
+}
+
+.assigned-contacts-and-priority img {
+  width: 17px;
 }
 
 .todo-wrapper .task-card {
@@ -352,7 +353,7 @@ button img {
   background: #FFFFFF;
   z-index: 4;
   position: fixed;
-  top: 5%;
+  top: 100px;
   align-self: center;
 }
 
@@ -376,7 +377,7 @@ button img {
 }
 
 #addTaskOverlay #addTaskDropdownContacts {
-  top: 551px !important;
+  top: 515px !important;
 }
 
 #addTaskOverlay #addTaskAssignedToList {
@@ -384,5 +385,5 @@ button img {
 }
 
 #addTaskOverlay #addTaskDropdownCategories {
-  top: 487px !important;
+  top: 455px !important;
 }

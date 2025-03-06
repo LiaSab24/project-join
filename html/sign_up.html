@@ -36,13 +36,13 @@
                   <img src="/assets/icons/underline.svg" alt="LightBlue Textdecoration Underline" srcset="">
               </div>
               <div class="Input-Field">
-                  <input autocomplete="username" id="name" required type="text" placeholder="Name">
-                  <input autocomplete="email" id="mail" required type="email" placeholder="Email">
+                  <input onblur="checkFilledInput('name')" autocomplete="username" id="name" required type="text" placeholder="Name">
+                  <input onblur="checkFilledInput('mail')" autocomplete="email" id="mail" required type="email" placeholder="Email">
                   <div class="password-wrapper">
-                      <input autocomplete="new-password"  id="password" name="password" type="password" placeholder="Password">
+                      <input onblur="checkFilledInput('password')" autocomplete="new-password"  id="password" name="password" type="password" placeholder="Password">
                   </div>
                   <div class="password-wrapper">
-                      <input autocomplete="current-password" id="confirmed" name="confirmed" required type="password" placeholder="Confirm Password">
+                      <input onblur="checkFilledInput('confirmed')" autocomplete="current-password" id="confirmed" name="confirmed" required type="password" placeholder="Confirm Password">
                   </div>
                   <span id="alert" class="d-none input-error">Your passwords don´t match. Please try again</span>
                   <div class="Checkbox-Remember-Me">

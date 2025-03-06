@@ -310,27 +310,47 @@ function confirmEditSubtask(indexSubtask) {
  * This function reads out the data of the add-task-form and adds the task to tasks-array and firebase
  */
 function addTask() {
-    let taskTitle = document.getElementById("addTaskTitle").value;
-    let taskDescription = document.getElementById("addTaskDescription").value;
-    let taskAssignedTo = getAssignedContacts();
-    let taskDueDate = document.getElementById("addTaskDate").value;
-    let taskPriority = document.querySelector(".clicked").innerText;
-    let taskCategory = checkTaskCategory();
-    let taskSubtasks = getSubtasks();
-    let taskProgress = getProgress();
-    postData("/tasks/", {
-        "title": taskTitle,
-        "description": taskDescription,
-        "assignedTo": taskAssignedTo,
-        "dueDate": taskDueDate,
-        "priority": taskPriority,
-        "category": taskCategory,
-        "subtasks": taskSubtasks,
-        "progress": { "progress": taskProgress }
-    });
-    initAddTask();
-    if (window.location.href !== "http://127.0.0.1:5500/html/add_task.html") {
-        successfullMsg("taskSuccesfullyCreated");
+    if (requirementsFullfilled()) {
+        let taskTitle = document.getElementById("addTaskTitle").value;
+        let taskDescription = document.getElementById("addTaskDescription").value;
+        let taskAssignedTo = getAssignedContacts();
+        let taskDueDate = document.getElementById("addTaskDate").value;
+        let taskPriority = getTaskPriority();
+        let taskCategory = checkTaskCategory();
+        let taskSubtasks = getSubtasks();
+        let taskProgress = getProgress();
+        postData("/tasks/", {
+            "title": taskTitle,
+            "description": taskDescription,
+            "assignedTo": taskAssignedTo,
+            "dueDate": taskDueDate,
+            "priority": taskPriority,
+            "category": taskCategory,
+            "subtasks": taskSubtasks,
+            "progress": { "progress": taskProgress }
+        });
+        initAddTask();
+        if (window.location.href !== "http://127.0.0.1:5500/html/add_task.html") {
+            successfullMsg("taskSuccesfullyCreated");
+            addOnclickToCreateBtn();
+        }
+    } else {
+        checkFilledInput("addTaskTitle");
+        checkFilledInput("addTaskDate");
+        checkFilledInput("addTaskCategory")
+    }
+}
+
+/**
+ * This function checks if the required add-task-inputs are filled and returns true respectively false accordingly
+ */
+function requirementsFullfilled() {
+    if (document.getElementById("addTaskTitle").value !== "" &&
+        document.getElementById("addTaskDate").value !== "" &&
+        document.getElementById("addTaskCategory").placeholder !== "Select task category") {
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -366,6 +386,15 @@ function getAssignedContacts() {
         }
     }
     return assignedContactsArray;
+}
+
+function getTaskPriority() {
+    let clickedPriority = document.querySelector(".clicked");
+    if (clickedPriority == null) {
+        return "";
+    } else {
+        return clickedPriority.innerText;
+    }
 }
 
 /**
