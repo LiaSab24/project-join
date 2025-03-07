@@ -388,17 +388,22 @@ button img {
   align-self: baseline;
 }
 
+#addTaskOverlay #addTaskAssignedTo {
+  z-index: 4 !important;
+}
+
 #addTaskOverlay #addTaskDropdownContacts {
-  top: 515px !important;
+  top: 515px;
+  z-index: 3;
 }
 
 #addTaskOverlay #addTaskAssignedToList {
   margin-left: 10px;
-  z-index: 3;
+  z-index: 2;
 }
 
 #addTaskOverlay #addTaskDropdownCategories {
-  top: 455px !important;
+  top: 455px;
 }
 
 #overviewOverlay,
@@ -406,7 +411,7 @@ button img {
   width: 525px !important;
   position: fixed !important;
   top: 50px !important;
-  display: flex !important;
+  display: flex;
   height: fit-content;
   flex-direction: column !important;
   align-self: center !important;
@@ -415,7 +420,7 @@ button img {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 3;
   transition: right 0.5s ease-in-out;
-  padding: 48px 40px 48px 40px !important;
+  padding: 48px 40px 48px 40px;
   gap: 16px !important;
 }
 
@@ -567,21 +572,69 @@ button img {
 
 .edit-task-overlay {
   height: 930px !important;
-  overflow: scroll;
+  padding-right: 16px;
+  padding-bottom: 32px;
 }
 
 .edit-task-overlay .title {
   align-self: flex-end;
+  margin: 0 !important;
+  padding-right: 20px !important;
 }
 
 .edit-task-overlay #addTaskForm {
   margin: 0 !important; 
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+  gap: 24px;
+  padding-bottom: 40px !important;
 }
 
-.edit-task-overlay .add-task-seperator {
+.edit-task-overlay input,
+.edit-task-overlay textarea {
+  width: 98%;
+  align-self: center;
+  z-index: 3;
+}
+
+.edit-task-overlay #addTaskDropdownContacts {
+  position: relative;
+  top: -9px !important; 
+  left: 8px;
+}
+
+.edit-task-overlay #addTaskDropdownCategories {
+  position: relative;
+  top: -27px !important;
+  left: 4px;
+}
+
+.edit-task-overlay .add-task-seperator,
+.edit-task-overlay .add-task-requirements,
+.edit-task-overlay .submit-btns .cancel-btn,
+.edit-task-overlay .submit-btns .create-btn {
   display: none !important;
+}
+
+.edit-task-overlay .subtask-scrollbar {
+  height: fit-content;
+}
+
+.edit-task-overlay .add-task-submit {
+  margin: 0 !important;
+  align-self: end;
+  padding-top: 32px;
+  padding-right: 24px;
+}
+
+.edit-task-overlay .confirm-btn {
+  font-size: 21px;
+}
+
+.edit-task-overlay .confirm-btn img {
+  height: auto;
+  width: auto;
 }
 
 /* #editTaskOverlay .overview-info {

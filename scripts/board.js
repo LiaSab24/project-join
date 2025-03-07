@@ -18,7 +18,7 @@ function clearTaskProgressCategories() {
   document.getElementById("done").innerHTML = "";
 }
 
-/**
+/** 
  * This function creates a task-card for each task in its corresponding progress-category
  */
 function renderTasks() {
@@ -188,6 +188,7 @@ function closeOverlays() {
   document.getElementById("addTaskOverlay").classList.add("d-none");
   document.getElementById("overviewOverlay").classList.add("d-none");
   document.getElementById("editTaskOverlay").classList.add("d-none");
+  document.getElementById("addTaskOverlay").classList.remove("edit-task-overlay");
 }
 
 function allowDrop(event) {
@@ -239,12 +240,26 @@ function openBoardBgOverlay() {
 }
 
 /**
+ * This function opens the editTaskOverlay for the clicked task, which gives the user the ability to edit the information
+ * 
+ * @param {string} progress - the progress-category, where the new task should be in after submitting
+ */
+async function openEditTaskOverlay(progress, indexTask) {
+  closeOverlays();
+  let overlayContentRef = document.getElementById("editTaskOverlay");
+  overlayContentRef.classList.remove("d-none");
+  overlayContentRef.innerHTML = "";
+  overlayContentRef += await boardAddTask('edit', progress, indexTask);
+}
+
+/**
  * This function fetches the main-part of the add_task.html and implementes it in the #addTaskOverlay-section
  * 
  * @param {string} overlay - the overlay, that should get the fetched html-data
  * @param {string} progress - the progress-category, where the new task should be in after submitting
+ * @param {number} indexTask - the index of the task in the tasks-array
  */
-async function boardAddTask(overlay, progress) {
+async function boardAddTask(overlay, progress, indexTask) {
   fetch('add_task.html')
     .then(response => {
       return response.text()
@@ -258,7 +273,10 @@ async function boardAddTask(overlay, progress) {
       if (overlay == "add") {
         openBoardAddTaskOverlay(addTaskOverlayContent, progress);
       } if (overlay == "edit") {
-        openBoardEditTaskOverlay(addTaskOverlayContent, progress);
+        adjustBoardEditTaskOverlay(addTaskOverlayContent);
+        document.getElementById("addTaskSubmitBtns").innerHTML += getBoardEditTaskBtnTemplate(indexTask);
+        document.getElementById("editTaskOk").classList.add("progress-" + progress);
+        fillEditTaskInputs(indexTask);
       }
       clearTaskForm();
       fillAssignedToDropDownMenu();
@@ -281,24 +299,6 @@ async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
 }
 
 /**
- * This function is part of the boardAddTask()-function and adds visibility of the #addTaskOverlay
- * 
- * @param {html} addTaskOverlayContent - the html-content of the main-part of the add_task.html
- * @param {string} progress - the progress-category, where the new task should be in after submitting
- */
-async function openBoardEditTaskOverlay(addTaskOverlayContent, progress) {
-  let addTaskOverlayContentRef = document.getElementById("addTaskOverlay");
-  addTaskOverlayContentRef.classList.remove("d-none");
-  addTaskOverlayContentRef.classList.add("edit-task-overlay");
-  //addTaskOverlayContentRef.classList.add("custom-scrollbar");
-  addTaskOverlayContentRef.innerHTML = "";
-  addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
-  document.getElementById("addTaskH1").innerHTML = "";
-  document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
-  adjustAddTaskProgress(progress);
-}
-
-/**
  * This function is part of the openBoardAddTaskOverlay()-function.
  * It changes the classList of the #addTaskCreate-Button, so the added task is added in the right progress-category
  * 
@@ -311,12 +311,19 @@ function adjustAddTaskProgress(progress) {
 }
 
 /**
- * This function adds an onclick-event to the #addTaskCreate-Button for the #addTaskOverlay
+ * This function is part of the boardAddTask()-function and adds visibility of the #addTaskOverlay
+ * 
+ * @param {html} addTaskOverlayContent - the html-content of the main-part of the add_task.html
  */
-function addOnclickToCreateBtn() {
-  let addTaskCreateBtn = document.getElementById("addTaskCreate");
-  addTaskCreateBtn.addEventListener("click", closeOverlays());
-  addTaskCreateBtn.addEventListener("click", initBoard()());
+async function adjustBoardEditTaskOverlay(addTaskOverlayContent) {
+  let addTaskOverlayContentRef = document.getElementById("addTaskOverlay");
+  addTaskOverlayContentRef.classList.remove("d-none");
+  addTaskOverlayContentRef.classList.add("edit-task-overlay");
+  addTaskOverlayContentRef.innerHTML = "";
+  addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
+  document.getElementById("addTaskH1").innerHTML = "";
+  document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
+  document.getElementById("addTaskForm").classList.add("custom-scrollbar");
 }
 
 /**
@@ -333,16 +340,23 @@ function openTaskOverview(indexTask) {
 }
 
 /**
- * This function opens the editTaskOverlay for the clicked task, which gives the user the ability to edit the information
+ * This function fills in the inputs of the edit-task-overlay with the information of the corresponding task
  * 
- * @param {string} progress - the progress-category, where the new task should be in after submitting
+ * @param {number} indexTask - the index of the task in the tasks-array
  */
-async function openEditTask(progress) {
-  closeOverlays();
-  let overlayContentRef = document.getElementById("editTaskOverlay");
-  overlayContentRef.classList.remove("d-none");
-  overlayContentRef.innerHTML = "";
-  overlayContentRef += await boardAddTask('edit', progress);
+function fillEditTaskInputs(indexTask) {
+  document.getElementById("addTaskTitle").value = tasks[indexTask].title;
+  document.getElementById("addTaskDescription").value = tasks[indexTask].description;
+  document.getElementById("addTaskDate").value = tasks[indexTask].dueDate;
+}
+
+/**
+ * This function lets the user save changes for a task, wich are used tot edit the data in firebase and the tasks-array
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function saveEditTask(indexTask) {
+  
 }
 
 /**
@@ -357,7 +371,14 @@ async function deleteTask(indexTask) {
   initBoard();
 }
 
-
+/**
+ * This function adds an onclick-event to the #addTaskCreate-Button for the #addTaskOverlay
+ */
+function addOnclickToCreateBtn() {
+  let addTaskCreateBtn = document.getElementById("addTaskCreate");
+  addTaskCreateBtn.addEventListener("click", closeOverlays());
+  addTaskCreateBtn.addEventListener("click", initBoard()());
+}
 
 // /**
 //  * Adjusts the addTask overlay to edit mode for a given task.
