@@ -104,7 +104,7 @@ function getBoardTaskTemplate(indexTask) {
                 </div>
                 <div class="assigned-contacts-and-priority">
                     <div id="assignedContacts${indexTask}" class="task-assignees"></div>
-                    <img src="/assets/icons/prio${tasks[indexTask].priority}.svg">
+                    <img id="prio${indexTask}" src="/assets/icons/prio${tasks[indexTask].priority}.svg">
                 </div>
             </div>`
 }
@@ -136,7 +136,7 @@ function getTaskOverviewOverlayTemplate(indexTask) {
             </div>
             <div class="overview-info">
                 <span>Priority:</span>
-                <p>${tasks[indexTask].priority}<img src="/assets/icons/prio${tasks[indexTask].priority}.svg"></p>
+                <p>${tasks[indexTask].priority}<img id="prioOverview${indexTask}" src="/assets/icons/prio${tasks[indexTask].priority}.svg"></p>
             </div>
             <div class="overview-info">Assigned To:</div>
             <div id="overviewAssignedContacts${indexTask}" class="overview-contacts">
@@ -157,11 +157,11 @@ function getTaskOverviewOverlayTemplate(indexTask) {
 /**
  * This template displays a contacts profile badge on the board's task-overview-overlay
  * 
- * @param {number} xxx - the index of the task in the contacts-array
+ * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function getBoardOverviewContactPB(xxx) {
+function getBoardOverviewContactPB(indexContact) {
     return `<div class="overview-contact-assigned">
-                <div id="boardAssignedToListPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
+                <div id="overviewAssignedToListPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
                 <p>${contacts[indexContact].name}</p>
             </div>`
 }
@@ -174,7 +174,7 @@ function getBoardOverviewContactPB(xxx) {
  * @param {number} indexTask - the index of the task in the tasks-array
  */
 function getBoardOverviewSubtask(subtask, indexSubtask, indexTask) {
-    return `<div id="overviewAssignedSubtask" class="overview-subtasks-assigned">
+    return `<div completedSubtask(indexSubtask, indexTask) id="overviewAssignedSubtask" class="overview-subtasks-assigned">
                 <div id="overviewCheckbox${indexSubtask}" class="board-overview-checkbox checkbox-completed-${tasks[indexTask].subtasks[indexSubtask].completed}"></div>
                 <p>${subtask}</p>
             </div>`

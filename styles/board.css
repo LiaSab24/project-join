@@ -583,6 +583,7 @@ button img {
 }
 
 .edit-task-overlay #addTaskForm {
+  width: 445px;
   margin: 0 !important; 
   display: flex;
   flex-direction: column;
@@ -604,6 +605,12 @@ button img {
   left: 8px;
 }
 
+.edit-task-overlay #addTaskAssignedToList {
+  width: fit-content;
+  margin-left: 0 !important;
+  padding-left: 10px;
+}
+
 .edit-task-overlay #addTaskDropdownCategories {
   position: relative;
   top: -27px !important;
@@ -618,7 +625,20 @@ button img {
 }
 
 .edit-task-overlay .subtask-scrollbar {
+  max-width: 100%;
+  min-height: 16px;
   height: fit-content;
+}
+
+.edit-task-overlay #subtaskIconAdd {
+  left: 385px; 
+  z-index: 3;
+}
+
+.edit-task-overlay #subtaskIconsFocus {
+  width: fit-content;
+  left: 355px; 
+  z-index: 3;
 }
 
 .edit-task-overlay .add-task-submit {

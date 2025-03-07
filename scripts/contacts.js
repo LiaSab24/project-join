@@ -175,7 +175,6 @@ async function saveEditContact(indexContact) {
     let contactPhone = document.getElementById("addContactPhone").value;
     let contactColor = contacts[indexContact].color;
     if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
-        console.log("/contacts/" + contacts[indexContact].url)
         await putData("/contacts/" + contacts[indexContact].url, {
             "name": contactName,
             "mail": contactMail,

@@ -25,7 +25,7 @@ const colors = [
   "#c3ff2b", // Lime Green
   "#ffe625", // Sun Yellow
   "#ff4646", // Red
-  "#ffbb2b" // Goldenrod
+  "#ffbb2b" // Goldenrod 
 ];
 
 let availableColors = [...colors];

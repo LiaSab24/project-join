@@ -12,7 +12,7 @@ async function initBoard() {
  * This function clears each of the progress-catergories
  */
 function clearTaskProgressCategories() {
-  document.getElementById("toDo").innerHTML = ""; 
+  document.getElementById("toDo").innerHTML = "";
   document.getElementById("inProgress").innerHTML = "";
   document.getElementById("awaitFeedback").innerHTML = "";
   document.getElementById("done").innerHTML = "";
@@ -29,6 +29,9 @@ function renderTasks() {
     taskProgressContentRef.innerHTML += getBoardTaskTemplate(indexTask);
     hideSubtasksProgressForNoSubtasks(indexTask);
     displayAssignedContacts(indexTask);
+    if(tasks[indexTask].priority =="") {
+      document.getElementById("prio" + indexTask).src="";
+    }
   }
 }
 
@@ -89,10 +92,12 @@ function displayAssignedContacts(indexTask) {
   let assignedContactsContentRef = document.getElementById("assignedContacts" + indexTask);
   assignedContactsContentRef.innerHTML = "";
   let assignedContacts = tasks[indexTask].assignedTo;
-  for (let indexAssignedContact = 0; indexAssignedContact < assignedContacts.length; indexAssignedContact++) {
-    let indexContact = contacts.findIndex(index => index.name === assignedContacts[indexAssignedContact].name);
-    assignedContactsContentRef.innerHTML += getBoardContactPB(indexContact);
-    profileBadgeColor("boardAssignedToListPB" + indexContact, indexContact);
+  if (assignedContacts !== undefined) {
+    for (let indexAssignedContact = 0; indexAssignedContact < assignedContacts.length; indexAssignedContact++) {
+      let indexContact = contacts.findIndex(index => index.name === assignedContacts[indexAssignedContact].name);
+      assignedContactsContentRef.innerHTML += getBoardContactPB(indexContact);
+      profileBadgeColor("boardAssignedToListPB" + indexContact, indexContact);
+    }
   }
 }
 
@@ -353,6 +358,41 @@ function openTaskOverview(indexTask) {
   overlayContentRef.classList.remove("d-none");
   overlayContentRef.innerHTML = "";
   overlayContentRef.innerHTML += getTaskOverviewOverlayTemplate(indexTask);
+  if(tasks[indexTask].priority =="") {
+    document.getElementById("prioOverview" + indexTask).src="";
+  }
+  fillTaskOverviewLists(indexTask);
+}
+
+/**
+ * This function is part of the openTaskOverview()-function fills the "overviewAssignedContacts" and "overviewSubtasks" for the contact in the edit-overlay
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function fillTaskOverviewLists(indexTask) {
+  if (tasks[indexTask].assignedTo !== undefined) {
+    for (let indexAssignedContact = 0; indexAssignedContact < tasks[indexTask].assignedTo.length; indexAssignedContact++) {
+      let indexContact = contacts.findIndex((element) => { return element.name === tasks[indexTask].assignedTo[indexAssignedContact].name })
+      document.getElementById("overviewAssignedContacts" + indexTask).innerHTML += getBoardOverviewContactPB(indexContact);
+      profileBadgeColor("overviewAssignedToListPB" + indexContact, indexContact)
+    }
+  }
+  if (tasks[indexTask].subtasks !== undefined) {
+    for (let indexSubtask = 0; indexSubtask < tasks[indexTask].subtasks.length; indexSubtask++) {
+      let subtask = tasks[indexTask].subtasks[indexSubtask].subtask;
+      document.getElementById("overviewSubtasks" + indexTask).innerHTML += getBoardOverviewSubtask(subtask, indexSubtask, indexTask)
+    }
+  }
+}
+
+/**
+ * This function is used to assign subtasks as completed
+ * 
+ * @param {number} indexSubtask - the index of the subtask in the subtasks-list
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function completedSubtask(indexSubtask, indexTask) {
+  //TO BE DONE -ANNE
 }
 
 /**
@@ -364,19 +404,32 @@ function fillEditTaskInputs(indexTask) {
   clearTaskForm();
   document.getElementById("addTaskTitle").value = tasks[indexTask].title;
   document.getElementById("addTaskDescription").value = tasks[indexTask].description;
-  for (let indexAssignedContact = 0; indexAssignedContact < tasks[indexTask].assignedTo.length; indexAssignedContact++) {
-    let assignedContactsList = document.getElementById("addTaskAssignedToList");
-    // console.log(contacts.findIndex((element) =>
-    // {return element.name === tasks[indexTask].assignedTo[indexAssignedContact].name}))
-    // console.log(contacts[3].name, contacts[5].name, contacts[9].name)
-    let indexContact = contacts.findIndex((element) => {return element.name === tasks[indexTask].assignedTo[indexAssignedContact].name})
-    addAssignedContactToList(indexContact)
-  }
   document.getElementById("addTaskDate").value = tasks[indexTask].dueDate;
   document.getElementById("prio" + tasks[indexTask].priority).classList.add("prio" + tasks[indexTask].priority + "Clicked");
   document.getElementById("prio" + tasks[indexTask].priority).classList.add("clicked");
-  document.getElementById("prio" + tasks[indexTask].priority + "Img").src= "/assets/icons/prio" + tasks[indexTask].priority + "-clicked.svg";
+  document.getElementById("prio" + tasks[indexTask].priority + "Img").src = "/assets/icons/prio" + tasks[indexTask].priority + "-clicked.svg";
   document.getElementById("addTaskCategory").placeholder = tasks[indexTask].category;
+  fillEditTaskFormLists(indexTask);
+}
+
+/**
+ * This function is part of the fillEditTaskInputs()-function fills the "addTaskAssignedToList" and "addTaskSubtaskList" for the contact in the edit-overlay
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function fillEditTaskFormLists(indexTask) {
+  if (tasks[indexTask].assignedTo !== undefined) {
+    for (let indexAssignedContact = 0; indexAssignedContact < tasks[indexTask].assignedTo.length; indexAssignedContact++) {
+      let indexContact = contacts.findIndex((element) => { return element.name === tasks[indexTask].assignedTo[indexAssignedContact].name })
+      addAssignedContactToList(indexContact)
+    }
+  }
+  if (tasks[indexTask].subtasks !== undefined) {
+    for (let indexSubtask = 0; indexSubtask < tasks[indexTask].subtasks.length; indexSubtask++) {
+      let subtask = tasks[indexTask].subtasks[indexSubtask].subtask;
+      document.getElementById("addTaskSubtaskList").innerHTML += getAddTaskSubtaskTemplate(subtask, indexSubtask)
+    }
+  }
 }
 
 /**
@@ -385,7 +438,35 @@ function fillEditTaskInputs(indexTask) {
  * @param {number} indexTask - the index of the task in the tasks-array
  */
 function saveEditTask(indexTask) {
-  
+  if (requirementsFullfilled()) {
+    let taskTitle = document.getElementById("addTaskTitle").value;
+    let taskDescription = document.getElementById("addTaskDescription").value;
+    let taskAssignedTo = getAssignedContacts();
+    let taskDueDate = document.getElementById("addTaskDate").value;
+    let taskPriority = getTaskPriority();
+    let taskCategory = checkTaskCategory();
+    let taskSubtasks = getSubtasks();
+    let taskProgress = getProgress();
+    putData("/tasks/" + tasks[indexTask].url, {
+      "title": taskTitle,
+      "description": taskDescription,
+      "assignedTo": taskAssignedTo,
+      "dueDate": taskDueDate,
+      "priority": taskPriority,
+      "category": taskCategory,
+      "subtasks": taskSubtasks,
+      "progress": { "progress": taskProgress }
+    });
+    initAddTask();
+    if (window.location.href !== "http://127.0.0.1:5500/html/add_task.html") {
+      successfullMsg("taskSuccesfullyEdited");
+      addOnclickToCreateBtn();
+    }
+  } else {
+    checkFilledInput("addTaskTitle");
+    checkFilledInput("addTaskDate");
+    checkFilledInput("addTaskCategory")
+  }
 }
 
 /**
@@ -406,10 +487,10 @@ async function deleteTask(indexTask) {
 function addOnclickToCreateBtn() {
   let addTaskCreateBtn = document.getElementById("addTaskCreate");
   addTaskCreateBtn.addEventListener("click", closeOverlays());
-  addTaskCreateBtn.addEventListener("click", initBoard()());
+  addTaskCreateBtn.addEventListener("click", initBoard());
 }
 
-// /** 
+// /**
 //  * Adjusts the addTask overlay to edit mode for a given task.
 //  * @param {number} taskIndex - Index of the task in the tasks array.
 //  */
@@ -563,7 +644,7 @@ function addOnclickToCreateBtn() {
 
 // /**
 //  * This function fetches the main-part of the add_task.html and implementes it in the #addTaskOverlay-section
-//  * 
+//  *
 //  * @param {string} progress - the progress-category, where the new task should be in after submitting
 //  */
 // async function boardAddTask(progress) {
