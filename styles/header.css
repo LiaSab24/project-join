@@ -115,7 +115,7 @@ background: linear-gradient(0deg, rgba(12, 46, 98, 0.12), rgba(12, 46, 98, 0.12)
   }
 }
 
-@media (min-width: 780px) {
+@media (min-width: 900px) {
   .header-logo {
     display: none;
   }
