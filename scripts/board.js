@@ -12,7 +12,7 @@ async function initBoard() {
  * This function clears each of the progress-catergories
  */
 function clearTaskProgressCategories() {
-  document.getElementById("toDo").innerHTML = "";
+  document.getElementById("toDo").innerHTML = ""; 
   document.getElementById("inProgress").innerHTML = "";
   document.getElementById("awaitFeedback").innerHTML = "";
   document.getElementById("done").innerHTML = "";
@@ -133,6 +133,7 @@ function startSearchingTasks() {
   clearTaskProgressCategories();
   searchInputRef.disabled = true;
   if (searchInput.length >= 3) {
+    //console.log(searchInput)
     displayFilteredTasks(searchInput);
   } else {
     clearTaskProgressCategories();
@@ -191,14 +192,29 @@ function closeOverlays() {
   document.getElementById("addTaskOverlay").classList.remove("edit-task-overlay");
 }
 
+/**
+ * Prevents the default behavior to allow dropping an element.
+ * 
+ * @param {DragEvent} event - The drag event.
+ */
 function allowDrop(event) {
   event.preventDefault();
 }
 
+/**
+ * Sets the dragged element's ID in the dataTransfer object.
+ * 
+ * @param {DragEvent} event - The drag event.
+ */
 function drag(event) {
   event.dataTransfer.setData("text", event.target.id);
 }
 
+/**
+ * Handles the drop event by moving the dragged task to a new column and updating its progress.
+ * 
+ * @param {DragEvent} event - The drop event.
+ */
 function drop(event) {
   event.preventDefault();
   let data = event.dataTransfer.getData("text");
@@ -286,7 +302,7 @@ async function boardAddTask(overlay, progress, indexTask) {
 /**
  * This function is part of the boardAddTask()-function and adds visibility of the #addTaskOverlay
  * 
- * @param {html} addTaskOverlayContent - the html-content of the main-part of the add_task.html
+ * @param {html} addTaskOverlay - the html of the main-part of the add_task.html
  * @param {string} progress - the progress-category, where the new task should be in after submitting
  */
 async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
@@ -380,7 +396,7 @@ function addOnclickToCreateBtn() {
   addTaskCreateBtn.addEventListener("click", initBoard()());
 }
 
-// /**
+// /** 
 //  * Adjusts the addTask overlay to edit mode for a given task.
 //  * @param {number} taskIndex - Index of the task in the tasks array.
 //  */
@@ -531,6 +547,28 @@ function addOnclickToCreateBtn() {
 
 
 
+
+// /**
+//  * This function fetches the main-part of the add_task.html and implementes it in the #addTaskOverlay-section
+//  * 
+//  * @param {string} progress - the progress-category, where the new task should be in after submitting
+//  */
+// async function boardAddTask(progress) {
+//   fetch('add_task.html')
+//     .then(response => {
+//       return response.text()
+//     })
+//     .then(html => {
+//       const parser = new DOMParser();
+//       const doc = parser.parseFromString(html, "text/html");
+//       let addTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
+//       initBoard();
+//       openBoardBgOverlay();
+//       openBoardAddTaskOverlay(addTaskOverlayContent, progress);
+//       clearTaskForm();
+//       fillAssignedToDropDownMenu();
+//     })
+// }
 
 // async function boardEditTask(taskIndex) {
 //   fetch('add_task.html')
