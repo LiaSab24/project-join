@@ -191,14 +191,29 @@ function closeOverlays() {
   document.getElementById("editTaskOverlay").classList.add("d-none");
 }
 
+/**
+ * Prevents the default behavior to allow dropping an element.
+ * 
+ * @param {DragEvent} event - The drag event.
+ */
 function allowDrop(event) {
   event.preventDefault();
 }
 
+/**
+ * Sets the dragged element's ID in the dataTransfer object.
+ * 
+ * @param {DragEvent} event - The drag event.
+ */
 function drag(event) {
   event.dataTransfer.setData("text", event.target.id);
 }
 
+/**
+ * Handles the drop event by moving the dragged task to a new column and updating its progress.
+ * 
+ * @param {DragEvent} event - The drop event.
+ */
 function drop(event) {
   event.preventDefault();
   let data = event.dataTransfer.getData("text");
@@ -233,18 +248,18 @@ function updateTaskProgress(progress, indexTask) {
  */
 function openBoardBgOverlay() {
   let boardOverlayBgContentRef = document.getElementById("boardOverlayBg");
-  boardOverlayBgContentRef.classList.add("animation-open-overlay");
-  boardOverlayBgContentRef.classList.add("animation-close-overlay");
+  boardOverlayBgContentRef.classList.remove("d-none");
   setTimeout(function () {
-    boardOverlayBgContentRef.classList.toggle("d-none");
-  }, 300);
+    boardOverlayBgContentRef.classList.add("overlay-active");
+  });
 }
 
 // /**
 //  * Toggles the visibility of the board overlay.
 //  */
-// function openBoardBgOverlay() {
+// function toggleBoardOverlay() {
 //   let overlay = document.getElementById("boardOverlayBg");
+
 //   if (overlay.classList.contains("overlay-active")) {
 //       overlay.classList.remove("overlay-active");
 //       overlay.classList.add("overlay-hidden"); // Animiertes Schließen
