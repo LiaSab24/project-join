@@ -20,7 +20,7 @@ function renderAddressBook() {
     }
     renderContacts();
 }
-
+ 
 /**
  * This function extracts the first letter of each contacts name and adds the contact to the corresponding letter (with a template)
  * After that, the contacts profile-badge get its corresponding color
