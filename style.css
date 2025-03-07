@@ -31,13 +31,21 @@ h3 {
   font-size: var(--fs-h3);
 }
 
+h4 {
+  font-size: var(--fs-27);
+}
+h5{
+  font-size: var(--fs-20);
+  font-weight: var(--fw-700);
+}
+
 main {
   margin-left: 232px;
 }
 
 /* costums css */
 .responsive-main {
-  padding: min(1rem, 0.617rem + 0.4255vw);
+  padding: min(24px, max(1.5rem, 5vw));
   p {
     margin: 8px 0 16px;
   }
