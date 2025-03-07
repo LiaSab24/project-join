@@ -184,8 +184,8 @@ function filterTasks(searchInput) {
  * This function is closes all Board-Overlays
  */
 function closeOverlays() {
-  document.getElementById("boardOverlayBg").classList.add("d-none");
   document.getElementById("boardOverlayBg").classList.remove("overlay-active");
+  document.getElementById("boardOverlayBg").classList.add("d-none");
   document.getElementById("addTaskOverlay").classList.add("d-none");
   document.getElementById("overviewOverlay").classList.add("d-none");
   document.getElementById("editTaskOverlay").classList.add("d-none");
@@ -247,27 +247,17 @@ function updateTaskProgress(progress, indexTask) {
  * This function is part of the boardAddTask()-function and adds visibility of the #boardOverlayBg
  */
 function openBoardBgOverlay() {
+  console.log("Overlay wird bewegt");
+  
   let boardOverlayBgContentRef = document.getElementById("boardOverlayBg");
+  console.log("Overlay wird bewegt 2");
   boardOverlayBgContentRef.classList.remove("d-none");
+  console.log("Overlay wird bewegt3");
   setTimeout(function () {
     boardOverlayBgContentRef.classList.add("overlay-active");
-  });
+  }, 1000);
+  console.log("Overlay wird bewegt4");
 }
-
-// /**
-//  * Toggles the visibility of the board overlay.
-//  */
-// function toggleBoardOverlay() {
-//   let overlay = document.getElementById("boardOverlayBg");
-
-//   if (overlay.classList.contains("overlay-active")) {
-//       overlay.classList.remove("overlay-active");
-//       overlay.classList.add("overlay-hidden"); // Animiertes Schließen
-//   } else {
-//       overlay.classList.remove("overlay-hidden");
-//       overlay.classList.add("overlay-active"); // Animiertes Öffnen
-//   }
-// }
 
 /**
  * This function is part of the boardAddTask()-function and adds visibility of the #addTaskOverlay
