@@ -189,8 +189,8 @@ function filterTasks(searchInput) {
  * This function is closes all Board-Overlays
  */
 function closeOverlays() {
-  document.getElementById("boardOverlayBg").classList.add("d-none");
   document.getElementById("boardOverlayBg").classList.remove("overlay-active");
+  document.getElementById("boardOverlayBg").classList.add("d-none");
   document.getElementById("addTaskOverlay").classList.add("d-none");
   document.getElementById("overviewOverlay").classList.add("d-none");
   document.getElementById("editTaskOverlay").classList.add("d-none");
@@ -253,55 +253,16 @@ function updateTaskProgress(progress, indexTask) {
  * This function is part of the boardAddTask()-function and adds visibility of the #boardOverlayBg
  */
 function openBoardBgOverlay() {
+  console.log("Overlay wird bewegt");
+  
   let boardOverlayBgContentRef = document.getElementById("boardOverlayBg");
+  console.log("Overlay wird bewegt 2");
   boardOverlayBgContentRef.classList.remove("d-none");
+  console.log("Overlay wird bewegt3");
   setTimeout(function () {
     boardOverlayBgContentRef.classList.add("overlay-active");
-  });
-}
-
-/**
- * This function opens the editTaskOverlay for the clicked task, which gives the user the ability to edit the information
- * 
- * @param {string} progress - the progress-category, where the new task should be in after submitting
- */
-async function openEditTaskOverlay(progress, indexTask) {
-  closeOverlays();
-  let overlayContentRef = document.getElementById("editTaskOverlay");
-  overlayContentRef.classList.remove("d-none");
-  overlayContentRef.innerHTML = "";
-  overlayContentRef += await boardAddTask('edit', progress, indexTask);
-}
-
-/**
- * This function fetches the main-part of the add_task.html and implementes it in the #addTaskOverlay-section
- * 
- * @param {string} overlay - the overlay, that should get the fetched html-data
- * @param {string} progress - the progress-category, where the new task should be in after submitting
- * @param {number} indexTask - the index of the task in the tasks-array
- */
-async function boardAddTask(overlay, progress, indexTask) {
-  fetch('add_task.html')
-    .then(response => {
-      return response.text()
-    })
-    .then(html => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
-      let addTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
-      initBoard();
-      openBoardBgOverlay();
-      if (overlay == "add") {
-        openBoardAddTaskOverlay(addTaskOverlayContent, progress);
-        clearTaskForm();
-      } if (overlay == "edit") {
-        adjustBoardEditTaskOverlay(addTaskOverlayContent);
-        document.getElementById("addTaskSubmitBtns").innerHTML += getBoardEditTaskBtnTemplate(indexTask);
-        document.getElementById("editTaskOk").classList.add("progress-" + progress);
-        fillEditTaskInputs(indexTask);
-      }
-      fillAssignedToDropDownMenu();
-    })
+  }, 1000);
+  console.log("Overlay wird bewegt4");
 }
 
 /**
