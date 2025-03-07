@@ -366,6 +366,11 @@ function fillEditTaskInputs(indexTask) {
   document.getElementById("addTaskDescription").value = tasks[indexTask].description;
   for (let indexAssignedContact = 0; indexAssignedContact < tasks[indexTask].assignedTo.length; indexAssignedContact++) {
     let assignedContactsList = document.getElementById("addTaskAssignedToList");
+    // console.log(contacts.findIndex((element) =>
+    // {return element.name === tasks[indexTask].assignedTo[indexAssignedContact].name}))
+    // console.log(contacts[3].name, contacts[5].name, contacts[9].name)
+    let indexContact = contacts.findIndex((element) => {return element.name === tasks[indexTask].assignedTo[indexAssignedContact].name})
+    addAssignedContactToList(indexContact)
   }
   document.getElementById("addTaskDate").value = tasks[indexTask].dueDate;
   document.getElementById("prio" + tasks[indexTask].priority).classList.add("prio" + tasks[indexTask].priority + "Clicked");
