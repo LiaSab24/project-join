@@ -288,13 +288,13 @@ async function boardAddTask(overlay, progress, indexTask) {
       openBoardBgOverlay();
       if (overlay == "add") {
         openBoardAddTaskOverlay(addTaskOverlayContent, progress);
+        clearTaskForm();
       } if (overlay == "edit") {
         adjustBoardEditTaskOverlay(addTaskOverlayContent);
         document.getElementById("addTaskSubmitBtns").innerHTML += getBoardEditTaskBtnTemplate(indexTask);
         document.getElementById("editTaskOk").classList.add("progress-" + progress);
         fillEditTaskInputs(indexTask);
       }
-      clearTaskForm();
       fillAssignedToDropDownMenu();
     })
 }
@@ -361,9 +361,17 @@ function openTaskOverview(indexTask) {
  * @param {number} indexTask - the index of the task in the tasks-array
  */
 function fillEditTaskInputs(indexTask) {
+  clearTaskForm();
   document.getElementById("addTaskTitle").value = tasks[indexTask].title;
   document.getElementById("addTaskDescription").value = tasks[indexTask].description;
+  for (let indexAssignedContact = 0; indexAssignedContact < tasks[indexTask].assignedTo.length; indexAssignedContact++) {
+    let assignedContactsList = document.getElementById("addTaskAssignedToList");
+  }
   document.getElementById("addTaskDate").value = tasks[indexTask].dueDate;
+  document.getElementById("prio" + tasks[indexTask].priority).classList.add("prio" + tasks[indexTask].priority + "Clicked");
+  document.getElementById("prio" + tasks[indexTask].priority).classList.add("clicked");
+  document.getElementById("prio" + tasks[indexTask].priority + "Img").src= "/assets/icons/prio" + tasks[indexTask].priority + "-clicked.svg";
+  document.getElementById("addTaskCategory").placeholder = tasks[indexTask].category;
 }
 
 /**
