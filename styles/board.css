@@ -420,7 +420,7 @@ button img {
 .edit-task-overlay {
   width: 525px !important;
   position: fixed; 
-  top: 100px;
+  top: 75%;
   left: 30%;
   transform: translateX(-100%);
   display: flex;
