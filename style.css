@@ -14,7 +14,7 @@ body {
   font-weight: 400;
   margin: 0 auto;
   padding: 0;
-  background-color: #f0f0f0;
+  background-color: rgb(246, 247, 248);
 }
 
 h1 {
@@ -54,7 +54,7 @@ main {
   }
 }
 .d-none {
-  display: none !important;
+  display: none; /* !important; */
 }
 .flex {
   display: flex;
@@ -85,10 +85,6 @@ main {
     padding: 4px 0;
   }
 }
-/* Desktop Figma ----------------------------
-<div style="width: 110px; height: 48px; padding: 15px 24px; border-radius: 8px; background: #2a3647;">
-<p style=" font-size: 21px; font-weight: 700; color: #fff;">Log in </p></div> */
-
 .custom-scrollbar::-webkit-scrollbar {
   width: 24px;
   overflow-y: auto 53px;
@@ -193,23 +189,7 @@ main {
 .requirement-unfulfilled {
   outline: 1px solid #FF8190;
 }
-/* ---- Mobile Figma ----------------------------
-<div style="width: 180px; height: 51px; padding: 4px 0; border-radius: 8px; background: #2a3647;">
-<p style="font-size: 16px; font-weight: 700; color: #fff;">Log in </p></div>
 
---------- css-login --------------
---bg-color: #f4f5f7;
---text-color: #000;
---card-bg: #fff;
---border-radius: 8px;
---border-radius-bg: 30px;
---shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
---task-padding: 16px;
---button-bg: #2A3647;
---button-hover-bg: #1E2833;
---Light-Blue: #29ABE2;
-
----------- btn --------------------- */
 .blue-btn {
   background: var(--button-bg);
   color: white;
