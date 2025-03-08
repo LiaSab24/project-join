@@ -101,6 +101,9 @@ async function postData(path = "", data = {}) {
  * @param {object} data - an object, that contains all the key-value-pairs that should replace the previous object in firebase
  */
 async function putData(path = "", data = {}) {
+  if(!document.getElementById("overviewOverlay").classList.contains("d-none")) {
+    data = data.subtasks;
+  }
   let response = await fetch(BASE_URL + path + ".json", {
     method: "PUT",
     header: {
@@ -232,7 +235,7 @@ function checkFilledInput(id) {
 
 function btnUserInitial() {
   let subMenu = document.getElementById("submenu");
-  console.log(subMenu);
+  //console.log(subMenu);
   // subMenu.innerHTML = '';
   // subMenu.classList.remove('d-none');
   // subMenu.innerHTML += getSubmenuHTML();

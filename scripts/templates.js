@@ -27,7 +27,7 @@ function getAddTaskDropdownListContacts(indexContact) {
                 <div id="assignedToCheckbox${indexContact}" class="add-task-assigned-to-checkbox"></div>
             </div>`
 }
-
+ 
 /**
  * This template displays a contacts profile badge in the add-task-assigned-to-list
  * 
@@ -174,9 +174,9 @@ function getBoardOverviewContactPB(indexContact) {
  * @param {number} indexTask - the index of the task in the tasks-array
  */
 function getBoardOverviewSubtask(subtask, indexSubtask, indexTask) {
-    return `<div completedSubtask(indexSubtask, indexTask) id="overviewAssignedSubtask" class="overview-subtasks-assigned">
+    return `<div onclick="completedSubtask(${indexSubtask}, ${indexTask})" id="overviewAssignedSubtask" class="overview-subtasks-assigned">
                 <div id="overviewCheckbox${indexSubtask}" class="board-overview-checkbox checkbox-completed-${tasks[indexTask].subtasks[indexSubtask].completed}"></div>
-                <p>${subtask}</p>
+                <p id="subtaskContent${indexSubtask}">${subtask}</p>
             </div>`
 }
 

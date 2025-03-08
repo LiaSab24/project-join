@@ -29,7 +29,7 @@ function clearAssignedTo() {
     document.getElementById("addTaskDropdownContacts").classList.add("d-none");
     document.getElementById("addTaskDropdownContacts").innerHTML = "";
     document.getElementById("addTaskAssignedToList").innerHTML = "";
-}
+} 
 
 /**
  * This function is part of the clearTaskForm-function and resets the priority-buttons
@@ -317,7 +317,7 @@ function addTask() {
         let taskPriority = getTaskPriority();
         let taskCategory = checkTaskCategory();
         let taskSubtasks = getSubtasks();
-        let taskProgress = getProgress();
+        let taskProgress = getAddProgress();
         postData("/tasks/", {
             "title": taskTitle,
             "description": taskDescription,
@@ -412,10 +412,26 @@ function getSubtasks() {
 }
 
 /**
- * This function is part of the addTask()-function returns the progress-category, where the new task should be added
+ * This function is part of the addTask()-function and returns the progress-category, where the new task should be added
  */
-function getProgress() {
+function getAddProgress() {
     let progressContentRef = document.getElementById("addTaskCreate").classList[1];
+    switch (progressContentRef) {
+        default:
+        case "progress-toDo":
+            return "toDo"
+        case "progress-inProgress":
+            return "inProgress"
+        case "progress-awaitFeedback":
+            return "awaitFeedback"
+    }
+}
+
+/**
+ * This function is part of the saveEditTask()-function and returns the progress-category, where the edited task is in
+ */
+function getEditProgress() {
+    let progressContentRef = document.getElementById("editTaskOk").classList[1];
     switch (progressContentRef) {
         default:
         case "progress-toDo":
