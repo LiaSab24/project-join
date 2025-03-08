@@ -244,20 +244,15 @@ function updateTaskProgress(progress, indexTask) {
   }
 }
 
-/**
- * This function is part of the boardAddTask()-function and adds visibility of the #boardOverlayBg
- */
 function openBoardBgOverlay() {
-  console.log("Overlay wird bewegt");
-  
   let boardOverlayBgContentRef = document.getElementById("boardOverlayBg");
-  console.log("Overlay wird bewegt 2");
-  boardOverlayBgContentRef.classList.remove("d-none");
-  console.log("Overlay wird bewegt3");
-  setTimeout(function () {
-    boardOverlayBgContentRef.classList.add("overlay-active");
-  }, 1000);
-  console.log("Overlay wird bewegt4");
+
+  if (boardOverlayBgContentRef) {
+    boardOverlayBgContentRef.classList.toggle("d-none");
+    setTimeout(function () {
+      boardOverlayBgContentRef.classList.toggle("overlay-active");
+    }, 10);
+  } 
 }
 
 /**
@@ -314,6 +309,7 @@ function openTaskOverview(indexTask) {
   overlayContentRef.classList.remove("d-none");
   overlayContentRef.innerHTML = "";
   overlayContentRef.innerHTML += getTaskOverviewOverlayTemplate(indexTask);
+  overlayContentRef.classList.toggle("overlay-active");
 }
 
 /**
