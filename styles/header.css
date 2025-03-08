@@ -96,7 +96,7 @@ background: linear-gradient(0deg, rgba(12, 46, 98, 0.12), rgba(12, 46, 98, 0.12)
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .header-new {
     height: 80px;
     padding: 20px 16px;
