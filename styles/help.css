@@ -1,12 +1,8 @@
-.help-new {
-  display: none;
-}
-
 .headline-container {
   justify-content: space-between;
   padding: 90px 90px 30px;
-  h1 {
-    font-size: 61px;
+  @media (max-width: 900px) {
+    padding: 0;
   }
   .arrow-container{
     display: grid;
@@ -29,6 +25,9 @@
   flex-direction: column;
   gap: 16px;
   padding: 0 90px;
+  @media (max-width: 900px) {
+      padding: 0;
+    }
   span {
     color: #29ABE2;
   }

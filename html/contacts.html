@@ -9,10 +9,11 @@
     <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)" />
 
     <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/styles/sidebar.css">
-    <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/fonts/fonts.css">
-    <link rel="stylesheet" href="/styles/contacts.css">
+    <link rel="stylesheet" href="../styles/root.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
+    <link rel="stylesheet" href="../styles/contacts.css">
 
     <script src="/script.js"></script>
     <script src="/scripts/include.js"></script>
@@ -25,7 +26,7 @@
     <div w3-include-html="sidebar.html"></div>
 
     <main>
-        <section class="address-book custom-scrollbar">
+        <section class="address-book custom-scrollbar flex align-center">
             <div class="add-new-contact">
                 <button onclick="toggleContactsOverlay(), adjustOverlayToAdd()">
                     <span>Add new contact</span>

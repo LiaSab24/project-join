@@ -1,53 +1,73 @@
-// Globale Variablen
+// Global Variables
+/**
+ * Reference to the submenu element.
+ * @type {HTMLElement | null}
+ */
 let getSubmenu;
+
+/**
+ * Reference to the help element.
+ * @type {HTMLElement | null}
+ */
 let help;
 
+/**
+ * Initializes the global variables by referencing the HTML elements.
+ */
 function initializeScripts() {
-  // Elemente nach der Einbindung abrufen
   getSubmenu = document.getElementById('submenu');
   help = document.getElementById('help');
-
-  // Prüfen, ob die Elemente existieren
-  if (getSubmenu && help) {
-    // Event Listener einrichten
-    window.onresize = handleResize;
-    handleResize(); // Initialer Aufruf, um den korrekten Zustand zu setzen
-  } else {
-    console.error('Elemente nicht im DOM gefunden.');
-  }
 }
 
+/**
+ * Waits for the DOM to fully load and then runs initialization scripts.
+ */
 document.addEventListener('DOMContentLoaded', async () => {
   await includeHTML();
   initializeScripts();
 });
 
+/**
+ * Displays the user submenu and adjusts the layout.
+ */
 function btnUserInitial() {
   if (getSubmenu) {
     getSubmenu.classList.remove('d-none');
     getSubmenu.innerHTML = getSubmenuHTML();
   }
+  handleResize();
 }
 
+/**
+ * Generates and returns the HTML content for the submenu.
+ * @returns {string} The HTML content of the submenu.
+ */
 function getSubmenuHTML() {
   return /*html*/`
-    <p id="help" class="d-none"><a href="../html/help.html">Help</a></p>
-    <p><a href="../html/legal_note.html">Legal Notice</a></p>
-    <p><a href="../html/privacy_police.html">Privacy Policy</a></p>
-    <p><a href="../html/signup.html">Logout</a></p>
+    <p class="submenu-content"><a href="../html/legal_note.html">Legal Notice</a></p>
+    <p class="submenu-content"><a href="../html/privacy_police.html">Privacy Policy</a></p>
+    <p class="submenu-content"><a href="../html/login.html">Logout</a></p>
   `;
 }
 
+/**
+ * Closes the submenu by adding a CSS class.
+ */
 function closeSubmenu() {
   if (getSubmenu) {
     getSubmenu.classList.add('d-none');
   }
 }
 
+/**
+ * Adjusts the submenu based on the window size.
+ * Adds a help element if the width is less than or equal to 768px.
+ */
 function handleResize() {
-  if (window.innerWidth <= 780) {
-    help?.classList.remove('d-none');
-  } else {
-    help?.classList.add('d-none');
-  }
+  if (window.innerWidth <= 768) {
+    if (document.querySelectorAll('.submenu-content').length === 3) {
+      getSubmenu.innerHTML += /*html*/ `
+      <p class="submenu-content" id="help"><a href="../html/help.html">Help</a></p>`;
+    }
+  }  
 }

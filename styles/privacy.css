@@ -1,19 +1,9 @@
-.header-new p {
-  margin-bottom: 0;
+.content {
+  padding: 16px;
 }
-
-.main-wrapper {
-  flex-direction: column;
-  gap: 16px;
-  padding: 90px;
-  h1 {
-      font-size: 61px;
-    }
-  ul {
-    padding-left: 16px;
-  }
+h4 {
+  padding-top: 16px;
 }
-
-p {
-  margin-bottom: 16px;
+p, li {
+  margin-bottom: 8px;
 }
