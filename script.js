@@ -23,7 +23,7 @@ const colors = [
   "#0038ff", // Royal Blue
   "#c3ff2b", // Lime Green
   "#ffe625", // Sun Yellow
-  "#ff4646", // Red
+  "#ff4646", // Red 
   "#ffbb2b", // Goldenrod 
   "#462f8a"
 ];
@@ -39,8 +39,7 @@ async function init() {
   userIndexInContactsArray();
   if (document.getElementById("header")) {
     headerUser();
-    document.getElementById("submenu").innerHTML = '';
-    document.getElementById("submenu").innerHTML += getSubmenuTemplate();
+    fillSubmenu();
   }
 }
 
@@ -87,7 +86,7 @@ function userIndexInContactsArray() {
 
 function headerUser() {
   document.getElementById("headerPbBadge").innerHTML = nameAbbreviation(indexContactUser);
-  if (indexContactUser = -1) {
+  if (indexContactUser == -1) {
     document.getElementById("headerPbBadge").innerHTML = "YOU";
   }
 }
@@ -249,7 +248,33 @@ function checkFilledInput(id) {
   }, 100);
 }
 
+/**
+ * This function toggles the visibilty of the submenu (and its transparent background-overlay) onclick
+ */
 function toggleSubmenu() {
   document.getElementById("submenu").classList.toggle('d-none');
   document.querySelector(".submenu-overlay").classList.toggle("d-none");
+}
+
+/**
+ * Adjusts the submenu based on the window size.
+ * Adds a help element if the width is less than or equal to 768px.
+ */
+function fillSubmenu() {
+  submenuContentRef = document.getElementById("submenu");
+  submenuContentRef.innerHTML = "";
+  if (window.innerWidth <= 768) {
+    submenuContentRef.innerHTML = `<p><a href="./help.html">Help</a></p>`;
+  }
+  submenuContentRef.innerHTML += getSubmenuTemplate();
+}
+
+/**
+ * This function redirects the user to the help.html-page and lets them come back to the previous page, when clicking the arrow backwards
+ * 
+ * @param {url} location - the url of the previous page
+ */
+function redirectToHelp(location) {
+  console.log(location)
+  //window.location.href = "help.html";
 }

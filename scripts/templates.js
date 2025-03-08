@@ -257,7 +257,7 @@ function getContactsOverlayAddBtnsTemplate() {
                 <img src="/assets/icons/create-btn.svg">
             </button>`
 }
-
+ 
 /**
  * This template creates the two necessary buttons for the contacts-overlay 'Edit contact'
  * 
@@ -276,7 +276,7 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
 }
 
 function getSubmenuTemplate() {
-    return `<p><a href="../html/legal_note.html">Legal Notice</a></p>
-            <p><a href="../html/privacy_police.html">Privacy Policy</a></p>
-            <p><a href="../html/signup.html">Logout</a></p>`
+    return `<p><a href="../html/legal_notice.html">Legal Notice</a></p>
+            <p><a href="../html/privacy_policy.html">Privacy Policy</a></p>
+            <p><a href="../html/login.html">Logout</a></p>`
   }
