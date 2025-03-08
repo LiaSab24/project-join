@@ -40,7 +40,7 @@ async function LogIn() {
         checkFilledInput('mail');
         checkFilledInput('password');
     }
-} 
+}  
 
 /**
  * This function fills the two defined arrays with the index of each user, who uses the given input (mail and password)
