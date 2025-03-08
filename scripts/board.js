@@ -45,7 +45,7 @@ function progressSubtasksPercentage(indexTask) {
   let completedSubtasks = countCompletedSubtasks(indexTask);
   if (totalSubtasks !== 0) {
     return (completedSubtasks / totalSubtasks) * 100;
-  } else { 
+  } else {
     return 0;
   }
 }
@@ -251,10 +251,10 @@ function updateTaskProgress(progress, indexTask) {
 
 function openBoardBgOverlay() {
   let boardOverlayBgContentRef = document.getElementById("boardOverlayBg");
-  boardOverlayBgContentRef.classList.remove("d-none");
+  boardOverlayBgContentRef.classList.remove("d-none");;
   setTimeout(function () {
-    boardOverlayBgContentRef.classList.add("#addTaskOverlay ");
-  }, 1000);
+    boardOverlayBgContentRef.classList.add("overlay-active");
+  }, 100);
 }
 
 /**
@@ -302,43 +302,19 @@ async function boardAddTask(overlay, progress, indexTask) {
 }
 
 /**
- * This function opens the add task overlay with a smooth slide-in effect
- * @param {string} addTaskOverlayContent - the HTML content of the add task overlay
- * @param {string} progress - the progress category where the task should be added
+ * This function is part of the boardAddTask()-function and adds visibility of the #addTaskOverlay
+ * 
+ * @param {html} addTaskOverlay - the html of the main-part of the add_task.html
+ * @param {string} progress - the progress-category, where the new task should be in after submitting
  */
 async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
   let addTaskOverlayContentRef = document.getElementById("addTaskOverlay");
-
-  console.log("Overlay wird geöffnet");
-
   addTaskOverlayContentRef.classList.remove("d-none");
+  addTaskOverlayContentRef.innerHTML = "";
   addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
-  adjustAddTaskProgress(progress);
-
-  console.log("Animation für das Öffnen wird angewendet");
-  addTaskOverlayContentRef.style.animation = "openOverlay 2s ease-in-out forwards";
   document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
-
-  console.log("Overlay sichtbar: ", addTaskOverlayContentRef.classList.contains("d-none"));
+  adjustAddTaskProgress(progress);
 }
-
-function closeBoardAddTaskOverlay() {
-  let addTaskOverlayContentRef = document.getElementById("addTaskOverlay");
-
-  console.log("Overlay wird geschlossen");
-
-  addTaskOverlayContentRef.style.animation = "closeOverlay 2s ease-in-out forwards";
-  
-  console.log("Schließ-Animation wird angewendet");
-
-  setTimeout(function () {
-    addTaskOverlayContentRef.classList.add("d-none");
-    console.log("Overlay ist jetzt unsichtbar.");
-  }, 2000);
-
-  console.log("Overlay nach Timeout: ", addTaskOverlayContentRef.classList.contains("d-none"));
-}
-
 
 /**
  * This function is part of the openBoardAddTaskOverlay()-function.
