@@ -6,8 +6,11 @@ let userPasswordIndex = [];
  */
 async function initLogIn() {
     await init();
+    loggedInUser = "";
     clearLogInForm();
     document.getElementById("alert").classList.add("d-none");
+    currentUser = -1;
+    //console.log(users);
 }
 
 /**
@@ -18,14 +21,17 @@ function clearLogInForm() {
     document.getElementById("password").value = "";
 }
 
-function LogIn() {
+/**
+ * This function reads out the mail and password and if they are filled in correctly and fit to a user, the user is able to log in
+ */
+async function LogIn() {
     let userMail = document.getElementById("mail").value;
     let userPassword = document.getElementById("password").value;
     if (userMail !== "" && userPassword !== "") {
-        let currentUserId = checkUserDataExists();
-        if (currentUserId !== -1) {
-            // console.log(currentUserId);
-            redirectionToSummary(currentUserId)
+        loggedInUser = checkUserDataExists();
+        if (loggedInUser !== -1) {
+            await putData("/currentUser/userId", loggedInUser);
+            redirectionToSummary()
         } else {
             document.getElementById("alert").classList.remove("d-none");
         }
@@ -34,8 +40,11 @@ function LogIn() {
         checkFilledInput('mail');
         checkFilledInput('password');
     }
-}
+} 
 
+/**
+ * This function fills the two defined arrays with the index of each user, who uses the given input (mail and password)
+ */
 function checkUserDataExists() {
     userMailIndex = [];
     userPasswordIndex = [];
@@ -58,6 +67,9 @@ function checkUserDataExists() {
     return compareMailPassword();
 }
 
+/**
+ * This function is part of the checkUserDataExists()-function and checks, if a user exists, who has the given mailaddress and the given password assigned
+ */
 function compareMailPassword() {
     for (let i = 0; i < userMailIndex.length; i++) {
         for (let j = 0; j < userPasswordIndex.length; j++) {
@@ -70,11 +82,19 @@ return -1
 }
 
 /**
- * This function redirects the user to the summary (Login succesfull)
+ * This function gives the currentUser the id of the guest, so the users doesn't need to sign up to use Join
  * 
- * @param {number} currentUserId - the id of the logged in user
+ * @param {number} loggedInUser - the id of the logged in user
  */
-function redirectionToSummary(currentUserId) {
-    currentUser = currentUserId;
+async function guestLogin() {
+    loggedInUser = users.length-1;
+    await putData("/currentUser/userId", loggedInUser);
+    redirectionToSummary(loggedInUser);
+}
+
+/**
+ * This function redirects the user to the summary (Login succesfull)
+ */
+function redirectionToSummary() {
     window.location.href = "summary.html";
 }

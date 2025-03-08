@@ -3,9 +3,7 @@ const BASE_URL = "https://join-424-project-default-rtdb.europe-west1.firebasedat
 let users = [];
 let tasks = [];
 let contacts = [];
-
-let currentUser = 0;                                              
-let indexUser;
+let currentUser;
 
 let filteredContacts = [];
 let filteredTasks = [];
@@ -55,6 +53,9 @@ async function fetchDataJson() {
  */
 function filArrays(joinDataJson) {
   users = Object.values(joinDataJson.users);
+  for (let indexUser = 0; indexUser < users.length; indexUser++) {
+    users[indexUser].url = Object.keys(joinDataJson.users)[indexUser];
+  }
   tasks = Object.values(joinDataJson.tasks);
   for (let indexTask = 0; indexTask < tasks.length; indexTask++) {
     tasks[indexTask].url = Object.keys(joinDataJson.tasks)[indexTask];
@@ -63,6 +64,7 @@ function filArrays(joinDataJson) {
   for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
     contacts[indexContact].url = Object.keys(joinDataJson.contacts)[indexContact];
   }
+  currentUser = joinDataJson.currentUser.userId;
 }
 
 /**
@@ -101,8 +103,12 @@ async function postData(path = "", data = {}) {
  * @param {object} data - an object, that contains all the key-value-pairs that should replace the previous object in firebase
  */
 async function putData(path = "", data = {}) {
-  if(!document.getElementById("overviewOverlay").classList.contains("d-none")) {
-    data = data.subtasks;
+  console.log(path);
+  console.log(data);
+  if (document.getElementById("overviewOverlay")) {
+    if (!document.getElementById("overviewOverlay").classList.contains("d-none")) {
+      data = data.subtasks;
+    }
   }
   let response = await fetch(BASE_URL + path + ".json", {
     method: "PUT",
@@ -215,22 +221,22 @@ function checkFilledInput(id) {
   let contentRef = document.getElementById(id);
   let unfulfilledRequirement = "requirement-unfulfilled";
   setTimeout(() => {
-      if (id == "addTaskCategory") {
-          if (contentRef.placeholder == "Select task category") {
-              contentRef.classList.add(unfulfilledRequirement);
-          } else {
-              contentRef.classList.remove(unfulfilledRequirement);
-          }
+    if (id == "addTaskCategory") {
+      if (contentRef.placeholder == "Select task category") {
+        contentRef.classList.add(unfulfilledRequirement);
       } else {
-          if (contentRef.value == "") {
-              contentRef.classList.add(unfulfilledRequirement);
-          } else {
-              contentRef.classList.remove(unfulfilledRequirement);
-          }
+        contentRef.classList.remove(unfulfilledRequirement);
       }
+    } else {
+      if (contentRef.value == "") {
+        contentRef.classList.add(unfulfilledRequirement);
+      } else {
+        contentRef.classList.remove(unfulfilledRequirement);
+      }
+    }
   }, 100);
 }
- 
+
 //__________________________________________
 
 function btnUserInitial() {
