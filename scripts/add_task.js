@@ -20,7 +20,7 @@ async function clearTaskForm() {
     document.getElementById("addTaskCategory").placeholder = "Select task category";
     document.getElementById("addTaskSubtask").value = "";
     document.getElementById("addTaskSubtaskList").innerHTML = "";
-}
+} 
 
 /**
  * This function is part of the clearTaskForm-function and resets the select-input and list for the assigned contacts
@@ -29,7 +29,7 @@ function clearAssignedTo() {
     document.getElementById("addTaskDropdownContacts").classList.add("d-none");
     document.getElementById("addTaskDropdownContacts").innerHTML = "";
     document.getElementById("addTaskAssignedToList").innerHTML = "";
-}
+} 
 
 /**
  * This function is part of the clearTaskForm-function and resets the priority-buttons
@@ -63,8 +63,8 @@ async function removeAddTaskOverlay() {
     document.getElementById('addTaskAssignedTo').classList.remove("add-task-current-select");
     document.getElementById('addTaskDropdownCategories').classList.add("d-none");
     document.getElementById('addTaskCategory').classList.remove("add-task-current-select");
-    let subtasksNumber = document.querySelectorAll(".subtask");
-    for (let indexSubtask = 0; indexSubtask < subtasksNumber.length; indexSubtask++) {
+    if (document.querySelector(".subtask-edit") !== null) {
+        let indexSubtask = document.querySelector(".subtask-edit").id.replace("subtask", " ").trim()
         confirmEditSubtask(indexSubtask);
     }
     fillAssignedToDropDownMenu()
@@ -141,13 +141,13 @@ function startSearchingContacts() {
     document.getElementById("addTaskDropdownContacts").innerHTML = "";
     searchInputRef.disabled = true;
     if (searchInput.length >= 2) {
-        displayFilteredContacts(searchInput); 
+        displayFilteredContacts(searchInput);
     } else {
         fillAssignedToDropDownMenu()
     }
     searchInputRef.disabled = false;
     searchInputRef.focus();
-    classListAssignedContacts(); 
+    classListAssignedContacts();
 }
 
 /**
@@ -289,7 +289,7 @@ function editSubtask(indexSubtask) {
 function deleteSubtask(indexSubtask) {
     let subtaskContentRef = document.getElementById("subtask" + indexSubtask);
     subtaskContentRef.remove();
-} 
+}
 
 /**
  * This function replaces the subtask-edit element with an list element (template) and includes the edited input-value. 
@@ -299,7 +299,6 @@ function deleteSubtask(indexSubtask) {
 function confirmEditSubtask(indexSubtask) {
     let subtaskContentRef = document.getElementById("subtask" + indexSubtask);
     let subtask = document.getElementById("subtaskEditInput").value;
-    console.log(subtask)
     if (subtask !== "") {
         subtaskContentRef.classList.remove("subtask-edit");
         subtaskContentRef.innerHTML = getAddTaskSubtaskListElementTemplate(subtask, indexSubtask);
@@ -318,7 +317,7 @@ function addTask() {
         let taskPriority = getTaskPriority();
         let taskCategory = checkTaskCategory();
         let taskSubtasks = getSubtasks();
-        let taskProgress = getProgress();
+        let taskProgress = getAddProgress();
         postData("/tasks/", {
             "title": taskTitle,
             "description": taskDescription,
@@ -413,10 +412,26 @@ function getSubtasks() {
 }
 
 /**
- * This function is part of the addTask()-function returns the progress-category, where the new task should be added
+ * This function is part of the addTask()-function and returns the progress-category, where the new task should be added
  */
-function getProgress() {
+function getAddProgress() {
     let progressContentRef = document.getElementById("addTaskCreate").classList[1];
+    switch (progressContentRef) {
+        default:
+        case "progress-toDo":
+            return "toDo"
+        case "progress-inProgress":
+            return "inProgress"
+        case "progress-awaitFeedback":
+            return "awaitFeedback"
+    }
+}
+
+/**
+ * This function is part of the saveEditTask()-function and returns the progress-category, where the edited task is in
+ */
+function getEditProgress() {
+    let progressContentRef = document.getElementById("editTaskOk").classList[1];
     switch (progressContentRef) {
         default:
         case "progress-toDo":
