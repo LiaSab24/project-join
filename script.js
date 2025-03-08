@@ -35,7 +35,7 @@ let contactColors = {};
  */
 async function init() {
   await fetchDataJson();
-  userIndexInContactsArray(currentUser);
+  userIndexInContactsArray();
 }
 
 /**
@@ -70,10 +70,8 @@ function filArrays(joinDataJson) {
 
 /**
  * This function iterates through the contacts-array and finds the index of the contact of the current user
- * 
- * @param {number} currentUser - the index of the user in the user-array
  */
-function userIndexInContactsArray(currentUser) {
+function userIndexInContactsArray() {
   let userName = users[currentUser].name;
   let indexContactUser = contacts.findIndex(index => index.name === userName);
   indexUser = indexContactUser;
