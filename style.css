@@ -54,7 +54,7 @@ main {
   }
 }
 .d-none {
-  display: none; /* !important; */
+  display: none !important; 
 }
 .flex {
   display: flex;
@@ -223,4 +223,14 @@ main {
   color: #29ABE2;
   /* box-shadow: 0px 4px 4px 0px #00000040; 
   cursor: pointer;*/
+}
+
+.submenu-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  z-index: 1;
 }

@@ -52,10 +52,8 @@
         text-decoration: none;
       }
     }
-    &:hover {
-      a {
+    a:hover {
         color:var(--clr-white);
-      }
     }
   }
 }

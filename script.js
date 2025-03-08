@@ -37,7 +37,11 @@ let contactColors = {};
 async function init() {
   await fetchDataJson();
   userIndexInContactsArray();
-  headerUser();
+  if (document.getElementById("header")) {
+    headerUser();
+    document.getElementById("submenu").innerHTML = '';
+    document.getElementById("submenu").innerHTML += getSubmenuTemplate();
+  }
 }
 
 /**
@@ -75,12 +79,17 @@ function filArrays(joinDataJson) {
  * 
  */
 function userIndexInContactsArray() {
- 
+  let userMail = users[currentUser].mail;
+  indexContactUser = contacts.map(function (element) {
+    return element.mail;
+  }).indexOf(userMail);
 }
 
 function headerUser() {
-  console.log(indexContactUser)
   document.getElementById("headerPbBadge").innerHTML = nameAbbreviation(indexContactUser);
+  if (indexContactUser = -1) {
+    document.getElementById("headerPbBadge").innerHTML = "YOU";
+  }
 }
 
 /**
@@ -240,24 +249,7 @@ function checkFilledInput(id) {
   }, 100);
 }
 
-//__________________________________________
-
-function btnUserInitial() {
-  let subMenu = document.getElementById("submenu");
-  subMenu.innerHTML = '';
-  subMenu.classList.remove('d-none');
-  subMenu.innerHTML += getSubmenuHTML();
-}
-
-// kommt später in die templates.js Datei
-function getSubmenuHTML() {
-  return /*html*/`
-  <p><a href="../html/legal_note.html">Legal Notice</a></p>
-  <p><a href="../html/privacy_police.html">Privacy Policy</a></p>
-  <p><a href="../html/signup.html">Logout</a></p>
-  `;
-}
-
-function closeSubmenu() {
-  getSubmenu.classList.add('d-none');
+function toggleSubmenu() {
+  document.getElementById("submenu").classList.toggle('d-none');
+  document.querySelector(".submenu-overlay").classList.toggle("d-none");
 }

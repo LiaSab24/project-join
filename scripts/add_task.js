@@ -19,7 +19,7 @@ async function clearTaskForm() {
     clearPriorityBtns();
     document.getElementById("addTaskCategory").placeholder = "Select task category";
     document.getElementById("addTaskSubtask").value = "";
-    document.getElementById("addTaskSubtaskList").innerHTML = "";
+    document.getElementById("addTaskSubtaskList").innerHTML = ""; 
 } 
 
 /**
@@ -91,8 +91,8 @@ function toggleAddTaskToDropDownMenu(inputContentRef, DropdownContentRef) {
 function fillAssignedToDropDownMenu() {
     let assignedToSelect = document.getElementById("addTaskDropdownContacts");
     assignedToSelect.innerHTML = "";
-    assignedToSelect.innerHTML += getAddTaskDropdownListUserOption(indexUser);
-    profileBadgeColor("assignedToPB" + indexUser, indexUser);
+    assignedToSelect.innerHTML += getAddTaskDropdownListUserOption(indexContactUser);
+    profileBadgeColor("assignedToPB" + indexContactUser, indexContactUser);
     for (let indexContact = 0; indexContact < contacts.length; indexContact++) {
         assignedToSelect.innerHTML += getAddTaskDropdownListContacts(indexContact);
         profileBadgeColor("assignedToPB" + indexContact, indexContact);
@@ -178,7 +178,7 @@ function filterContacts(searchInput) {
         if (contactsName.includes(searchInput.toLowerCase())) {
             filteredContacts.push(contacts[indexContact]);
         } else {
-            filteredContacts.push(0)
+            filteredContacts.push(0);
         }
     }
 }
@@ -198,10 +198,10 @@ function classListAssignedContacts() {
             assignedToCheckbox.classList.add("checkbox-contact-assigned");
         }
     }
-    if (document.getElementById("addTaskAssignedToListPB" + indexUser)) {
-        let contentRef = document.getElementById("assignedToUserOption" + indexUser);
+    if (document.getElementById("addTaskAssignedToListPB" + indexContactUser)) {
+        let contentRef = document.getElementById("assignedToUserOption" + indexContactUser);
         contentRef.classList.add("option-contact-assigned");
-        let assignedToCheckbox = document.getElementById("assignedToCheckbox" + indexUser);
+        let assignedToCheckbox = document.getElementById("assignedToCheckbox" + indexContactUser);
         assignedToCheckbox.classList.add("checkbox-contact-assigned");
     }
 }

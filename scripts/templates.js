@@ -274,3 +274,9 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
                 <img src='/assets/icons/create-btn.svg'>
             </button>`
 }
+
+function getSubmenuTemplate() {
+    return `<p><a href="../html/legal_note.html">Legal Notice</a></p>
+            <p><a href="../html/privacy_police.html">Privacy Policy</a></p>
+            <p><a href="../html/signup.html">Logout</a></p>`
+  }
