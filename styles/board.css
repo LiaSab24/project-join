@@ -377,16 +377,16 @@ button img {
   z-index: 4;
   position: fixed;
   top: 100px;
-  left: 50%;  /* Zentriert das Overlay */
-  transform: translateX(150%); /* Beginnt außerhalb des Bildschirms */
-  opacity: 0;  /* Startet unsichtbar */
-  transition: transform 2s ease-in-out, opacity 2s ease-in-out; /* Verwende transitions, um smooth zu animieren */
-  animation: openOverlay 2s ease-in-out forwards; /* Animation für das Einfliegen */
+  left: 50%;
+  transform: translateX(150%);
+  opacity: 0;
+  transition: transform 2s ease-in-out, opacity 2s ease-in-out;
+  animation: openOverlay 2s ease-in-out forwards;
 }
 
 /* Für das Schließen */
 #addTaskOverlay.closed {
-  animation: closeOverlay 2s ease-in-out forwards; /* Animation für das Schließen */
+  animation: closeOverlay 2s ease-in-out forwards;
 }
 
 #addTaskOverlay .title {
