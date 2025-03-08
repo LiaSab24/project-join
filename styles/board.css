@@ -345,14 +345,14 @@ button img {
 .overlay-active {
   /* opacity: 1 !important; */
   z-index: 3;
-  animation: openOverlay 0.5s ease-in-out forwards;
+  /* animation: openOverlay 2s ease-in-out forwards; */
   /* transform: translateX(150%); */
 }
 
 .overlay-inactive {
   opacity: 0;
-  z-index: 3; /* Damit das Overlay hinter dem Inhalt bleibt */
-  animation: closeOverlay 1s ease-in-out forwards;
+  z-index: 3;
+  animation: closeOverlay 10s ease-in-out forwards;
 }
 
 #boardOverlayBg {
@@ -365,7 +365,8 @@ button img {
   display: flex;
   justify-content: flex-end;
   /* opacity: 1; */
-  /* transition: all 0.3s ease-in-out; */
+  /* transition: opacity 2s ease, transform 2s ease-in-out;
+  animation: openOverlay 2s ease-in-out forwards; */
 }
 
 #addTaskOverlay {
@@ -376,7 +377,16 @@ button img {
   z-index: 4;
   position: fixed;
   top: 100px;
-  align-self: center;
+  left: 50%;  /* Zentriert das Overlay */
+  transform: translateX(150%); /* Beginnt außerhalb des Bildschirms */
+  opacity: 0;  /* Startet unsichtbar */
+  transition: transform 2s ease-in-out, opacity 2s ease-in-out; /* Verwende transitions, um smooth zu animieren */
+  animation: openOverlay 2s ease-in-out forwards; /* Animation für das Einfliegen */
+}
+
+/* Für das Schließen */
+#addTaskOverlay.closed {
+  animation: closeOverlay 2s ease-in-out forwards; /* Animation für das Schließen */
 }
 
 #addTaskOverlay .title {
