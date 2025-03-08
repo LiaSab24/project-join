@@ -104,8 +104,6 @@ async function postData(path = "", data = {}) {
  * @param {object} data - an object, that contains all the key-value-pairs that should replace the previous object in firebase
  */
 async function putData(path = "", data = {}) {
-  console.log(path);
-  console.log(data);
   if (document.getElementById("overviewOverlay")) {
     if (!document.getElementById("overviewOverlay").classList.contains("d-none")) {
       data = data.subtasks;
@@ -242,10 +240,9 @@ function checkFilledInput(id) {
 
 function btnUserInitial() {
   let subMenu = document.getElementById("submenu");
-  //console.log(subMenu);
-  // subMenu.innerHTML = '';
-  // subMenu.classList.remove('d-none');
-  // subMenu.innerHTML += getSubmenuHTML();
+  subMenu.innerHTML = '';
+  subMenu.classList.remove('d-none');
+  subMenu.innerHTML += getSubmenuHTML();
 }
 
 // kommt später in die templates.js Datei

@@ -9,6 +9,7 @@
   <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)" />
 
   <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="../styles/root.css">
   <link rel="stylesheet" href="/styles/navigation.css">
   <link rel="stylesheet" href="/fonts/fonts.css">
   <link rel="stylesheet" href="/styles/board.css">
@@ -54,7 +55,7 @@
               alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
-          <div class="no-task-message" id="noTask">No tasks in To Do</div>
+          <div class="no-task-message" id="noTask">No tasks to do</div>
         </div>
         <div id="toDo" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       </div>
@@ -66,7 +67,7 @@
               alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
-          <div class="no-task-message" id="noTaskInProgress">No tasks in Progress</div>
+          <div class="no-task-message" id="noTaskInProgress">No tasks in progress</div>
         </div>
         <div id="inProgress" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       </div>
@@ -78,7 +79,7 @@
               alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
-          <div class="no-task-message" id="noTaskAwaitFeedback">No tasks in awaiting feedback</div>
+          <div class="no-task-message" id="noTaskAwaitFeedback">No tasks await feedback</div>
         </div>
         <div id="awaitFeedback" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       </div>
@@ -89,7 +90,7 @@
           <br>
         </div>
         <div class="no-task-message-container margin">
-          <div class="no-task-message" id="noTaskDone">No tasks in done</div>
+          <div class="no-task-message" id="noTaskDone">No tasks done</div>
         </div>
         <div id="done" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       </div>

@@ -1,6 +1,6 @@
 /**
  * This template displays the users profile in the add-task-assigned-to-dropdown-menu
- * 
+ *  
  * @param {number} indexUser - the index of the user in the contacts-array
  */
 function getAddTaskDropdownListUserOption(indexUser) {

@@ -54,7 +54,7 @@ main {
   }
 }
 .d-none {
-  display: none;
+  display: none !important;
 }
 .flex {
   display: flex;
@@ -87,7 +87,7 @@ main {
 }
 /* Desktop Figma ----------------------------
 <div style="width: 110px; height: 48px; padding: 15px 24px; border-radius: 8px; background: #2a3647;">
-<p style=" font-size: 21px; font-weight: 700; color: #fff;">Log in </p></div>
+<p style=" font-size: 21px; font-weight: 700; color: #fff;">Log in </p></div> */
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 24px;

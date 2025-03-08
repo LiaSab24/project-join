@@ -297,7 +297,7 @@ main {
 }
 
 .focused-contact-btns:hover {
-    color: VAR(var(--clr-lightBlue));
+    color: var(--clr-lightBlue);
     cursor: pointer;
 }
 
@@ -305,7 +305,7 @@ main {
     height: 24px;
     width: 24px;
     background-repeat: no-repeat;
-}
+} 
 
 #contactsEditIcon {
     background-image: url("/assets/icons/edit.svg");
@@ -370,7 +370,7 @@ main {
     display: flex;
     background-color: var(--clr-white);
     position: relative;
-    top: -70vb;
+    top: -800px;
     right: -10vb;
     animation-duration: 300ms;
     animation-timing-function: ease-out;

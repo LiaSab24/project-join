@@ -146,13 +146,13 @@ button img {
   padding: var(--header-padding);
   gap: var(--gap-size-task);
   overflow-x: auto;
-  padding: 20px;
+  padding: 0 64px;
 }
 
 .task-wrapper {
   padding: var(--task-padding);
   flex: 1;
-  min-width: 285px;
+  width: 246px;
 }
 
 .task-headline {
