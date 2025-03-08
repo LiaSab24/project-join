@@ -254,10 +254,12 @@ function updateTaskProgress(progress, indexTask) {
  */
 function openBoardBgOverlay() {
   let boardOverlayBgContentRef = document.getElementById("boardOverlayBg");
-  boardOverlayBgContentRef.classList.remove("d-none");;
+  boardOverlayBgContentRef.classList.toggle("animation-open-overlay");
+  boardOverlayBgContentRef.classList.add("overlay-active");
+  boardOverlayBgContentRef.classList.toggle("animation-close-overlay");
   setTimeout(function () {
-    boardOverlayBgContentRef.classList.add("overlay-active");
-  }, 100);
+    boardOverlayBgContentRef.classList.toggle("d-none");
+  }, 300);
 }
 
 /**
@@ -311,8 +313,9 @@ async function boardAddTask(overlay, progress, indexTask) {
  * @param {string} progress - the progress-category, where the new task should be in after submitting
  */
 async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
-  let addTaskOverlayContentRef = document.getElementById("addTaskOverlay");
+  let addTaskOverlayContentRef = document.getElementById("animation-close-overlay ");
   addTaskOverlayContentRef.classList.remove("d-none");
+  addTaskOverlayContentRef.classList.add("animation-close-overlay");
   addTaskOverlayContentRef.innerHTML = "";
   addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
   document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();

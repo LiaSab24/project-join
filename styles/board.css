@@ -320,10 +320,12 @@ button img {
 @keyframes openOverlay {
   from {
     right: -100%;
+    opacity: 0;
   }
 
   to {
     right: 0%;
+    opacity: 1;
   }
 }
 
@@ -334,12 +336,12 @@ button img {
 @keyframes closeOverlay {
   from {
     right: 0%;
-    opacity: 0;
+    opacity: 1;
   }
 
   to {
     right: -100%;
-    opacity: 1;
+    opacity: 0;
   }
 }
 
@@ -353,24 +355,35 @@ button img {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
   display: flex;
   justify-content: flex-end;
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
+  z-index: 2;
+  transition-property: all;
+  transition-duration: 300ms;
+  transition-timing-function: linear;
 }
 
 #addTaskOverlay {
+  position: fixed;
   height: 870px;
   width: 1116px;
+  right: -1116px;
   border-radius: 30px;
   background: #FFFFFF;
-  z-index: 4;
-  position: fixed;
+  z-index: 3;
   top: 100px;
   align-self: center;
+  transition: right 0.3s ease-in-out;
+}
+
+#addTaskOverlay.overlay-active {
+  right: 0;
+  opacity: 1;
 }
 
 #addTaskOverlay .title {
@@ -380,6 +393,10 @@ button img {
   padding: 0;
   display: flex;
   justify-content: space-between;
+}
+
+#addTaskOverlay.overlay-active {
+  right: 0; /* Overlay wird bei Aktivierung nach rechts verschoben */
 }
 
 #addTaskOverlay #addTaskForm,
@@ -423,7 +440,8 @@ button img {
   border-radius: 30px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 3;
-  /* transition: right 0.5s ease-in-out; */
+  animation-duration: 300ms;
+  animation-timing-function: ease-out;
   padding: 48px 40px 48px 40px !important;
   gap: 16px !important;
 }
