@@ -14,8 +14,9 @@ async function initSummary() {
     tasksDone = 0;
     showTasksNumbers();
     showNextDeadline()
-    greetingDaytime();
+    greetingDaytime(); 
     showUserName();
+    console.log(currentUser)
 } 
 
 /**

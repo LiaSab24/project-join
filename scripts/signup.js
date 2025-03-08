@@ -33,7 +33,7 @@ async function addUser() {
                 "mail": userMail,
                 "password": userPassword
             });
-            await addUserToContacts(userName, userMail);
+            await addUserToContacts(userName, userMail); 
             signUpSuccesfully();
             clearSignUpForm();
         } else {

@@ -45,7 +45,7 @@ function progressSubtasksPercentage(indexTask) {
   let completedSubtasks = countCompletedSubtasks(indexTask);
   if (totalSubtasks !== 0) {
     return (completedSubtasks / totalSubtasks) * 100;
-  } else {
+  } else { 
     return 0;
   }
 }
