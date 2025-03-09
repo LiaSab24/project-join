@@ -27,7 +27,7 @@ function getAddTaskDropdownListContacts(indexContact) {
                 <div id="assignedToCheckbox${indexContact}" class="add-task-assigned-to-checkbox"></div>
             </div>`
 }
- 
+
 /**
  * This template displays a contacts profile badge in the add-task-assigned-to-list
  * 
@@ -257,7 +257,7 @@ function getContactsOverlayAddBtnsTemplate() {
                 <img src="/assets/icons/create-btn.svg">
             </button>`
 }
- 
+
 /**
  * This template creates the two necessary buttons for the contacts-overlay 'Edit contact'
  * 
@@ -279,4 +279,4 @@ function getSubmenuTemplate() {
     return `<p><a href="../html/legal_notice.html">Legal Notice</a></p>
             <p><a href="../html/privacy_policy.html">Privacy Policy</a></p>
             <p><a href="../html/login.html">Logout</a></p>`
-  }
+}

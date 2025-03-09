@@ -426,19 +426,3 @@ function getAddProgress() {
             return "awaitFeedback"
     }
 }
-
-/**
- * This function is part of the saveEditTask()-function and returns the progress-category, where the edited task is in
- */
-function getEditProgress() {
-    let progressContentRef = document.getElementById("editTaskOk").classList[1];
-    switch (progressContentRef) {
-        default:
-        case "progress-toDo":
-            return "toDo"
-        case "progress-inProgress":
-            return "inProgress"
-        case "progress-awaitFeedback":
-            return "awaitFeedback"
-    }
-}
