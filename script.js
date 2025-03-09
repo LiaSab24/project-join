@@ -9,6 +9,8 @@ let indexContactUser;
 let filteredContacts = [];
 let filteredTasks = [];
 
+let previousLocation;
+
 const colors = [
   "#ff7a00", // Vivid Orange
   "#ff5eb3", // Deep Pink
@@ -270,11 +272,20 @@ function fillSubmenu() {
 }
 
 /**
- * This function redirects the user to the help.html-page and lets them come back to the previous page, when clicking the arrow backwards
+ * This function redirects the user to the help.html-page and saves the link of the previous visited page in the local storage
  * 
  * @param {url} location - the url of the previous page
  */
 function redirectToHelp(location) {
-  console.log(location)
-  //window.location.href = "help.html";
+  localStorage.setItem("location", JSON.stringify(location));
+  window.location.href="./help.html"
+}
+
+/**
+ * This function gets the link of the previous page from the local storage and redirects the user to that page
+ */
+function redirectToPreviousPage() {
+  previousLocation = JSON.parse(localStorage.getItem("location"));
+  console.log(previousLocation);
+  window.location.href = previousLocation;
 }
