@@ -1,4 +1,9 @@
-// include.js
+/**
+ * This function dynamically loads and inserts HTML content into elements with the attribute "w3-include-html".
+ * It fetches the HTML file specified in the attribute and replaces the inner content of the element.
+ * 
+ * @returns {Promise<void>} Resolves when all includes are completed.
+ */
 function includeHTML() {
   return new Promise(async (resolve) => {
     const elements = document.querySelectorAll("[w3-include-html]");
