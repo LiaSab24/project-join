@@ -45,7 +45,7 @@ function progressSubtasksPercentage(indexTask) {
   let completedSubtasks = countCompletedSubtasks(indexTask);
   if (totalSubtasks !== 0) {
     return (completedSubtasks / totalSubtasks) * 100;
-  } else { 
+  } else {
     return 0;
   }
 }
@@ -249,9 +249,6 @@ function updateTaskProgress(progress, indexTask) {
   }
 }
 
-/**
- * This function is part of the boardAddTask()-function and adds visibility of the #boardOverlayBg
- */
 function openBoardBgOverlay() {
   let boardOverlayBgContentRef = document.getElementById("boardOverlayBg");
   boardOverlayBgContentRef.classList.remove("d-none");;
