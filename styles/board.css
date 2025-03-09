@@ -228,11 +228,16 @@ button img {
 }
 
 .category-bug-fix {
-  background: #D1D1D1;
+  background: #FF4646;;
 }
 
 .category-documentation {
-  background: #D1D1D1;
+  background: #ffc55c;
+  /* background: #f8b500; */
+  /* background: #d59bf6; */
+  /* background: #ec729c; */
+  /* background: #c7b198; */
+  /* background: #d3a284; */
 }
 
 .category-technical-task {
