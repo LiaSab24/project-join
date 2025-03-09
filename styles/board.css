@@ -367,7 +367,7 @@ button img {
   opacity: 0;
   display: flex;
   justify-content: flex-end;
-  /* opacity: 1; */
+  opacity: 1;
   /* transition: opacity 2s ease, transform 2s ease-in-out;
   animation: openOverlay 2s ease-in-out forwards; */
 }
@@ -403,7 +403,7 @@ button img {
 }
 
 #addTaskOverlay.overlay-active {
-  right: 0; /* Overlay wird bei Aktivierung nach rechts verschoben */
+  right: 0;
 }
 
 #addTaskOverlay #addTaskForm,
