@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -18,12 +18,12 @@
   <link rel="stylesheet" href="/styles/add_task.css">
 
   <script src="/script.js"></script>
-  <script src="/scripts/include.js"></script> 
+  <script src="/scripts/include.js"></script>
   <script src="/scripts/templates.js"></script>
   <script src="/scripts/board.js"></script>
   <script src="/scripts/board_overlays.js"></script>
   <script src="/scripts/add_task.js"></script>
-</head> 
+</head>
 
 <body onload="initBoard()">
   <div id="overlayBg" class="overlay-bg"></div>
@@ -64,8 +64,8 @@
       <div class="task-wrapper">
         <div class="task-headline">
           <h2>In Progress</h2>
-          <div onclick="boardAddTask('add', 'inProgress')" class="icon-container"><img src="/assets/icons/plus-button.png"
-              alt="Add Button"></div>
+          <div onclick="boardAddTask('add', 'inProgress')" class="icon-container"><img
+              src="/assets/icons/plus-button.png" alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTaskInProgress">No tasks in progress</div>
@@ -73,11 +73,11 @@
         <div id="inProgress" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       </div>
 
-      <div class="task-wrapper"> 
+      <div class="task-wrapper">
         <div class="task-headline">
           <h2>Await Feedback</h2>
-          <div onclick="boardAddTask('add', 'awaitFeedback')" class="icon-container"><img src="/assets/icons/plus-button.png"
-              alt="Add Button"></div>
+          <div onclick="boardAddTask('add', 'awaitFeedback')" class="icon-container"><img
+              src="/assets/icons/plus-button.png" alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTaskAwaitFeedback">No tasks await feedback</div>
@@ -104,18 +104,17 @@
   <section id="editTaskOverlay" class="d-none"></section>
   <section class="messages">
     <div id="taskSuccesfullyCreated" class="succesfull-msg">
-        <span>Task succesfully created</span>
+      <span>Task succesfully created</span>
     </div>
     <div id="taskSuccesfullyEdited" class="succesfull-msg">
-        <span>Task succesfully edited</span>
+      <span>Task succesfully edited</span>
     </div>
     <div id="taskSuccesfullyDeleted" class="succesfull-msg">
-        <span>Task succesfully deleted</span>
+      <span>Task succesfully deleted</span>
     </div>
-</section>
-
-<section onclick="toggleSubmenu()" class="submenu-overlay d-none"></section>
-
+  </section>
+  <section id="noResultSearchInput" class="no-task-message-container d-none">no result matches the search criteria</section>
+  <section onclick="toggleSubmenu()" class="submenu-overlay d-none"></section>
   <script>includeHTML();</script>
 </body>
 

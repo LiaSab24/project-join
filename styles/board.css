@@ -687,6 +687,18 @@ button img {
   width: auto;
 }
 
+#noResultSearchInput {
+  position: fixed;
+  top: 450px;
+  align-self: center;
+  margin-left: 232px;
+  border: 1px dotted #A8A8A8;
+  background-color: #e7e7e7;
+  color: #a8a8a8;
+  opacity: 1;
+  transform: scale(1.4)
+}
+
 /* #editTaskOverlay .overview-info {
   flex-direction: column;
   gap: 8px;

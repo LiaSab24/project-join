@@ -278,5 +278,5 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
 function getSubmenuTemplate() {
     return `<p><a href="../html/legal_notice.html">Legal Notice</a></p>
             <p><a href="../html/privacy_policy.html">Privacy Policy</a></p>
-            <p><a href="../html/login.html">Logout</a></p>`
+            <p><a href="../html/index.html">Logout</a></p>`
 }

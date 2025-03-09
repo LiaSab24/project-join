@@ -7,7 +7,7 @@ async function initBoard() {
   renderTasks();
   toggleMessageNoTasks();
 }
-
+ 
 /**
  * This function clears each of the progress-catergories
  */
@@ -142,6 +142,7 @@ function startSearchingTasks() {
   } else {
     clearTaskProgressCategories();
     renderTasks();
+    document.getElementById("noResultSearchInput").classList.add("d-none");
   }
   searchInputRef.disabled = false;
   searchInputRef.focus();
@@ -162,7 +163,13 @@ function displayFilteredTasks(searchInput) {
       taskProgressContentRef.innerHTML += getBoardTaskTemplate(indexTask);
       hideSubtasksProgressForNoSubtasks(indexTask);
       displayAssignedContacts(indexTask);
+      if (tasks[indexTask].priority == "") {
+        document.getElementById("prio" + indexTask).src = "";
+      }
     }
+  }
+  if (document.querySelectorAll(".task-card").length == 0){
+    document.getElementById("noResultSearchInput").classList.remove("d-none");
   }
 }
 
