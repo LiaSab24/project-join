@@ -1,6 +1,6 @@
 /**
  * This template displays the users profile in the add-task-assigned-to-dropdown-menu
- * 
+ *  
  * @param {number} indexUser - the index of the user in the contacts-array
  */
 function getAddTaskDropdownListUserOption(indexUser) {
@@ -27,7 +27,7 @@ function getAddTaskDropdownListContacts(indexContact) {
                 <div id="assignedToCheckbox${indexContact}" class="add-task-assigned-to-checkbox"></div>
             </div>`
 }
- 
+
 /**
  * This template displays a contacts profile badge in the add-task-assigned-to-list
  * 
@@ -273,4 +273,10 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
                 Save
                 <img src='/assets/icons/create-btn.svg'>
             </button>`
+}
+
+function getSubmenuTemplate() {
+    return `<p><a href="../html/legal_notice.html">Legal Notice</a></p>
+            <p><a href="../html/privacy_policy.html">Privacy Policy</a></p>
+            <p><a href="../html/index.html">Logout</a></p>`
 }

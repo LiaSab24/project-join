@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Contacts</title>
@@ -9,10 +9,11 @@
     <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)" />
 
     <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/styles/sidebar.css">
-    <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/fonts/fonts.css">
-    <link rel="stylesheet" href="/styles/contacts.css">
+    <link rel="stylesheet" href="../styles/root.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
+    <link rel="stylesheet" href="../styles/contacts.css">
 
     <script src="/script.js"></script>
     <script src="/scripts/include.js"></script>
@@ -25,7 +26,7 @@
     <div w3-include-html="sidebar.html"></div>
 
     <main>
-        <section class="address-book custom-scrollbar">
+        <section class="address-book custom-scrollbar flex align-center">
             <div class="add-new-contact">
                 <button onclick="toggleContactsOverlay(), adjustOverlayToAdd()">
                     <span>Add new contact</span>
@@ -195,7 +196,6 @@
                     <input onblur="checkFilledInput('addContactName')" id="addContactName" type="text" placeholder="Name" required>
                     <input onblur="checkFilledInput('addContactMail')" id="addContactMail" type="text" placeholder="Email" required>
                     <input onblur="checkFilledInput('addContactPhone')" id="addContactPhone" type="text" placeholder="Phone">
-
                     <div id="contactsSubmitBtns"></div>
                 </form>
             </div>
@@ -218,7 +218,8 @@
             <span>Contact succesfully deleted</span>
         </div>
     </section>
-    <footer></footer>
+
+    <section onclick="toggleSubmenu()" class="submenu-overlay d-none"></section>
 
     <script>includeHTML();</script>
 </body>

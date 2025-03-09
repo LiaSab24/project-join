@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -9,6 +9,7 @@
   <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)" />
 
   <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="../styles/root.css">
   <link rel="stylesheet" href="/styles/navigation.css">
   <link rel="stylesheet" href="/fonts/fonts.css">
   <link rel="stylesheet" href="/styles/board.css">
@@ -17,11 +18,12 @@
   <link rel="stylesheet" href="/styles/add_task.css">
 
   <script src="/script.js"></script>
-  <script src="/scripts/include.js"></script> 
+  <script src="/scripts/include.js"></script>
   <script src="/scripts/templates.js"></script>
   <script src="/scripts/board.js"></script>
+  <script src="/scripts/board_overlays.js"></script>
   <script src="/scripts/add_task.js"></script>
-</head> 
+</head>
 
 <body onload="initBoard()">
   <div id="overlayBg" class="overlay-bg"></div>
@@ -54,7 +56,7 @@
               alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
-          <div class="no-task-message" id="noTask">No tasks in To Do</div>
+          <div class="no-task-message" id="noTask">No tasks to do</div>
         </div>
         <div id="toDo" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       </div>
@@ -62,23 +64,23 @@
       <div class="task-wrapper">
         <div class="task-headline">
           <h2>In Progress</h2>
-          <div onclick="boardAddTask('add', 'inProgress')" class="icon-container"><img src="/assets/icons/plus-button.png"
-              alt="Add Button"></div>
+          <div onclick="boardAddTask('add', 'inProgress')" class="icon-container"><img
+              src="/assets/icons/plus-button.png" alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
-          <div class="no-task-message" id="noTaskInProgress">No tasks in Progress</div>
+          <div class="no-task-message" id="noTaskInProgress">No tasks in progress</div>
         </div>
         <div id="inProgress" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       </div>
 
-      <div class="task-wrapper"> 
+      <div class="task-wrapper">
         <div class="task-headline">
           <h2>Await Feedback</h2>
-          <div onclick="boardAddTask('add', 'awaitFeedback')" class="icon-container"><img src="/assets/icons/plus-button.png"
-              alt="Add Button"></div>
+          <div onclick="boardAddTask('add', 'awaitFeedback')" class="icon-container"><img
+              src="/assets/icons/plus-button.png" alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
-          <div class="no-task-message" id="noTaskAwaitFeedback">No tasks in awaiting feedback</div>
+          <div class="no-task-message" id="noTaskAwaitFeedback">No tasks await feedback</div>
         </div>
         <div id="awaitFeedback" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       </div>
@@ -89,7 +91,7 @@
           <br>
         </div>
         <div class="no-task-message-container margin">
-          <div class="no-task-message" id="noTaskDone">No tasks in done</div>
+          <div class="no-task-message" id="noTaskDone">No tasks done</div>
         </div>
         <div id="done" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       </div>
@@ -102,16 +104,17 @@
   <section id="editTaskOverlay" class="d-none"></section>
   <section class="messages">
     <div id="taskSuccesfullyCreated" class="succesfull-msg">
-        <span>Task succesfully created</span>
+      <span>Task succesfully created</span>
     </div>
     <div id="taskSuccesfullyEdited" class="succesfull-msg">
-        <span>Task succesfully edited</span>
+      <span>Task succesfully edited</span>
     </div>
     <div id="taskSuccesfullyDeleted" class="succesfull-msg">
-        <span>Task succesfully deleted</span>
+      <span>Task succesfully deleted</span>
     </div>
-</section>
-  <footer></footer>
+  </section>
+  <section id="noResultSearchInput" class="no-task-message-container d-none">no result matches the search criteria</section>
+  <section onclick="toggleSubmenu()" class="submenu-overlay d-none"></section>
   <script>includeHTML();</script>
 </body>
 

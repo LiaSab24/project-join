@@ -3,45 +3,44 @@
   top: 0;
   height: 100vh;
   width: 232px;
-  background-color: #2A3647;
-  box-shadow: 0px 0px 4px 0px #0000001A;
+  background-color: var(--clr-primary);
+  box-shadow: var(--shadow-barrasuperior);
   padding: 64px 0;
-  display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
 }
-
 .sidebar-logo {
   width: 100.03px;
   height: 121.97px;
 }
-
 .sidebar-menu {
-  height: fit-content;
+  height: 229px;
+  width: 100%;
+  flex-direction: column;
+  ul {
+    list-style: none;
+    li {
+      display: flex;
+      align-items: center;
+    }
+  }
 }
 
-.sidebar-menu ul {
-  list-style: none;
+.list {
+  width: 100%;
+  padding: 8px 52px;
+  img {
+    margin-right: 8px;
+    width: 30px;
+    height: 30px;
+  }
+  a {
+    color: var(--clr-lighterGray);
+    text-decoration: none;
+  }
+  &:hover {
+    background-color: var(--clr-click);
+  }
 }
-
-.sidebar-menu li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.sidebar-menu li img {
-  margin-right: 8px;
-  width: 30px;
-  height: 30px;
-}
-
-.sidebar-menu li a {
-  color: #FFFFFF;
-  text-decoration: none;
-}
-
 .sidebar-notice {
   width: fit-content;
   ul {
@@ -49,15 +48,17 @@
     li {
       margin-bottom: 8px;
       a {
-        color: #a8a8a8;
+        color: var(--clr-lightGray);
         text-decoration: none;
       }
     }
+    a:hover {
+        color:var(--clr-white);
+    }
   }
 }
-
 /* Responsive Design for Sidebar as Footer */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .sidebar-wrapper {
     position: fixed;
     bottom: 0;
@@ -65,40 +66,38 @@
     width: 100%;
     height: 80px;
     padding: 16px;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
   }
-
   .sidebar-logo {
     display: none;
   }
-
   .sidebar-menu {
     width: 100%;
     height: auto;
+    ul {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      .list {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 0;
+        padding: 0;
+        img {
+          margin-right: 0;
+          margin-bottom: 4px;
+        }
+      }
+    }
   }
-
-  .sidebar-menu ul {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  }
-
   .sidebar-menu li {
-    display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 0;
-  }
-
-  .sidebar-menu li img {
-    margin-right: 0;
-    margin-bottom: 4px;
-  }
-
+    img {
+      margin-right: 0;
+      margin-bottom: 4px;
+    }
+  }  
   .sidebar-notice {
     display: none;
   }

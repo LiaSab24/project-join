@@ -4,9 +4,12 @@ let users = [];
 let tasks = [];
 let contacts = [];
 let currentUser;
+let indexContactUser;
 
 let filteredContacts = [];
 let filteredTasks = [];
+
+let previousLocation;
 
 const colors = [
   "#ff7a00", // Vivid Orange
@@ -22,8 +25,9 @@ const colors = [
   "#0038ff", // Royal Blue
   "#c3ff2b", // Lime Green
   "#ffe625", // Sun Yellow
-  "#ff4646", // Red
-  "#ffbb2b" // Goldenrod 
+  "#ff4646", // Red 
+  "#ffbb2b", // Goldenrod 
+  "#462f8a"
 ];
 
 let availableColors = [...colors];
@@ -34,7 +38,11 @@ let contactColors = {};
  */
 async function init() {
   await fetchDataJson();
-  userIndexInContactsArray(currentUser);
+  userIndexInContactsArray();
+  if (document.getElementById("header")) {
+    headerUser();
+    fillSubmenu();
+  }
 }
 
 /**
@@ -70,12 +78,19 @@ function filArrays(joinDataJson) {
 /**
  * This function iterates through the contacts-array and finds the index of the contact of the current user
  * 
- * @param {number} currentUser - the index of the user in the user-array
  */
-function userIndexInContactsArray(currentUser) {
-  let userName = users[currentUser].name;
-  let indexContactUser = contacts.findIndex(index => index.name === userName);
-  indexUser = indexContactUser;
+function userIndexInContactsArray() {
+  let userMail = users[currentUser].mail;
+  indexContactUser = contacts.map(function (element) {
+    return element.mail;
+  }).indexOf(userMail);
+}
+
+function headerUser() {
+  document.getElementById("headerPbBadge").innerHTML = nameAbbreviation(indexContactUser);
+  if (indexContactUser == -1) {
+    document.getElementById("headerPbBadge").innerHTML = "YOU";
+  }
 }
 
 /**
@@ -103,8 +118,6 @@ async function postData(path = "", data = {}) {
  * @param {object} data - an object, that contains all the key-value-pairs that should replace the previous object in firebase
  */
 async function putData(path = "", data = {}) {
-  console.log(path);
-  console.log(data);
   if (document.getElementById("overviewOverlay")) {
     if (!document.getElementById("overviewOverlay").classList.contains("d-none")) {
       data = data.subtasks;
@@ -237,25 +250,42 @@ function checkFilledInput(id) {
   }, 100);
 }
 
-//__________________________________________
-
-function btnUserInitial() {
-  let subMenu = document.getElementById("submenu");
-  //console.log(subMenu);
-  // subMenu.innerHTML = '';
-  // subMenu.classList.remove('d-none');
-  // subMenu.innerHTML += getSubmenuHTML();
+/**
+ * This function toggles the visibilty of the submenu (and its transparent background-overlay) onclick
+ */
+function toggleSubmenu() {
+  document.getElementById("submenu").classList.toggle('d-none');
+  document.querySelector(".submenu-overlay").classList.toggle("d-none");
 }
 
-// kommt später in die templates.js Datei
-function getSubmenuHTML() {
-  return /*html*/`
-  <p><a href="../html/legal_note.html">Legal Notice</a></p>
-  <p><a href="../html/privacy_police.html">Privacy Policy</a></p>
-  <p><a href="../html/signup.html">Logout</a></p>
-  `;
+/**
+ * Adjusts the submenu based on the window size.
+ * Adds a help element if the width is less than or equal to 768px.
+ */
+function fillSubmenu() {
+  submenuContentRef = document.getElementById("submenu");
+  submenuContentRef.innerHTML = "";
+  if (window.innerWidth <= 768) {
+    submenuContentRef.innerHTML = `<p><a href="./help.html">Help</a></p>`;
+  }
+  submenuContentRef.innerHTML += getSubmenuTemplate();
 }
 
-function closeSubmenu() {
-  getSubmenu.classList.add('d-none');
+/**
+ * This function redirects the user to the help.html-page and saves the link of the previous visited page in the local storage
+ * 
+ * @param {url} location - the url of the previous page
+ */
+function redirectToHelp(location) {
+  localStorage.setItem("location", JSON.stringify(location));
+  window.location.href="./help.html"
+}
+
+/**
+ * This function gets the link of the previous page from the local storage and redirects the user to that page
+ */
+function redirectToPreviousPage() {
+  previousLocation = JSON.parse(localStorage.getItem("location"));
+  console.log(previousLocation);
+  window.location.href = previousLocation;
 }

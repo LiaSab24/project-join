@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link rel="shortcut icon" href="./assets/icons/favicon.ico" type="image/x-icon"/>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/icons/apple-touch-icon.png"/>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/icons/favicon-32x32.png"/>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/icons/favicon-16x16.png"/>
+    <link rel="manifest" href="./assets/icons/site.webmanifest" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styles/root.css" />
+    <link rel="stylesheet" href="./fonts/fonts.css" />
+    <link rel="stylesheet" href="./styles/header.css" />
+    <link rel="stylesheet" href="./styles/sidebar.css" />
+    
+    <script src="./scripts/include.js" defer></script>
+    <script src="./scripts/header.js" defer></script>
+  </head>
+  <body>
+    <div w3-include-html="./html/header.html"></div>
+    <div w3-include-html="./html/sidebar.html"></div>
+    <main class="responsive-main">
+      <section class="board-header">
+        <h1>Board</h1>
+        <div class="input-container">
+          <div class="input">
+            <input id="searchInput" class="search-input" type="text" placeholder="Find task"/>
+            <div class="divider-container">
+              <div class="input-divider"></div>
+            </div>
+            <div class="search-icon">
+              <img src="/assets/icons/search.png" alt="Search" />
+            </div>
+          </div>
+          <button>
+            <h2>Add Task</h2>
+            <img src="/assets/icons/add.png" alt="Add" />
+          </button>
+        </div>
+      </section>
+      <h1>H1-Testseite</h1>
+      <p><strong>basic-font-size (12px - 16px)</strong> - 
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Cumque dolore ducimus, 
+        doloribus delectus sed corrupti. Dolor, aliquid enim. 
+        Ipsa, laudantium?</p>
+      <h2>das ist eine H2-Überschrift</h2>
+      <p><strong>basic-font-size (12px - 16px)</strong> -
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt debitis sint ipsa? 
+        Suscipit exercitationem alias, ex facere eos commodi tenetur!</p>
+      <h3>das ist eine H3-Überschrift</h3>
+      <p><strong>basic-font-size (12px - 16px)</strong> -
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+      </p>
+      <h4>das ist eine H4-Überschrift</h4>
+      <p><strong>basic-font-size (12px - 16px)</strong> -
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </p>
+    </main>
+  </body>
+</html>

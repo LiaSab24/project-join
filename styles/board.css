@@ -146,13 +146,13 @@ button img {
   padding: var(--header-padding);
   gap: var(--gap-size-task);
   overflow-x: auto;
-  padding: 20px;
+  padding: 0 64px;
 }
 
 .task-wrapper {
   padding: var(--task-padding);
   flex: 1;
-  min-width: 285px;
+  width: 246px;
 }
 
 .task-headline {
@@ -215,6 +215,7 @@ button img {
 
 .task-card:hover {
   transform: rotateX(0deg) rotateY(0deg) rotateZ(5deg);
+  cursor: pointer;
 }
 
 .task-badge {
@@ -228,16 +229,11 @@ button img {
 }
 
 .category-bug-fix {
-  background: #FF4646;;
+  background: #FF4646;
 }
 
 .category-documentation {
-  background: #ffc55c;
-  /* background: #f8b500; */
-  /* background: #d59bf6; */
-  /* background: #ec729c; */
-  /* background: #c7b198; */
-  /* background: #d3a284; */
+  background: #FFC55C;
 }
 
 .category-technical-task {
@@ -324,13 +320,11 @@ button img {
 
 @keyframes openOverlay {
   from {
-    right: -100%;
-    opacity: 0;
+    transform: translateX(150%);
   }
 
   to {
-    right: 0%;
-    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -340,20 +334,26 @@ button img {
 
 @keyframes closeOverlay {
   from {
-    right: 0%;
-    opacity: 1;
+    transform: translateX(0);
   }
 
   to {
-    right: -100%;
-    opacity: 0;
+    transform: translateX(150%);
+
   }
 }
 
 .overlay-active {
-  opacity: 1 !important;
+  /* opacity: 1 !important; */
   z-index: 3;
-  animation: openOverlay 0.3s ease-in-out forwards;
+  /* animation: openOverlay 2s ease-in-out forwards; */
+  /* transform: translateX(150%); */
+}
+
+.overlay-inactive {
+  opacity: 0;
+  z-index: 3;
+  animation: closeOverlay 10s ease-in-out forwards;
 }
 
 #boardOverlayBg {
@@ -367,10 +367,9 @@ button img {
   opacity: 0;
   display: flex;
   justify-content: flex-end;
-  z-index: 2;
-  transition-property: all;
-  transition-duration: 300ms;
-  transition-timing-function: linear;
+  /* opacity: 1; */
+  /* transition: opacity 2s ease, transform 2s ease-in-out;
+  animation: openOverlay 2s ease-in-out forwards; */
 }
 
 #addTaskOverlay {
@@ -383,12 +382,15 @@ button img {
   z-index: 3;
   top: 100px;
   align-self: center;
-  transition: right 0.3s ease-in-out;
+  /* transform: translateX(150%); */
+  /* opacity: 0; */
+  /* transition: transform 1s ease-in-out, opacity 0.5s ease-in-out; */
+  /* animation: openOverlay 0.8s ease-in-out forwards; */
 }
 
-#addTaskOverlay.overlay-active {
-  right: 0;
-  opacity: 1;
+/* Für das Schließen */
+#addTaskOverlay.closed {
+  /* animation: closeOverlay 2s ease-in-out forwards; */
 }
 
 #addTaskOverlay .title {
@@ -435,20 +437,26 @@ button img {
 #overviewOverlay,
 .edit-task-overlay {
   width: 525px !important;
-  position: fixed !important;
-  top: 50px !important;
+  position: fixed; 
+  top: 200px;
+  align-self: center;
+  /* transform: translateX(-100%); */
   display: flex;
-  height: fit-content;
   flex-direction: column !important;
   align-self: center !important;
   background-color: white;
   border-radius: 30px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 3;
-  animation-duration: 300ms;
-  animation-timing-function: ease-out;
-  padding: 48px 40px 48px 40px !important;
+  /* opacity: 1; */
+  /* transform: translateY(-100%); */
+  /* transition: opacity 0.3s ease, transform 0.3s ease-in-out; */
+  padding: 48px 40px !important;
   gap: 16px !important;
+}
+
+#overviewOverlay {
+  animation: openOverlay 0.8s ease-in-out forwards;
 }
 
 .overview-header {
@@ -684,6 +692,18 @@ button img {
 .edit-task-overlay .confirm-btn img {
   height: auto;
   width: auto;
+}
+
+#noResultSearchInput {
+  position: fixed;
+  top: 450px;
+  align-self: center;
+  margin-left: 232px;
+  border: 1px dotted #A8A8A8;
+  background-color: #e7e7e7;
+  color: #a8a8a8;
+  opacity: 1;
+  transform: scale(1.4)
 }
 
 /* #editTaskOverlay .overview-info {

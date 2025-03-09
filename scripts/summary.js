@@ -16,10 +16,9 @@ async function initSummary() {
     showNextDeadline()
     greetingDaytime(); 
     showUserName();
-    console.log(currentUser)
 } 
 
-/**
+/** 
  * This function fills the according tasks-numbers in the different "counterTasks"-container
  */
 function showTasksNumbers() {
