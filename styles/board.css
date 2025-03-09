@@ -344,10 +344,7 @@ button img {
 }
 
 .overlay-active {
-  /* opacity: 1 !important; */
   z-index: 3;
-  /* animation: openOverlay 2s ease-in-out forwards; */
-  /* transform: translateX(150%); */
 }
 
 .overlay-inactive {
@@ -365,24 +362,17 @@ button img {
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: flex-end;
-  /* opacity: 1; */
-  /* transition: opacity 2s ease, transform 2s ease-in-out;
-  animation: openOverlay 2s ease-in-out forwards; */
 }
 
 #addTaskOverlay {
-  height: 870px;
+  height: 803px;
   width: 1116px;
   border-radius: 30px;
   background: #FFFFFF;
   z-index: 4;
   position: fixed;
-  top: 100px;
+  top: 15px;
   align-self: center;
-  /* transform: translateX(150%); */
-  /* opacity: 0; */
-  /* transition: transform 1s ease-in-out, opacity 0.5s ease-in-out; */
-  /* animation: openOverlay 0.8s ease-in-out forwards; */
 }
 
 /* Für das Schließen */
@@ -431,9 +421,8 @@ button img {
 .edit-task-overlay {
   width: 525px !important;
   position: fixed; 
-  top: 200px;
+  top: 50px;
   align-self: center;
-  /* transform: translateX(-100%); */
   display: flex;
   flex-direction: column !important;
   align-self: center !important;
@@ -441,9 +430,6 @@ button img {
   border-radius: 30px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 3;
-  /* opacity: 1; */
-  /* transform: translateY(-100%); */
-  /* transition: opacity 0.3s ease, transform 0.3s ease-in-out; */
   padding: 48px 40px !important;
   gap: 16px !important;
 }
