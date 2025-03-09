@@ -215,6 +215,7 @@ button img {
 
 .task-card:hover {
   transform: rotateX(0deg) rotateY(0deg) rotateZ(5deg);
+  cursor: pointer;
 }
 
 .task-badge {
@@ -228,11 +229,11 @@ button img {
 }
 
 .category-bug-fix {
-  background: #D1D1D1;
+  background: #FF4646;
 }
 
 .category-documentation {
-  background: #D1D1D1;
+  background: #FFC55C;
 }
 
 .category-technical-task {
@@ -377,16 +378,16 @@ button img {
   z-index: 4;
   position: fixed;
   top: 100px;
-  left: 50%;
-  transform: translateX(150%);
-  opacity: 0;
-  transition: transform 2s ease-in-out, opacity 2s ease-in-out;
-  animation: openOverlay 2s ease-in-out forwards;
+  align-self: center;
+  /* transform: translateX(150%); */
+  /* opacity: 0; */
+  /* transition: transform 1s ease-in-out, opacity 0.5s ease-in-out; */
+  /* animation: openOverlay 0.8s ease-in-out forwards; */
 }
 
 /* Für das Schließen */
 #addTaskOverlay.closed {
-  animation: closeOverlay 2s ease-in-out forwards;
+  /* animation: closeOverlay 2s ease-in-out forwards; */
 }
 
 #addTaskOverlay .title {
@@ -430,9 +431,9 @@ button img {
 .edit-task-overlay {
   width: 525px !important;
   position: fixed; 
-  top: 90%;
-  left: 30%;
-  transform: translateX(-100%);
+  top: 200px;
+  align-self: center;
+  /* transform: translateX(-100%); */
   display: flex;
   flex-direction: column !important;
   align-self: center !important;
@@ -441,10 +442,14 @@ button img {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 3;
   /* opacity: 1; */
-  transform: translateY(-100%);
+  /* transform: translateY(-100%); */
   /* transition: opacity 0.3s ease, transform 0.3s ease-in-out; */
   padding: 48px 40px !important;
   gap: 16px !important;
+}
+
+#overviewOverlay {
+  animation: openOverlay 0.8s ease-in-out forwards;
 }
 
 .overview-header {
