@@ -343,10 +343,7 @@ button img {
 }
 
 .overlay-active {
-  /* opacity: 1 !important; */
   z-index: 3;
-  /* animation: openOverlay 2s ease-in-out forwards; */
-  /* transform: translateX(150%); */
 }
 
 .overlay-inactive {
@@ -364,9 +361,6 @@ button img {
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: flex-end;
-  /* opacity: 1; */
-  /* transition: opacity 2s ease, transform 2s ease-in-out;
-  animation: openOverlay 2s ease-in-out forwards; */
 }
 
 #addTaskOverlay {
@@ -378,15 +372,6 @@ button img {
   position: fixed;
   top: 100px;
   align-self: center;
-  /* transform: translateX(150%); */
-  /* opacity: 0; */
-  /* transition: transform 1s ease-in-out, opacity 0.5s ease-in-out; */
-  /* animation: openOverlay 0.8s ease-in-out forwards; */
-}
-
-/* Für das Schließen */
-#addTaskOverlay.closed {
-  /* animation: closeOverlay 2s ease-in-out forwards; */
 }
 
 #addTaskOverlay .title {
@@ -432,7 +417,6 @@ button img {
   position: fixed;
   top: 200px;
   align-self: center;
-  /* transform: translateX(-100%); */
   display: flex;
   flex-direction: column !important;
   align-self: center !important;
@@ -440,9 +424,6 @@ button img {
   border-radius: 30px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 3;
-  /* opacity: 1; */
-  /* transform: translateY(-100%); */
-  /* transition: opacity 0.3s ease, transform 0.3s ease-in-out; */
   padding: 48px 40px !important;
   gap: 16px !important;
 }
@@ -697,72 +678,3 @@ button img {
   opacity: 1;
   transform: scale(1.4)
 }
-
-/* #editTaskOverlay .overview-info {
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-#editTaskOverlay .overview-info input,
-#editTaskOverlay .overview-info textarea {
-  width: 100%;
-}
-
-#editTaskOverlay .overview-info input, 
-#editTaskOverlay .overview-info textarea {
-  margin-bottom: 0;
-}
-
-.edit-task-date::-webkit-calendar-picker-indicator {
-  background-image: url("/assets/icons/add-task-calendar.svg");
-}
-
-.edit-task-priority-btns {
-  margin-top: 8px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.edit-task-priority-btns div {
-  height: 56px;
-  width: 136px;
-  padding: 16px 10px 16px 10px;
-  border: none;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: 0px 0px 4px 0px #0000001A;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  box-shadow: 0px 0px 4px 0px #0000001A;
-}
-
-.edit-task-priority-btns div:hover {
-  box-shadow: 0px 4px 4px 0px #00000040;
-  cursor: pointer;
-}
-
-* Those 3 classes are added, when button is clicked **/
-/* .prioUrgentClicked {
-  background-color: #FF3D00 !important;
-  box-shadow: none !important;
-  color: #FFFFFF;
-}
-
-.prioMediumClicked {
-  background-color: #FFA800 !important;
-  box-shadow: none !important;
-  color: #FFFFFF;
-}
-
-.prioLowClicked {
-  background-color: #7AE229 !important;
-  box-shadow: none !important;
-  color: #FFFFFF;
-} */
