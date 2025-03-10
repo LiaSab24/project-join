@@ -6,6 +6,11 @@
   scroll-behavior: smooth;
 }
 
+body,
+html {
+  overflow-x: hidden;
+}
+
 body {
   max-width: 1440px;
   font-family: 'Inter';
@@ -34,6 +39,7 @@ h3 {
 h4 {
   font-size: var(--fs-27);
 }
+
 h5{
   font-size: var(--fs-20);
   font-weight: var(--fw-700);
@@ -41,6 +47,7 @@ h5{
 
 main {
   margin-left: 232px;
+  overflow: hidden;
 } 
 
 /* costums css */
@@ -53,21 +60,27 @@ main {
       margin: 0;
   }
 }
+
 .d-none {
   display: none !important; 
 }
+
 .flex {
   display: flex;
 }
+
 .just-center {
   justify-content: center;
 }
+
 .just-space-b {
   justify-content: space-between;
 }
+
 .align-center {
   align-items: center;
 }
+
 .btn-login {
   height: 48px;
   width: 110px;
@@ -85,6 +98,7 @@ main {
     padding: 4px 0;
   }
 }
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 24px;
   overflow-y: auto 53px;
@@ -138,7 +152,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #FF7A00;
+  background-color: #D1D1D1;
   color: #FFFFFF;
   font-size: 12px !important;
 }
@@ -165,7 +179,7 @@ main {
   border-radius: 20px;
   position: relative;
   top: -300px;
-  right: -100%;
+  right: -1800px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -179,10 +193,10 @@ main {
 
 /* This is added to the success-messages, when create/edit/delete was succesfully*/
 @keyframes msgSuccesfull {
-  0%   {top: -300px; right: -100%;}
+  0%   {top: -300px; right: -1800px;}
   25%  {top: -300px; right: -800px;}
   75%  {top: -300px; right: -800px;}
-  100% {top: -300px; right: -100%;}
+  100% {top: -300px; right: -1800px;}
 }
 
 /** This class is added, when input requirement is unfulfilled**/
@@ -196,7 +210,7 @@ main {
   padding: 10px 20px;
   border-radius: var(--border-radius);
   cursor: pointer;
-  border: none;
+  border: none; 
   font-size: 14px;
   font-weight: bold;
   text-decoration: none;

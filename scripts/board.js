@@ -98,7 +98,7 @@ function displayAssignedContacts(indexTask) {
       assignedContactsContentRef.innerHTML += getBoardContactPB(indexContact);
       profileBadgeColor("boardAssignedToListPB" + indexContact, indexContact);
     }
-  }
+  } 
 }
 
 /**
@@ -188,7 +188,7 @@ function filterTasks(searchInput) {
     } else {
       filteredTasks.push(0)
     }
-  }
+  } 
 }
 
 /**
@@ -213,7 +213,7 @@ function drag(event) {
  * Handles the drop event by moving the dragged task to a new column and updating its progress.
  * 
  * @param {DragEvent} event - The drop event.
- */
+ */ 
 function drop(event) {
   event.preventDefault();
   let data = event.dataTransfer.getData("text");

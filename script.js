@@ -43,6 +43,8 @@ async function init() {
     headerUser();
     fillSubmenu();
   }
+  initializeSidebar();
+  setActiveMenuLink();
 }
 
 /**
@@ -77,7 +79,6 @@ function filArrays(joinDataJson) {
 
 /**
  * This function iterates through the contacts-array and finds the index of the contact of the current user
- * 
  */
 function userIndexInContactsArray() {
   let userMail = users[currentUser].mail;
@@ -86,10 +87,40 @@ function userIndexInContactsArray() {
   }).indexOf(userMail);
 }
 
+/**
+ * This function adjusts the "headerPbBadge" to the currentUser
+ */
 function headerUser() {
   document.getElementById("headerPbBadge").innerHTML = nameAbbreviation(indexContactUser);
   if (indexContactUser == -1) {
     document.getElementById("headerPbBadge").innerHTML = "YOU";
+  }
+}
+
+/**
+ * This function adds the "active"-class to sidebar-link of the current page
+ */
+function setActiveMenuLink() {
+  let location = window.location.href;
+  switch (location) {
+    case "http://127.0.0.1:5500/html/summary.html":
+      document.getElementById("summaryLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/add_task.html":
+      document.getElementById("addTaskLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/board.html":
+      document.getElementById("boardLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/contacts.html":
+      document.getElementById("contactsLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/privacy_policy.html":
+      document.getElementById("privacyPolicyLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/legal_notice.html":
+      document.getElementById("LegalNoticeLink").classList.add("active");
+      break;
   }
 }
 
@@ -199,19 +230,6 @@ function nameAbbreviation(indexContact) {
 }
 
 /**
- * This function hides the address book entrie of all users
- * 
- * @param {string} contentRef - the repetetive part of the id that is used to find the element to remove
- */
-function hideAllUsers(contentRef) {
-  for (let indexUser = 0; indexUser < users.length - 1; indexUser++) {
-    let usersInContactsIds = contacts.findIndex(index => index.name === users[indexUser].name).toString();
-    let usersAddressBookEntrie = document.getElementById(contentRef + usersInContactsIds);
-    usersAddressBookEntrie.remove();
-  }
-}
-
-/**
  * This function shows the 'succesfully created/edited/deleted'-message after adding/editing/deleting a contact or task was succesfull
  * 
  * @param {number} msgId - the id of the message that should be shown
@@ -233,21 +251,22 @@ async function successfullMsg(msgId) {
 function checkFilledInput(id) {
   let contentRef = document.getElementById(id);
   let unfulfilledRequirement = "requirement-unfulfilled";
-  setTimeout(() => {
-    if (id == "addTaskCategory") {
-      if (contentRef.placeholder == "Select task category") {
-        contentRef.classList.add(unfulfilledRequirement);
-      } else {
-        contentRef.classList.remove(unfulfilledRequirement);
-      }
+  if (id == "addTaskCategory") {
+    if (contentRef.placeholder == "Select task category") {
+      contentRef.classList.add(unfulfilledRequirement);
     } else {
-      if (contentRef.value == "") {
-        contentRef.classList.add(unfulfilledRequirement);
-      } else {
-        contentRef.classList.remove(unfulfilledRequirement);
-      }
+      contentRef.classList.remove(unfulfilledRequirement);
     }
-  }, 100);
+  } else {
+    if (contentRef.value == "") {
+      contentRef.classList.add(unfulfilledRequirement);
+      setTimeout(function () {
+        contentRef.classList.remove(unfulfilledRequirement);
+      }, 2000);
+    } else {
+      contentRef.classList.remove(unfulfilledRequirement);
+    }
+  }
 }
 
 /**
@@ -278,7 +297,7 @@ function fillSubmenu() {
  */
 function redirectToHelp(location) {
   localStorage.setItem("location", JSON.stringify(location));
-  window.location.href="./help.html"
+  window.location.href = "./help.html"
 }
 
 /**
@@ -286,6 +305,52 @@ function redirectToHelp(location) {
  */
 function redirectToPreviousPage() {
   previousLocation = JSON.parse(localStorage.getItem("location"));
-  console.log(previousLocation);
   window.location.href = previousLocation;
+}
+
+/**
+ * This function hides the entrie of all users except the current one
+ * 
+ * @param {string} contentRef - the repetetive part of the id that is used to find the element to remove
+ */
+function hideAllUsers(contentRef) {
+  for (let indexUser = 0; indexUser < users.length - 1; indexUser++) {
+    let usersInContactsIds = contacts.findIndex(index => index.name === users[indexUser].name).toString();
+    let usersEntrie = document.getElementById(contentRef + usersInContactsIds);
+    if (usersInContactsIds != indexContactUser) {
+      usersEntrie.remove();
+    }
+  }
+}
+
+/**
+ * This function adds the addition " (You)" to the currentUser-address book entrie
+ * 
+ * @param {string} contentRef - the id of the element, that should be changed
+ */
+function adjustUserContact(contentRef) {
+  if (indexContactUser !== -1) {
+    document.getElementById(contentRef + indexContactUser).innerHTML += " (You)";
+  }
+}
+
+function initializeSidebar() {
+  const menuLinks = document.querySelectorAll('.menu-link');
+  const navLinks = document.querySelectorAll('.nav-link');
+  menuLinks.forEach(link => {
+    link.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
+  navLinks.forEach(link => {
+    link.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
 }

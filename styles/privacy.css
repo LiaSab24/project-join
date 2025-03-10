@@ -1,9 +1,12 @@
 .content {
   padding: 16px;
 }
+
 h4 {
   padding-top: 16px;
 }
-p, li {
+
+p,
+li {
   margin-bottom: 8px;
 }

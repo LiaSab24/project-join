@@ -77,7 +77,7 @@ function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
                 <div class="subtask-list-icons-seperator"></div>
                 <img onclick="confirmEditSubtask(${indexSubtask})" class="subtask-icon" src="/assets/icons/add-task-subtask-submit.svg">
             </div>`
-}
+} 
 
 /**
  * This template includes a button to close board's overlays
@@ -160,7 +160,7 @@ function getTaskOverviewOverlayTemplate(indexTask) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function getBoardOverviewContactPB(indexContact) {
-    return `<div class="overview-contact-assigned">
+    return `<div id="overviewContact${indexContact}" class="overview-contact-assigned">
                 <div id="overviewAssignedToListPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
                 <p>${contacts[indexContact].name}</p>
             </div>`
@@ -202,7 +202,7 @@ function getAddressbookContactTemplate(indexContact) {
     return `<div id="id${indexContact}" class="contact" onclick="contactClicked(${indexContact})">
                 <div id="profileBadge${indexContact}" class="contact-profile-badge">${nameAbbreviation(indexContact)}</div>
                 <p>
-                    <span class="contact-name">${contacts[indexContact].name}</span>
+                    <span id="idName${indexContact}" class="contact-name">${contacts[indexContact].name}</span>
                     <span class="contact-mail">${contacts[indexContact].mail}</span>
                 </p>
             </div>`
@@ -217,13 +217,13 @@ function getFocusedContactTemplate(indexContact) {
     return `<div class="focused-profile-overview">
                 <div id="focusedProfileBadge" class="focused-profile-badge">${nameAbbreviation(indexContact)}</div>
                     <div class="focused-profile-account">
-                        <span class="focused-contact-name">${contacts[indexContact].name}</span>
+                        <span id="idFocusedName${indexContact}" class="focused-contact-name">${contacts[indexContact].name}</span>
                         <div>
                             <button onclick="toggleContactsOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
                              <div id="contactsEditIcon"></div>
                                 <span>Edit</span>
                             </button>
-                            <button onclick="deleteContact(${indexContact})" class="focused-contact-btns">
+                            <button id="deleteBtnContacts" onclick="deleteContact(${indexContact})" class="focused-contact-btns">
                                 <div id="contactsDeleteIcon"></div>
                                 <span>Delete</span>
                             </button>

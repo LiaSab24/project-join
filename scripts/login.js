@@ -10,7 +10,6 @@ async function initLogIn() {
     clearLogInForm();
     document.getElementById("alert").classList.add("d-none");
     currentUser = -1;
-    //console.log(users);
 }
 
 /**
@@ -56,14 +55,12 @@ function checkUserDataExists() {
             userMailIndex.push(indexUser)
         }
     }
-    //console.log(userMailIndex)
     for (let indexUser = 0; indexUser < users.length - 1; indexUser++) {
         let password = users[indexUser].password;
         if (password === userPassword) {
             userPasswordIndex.push(indexUser)
         }
     }
-    //console.log(userPasswordIndex)
     return compareMailPassword();
 }
 
