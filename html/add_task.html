@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Add Task</title>
-    <link rel="icon" type="image/x-icon" href="./assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)" />
-    <link rel="icon" type="image/x-icon" href="./assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/x-icon" href="../assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/x-icon" href="../assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)" />
 
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../styles/root.css">
@@ -60,15 +60,15 @@
                 <div id="addTaskPriorities">
                     <div id="prioUrgent" onclick="priorityBtnBg('prioUrgent')">
                         Urgent
-                        <img id="prioUrgentImg" src="./assets/icons/prioUrgent.svg">
+                        <img id="prioUrgentImg" src="../assets/icons/prioUrgent.svg">
                     </div>
                     <div id="prioMedium" onclick="priorityBtnBg('prioMedium')">
                         Medium
-                        <img id="prioMediumImg" src="./assets/icons/prioMedium.svg">
+                        <img id="prioMediumImg" src="../assets/icons/prioMedium.svg">
                     </div>
                     <div id="prioLow" onclick="priorityBtnBg('prioLow')">
                         Low
-                        <img id="prioLowImg" src="./assets/icons/prioLow.svg">
+                        <img id="prioLowImg" src="../assets/icons/prioLow.svg">
                     </div>
                 </div>
 
@@ -87,12 +87,12 @@
                 <label for="addTaskSubtask">Subtasks</label>
                 <input onfocus="changeSubtaskIcons()" onfocusout="changeSubtaskIcons()" type="text" id="addTaskSubtask"
                     placeholder="Add new subtask">
-                <img id="subtaskIconAdd" class="subtask-icon" src="./assets/icons/add-task-subtask-add.svg">
+                <img id="subtaskIconAdd" class="subtask-icon" src="../assets/icons/add-task-subtask-add.svg">
                 <div id="subtaskIconsFocus" class="d-none">
                     <img onclick="clearSubtasksInput()" class="subtask-icon"
-                        src="./assets/icons/add-task-subtask-reject.svg">
+                        src="../assets/icons/add-task-subtask-reject.svg">
                     <img onclick="addSubtaskToList()" class="subtask-icon"
-                        src="./assets/icons/add-task-subtask-submit.svg">
+                        src="../assets/icons/add-task-subtask-submit.svg">
                 </div>
                 <div class="subtask-scrollbar"> 
                     <ul id="addTaskSubtaskList"></ul>
@@ -113,7 +113,7 @@
                 </button>
                 <button onclick="addTask()" class="create-btn progress-toDo" id="addTaskCreate">
                     Create Task
-                    <img src="./assets/icons/create-btn.svg">
+                    <img src="../assets/icons/create-btn.svg">
                 </button>
             </div>
         </div>
