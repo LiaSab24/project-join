@@ -68,6 +68,7 @@ select {
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
+    cursor: pointer;
 }
 
 input:disabled,
@@ -366,6 +367,7 @@ select {
     align-items: center;
     justify-content: space-between;
     word-break: break-all;
+    cursor: pointer;
 }
 
 .subtask:hover {
