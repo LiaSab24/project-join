@@ -276,7 +276,6 @@ function checkFilledInput(id) {
    */
   function redirectToPreviousPage() {
     previousLocation = JSON.parse(localStorage.getItem("location"));
-    console.log(previousLocation);
     window.location.href = previousLocation;
   }
 

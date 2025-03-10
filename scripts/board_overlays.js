@@ -113,7 +113,7 @@ async function adjustBoardEditTaskOverlay(addTaskOverlayContent) {
 * This function opens the overviewOverlay for the clicked task, which gives an overview over the task-information
 * 
 * @param {number} indexTask - the index of the task in the tasks-array
-*/
+*/ 
 function openTaskOverview(indexTask) {
     openBoardBgOverlay();
     let overlayContentRef = document.getElementById("overviewOverlay");

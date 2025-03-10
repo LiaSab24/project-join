@@ -213,7 +213,7 @@ function drag(event) {
  * Handles the drop event by moving the dragged task to a new column and updating its progress.
  * 
  * @param {DragEvent} event - The drop event.
- */
+ */ 
 function drop(event) {
   event.preventDefault();
   let data = event.dataTransfer.getData("text");
