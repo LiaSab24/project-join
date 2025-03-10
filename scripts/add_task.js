@@ -390,6 +390,9 @@ function getAssignedContacts() {
     return assignedContactsArray;
 }
 
+/**
+ * This function returns the chosen priority for a task
+ */
 function getTaskPriority() {
     let clickedPriority = document.querySelector(".clicked");
     if (clickedPriority == null) {

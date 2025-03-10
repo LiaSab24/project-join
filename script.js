@@ -300,5 +300,7 @@ function hideAllUsers(contentRef) {
  * @param {string} contentRef - the id of the element, that should be changed
  */
 function adjustUserContact(contentRef) {
-  document.getElementById(contentRef + indexContactUser).innerHTML += " (You)";
+  if (indexContactUser !== -1) {
+    document.getElementById(contentRef + indexContactUser).innerHTML += " (You)";
+  }
 }
