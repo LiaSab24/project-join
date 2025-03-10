@@ -188,7 +188,7 @@ function filterTasks(searchInput) {
     } else {
       filteredTasks.push(0)
     }
-  }
+  } 
 }
 
 /**

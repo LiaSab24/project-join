@@ -98,6 +98,33 @@ function headerUser() {
 }
 
 /**
+ * This function adds the "active"-class to sidebar-link of the current page
+ */
+function setActiveMenuLink() {
+  let location = window.location.href;
+  switch (location) {
+    case "http://127.0.0.1:5500/html/summary.html":
+      document.getElementById("summaryLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/add_task.html":
+      document.getElementById("addTaskLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/board.html":
+      document.getElementById("boardLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/contacts.html":
+      document.getElementById("contactsLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/privacy_policy.html":
+      document.getElementById("privacyPolicyLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/legal_notice.html":
+      document.getElementById("LegalNoticeLink").classList.add("active");
+      break;
+  }
+}
+
+/**
  * This function is used for the addUser()-, addTask()- and addContact()-function to transfer the added data to firebase
  * 
  * @param {string} path - the path, where the data should be added in firebase (users, tasks, contacts)
@@ -326,29 +353,4 @@ function initializeSidebar() {
       }
     });
   });
-}
-
-function setActiveMenuLink() {
-  let location = window.location.href;
-  console.log(location);
-  switch (location) {
-    case "http://127.0.0.1:5500/html/summary.html":
-      document.getElementById("summaryLink").classList.add("active");
-      break;
-    case "http://127.0.0.1:5500/html/add_task.html":
-      document.getElementById("addTaskLink").classList.add("active");
-      break;
-    case "http://127.0.0.1:5500/html/board.html":
-      document.getElementById("boardLink").classList.add("active");
-      break;
-    case "http://127.0.0.1:5500/html/contacts.html":
-      document.getElementById("contactsLink").classList.add("active");
-      break;
-    case "http://127.0.0.1:5500/html/privacy_policy.html":
-      document.getElementById("privacyPolicyLink").classList.add("active");
-      break;
-    case "http://127.0.0.1:5500/html/legal_notice.html":
-      document.getElementById("LegalNoticeLink").classList.add("active");
-      break;
-  }
 }

@@ -175,18 +175,55 @@ function updateFocusedContact(indexContact) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 async function saveEditContact(indexContact) {
-    let contactName = document.getElementById("addContactName").value;
-    let contactMail = document.getElementById("addContactMail").value;
-    let contactPhone = document.getElementById("addContactPhone").value;
-    let contactColor = contacts[indexContact].color;
-    if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
-        await putData("/contacts/" + contacts[indexContact].url, {
-            "name": contactName,
-            "mail": contactMail,
-            "phone": contactPhone,
-            "color": contactColor
+    if (indexContact !== indexContactUser) {
+        let contactName = document.getElementById("addContactName").value;
+        let contactMail = document.getElementById("addContactMail").value;
+        let contactPhone = document.getElementById("addContactPhone").value;
+        let contactColor = contacts[indexContact].color;
+        if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
+            await putData("/contacts/" + contacts[indexContact].url, {
+                "name": contactName,
+                "mail": contactMail,
+                "phone": contactPhone,
+                "color": contactColor
+            });
+            contactClicked(indexContact);
+            successfullMsg("contactSuccesfullyEdited");
+            toggleContactsOverlay();
+            initContacts();
+        } else {
+            checkFilledInput("addContactName");
+            checkFilledInput("addContactMail");
+            checkFilledInput("addContactPhone")
+        }
+    } else {
+        saveEditContactUser()
+    }
+}
+
+async function saveEditContactUser() {
+    let userName = document.getElementById("addContactName").value;
+    let userMail = document.getElementById("addContactMail").value;
+    let userPhone = document.getElementById("addContactPhone").value;
+    let userPassword = users[currentUser].password;
+    let userColor = contacts[indexContactUser].color;
+    if (userName !== "" && userMail !== "" && userPhone !== "") {
+        setTimeout(function () {
+            putData("/users/" + users[currentUser].url, {
+                "name": userName,
+                "mail": userMail,
+                "password": userPassword
+            });
         });
-        contactClicked(indexContact);
+        setTimeout(function () {
+            putData("/contacts/" + contacts[indexContactUser].url, {
+                "name": userName,
+                "mail": userMail,
+                "phone": userPhone,
+                "color": userColor
+            });
+        });
+        contactClicked(indexContactUser);
         successfullMsg("contactSuccesfullyEdited");
         toggleContactsOverlay();
         initContacts();
