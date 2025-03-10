@@ -8,16 +8,20 @@
   padding: 64px 0;
   flex-direction: column;
 }
+
 .sidebar-logo {
   width: 100.03px;
   height: 121.97px;
 }
+
 .sidebar-menu {
   height: 229px;
   width: 100%;
   flex-direction: column;
+
   ul {
     list-style: none;
+
     li {
       display: flex;
       align-items: center;
@@ -28,35 +32,44 @@
 .list {
   width: 100%;
   padding: 8px 52px;
+
   img {
     margin-right: 8px;
     width: 30px;
     height: 30px;
   }
+
   a {
     color: var(--clr-lighterGray);
     text-decoration: none;
   }
+
   &:hover {
     background-color: var(--clr-click);
   }
 }
+
 .sidebar-notice {
   width: fit-content;
+
   ul {
     list-style: none;
+
     li {
       margin-bottom: 8px;
+
       a {
         color: var(--clr-lightGray);
         text-decoration: none;
       }
     }
+
     a:hover {
-        color:var(--clr-white);
+      color: var(--clr-white);
     }
   }
 }
+
 /* Responsive Design for Sidebar as Footer */
 @media (max-width: 900px) {
   .sidebar-wrapper {
@@ -67,21 +80,26 @@
     height: 80px;
     padding: 16px;
   }
+
   .sidebar-logo {
     display: none;
   }
+
   .sidebar-menu {
     width: 100%;
     height: auto;
+
     ul {
       width: 100%;
       display: flex;
       justify-content: space-around;
+
       .list {
         flex-direction: column;
         align-items: center;
         margin-bottom: 0;
         padding: 0;
+
         img {
           margin-right: 0;
           margin-bottom: 4px;
@@ -89,15 +107,18 @@
       }
     }
   }
+
   .sidebar-menu li {
     flex-direction: column;
     align-items: center;
     margin-bottom: 0;
+
     img {
       margin-right: 0;
       margin-bottom: 4px;
     }
-  }  
+  }
+
   .sidebar-notice {
     display: none;
   }

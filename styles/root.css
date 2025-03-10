@@ -14,6 +14,7 @@
   --fs-20-16: clamp(1rem, 0.867rem + 0.4255vw, 1.25rem);          /* D20px > M16px */
   --fs-20-14: clamp(0.875rem, 0.6755rem + 0.6383vw, 1.25rem);     /* D20px > M14px */
   --fs-16-14: clamp(0.875rem, 0.8085rem + 0.2128vw, 1rem);        /* D16px > M14px */
+  
   /* font-weight */
   --fw-400: 400;
   --fw-500: 500;
