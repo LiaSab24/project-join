@@ -36,11 +36,11 @@ function clearAssignedTo() {
  */
 function clearPriorityBtns() {
     document.getElementById("prioUrgent").classList.remove("prioUrgentClicked", "clicked");
-    document.getElementById("prioUrgentImg").src = "/assets/icons/prioUrgent.svg";
+    document.getElementById("prioUrgentImg").src = "../assets/icons/prioUrgent.svg";
     document.getElementById("prioMedium").classList.remove("prioMediumClicked", "clicked");
-    document.getElementById("prioMediumImg").src = "/assets/icons/prioMedium.svg";
+    document.getElementById("prioMediumImg").src = "../assets/icons/prioMedium.svg";
     document.getElementById("prioLow").classList.remove("prioLowClicked", "clicked");
-    document.getElementById("prioLowImg").src = "/assets/icons/prioLow.svg";
+    document.getElementById("prioLowImg").src = "../assets/icons/prioLow.svg";
 }
 
 /**
@@ -220,7 +220,7 @@ function priorityBtnBg(priority) {
     let clickedPrioBtnImg = document.getElementById(priority + "Img");
     clickedPrioBtn.classList.add(priority + "Clicked");
     clickedPrioBtn.classList.add("clicked");
-    clickedPrioBtnImg.src = "/assets/icons/" + priority + "-clicked.svg";
+    clickedPrioBtnImg.src = "../assets/icons/" + priority + "-clicked.svg";
 }
 
 /**

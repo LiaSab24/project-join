@@ -76,7 +76,7 @@ function adjustOverlayToAdd() {
     document.getElementById("overlayTitleH1").innerHTML = "Add contact";
     document.getElementById("overlayTitleP").innerHTML = "Tasks are better with a team!";
     document.getElementById("overlayProfileBadge").style.backgroundColor = "#D1D1D1";
-    document.getElementById("overlayProfileBadge").innerHTML = "<img src='/assets/icons/contacts-overlay-profile-badge-anonymous.svg'>";
+    document.getElementById("overlayProfileBadge").innerHTML = "<img src='../assets/icons/contacts-overlay-profile-badge-anonymous.svg'>";
     document.getElementById("contactsSubmitBtns").innerHTML = getContactsOverlayAddBtnsTemplate();
 }
 

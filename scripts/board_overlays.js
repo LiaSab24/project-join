@@ -197,7 +197,7 @@ function fillEditTaskInputs(indexTask) {
     if (tasks[indexTask].priority !== "") {
         document.getElementById("prio" + tasks[indexTask].priority).classList.add("prio" + tasks[indexTask].priority + "Clicked");
         document.getElementById("prio" + tasks[indexTask].priority).classList.add("clicked");
-        document.getElementById("prio" + tasks[indexTask].priority + "Img").src = "/assets/icons/prio" + tasks[indexTask].priority + "-clicked.svg";
+        document.getElementById("prio" + tasks[indexTask].priority + "Img").src = "../assets/icons/prio" + tasks[indexTask].priority + "-clicked.svg";
     }
     document.getElementById("addTaskCategory").placeholder = tasks[indexTask].category;
     fillEditTaskFormLists(indexTask);
