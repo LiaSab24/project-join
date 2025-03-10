@@ -505,6 +505,7 @@ button img {
   flex-direction: column;
   gap: 10px;
   margin-top: -8px;
+  cursor: pointer;
 }
 
 .overview-contact-assigned,
