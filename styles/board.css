@@ -374,6 +374,14 @@ button img {
   align-self: center;
 }
 
+#animation {
+  animation: openOverlay 0.8s ease-in-out forwards;
+}
+
+#editTaskOverlay {
+  animation: none;
+}
+
 #addTaskOverlay .title {
   margin-top: 64px;
   margin-right: 32px;

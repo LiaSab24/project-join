@@ -334,6 +334,9 @@ function adjustUserContact(contentRef) {
   }
 }
 
+/**
+ * This function lets the user navigate throught the sidbar without needing to click
+ */
 function initializeSidebar() {
   const menuLinks = document.querySelectorAll('.menu-link');
   const navLinks = document.querySelectorAll('.nav-link');
