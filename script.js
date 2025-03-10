@@ -43,6 +43,8 @@ async function init() {
     headerUser();
     fillSubmenu();
   }
+  initializeSidebar();
+  setActiveMenuLink();
 }
 
 /**
@@ -213,7 +215,7 @@ async function successfullMsg(msgId) {
     successAnimation.style.animationName = "";
     successAnimation.style.animationDuration = "";
     init();
-  }, 1600); 
+  }, 1600);
 }
 
 /**
@@ -302,5 +304,51 @@ function hideAllUsers(contentRef) {
 function adjustUserContact(contentRef) {
   if (indexContactUser !== -1) {
     document.getElementById(contentRef + indexContactUser).innerHTML += " (You)";
+  }
+}
+
+function initializeSidebar() {
+  const menuLinks = document.querySelectorAll('.menu-link');
+  const navLinks = document.querySelectorAll('.nav-link');
+  menuLinks.forEach(link => {
+    link.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
+  navLinks.forEach(link => {
+    link.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
+}
+
+function setActiveMenuLink() {
+  let location = window.location.href;
+  console.log(location);
+  switch (location) {
+    case "http://127.0.0.1:5500/html/summary.html":
+      document.getElementById("summaryLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/add_task.html":
+      document.getElementById("addTaskLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/board.html":
+      document.getElementById("boardLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/contacts.html":
+      document.getElementById("contactsLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/privacy_policy.html":
+      document.getElementById("privacyPolicyLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/legal_notice.html":
+      document.getElementById("LegalNoticeLink").classList.add("active");
+      break;
   }
 }

@@ -194,7 +194,7 @@ function fillEditTaskInputs(indexTask) {
     document.getElementById("addTaskTitle").value = tasks[indexTask].title;
     document.getElementById("addTaskDescription").value = tasks[indexTask].description;
     document.getElementById("addTaskDate").value = tasks[indexTask].dueDate;
-    if (tasks[indexTask].priority !== undefined) {
+    if (tasks[indexTask].priority !== "") {
         document.getElementById("prio" + tasks[indexTask].priority).classList.add("prio" + tasks[indexTask].priority + "Clicked");
         document.getElementById("prio" + tasks[indexTask].priority).classList.add("clicked");
         document.getElementById("prio" + tasks[indexTask].priority + "Img").src = "/assets/icons/prio" + tasks[indexTask].priority + "-clicked.svg";
