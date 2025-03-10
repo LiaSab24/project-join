@@ -43,6 +43,8 @@ async function init() {
     headerUser();
     fillSubmenu();
   }
+  initializeSidebar();
+  setActiveMenuLink();
 }
 
 /**
@@ -92,6 +94,33 @@ function headerUser() {
   document.getElementById("headerPbBadge").innerHTML = nameAbbreviation(indexContactUser);
   if (indexContactUser == -1) {
     document.getElementById("headerPbBadge").innerHTML = "YOU";
+  }
+}
+
+/**
+ * This function adds the "active"-class to sidebar-link of the current page
+ */
+function setActiveMenuLink() {
+  let location = window.location.href;
+  switch (location) {
+    case "http://127.0.0.1:5500/html/summary.html":
+      document.getElementById("summaryLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/add_task.html":
+      document.getElementById("addTaskLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/board.html":
+      document.getElementById("boardLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/contacts.html":
+      document.getElementById("contactsLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/privacy_policy.html":
+      document.getElementById("privacyPolicyLink").classList.add("active");
+      break;
+    case "http://127.0.0.1:5500/html/legal_notice.html":
+      document.getElementById("LegalNoticeLink").classList.add("active");
+      break;
   }
 }
 
@@ -300,5 +329,31 @@ function hideAllUsers(contentRef) {
  * @param {string} contentRef - the id of the element, that should be changed
  */
 function adjustUserContact(contentRef) {
-  document.getElementById(contentRef + indexContactUser).innerHTML += " (You)";
+  if (indexContactUser !== -1) {
+    document.getElementById(contentRef + indexContactUser).innerHTML += " (You)";
+  }
+}
+
+/**
+ * This function lets the user navigate throught the sidbar without needing to click
+ */
+function initializeSidebar() {
+  const menuLinks = document.querySelectorAll('.menu-link');
+  const navLinks = document.querySelectorAll('.nav-link');
+  menuLinks.forEach(link => {
+    link.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
+  navLinks.forEach(link => {
+    link.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
 }

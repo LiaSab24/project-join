@@ -77,7 +77,7 @@ function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
                 <div class="subtask-list-icons-seperator"></div>
                 <img onclick="confirmEditSubtask(${indexSubtask})" class="subtask-icon" src="/assets/icons/add-task-subtask-submit.svg">
             </div>`
-}
+} 
 
 /**
  * This template includes a button to close board's overlays

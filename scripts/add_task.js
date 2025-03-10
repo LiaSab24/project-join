@@ -19,8 +19,8 @@ async function clearTaskForm() {
     clearPriorityBtns();
     document.getElementById("addTaskCategory").placeholder = "Select task category";
     document.getElementById("addTaskSubtask").value = "";
-    document.getElementById("addTaskSubtaskList").innerHTML = ""; 
-} 
+    document.getElementById("addTaskSubtaskList").innerHTML = "";
+}
 
 /**
  * This function is part of the clearTaskForm-function and resets the select-input and list for the assigned contacts
@@ -29,7 +29,7 @@ function clearAssignedTo() {
     document.getElementById("addTaskDropdownContacts").classList.add("d-none");
     document.getElementById("addTaskDropdownContacts").innerHTML = "";
     document.getElementById("addTaskAssignedToList").innerHTML = "";
-} 
+}
 
 /**
  * This function is part of the clearTaskForm-function and resets the priority-buttons
@@ -98,7 +98,9 @@ function fillAssignedToDropDownMenu() {
         profileBadgeColor("assignedToPB" + indexContact, indexContact);
     }
     hideAllUsers("assignedToOption");
-    document.getElementById("assignedToOption"+ indexContactUser).remove()
+    if (document.getElementById("assignedToOption" + indexContactUser)) {
+        document.getElementById("assignedToOption" + indexContactUser).remove();
+    }
 }
 
 /**
@@ -388,6 +390,9 @@ function getAssignedContacts() {
     return assignedContactsArray;
 }
 
+/**
+ * This function returns the chosen priority for a task
+ */
 function getTaskPriority() {
     let clickedPriority = document.querySelector(".clicked");
     if (clickedPriority == null) {
