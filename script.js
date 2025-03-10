@@ -77,7 +77,6 @@ function filArrays(joinDataJson) {
 
 /**
  * This function iterates through the contacts-array and finds the index of the contact of the current user
- * 
  */
 function userIndexInContactsArray() {
   let userMail = users[currentUser].mail;
@@ -86,6 +85,9 @@ function userIndexInContactsArray() {
   }).indexOf(userMail);
 }
 
+/**
+ * This function adjusts the "headerPbBadge" to the currentUser
+ */
 function headerUser() {
   document.getElementById("headerPbBadge").innerHTML = nameAbbreviation(indexContactUser);
   if (indexContactUser == -1) {
@@ -199,19 +201,6 @@ function nameAbbreviation(indexContact) {
 }
 
 /**
- * This function hides the address book entrie of all users
- * 
- * @param {string} contentRef - the repetetive part of the id that is used to find the element to remove
- */
-function hideAllUsers(contentRef) {
-  for (let indexUser = 0; indexUser < users.length - 1; indexUser++) {
-    let usersInContactsIds = contacts.findIndex(index => index.name === users[indexUser].name).toString();
-    let usersAddressBookEntrie = document.getElementById(contentRef + usersInContactsIds);
-    usersAddressBookEntrie.remove();
-  }
-}
-
-/**
  * This function shows the 'succesfully created/edited/deleted'-message after adding/editing/deleting a contact or task was succesfull
  * 
  * @param {number} msgId - the id of the message that should be shown
@@ -278,7 +267,7 @@ function fillSubmenu() {
  */
 function redirectToHelp(location) {
   localStorage.setItem("location", JSON.stringify(location));
-  window.location.href="./help.html"
+  window.location.href = "./help.html"
 }
 
 /**
@@ -288,4 +277,28 @@ function redirectToPreviousPage() {
   previousLocation = JSON.parse(localStorage.getItem("location"));
   console.log(previousLocation);
   window.location.href = previousLocation;
+}
+
+/**
+ * This function hides the entrie of all users except the current one
+ * 
+ * @param {string} contentRef - the repetetive part of the id that is used to find the element to remove
+ */
+function hideAllUsers(contentRef) {
+  for (let indexUser = 0; indexUser < users.length - 1; indexUser++) {
+    let usersInContactsIds = contacts.findIndex(index => index.name === users[indexUser].name).toString();
+    let usersEntrie = document.getElementById(contentRef + usersInContactsIds);
+    if (usersInContactsIds != indexContactUser) {
+      usersEntrie.remove();
+    }
+  }
+}
+
+/**
+ * This function adds the addition " (You)" to the currentUser-address book entrie
+ * 
+ * @param {string} contentRef - the id of the element, that should be changed
+ */
+function adjustUserContact(contentRef) {
+  document.getElementById(contentRef + indexContactUser).innerHTML += " (You)";
 }

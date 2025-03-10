@@ -8,6 +8,7 @@ async function initContacts() {
     renderAddressBook();
     clearActiveContacts();
     hideAllUsers("id");
+    adjustUserContact("idName");
     hideNotUsedLetters();
 }
 
@@ -20,7 +21,7 @@ function renderAddressBook() {
     }
     renderContacts();
 }
- 
+
 /**
  * This function extracts the first letter of each contacts name and adds the contact to the corresponding letter (with a template)
  * After that, the contacts profile-badge get its corresponding color
@@ -161,7 +162,11 @@ function updateFocusedContact(indexContact) {
     setTimeout(() => {
         focusedContactContent.innerHTML = getFocusedContactTemplate(indexContact);
         profileBadgeColor("focusedProfileBadge", indexContact);
-    }, 800)
+        if (indexContact == indexContactUser) {
+            adjustUserContact("idFocusedName");
+            document.getElementById("deleteBtnContacts").classList.add("d-none");
+        }
+    }, 250)
 }
 
 /**
@@ -201,6 +206,6 @@ async function deleteContact(indexContact) {
     console.log("/contacts/" + contacts[indexContact].url)
     await deleteData("/contacts/" + contacts[indexContact].url);
     successfullMsg("contactSuccesfullyDeleted");
-    document.getElementById("focusedContactInformation").innerHTML="";
+    document.getElementById("focusedContactInformation").innerHTML = "";
     initContacts();
-}
+} 

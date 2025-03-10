@@ -124,6 +124,9 @@ function openTaskOverview(indexTask) {
         document.getElementById("prioOverview" + indexTask).src = "";
     }
     fillTaskOverviewLists(indexTask);
+    if (document.getElementById("overviewContact" + indexContactUser)) {
+        adjustUserContact("overviewContact")
+    }
 }
 
 /**

@@ -98,6 +98,7 @@ function fillAssignedToDropDownMenu() {
         profileBadgeColor("assignedToPB" + indexContact, indexContact);
     }
     hideAllUsers("assignedToOption");
+    document.getElementById("assignedToOption"+ indexContactUser).remove()
 }
 
 /**
