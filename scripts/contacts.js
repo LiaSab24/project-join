@@ -201,6 +201,9 @@ async function saveEditContact(indexContact) {
     }
 }
 
+/**
+ * This function reads out the data of the add-contact-form for the edit-overlay and sends it to firebase to replace the previous data (for users and contacts)
+ */
 async function saveEditContactUser() {
     let userName = document.getElementById("addContactName").value;
     let userMail = document.getElementById("addContactMail").value;

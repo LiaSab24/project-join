@@ -275,6 +275,9 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
             </button>`
 }
 
+/**
+ * This template fills the submenu with the necessary links
+ */
 function getSubmenuTemplate() {
     return `<p><a href="../html/legal_notice.html">Legal Notice</a></p>
             <p><a href="../html/privacy_policy.html">Privacy Policy</a></p>
