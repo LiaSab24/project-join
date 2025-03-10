@@ -222,83 +222,84 @@ async function successfullMsg(msgId) {
 function checkFilledInput(id) {
   let contentRef = document.getElementById(id);
   let unfulfilledRequirement = "requirement-unfulfilled";
-  setTimeout(() => {
-    if (id == "addTaskCategory") {
-      if (contentRef.placeholder == "Select task category") {
-        contentRef.classList.add(unfulfilledRequirement);
-      } else {
-        contentRef.classList.remove(unfulfilledRequirement);
-      }
+  if (id == "addTaskCategory") {
+    if (contentRef.placeholder == "Select task category") {
+      contentRef.classList.add(unfulfilledRequirement);
     } else {
-      if (contentRef.value == "") {
-        contentRef.classList.add(unfulfilledRequirement);
-      } else {
+      contentRef.classList.remove(unfulfilledRequirement);
+    }
+  } else {
+    if (contentRef.value == "") {
+      contentRef.classList.add(unfulfilledRequirement);
+      setTimeout(function () {
         contentRef.classList.remove(unfulfilledRequirement);
+      }, 2000);
+    } else {
+      contentRef.classList.remove(unfulfilledRequirement);
+    }
+  }
+}
+
+  /**
+   * This function toggles the visibilty of the submenu (and its transparent background-overlay) onclick
+   */
+  function toggleSubmenu() {
+    document.getElementById("submenu").classList.toggle('d-none');
+    document.querySelector(".submenu-overlay").classList.toggle("d-none");
+  }
+
+  /**
+   * Adjusts the submenu based on the window size.
+   * Adds a help element if the width is less than or equal to 768px.
+   */
+  function fillSubmenu() {
+    submenuContentRef = document.getElementById("submenu");
+    submenuContentRef.innerHTML = "";
+    if (window.innerWidth <= 768) {
+      submenuContentRef.innerHTML = `<p><a href="./help.html">Help</a></p>`;
+    }
+    submenuContentRef.innerHTML += getSubmenuTemplate();
+  }
+
+  /**
+   * This function redirects the user to the help.html-page and saves the link of the previous visited page in the local storage
+   * 
+   * @param {url} location - the url of the previous page
+   */
+  function redirectToHelp(location) {
+    localStorage.setItem("location", JSON.stringify(location));
+    window.location.href = "./help.html"
+  }
+
+  /**
+   * This function gets the link of the previous page from the local storage and redirects the user to that page
+   */
+  function redirectToPreviousPage() {
+    previousLocation = JSON.parse(localStorage.getItem("location"));
+    console.log(previousLocation);
+    window.location.href = previousLocation;
+  }
+
+  /**
+   * This function hides the entrie of all users except the current one
+   * 
+   * @param {string} contentRef - the repetetive part of the id that is used to find the element to remove
+   */
+  function hideAllUsers(contentRef) {
+    for (let indexUser = 0; indexUser < users.length - 1; indexUser++) {
+      let usersInContactsIds = contacts.findIndex(index => index.name === users[indexUser].name).toString();
+      let usersEntrie = document.getElementById(contentRef + usersInContactsIds);
+      if (usersInContactsIds != indexContactUser) {
+        usersEntrie.remove();
       }
     }
-  }, 100);
-}
-
-/**
- * This function toggles the visibilty of the submenu (and its transparent background-overlay) onclick
- */
-function toggleSubmenu() {
-  document.getElementById("submenu").classList.toggle('d-none');
-  document.querySelector(".submenu-overlay").classList.toggle("d-none");
-}
-
-/**
- * Adjusts the submenu based on the window size.
- * Adds a help element if the width is less than or equal to 768px.
- */
-function fillSubmenu() {
-  submenuContentRef = document.getElementById("submenu");
-  submenuContentRef.innerHTML = "";
-  if (window.innerWidth <= 768) {
-    submenuContentRef.innerHTML = `<p><a href="./help.html">Help</a></p>`;
   }
-  submenuContentRef.innerHTML += getSubmenuTemplate();
-}
 
-/**
- * This function redirects the user to the help.html-page and saves the link of the previous visited page in the local storage
- * 
- * @param {url} location - the url of the previous page
- */
-function redirectToHelp(location) {
-  localStorage.setItem("location", JSON.stringify(location));
-  window.location.href = "./help.html"
-}
-
-/**
- * This function gets the link of the previous page from the local storage and redirects the user to that page
- */
-function redirectToPreviousPage() {
-  previousLocation = JSON.parse(localStorage.getItem("location"));
-  console.log(previousLocation);
-  window.location.href = previousLocation;
-}
-
-/**
- * This function hides the entrie of all users except the current one
- * 
- * @param {string} contentRef - the repetetive part of the id that is used to find the element to remove
- */
-function hideAllUsers(contentRef) {
-  for (let indexUser = 0; indexUser < users.length - 1; indexUser++) {
-    let usersInContactsIds = contacts.findIndex(index => index.name === users[indexUser].name).toString();
-    let usersEntrie = document.getElementById(contentRef + usersInContactsIds);
-    if (usersInContactsIds != indexContactUser) {
-      usersEntrie.remove();
-    }
+  /**
+   * This function adds the addition " (You)" to the currentUser-address book entrie
+   * 
+   * @param {string} contentRef - the id of the element, that should be changed
+   */
+  function adjustUserContact(contentRef) {
+    document.getElementById(contentRef + indexContactUser).innerHTML += " (You)";
   }
-}
-
-/**
- * This function adds the addition " (You)" to the currentUser-address book entrie
- * 
- * @param {string} contentRef - the id of the element, that should be changed
- */
-function adjustUserContact(contentRef) {
-  document.getElementById(contentRef + indexContactUser).innerHTML += " (You)";
-}

@@ -27,20 +27,27 @@ async function addUser() {
     let userPassword = checkPasswordConfirmed();
     if (userPassword !== undefined) {
         let checkbox = document.getElementById("checkboxSignUp");
-        if (checkbox.checked && userName !== "" && userMail !== "") {
-            await postData("/users/", {
-                "name": userName,
-                "mail": userMail,
-                "password": userPassword
-            });
-            await addUserToContacts(userName, userMail); 
-            signUpSuccesfully();
-            clearSignUpForm();
+        if (checkbox.checked) {
+            if (userName !== "" && userMail !== "") {
+                await postData("/users/", {
+                    "name": userName,
+                    "mail": userMail,
+                    "password": userPassword
+                });
+                await addUserToContacts(userName, userMail);
+                signUpSuccesfully();
+                clearSignUpForm();
+            } else {
+                checkFilledInput('name');
+                checkFilledInput('mail');
+                checkFilledInput('password');
+                checkFilledInput('confirmed')
+            }
         } else {
-            checkFilledInput('name');
-            checkFilledInput('mail');
-            checkFilledInput('password');
-            checkFilledInput('confirmed')
+            document.getElementById("alertCheckbox").classList.remove("d-none");
+            setTimeout(function () {
+                document.getElementById("alertCheckbox").classList.add("d-none");
+            }, 2400);
         }
     }
 }
@@ -54,6 +61,11 @@ function checkPasswordConfirmed() {
     let confirmed = document.getElementById("confirmed").value;
     if (password === confirmed) {
         return password;
+    } else {
+        document.getElementById("alertPassword").classList.remove("d-none");
+        setTimeout(function () {
+            document.getElementById("alertPassword").classList.add("d-none");
+        }, 2400);
     }
 }
 
