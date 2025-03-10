@@ -213,7 +213,7 @@ async function successfullMsg(msgId) {
     successAnimation.style.animationName = "";
     successAnimation.style.animationDuration = "";
     init();
-  }, 1600);
+  }, 1600); 
 }
 
 /**

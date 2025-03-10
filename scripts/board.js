@@ -98,7 +98,7 @@ function displayAssignedContacts(indexTask) {
       assignedContactsContentRef.innerHTML += getBoardContactPB(indexContact);
       profileBadgeColor("boardAssignedToListPB" + indexContact, indexContact);
     }
-  }
+  } 
 }
 
 /**
