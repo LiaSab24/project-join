@@ -21,14 +21,14 @@
     <script src="/scripts/contacts.js"></script>
 </head>
 
-<body onload="initContacts()" onresize="adjustToWindowSize()">
+<body onload="initContacts()" onresize="adjustToWindowSize(); adjustMobileAddContact()">
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
     <main>
         <section id="addresbookHideMobile" class="address-book custom-scrollbar flex align-center">
             <div id="addNewContactBtnDesktop" class="add-new-contact">
-                <button onclick="toggleContactsOverlay(), adjustOverlayToAdd()">
+                <button onclick="openContactsOverlay()">
                     <span>Add new contact</span>
                     <img src="/assets/icons/contacts-add.svg" alt="add contact">
                 </button>
@@ -177,7 +177,7 @@
         </section>
     </main>
 
-    <div onclick="toggleContactsOverlay()" id="overlayBg" class="d-none"></div>
+    <div onclick="closeContactsOverlay()" id="overlayBg" class="d-none"></div>
      
     <section id="overlayContact" class="d-none animation-close-overlay">
         <div class="overlay-title">
@@ -187,7 +187,7 @@
             <img class="overlay-title-seperator" src="../assets/icons/contacts-overlay-underline.svg">
         </div>
         <div class="overlay-contact-information">
-            <img onclick="toggleContactsOverlay()" src="/assets/icons/overlay-close.svg" class="contacts-overlay-close">
+            <img onclick="openContactsOverlay()" src="/assets/icons/overlay-close.svg" class="contacts-overlay-close">
             <div class="overlay-contacts-inputs">
                 <div class="overlay-profile-pb">
                     <div id="overlayProfileBadge">
@@ -210,10 +210,17 @@
     </section>
 
     <section id="addNewContactBtnMobile" class="add-new-contact d-none">
-        <button onclick="toggleContactsOverlay(), adjustOverlayToAdd()">
+        <button onclick="openContactsOverlay(), adjustOverlayToAdd()">
             <img src="/assets/icons/contacts-add.svg" alt="add contact">
         </button>
     </section>
+    <section id="btnsMenuMobile" class="add-new-contact d-none">
+        <button onclick="toggleEditDeleteMenuMobile()">
+            <img src="/assets/icons/btns-menu-mobile.svg" alt="edit/delete contact">
+        </button>
+        <div id="menuEditDeleteMobile" class="d-none"></div>
+    </section>
+    
 
     <section class="messages">
         <div id="contactSuccesfullyCreated" class="succesfull-msg">

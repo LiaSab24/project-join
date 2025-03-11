@@ -16,7 +16,7 @@ main {
         margin: 0;
     }
 }
-
+ 
 .address-book {
     height: 928px;
     width: 456px;
@@ -127,13 +127,54 @@ main {
     cursor: pointer;
 }
 
-#addNewContactBtnMobile button {
+#addNewContactBtnMobile button,
+#btnsMenuMobile button {
     height: 56px;
     width: 56px;
     border-radius: 46px;
     position: absolute;
-    bottom: 5%;
-    right: 5%;
+    bottom: 30px;
+    right: 30px;
+}
+
+#menuEditDeleteMobile {
+    height: 100px;
+    width: 116px;
+    padding: 10px; 
+    position: absolute;
+    bottom: 30px;
+    right: 28px;
+    background-color: var(--clr-lightGray);
+    border-radius: 20px;
+    border-bottom-right-radius: 0px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
+#menuEditDeleteMobile button {
+    z-index: 5;
+    height: 40px;
+    width: 96px;
+    gap: 8px;
+    border-radius: 0;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    border: none;
+    display: flex;
+    justify-content: start;
+    background-color: transparent;
+    font-size: var( --fs-16);
+}
+
+#menuEditDeleteMobile button:active {
+    box-shadow: none;
+    color: var(--clr-white);
+}
+
+#menuEditDeleteMobile button div {
+    filter: brightness(0) invert(1);
 }
 
 .contacts-list {
@@ -305,6 +346,7 @@ main {
     }
     @media (max-width: 1000px) {
         display: none;
+        height: 100%;
         width: 100%;
         margin-left: 16px;
     }
@@ -731,7 +773,7 @@ main {
         bottom: 315px;
         right: 15px;
         z-index: 4;
-        filter: invert(1)
+        filter: brightness(0) invert(1);
     }
 }
 
