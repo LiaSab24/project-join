@@ -3,7 +3,9 @@
   --fs-12: 12px;
   --fs-16: 16px;
   --fs-20: 20px;
+  --fs-21: 21px;
   --fs-27: 27px;
+  --fs-47: 47px;
   
   /* dynamische font-size D=Desktop, M=Mobile */
   --fs-16-12: clamp(0.75rem, 0.617rem + 0.4255vw, 1rem);          /* D16px > M12px */
@@ -11,6 +13,7 @@
   --fs-61-47: clamp(2.9375rem, 2.4721rem + 1.4894vw, 3.8125rem);  /* D61px > M47px */
   --fs-61-36: clamp(2.25rem, 1.4189rem + 2.6596vw, 3.8125rem);    /* D61px > M36px */
   --fs-47-36: clamp(2.25rem, 1.8843rem + 1.1702vw, 2.9375rem);    /* D47px > M36px */
+  --fs-47-27: clamp(1.6875rem, -0.3958rem + 3.7037vw, 2.9375rem);
   --fs-27-20: clamp(1.25rem, 1.0173rem + 0.7447vw, 1.6875rem);    /* D27px > M20px */
   --fs-20-16: clamp(1rem, 0.867rem + 0.4255vw, 1.25rem);          /* D20px > M16px */
   --fs-20-14: clamp(0.875rem, 0.6755rem + 0.6383vw, 1.25rem);     /* D20px > M14px */
@@ -26,8 +29,9 @@
   --clr-white: #fff;
   --clr-black: #000;  
   --clr-primary: #2A3647;
-  --clr-click: #091931;
+  --clr-click: #091931; 
   --clr-lightBlue: #29abe2;
+  --clr-darkBlue: #007cee;
   --clr-lightGray: #A8A8A8;
   --clr-lighterGray: #DCDCDC;
   

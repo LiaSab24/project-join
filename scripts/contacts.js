@@ -10,6 +10,22 @@ async function initContacts() {
     hideAllUsers("id");
     adjustUserContact("idName");
     hideNotUsedLetters();
+    adjustToWindowSize();
+}
+
+/**
+ * This function checks the windows inner width and toggles the visibilty of the section "contactFocus"
+ */
+function adjustToWindowSize() { 
+    if (window.innerWidth <= 1000) {
+        document.getElementById("contactFocus").classList.add("d-none");
+        if (window.innerWidth <= 900) {
+            document.getElementById("addNewContactBtnDesktop").classList.add("d-none");
+        }
+    } else {
+        document.getElementById("contactFocus").classList.remove("d-none");
+        document.getElementById("addNewContactBtnDesktop").classList.remove("d-none")
+    }
 }
 
 /**

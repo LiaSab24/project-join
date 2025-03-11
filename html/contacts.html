@@ -21,13 +21,13 @@
     <script src="/scripts/contacts.js"></script>
 </head>
 
-<body onload="initContacts()">
+<body onload="initContacts()" onresize="adjustToWindowSize()">
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
     <main>
         <section class="address-book custom-scrollbar flex align-center">
-            <div class="add-new-contact">
+            <div id="addNewContactBtnDesktop" class="add-new-contact">
                 <button onclick="toggleContactsOverlay(), adjustOverlayToAdd()">
                     <span>Add new contact</span>
                     <img src="/assets/icons/contacts-add.svg" alt="add contact">
@@ -166,11 +166,11 @@
             </div>
         </section>
 
-        <section class="contact-focus"> 
+        <section id="contactFocus" class="contact-focus"> 
             <div class="title">
                 <h1>Contacts</h1>
                 <div class="title-seperator"></div>
-                <p>Better with a team</p> 
+                <p>Better with a team</p>  
             </div>
 
             <div id="focusedContactInformation" class="animation-focused-contact"></div>
@@ -205,6 +205,12 @@
             <img src="/assets/icons/contacts-overlay-email.svg" alt="Email">
             <img src="/assets/icons/contacts-overlay-phone.svg" alt="Phone">
         </div>
+    </section>
+
+    <section id="addNewContactBtnMobile" class="add-new-contact">
+        <button onclick="toggleContactsOverlay(), adjustOverlayToAdd()">
+            <img src="/assets/icons/contacts-add.svg" alt="add contact">
+        </button>
     </section>
 
     <section class="messages">
