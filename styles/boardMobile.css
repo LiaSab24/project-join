@@ -14,9 +14,13 @@
       text-align: center;
     }
     #addTaskOverlay, #editTaskOverlay, #overviewOverlay {
-      width: 90%;
-      height: auto;
+      width: 90% !important;
+      height: 90%;
       top: 10%;
+    }
+
+    .edit-task-overlay, #addTaskForm  {
+        width: 90%;
     }
   }
   
