@@ -22,10 +22,12 @@ body {
 }
 
 main {
-  min-height: calc(100vh - 80px); /* Platz für die Footer-Sidebar */
+  min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; 
+  justify-content: flex-start;
+  width: auto !important;
+  max-width: 100% !important;
 }
 
 h1 {

@@ -81,10 +81,7 @@
   .sidebar {
     width: 100%;
     height: 80px;
-    position: fixed;  /* Statt static */
-    bottom: 0;        /* Footer-Position */
-    left: 0;
-    z-index: 100;
+    position: static;
     justify-content: center;
     padding: 0 clamp(1rem, -0.6552rem + 8.2759vw, 4rem); 
   }
