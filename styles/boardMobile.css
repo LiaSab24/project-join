@@ -1,4 +1,3 @@
-/* ==========  320px - 480px (Smartphones, klein)  ========== */
 @media (max-width: 480px) {
 
     .board-header { 
@@ -8,7 +7,6 @@
     .task-card {
       width: 100%;
       max-width: 320px;
-      margin: 8px auto;
     }
     .task-badge {
       display: block;
@@ -22,11 +20,11 @@
     }
   }
   
-  /* ==========  481px - 767px (Smartphones, groß)  ========== */
-  @media (max-width: 767px) {
+@media (max-width: 767px) {
     .task-card {
-      width: calc(100% - 32px);
+      width: 100%;
       max-width: 400px;
+      margin: 0;
     }
     #addTaskOverlay, #editTaskOverlay, #overviewOverlay {
       width: 85%;
@@ -34,10 +32,7 @@
 }
 
   
-/* Footer-Sidebar in mobiler Ansicht unten fixieren */
 @media (max-width: 900px) {
-
-
     .sidebar {
         width: 100%;
         height: 80px;
@@ -65,7 +60,7 @@
         margin-left: 0 !important;
     }
 
-    h2 {
+    button h2 {
         display: none;
     }
 
@@ -75,64 +70,131 @@
     }
 
     .board-header {
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-        padding: 16px;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        gap: 8px;
+        padding: 12px 16px;
     }
 
-    .input-container {
-        flex-direction: column;
-        align-items: stretch;
+    .board-header h1 {
+        font-size: clamp(30px, 8vw, 47px);
+        padding: 0;
+    }
+
+    .board-tasks-list {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .task-wrapper {
+        max-width: 100%;
+        overflow-x: visible;
+    }
+
+    .board-tasks-list {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 12px;
+    }
+
+    .task-headline {
+        flex-direction: row;
         width: 100%;
-        gap: 10px;
+        padding: 6px 10px;
+    }
+
+    .task-headline .icon-container {
+        min-width: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .task-card {
+        min-width: 250px;
     }
 
     .search-container {
         width: 100%;
+        display: flex;
+        align-items: center;
+        background: var(--clr-white);
+        border: 1px solid var(--clr-lighterGray);
+        border-radius: 8px;
+        padding: 6px;
+    }
+
+    .search-container input {
+        width: 100%;
+        font-size: 16px;
+        padding: 8px;
     }
 
     .button {
         width: 100%;
+        max-width: 320px;
+        padding: 10px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
+
 }
 
-
-/* ==========  1025px - 1366px (Surface & größere Tablets)  ========== */
 @media (max-width: 1366px) {
     .task-container {
         display: flex;
-        flex-direction: column; /* Container untereinander */
- 
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
     }
 
     .task-wrapper {
         width: 100%;
         max-width: 800px;
-        height: 370px;
-        max-height: 100vh;
-        overflow-x: auto;
+        overflow-x: visible;
         overflow-y: hidden;
         scroll-behavior: smooth;
-        flex: 0 0 auto;
     }
     
-
     .board-tasks-list {
         display: flex;
-        justify-content: space-between;
-        gap: 28px;
+        gap: 12px;
+        justify-content: flex-start;
+        /* overflow-x: scroll; */
     }
 
     #addTaskOverlay, #editTaskOverlay, #overviewOverlay {
         width: 60%;
     }
 
+    .task-headline {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 12px;
+        flex-wrap: nowrap;
+    }
+
+    .task-headline .icon-container {
+        min-width: 36px;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .task-card {
+        width: 250px; /* Fixierte Breite, damit sie nebeneinander bleiben */
+        flex: 0 0 auto; /* Verhindert, dass sie gestreckt werden */
+    }
 }
 
-
-/* Ab 1428px: Elemente enger zusammen */
 @media (max-width: 1428px) {
     .board-header {
         flex-direction: row;
@@ -148,10 +210,6 @@
     }
 
     .search-container {
-        width: 250px;
-    }
-
-    .button {
-        padding: 6px 12px;
+        width: clamp(150px, 40vw, 320px);
     }
 }
