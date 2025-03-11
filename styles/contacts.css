@@ -537,15 +537,34 @@ main {
 #overlayContact {
     width: 1212px;
     height: 592px;
+    margin-top: -800px;
+    margin-bottom: 0%;
     border-radius: 30px;
     display: flex;
     background-color: var(--clr-white);
     position: relative;
-    top: -800px;
-    right: -10vb;
+    left: 0;
+    align-self: center;
+    justify-self: center;
     animation-duration: 300ms;
     animation-timing-function: ease-out;
     z-index: 1;
+    @media (max-width: 1350px) {
+        width: fit-content;
+        height: fit-content;
+        margin-top: -900px;
+    }
+    @media (max-width: 950px) {
+        width: 396px;
+        flex-direction: column;
+        margin-top: -1000px;
+        overflow-y: auto;
+    }
+}
+
+#overlayContact::-webkit-scrollbar {
+    display: none;
+    width: 0 !important;
 }
 
 .animation-open-overlay {
@@ -578,14 +597,37 @@ main {
 
 .overlay-title {
     width: 467px;
-    padding: 66px 48px 66px 48px;
+    padding: 66px 48px;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     background-color: var(--clr-primary);
+    @media (max-width: 1350px) {
+        width: fit-content;
+        padding: 50px 36px;
+    }
+    @media (max-width: 1100px) {
+        padding: 42px 28px;
+    }
+    @media (max-width: 950px) {
+        height: 351px;
+        width: 100%;
+        padding: 66px 24px;
+        display: flex;
+        flex-direction: column;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        border-bottom-left-radius: 0px;
+    }
 }
 
 .overlay-join-logo {
     margin-top: 66px;
+    @media (max-width: 1100px) {
+        transform: scale(0.8);
+    }
+    @media (max-width: 950px) {
+        display: none;
+    }
 }
 
 #overlayTitleH1 {
@@ -595,6 +637,9 @@ main {
     font-weight: var(--fw-700);
     font-size: var(--fs-61-47);
     line-height: 73.2px;
+    @media (max-width: 950px) {
+        margin-bottom: 16px;
+    }
 }
 
 #overlayTitleP {
@@ -604,17 +649,38 @@ main {
     line-height: 32.4px;
 }
 
+.overlay-title-seperator {
+    @media (max-width: 950px) {
+        width: 90px;
+        height: 3px !important;
+        margin-top: 16px;
+    }
+}
+
 .overlay-contact-information {
     width: 614px;
     margin: 48px 24px 137px 83px;
     padding: 0;
     display: flex;
     flex-direction: column;
+    @media (max-width: 1350px) {
+        width: fit-content;
+        margin: 30px 16px 80px 20px;
+    }
+    @media (max-width: 950px) {
+        height: 408px;
+        margin: 0;
+        padding: 66px 24px;
+        gap: 12px;
+    }
 }
 
 .overlay-contact-information div {
     margin-top: 57px;
     display: flex;
+    @media (max-width: 1350px) {
+        margin-top: 48px;
+    }
 }
 
 #overlayProfileBadge {
@@ -630,6 +696,21 @@ main {
     font-weight: var(--fw-500);
     font-size: var(--fs-47);
     line-height: 56.4px;
+    @media (max-width: 1350px) {
+        height: 110px;
+        width: 110px; 
+    }
+    @media (max-width: 1100px) {
+        height: 100px;
+        width: 100px; 
+    }
+    @media (max-width: 950px) {
+        height: 120px;
+        width: 120px;
+        position: relative;
+        top: -267px;
+        left: 106px;
+    }
 }
 
 .overlay-form {
@@ -637,12 +718,20 @@ main {
     margin-left: 72px;
     display: flex;
     flex-direction: column;
+    @media (max-width: 1350px) {
+        width: 100%;
+        margin-left: 20px;
+        flex: 1;
+    }
 }
 
 .overlay-form input {
     height: 50px !important;
-    width: 422px !important;
+    width: 422px;
     padding: 13px 21px 13px 21px !important;
+    @media (max-width: 1100px) {
+        width: 350px; 
+    }
 }
 
 .overlay-input-icons {
@@ -658,6 +747,10 @@ main {
     left: -68px;
     cursor: text;
     pointer-events: none;
+    @media (max-width: 1350px) {
+        top: 126px;
+        left: -57px;
+    }
 }
 
 .contact-succesfull-msg {
