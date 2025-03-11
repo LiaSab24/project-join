@@ -26,7 +26,7 @@
     <div w3-include-html="sidebar.html"></div>
 
     <main>
-        <section class="address-book custom-scrollbar flex align-center">
+        <section id="addresbookHideMobile" class="address-book custom-scrollbar flex align-center">
             <div id="addNewContactBtnDesktop" class="add-new-contact">
                 <button onclick="toggleContactsOverlay(), adjustOverlayToAdd()">
                     <span>Add new contact</span>
@@ -187,10 +187,12 @@
             <img class="overlay-title-seperator" src="../assets/icons/contacts-overlay-underline.svg">
         </div>
         <div class="overlay-contact-information">
-            <img onclick="toggleContactsOverlay()" src="/assets/icons/overlay-close.svg" class="overlay-close">
-            <div>
-                <div id="overlayProfileBadge">
-                    <img src="/assets/icons/contacts-overlay-profile-badge-anonymous.svg">
+            <img onclick="toggleContactsOverlay()" src="/assets/icons/overlay-close.svg" class="contacts-overlay-close">
+            <div class="overlay-contacts-inputs">
+                <div class="overlay-profile-pb">
+                    <div id="overlayProfileBadge">
+                        <img src="/assets/icons/contacts-overlay-profile-badge-anonymous.svg">
+                    </div>
                 </div>
                 <form class="overlay-form">
                     <input onblur="checkFilledInput('addContactName')" id="addContactName" type="text" placeholder="Name" required>
@@ -207,7 +209,7 @@
         </div>
     </section>
 
-    <section id="addNewContactBtnMobile" class="add-new-contact">
+    <section id="addNewContactBtnMobile" class="add-new-contact d-none">
         <button onclick="toggleContactsOverlay(), adjustOverlayToAdd()">
             <img src="/assets/icons/contacts-add.svg" alt="add contact">
         </button>

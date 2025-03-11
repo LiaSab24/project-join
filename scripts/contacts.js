@@ -16,15 +16,13 @@ async function initContacts() {
 /**
  * This function checks the windows inner width and toggles the visibilty of the section "contactFocus"
  */
-function adjustToWindowSize() { 
-    if (window.innerWidth <= 1000) {
-        document.getElementById("contactFocus").classList.add("d-none");
-        if (window.innerWidth <= 900) {
-            document.getElementById("addNewContactBtnDesktop").classList.add("d-none");
-        }
+function adjustToWindowSize() {
+    if (window.innerWidth <= 900) {
+        document.getElementById("addNewContactBtnDesktop").classList.add("d-none");
+        document.getElementById("addNewContactBtnMobile").classList.remove("d-none");
     } else {
-        document.getElementById("contactFocus").classList.remove("d-none");
         document.getElementById("addNewContactBtnDesktop").classList.remove("d-none")
+        document.getElementById("addNewContactBtnMobile").classList.add("d-none");
     }
 }
 
@@ -153,9 +151,21 @@ async function addContact() {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function contactClicked(indexContact) {
+    if (window.innerWidth <= 1000) {
+        document.getElementById("contactFocus").style.display = "flex";
+        document.getElementById("addresbookHideMobile").classList.add("d-none");
+    }
     clearActiveContacts();
     highlightContact(indexContact);
     updateFocusedContact(indexContact);
+}
+
+/**
+ * This function closes the focused contact and shows the addressbook again
+ */
+function mobileArrowBackwards() {
+    document.getElementById("contactFocus").style.display = "none";
+    document.getElementById("addresbookHideMobile").classList.remove("d-none");
 }
 
 /**

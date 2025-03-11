@@ -26,7 +26,7 @@ function getAddTaskDropdownListContacts(indexContact) {
                 </div>
                 <div id="assignedToCheckbox${indexContact}" class="add-task-assigned-to-checkbox"></div>
             </div>`
-}
+} 
 
 /**
  * This template displays a contacts profile badge in the add-task-assigned-to-list

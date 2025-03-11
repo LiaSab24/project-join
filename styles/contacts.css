@@ -39,8 +39,10 @@ main {
         width: 100%;
         padding: 32px 24px;
     }
+
     @media (max-width: 400px) {
-        padding: 26px 16px;
+        padding: 26px 6px 26px 16px;
+
     }
 }
 
@@ -125,7 +127,7 @@ main {
     cursor: pointer;
 }
 
-#addNewContactBtnMobile button{
+#addNewContactBtnMobile button {
     height: 56px;
     width: 56px;
     border-radius: 46px;
@@ -154,6 +156,7 @@ main {
         width: 90%;
         margin: 0 24px;
     }
+
     @media (max-width: 400px) {
         width: 100%;
         margin: 0 8px;
@@ -174,6 +177,7 @@ main {
     @media (max-width: 1120px) {
         padding: 17px 0 0 16px;
     }
+
     @media (max-width: 400px) {
         padding: 12px 0 0 0;
     }
@@ -210,6 +214,10 @@ main {
         height: 78px;
         padding: 15px 24px;
         gap: 35px;
+    }
+
+    @media (max-width: 400px) {
+        gap: 20px;
     }
 }
 
@@ -294,6 +302,11 @@ main {
 
     @media (max-width: 1120px) {
         margin-left: 20px;
+    }
+    @media (max-width: 1000px) {
+        display: none;
+        width: 100%;
+        margin-left: 16px;
     }
 }
 
@@ -439,12 +452,20 @@ main {
     @media (max-width: 1240px) {
         max-width: 270px;
     }
+    @media (max-width: 1000px) {
+        max-width: 480px;
+        flex: 1;
+        margin-right: 24px;
+    }
 }
 
 .focused-contact-name {
     font-weight: var(--fw-500);
     font-size: var(--fs-47-36);
     line-height: 56.4px;
+    @media (max-width: 1000px) {
+        width: 480px;
+    }
 }
 
 .focused-profile-account div {
@@ -465,6 +486,9 @@ main {
     font-size: var(--fs-16);
     line-height: 19.2px;
     background-color: transparent;
+    @media (max-width: 1000px) {
+        display: none;
+    }
 }
 
 .focused-contact-btns:hover {
@@ -537,28 +561,31 @@ main {
 #overlayContact {
     width: 1212px;
     height: 592px;
-    margin-top: -800px;
-    margin-bottom: 0%;
     border-radius: 30px;
     display: flex;
     background-color: var(--clr-white);
-    position: relative;
-    left: 0;
-    align-self: center;
-    justify-self: center;
+    position: fixed;
+    top: 20%;
+    justify-self: anchor-center;
+    align-self: anchor-center;
     animation-duration: 300ms;
     animation-timing-function: ease-out;
     z-index: 1;
+
     @media (max-width: 1350px) {
         width: fit-content;
         height: fit-content;
-        margin-top: -900px;
     }
+
     @media (max-width: 950px) {
         width: 396px;
         flex-direction: column;
-        margin-top: -1000px;
         overflow-y: auto;
+        top: 0;
+    }
+
+    @media (max-width: 400px) {
+        width: 320px;
     }
 }
 
@@ -601,30 +628,39 @@ main {
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     background-color: var(--clr-primary);
+
     @media (max-width: 1350px) {
         width: fit-content;
         padding: 50px 36px;
     }
+
     @media (max-width: 1100px) {
         padding: 42px 28px;
     }
+
     @media (max-width: 950px) {
-        height: 351px;
+        height: 330px;
         width: 100%;
         padding: 66px 24px;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         border-top-left-radius: 30px;
         border-top-right-radius: 30px;
         border-bottom-left-radius: 0px;
+    }
+    @media (max-width: 400px) {
+        padding: 46px 12px;
     }
 }
 
 .overlay-join-logo {
     margin-top: 66px;
+
     @media (max-width: 1100px) {
         transform: scale(0.8);
     }
+
     @media (max-width: 950px) {
         display: none;
     }
@@ -637,8 +673,13 @@ main {
     font-weight: var(--fw-700);
     font-size: var(--fs-61-47);
     line-height: 73.2px;
+
     @media (max-width: 950px) {
         margin-bottom: 16px;
+    }
+
+    @media (max-width: 950px) {
+        margin: 0;
     }
 }
 
@@ -673,21 +714,42 @@ main {
         padding: 66px 24px;
         gap: 12px;
     }
+    @media (max-width: 950px) {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        gap: 0;
+    }
 }
 
-.overlay-contact-information div {
+.contacts-overlay-close {
+    align-self: flex-end;
+    height: 32px;
+    width: 32px;
+    @media (max-width: 950px) {
+        position: relative;
+        bottom: 315px;
+        right: 15px;
+        z-index: 4;
+        filter: invert(1)
+    }
+}
+
+.overlay-contacts-inputs {
     margin-top: 57px;
     display: flex;
     @media (max-width: 1350px) {
         margin-top: 48px;
     }
+    @media (max-width: 950px) {
+        margin: 0;
+        display: grid;
+    }
 }
 
-#overlayProfileBadge {
-    height: 120px;
+.overlay-profile-pb {
+    height: 100%;
     width: 120px;
-    border: 3px solid var(--clr-white);
-    border-radius: 70px;
     color: var(--clr-lightGray);
     display: flex;
     align-items: center;
@@ -696,25 +758,39 @@ main {
     font-weight: var(--fw-500);
     font-size: var(--fs-47);
     line-height: 56.4px;
+    @media (max-width: 950px) {
+        height: 0;
+        width: 0;
+    }
+}
+
+#overlayProfileBadge {
+    height: 120px;
+    width: 120px;
+    margin-bottom: 84px;
+    border: 3px solid var(--clr-white);
+    border-radius: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     @media (max-width: 1350px) {
         height: 110px;
-        width: 110px; 
+        width: 110px;
     }
     @media (max-width: 1100px) {
         height: 100px;
-        width: 100px; 
+        width: 100px;
     }
     @media (max-width: 950px) {
         height: 120px;
         width: 120px;
-        position: relative;
-        top: -267px;
-        left: 106px;
+        position: fixed;
+        justify-self: anchor-center;
     }
 }
 
 .overlay-form {
-    width: 422px;
+    width: 100%;
     margin-left: 72px;
     display: flex;
     flex-direction: column;
@@ -723,6 +799,13 @@ main {
         margin-left: 20px;
         flex: 1;
     }
+    @media (max-width: 950px) {
+        width: 100%;
+        margin: 0;
+        margin-top: 51px;
+        align-items: center;
+        gap: 15px;
+    }
 }
 
 .overlay-form input {
@@ -730,7 +813,15 @@ main {
     width: 422px;
     padding: 13px 21px 13px 21px !important;
     @media (max-width: 1100px) {
-        width: 350px; 
+        width: 350px;
+    }
+    @media (max-width: 950px) {
+        height: 41px;
+        width: 364px;
+        margin: 0;
+    }
+    @media (max-width: 400px) {
+        width: 290px;
     }
 }
 
@@ -739,6 +830,11 @@ main {
     flex-direction: column;
     gap: 51px;
     z-index: 3;
+    @media (max-width: 950px) {
+        height: 0;
+        width: 0;
+        gap: 41px;
+    }
 }
 
 .overlay-input-icons img {
@@ -748,8 +844,20 @@ main {
     cursor: text;
     pointer-events: none;
     @media (max-width: 1350px) {
+        height: 24px;
+        width: 24px;
         top: 126px;
-        left: -57px;
+        left: -56px;
+    }
+    @media (max-width: 950px) {
+        height: 24px;
+        width: 24px;
+        top: -311px;
+        left: 345px;
+    }
+    @media (max-width: 400px) {
+        top: -310px;
+        left: 263px;
     }
 }
 
@@ -826,6 +934,9 @@ input:focus {
     margin-top: 28px !important;
     gap: 16px;
     display: flex;
+    @media (max-width: 950px) {
+        margin-top: 12px !important;
+    }
 }
 
 #contactsSubmitBtns button {
@@ -845,6 +956,18 @@ input:focus {
     font-weight: var(--fw-400);
     font-size: var(--fs-20);
     line-height: 24px;
+}
+
+#contactsOverlayCancel {
+    @media (max-width: 950px) {
+        display: none !important;
+    }
+}
+
+#contactsOverlayDelete .reject-img {
+    @media (max-width: 950px) {
+        display: none !important;
+    }
 }
 
 .reject-img {
