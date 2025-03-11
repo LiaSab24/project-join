@@ -1,28 +1,40 @@
 main {
-    width: 1208px;
+    @media (max-width: 990px) {
+        margin: 0 16px;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 label {
-    font-size: 20px;
-    font-weight: 400;
+    max-width: 440px;
+    font-size: var(--fs-20-16);
     line-height: 24px;
     color: #2A3647;
-}
+    @media (max-width: 990px) {
+        max-width: 396px;
+        margin-bottom: 4px;
+    }
+} 
 
 textarea {
-    min-height: 120px;
-    width: 440px;
+    height: 120px;
+    max-width: 440px;
     margin-top: 4px;
     margin-bottom: 20px;
-    padding: 12px 16px 12px 16px;
+    padding: 12px 16px;
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     color: #2A3647;
     font-family: Inter;
-    font-size: 20px;
-    font-weight: 400;
+    font-size: var(--fs-20-16);
+    font-weight: var(--fw-400);
     line-height: 24px;
     resize: none;
+    @media (max-width: 990px) {
+        max-width: 396px;
+        padding: 18px 21px;
+    }
 }
 
 textarea::-webkit-resizer {
@@ -58,17 +70,19 @@ textarea::-webkit-scrollbar-thumb:hover {
 input,
 select {
     height: 48px;
-    width: 440px;
+    max-width: 440px;
     margin-top: 4px;
     margin-bottom: 20px;
-    padding: 12px 16px 12px 16px;
+    padding: 12px 16px;
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     color: #2A3647;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
+    font-size: var(--fs-20-16);
     cursor: pointer;
+    @media (max-width: 990px) {
+        max-width: 396px;
+        padding: 8px 21px;
+    }
 }
 
 input:disabled,
@@ -80,8 +94,8 @@ input::placeholder,
 textarea::placeholder,
 #addTaskDate::-webkit-datetime-edit {
     color: #D1D1D1;
-    font-size: 20px;
-    font-weight: 400;
+    font-size: var(--fs-20-16);
+    font-weight: var(--fw-400);
     line-height: 24px;
 }
 
@@ -94,13 +108,9 @@ select:focus {
 
 select {
     height: 48px;
-    width: 440px;
     appearance: none;
-    /* removes the default arrow */
     -moz-appearance: none;
-    /* Firefox */
     -webkit-appearance: none;
-    /* Safari and Chrome */
     background: #FFFFFF;
     z-index: 2;
     cursor: pointer;
@@ -122,8 +132,7 @@ select {
     bottom: 2px;
     right: 4px;
     color: #FF8090;
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: var(--fw-400);
     line-height: 19.2px;
 }
 
@@ -131,21 +140,56 @@ select {
     margin-top: 110px;
     margin-right: 32px;
     margin-left: 96px;
-    font-weight: 700;
-    font-size: 61px;
+    font-weight: var(--fw-700);
+    font-size: var(--fs-61-47);
     line-height: 73.2px;
+    @media (max-width: 1330px) {
+        margin-left: 24px;
+    };
+    @media (max-width: 990px) {
+        width: 396px;
+        margin-left: 256px;
+        margin-top: 48px;
+        align-self: center;
+    }
+    @media (max-width: 900px) {
+        margin-left: 24px;
+    }
 }
 
 #addTaskForm {
     margin-top: 48px;
-    margin-left: 96px;
+    margin-left: 72px;
     display: flex;
     justify-content: space-between;
+    @media (max-width: 1330px) {
+        margin-left: 0;
+    };
+    @media (max-width: 990px) {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 32px;
+        margin-left: 232px;
+    }
+    @media (max-width: 900px) {
+        margin: 0;
+    }
 }
 
-#addTaskForm div {
+.add-task-form-column {
     display: flex;
     flex-direction: column;
+    width: 440px;
+    margin: 0 24px;
+    @media (max-width: 1330px) {
+        width: 380px;
+    };
+    @media (max-width: 1110px) {
+        width: 320px;
+    };
+    @media (max-width: 990px) {
+        width: 396px;
+    }
 }
 
 #addTaskAssignedTo,
@@ -182,14 +226,26 @@ select {
     max-height: 290px;
     width: 440px;
     padding-top: 10px;
+    margin: 0 !important;
     position: absolute;
     border-radius: 10px;
     background-color: #FFFFFF;
     z-index: 2;
     box-shadow: 0px 0px 14px 3px #0000000A;
-    font-weight: 400;
-    font-size: 20px;
+    font-weight: var(--fw-400);
+    font-size: var(--fs-20-16);
     line-height: 24px;
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 1330px) {
+        width: 380px;
+    };
+    @media (max-width: 1110px) {
+        width: 320px;
+    };
+    @media (max-width: 990px) {
+        box-shadow: none;
+    }
 }
 
 .add-task-current-select {
@@ -199,17 +255,24 @@ select {
 #addTaskDropdownContacts {
     top: 656px;
     overflow-y: scroll;
+    @media (max-width: 990px) {
+        top: 656px;
+    }
 }
 
 #addTaskDropdownCategories {
     top: 595px;
+    @media (max-width: 990px) {
+        top: 959px;
+    }
 }
 
 .add-task-dropdown-option {
     height: 56px;
-    padding: 7px 16px 7px 16px;
+    width: 100%;
+    padding: 7px 16px;
     border-radius: 10px;
-    flex-direction: row !important;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
@@ -220,11 +283,11 @@ select {
 }
 
 .add-task-dropdown-option div {
-    flex-direction: row !important;
+    display: flex;
     align-items: center;
     gap: 16px;
-    font-weight: 400;
-    font-size: 20px;
+    font-weight: var(--fw-400);
+    font-size: var(--fs-20-16);
     line-height: 24px;
 }
 
@@ -262,10 +325,14 @@ select {
     flex-direction: row !important;
     gap: 8px;
     flex-wrap: wrap;
+    @media (max-width: 990px) {
+        margin-bottom: 20px;
+    }
 }
 
 #addTaskAssignedToList div {
     cursor: pointer;
+    margin: 0;
 }
 
 .add-task-seperator {
@@ -273,6 +340,9 @@ select {
     width: 2px;
     border-radius: 1px;
     background-color: #D1D1D1;
+    @media (max-width: 990px) {
+        display: none !important;
+    }
 }
 
 #addTaskDate::-webkit-calendar-picker-indicator {
@@ -282,15 +352,17 @@ select {
 #addTaskPriorities {
     margin-top: 8px;
     margin-bottom: 20px;
-    flex-direction: row !important;
+    max-width: 440px;
+    display: flex;
     justify-content: space-between;
 }
 
 #addTaskPriorities div {
     height: 56px;
     width: 136px;
-    padding: 16px 10px 16px 10px;
-    border: none; 
+    margin: 0;
+    padding: 16px 10px;
+    border: none;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
@@ -299,9 +371,13 @@ select {
     gap: 8px;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 4px 0px #0000001A;
-    font-weight: 400;
-    font-size: 20px;
+    font-weight: var(--fw-400);
+    font-size: var(--fs-20-16);
     line-height: 24px;
+    @media (max-width: 1330px) {
+        height: 41px;
+        width: 121px;
+    }
 }
 
 #addTaskPriorities div:hover {
@@ -325,6 +401,15 @@ select {
     position: relative;
     bottom: 36px;
     left: 405px;
+    @media (max-width: 1330px) {
+        left: 345px;
+    };
+    @media (max-width: 1110px) {
+        left: 285px;
+    };
+    @media (max-width: 990px) {
+        left: 365px;
+    }
 }
 
 #subtaskIconsFocus {
@@ -333,6 +418,15 @@ select {
     position: relative;
     bottom: 36px;
     left: 377px;
+    @media (max-width: 1330px) {
+        left: 314px;
+    };
+    @media (max-width: 1110px) {
+        left: 259px;
+    };
+    @media (max-width: 990px) {
+        left: 334px;
+    }
 }
 
 .subtask-scrollbar {
@@ -340,6 +434,10 @@ select {
     width: 440px;
     margin-top: -16px;
     overflow-y: scroll;
+    @media (max-width: 1330px) {
+        height: fit-content;
+        max-height: 160px;
+    }
 }
 
 .subtask-scrollbar::-webkit-scrollbar {
@@ -355,10 +453,7 @@ select {
 .subtask {
     width: 100%;
     margin-bottom: 6px;
-    padding: 6px 0 4px 24px;
-    padding-right: 56px;
-    font-weight: 400;
-    font-size: 16px;
+    padding: 6px 16px;
     line-height: 24px;
     border-radius: 10px;
     list-style-position: inside;
@@ -368,11 +463,13 @@ select {
     justify-content: space-between;
     word-break: break-all;
     cursor: pointer;
+    @media (max-width: 990px) {
+        padding: 4px 16px;
+    }
 }
 
 .subtask:hover {
     background-color: #D1D1D1;
-    padding-right: 0;
 }
 
 .subtask-list-icons {
@@ -412,7 +509,7 @@ select {
 #subtaskEditInput {
     height: 100%;
     margin: 0;
-    padding: 4px 16px 4px 16px;
+    padding: 4px 16px;
     border: none;
 }
 
@@ -424,11 +521,25 @@ select {
     margin-left: 96px;
     display: flex;
     justify-content: space-between;
+    @media (max-width: 990px) {
+        width: 100%;
+        max-width: 396px;
+        margin-left: 232px;
+        margin-bottom: 20px;
+        flex-direction: column;
+        align-self: center;
+    }
+    @media (max-width: 900px) {
+        margin-left: 0;
+    }
 }
 
 .add-task-requirements {
     margin-top: 37px;
     display: flex;
+    @media (max-width: 990px) {
+        margin-top: 12px;
+    }
 }
 
 .add-task-requirements p {
@@ -438,6 +549,12 @@ select {
 .submit-btns {
     display: flex;
     gap: 16px;
+    margin-right: 24px;
+    @media (max-width: 990px) {
+        width: 100%;
+        margin-top: 40px;
+        justify-content: flex-end;
+    }
 }
 
 .submit-btns button {
@@ -454,15 +571,14 @@ select {
 .cancel-btn {
     background-color: transparent;
     color: #2A3647;
-    font-weight: 400;
-    font-size: 20px;
+    font-weight: var(--fw-400);
+    font-size: var(--fs-20);
     line-height: 24px;
 }
 
 .cancel-img {
     height: 24px;
     width: 24px;
-    margin: 0px !important;
     background-image: url("/assets/icons/cancel-btn.svg");
 }
 
@@ -480,7 +596,7 @@ select {
 .create-btn {
     background-color: #2A3647;
     color: #FFFFFF;
-    font-weight: 700;
+    font-weight: var(--fw-700);
     font-size: 21px;
     line-height: 25.2px;
 }

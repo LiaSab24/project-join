@@ -1,6 +1,7 @@
 :root {
   /* font-size fix */
   --fs-12: 12px;
+  --fs-16: 16px;
   --fs-20: 20px;
   --fs-27: 27px;
   
@@ -23,7 +24,7 @@
 
   /* color elemente, background & text(T) */
   --clr-white: #fff;
-  --clr-black: #000; 
+  --clr-black: #000;  
   --clr-primary: #2A3647;
   --clr-click: #091931;
   --clr-lightBlue: #29abe2;
