@@ -22,10 +22,10 @@ body {
 }
 
 main {
-  flex-grow: 1;
+  min-height: calc(100vh - 80px); /* Platz für die Footer-Sidebar */
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  justify-content: flex-start; 
 }
 
 h1 {
@@ -132,7 +132,7 @@ button img {
   padding: var(--header-padding);
   gap: var(--gap-size-task);
   overflow-x: auto;
-  padding: 0 64px;
+  padding: 0 24px;
 }
 
 .task-wrapper {

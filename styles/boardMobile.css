@@ -1,0 +1,121 @@
+/* ==========  320px - 480px (Smartphones, klein)  ========== */
+@media (max-width: 480px) {
+
+    .board-header { 
+      flex-direction: column;
+      align-items: center;
+    }
+    .task-card {
+      width: 100%;
+      max-width: 320px;
+      margin: 8px auto;
+    }
+    .task-badge {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    #addTaskOverlay, #editTaskOverlay, #overviewOverlay {
+      width: 90%;
+      height: auto;
+      top: 10%;
+    }
+  }
+  
+  /* ==========  481px - 767px (Smartphones, groß)  ========== */
+  @media (max-width: 767px) {
+    .task-card {
+      width: calc(100% - 32px);
+      max-width: 400px;
+    }
+    #addTaskOverlay, #editTaskOverlay, #overviewOverlay {
+      width: 85%;
+    }
+}
+
+  
+/* Footer-Sidebar in mobiler Ansicht unten fixieren */
+@media (max-width: 900px) {
+
+
+    .sidebar {
+        width: 100%;
+        height: 80px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+        background-color: #2A3647;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    main {
+        margin-left: 0 !important;
+    }
+
+    .board-header,
+    .task-container {
+        padding: 0;
+    }
+}
+
+/* ==========  768px - 1024px (Tablets)  ========== */
+@media (max-width: 1024px) {
+
+    #addTaskOverlay, #editTaskOverlay, #overviewOverlay {
+        width: 70%;
+    }
+}
+
+/* ==========  1025px - 1366px (Surface & größere Tablets)  ========== */
+@media (max-width: 1366px) {
+    .task-container {
+        display: flex;
+        flex-direction: column; /* Container untereinander */
+ 
+    }
+
+    .task-wrapper {
+        width: 100%;
+        max-width: 800px;
+        height: 370px;
+        max-height: 100vh;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        flex: 0 0 auto;
+    }
+    
+
+    .board-tasks-list {
+        display: flex;
+        justify-content: space-between;
+        gap: 28px;
+    }
+
+    #addTaskOverlay, #editTaskOverlay, #overviewOverlay {
+        width: 60%;
+    }
+
+}
+
+/* ==========  Ab 1367px (Desktop)  ========== */
+@media (min-width: 1367px) {
+
+
+    #addTaskOverlay, #editTaskOverlay, #overviewOverlay {
+        width: 50%;
+    }
+}
