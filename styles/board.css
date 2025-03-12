@@ -546,7 +546,7 @@ button img {
 }
 
 .overview-btns button {
-  height: 100%;
+  height: 100%; 
   background-color: transparent;
   color: #2A3647;
   gap: 8px;

@@ -29,7 +29,7 @@
         <h1 id="addTaskH1" class="title">Add Task</h1>
  
         <form id="addTaskForm">
-            <div>
+            <div class="add-task-form-column">
                 <label for="addTaskTitle">
                     Title
                     <span class="required-star">*</span>
@@ -49,7 +49,7 @@
 
             <div class="add-task-seperator"></div>
 
-            <div>
+            <div class="add-task-form-column">
                 <label for="addTaskDate">
                     Due date
                     <span class="required-star">*</span>
@@ -82,8 +82,7 @@
                     <div onclick="selectTaskCategory('Documentation')" class="add-task-dropdown-option">Documentation</div>
                     <div onclick="selectTaskCategory('Technical Task')" class="add-task-dropdown-option">Technical Task</div>
                     <div onclick="selectTaskCategory('User Story')" class="add-task-dropdown-option">User Story</div>
-                </div>
-
+                </div> 
                 <label for="addTaskSubtask">Subtasks</label>
                 <input onfocus="changeSubtaskIcons()" onfocusout="changeSubtaskIcons()" type="text" id="addTaskSubtask"
                     placeholder="Add new subtask">
