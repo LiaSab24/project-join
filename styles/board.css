@@ -362,6 +362,14 @@ button img {
   position: fixed;
   align-self: anchor-center;
   justify-self: anchor-center;
+  overflow-x: hidden;
+}
+
+#addTaskOverlay::-webkit-scrollbar{
+  display: none !important;
+}
+
+#addTaskOverlay #addTaskForm {
   overflow-y: auto;
 }
 
@@ -588,6 +596,7 @@ button img {
   height: fit-content;
   max-height: 800px;
   align-items: center;
+  overflow-x: hidden;
 }
 
 .edit-task-overlay .title {
