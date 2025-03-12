@@ -58,9 +58,9 @@ function getAddTaskSubtaskTemplate(subtask, indexSubtask) {
 function getAddTaskSubtaskListElementTemplate(subtask, indexSubtask) {
     return `<li class="subtask-element">${subtask}</li>
             <div class="subtask-list-icons">
-                <img onclick="editSubtask(${indexSubtask})" class="subtask-icon" src="/assets/icons/add-task-subtask-edit.svg">
+                <img onclick="editSubtask(${indexSubtask})" class="subtask-icon" src="../assets/icons/add-task-subtask-edit.svg">
                 <div class="subtask-list-icons-seperator"></div>
-                <img onclick="deleteSubtask(${indexSubtask})" class="subtask-icon" src="/assets/icons/add-task-subtask-delete.svg">
+                <img onclick="deleteSubtask(${indexSubtask})" class="subtask-icon" src="../assets/icons/add-task-subtask-delete.svg">
             </div>`
 }
 
@@ -73,17 +73,17 @@ function getAddTaskSubtaskListElementTemplate(subtask, indexSubtask) {
 function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
     return `<input id="subtaskEditInput" value="${subtask}">
             <div class="subtask-edit-icons">
-                <img onclick="deleteSubtask(${indexSubtask})" class="subtask-icon" src="/assets/icons/add-task-subtask-delete.svg">
+                <img onclick="deleteSubtask(${indexSubtask})" class="subtask-icon" src="../assets/icons/add-task-subtask-delete.svg">
                 <div class="subtask-list-icons-seperator"></div>
-                <img onclick="confirmEditSubtask(${indexSubtask})" class="subtask-icon" src="/assets/icons/add-task-subtask-submit.svg">
+                <img onclick="confirmEditSubtask(${indexSubtask})" class="subtask-icon" src="../assets/icons/add-task-subtask-submit.svg">
             </div>`
-} 
+}
 
 /**
  * This template includes a button to close board's overlays
  */
 function getBoardCloseBtnTemplate() {
-    return `<img onclick="closeOverlays()" src="/assets/icons/overlay-close.svg" class="overlay-close"></img>`
+    return `<img onclick="closeOverlays()" src="../assets/icons/overlay-close.svg" class="overlay-close"></img>`
 }
 
 /**
@@ -104,7 +104,7 @@ function getBoardTaskTemplate(indexTask) {
                 </div>
                 <div class="assigned-contacts-and-priority">
                     <div id="assignedContacts${indexTask}" class="task-assignees"></div>
-                    <img id="prio${indexTask}" src="/assets/icons/prio${tasks[indexTask].priority}.svg">
+                    <img id="prio${indexTask}" src="../assets/icons/prio${tasks[indexTask].priority}.svg">
                 </div>
             </div>`
 }
@@ -136,7 +136,7 @@ function getTaskOverviewOverlayTemplate(indexTask) {
             </div>
             <div class="overview-info">
                 <span>Priority:</span>
-                <p>${tasks[indexTask].priority}<img id="prioOverview${indexTask}" src="/assets/icons/prio${tasks[indexTask].priority}.svg"></p>
+                <p>${tasks[indexTask].priority}<img id="prioOverview${indexTask}" src="../assets/icons/prio${tasks[indexTask].priority}.svg"></p>
             </div>
             <div class="overview-info">Assigned To:</div>
             <div id="overviewAssignedContacts${indexTask}" class="overview-contacts">
@@ -189,7 +189,7 @@ function getBoardEditTaskBtnTemplate(indexTask) {
     return `<button id="editTaskOk" onclick="saveEditTask(${indexTask}); return false"
                 class="confirm-btn">
                 Ok
-                <img src='/assets/icons/create-btn.svg'>
+                <img src='../assets/icons/create-btn.svg'>
             </button>`
 }
 
@@ -219,7 +219,7 @@ function getFocusedContactTemplate(indexContact) {
                     <div class="focused-profile-account">
                         <span id="idFocusedName${indexContact}" class="focused-contact-name">${contacts[indexContact].name}</span>
                         <div>
-                            <button onclick="toggleContactsOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
+                            <button onclick="openContactsOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
                              <div id="contactsEditIcon"></div>
                                 <span>Edit</span>
                             </button>
@@ -254,7 +254,7 @@ function getContactsOverlayAddBtnsTemplate() {
             <button id="contactsOverlayCreate" onclick="addContact(); return false"
                 class="confirm-btn" >
                 Create Contact
-                <img src="/assets/icons/create-btn.svg">
+                <img src="../assets/icons/create-btn.svg">
             </button>`
 }
 
@@ -271,7 +271,23 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
             <button id="contactsOverlaySave" onclick="saveEditContact(${indexContact}); return false"
                 class="confirm-btn">
                 Save
-                <img src='/assets/icons/create-btn.svg'>
+                <img src='../assets/icons/create-btn.svg'>
+            </button>`
+}
+
+/**
+ * This template creates the two necessary buttons for the "btnsMenuMobile" to edit or delete a contact
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function getbtnsMenuMobileTemplate(indexContact) {
+    return `<button onclick="openContactsOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
+                <div id="contactsEditIcon"></div>
+                <span>Edit</span>
+            </button>
+            <button id="deleteBtnContacts" onclick="deleteContact(${indexContact})" class="focused-contact-btns">
+                <div id="contactsDeleteIcon"></div>
+                <span>Delete</span>
             </button>`
 }
 

@@ -10,6 +10,28 @@ async function initContacts() {
     hideAllUsers("id");
     adjustUserContact("idName");
     hideNotUsedLetters();
+    adjustToWindowSize();
+}
+
+/**
+ * This function checks the windows inner width and toggles the visibilty of the section "contactFocus"
+ */
+function adjustToWindowSize() {
+    if (window.innerWidth <= 1000) {
+        if (window.innerWidth <= 900) {
+            document.getElementById("addNewContactBtnDesktop").classList.add("d-none");
+            document.getElementById("addNewContactBtnMobile").classList.remove("d-none");
+        }
+        else {
+            document.getElementById("addNewContactBtnDesktop").classList.remove("d-none")
+            document.getElementById("addNewContactBtnMobile").classList.add("d-none");
+        }
+    } else {
+        document.getElementById("addresbookHideMobile").classList.remove("d-none");
+        document.getElementById("arrowBackwardsMobile").classList.add("d-none");
+        document.getElementById("addNewContactBtnMobile").classList.add("d-none");
+        document.getElementById("btnsMenuMobile").classList.add("d-none");
+    }
 }
 
 /**
@@ -54,16 +76,23 @@ function clearActiveContacts() {
 }
 
 /**
- * This function toggles the contact-overlay (for addding a new or editing an existing contact), background-overlay and overlay-animations
+ * This function opens the ContactsOverlay (for addding a new or editing an existing contact), background-overlay and overlay-animations)
  */
-function toggleContactsOverlay() {
-    let overlayBgContentRef = document.getElementById("overlayBg");
-    let overlayContactContentRef = document.getElementById("overlayContact");
-    overlayContactContentRef.classList.toggle("animation-open-overlay");
-    overlayContactContentRef.classList.toggle("animation-close-overlay");
+function openContactsOverlay() {
+    document.getElementById("overlayBg").classList.remove("d-none");
+    document.getElementById("overlayContact").classList.remove("d-none");
+}
+
+/**
+ * This function opens the ContactsOverlay 
+ */
+function closeContactsOverlay() {
+    document.getElementById("menuEditDeleteMobile").classList.add("d-none")
+    document.getElementById("overlayBg").classList.remove("animation-open-overlay");
+    document.getElementById("overlayContact").classList.remove("animation-close-overlay");
     setTimeout(function () {
-        overlayContactContentRef.classList.toggle("d-none");
-        overlayBgContentRef.classList.toggle("d-none");
+        document.getElementById("overlayContact").classList.add("d-none");
+        document.getElementById("overlayBg").classList.add("d-none");
     }, 300);
     clearContactForm();
 }
@@ -76,7 +105,7 @@ function adjustOverlayToAdd() {
     document.getElementById("overlayTitleH1").innerHTML = "Add contact";
     document.getElementById("overlayTitleP").innerHTML = "Tasks are better with a team!";
     document.getElementById("overlayProfileBadge").style.backgroundColor = "#D1D1D1";
-    document.getElementById("overlayProfileBadge").innerHTML = "<img src='/assets/icons/contacts-overlay-profile-badge-anonymous.svg'>";
+    document.getElementById("overlayProfileBadge").innerHTML = "<img src='../assets/icons/contacts-overlay-profile-badge-anonymous.svg'>";
     document.getElementById("contactsSubmitBtns").innerHTML = getContactsOverlayAddBtnsTemplate();
 }
 
@@ -137,9 +166,33 @@ async function addContact() {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function contactClicked(indexContact) {
+    if (window.innerWidth <= 1000) {
+        document.getElementById("addresbookHideMobile").classList.add("d-none");
+        document.getElementById("contactFocus").style.display = "flex";
+        document.getElementById("addNewContactBtnMobile").classList.add("d-none");
+        document.getElementById("btnsMenuMobile").classList.remove("d-none");
+        document.getElementById("arrowBackwardsMobile").classList.remove("d-none");
+    }
     clearActiveContacts();
     highlightContact(indexContact);
     updateFocusedContact(indexContact);
+    document.getElementById("menuEditDeleteMobile").innerHTML = getbtnsMenuMobileTemplate(indexContact)
+}
+
+/**
+ * This function closes the focused contact and shows the addressbook again
+ */
+function mobileArrowBackwards() {
+    document.getElementById("contactFocus").style.display = "none";
+    document.getElementById("addresbookHideMobile").classList.remove("d-none");
+}
+
+/**
+ * This function toggles the visibilty of the delete-/edit-contact-menu for mobile
+ */
+function toggleEditDeleteMenuMobile() {
+    document.getElementById("overlayBg").classList.remove("d-none")
+    document.getElementById("menuEditDeleteMobile").classList.remove("d-none")
 }
 
 /**
