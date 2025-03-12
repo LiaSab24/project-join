@@ -178,7 +178,6 @@ input {
 }
 
 .white-btn {
-  /*width: 110px;*/
   background: var(--clr-white);
   color: var(--clr-primary);
   border: 1px solid var(--clr-primary);
