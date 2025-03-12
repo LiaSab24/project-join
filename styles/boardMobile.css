@@ -97,6 +97,7 @@
       max-width: 400px;
       margin: 0;
     }
+
     #addTaskOverlay, #editTaskOverlay, #overviewOverlay {
       width: 85%;
     }
@@ -177,10 +178,9 @@
     .input-container {
         display: flex;
         flex-wrap: wrap;
-        justify-content: flex-end;
+        justify-content: center;
         align-items: center;
         gap: 12px;
-        width: auto;
     }
 
     .search-container {
@@ -276,11 +276,12 @@
         gap: 14px;
     }
 
-    .search-container {
-        width: clamp(150px, 40vw, 320px);
-    }
-
     #overviewOverlay {
         width: 70vw;
     }
+
+    #addTaskOverlay {
+        width: 90% !important;
+    }
+
 }
