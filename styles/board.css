@@ -418,13 +418,11 @@ button img {
 #overviewOverlay,
 .edit-task-overlay {
   width: clamp(320px, 80vw, 600px) !important;
-  top: 10%;
   position: fixed;
   align-self: anchor-center;
   justify-self: anchor-center;
   display: flex;
   flex-direction: column !important;
-  align-self: center !important;
   background-color: var(--clr-white);
   border-radius: 30px;
   box-shadow: var(--shadow-barrasuperior);
@@ -586,6 +584,17 @@ button img {
   background-color: #D1D1D1;
 }
 
+.edit-task-overlay {
+  height: fit-content;
+  max-height: 800px;
+  align-items: center;
+}
+
+.edit-task-overlay .title {
+  width: 100%;
+  margin: 0 !important;
+  justify-content: flex-end !important;
+}
 
 .edit-task-overlay #addTaskForm {
   margin: 0 !important;
@@ -594,6 +603,42 @@ button img {
   overflow-y: scroll;
   gap: 24px;
   padding-bottom: 40px !important;
+}
+
+.edit-task-overlay #addTaskAssignedToList {
+  display: flex;
+  flex-direction: row !important;
+}
+
+.edit-task-overlay #addTaskSubmitBtns {
+  width: 100%;
+  margin: 0;
+  justify-content: flex-end;
+}
+
+.edit-task-overlay .submit-btns button {
+  width: 89px;
+  gap: 4px;
+  font-size: 21px;
+}
+
+.edit-task-overlay .submit-btns img {
+  height: 24px;
+  width: 24px;
+
+}
+
+.edit-task-overlay .subtask-scrollbar {
+  height: fit-content;
+  max-height: 160px;
+}
+
+.edit-task-overlay #addTaskDropdownContacts {
+  top: 425px !important;
+}
+
+.edit-task-overlay #addTaskDropdownCategories {
+  top: 484px !important;
 }
 
 .edit-task-overlay .add-task-seperator,
