@@ -16,7 +16,7 @@ main {
         margin: 0;
     }
 }
- 
+
 .address-book {
     height: 928px;
     width: 456px;
@@ -140,7 +140,7 @@ main {
 #menuEditDeleteMobile {
     height: 100px;
     width: 116px;
-    padding: 10px; 
+    padding: 10px;
     position: absolute;
     bottom: 30px;
     right: 28px;
@@ -165,7 +165,7 @@ main {
     display: flex;
     justify-content: start;
     background-color: transparent;
-    font-size: var( --fs-16);
+    font-size: var(--fs-16);
 }
 
 #menuEditDeleteMobile button:active {
@@ -344,6 +344,7 @@ main {
     @media (max-width: 1120px) {
         margin-left: 20px;
     }
+
     @media (max-width: 1000px) {
         display: none;
         height: 100%;
@@ -371,7 +372,7 @@ main {
     }
 
     @media (max-width: 1120px) {
-        margin-top: 56px;
+        margin-top: 20px;
     }
 }
 
@@ -407,6 +408,23 @@ main {
     @media (max-width: 1240px) {
         order: 2;
     }
+}
+
+#arrowBackwardsMobile {
+    margin-right: 48px;
+    align-self: flex-end;
+    position: relative;
+    top: 42px;
+    @media (max-width: 400px) {
+        margin-right: 20px;
+    }
+}
+
+#arrowBackwardsMobile:hover {
+    background-color: #efeaea;
+    border-radius: 50%;
+    transform: scale(1.20);
+    cursor: pointer;
 }
 
 #focusedContactInformation {
@@ -494,6 +512,7 @@ main {
     @media (max-width: 1240px) {
         max-width: 270px;
     }
+
     @media (max-width: 1000px) {
         max-width: 480px;
         flex: 1;
@@ -505,6 +524,7 @@ main {
     font-weight: var(--fw-500);
     font-size: var(--fs-47-36);
     line-height: 56.4px;
+
     @media (max-width: 1000px) {
         width: 480px;
     }
@@ -528,6 +548,7 @@ main {
     font-size: var(--fs-16);
     line-height: 19.2px;
     background-color: transparent;
+
     @media (max-width: 1000px) {
         display: none;
     }
@@ -691,6 +712,7 @@ main {
         border-top-right-radius: 30px;
         border-bottom-left-radius: 0px;
     }
+
     @media (max-width: 400px) {
         padding: 46px 12px;
     }
@@ -746,16 +768,19 @@ main {
     padding: 0;
     display: flex;
     flex-direction: column;
+
     @media (max-width: 1350px) {
         width: fit-content;
         margin: 30px 16px 80px 20px;
     }
+
     @media (max-width: 950px) {
         height: 408px;
         margin: 0;
         padding: 66px 24px;
         gap: 12px;
     }
+
     @media (max-width: 950px) {
         width: 100%;
         margin: 0;
@@ -768,6 +793,7 @@ main {
     align-self: flex-end;
     height: 32px;
     width: 32px;
+
     @media (max-width: 950px) {
         position: relative;
         bottom: 315px;
@@ -780,9 +806,11 @@ main {
 .overlay-contacts-inputs {
     margin-top: 57px;
     display: flex;
+
     @media (max-width: 1350px) {
         margin-top: 48px;
     }
+
     @media (max-width: 950px) {
         margin: 0;
         display: grid;
@@ -800,9 +828,10 @@ main {
     font-weight: var(--fw-500);
     font-size: var(--fs-47);
     line-height: 56.4px;
+
     @media (max-width: 950px) {
         height: 0;
-        width: 0;
+        width: 100%;
     }
 }
 
@@ -815,18 +844,21 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+
     @media (max-width: 1350px) {
         height: 110px;
         width: 110px;
     }
+
     @media (max-width: 1100px) {
         height: 100px;
         width: 100px;
     }
+
     @media (max-width: 950px) {
         height: 120px;
         width: 120px;
-        position: fixed;
+        position: relative;
         justify-self: anchor-center;
     }
 }
@@ -836,11 +868,13 @@ main {
     margin-left: 72px;
     display: flex;
     flex-direction: column;
+
     @media (max-width: 1350px) {
         width: 100%;
         margin-left: 20px;
         flex: 1;
     }
+
     @media (max-width: 950px) {
         width: 100%;
         margin: 0;
@@ -854,14 +888,17 @@ main {
     height: 50px !important;
     width: 422px;
     padding: 13px 21px 13px 21px !important;
+
     @media (max-width: 1100px) {
         width: 350px;
     }
+
     @media (max-width: 950px) {
         height: 41px;
         width: 364px;
         margin: 0;
     }
+
     @media (max-width: 400px) {
         width: 290px;
     }
@@ -872,6 +909,7 @@ main {
     flex-direction: column;
     gap: 51px;
     z-index: 3;
+
     @media (max-width: 950px) {
         height: 0;
         width: 0;
@@ -885,18 +923,21 @@ main {
     left: -68px;
     cursor: text;
     pointer-events: none;
+
     @media (max-width: 1350px) {
         height: 24px;
         width: 24px;
         top: 126px;
         left: -56px;
     }
+
     @media (max-width: 950px) {
         height: 24px;
         width: 24px;
         top: -311px;
         left: 345px;
     }
+
     @media (max-width: 400px) {
         top: -310px;
         left: 263px;
@@ -976,6 +1017,7 @@ input:focus {
     margin-top: 28px !important;
     gap: 16px;
     display: flex;
+
     @media (max-width: 950px) {
         margin-top: 12px !important;
     }

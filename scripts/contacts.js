@@ -17,13 +17,20 @@ async function initContacts() {
  * This function checks the windows inner width and toggles the visibilty of the section "contactFocus"
  */
 function adjustToWindowSize() {
-
-    if (window.innerWidth <= 900) {
-        document.getElementById("addNewContactBtnDesktop").classList.add("d-none");
-        document.getElementById("addNewContactBtnMobile").classList.remove("d-none");
+    if (window.innerWidth <= 1000) {
+        if (window.innerWidth <= 900) {
+            document.getElementById("addNewContactBtnDesktop").classList.add("d-none");
+            document.getElementById("addNewContactBtnMobile").classList.remove("d-none");
+        }
+        else {
+            document.getElementById("addNewContactBtnDesktop").classList.remove("d-none")
+            document.getElementById("addNewContactBtnMobile").classList.add("d-none");
+        }
     } else {
-        document.getElementById("addNewContactBtnDesktop").classList.remove("d-none")
+        document.getElementById("addresbookHideMobile").classList.remove("d-none");
+        document.getElementById("arrowBackwardsMobile").classList.add("d-none");
         document.getElementById("addNewContactBtnMobile").classList.add("d-none");
+        document.getElementById("btnsMenuMobile").classList.add("d-none");
     }
 }
 
@@ -160,15 +167,16 @@ async function addContact() {
  */
 function contactClicked(indexContact) {
     if (window.innerWidth <= 1000) {
-        document.getElementById("addresbookHideMobile").style.display = "none";
+        document.getElementById("addresbookHideMobile").classList.add("d-none");
         document.getElementById("contactFocus").style.display = "flex";
         document.getElementById("addNewContactBtnMobile").classList.add("d-none");
         document.getElementById("btnsMenuMobile").classList.remove("d-none");
+        document.getElementById("arrowBackwardsMobile").classList.remove("d-none");
     }
     clearActiveContacts();
     highlightContact(indexContact);
     updateFocusedContact(indexContact);
-    document.getElementById("menuEditDeleteMobile").innerHTML += getbtnsMenuMobileTemplate(indexContact)
+    document.getElementById("menuEditDeleteMobile").innerHTML = getbtnsMenuMobileTemplate(indexContact)
 }
 
 /**
