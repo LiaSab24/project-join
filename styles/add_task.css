@@ -232,7 +232,7 @@ select {
 
 .add-task-dropdown {
     max-height: 290px;
-    width: 440px;
+    width: 440px; 
     padding-top: 10px;
     margin: 0 !important;
     position: absolute;
@@ -252,6 +252,9 @@ select {
         width: 320px;
         box-shadow: none;
     };
+    @media (max-width: 990px) {
+        width: 396px;
+    };
     @media (max-width: 900px) {
         width: 396px;
     };
@@ -268,14 +271,20 @@ select {
     top: 656px;
     overflow-y: scroll;
     @media (max-width: 990px) {
-        top: 656px;
+        top: 591px;
+    }
+    @media (max-width: 900px) {
+        top: 575px;
     }
 }
 
 #addTaskDropdownCategories {
     top: 595px;
     @media (max-width: 990px) {
-        top: 959px;
+        top: 897px;
+    }
+    @media (max-width: 900px) {
+        top: 881px;
     }
 }
 
