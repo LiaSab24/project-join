@@ -578,7 +578,6 @@ button img {
   background-color: #D1D1D1;
 }
 
-
 .edit-task-overlay #addTaskForm {
   margin: 0 !important;
   display: flex;
@@ -587,8 +586,6 @@ button img {
   gap: 24px;
   padding-bottom: 40px !important;
 }
-
-
 
 .edit-task-overlay .add-task-seperator,
 .edit-task-overlay .add-task-requirements,
