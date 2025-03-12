@@ -14,9 +14,9 @@ async function initSummary() {
     tasksDone = 0;
     showTasksNumbers();
     showNextDeadline()
-    greetingDaytime(); 
-    showUserName(); 
-} 
+    greetingDaytime();
+    showUserName();
+}
 
 /** 
  * This function fills the according tasks-numbers in the different "counterTasks"-container
@@ -109,8 +109,12 @@ function showUserName() {
 function guestGreeting() {
     const greetingContentRef = document.getElementById("greetingDaytime");
     let originallyGreeting = greetingContentRef.innerHTML;
-    let newGreeting = originallyGreeting.slice(0, originallyGreeting.length - 1);
-    greetingContentRef.innerHTML = newGreeting;
+    let newGreeting = originallyGreeting.replace(",", " ").trim();
+    if(window.innerWidth <= 1000 && !greetingContentRef.innerHTML.includes("!")) {
+        greetingContentRef.innerHTML = newGreeting + "!";
+    } else {
+        greetingContentRef.innerHTML = newGreeting.replace("!", " ").trim();
+    }
 }
 
 /**

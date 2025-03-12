@@ -21,7 +21,7 @@
   <script src="../scripts/summary.js"></script>
 </head>
 
-<body onload="initSummary()">
+<body onload="initSummary()" onresize="showUserName()">
   <div w3-include-html="header.html"></div>
   <div w3-include-html="sidebar.html"></div>
  
@@ -65,7 +65,7 @@
             <span id="nextDeadlineSpan">Upcoming Deadline</span>
           </div>
         </div>
-
+ 
         <div class="tasks">
           <div onclick="redirectionToBoard()" class="summary-container">
             <p>

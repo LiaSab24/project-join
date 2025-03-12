@@ -133,8 +133,11 @@ main {
     width: 56px;
     border-radius: 46px;
     position: absolute;
-    bottom: 110px;
+    bottom: 30px;
     right: 30px;
+    @media (max-width: 900px) {
+        bottom: 110px;
+    }
 }
 
 #menuEditDeleteMobile {
@@ -142,14 +145,17 @@ main {
     width: 116px;
     padding: 10px;
     position: absolute;
-    bottom: 110px;
+    bottom: 28px;
     right: 28px;
     background-color: var(--clr-lightGray);
     border-radius: 20px;
     border-bottom-right-radius: 0px;
     display: flex;
     flex-direction: column;
-    z-index: 2;
+    z-index: 6;
+    @media (max-width: 900px) {
+        bottom: 108px;
+    }
 }
 
 #menuEditDeleteMobile button {
@@ -166,9 +172,6 @@ main {
     justify-content: start;
     background-color: transparent;
     font-size: var(--fs-16);
-}
-
-#menuEditDeleteMobile button {
     box-shadow: none;
     color: var(--clr-white);
 }
@@ -619,7 +622,7 @@ main {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 5;
     background-color: rgb(0, 0, 0, 0.3);
     transition-property: all;
     transition-duration: 300ms;
@@ -638,14 +641,14 @@ main {
     align-self: anchor-center;
     animation-duration: 300ms;
     animation-timing-function: ease-out;
-    z-index: 1;
+    z-index: 7;
 
     @media (max-width: 1350px) {
         width: fit-content;
         height: fit-content;
     }
 
-    @media (max-width: 950px) {
+    @media (max-width: 950px) { 
         width: 396px;
         flex-direction: column;
         overflow-y: auto;

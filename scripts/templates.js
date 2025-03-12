@@ -275,7 +275,7 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
             </button>`
 }
 
-/**
+/** 
  * This template creates the two necessary buttons for the "btnsMenuMobile" to edit or delete a contact
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
