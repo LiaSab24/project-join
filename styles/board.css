@@ -410,7 +410,8 @@ button img {
 
 #overviewOverlay,
 .edit-task-overlay {
-  width: 525px !important;
+  /* width: 525px !important; */
+  width: clamp(320px, 80vw, 600px) !important;
   position: fixed;
   top: 200px;
   align-self: center;
