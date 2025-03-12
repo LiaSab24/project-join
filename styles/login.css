@@ -230,7 +230,7 @@ input[type="email"] {
 }
 
 input[type="password"] {
-    background-image: url(../assets/icons/lock.svg);
+    background-image: url('../assets/icons/lock.svg');
     background-repeat: no-repeat;
     background-position: 95%;
 }
