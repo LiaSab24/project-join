@@ -183,18 +183,18 @@ async function deleteData(path = "") {
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-async function assignRandomColor(indexContact) {
+function assignRandomColor(indexContact) {
   if (contactColors[indexContact]) {
       return contactColors[indexContact];
   }
   if (availableColors.length === 0) availableColors = [...colors];
+
   let randomIndex = Math.floor(Math.random() * availableColors.length);
   let assignedColor = availableColors.splice(randomIndex, 1)[0];
-  
-  contactColors[indexContact] = assignedColor;
-  return new Promise(resolve => setTimeout(() => resolve(assignedColor), 0));
-}
 
+  contactColors[indexContact] = assignedColor;
+  return assignedColor;
+}
 
 /**
  * This function changes the profile-badge-color according to the deposited color for the contact
