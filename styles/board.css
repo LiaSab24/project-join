@@ -1,23 +1,11 @@
 :root {
-  --FS-S: 12px;
-  --FS-L: 61px;
-  --FS-M: 20px;
-  --bg-color: #f4f5f7;
-  --text-color: #000;
-  --card-bg: #fff;
   --border-radius: 8px;
   --border-radius-task: 24px;
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   --task-padding: 16px;
   --gap-size-input: 32px;
   --gap-size-task: 20px;
   --header-padding: 16px;
-  --input-border: #ccc;
-  --input-bg: #fff;
   --input-radius: 8px;
-  --button-bg: #2A3647;
-  --button-hover-bg: #29ABE2;
-  --task-container-border: #E0E0E0;
 }
 
 html,
@@ -29,25 +17,26 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: var(--bg-color);
+  background: var(--clr-white);
   overflow-x: hidden !important;
 }
 
 main {
-  flex-grow: 1;
+  min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
-  /* margin-left: 232px; */
-  overflow: hidden;
+  justify-content: flex-start;
+  width: auto !important;
+  max-width: 100% !important;
 }
 
 h1 {
-  font-size: var(--FS-L);
+  font-size: var(--fs-61-47);
   padding: var(--header-padding);
 }
 
 h2 {
-  font-size: var(--FS-M);
+  font-size: var(--fs-20);
 }
 
 .board-header {
@@ -68,8 +57,8 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--input-bg);
-  border: 1px solid var(--input-border);
+  background: var(--clr-white);
+  border: 1px solid var(--clr-lighterGray);
   border-radius: var(--input-radius);
   width: 312px;
   height: 48px;
@@ -82,7 +71,7 @@ h2 {
   justify-content: center;
   border: none;
   outline: none;
-  font-size: var(--FS-M);
+  font-size: var(--fs-20);
   background: transparent;
   margin: 0 !important;
   padding: 8px 0 8px 16px;
@@ -115,7 +104,7 @@ h2 {
 }
 
 button {
-  background: var(--button-bg);
+  background: var(--clr-primary);
   color: white;
   padding: 8px 16px;
   border: none;
@@ -124,7 +113,7 @@ button {
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: var(--fw-700);
   cursor: pointer;
 }
 
@@ -134,7 +123,7 @@ button img {
 }
 
 .button:hover {
-  background-color: var(--button-hover-bg);
+  background-color: var(--clr-lightBlue);
 }
 
 .task-container {
@@ -145,7 +134,7 @@ button img {
   padding: var(--header-padding);
   gap: var(--gap-size-task);
   overflow-x: auto;
-  padding: 0 64px;
+  padding: 0 24px;
 }
 
 .task-wrapper {
@@ -155,7 +144,7 @@ button img {
 }
 
 .task-headline {
-  font-weight: 700;
+  font-weight: var(--fw-700);
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
@@ -200,9 +189,9 @@ button img {
 }
 
 .task-card {
-  background: var(--card-bg);
+  background: var(--clr-white);
   border-radius: var(--border-radius-task);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-nuevo);
   padding: var(--task-padding);
   margin-top: 16px;
   max-height: 263px;
@@ -224,34 +213,34 @@ button img {
   padding: 4px 16px;
   border-radius: 8px;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: var(--fw-400);
 }
 
 .category-bug-fix {
-  background: #FF4646;
+  background: var(--clr-tatjana);
 }
 
 .category-documentation {
-  background: #FFC55C;
+  background: var(--clr-eva);
 }
 
 .category-technical-task {
-  background: #1FD7C1;
+  background: var(--clr-emanuel);
 }
 
 .category-user-story {
-  background: #0038FF;
+  background: var(--bg-blue);
 }
 
 .task-title {
-  font-weight: bold;
+  font-weight: var(--fw-700);
   font-size: 16px;
 }
 
 .task-description {
   max-height: 38px;
   font-size: 16px;
-  color: #A8A8A8;
+  color: var(--clr-lightGray);
   overflow: hidden;
   white-space: break-spaces;
   text-overflow: ellipsis;
@@ -268,20 +257,20 @@ button img {
 }
 
 .task-progress span {
-  font-size: var(--FS-S);
+  font-size: var(--fs-12);
   white-space: nowrap;
 }
 
 .progress-bar {
   width: 128px;
   height: 8px;
-  background: #ddd;
+  background: var(--clr-lighterGray);
   border-radius: 5px;
 }
 
 .progress-bar-fill {
   height: 100%;
-  background: #4589FF;
+  background: var(--clr-lightBlue);
   border-radius: 5px;
 }
 
@@ -367,7 +356,7 @@ button img {
   height: 870px;
   width: 1116px;
   border-radius: 30px;
-  background: #FFFFFF;
+  background: var(--clr-white);
   z-index: 4;
   position: fixed;
   top: 100px;
@@ -430,7 +419,7 @@ button img {
   align-self: center !important;
   background-color: white;
   border-radius: 30px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-barrasuperior);
   z-index: 3;
   padding: 48px 40px !important;
   gap: 16px !important;
@@ -454,7 +443,7 @@ button img {
   padding: 4px 20px;
   border-radius: 8px;
   font-size: 23px;
-  font-weight: 400;
+  font-weight: var(--fw-400);
 }
 
 #overviewOverlay h1 {
@@ -479,7 +468,7 @@ button img {
 
 .overview-info {
   display: flex;
-  font-weight: 400;
+  font-weight: var(--fw-400);
   font-size: 20px;
   color: #42526E;
   gap: 25px;
@@ -491,11 +480,11 @@ button img {
 
 .overview-info p,
 .overview-contact-assigned {
-  color: #000000;
+  color: var(--clr-black);
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 400;
+  font-weight: var(--fw-400);
   font-size: 20px;
 }
 
@@ -548,9 +537,9 @@ button img {
 .overview-btns button {
   height: 100%; 
   background-color: transparent;
-  color: #2A3647;
+  color: var(--clr-primary);
   gap: 8px;
-  font-weight: 400;
+  font-weight: var(--fw-400);
   display: flex;
   align-items: center;
 }
@@ -572,7 +561,7 @@ button img {
 }
 
 .overview-btns button:hover {
-  color: #29ABE2;
+  color: var(--clr-lightBlue);
 }
 
 .overview-btns button:hover .overview-task-delete {

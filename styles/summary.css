@@ -56,14 +56,14 @@ main {
 #summaryIconToDo {
     height: 70px;
     width: 70px;
-    background-image: url("/assets/icons/summary-todo.svg");
+    background-image: url("../assets/icons/summary-todo.svg");
     background-repeat: no-repeat;
 }
 
 #summaryIconDone {
     height: 70px;
     width: 70px;
-    background-image: url("/assets/icons/summary-done.svg");
+    background-image: url("../assets/icons/summary-done.svg");
     background-repeat: no-repeat;
 }
 
@@ -81,11 +81,11 @@ main {
 }
 
 .summary-container:hover #summaryIconToDo {
-    background-image: url("/assets/icons/summary-todo-hover.svg");
+    background-image: url("../assets/icons/summary-todo-hover.svg");
 }
 
 .summary-container:hover #summaryIconDone {
-    background-image: url("/assets/icons/summary-done-hover.svg");
+    background-image: url("../assets/icons/summary-done-hover.svg");
 }
 
 .summary-overview {
