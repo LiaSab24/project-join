@@ -251,9 +251,9 @@ input[type="email"] {
 }
 
 input[type="password"] {
-  background-image: url('../assets/icons/lock.svg');
-  background-repeat: no-repeat;
-  background-position: 95%;
+    background-image: url('../assets/icons/lock.svg');
+    background-repeat: no-repeat;
+    background-position: 95%;
 }
 
 input[type="text"][name="password"] {
