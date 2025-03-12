@@ -28,6 +28,17 @@
     --Margin-RL-L: 15px;
 }
 
+.log-in-wrapper,
+.Form-Wrapper {
+    @media (max-width: 700px) {
+        width: 400px !important;
+    }
+
+    @media (max-width: 500px) {
+        width: 300px !important;
+    }
+}
+
 .Body-LogIn {
     height: 100vh;
     display: flex;
@@ -97,7 +108,7 @@
     text-align: center;
     border-radius: 30px;
     padding: 32px 0;
-    box-shadow: var(--Shadow);
+    box-shadow: var(--shadow-backlog);
     height: auto;
 }
 
@@ -117,8 +128,8 @@ form {
 
 form h1 {
     margin: 0;
-    font-size: var(--FS-h1);
-    font-weight: var(--FW-L);
+    font-size: var(--fs-61-47);
+    font-weight: var(--fw-700);
     line-height: 56.4px;
 }
 
@@ -131,7 +142,7 @@ input {
 }
 
 ::placeholder{
-    font-size: var(--FS_XL);
+    font-size: var(--fs-20);
     line-height: 24px;
     font-weight:400;
     color: #D1D1D1; 
@@ -169,7 +180,7 @@ input[type="text"][name="password"] {
     display: flex;
     flex-direction: column;
 }
-
+ 
 .password-wrapper input {
     width: 100%;
     padding-right: 40px;
@@ -213,17 +224,13 @@ input[type="checkbox"]:checked {
 }
 
 .input-error{
-    color: var(--Error);
-    font-size: var(--FS-S);
-    font-weight: var(var(--FW-M));
+    color: #FF001F;
+    font-size: var(--fs-16-12);
+    font-weight: var(--fw-500);
     line-height: 15.6px;
     text-align: start;
     position: absolute;
     bottom: 25px;
-}
-
-.error-border{
-    border: 1px solid var(--Error);
 }
 
 .Checkbox-Remember-Me {
@@ -232,13 +239,13 @@ input[type="checkbox"]:checked {
     justify-content: center;
     gap: 8px;
     padding: 0 16px;
-    font-weight: var(--FW-M);
+    font-weight: var(--fw-500);
 }
 
 .Checkbox-Remember-Me a {
     text-decoration: none;
     cursor: pointer;
-    color: var(--Light-Blue); 
+    color: var( --clr-lightBlue); 
 }
 
 .Checkbox-Remember-Me a:hover {
@@ -254,21 +261,20 @@ input[type="checkbox"]:checked {
 }
 
 .Blue-BTN {
-    background-color: var(--Dark-Blue);
-    color: white;
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
     height: 40px;
     width: 180px;
     border-radius: 8px;
     padding: 4px 0;
     border: none;
-    font-size: var(--FS-L);
-    font-weight: var(--FW-L);
+    font-weight: var(--fw-600);
     cursor: pointer;
     transition: all .3s ease-in-out;
 }
 
 .Blue-BTN:hover{
-    background-color: var(--Light-Blue);
+    background-color: var(--clr-lightBlue);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -282,15 +288,15 @@ input[type="checkbox"]:checked {
 
 .Policy-Area a {
     line-height: 19.2px;
-    font-size: var(--FS-M);
-    font-weight: var(--FW-M);
-    color: var(--Link-Color);
+    font-size: var(--fs-16);
+    font-weight: var(--fw-400);
+    color: var(--clr-lightGray);
     text-decoration: none;
     padding: 8px;
 }
 
 .Policy-Area a:hover{
-    color: var(--Light-Blue);
+    color: var(--clr-lightBlue);
 }
 
 .Signed-UP{
@@ -304,11 +310,11 @@ input[type="checkbox"]:checked {
     justify-content: center;
     border-radius: 20px;
     animation: signup 300ms ease-out  forwards;
-    font-size: var(--FS-M);
+    font-size: var(--fs-20);
 }
 
 .Signed-UP:hover{
-    background-color: var(--Dark-Blue);
+    background-color: var(--clr-primary);
     box-shadow: none;
     cursor: default;
 }
@@ -324,6 +330,6 @@ input[type="checkbox"]:checked {
 }
 
 input:focus {
-    outline: 1px solid #29ABE2;
+    outline: 1px solid var(--clr-lightBlue);
     border: 1px solid transparent;
 }

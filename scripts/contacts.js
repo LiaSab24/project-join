@@ -158,7 +158,7 @@ async function addContact() {
         checkFilledInput("addContactMail");
         checkFilledInput("addContactPhone")
     }
-}
+} 
 
 /**
  * This function redirects to different functions that are used to display the clicked contact 
@@ -185,6 +185,8 @@ function contactClicked(indexContact) {
 function mobileArrowBackwards() {
     document.getElementById("contactFocus").style.display = "none";
     document.getElementById("addresbookHideMobile").classList.remove("d-none");
+    document.getElementById("btnsMenuMobile").classList.add("d-none");
+    document.getElementById("addNewContactBtnMobile").classList.remove("d-none");
 }
 
 /**

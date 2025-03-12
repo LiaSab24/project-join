@@ -21,13 +21,13 @@
   <script src="../scripts/summary.js"></script>
 </head>
 
-<body onload="initSummary()">
+<body onload="initSummary()" onresize="showUserName()">
   <div w3-include-html="header.html"></div>
   <div w3-include-html="sidebar.html"></div>
  
   <main> 
     <section class="title">
-      <h1>Join 360</h1>
+      <h1>Join 360</h1> 
       <div class="title-seperator"></div>
       <p>Key Metrics at a Glance</p>
     </section>
@@ -65,7 +65,7 @@
             <span id="nextDeadlineSpan">Upcoming Deadline</span>
           </div>
         </div>
-
+ 
         <div class="tasks">
           <div onclick="redirectionToBoard()" class="summary-container">
             <p>
@@ -88,7 +88,7 @@
         </div>
       </div>
 
-      <div class="summary-greeting">
+      <div id="summaryGreeting" class="summary-greeting">
         <p id="greetingDaytime"></p>
         <p id="userName"></p>
       </div>
