@@ -6,7 +6,7 @@
   --gap-size-task: 20px;
   --header-padding: 16px;
   --input-radius: 8px;
-}
+} 
 
 html,
 body {
@@ -350,6 +350,7 @@ button img {
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: flex-end;
+  z-index: 5;
 }
 
 #addTaskOverlay {
@@ -357,10 +358,11 @@ button img {
   width: 1116px;
   border-radius: 30px;
   background: var(--clr-white);
-  z-index: 4;
+  z-index: 6;
   position: fixed;
-  top: 100px;
-  align-self: center;
+  align-self: anchor-center;
+  justify-self: anchor-center;
+  overflow-y: auto;
 }
 
 #animation {
@@ -408,19 +410,25 @@ button img {
   top: 455px;
 }
 
+#addTaskOverlay #addTaskCancel {
+  background-color: var(--clr-white);
+  color: var(--clr-primary)
+}
+
 #overviewOverlay,
 .edit-task-overlay {
   width: clamp(320px, 80vw, 600px) !important;
+  top: 10%;
   position: fixed;
-  top: 200px;
-  align-self: center;
+  align-self: anchor-center;
+  justify-self: anchor-center;
   display: flex;
   flex-direction: column !important;
   align-self: center !important;
-  background-color: white;
+  background-color: var(--clr-white);
   border-radius: 30px;
   box-shadow: var(--shadow-barrasuperior);
-  z-index: 3;
+  z-index: 5;
   padding: 48px 40px !important;
   gap: 16px !important;
 }
@@ -587,8 +595,6 @@ button img {
   gap: 24px;
   padding-bottom: 40px !important;
 }
-
-
 
 .edit-task-overlay .add-task-seperator,
 .edit-task-overlay .add-task-requirements,

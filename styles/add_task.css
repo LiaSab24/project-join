@@ -296,7 +296,7 @@ select {
 }
 
 .add-task-dropdown-option:hover {
-    background-color:var(--clr-white);
+    background-color: #EEEEEE;
 }
 
 .add-task-dropdown-option div {
