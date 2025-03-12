@@ -4,45 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join Summary</title>
+  <title>Summary</title>
   <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)"/>
   <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)"/>
   
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../styles/root.css">
-  <link rel="stylesheet" href="/styles/sidebar.css">
-  <link rel="stylesheet" href="/styles/header.css">
-  <link rel="stylesheet" href="/fonts/fonts.css">
-  <link rel="stylesheet" href="/styles/summary.css">
+  <link rel="stylesheet" href="../styles/sidebar.css">
+  <link rel="stylesheet" href="../styles/header.css">
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <link rel="stylesheet" href="../styles/summary.css">
 
-  <script src="/script.js"></script>
-  <script src="/scripts/include.js"></script>
-  <script src="/scripts/templates.js"></script>
-  <script src="/scripts/summary.js"></script>
+  <script src="../script.js"></script>
+  <script src="../scripts/include.js"></script>
+  <script src="../scripts/templates.js"></script>
+  <script src="../scripts/summary.js"></script>
 </head>
 
 <body onload="initSummary()">
-  <div w3-include-html="header.html"></div>
-  <div w3-include-html="sidebar.html"></div>
+  <div w3-include-html="./header.html"></div>
+  <div w3-include-html="./sidebar.html"></div>
  
   <main> 
-    <section class="title">
+    <section class="title flex align-center">
       <h1>Join 360</h1>
       <div class="title-seperator"></div>
       <p>Key Metrics at a Glance</p>
+      <div class="responsive-title-seperator"></div>
     </section>
 
-    <section class="summary-content">
-      <div class="summary-overview">
+    <section class="summary-content flex align-center">
+      <div class="summary-overview flex">
         <div class="to-dos">
-          <div onclick="redirectionToBoard()" class="summary-container">
+          <div onclick="redirectionToBoard()" class="summary-container flex just-center align-center">
             <div id="summaryIconToDo"></div>
             <p>
               <span id="counterTasksToDo" class="summary-number">0</span>
               <span class="number-explanation">To-Do</span>
             </p>
           </div>
-          <div onclick="redirectionToBoard()" class="summary-container">
+          <div onclick="redirectionToBoard()" class="summary-container flex just-center align-center">
             <div id="summaryIconDone"></div>
             <p>
               <span id="counterTasksDone" class="summary-number">0</span>
@@ -51,10 +52,10 @@
           </div>
         </div>
 
-        <div onclick="redirectionToBoard()" class="deadline summary-container">
-          <div class="deadline-urgent">
+        <div onclick="redirectionToBoard()" class="deadline summary-container flex just-space-b align-center">
+          <div class="deadline-urgent flex just-center align-center">
             <img src="/assets/icons/summary-deadline-urgent.svg" alt="summary-deadline-urgent">
-            <p>
+            <p class="flex">
               <span id="counterTasksUrgent" class="summary-number">0</span>
               <span class="number-explanation">Urgent</span>
             </p>
@@ -66,29 +67,32 @@
           </div>
         </div>
 
-        <div class="tasks">
-          <div onclick="redirectionToBoard()" class="summary-container">
-            <p>
+        <div class="tasks flex just-space-b">
+          <div onclick="redirectionToBoard()" class="summary-container flex just-center align-center">
+            <p class="flex align-center">
               <span id="counterTasksTotal" class="summary-number">0</span>
-              <span class="number-explanation">Tasks in Board</span>
+              <span class="number-explanation">Tasks in</span>
+              <span class="number-explanation">Board</span>
             </p>
           </div>
-          <div onclick="redirectionToBoard()" class="summary-container">
-            <p>
+          <div onclick="redirectionToBoard()" class="summary-container flex just-center align-center">
+            <p class="flex align-center">
               <span id="counterTasksInProgress" class="summary-number">0</span>
-              <span class="number-explanation">Tasks in Progress</span>
+              <span class="number-explanation">Tasks in</span>
+              <span class="number-explanation">Progress</span>
             </p>
           </div>
-          <div onclick="redirectionToBoard()" class="summary-container">
-            <p>
+          <div onclick="redirectionToBoard()" class="summary-container flex just-center align-center">
+            <p class="flex align-center">
               <span id="counterTasksAwaitingFeedback" class="summary-number">0</span>
-              <span class="number-explanation">Awaiting Feedback</span>
+              <span class="number-explanation">Awaiting</span>
+              <span class="number-explanation">Feedback</span>
             </p>
           </div>
         </div>
       </div>
 
-      <div class="summary-greeting">
+      <div class="summary-greeting flex">
         <p id="greetingDaytime"></p>
         <p id="userName"></p>
       </div>
