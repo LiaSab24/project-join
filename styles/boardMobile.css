@@ -4,25 +4,84 @@
       flex-direction: column;
       align-items: center;
     }
+
+    .board-header h1 {
+        font-size: 24px;
+    }
+
     .task-card {
-      width: 100%;
-      max-width: 320px;
+        width: 90%;
+        font-size: 14px;
+        padding: 8px;
     }
+
     .task-badge {
-      display: block;
-      width: 100%;
-      text-align: center;
+        font-size: 12px;
     }
+
+    
+    .task-description {
+        font-size: 12px;
+        -webkit-line-clamp: 1;
+    }
+
+    .assigned-contacts-and-priority img {
+        width: 14px;
+        height: 14px;
+    }
+
+    .task-wrapper {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .board-tasks-list {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .search-container {
+        width: 95%;
+        height: 36px;
+    }
+
+    .search-container input {
+        font-size: 14px;
+        padding: 6px;
+    }
+
     #addTaskOverlay, #editTaskOverlay, #overviewOverlay {
-      width: 90% !important;
-      height: 90%;
-      top: 10%;
+        width: 95% !important;
+        height: 95%;
+        top: 5%;
     }
 
     .edit-task-overlay, #addTaskForm  {
-        width: 90%;
+        width: 95%;
     }
-  }
+
+    #overviewOverlay h1 {
+        font-size: 28px;
+    
+    }
+
+    .overview-info,
+    .overview-task-description {
+        font-size: 14px;
+    }
+
+    p {
+        font-size: 14px !important;
+    }
+
+    .overview-contact-assigned, .overview-subtasks-assigned {
+        margin-left: 0 !important;
+    }
+
+    .overview-task-badge {
+
+    }
+}
   
 @media (max-width: 767px) {
     .task-card {
@@ -124,6 +183,12 @@
         font-size: 16px;
         padding: 8px;
     }
+
+    #overviewOverlay {
+        width: 90vw;
+        max-height: 95vh;
+        padding: 16px;
+    }
 }
 
 @media (max-width: 1366px) {
@@ -174,6 +239,10 @@
         width: 250px;
         flex: 0 0 auto;
     }
+
+    #overviewOverlay {
+        width: 75vw;
+    }
 }
 
 @media (max-width: 1428px) {
@@ -193,5 +262,9 @@
 
     .search-container {
         width: clamp(150px, 40vw, 320px);
+    }
+
+    #overviewOverlay {
+        width: 70vw;
     }
 }
