@@ -1,5 +1,13 @@
 main {
   max-width: 1208px;
+  overflow-y: auto;
+  @media(max-width: 900px) {
+    margin: 0;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .title {
@@ -9,7 +17,6 @@ main {
   display: flex;
   align-items: center;
   gap: 27px;
-
   h1 {
     white-space: nowrap;
   }
@@ -21,7 +28,20 @@ main {
     margin-left: 28px;
   }
   @media(max-width: 1000px) {
-    margin-left: 28px;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin: 64px 20%;
+  }
+  @media(max-width: 700px) {
+    margin: 64px 10%;
+  }
+  @media(max-width: 500px) {
+    margin: 40px 40px;
+  }
+  @media(max-width: 400px) {
+    margin: 40px 12px;
   }
 }
 
@@ -29,6 +49,11 @@ main {
   height: 59px;
   width: 3px;
   background-color: var(--clr-lightBlue);
+  @media(max-width: 1000px) {
+    height: 3px;
+    width: 59px;
+    order: 3;
+  }
 }
 
 .title p {
@@ -57,6 +82,33 @@ main {
   }
 }
 
+.summary-overview {
+  height: 562px;
+  width: 560px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media(max-width: 1300px) {
+    width: 396px;
+    height: 384px;
+  }
+  @media(max-width: 1000px) {
+    margin: 0 20% 120px 20%;
+  }
+  @media(max-width: 700px) {
+    margin: 0 10% 120px 10%;
+  }
+  @media(max-width: 500px) {
+    height: 310px;
+    width: 310px;
+    margin: 0 40px 120px 40px;
+  }
+  @media(max-width: 400px) {
+    margin: 0 12px 120px 12px;
+  }
+}
+
 .summary-container {
   height: 168px;
   border-radius: 30px;
@@ -65,24 +117,38 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-
+  z-index: 1;
   @media(max-width: 1300px) {
     height: 110px;
+  }
+  @media(max-width: 500px) {
+    height: 90px;
+  }
+}
+
+#summaryIconToDo,
+#summaryIconDone,
+.deadline-urgent img {
+  height: 70px;
+  width: 70px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  @media(max-width: 1300px) {
+    height: 40px;
+    width: 40px;
+  }
+  @media(max-width: 500px) {
+    height: 32px;
+    width: 32px;
   }
 }
 
 #summaryIconToDo {
-  height: 70px;
-  width: 70px;
   background-image: url("../assets/icons/summary-todo.svg");
-  background-repeat: no-repeat;
 }
 
 #summaryIconDone {
-  height: 70px;
-  width: 70px;
   background-image: url("../assets/icons/summary-done.svg");
-  background-repeat: no-repeat;
 }
 
 .summary-container:hover {
@@ -106,19 +172,6 @@ main {
   background-image: url("../assets/icons/summary-done-hover.svg");
 }
 
-.summary-overview {
-  height: 562px;
-  width: 560px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  @media(max-width: 1300px) {
-    width: 396px;
-    height: 384px;
-  }
-}
-
 .summary-number {
   font-weight: var(--fw-600);
   font-size: var(--fs-64-47);
@@ -140,13 +193,24 @@ main {
 .to-dos div {
   width: 264px;
   gap: 18px;
+  @media(max-width: 1300px) {
+    gap: 10px;
+    width: 186px;
+  }
+  @media(max-width: 500px) {
+    gap: 6px;
+    width: 145px;
+  }
 }
 
 .to-dos div p {
   width: 63px;
   display: flex;
   flex-direction: column;
-  font-size: var(--fs-20-14)
+  font-size: var(--fs-20-14);
+  @media(max-width: 500px) {
+    transform: scale(0.8);
+  }
 }
 
 .deadline {
@@ -156,6 +220,9 @@ main {
 
   @media(max-width: 1300px) {
     width: 396px;
+  }
+  @media(max-width: 500px) {
+    width: 100%;
   }
 }
 
@@ -169,17 +236,29 @@ main {
   align-items: center;
   justify-content: center;
   gap: 18px;
+  @media(max-width: 1300px) {
+    gap: 10px;
+  }
+  @media(max-width: 500px) {
+    gap: 6px;
+  }
 }
 
 .deadline-urgent p {
   display: flex;
   flex-direction: column;
+  @media(max-width: 500px) {
+    transform: scale(0.8);
+  }
 }
 
 .deadline-seperator {
   height: 102px;
   width: 2px;
   background-color: #D1D1D1;
+  @media(max-width: 1300px) {
+    height: 68px;
+  }
 }
 
 .deadline-date {
@@ -209,6 +288,13 @@ main {
 
 .tasks div {
   width: 168px;
+  @media(max-width: 1300px) {
+    width: 116px;
+  }
+  @media(max-width: 500px) {
+    gap: 6px;
+    width: 90px;
+  }
 }
 
 .tasks div p {
@@ -218,6 +304,9 @@ main {
   align-items: center;
   font-size: var(--fs-20-14);
   color: var(--clr-primary);
+  @media(max-width: 500px) {
+    transform: scale(0.7);
+  }
 }
 
 .summary-greeting {
@@ -225,6 +314,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 3px;
+  z-index: 1;
 
   @media(max-width: 1400px) {
     width: fit-content;
@@ -251,13 +341,11 @@ main {
     animation-duration: 3s;
     animation-iteration-count: 1;
     pointer-events: all;
-    display: none;
   }
   @media(max-width: 900px) {
     height: auto;
     top: 80px;
     bottom: 80px;
-    margin-left: -232px;
     padding: 0;
   }
 }
