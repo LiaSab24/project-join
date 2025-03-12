@@ -188,6 +188,7 @@
         margin-left: 0;
         bottom: 50%;
     }
+
 }
 
 @media (max-width: 767px) {
@@ -212,11 +213,13 @@
         top: -70px !important;
         right: 10px !important;
     }
+
     #noResultSearchInput {
         transform: scale(1.1);
         bottom: 70% !important;
     }
 }
+
 
 @media (max-width: 480px) {
 
@@ -325,9 +328,256 @@
     .input-container .button {
         margin-top: 10px !important;
     }
+
     #noResultSearchInput {
         transform: scale(1);
         bottom: 70% !important;
     }
+
+    #addTaskOverlay,
+    #editTaskOverlay {
+        width: 95%;
+        max-width: 350px;
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        height: auto;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 16px;
+    }
+
+    #addTaskOverlay #addTaskForm,
+    #editTaskOverlay #addTaskForm,
+    #addTaskOverlay .add-task-submit,
+    #editTaskOverlay .add-task-submit {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #addTaskOverlay h1,
+    #editTaskOverlay h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    #addTaskOverlay input,
+    #editTaskOverlay input,
+    #addTaskOverlay select,
+    #editTaskOverlay select,
+    #addTaskOverlay textarea,
+    #editTaskOverlay textarea {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .submit-btns {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .submit-btns button {
+        width: 100%;
+        font-size: 14px;
+        padding: 12px;
+    }
 }
 
+@media (max-width: 900px) {
+    main {
+        margin-left: 40px !important;
+        margin-right: 40px !important;
+        width: 100%;
+        margin-bottom: 110px;
+    }
+
+    .board-header,
+    .board-header h1,
+    .task-container {
+        padding: 0 !important;
+    }
+
+    .board-header {
+        width: 100%;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column !important;
+        align-items: flex-start;
+    }
+
+    .board-tasks-list {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .task-wrapper {
+        max-width: 100%;
+        overflow-x: visible;
+    }
+
+    .board-tasks-list {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 12px;
+    }
+
+    .task-headline {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .task-headline .icon-container {
+        min-width: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .task-card {
+        min-width: 250px;
+    }
+
+    .input-container {
+        width: 100% !important;
+        display: flex;
+        justify-content: space-between !important;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .search-container {
+        width: 396px;
+        padding: 6px;
+        margin-top: 22px;
+    }
+
+    .input-container .button {
+        position: relative;
+        top: -70px;
+    }
+
+    .search-container input {
+        width: 100%;
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    #overviewOverlay {
+        width: 90vw;
+        max-height: 95vh;
+        padding: 16px;
+    }
+
+    #noResultSearchInput {
+        margin-left: 0;
+        bottom: 50%;
+    }
+}
+
+@media (max-width: 920px) {
+    button h2 {
+        display: none;
+    }
+
+    button img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .button {
+        padding: 13.5px;
+    }
+}
+
+@media (max-width: 990px) {
+    main {
+        margin-left: 232px;
+    }
+}
+
+@media (max-width: 1366px) {
+    .task-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+    }
+
+    .task-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        flex: 0 0 auto;
+        height: 345px;
+    }
+
+    .board-tasks-list {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-start;
+    }
+
+    #addTaskOverlay,
+    #editTaskOverlay,
+    #overviewOverlay {
+        width: 60%;
+    }
+
+    .task-headline {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    .task-headline .icon-container {
+        min-width: 36px;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .task-card {
+        width: 250px;
+        flex: 0 0 auto;
+    }
+
+    #overviewOverlay {
+        width: 75vw;
+    }
+}
+
+@media (max-width: 1428px) {
+    .board-header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 9.1px;
+    }
+
+    .input-container {
+        width: auto;
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-end;
+        gap: 14px;
+    }
+
+    #overviewOverlay {
+        width: 70vw;
+    }
+
+    #addTaskOverlay {
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        overflow-y: auto;
+        padding: 16px !important;
+    }
+
+}

@@ -410,7 +410,6 @@ button img {
 
 #overviewOverlay,
 .edit-task-overlay {
-  /* width: 525px !important; */
   width: clamp(320px, 80vw, 600px) !important;
   position: fixed;
   top: 200px;
@@ -579,20 +578,8 @@ button img {
   background-color: #D1D1D1;
 }
 
-.edit-task-overlay {
-  height: 930px !important;
-  padding-right: 16px;
-  padding-bottom: 32px;
-}
-
-.edit-task-overlay .title {
-  align-self: flex-end;
-  margin: 0 !important;
-  padding-right: 20px !important;
-}
 
 .edit-task-overlay #addTaskForm {
-  width: 445px;
   margin: 0 !important;
   display: flex;
   flex-direction: column;
@@ -601,69 +588,13 @@ button img {
   padding-bottom: 40px !important;
 }
 
-.edit-task-overlay input,
-.edit-task-overlay textarea {
-  width: 98%;
-  align-self: center;
-  z-index: 3;
-}
 
-.edit-task-overlay #addTaskDropdownContacts {
-  position: relative;
-  top: -9px !important;
-  left: 8px;
-}
-
-.edit-task-overlay #addTaskAssignedToList {
-  width: fit-content;
-  margin-left: 0 !important;
-  padding-left: 10px;
-}
-
-.edit-task-overlay #addTaskDropdownCategories {
-  position: relative;
-  top: -27px !important;
-  left: 4px;
-}
 
 .edit-task-overlay .add-task-seperator,
 .edit-task-overlay .add-task-requirements,
 .edit-task-overlay .submit-btns .cancel-btn,
 .edit-task-overlay .submit-btns .create-btn {
   display: none !important;
-}
-
-.edit-task-overlay .subtask-scrollbar {
-  max-width: 100%;
-  min-height: 16px;
-  height: fit-content;
-}
-
-.edit-task-overlay #subtaskIconAdd {
-  left: 385px;
-  z-index: 3;
-}
-
-.edit-task-overlay #subtaskIconsFocus {
-  width: fit-content;
-  left: 355px;
-  z-index: 3;
-}
-
-.edit-task-overlay .add-task-submit {
-  margin: 0 !important;
-  align-self: end;
-  padding-top: 32px;
-  padding-right: 24px;
-}
-
-.edit-task-overlay .confirm-btn {
-  font-size: 21px;
-}
-
-.edit-task-overlay .confirm-btn img {
-  height: auto;
-  width: auto;
 }
 
 #noResultSearchInput {
