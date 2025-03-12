@@ -72,6 +72,33 @@
     }
 }
 
+@media (max-width: 1330px) {
+    .edit-task-overlay {
+        #addTaskForm {
+            width: 512px;
+            align-items: center;
+            padding-left: 24px;
+        }
+
+        .add-task-form-column {
+            width: 464px;
+            margin: 0;
+        }
+
+        .add-task-dropdown {
+            width: 440px !important;
+        }
+
+        .add-task-submit {
+            width: 100%;
+        }
+
+        .add-task-submit button {
+            margin: 0 56px;
+        }
+    }
+}
+
 @media (max-width: 1160px) {
     #addTaskOverlay {
         height: 700px;
@@ -124,6 +151,62 @@
 
         #addTaskSubmitBtns {
             margin: 0;
+        }
+    }
+
+    .edit-task-overlay {
+        max-width: 500px;
+
+        #addTaskForm {
+            width: 100% !important;
+        }
+
+        label,
+        input,
+        textarea,
+        .add-task-form-column,
+        .add-task-dropdown,
+        #addTaskAssignedToList,
+        #addTaskPriorities,
+        .subtask-scrollbar,
+        .addTaskSubtaskList div,
+        .subtask {
+            width: 372px !important;
+        }
+
+        #addTaskDropdownCategories {
+            top: 348px !important;
+        }
+
+        .add-task-submit button {
+            margin: 0 20px;
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .edit-task-overlay {
+        max-width: 500px;
+
+        #addTaskForm {
+            width: 100% !important;
+        }
+
+        label,
+        input,
+        textarea,
+        .add-task-form-column,
+        .add-task-dropdown,
+        #addTaskAssignedToList,
+        #addTaskPriorities,
+        .subtask-scrollbar,
+        .addTaskSubtaskList div,
+        .subtask {
+            width: 372px !important;
+        }
+
+        #addTaskDropdownCategories {
+            top: 348px !important;
         }
     }
 }
@@ -192,6 +275,39 @@
             width: 100%;
             margin: 24px 56px 24px 108px;
             gap: 16px;
+        }
+    }
+
+    .edit-task-overlay {
+        max-width: 500px;
+
+        #addTaskForm {
+            width: 100% !important;
+        }
+
+        label,
+        input,
+        textarea,
+        .add-task-form-column,
+        .add-task-dropdown,
+        #addTaskAssignedToList,
+        #addTaskPriorities,
+        .subtask-scrollbar,
+        .addTaskSubtaskList div,
+        .subtask {
+            width: 372px !important;
+        }
+
+        #addTaskDropdownContacts {
+            top: 438px !important;
+        }
+
+        #addTaskDropdownCategories {
+            top: 420px !important;
+        }
+
+        .add-task-submit button {
+            margin: 0 20px;
         }
     }
 }
@@ -364,6 +480,107 @@
     }
 }
 
+@media (max-width: 600px) {
+    .edit-task-overlay {
+        max-width: 400px;
+        padding: 36px 20px !important;
+
+        #addTaskForm {
+            width: 100% !important;
+        }
+
+        .title {
+            padding: 0 !important;
+        }
+
+        label,
+        input,
+        textarea,
+        .add-task-form-column,
+        .add-task-dropdown,
+        #addTaskAssignedToList,
+        #addTaskPriorities,
+        .subtask-scrollbar,
+        .addTaskSubtaskList div,
+        .subtask {
+            width: 312px !important;
+        }
+
+        #addTaskDropdownContacts {
+            top: 426px !important;
+        }
+
+        #addTaskDropdownCategories {
+            top: 480px !important;
+        }
+
+        .subtask {
+            white-space: break-spaces;
+        }
+
+        .add-task-submit {
+            margin: 0 !important;
+        }
+
+        .add-task-submit button {
+            margin: 0 10px;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .edit-task-overlay {
+        max-width: 300px;
+        padding: 16px 8px !important;
+
+        #addTaskForm {
+            width: 100% !important;
+            padding: 0 10px;
+        }
+
+        .title {
+            padding: 0 !important;
+        }
+
+        label,
+        input,
+        textarea,
+        .add-task-form-column,
+        .add-task-dropdown,
+        #addTaskAssignedToList,
+        #addTaskPriorities,
+        .subtask-scrollbar,
+        .addTaskSubtaskList div,
+        .subtask {
+            width: 250px !important;
+        }
+        #addTaskPriorities div {
+            padding: 4px 2px !important;
+            gap: 2px;
+        }
+
+        #addTaskDropdownContacts {
+            top: 410px !important;
+        }
+
+        #addTaskDropdownCategories {
+            top: 444px !important;
+        }
+
+        .subtask {
+            white-space: break-spaces;
+        }
+
+        .add-task-submit {
+            margin: 0 !important;
+        }
+
+        .add-task-submit button {
+            margin: 0 10px;
+        }
+    }
+}
+
 
 @media (max-width: 480px) {
 
@@ -424,7 +641,6 @@
         top: 5%;
     }
 
-    .edit-task-overlay,
     #addTaskForm {
         width: 95%;
     }
@@ -462,10 +678,11 @@
         flex-direction: column;
         align-items: anchor-center;
 
-        #addTaskH1{
+        #addTaskH1 {
             margin-left: 0;
             padding: 0 12px;
         }
+
         #addTaskForm {
             width: 290px;
             margin: 24px 12px 0 12px;
