@@ -521,11 +521,11 @@ button img {
 }
 
 .checkbox-completed-true {
-  background-image: url("/assets/icons/checkbox-icon-checked-dark.svg");
+  background-image: url("../assets/icons/checkbox-icon-checked-dark.svg");
 }
 
 .checkbox-completed-false {
-  background-image: url("/assets/icons/checkbox-icon-unchecked.svg");
+  background-image: url("../assets/icons/checkbox-icon-unchecked.svg");
 }
 
 .overview-btns {
@@ -553,11 +553,11 @@ button img {
 }
 
 .overview-task-delete {
-  background-image: url("/assets/icons/delete.svg");
+  background-image: url("../assets/icons/delete.svg");
 }
 
 .overview-task-edit {
-  background-image: url("/assets/icons/edit.svg");
+  background-image: url("../assets/icons/edit.svg");
 }
 
 .overview-btns button:hover {
@@ -565,11 +565,11 @@ button img {
 }
 
 .overview-btns button:hover .overview-task-delete {
-  background-image: url("/assets/icons/delete-hover.svg");
+  background-image: url("../assets/icons/delete-hover.svg");
 }
 
 .overview-btns button:hover .overview-task-edit {
-  background-image: url("/assets/icons/edit-hover.svg");
+  background-image: url("../assets/icons/edit-hover.svg");
 }
 
 .overview-btns-seperator {
