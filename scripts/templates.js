@@ -46,7 +46,7 @@ function getAddTaskContactPB(indexContact) {
 function getAddTaskSubtaskTemplate(subtask, indexSubtask) {
     return `<div ondblclick="editSubtask(${indexSubtask})" id="subtask${indexSubtask}" class="subtask flex align-center just-space-b">
             ${getAddTaskSubtaskListElementTemplate(subtask, indexSubtask)}
-            </div>`
+            </div>` 
 }
 
 /**

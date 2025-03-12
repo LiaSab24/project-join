@@ -44,7 +44,7 @@ textarea::-webkit-resizer {
     height: 19px;
     width: 19px;
     position: relative;
-    background-image: url("/assets/icons/textarea-resizer.svg");
+    background-image: url("../assets/icons/textarea-resizer.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -120,14 +120,14 @@ select {
 }
 
 .add-task-select-menu {
-    background-image: url("/assets/icons/add-task-dropdown-down.svg");
+    background-image: url("../assets/icons/add-task-dropdown-down.svg");
     background-repeat: no-repeat;
     background-position-x: 98%;
     background-position-y: 50%;
 }
 
 .add-task-select-menu:focus {
-    background-image: url("/assets/icons/add-task-dropdown-up.svg");
+    background-image: url("../assets/icons/add-task-dropdown-up.svg");
 }
 
 .required-star {
@@ -292,7 +292,7 @@ select {
     width: 100%;
     padding: 7px 16px;
     border-radius: 10px;
-    cursor: pointer;
+    cursor: pointer; 
 }
 
 .add-task-dropdown-option:hover {
@@ -314,7 +314,7 @@ select {
 .add-task-assigned-to-checkbox {
     height: 24px;
     width: 24px;
-    background-image: url("/assets/icons/checkbox-icon-unchecked.svg");
+    background-image: url("../assets/icons/checkbox-icon-unchecked.svg");
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
@@ -330,7 +330,7 @@ select {
 }
 
 .checkbox-contact-assigned {
-    background-image: url("/assets/icons/checkbox-icon-checked-light.svg");
+    background-image: url("../assets/icons/checkbox-icon-checked-light.svg");
 }
 
 #addTaskAssignedToList {
@@ -361,7 +361,7 @@ select {
 }
 
 #addTaskDate::-webkit-calendar-picker-indicator {
-    background-image: url("/assets/icons/add-task-calendar.svg");
+    background-image: url("../assets/icons/add-task-calendar.svg");
 }
 
 #addTaskPriorities {
@@ -631,7 +631,7 @@ select {
 .cancel-img {
     height: 24px;
     width: 24px;
-    background-image: url("/assets/icons/cancel-btn.svg");
+    background-image: url("../assets/icons/cancel-btn.svg");
 }
 
 .cancel-btn:hover {
@@ -642,7 +642,7 @@ select {
 }
 
 .cancel-btn:hover .cancel-img {
-    background-image: url("/assets/icons/cancel-btn-hover.svg");
+    background-image: url("../assets/icons/cancel-btn-hover.svg");
 }
 
 .create-btn {
