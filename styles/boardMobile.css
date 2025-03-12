@@ -162,6 +162,10 @@
     #addTaskOverlay, #editTaskOverlay, #overviewOverlay {
       width: 85%;
     }
+
+    .edit-task-overlay title {
+        width: 206px !important;
+    }
 }
 
 @media (max-width: 920px) {

@@ -361,6 +361,7 @@ button img {
   position: fixed;
   top: 100px;
   align-self: center;
+  margin-left: 245px;
 }
 
 #animation {
@@ -412,7 +413,7 @@ button img {
 .edit-task-overlay {
   width: clamp(320px, 80vw, 600px) !important;
   position: fixed;
-  top: 200px;
+  top: 135px;
   align-self: center;
   display: flex;
   flex-direction: column !important;
@@ -576,6 +577,18 @@ button img {
   height: 100%;
   width: 1px;
   background-color: #D1D1D1;
+}
+
+.edit-task-overlay {
+  margin-left: 0 !important;
+}
+
+.edit-task-overlay .title {
+  margin-top: 14px !important;
+  margin-right: 5px !important;
+  margin-left: 24px !important;
+  margin-bottom: 10px !important;
+  justify-content: flex-end !important;
 }
 
 .edit-task-overlay #addTaskForm {
