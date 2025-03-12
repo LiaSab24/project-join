@@ -17,7 +17,7 @@ h1 {
 
 @keyframes changeBgToDefault {
   0% {
-    background: var(--clr-white);
+    background: var(--clr-white); 
   }
 
   100% {
@@ -211,7 +211,7 @@ input {
     transform: translateX(-50%);
     width: 75%;
     .blue-btn {
-      width: 43%;
+      max-width: 100px;
     }
   }
 }
@@ -220,6 +220,7 @@ input {
   position: absolute;
   bottom: 20px;
   gap: 15px;
+  margin-left: 24px;
   a {
     text-decoration: none;
     color: var(--clr-lightGray);

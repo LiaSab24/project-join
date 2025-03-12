@@ -32,7 +32,7 @@ h2 {
   font-weight: 700; 
 } 
 
-h3 {
+h3 { 
   font-size: var(--fs-h3);
 }
 
@@ -217,7 +217,7 @@ main {
 
 /** This class is added, when input requirement is unfulfilled **/
 .requirement-unfulfilled {
-  outline: 1px solid var(--clr-error);
+  outline: 1px solid #FF001F;
 }
 
 .blue-btn {
