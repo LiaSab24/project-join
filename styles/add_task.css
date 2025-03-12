@@ -9,7 +9,7 @@ main {
     }
 }
 
-label {
+label { 
     max-width: 440px;
     font-size: var(--fs-20-16);
     line-height: 24px;
@@ -18,7 +18,7 @@ label {
         max-width: 396px;
         margin-bottom: 4px;
     }
-} 
+}  
 
 textarea { 
     height: 120px;
