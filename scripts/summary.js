@@ -15,7 +15,7 @@ async function initSummary() {
     showTasksNumbers();
     showNextDeadline()
     greetingDaytime(); 
-    showUserName();
+    showUserName(); 
 } 
 
 /** 
