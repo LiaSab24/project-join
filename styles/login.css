@@ -11,12 +11,6 @@
     --Light-Blue: #29ABE2;
 }
 
-/*
-body.login-body {
-  background: var(--clr-white);
-  animation: changeBgToDefault 0.8s ease-in-out 0.8s forwards;
-} */
-
 h1 {
   margin-bottom: 5px;
 }
@@ -118,6 +112,9 @@ h1 {
   width: 652px;
   height: 449px;
   flex-direction: column;
+  position: fixed;
+  justify-self: anchor-center;
+  align-self: anchor-center;
   @media (max-width: 900px) {
     width: 80%;
     height: 475px;
@@ -168,9 +165,7 @@ input {
   border-radius: var(--border-radius);
   cursor: pointer;
   border: none;
-  /*font-size: 14px;*/
   font-weight: var(--fw-700);
- /* text-decoration: none;*/
   transition: all .3s ease-in-out;
   @media (max-width: 900px) {
     width: 180px;
@@ -220,10 +215,6 @@ input {
     }
   }
 }
-/*
-.sign-up-container p {
-  margin-right: 10px;
-}*/
 
 .policy-container {
   position: absolute;
@@ -262,10 +253,6 @@ input[type="text"][name="password"] {
   background-position: 95%;
   background-size: var(--fs-20);
 }
-
-/*input {
-  width: 422px;
-}*/
 
 input:focus {
   outline: 1px solid var(--clr-lightBlue);
