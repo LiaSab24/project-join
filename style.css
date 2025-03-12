@@ -28,7 +28,7 @@ h1 {
 }
 
 h2 {
-  font-size: var(--fs-h2);
+  font-size: var(--fs-h2); 
   font-weight: 700; 
 } 
 
@@ -50,7 +50,7 @@ main {
   overflow: hidden;
 }
 
-/* costums css */
+/* customs css */
 .responsive-main {
   padding: min(24px, max(1.5rem, 5vw));
   p {

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../styles/add_task.css">
 
     <script src="../script.js"></script>
-    <script src="../scripts/include.js"></script>
+    <script src="../scripts/include.js"></script> 
     <script src="../scripts/templates.js"></script>
     <script src="../scripts/add_task.js"></script>
 </head>   
@@ -28,8 +28,8 @@
     <main id="addTask">
         <h1 id="addTaskH1" class="title">Add Task</h1>
  
-        <form id="addTaskForm">
-            <div class="add-task-form-column">
+        <form id="addTaskForm" class="flex just-space-b">
+            <div class="add-task-form-column flex">
                 <label for="addTaskTitle">
                     Title
                     <span class="required-star">*</span>
@@ -43,13 +43,13 @@
                 <label for="addTaskAssignedTo">Assigned to</label>
                 <input onkeyup="startSearchingContacts()" onfocus="toggleAddTaskToDropDownMenu('addTaskAssignedTo', 'addTaskDropdownContacts')" id="addTaskAssignedTo" class="add-task-select-menu"
                     type="text" placeholder="Select contacts to assign">
-                <div id="addTaskDropdownContacts" class="add-task-dropdown custom-scrollbar"></div>
+                <div id="addTaskDropdownContacts" class="add-task-dropdown custom-scrollbar flex"></div>
                 <div id="addTaskAssignedToList"></div>
             </div>
 
             <div class="add-task-seperator"></div>
 
-            <div class="add-task-form-column">
+            <div class="add-task-form-column flex">
                 <label for="addTaskDate">
                     Due date
                     <span class="required-star">*</span>
@@ -57,16 +57,16 @@
                 <input onblur="checkFilledInput('addTaskDate')" form="dd/mm/yyyy" id="addTaskDate" type="date" min="1920-01-01" max="2100-12-31" required>
 
                 <label for="addTaskPriorities">Prio</label>
-                <div id="addTaskPriorities">
-                    <div id="prioUrgent" onclick="priorityBtnBg('prioUrgent')">
+                <div id="addTaskPriorities" class="flex just-space-b">
+                    <div id="prioUrgent" onclick="priorityBtnBg('prioUrgent')" class="flex align-center just-center">
                         Urgent
                         <img id="prioUrgentImg" src="../assets/icons/prioUrgent.svg">
                     </div>
-                    <div id="prioMedium" onclick="priorityBtnBg('prioMedium')">
+                    <div id="prioMedium" onclick="priorityBtnBg('prioMedium')" class="flex align-center just-center">
                         Medium
                         <img id="prioMediumImg" src="../assets/icons/prioMedium.svg">
                     </div>
-                    <div id="prioLow" onclick="priorityBtnBg('prioLow')">
+                    <div id="prioLow" onclick="priorityBtnBg('prioLow')" class="flex align-center just-center">
                         Low
                         <img id="prioLowImg" src="../assets/icons/prioLow.svg">
                     </div>
@@ -77,11 +77,11 @@
                     <span class="required-star">*</span>
                 </label>
                 <input onblur="checkFilledInput('addTaskCategory')" onfocus="toggleAddTaskToDropDownMenu('addTaskCategory','addTaskDropdownCategories')" id="addTaskCategory" class="add-task-select-menu" placeholder="Select task category" readonly>                    
-                <div id="addTaskDropdownCategories" class="add-task-dropdown d-none">
-                    <div onclick="selectTaskCategory('Bug Fix')" class="add-task-dropdown-option">Bug Fix</div>
-                    <div onclick="selectTaskCategory('Documentation')" class="add-task-dropdown-option">Documentation</div>
-                    <div onclick="selectTaskCategory('Technical Task')" class="add-task-dropdown-option">Technical Task</div>
-                    <div onclick="selectTaskCategory('User Story')" class="add-task-dropdown-option">User Story</div>
+                <div id="addTaskDropdownCategories" class="add-task-dropdown d-none flex">
+                    <div onclick="selectTaskCategory('Bug Fix')" class="add-task-dropdown-option flex align-center just-space-b">Bug Fix</div>
+                    <div onclick="selectTaskCategory('Documentation')" class="add-task-dropdown-option flex align-center just-space-b">Documentation</div>
+                    <div onclick="selectTaskCategory('Technical Task')" class="add-task-dropdown-option flex align-center just-space-b">Technical Task</div>
+                    <div onclick="selectTaskCategory('User Story')" class="add-task-dropdown-option flex align-center just-space-b">User Story</div>
                 </div> 
                 <label for="addTaskSubtask">Subtasks</label>
                 <input onfocus="changeSubtaskIcons()" onfocusout="changeSubtaskIcons()" type="text" id="addTaskSubtask"
@@ -94,7 +94,7 @@
                         src="../assets/icons/add-task-subtask-submit.svg">
                 </div>
                 <div class="subtask-scrollbar"> 
-                    <ul id="addTaskSubtaskList"></ul>
+                    <ul id="addTaskSubtaskList" class="flex"></ul>
                 </div>
             </div>
         </form>

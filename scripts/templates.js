@@ -4,8 +4,8 @@
  * @param {number} indexUser - the index of the user in the contacts-array
  */
 function getAddTaskDropdownListUserOption(indexUser) {
-    return `<div onclick="contactAssigned('assignedToUserOption', ${indexUser})" id="assignedToUserOption${indexUser}" class="add-task-dropdown-option user-option">
-                <div>
+    return `<div onclick="contactAssigned('assignedToUserOption', ${indexUser})" id="assignedToUserOption${indexUser}" class="add-task-dropdown-option user-option flex align-center just-space-b">
+                <div class="flex align-center">
                     <div id="assignedToPB${indexUser}" class="profile-badge">${nameAbbreviation(indexUser)}</div>
                     <span>You</span>
                 </div>
@@ -19,8 +19,8 @@ function getAddTaskDropdownListUserOption(indexUser) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function getAddTaskDropdownListContacts(indexContact) {
-    return `<div onclick="contactAssigned('assignedToOption', ${indexContact})" id="assignedToOption${indexContact}" class="add-task-dropdown-option">
-                <div>
+    return `<div onclick="contactAssigned('assignedToOption', ${indexContact})" id="assignedToOption${indexContact}" class="add-task-dropdown-option flex align-center just-space-b">
+                <div class="flex align-center">
                     <div id="assignedToPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
                     <span>${contacts[indexContact].name}</span>
                 </div>
@@ -44,7 +44,7 @@ function getAddTaskContactPB(indexContact) {
  * @param {number} indexSubtask - the index of the subtask in the subtasks-list
  */
 function getAddTaskSubtaskTemplate(subtask, indexSubtask) {
-    return `<div ondblclick="editSubtask(${indexSubtask})" id="subtask${indexSubtask}" class="subtask">
+    return `<div ondblclick="editSubtask(${indexSubtask})" id="subtask${indexSubtask}" class="subtask flex align-center just-space-b">
             ${getAddTaskSubtaskListElementTemplate(subtask, indexSubtask)}
             </div>`
 }

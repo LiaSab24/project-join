@@ -4,6 +4,9 @@ main {
         display: flex;
         flex-direction: column;
     }
+    @media (max-width: 900px) {
+        margin-bottom: 110px;
+    }
 }
 
 label {
@@ -17,7 +20,7 @@ label {
     }
 } 
 
-textarea {
+textarea { 
     height: 120px;
     max-width: 440px;
     margin-top: 4px;
@@ -163,8 +166,6 @@ select {
 #addTaskForm {
     margin-top: 48px;
     margin-left: 72px;
-    display: flex;
-    justify-content: space-between;
     @media (max-width: 1330px) {
         margin-left: 0;
     };
@@ -181,7 +182,6 @@ select {
 }
 
 .add-task-form-column {
-    display: flex;
     flex-direction: column;
     width: 440px;
     margin: 0 24px;
@@ -243,7 +243,6 @@ select {
     font-weight: var(--fw-400);
     font-size: var(--fs-20-16);
     line-height: 24px;
-    display: flex;
     flex-direction: column;
     @media (max-width: 1330px) {
         width: 380px;
@@ -293,19 +292,14 @@ select {
     width: 100%;
     padding: 7px 16px;
     border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     cursor: pointer;
 }
 
 .add-task-dropdown-option:hover {
-    background-color: #EEEEEE;
+    background-color:var(--clr-white);
 }
 
 .add-task-dropdown-option div {
-    display: flex;
-    align-items: center;
     gap: 16px;
     font-weight: var(--fw-400);
     font-size: var(--fs-20-16);
@@ -374,8 +368,6 @@ select {
     margin-top: 8px;
     margin-bottom: 20px;
     max-width: 440px;
-    display: flex;
-    justify-content: space-between;
 }
 
 #addTaskPriorities div {
@@ -385,10 +377,6 @@ select {
     padding: 16px 10px;
     border: none;
     border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
     gap: 8px;
     background-color: var(--clr-white);;
     box-shadow: 0px 0px 4px 0px #0000001A;
@@ -476,7 +464,6 @@ select {
 }
 
 #addTaskSubtaskList {
-    display: flex;
     flex-direction: column-reverse;
     justify-content: start;
 }
@@ -488,14 +475,24 @@ select {
     line-height: 24px;
     border-radius: 10px;
     list-style-position: inside;
-    display: flex;
-    flex-direction: row !important;
-    align-items: center;
-    justify-content: space-between;
     word-break: break-all;
     cursor: pointer;
+    @media (max-width: 1330px) {
+        width: 380px;
+    };
+    @media (max-width: 1110px) {
+        width: 320px;
+        box-shadow: none;
+    };
     @media (max-width: 990px) {
+        width: 396px;
         padding: 4px 16px;
+    };
+    @media (max-width: 900px) {
+        width: 396px;
+    };
+    @media (max-width: 440px) {
+        width: 280px;
     }
 }
 
@@ -508,6 +505,7 @@ select {
 }
 
 .subtask-edit-icons {
+    display: flex;
     flex-direction: row !important;
 }
 
@@ -531,6 +529,23 @@ select {
     border-bottom: solid 1px #29ABE2;
     border-radius: 0;
     z-index: 2;
+    @media (max-width: 1330px) {
+        width: 380px;
+    };
+    @media (max-width: 1110px) {
+        width: 320px;
+        box-shadow: none;
+    };
+    @media (max-width: 990px) {
+        width: 396px;
+        padding: 4px 0 4px 16px;
+    };
+    @media (max-width: 900px) {
+        width: 396px;
+    };
+    @media (max-width: 440px) {
+        width: 280px;
+    }
 }
 
 .subtask-edit:hover {
