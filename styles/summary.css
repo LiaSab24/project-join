@@ -1,56 +1,58 @@
 main {
-    width: 1208px;
+  width: 1208px;
 }
-
 
 .title {
-    width: 625px;
-    margin-top: 110px;
-    margin-left: 96px;
-    display: flex;
-    align-items: center;
-    gap: 27px;
-}
-
-.title h1 {
+  width: 625px;
+  margin-top: 110px;
+  margin-left: 96px;
+  display: flex;
+  align-items: center;
+  gap: 27px;
+  h1 {
     white-space: nowrap;
-    font-weight: 700;
-    font-size: 61px;
-    line-height: 73.2px;
+  }
 }
+ /*
+.title h1 {
+  white-space: nowrap;
+ font-weight: 700;
+  font-size: 61px;
+  line-height: 73.2px;
+}*/
 
 .title-seperator {
-    height: 59px;
-    width: 3px;
-    background-color: #29ABE2;
+  height: 59px;
+  width: 3px;
+  background-color: var(--clr-lightBlue);
 }
 
 .title p {
-    white-space: nowrap;
-    font-weight: 400;
-    font-size: 27px;
-    line-height: 32.4px;
-    color: #2A3647;
+  white-space: nowrap;
+ /* font-weight: 400;*/
+  font-size:var(--fs-27-20);
+ /* line-height: 32.4px;*/
+  color:var(--clr-primary);
 }
 
 .summary-content {
-    margin-top: 56px;
-    margin-right: 87px;
-    margin-bottom: 127px;
-    margin-left: 96px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  margin-top: 56px;
+  margin-right: 87px;
+  margin-bottom: 127px;
+  margin-left: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .summary-container {
-    height: 168px;
-    border-radius: 30px;
-    background-color: #FFFFFF;
-    box-shadow: 0px 0px 4px 0px #0000001A;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 168px;
+  border-radius: 30px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 0px 4px 0px #0000001A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #summaryIconToDo {
@@ -68,16 +70,16 @@ main {
 }
 
 .summary-container:hover {
-    transform: scale(110%);
-    color: #FFFFFF;
-    background-color: #2A3647;
-    box-shadow: 0px 4px 4px 0px #00000040;
-    cursor: pointer;
+  transform: scale(110%);
+  color: #FFFFFF;
+  background-color:var(--clr-primary);
+  box-shadow: 0px 4px 4px 0px #00000040;
+  cursor: pointer;
 }
 
 .summary-container:hover .summary-number,
 .summary-container:hover .number-explanation {
-    color: #FFFFFF;
+  color: #FFFFFF;
 }
 
 .summary-container:hover #summaryIconToDo {
@@ -89,135 +91,135 @@ main {
 }
 
 .summary-overview {
-    height: 562px;
-    width: 560px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  height: 562px;
+  width: 560px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .summary-number {
-    font-weight: 600;
-    font-size: 64px;
-    line-height: 76.8px;
-    color: #000000;
-    text-align: center;
+  font-weight: var(--fw-600);
+  font-size: var(--fs-64-47);
+  /*line-height: 76.8px;*/
+  color: var(--clr-black);
+  text-align: center;
 }
 
 .number-explanation {
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    color: #2A3647;
-    text-align: center;
+ /* font-weight: 400;*/
+  font-size: var(--fs-20);
+ /* line-height: 24px;*/
+  color:  var(--clr-primary);
+  text-align: center;
 }
 
 .to-dos {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .to-dos div {
-    width: 264px;
-    gap: 18px;
+  width: 264px;
+  gap: 18px;
 }
 
 .to-dos div p {
-    width: 63px;
-    display: flex;
-    flex-direction: column;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
+  width: 63px;
+  display: flex;
+  flex-direction: column;
+/*  font-weight: 400;*/
+  font-size: var(--fs-20-14)
+ /* line-height: 24px;*/
 }
 
 .deadline {
-    width: 560px;
-    display: flex;
-    justify-content: space-between;
+  width: 560px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .deadline:hover {
-    transform: scaleX(105%) scaleY(110%);
+  transform: scaleX(105%) scaleY(110%);
 }
 
 .deadline-urgent {
-    flex: 0.5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
+  flex: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
 }
 
 .deadline-urgent p {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.deadline-seperator{
-    height: 102px;
-    width: 2px;
-    background-color: #D1D1D1;
+.deadline-seperator {
+  height: 102px;
+  width: 2px;
+  background-color: #D1D1D1;
 }
 
 .deadline-date {
-    flex: 0.5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 13px;
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
 }
 
 .deadline-date p {
-    font-weight: 700;
-    font-size: 21px;
-    line-height: 25.2px;
+  font-weight: 700;
+  font-size: var(--fs-20-16);
+  line-height: 25.2px;
 }
 
 .deadline-date span {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19.2px;
+  font-weight: 400;
+  font-size: var(--fs-16-14);
+  line-height: 19.2px;
 }
 
 .tasks {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .tasks div {
-    width: 168px;
+  width: 168px;
 }
 
 .tasks div p {
-    width: 83px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    color: #2A3647;
+  width: 83px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ /* font-weight: 400;*/
+  font-size: var(--fs-20-14);
+  /*line-height: 24px;*/
+  color: var(--clr-primary);
 }
 
 .summary-greeting {
-    height: 136px;
-    width: 385px;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+  height: 136px;
+  width: 385px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 #greetingDaytime {
-    font-weight: 500;
-    font-size: 47px;
-    line-height: 56.4px;
-    color: #2A3647;
+  font-weight: 500;
+  font-size: var(--fs-47-36);
+  line-height: 56.4px;
+  color: var(--clr-primary);
 }
 
 #userName {
-    font-weight: 700;
-    font-size: 64px;
-    line-height: 76.8px;
-    color: #29ABE2;
+  font-weight: 700;
+  font-size: var(--fs-64-47);
+  line-height: 76.8px;
+  color: var(--clr-lightBlue);
 }
