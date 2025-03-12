@@ -17,7 +17,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: var(--clr-white);
+  background: var(--clr-white); 
   overflow-x: hidden !important;
 }
 
@@ -170,6 +170,7 @@ button img {
 }
 
 .no-task-message-container {
+  max-width: 300px;
   text-align: center;
   color: #a8a8a8;
   opacity: 0.8;
