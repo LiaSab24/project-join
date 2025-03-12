@@ -77,7 +77,7 @@ function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
                 <div class="subtask-list-icons-seperator"></div>
                 <img onclick="confirmEditSubtask(${indexSubtask})" class="subtask-icon" src="../assets/icons/add-task-subtask-submit.svg">
             </div>`
-} 
+}
 
 /**
  * This template includes a button to close board's overlays
@@ -219,7 +219,7 @@ function getFocusedContactTemplate(indexContact) {
                     <div class="focused-profile-account">
                         <span id="idFocusedName${indexContact}" class="focused-contact-name">${contacts[indexContact].name}</span>
                         <div>
-                            <button onclick="toggleContactsOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
+                            <button onclick="openContactsOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
                              <div id="contactsEditIcon"></div>
                                 <span>Edit</span>
                             </button>
@@ -275,6 +275,25 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
             </button>`
 }
 
+/**
+ * This template creates the two necessary buttons for the "btnsMenuMobile" to edit or delete a contact
+ * 
+ * @param {number} indexContact - the index of the contact in the contacts-array
+ */
+function getbtnsMenuMobileTemplate(indexContact) {
+    return `<button onclick="openContactsOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
+                <div id="contactsEditIcon"></div>
+                <span>Edit</span>
+            </button>
+            <button id="deleteBtnContacts" onclick="deleteContact(${indexContact})" class="focused-contact-btns">
+                <div id="contactsDeleteIcon"></div>
+                <span>Delete</span>
+            </button>`
+}
+
+/**
+ * This template fills the submenu with the necessary links
+ */
 function getSubmenuTemplate() {
     return `<p><a href="../html/legal_notice.html">Legal Notice</a></p>
             <p><a href="../html/privacy_policy.html">Privacy Policy</a></p>
