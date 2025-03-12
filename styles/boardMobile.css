@@ -357,6 +357,10 @@
         .add-task-submit {
             margin: 24px 40px 24px 40px
         }
+
+        .board-header h1 {
+            margin-left: -162px;
+        }
     }
 }
 
@@ -510,7 +514,7 @@
 
 @media (max-width: 400px) {
     .input-container .button {
-        margin-top: 10px !important;
+        margin-top: 25px !important;
     }
 
     #noResultSearchInput {
