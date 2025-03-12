@@ -14,7 +14,7 @@ main {
 
     @media (max-width: 900px) {
         margin: 0;
-    }
+    } 
 }
 
 .address-book {
@@ -64,7 +64,7 @@ main {
 
 .address-book::-webkit-scrollbar-button:vertical:start:increment {
     height: 24px;
-    background-image: url('/assets/icons/scrollbar-btn-up.svg');
+    background-image: url('../assets/icons/scrollbar-btn-up.svg');
     background-position: bottom;
 }
 
@@ -74,7 +74,7 @@ main {
 
 .address-book::-webkit-scrollbar-button:vertical:end:increment {
     height: 24px;
-    background-image: url('/assets/icons/scrollbar-btn-down.svg');
+    background-image: url('../assets/icons/scrollbar-btn-down.svg');
     background-position: top;
 }
 
@@ -133,7 +133,7 @@ main {
     width: 56px;
     border-radius: 46px;
     position: absolute;
-    bottom: 30px;
+    bottom: 110px;
     right: 30px;
 }
 
@@ -142,7 +142,7 @@ main {
     width: 116px;
     padding: 10px;
     position: absolute;
-    bottom: 30px;
+    bottom: 110px;
     right: 28px;
     background-color: var(--clr-lightGray);
     border-radius: 20px;
@@ -166,6 +166,11 @@ main {
     justify-content: start;
     background-color: transparent;
     font-size: var(--fs-16);
+}
+
+#menuEditDeleteMobile button {
+    box-shadow: none;
+    color: var(--clr-white);
 }
 
 #menuEditDeleteMobile button:active {
@@ -566,19 +571,19 @@ main {
 }
 
 #contactsEditIcon {
-    background-image: url("/assets/icons/edit.svg");
+    background-image: url("../assets/icons/edit.svg");
 }
 
 .focused-contact-btns:hover #contactsEditIcon {
-    background-image: url("/assets/icons/edit-hover.svg");
+    background-image: url("../assets/icons/edit-hover.svg");
 }
 
 #contactsDeleteIcon {
-    background-image: url("/assets/icons/delete.svg");
+    background-image: url("../assets/icons/delete.svg");
 }
 
 .focused-contact-btns:hover #contactsDeleteIcon {
-    background-image: url("/assets/icons/delete-hover.svg");
+    background-image: url("../assets/icons/delete-hover.svg");
 }
 
 .focused-profile-information p {
@@ -801,6 +806,10 @@ main {
         z-index: 4;
         filter: brightness(0) invert(1);
     }
+}
+
+.contacts-overlay-close:hover {
+    cursor: pointer;
 }
 
 .overlay-contacts-inputs {
@@ -1058,7 +1067,7 @@ input:focus {
     height: 24px;
     width: 24px;
     margin: 0px !important;
-    background-image: url("/assets/icons/cancel-btn.svg");
+    background-image: url("../assets/icons/cancel-btn.svg");
 }
 
 .reject-btn:hover {
@@ -1069,7 +1078,7 @@ input:focus {
 }
 
 .reject-btn:hover .reject-img {
-    background-image: url("/assets/icons/cancel-btn-hover.svg");
+    background-image: url("../assets/icons/cancel-btn-hover.svg");
 }
 
 .confirm-btn {

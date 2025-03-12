@@ -122,6 +122,10 @@
   .help-new {
     display: none;
   }
+
+  .submenu {
+    top: 80px;
+  }
 }
 
 @media (min-width: 900px) {
