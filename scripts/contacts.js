@@ -298,7 +298,6 @@ async function saveEditContactUser() {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 async function deleteContact(indexContact) {
-    console.log("/contacts/" + contacts[indexContact].url)
     await deleteData("/contacts/" + contacts[indexContact].url);
     successfullMsg("contactSuccesfullyDeleted");
     document.getElementById("focusedContactInformation").innerHTML = "";
