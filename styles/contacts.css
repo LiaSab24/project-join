@@ -52,7 +52,7 @@ main {
 }
 
 .address-book::-webkit-scrollbar-track {
-    background: var(--clr-white);
+    background: var(--clr-white); 
 }
 
 .address-book::-webkit-scrollbar-button {
@@ -1098,4 +1098,20 @@ input:focus {
     background-color: var(--clr-lightBlue);
     box-shadow: var(--shadow-stronger);
     cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+#alertMail {
+    bottom: 222px;
+    @media (max-width: 1350px) {
+        bottom: 160px;
+    }
+    @media (max-width: 950px) {
+        bottom: 122px;
+        left: 20px;
+    }
 }

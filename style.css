@@ -218,7 +218,7 @@ main {
 
 /** This class is added, when input requirement is unfulfilled **/
 .requirement-unfulfilled {
-  outline: 1px solid #FF001F;
+  outline: 1px solid #FF001F !important;
 }
 
 .blue-btn {
@@ -264,4 +264,14 @@ main {
   width: 100%;
   background-color: transparent;
   z-index: 1;
+}
+
+.input-error{
+  color: #FF001F;
+  font-size: var(--fs-16-12);
+  font-weight: var(--fw-500);
+  line-height: 15.6px;
+  text-align: start;
+  position: absolute;
+  bottom: 25px;
 }

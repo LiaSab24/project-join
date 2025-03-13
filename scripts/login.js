@@ -13,7 +13,7 @@ async function initLogIn() {
 }
 
 /**
- * This function clears the input-values of the login-form
+ * This function clears the input-values of the login-form 
  */
 function clearLogInForm() {
     document.getElementById("mail").value = "";
@@ -24,7 +24,7 @@ function clearLogInForm() {
  * This function reads out the mail and password and if they are filled in correctly and fit to a user, the user is able to log in
  */
 async function LogIn() {
-    let userMail = document.getElementById("mail").value;
+    let userMail = validateMailInput("addContactMail");
     let userPassword = document.getElementById("password").value;
     if (userMail !== "" && userPassword !== "") {
         loggedInUser = checkUserDataExists();

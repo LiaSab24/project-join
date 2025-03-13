@@ -23,11 +23,11 @@ function clearSignUpForm() {
  */
 async function addUser() {
     let userName = document.getElementById("name").value;
-    let userMail = document.getElementById("mail").value;
+    let userMail = validateMailInput("mail");
     let userPassword = checkPasswordConfirmed();
     if (userPassword !== undefined) {
         let checkbox = document.getElementById("checkboxSignUp");
-        if (checkbox.checked) {
+        if (checkbox.checked) { 
             if (userName !== "" && userMail !== "") {
                 await postData("/users/", {
                     "name": userName,
@@ -38,7 +38,7 @@ async function addUser() {
                 signUpSuccesfully();
                 clearSignUpForm();
             } else {
-                checkFilledInput('name');
+                checkFilledInput('name'); 
                 checkFilledInput('mail');
                 checkFilledInput('password');
                 checkFilledInput('confirmed')

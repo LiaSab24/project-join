@@ -130,7 +130,7 @@ input {
   border: 1px solid #ccc;
   border-radius: var(--border-radius);
   font-size: var(--fs-20);
-  color: var(--clr-lighterGray);
+  color: var(--clr-primary);
 }
 
 .button-container {
