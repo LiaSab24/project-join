@@ -223,16 +223,6 @@ input[type="checkbox"]:checked {
     background-position: center;
 }
 
-.input-error{
-    color: #FF001F;
-    font-size: var(--fs-16-12);
-    font-weight: var(--fw-500);
-    line-height: 15.6px;
-    text-align: start;
-    position: absolute;
-    bottom: 25px;
-}
-
 .Checkbox-Remember-Me {
     display: flex;
     align-items: center;

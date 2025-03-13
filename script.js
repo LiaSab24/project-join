@@ -185,7 +185,7 @@ async function deleteData(path = "") {
  */
 function assignRandomColor(indexContact) {
   if (contactColors[indexContact]) {
-      return contactColors[indexContact];
+    return contactColors[indexContact];
   }
   if (availableColors.length === 0) availableColors = [...colors];
 
@@ -330,6 +330,25 @@ function hideAllUsers(contentRef) {
 function adjustUserContact(contentRef) {
   if (indexContactUser !== -1) {
     document.getElementById(contentRef + indexContactUser).innerHTML += " (You)";
+  }
+}
+
+/**
+ * This function checks, if the mail-input-value is a proper email address.
+ * It returns the email address or shows an alert accordingly.
+ * 
+ * @param {string} contentRef - the id of the element
+ */
+function validateMailInput(contentRef) {
+  let mailInput = document.getElementById(contentRef).value;
+  if (mailInput.includes("@")) {
+    return mailInput.trim()
+  } else {
+    document.getElementById("alertMail").classList.remove("d-none");
+    setTimeout(function () {
+      document.getElementById("alertMail").classList.add("d-none");
+    }, 2400);
+    return ""
   }
 }
 

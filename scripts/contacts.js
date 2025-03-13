@@ -139,26 +139,26 @@ function clearContactForm() {
  */
 async function addContact() {
     let contactName = document.getElementById("addContactName").value;
-    let contactMail = document.getElementById("addContactMail").value;
-    let contactPhone = document.getElementById("addContactPhone").value;
+    let contactMail = validateMailInput("addContactMail");
+    let contactPhone = document.getElementById("addContactPhone").value.trim();
     let indexContact = contacts.length + 1;
     if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
         let contactColor = await assignRandomColor(indexContact);
-        postData("/contacts/", {
+        await postData("/contacts/", {
             "name": contactName,
             "mail": contactMail,
             "phone": contactPhone,
             "color": contactColor
         });
-        toggleContactsOverlay();
+        renderAddressBook();
+        closeContactsOverlay();
         successfullMsg("contactSuccesfullyCreated");
-        initContacts();
     } else {
         checkFilledInput("addContactName");
         checkFilledInput("addContactMail");
         checkFilledInput("addContactPhone")
     }
-} 
+}
 
 /**
  * This function redirects to different functions that are used to display the clicked contact 
@@ -232,8 +232,8 @@ function updateFocusedContact(indexContact) {
 async function saveEditContact(indexContact) {
     if (indexContact !== indexContactUser) {
         let contactName = document.getElementById("addContactName").value;
-        let contactMail = document.getElementById("addContactMail").value;
-        let contactPhone = document.getElementById("addContactPhone").value;
+        let contactMail = validateMailInput();
+        let contactPhone = document.getElementById("addContactPhone").value.trim();
         let contactColor = contacts[indexContact].color;
         if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
             await putData("/contacts/" + contacts[indexContact].url, {
@@ -244,7 +244,7 @@ async function saveEditContact(indexContact) {
             });
             contactClicked(indexContact);
             successfullMsg("contactSuccesfullyEdited");
-            toggleContactsOverlay();
+            closeContactsOverlay();
             initContacts();
         } else {
             checkFilledInput("addContactName");
@@ -262,7 +262,7 @@ async function saveEditContact(indexContact) {
 async function saveEditContactUser() {
     let userName = document.getElementById("addContactName").value;
     let userMail = document.getElementById("addContactMail").value;
-    let userPhone = document.getElementById("addContactPhone").value;
+    let userPhone = document.getElementById("addContactPhone").value.trim();
     let userPassword = users[currentUser].password;
     let userColor = contacts[indexContactUser].color;
     if (userName !== "" && userMail !== "" && userPhone !== "") {
@@ -283,7 +283,7 @@ async function saveEditContactUser() {
         });
         contactClicked(indexContactUser);
         successfullMsg("contactSuccesfullyEdited");
-        toggleContactsOverlay();
+        closeContactsOverlay();
         initContacts();
     } else {
         checkFilledInput("addContactName");
@@ -298,9 +298,20 @@ async function saveEditContactUser() {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 async function deleteContact(indexContact) {
-    console.log("/contacts/" + contacts[indexContact].url)
     await deleteData("/contacts/" + contacts[indexContact].url);
     successfullMsg("contactSuccesfullyDeleted");
     document.getElementById("focusedContactInformation").innerHTML = "";
     initContacts();
 } 
+
+/**
+ * This function checks if the pressed key is a Number and returns it if true.
+ * Like this, only numbers (and "+") are valide inputs
+ */
+function onlyAllowNumbers(event) {
+    if (!isNaN(event.key) || event.key == "+" || event.key == "Backspace") {
+        return event.key
+    } else { 
+        event.preventDefault()
+    }
+}

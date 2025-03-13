@@ -14,9 +14,8 @@
 
     <script src="./script.js"></script> 
     <script src="./scripts/login.js"></script>
- <!--   <script src="./scripts/include.js"></script>  -->
 </head> 
-<body onload="initLogIn()" class="flex just-center align-center">
+<body onload="initLogIn()" class="flex just-center align-center"> 
     <div class="overlay">
         <img class="white-icon" src="./assets/icons/joinWhite.svg" alt="Join Logo">
     </div>
@@ -31,11 +30,12 @@
                     <img src="./assets/icons/underline.svg" alt="Underline">
                 </div>
                 <div class="input-field flex">
-                    <input onblur="checkFilledInput('mail')" autocomplete="email" id="mail" required type="email" placeholder="Email">
+                    <input onblur="checkFilledInput('mail')" autocomplete="email" id="mail" required type="email" placeholder="Email" minlength="1" maxlength="30">
                     <div class="password-wrapper">
                         <input onblur="checkFilledInput('password')" autocomplete="new-password"  id="password" name="password" type="password" placeholder="Password">
                     </div>
                     <span id="alert" class="input-error d-none">Check your email and password. Please try again.</span>
+                    <span id="alertMail" class="d-none input-error">Please enter a valid email address</span>
                 </div>
                 <div class="button-container flex just-center align-center">
                     <button onclick="LogIn(); return false" class="blue-btn">Log in</button>
