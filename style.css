@@ -17,7 +17,7 @@ body {
   font-size: 16px;    /* 1rem */
   line-height: 1.2;   /* oder 120% */
   font-weight: 400;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   background-color: var(--bg-gray);
 }
