@@ -13,6 +13,7 @@ html {
 
 body {
   max-width: 1920px;
+  width: 100%;
   font-family: 'Inter';
   font-size: 16px;    /* 1rem */
   line-height: 1.2;   /* oder 120% */
