@@ -24,11 +24,14 @@
 </head>
  
 <body onload="init()">
-  <div w3-include-html="./header.html"></div>
+  <div w3-include-html="./header.html" class="privacy-legal-header"></div>
   <div w3-include-html="./sidebar.html"></div>
 
   <main class="responsive-main">
-    <h1>Legal Notice</h1>
+    <div class="headline-container">
+      <h1>Legal Notice</h1>
+    </div>
+    <section class="main-container flex">
     <div class="imprint">
       <h4>Imprint</h4>
       <div class="content">
@@ -113,17 +116,18 @@
         For any questions or notices, please contact us at [Contact Email].
       </p>
       <p>
-        Date: July 26, 2023
+        Date: Marz 15, 2025
       </p>
     </div>
+    </section>
   </main>
   <section onclick="toggleSubmenu()" class="submenu-overlay d-none">
     <div id="submenu" class="submenu">
-        <p><a href="../html/legal_notice.html">Legal Notice</a></p>
-        <p><a href="../html/privacy_policy.html">Privacy Policy</a></p>
-        <p><a href="/index.html">Logout</a></p>
+      <p><a href="../html/legal_notice.html">Legal Notice</a></p>
+      <p><a href="../html/privacy_policy.html">Privacy Policy</a></p>
+      <p><a href="/index.html">Logout</a></p>
     </div>
-</section>
+  </section>
   <script>includeHTML();</script>
 </body>
 </html>
