@@ -1,32 +1,30 @@
 .header {
-  display: grid;
-  place-items: center;
+  justify-content: start;
   position: fixed;
   top: 0;
   width: 100%;
+  height: 96px;
+  padding: 20px 40px 20px 348px;
   background: var(--clr-white);
   box-shadow: var(--shadow-barrasuperior);
 }
 
 .header-new {
-  height: 96px;
   max-width: 1920px;
   width: 100%;
-  padding: 20px 40px 20px 348px;
   position: relative;
+  .header-logo {
+    display: none;
+    width: 32px;
+    height: 39px;
+    animation-timing-function: ease-in-out;
+    animation-duration: 100ms;
+  }
   .header-text {
     font-size: var(--fs-20);
     text-align: left;
     text-decoration-skip-ink: none;
   }
-}
-
-.header-logo {
-  display: none;
-  width: 32px;
-  height: 39px;
-  animation-timing-function: ease-in-out;
-  animation-duration: 100ms;
 }
 
 .header-img-container {
@@ -37,32 +35,6 @@
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  .help {
-    width: 32px;
-    height: 32px;
-    display: grid;
-    place-items: center;
-    .help-img {
-      width: 20px;
-      height: 20px;
-    }
-  }
-}
-
-.user-initial-new {
-  width: 56px;
-  height: 56px;
-  border: 3px solid var(--clr-primary);
-  border-radius: 50%;
-  display: grid;
-  place-content: center;
-  cursor: pointer;
-  color: var(--clr-lightBlue);
-  font-weight: var(--fw-700);
-}
-
-.user-initial-new:hover {
-  background: linear-gradient(0deg, rgba(12, 46, 98, 0.12), rgba(12, 46, 98, 0.12));
 }
 
 .help-new {
@@ -80,6 +52,21 @@
     cursor: pointer;
   }
 }
+
+.user-initial-new {
+  width: 56px;
+  height: 56px;
+  border: 3px solid var(--clr-primary);
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  color: var(--clr-lightBlue);
+  font-weight: var(--fw-700);
+  &:hover {
+    background: linear-gradient(0deg, rgba(12, 46, 98, 0.12), rgba(12, 46, 98, 0.12));
+  }
+} 
 
 .submenu {
   width: fit-content;
@@ -123,5 +110,22 @@
   }
   .submenu {
     top: 80px;
+  }
+}
+
+.privacy-legal-header {
+  .header-logo, .help-new, .header-img-container, .user-initial-new {
+    display: none;
+  }
+  @media (max-width: 900px) {
+    .header-text {
+      display: block;
+    } 
+  }
+}
+
+.help-header {
+  .header-logo, .help-new, .header-img-container {
+    display: none;
   }
 }
