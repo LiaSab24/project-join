@@ -153,6 +153,7 @@ button img {
 
 .icon-container {
   position: relative;
+  z-index: ;
 }
 
 .icon-container img {

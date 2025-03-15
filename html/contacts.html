@@ -21,7 +21,7 @@
     <script src="../scripts/contacts.js"></script>
 </head>
 
-<body onload="initContacts()" onresize="adjustToWindowSize()">
+<body onload="initContacts()" onresize="adjustToWindowSize(); fillSubmenu()">
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
@@ -240,7 +240,13 @@
         </div>
     </section>
 
-    <section onclick="toggleSubmenu()" class="submenu-overlay d-none"></section>
+    <section onclick="toggleSubmenu()" class="submenu-overlay d-none">
+        <div id="submenu" class="submenu">
+            <p><a href="../html/legal_notice.html">Legal Notice</a></p>
+            <p><a href="../html/privacy_policy.html">Privacy Policy</a></p>
+            <p><a href="/index.html">Logout</a></p>
+        </div>
+    </section>
 
     <script>includeHTML();</script>
 </body>

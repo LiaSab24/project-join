@@ -235,7 +235,11 @@ function nameAbbreviation(indexContact) {
  */
 async function successfullMsg(msgId) {
   let successAnimation = document.getElementById(msgId);
-  successAnimation.style.animationName = "msgSuccesfull";
+  if (window.innerWidth <= 900) {
+    successAnimation.style.animationName = "msgSuccesfullMobile";
+  } else {
+    successAnimation.style.animationName = "msgSuccesfullDesktop";
+  }
   successAnimation.style.animationDuration = "1600ms";
   setTimeout(function () {
     successAnimation.style.animationName = "";
@@ -272,7 +276,6 @@ function checkFilledInput(id) {
  * This function toggles the visibilty of the submenu (and its transparent background-overlay) onclick
  */
 function toggleSubmenu() {
-  document.getElementById("submenu").classList.toggle('d-none');
   document.querySelector(".submenu-overlay").classList.toggle("d-none");
 }
 
@@ -283,7 +286,7 @@ function toggleSubmenu() {
 function fillSubmenu() {
   submenuContentRef = document.getElementById("submenu");
   submenuContentRef.innerHTML = "";
-  if (window.innerWidth <= 768) {
+  if (window.innerWidth <= 900) {
     submenuContentRef.innerHTML = `<p><a href="./help.html">Help</a></p>`;
   }
   submenuContentRef.innerHTML += getSubmenuTemplate();

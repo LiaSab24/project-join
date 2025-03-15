@@ -23,6 +23,13 @@ body {
   background-color: var(--bg-gray);
 }
 
+main {
+  margin-top: 96px;
+  @media(max-width: 900px) {
+    margin-top: 80px !important;
+  }
+}
+
 h1 {
   font-size: var(--fs-61-47);
   font-weight: 700;
@@ -180,39 +187,55 @@ main {
   height: 74px;
   border-radius: 20px;
   position: relative;
-  top: -300px;
-  right: -1800px;
+  bottom: 40vh;
+  left: -100vb;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--clr-primary);
   box-shadow: var(--shadow-nuevo);
   color: var(--clr-white);
-  /*font-weight: var(--fw-400);*/
   font-size: var(--fs-20);
-  /*line-height: 24px;*/
+  @media (max-width: 900px) {
+    width: 300px;
+    height: 60px;
+  }
 }
 
 /* This is added to the success-messages, when create/edit/delete was succesfully*/
-@keyframes msgSuccesfull {
+@keyframes msgSuccesfullDesktop {
   0% {
-    top: -300px;
-    right: -1800px;
+    left: -100vb;
   }
 
   25% {
-    top: -300px;
-    right: -800px;
+    left: 40vb;
   }
 
   75% {
-    top: -300px;
-    right: -800px;
+    left: 40vb;
   }
 
   100% {
-    top: -300px;
-    right: -1800px;
+    left: -100vb;
+  }
+}
+
+@keyframes msgSuccesfullMobile {
+  0% {
+    left: -100vb;
+  }
+
+  25% {
+    left: 1vb;
+  }
+
+  75% {
+    left:  1vb;
+  }
+
+  100% {
+    left: -100vb;
   }
 }
 
@@ -252,8 +275,6 @@ main {
 .white-btn:hover {
   border: 1px solid var(--clr-lightBlue);
   color: var(--clr-lightBlue);
-  /* box-shadow: var(--shadow-stronger); 
-  cursor: pointer;*/
 }
 
 .submenu-overlay {
