@@ -1,3 +1,20 @@
+.headline-container {
+  justify-content: space-between;
+  padding: 90px 90px 30px;
+  @media (max-width: 900px) {
+    padding: 90px 0 30px;
+  }
+}
+
+.main-container {
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 90px;
+  @media (max-width: 900px) {
+    padding: 0;
+  }
+}
+
 .content {
   padding: 16px;
 }
