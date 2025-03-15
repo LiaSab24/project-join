@@ -10,8 +10,9 @@
 }
 
 .header-new {
-  max-width: 1920px;
+  max-width: 1460px;
   width: 100%;
+  /*padding: 20px 40px 20px 348px;*/
   position: relative;
   .header-logo {
     display: none;
@@ -113,19 +114,60 @@
   }
 }
 
+/* special-class for privacy_policy.html, legal_notice.html*/
 .privacy-legal-header {
-  .header-logo, .help-new, .header-img-container, .user-initial-new {
+  .header-logo, .header-img-container {
     display: none;
   }
   @media (max-width: 900px) {
+    .header {
+      padding: 0;
+      height: fit-content;
+    }
     .header-text {
+      display: none;
+    }
+    .header-logo {
       display: block;
-    } 
+    }
+    .header-img-container {
+      display: block;
+      .help-new {
+        display: none;
+      }
+    }
   }
 }
 
+/* special-class for help.html */
 .help-header {
-  .header-logo, .help-new, .header-img-container {
+  .header-logo,
+  .help-new {
     display: none;
+  }
+  @media (max-width: 900px) {
+    .header-new {
+      justify-content: flex-end;
+      padding-right: 0;
+    }
+  }
+}
+
+/* special-class for privacy_policy_external.html, legal_notice_external.html*/
+.privacy-legal-header-guest {
+  .header-logo, .header-img-container {
+    display: none;
+  }
+  @media (max-width: 900px) {
+    .header {
+      padding: 0;
+      height: fit-content;
+    }
+    .header-text {
+      display: none;
+    }
+    .header-logo {
+      display: block;
+    }
   }
 }
