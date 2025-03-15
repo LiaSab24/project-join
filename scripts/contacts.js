@@ -25,6 +25,10 @@ function adjustToWindowSize() {
         else {
             document.getElementById("addNewContactBtnDesktop").classList.remove("d-none")
             document.getElementById("addNewContactBtnMobile").classList.add("d-none");
+            document.getElementById("arrowBackwardsMobile").classList.remove("d-none");
+            if (document.getElementById("contactFocus").style.display == "flex") {
+                document.getElementById("addresbookHideMobile").classList.add("d-none");
+            }
         }
     } else {
         document.getElementById("addresbookHideMobile").classList.remove("d-none");
