@@ -1,13 +1,16 @@
+body,
+html {
+  overflow: hidden;
+}
+
 main {
+    overflow-y: auto;
+    height: calc(100vh - 96px);
     max-width: 1200px;
     @media (max-width: 990px) {
         margin-left: 16px;
-        margin-right: 16px;
         display: flex;
         flex-direction: column;
-    }
-    @media (max-width: 900px) {
-        margin-bottom: 110px;
     }
 }
 
@@ -233,14 +236,25 @@ select {
 }
 
 .add-task-dropdown {
-    max-height: 290px;
-    width: 440px; 
-    padding-top: 10px;
+    height: 0;
+    overflow-y: visible;
     margin: 0 !important;
-    position: absolute;
-    border-radius: 10px;
-    background-color: var(--clr-white);
+    position: relative;
     z-index: 2;
+    background-color: transparent;
+}
+
+.add-task-current-select {
+    z-index: 3 !important;
+}
+
+#addTaskDropdownContacts,
+#addTaskDropdownCategories {
+    min-height: 224px;
+    background-color: var(--clr-white);
+    width: 440px; 
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
     box-shadow: 0px 0px 14px 3px #0000000A;
     font-weight: var(--fw-400);
     font-size: var(--fs-20-16);
@@ -264,29 +278,8 @@ select {
     }
 }
 
-.add-task-current-select {
-    z-index: 3 !important;
-}
-
 #addTaskDropdownContacts {
-    top: 656px;
     overflow-y: scroll;
-    @media (max-width: 990px) {
-        top: 591px;
-    }
-    @media (max-width: 900px) {
-        top: 575px;
-    }
-}
-
-#addTaskDropdownCategories {
-    top: 595px;
-    @media (max-width: 990px) {
-        top: 897px;
-    }
-    @media (max-width: 900px) {
-        top: 881px;
-    }
 }
 
 .add-task-dropdown-option {
@@ -295,6 +288,14 @@ select {
     padding: 7px 16px;
     border-radius: 10px;
     cursor: pointer; 
+}
+
+#addTaskCategory {
+    margin: 0;
+}
+
+#subtaskLabel {
+    margin-top: 20px;
 }
 
 .add-task-dropdown-option:hover {
@@ -311,6 +312,10 @@ select {
 .profile-badge {
     height: 42px;
     width: 42px;
+}
+
+.add-task-dropdown-option div span {
+    flex: 1;
 }
 
 .add-task-assigned-to-checkbox {
@@ -579,6 +584,7 @@ select {
     }
     @media (max-width: 900px) {
         margin-left: 0;
+        margin-bottom: 110px;
     }
     @media (max-width: 440px) {
         width: 280px;

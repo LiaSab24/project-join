@@ -19,6 +19,10 @@
 }
 
 @media (max-width: 1366px) {
+    .board-header {
+        margin-right: 24px;
+    }
+
     .task-container {
         display: flex;
         flex-direction: column;
@@ -105,36 +109,39 @@
         width: fit-content;
 
         #addTaskH1 {
-            margin: 30px 0 0 30px;
+            margin: 30px 30px 0 30px;
         }
 
         #addTaskForm {
             width: 740px;
-            margin: 24px 30px 0 30px;
+            margin: 24px 24px 0 0;
         }
 
         .add-task-form-column {
+            flex: 1;
             margin: 0;
+            padding: 0 24px;
+            align-items: center;
+        }
+
+        .add-task-seperator {
+            height: 365px;
+            padding: 0 1px;
         }
 
         label,
         input,
         textarea,
-        .add-task-form-column,
         .add-task-dropdown,
         #addTaskPriorities,
         .subtask-scrollbar,
         .addTaskSubtaskList div,
         .subtask {
-            width: 300px;
+            width: 100%;
         }
 
         #addTaskDropdownContacts {
-            top: 457px;
-        }
-
-        #addTaskDropdownCategories {
-            top: 383px;
+            min-height: 168px;
         }
 
         .subtask-scrollbar {
@@ -146,11 +153,11 @@
         }
 
         .add-task-submit {
-            margin: 20px 30px 0 30px;
-        }
-
-        #addTaskSubmitBtns {
-            margin: 0;
+            width: 716px;
+            margin: 0 24px;
+            position: fixed;
+            bottom: 128px;
+            justify-content: space-between;
         }
     }
 
@@ -172,10 +179,6 @@
         .addTaskSubtaskList div,
         .subtask {
             width: 372px !important;
-        }
-
-        #addTaskDropdownCategories {
-            top: 348px !important;
         }
 
         .add-task-submit button {
@@ -204,10 +207,6 @@
         .subtask {
             width: 372px !important;
         }
-
-        #addTaskDropdownCategories {
-            top: 348px !important;
-        }
     }
 }
 
@@ -216,14 +215,26 @@
         margin-left: 232px;
     }
 
+    button h2 {
+        display: none;
+    }
+
+    button img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .button {
+        padding: 13.5px;
+    }
+
     #addTaskOverlay {
-        height: 800px;
+        height: 700px;
         width: fit-content;
 
         #addTaskH1 {
-            width: 100%;
+            width: 500px;
             margin-left: 72px;
-            padding: 0 30px;
             align-self: anchor-center;
         }
 
@@ -249,14 +260,6 @@
         #addTaskPriorities,
         .subtask-scrollbar {
             width: 396px;
-        }
-
-        #addTaskDropdownContacts {
-            top: 467px;
-        }
-
-        #addTaskDropdownCategories {
-            top: 773px;
         }
 
         .subtask-scrollbar {
@@ -288,6 +291,7 @@
         label,
         input,
         textarea,
+        #addTaskH1,
         .add-task-form-column,
         .add-task-dropdown,
         #addTaskAssignedToList,
@@ -303,27 +307,12 @@
         }
 
         #addTaskDropdownCategories {
-            top: 420px !important;
+            top: 545px !important;
         }
 
         .add-task-submit button {
             margin: 0 20px;
         }
-    }
-}
-
-@media (max-width: 920px) {
-    button h2 {
-        display: none;
-    }
-
-    button img {
-        width: 20px;
-        height: 20px;
-    }
-
-    .button {
-        padding: 13.5px;
     }
 }
 
@@ -449,6 +438,12 @@
 
 @media (max-width: 660px) {
     #addTaskOverlay {
+        width: 500px;
+
+        #addTaskH1 {
+            width: 400px;
+        }
+
         #addTaskForm {
             width: 400px;
             margin: 24px 40px 0 40px;
@@ -511,7 +506,7 @@
         }
 
         #addTaskDropdownCategories {
-            top: 480px !important;
+            top: 534px !important;
         }
 
         .subtask {
@@ -528,18 +523,18 @@
     }
 }
 
-@media (max-width: 500px) {
-    .edit-task-overlay {
-        max-width: 300px;
-        padding: 16px 8px !important;
+@media (max-width: 530px) {
+    #addTaskOverlay {
+        width: 400px;
 
-        #addTaskForm {
-            width: 100% !important;
-            padding: 0 10px;
+        #addTaskH1 {
+            width: auto;
+            margin: 30px 40px 0 40px;
+            justify-content: space-between;
         }
 
-        .title {
-            padding: 0 !important;
+        #addTaskForm {
+            width: 310px;
         }
 
         label,
@@ -552,15 +547,47 @@
         .subtask-scrollbar,
         .addTaskSubtaskList div,
         .subtask {
+            width: 300px;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .edit-task-overlay {
+        max-width: 300px;
+        padding: 16px 8px !important;
+
+        #addTaskForm {
+            width: 100% !important;
+            padding: 0 10px;
+            gap: 0;
+        }
+
+        .title {
+            padding: 0 !important;
+        }
+
+        label,
+        input,
+        textarea,
+        #addTaskH1,
+        .add-task-form-column,
+        .add-task-dropdown,
+        #addTaskAssignedToList,
+        #addTaskPriorities,
+        .subtask-scrollbar,
+        .addTaskSubtaskList div,
+        .subtask {
             width: 250px !important;
         }
+
         #addTaskPriorities div {
             padding: 4px 2px !important;
             gap: 2px;
         }
 
         #addTaskDropdownContacts {
-            top: 410px !important;
+            top: 406px !important;
         }
 
         #addTaskDropdownCategories {
@@ -674,33 +701,49 @@
     }
 
     #addTaskOverlay {
-        display: flex;
-        flex-direction: column;
-        align-items: anchor-center;
+        height: 600px;
+        width: 300px;
 
         #addTaskH1 {
-            margin-left: 0;
-            padding: 0 12px;
+            margin: 20px 20px 0 20px;
         }
 
         #addTaskForm {
-            width: 290px;
-            margin: 24px 12px 0 12px;
+            width: auto;
+            margin: 20px 20px 0 20px;
         }
 
+        label,
+        input,
+        textarea,
+        .add-task-form-column,
         .add-task-dropdown,
+        #addTaskAssignedToList,
         #addTaskPriorities,
-        #addTaskSubtaskList,
         .subtask-scrollbar,
-        .add-task-submit,
+        .addTaskSubtaskList div,
         .subtask,
-        .subtask-edit {
-            width: 290px;
+        .add-task-submit {
+            width: 240px;
+        }
+
+        #addTaskDropdownContacts {
+            top: 456px;
+        }
+
+        #addTaskDropdownCategories {
+            top: 888px;
+        }
+
+        #addTaskPriorities {
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
         }
 
         #addTaskPriorities div {
-            padding: 8px;
-            font-size: 14px;
+            height: auto;
+            padding: 12px 8px;
         }
 
         #subtaskIconAdd {
@@ -716,7 +759,8 @@
         }
 
         .add-task-submit {
-            margin: 20px 18px 20px 18px;
+            margin: 20px 8px 20px 8px;
+            justify-self: anchor-center;
         }
 
         #addTaskSubmitBtns {
