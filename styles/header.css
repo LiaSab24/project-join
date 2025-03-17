@@ -10,9 +10,8 @@
 }
 
 .header-new {
-  max-width: 1460px;
+  max-width: 1920px;
   width: 100%;
-  /*padding: 20px 40px 20px 348px;*/
   position: relative;
   .header-logo {
     display: none;
@@ -26,6 +25,17 @@
     text-align: left;
     text-decoration-skip-ink: none;
   }
+  @media (max-width: 900px) {
+    justify-content: flex-end !important;
+  }
+}
+
+.header-logo {
+  display: none;
+  width: 32px;
+  height: 39px;
+  animation-timing-function: ease-in-out;
+  animation-duration: 100ms;
 }
 
 .header-img-container {
@@ -36,21 +46,15 @@
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-}
-
-.help-new {
-  width: 26px;
-  height: 26px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  border: 3px solid var(--clr-lightGray);
-  text-decoration: none;
-  color: var(--clr-lightGray);
-  &:hover {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
+  .help {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    .help-img {
+      width: 20px;
+      height: 20px;
+    }
   }
 }
 
@@ -68,6 +72,22 @@
     background: linear-gradient(0deg, rgba(12, 46, 98, 0.12), rgba(12, 46, 98, 0.12));
   }
 } 
+
+.help-new {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 3px solid var(--clr-lightGray);
+  text-decoration: none;
+  color: var(--clr-lightGray);
+  &:hover {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+}
 
 .submenu {
   width: fit-content;
@@ -114,60 +134,19 @@
   }
 }
 
-/* special-class for privacy_policy.html, legal_notice.html*/
 .privacy-legal-header {
-  .header-logo, .header-img-container {
+  .header-logo, .help-new, .header-img-container, .user-initial-new {
     display: none;
   }
   @media (max-width: 900px) {
-    .header {
-      padding: 0;
-      height: fit-content;
-    }
     .header-text {
-      display: none;
-    }
-    .header-logo {
       display: block;
-    }
-    .header-img-container {
-      display: block;
-      .help-new {
-        display: none;
-      }
-    }
+    } 
   }
 }
 
-/* special-class for help.html */
 .help-header {
-  .header-logo,
-  .help-new {
+  .header-logo, .help-new, .header-img-container {
     display: none;
-  }
-  @media (max-width: 900px) {
-    .header-new {
-      justify-content: flex-end;
-      padding-right: 0;
-    }
-  }
-}
-
-/* special-class for privacy_policy_external.html, legal_notice_external.html*/
-.privacy-legal-header-guest {
-  .header-logo, .header-img-container {
-    display: none;
-  }
-  @media (max-width: 900px) {
-    .header {
-      padding: 0;
-      height: fit-content;
-    }
-    .header-text {
-      display: none;
-    }
-    .header-logo {
-      display: block;
-    }
   }
 }
