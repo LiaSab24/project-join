@@ -1,13 +1,11 @@
-<header id="header" class="header flex align-center">
-  <div class="header-new flex just-space-b align-center">
-    <img src="../assets/img/join_dark.png" alt="Logo" id="header-logo" class="header-logo">
-    <p class="header-text">Kanban Project Management Tool</p>
-    <div class="header-img-container flex">
-      <div onclick="redirectToHelp(window.location.href)" class="help-new">?</div>
-      <div onclick="toggleSubmenu()" class="user-initial-new">
-        <span id="headerPbBadge"></span>
-      </div>
-    </div> 
-  </div>
+<header id="header" class="header-new flex just-space-b align-center">
+  <p class="header-text">Kanban Project Management Tool</p>
+  <img src="../assets/img/join_dark.png" alt="Logo" id="header-logo" class="header-logo">
+  <div class="header-img-container flex">
+    <div onclick="redirectToHelp(window.location.href)" class="help-new">?</div>
+    <div class="user-initial-new" onclick="toggleSubmenu()">
+      <span id="headerPbBadge"></span>
+    </div>
+  </div> 
   <div id="submenu" class="submenu d-none"></div>
 </header>
