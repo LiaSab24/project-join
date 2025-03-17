@@ -30,19 +30,20 @@
       <h1>Join 360</h1>  
       <div class="title-seperator"></div>
       <p>Key Metrics at a Glance</p>
+      <div class="responsive-title-seperator"></div>
     </section>
 
-    <section class="summary-content">
-      <div class="summary-overview">
+    <section class="summary-content flex align-center">
+      <div class="summary-overview flex">
         <div class="to-dos">
-          <div onclick="redirectionToBoard()" class="summary-container">
+          <div onclick="redirectionToBoard()" class="summary-container flex just-center align-center">
             <div id="summaryIconToDo"></div>
             <p>
               <span id="counterTasksToDo" class="summary-number">0</span>
               <span class="number-explanation">To-Do</span>
             </p>
           </div>
-          <div onclick="redirectionToBoard()" class="summary-container">
+          <div onclick="redirectionToBoard()" class="summary-container flex just-center align-center">
             <div id="summaryIconDone"></div>
             <p>
               <span id="counterTasksDone" class="summary-number">0</span>
@@ -51,10 +52,10 @@
           </div>
         </div>
 
-        <div onclick="redirectionToBoard()" class="deadline summary-container">
-          <div class="deadline-urgent">
+        <div onclick="redirectionToBoard()" class="deadline summary-container flex just-space-b align-center">
+          <div class="deadline-urgent flex just-center align-center">
             <img src="../assets/icons/summary-deadline-urgent.svg" alt="summary-deadline-urgent">
-            <p>
+            <p class="flex">
               <span id="counterTasksUrgent" class="summary-number">0</span>
               <span class="number-explanation">Urgent</span>
             </p>
@@ -65,30 +66,33 @@
             <span id="nextDeadlineSpan">Upcoming Deadline</span>
           </div>
         </div>
- 
-        <div class="tasks">
-          <div onclick="redirectionToBoard()" class="summary-container">
-            <p>
+
+        <div class="tasks flex just-space-b">
+          <div onclick="redirectionToBoard()" class="summary-container flex just-center align-center">
+            <p class="flex align-center">
               <span id="counterTasksTotal" class="summary-number">0</span>
-              <span class="number-explanation">Tasks in Board</span>
+              <span class="number-explanation">Tasks in</span>
+              <span class="number-explanation">Board</span>
             </p>
           </div>
-          <div onclick="redirectionToBoard()" class="summary-container">
-            <p>
+          <div onclick="redirectionToBoard()" class="summary-container flex just-center align-center">
+            <p class="flex align-center">
               <span id="counterTasksInProgress" class="summary-number">0</span>
-              <span class="number-explanation">Tasks in Progress</span>
+              <span class="number-explanation">Tasks in</span>
+              <span class="number-explanation">Progress</span>
             </p>
           </div>
-          <div onclick="redirectionToBoard()" class="summary-container">
-            <p>
+          <div onclick="redirectionToBoard()" class="summary-container flex just-center align-center">
+            <p class="flex align-center">
               <span id="counterTasksAwaitingFeedback" class="summary-number">0</span>
-              <span class="number-explanation">Awaiting Feedback</span>
+              <span class="number-explanation">Awaiting</span>
+              <span class="number-explanation">Feedback</span>
             </p>
           </div>
         </div>
       </div>
 
-      <div id="summaryGreeting" class="summary-greeting">
+      <div id="summaryGreeting" class="summary-greeting flex">
         <p id="greetingDaytime"></p>
         <p id="userName"></p>
       </div>
