@@ -7,7 +7,9 @@ function closeOverlays() {
     document.getElementById("addTaskOverlay").classList.add("d-none");
     document.getElementById("overviewOverlay").classList.add("d-none");
     document.getElementById("editTaskOverlay").classList.add("d-none");
+    document.getElementById("editTaskOverlayContent").innerHTML = "";
     document.getElementById("addTaskOverlay").classList.remove("edit-task-overlay");
+    document.getElementById("addTaskOverlayContent").innerHTML = "";
     renderTasks();
 }
 

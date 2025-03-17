@@ -398,9 +398,10 @@ button img {
 }
 
 #addTaskOverlay .title {
+  width: 1016px;
   margin-top: 64px;
   margin-right: 32px;
-  margin-left: 74px;
+  margin-left: 0;
   padding: 0;
   display: flex;
   justify-content: space-between;
@@ -434,6 +435,7 @@ button img {
 }
 
 #addTaskOverlay .add-task-submit {
+  width: 956px;
   position: relative;
   bottom: 64px;
   justify-content: space-between;
