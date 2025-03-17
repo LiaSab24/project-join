@@ -376,7 +376,16 @@ button img {
   flex-direction: column;
 }
 
-#addTaskOverlay::-webkit-scrollbar {
+#addTaskOverlayContent,
+#editTaskOverlayContent {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  align-items: end;
+} 
+
+#editTaskOverlayContent::-webkit-scrollbar,
+#addTaskOverlayContent::-webkit-scrollbar {
   display: none !important;
 }
 
@@ -389,9 +398,10 @@ button img {
 }
 
 #addTaskOverlay .title {
+  width: 1016px;
   margin-top: 64px;
   margin-right: 32px;
-  margin-left: 74px;
+  margin-left: 0;
   padding: 0;
   display: flex;
   justify-content: space-between;
@@ -405,7 +415,6 @@ button img {
 #addTaskOverlay .add-task-submit {
   margin-left: 74px;
   margin-right: 98px;
-  overflow: hidden;
 }
 
 #addTaskOverlay .overlay-close {
@@ -426,7 +435,10 @@ button img {
 }
 
 #addTaskOverlay .add-task-submit {
-  margin-bottom: 64px;
+  width: 956px;
+  position: relative;
+  bottom: 64px;
+  justify-content: space-between;
 }
 
 #addTaskOverlay .add-task-requirements {
@@ -619,15 +631,15 @@ button img {
 }
 
 .edit-task-overlay .title {
-  width: 100%;
+  padding: 0;
   margin: 0 !important;
-  justify-content: flex-end !important;
 }
 
 .edit-task-overlay #addTaskForm {
   margin: 0 !important;
   display: flex;
   flex-direction: column;
+  align-self: center;
   gap: 24px;
   padding-bottom: 40px !important;
   flex: 1;

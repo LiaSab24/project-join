@@ -7,7 +7,9 @@ function closeOverlays() {
     document.getElementById("addTaskOverlay").classList.add("d-none");
     document.getElementById("overviewOverlay").classList.add("d-none");
     document.getElementById("editTaskOverlay").classList.add("d-none");
+    document.getElementById("editTaskOverlayContent").innerHTML = "";
     document.getElementById("addTaskOverlay").classList.remove("edit-task-overlay");
+    document.getElementById("addTaskOverlayContent").innerHTML = "";
     renderTasks();
 }
 
@@ -29,8 +31,9 @@ function openBoardBgOverlay() {
  */
 async function openEditTaskOverlay(progress, indexTask) {
     closeOverlays();
-    let overlayContentRef = document.getElementById("editTaskOverlay");
-    overlayContentRef.classList.remove("d-none");
+    let overlayRef = document.getElementById("editTaskOverlay");
+    let overlayContentRef = document.getElementById("editTaskOverlayContent");
+    overlayRef.classList.remove("d-none");
     overlayContentRef.innerHTML = "";
     overlayContentRef += await boardAddTask('edit', progress, indexTask);
 }
@@ -73,8 +76,8 @@ async function boardAddTask(overlay, progress, indexTask) {
 * @param {string} progress - the progress-category, where the new task should be in after submitting
 */
 async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
-    let addTaskOverlayContentRef = document.getElementById("addTaskOverlayContent");
     document.getElementById("addTaskOverlay").classList.remove("d-none");
+    let addTaskOverlayContentRef = document.getElementById("addTaskOverlayContent");
     addTaskOverlayContentRef.innerHTML = "";
     addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
     document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
@@ -99,11 +102,12 @@ function adjustAddTaskProgress(progress) {
  * @param {html} addTaskOverlayContent - the html-content of the main-part of the add_task.html
  */
 async function adjustBoardEditTaskOverlay(addTaskOverlayContent) {
-    let addTaskOverlayContentRef = document.getElementById("addTaskOverlay");
-    addTaskOverlayContentRef.classList.remove("d-none");
-    addTaskOverlayContentRef.classList.add("edit-task-overlay");
-    addTaskOverlayContentRef.innerHTML = "";
-    addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
+    let editTaskOverlayRef = document.getElementById("editTaskOverlay");
+    let editTaskOverlayContentRef = document.getElementById("editTaskOverlayContent");
+    editTaskOverlayRef.classList.remove("d-none");
+    editTaskOverlayContentRef.classList.add("edit-task-overlay");
+    editTaskOverlayContentRef.innerHTML = "";
+    editTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
     document.getElementById("addTaskH1").innerHTML = "";
     document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
     document.getElementById("addTaskForm").classList.add("custom-scrollbar");
@@ -123,7 +127,7 @@ function openTaskOverview(indexTask) {
     if (tasks[indexTask].priority == "") {
         document.getElementById("prioOverview" + indexTask).src = "";
     }
-    fillTaskOverviewLists(indexTask); 
+    fillTaskOverviewLists(indexTask);
     if (document.getElementById("overviewContact" + indexContactUser)) {
         adjustUserContact("overviewContact")
     }
