@@ -28,6 +28,7 @@ function adjustToWindowSize() {
             document.getElementById("arrowBackwardsMobile").classList.remove("d-none");
             if (document.getElementById("contactFocus").style.display == "flex") {
                 document.getElementById("addresbookHideMobile").classList.add("d-none");
+                document.getElementById("btnsMenuMobile").classList.remove("d-none");
             }
         }
     } else {
@@ -35,6 +36,7 @@ function adjustToWindowSize() {
         document.getElementById("arrowBackwardsMobile").classList.add("d-none");
         document.getElementById("addNewContactBtnMobile").classList.add("d-none");
         document.getElementById("btnsMenuMobile").classList.add("d-none");
+        document.getElementById("contactFocus").style.display = "flex";
     }
 }
 

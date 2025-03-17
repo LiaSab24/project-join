@@ -6,7 +6,7 @@
   --gap-size-task: 20px;
   --header-padding: 16px;
   --input-radius: 8px;
-} 
+}
 
 html,
 body {
@@ -17,12 +17,18 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: var(--clr-white); 
+  background: var(--clr-white);
   overflow-x: hidden !important;
+  overflow-y: auto;
+}
+
+body::-webkit-scrollbar,
+.task-container::-webkit-scrollbar {
+  display: none;
 }
 
 main {
-  min-height: calc(100vh - 80px);
+  height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -44,6 +50,7 @@ h2 {
   justify-content: space-between;
   align-items: center;
   padding: var(--header-padding);
+  margin-right: 135px;
 }
 
 .input-container {
@@ -134,10 +141,10 @@ button img {
   padding: var(--header-padding);
   gap: var(--gap-size-task);
   overflow-x: auto;
-  padding: 0 24px;
 }
 
 .task-wrapper {
+  height: 100%;
   padding: var(--task-padding);
   flex: 1;
   width: 246px;
@@ -153,7 +160,7 @@ button img {
 
 .icon-container {
   position: relative;
-  z-index: ;
+  z-index: 1;
 }
 
 .icon-container img {
@@ -182,8 +189,9 @@ button img {
 }
 
 .board-tasks-list {
-  height: 688px;
+  height: 100%;
   width: 252px;
+  padding-bottom: 24px;
 }
 
 .margin {
@@ -363,15 +371,13 @@ button img {
   position: fixed;
   align-self: anchor-center;
   justify-self: anchor-center;
-  overflow-x: hidden;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-#addTaskOverlay::-webkit-scrollbar{
+#addTaskOverlay::-webkit-scrollbar {
   display: none !important;
-}
-
-#addTaskOverlay #addTaskForm {
-  overflow-y: auto;
 }
 
 #animation {
@@ -391,10 +397,15 @@ button img {
   justify-content: space-between;
 }
 
+#addTaskOverlay #addTaskForm {
+  flex: 1;
+}
+
 #addTaskOverlay #addTaskForm,
 #addTaskOverlay .add-task-submit {
   margin-left: 74px;
-  margin-right: 74px;
+  margin-right: 98px;
+  overflow: hidden;
 }
 
 #addTaskOverlay .overlay-close {
@@ -406,7 +417,6 @@ button img {
 }
 
 #addTaskOverlay #addTaskDropdownContacts {
-  top: 515px;
   z-index: 3;
 }
 
@@ -415,8 +425,16 @@ button img {
   z-index: 2;
 }
 
-#addTaskOverlay #addTaskDropdownCategories {
-  top: 455px;
+#addTaskOverlay .add-task-submit {
+  margin-bottom: 64px;
+}
+
+#addTaskOverlay .add-task-requirements {
+  margin-left: 4px;
+}
+
+#addTaskOverlay #addTaskSubmitBtns {
+  margin-right: 0;
 }
 
 #addTaskOverlay #addTaskCancel {
@@ -550,7 +568,7 @@ button img {
 }
 
 .overview-btns button {
-  height: 100%; 
+  height: 100%;
   background-color: transparent;
   color: var(--clr-primary);
   gap: 8px;
@@ -597,7 +615,7 @@ button img {
   height: fit-content;
   max-height: 800px;
   align-items: center;
-  overflow-x: hidden;
+  padding: 48px 40px 30px 40px !important;
 }
 
 .edit-task-overlay .title {
@@ -610,14 +628,20 @@ button img {
   margin: 0 !important;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
   gap: 24px;
   padding-bottom: 40px !important;
+  flex: 1;
 }
 
 .edit-task-overlay #addTaskAssignedToList {
   display: flex;
   flex-direction: row !important;
+}
+
+.edit-task-overlay .add-task-submit {
+  height: fit-content !important;
+  width: 100%;
+  margin: 0 !important;
 }
 
 .edit-task-overlay #addTaskSubmitBtns {
@@ -644,11 +668,11 @@ button img {
 }
 
 .edit-task-overlay #addTaskDropdownContacts {
-  top: 425px !important;
+  top: 426px !important;
 }
 
 .edit-task-overlay #addTaskDropdownCategories {
-  top: 484px !important;
+  top: 502px !important;
 }
 
 .edit-task-overlay .add-task-seperator,
