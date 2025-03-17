@@ -73,8 +73,8 @@ async function boardAddTask(overlay, progress, indexTask) {
 * @param {string} progress - the progress-category, where the new task should be in after submitting
 */
 async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
-    let addTaskOverlayContentRef = document.getElementById("addTaskOverlay");
-    addTaskOverlayContentRef.classList.remove("d-none");
+    let addTaskOverlayContentRef = document.getElementById("addTaskOverlayContent");
+    document.getElementById("addTaskOverlay").classList.remove("d-none");
     addTaskOverlayContentRef.innerHTML = "";
     addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
     document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
@@ -123,7 +123,7 @@ function openTaskOverview(indexTask) {
     if (tasks[indexTask].priority == "") {
         document.getElementById("prioOverview" + indexTask).src = "";
     }
-    fillTaskOverviewLists(indexTask);
+    fillTaskOverviewLists(indexTask); 
     if (document.getElementById("overviewContact" + indexContactUser)) {
         adjustUserContact("overviewContact")
     }
