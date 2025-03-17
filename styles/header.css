@@ -25,6 +25,9 @@
     text-align: left;
     text-decoration-skip-ink: none;
   }
+  @media (max-width: 900px) {
+    justify-content: flex-end !important;
+  }
 }
 
 .header-logo {
@@ -65,11 +68,10 @@
   cursor: pointer;
   color: var(--clr-lightBlue);
   font-weight: var(--fw-700);
-}
-
-.user-initial-new:hover {
-  background: linear-gradient(0deg, rgba(12, 46, 98, 0.12), rgba(12, 46, 98, 0.12));
-}
+  &:hover {
+    background: linear-gradient(0deg, rgba(12, 46, 98, 0.12), rgba(12, 46, 98, 0.12));
+  }
+} 
 
 .help-new {
   width: 26px;
@@ -86,21 +88,6 @@
     cursor: pointer;
   }
 }
-
-.user-initial-new {
-  width: 56px;
-  height: 56px;
-  border: 3px solid var(--clr-primary);
-  border-radius: 50%;
-  display: grid;
-  place-content: center;
-  cursor: pointer;
-  color: var(--clr-lightBlue);
-  font-weight: var(--fw-700);
-  &:hover {
-    background: linear-gradient(0deg, rgba(12, 46, 98, 0.12), rgba(12, 46, 98, 0.12));
-  }
-} 
 
 .submenu {
   width: fit-content;
