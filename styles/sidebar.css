@@ -23,6 +23,7 @@
 /* Menü-Container */
 .menu {
   width: 100%;
+  padding-top: 64px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -62,7 +63,8 @@
 }
 
 .nav {
-  padding: 243px 0 0 52px;
+  padding-top: 24px;
+  padding-left: 52px;
   width: 100%;
   display: flex;
   flex-direction: column;
