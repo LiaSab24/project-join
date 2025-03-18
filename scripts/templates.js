@@ -46,7 +46,7 @@ function getAddTaskContactPB(indexContact) {
 function getAddTaskSubtaskTemplate(subtask, indexSubtask) {
     return `<div ondblclick="editSubtask(${indexSubtask})" id="subtask${indexSubtask}" class="subtask flex align-center just-space-b">
             ${getAddTaskSubtaskListElementTemplate(subtask, indexSubtask)}
-            </div>` 
+            </div>`
 }
 
 /**
@@ -93,7 +93,10 @@ function getBoardCloseBtnTemplate() {
  */
 function getBoardTaskTemplate(indexTask) {
     return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="openTaskOverview(${indexTask})">
-                <div class="task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ', '-')}">${tasks[indexTask].category}</div>
+                <div class="flex just-space-b">
+                    <div class="task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ', '-')}">${tasks[indexTask].category}</div>
+                    <div onclick="moveTaskProgressMobile(${indexTask}); event.stopImmediatePropagation()" id="moveProgressMobile${indexTask}" class="move-progress-mobile"></div>
+                </div>
                 <div class="task-title">${tasks[indexTask].title}</div>
                 <div class="task-description">${tasks[indexTask].description}</div>
                 <div id="boardProgressSubtask${indexTask}" class="task-progress">
@@ -116,6 +119,27 @@ function getBoardTaskTemplate(indexTask) {
  */
 function getBoardContactPB(indexContact) {
     return `<div id="boardAssignedToListPB${indexContact}" class="profile-badge profile-badge-small">${nameAbbreviation(indexContact)}</div>`
+}
+
+function getBoardTaskMoveProgressMobile(indexTask) {
+    return `<div id="moveProgressMobileMenu${indexTask}" class="move-progress-mobile-menu">
+                <div onclick="updateTaskProgress('toDo', ${indexTask})" class="progressMobileMenuOption">
+                    <div id="moveProgressToDo${indexTask}" class="move-progress-mobile"></div>
+                    <p>To-Do</p>
+                </div>
+                <div onclick="updateTaskProgress('inProgress', ${indexTask})" class="progressMobileMenuOption">
+                    <div id="moveProgressInProgress${indexTask}" class="move-progress-mobile"></div>
+                    <p>In Progress</p>
+                </div>
+                <div onclick="updateTaskProgress('awaitFeedback', ${indexTask})" class="progressMobileMenuOption">
+                    <div id="moveProgressAwaitFeedback${indexTask}" class="move-progress-mobile"></div>
+                    <p>Await Feedback</p>
+                </div>
+                <div onclick="updateTaskProgress('done', ${indexTask})" class="progressMobileMenuOption">
+                    <div id="moveProgressDone${indexTask}" class="move-progress-mobile"></div>
+                    <p>Done</p>
+                </div>
+            </div>`
 }
 
 /**
@@ -144,7 +168,7 @@ function getTaskOverviewOverlayTemplate(indexTask) {
             <div class="overview-info">Subtasks:</div>
             <div id="overviewSubtasks${indexTask}" class="overview-subtasks"></div>
             <div class="overview-btns">
-                <button disable onclick="deleteTask(${indexTask})">
+                <button disable onclick="deleteTask(${indexTask})"> 
                     <div class="overview-task-delete"></div> Delete
                 </button>
                 <div class="overview-btns-seperator"></div>

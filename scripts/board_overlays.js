@@ -1,4 +1,14 @@
 /**
+ * This function lets users with mobile devices move a task to another progress-category
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function moveTaskProgressMobile(indexTask) {
+    openBoardBgOverlay();
+    document.getElementById("boardOverlayBg").innerHTML += getBoardTaskMoveProgressMobile(indexTask);
+}
+
+/**
  * This function is closes all Board-Overlays
  */
 function closeOverlays() {
@@ -18,12 +28,13 @@ function closeOverlays() {
  */
 function openBoardBgOverlay() {
     let boardOverlayBgContentRef = document.getElementById("boardOverlayBg");
-    boardOverlayBgContentRef.classList.remove("d-none");;
+    boardOverlayBgContentRef.innerHTML = "";
+    boardOverlayBgContentRef.classList.remove("d-none");
     setTimeout(function () {
         boardOverlayBgContentRef.classList.add("overlay-active");
     }, 100);
 }
- 
+
 /**
  * This function opens the editTaskOverlay for the clicked task, which gives the user the ability to edit the information
  * 
@@ -117,7 +128,7 @@ async function adjustBoardEditTaskOverlay(addTaskOverlayContent) {
 * This function opens the overviewOverlay for the clicked task, which gives an overview over the task-information
 * 
 * @param {number} indexTask - the index of the task in the tasks-array
-*/ 
+*/
 function openTaskOverview(indexTask) {
     openBoardBgOverlay();
     let overlayContentRef = document.getElementById("overviewOverlay");

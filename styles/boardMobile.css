@@ -175,6 +175,14 @@
                 max-height: 90px;
             }
 
+            #subtaskIconAdd {
+                left: 145px;
+            }
+    
+            #subtaskIconsFocus {
+                left: 130px;
+            }
+
             #subtaskEditInput {
                 width: 100%;
             }
@@ -488,7 +496,7 @@
     #noResultSearchInput {
         transform: scale(1.1);
         bottom: 70% !important;
-    }
+    } 
 }
 
 @media (max-width: 600px) {

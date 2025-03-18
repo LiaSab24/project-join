@@ -224,7 +224,6 @@ function drop(event) {
     updateTaskProgress(dropContainer.id, indexTask);
     dropContainer.innerHTML += draggedElement.outerHTML;
     draggedElement.remove();
-    toggleMessageNoTasks();
   }
 }
 
@@ -235,10 +234,12 @@ function drop(event) {
  * @param {string} progress - the progress of the task (toDo, inProgress, awaitFeedback, done)
  * @param {number} indexTask - the index of the task in the tasks-array
  */
-function updateTaskProgress(progress, indexTask) {
+async function updateTaskProgress(progress, indexTask) { 
   if (tasks[indexTask].progress !== progress) {
-    putData("/tasks/" + tasks[indexTask].url + "/progress", {
+    await putData("/tasks/" + tasks[indexTask].url + "/progress", {
       "progress": progress
     });
+    initBoard();
+    toggleMessageNoTasks();
   }
 }
