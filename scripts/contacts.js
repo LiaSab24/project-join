@@ -238,7 +238,7 @@ function updateFocusedContact(indexContact) {
 async function saveEditContact(indexContact) {
     if (indexContact !== indexContactUser) {
         let contactName = document.getElementById("addContactName").value;
-        let contactMail = validateMailInput();
+        let contactMail = validateMailInput("addContactMail");
         let contactPhone = document.getElementById("addContactPhone").value.trim();
         let contactColor = contacts[indexContact].color;
         if (contactName !== "" && contactMail !== "" && contactPhone !== "") {

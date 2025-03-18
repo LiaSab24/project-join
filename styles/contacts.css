@@ -6,10 +6,12 @@ html {
 main {
     height: 100vh;
     max-width: 1208px;
+    margin-top: 0;
     display: flex;
 
     @media (max-width: 1000px) {
         justify-content: center;
+        margin-top: 0 !important;
         margin-left: 0;
     }
 

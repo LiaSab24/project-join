@@ -23,13 +23,6 @@ body {
   background-color: var(--bg-gray);
 }
 
-main {
-  margin-top: 96px;
-  @media(max-width: 900px) {
-    margin-top: 80px !important;
-  }
-}
-
 h1 {
   font-size: var(--fs-61-47);
   font-weight: 700;
@@ -199,6 +192,7 @@ main {
   @media (max-width: 900px) {
     width: 300px;
     height: 60px;
+    bottom: 60vh;
   }
 }
 

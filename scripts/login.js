@@ -93,5 +93,5 @@ async function guestLogin() {
  * This function redirects the user to the summary (Login succesfull)
  */
 function redirectionToSummary() {
-    window.location.href = "summary.html";
+    window.location.href = "./html/summary.html";
 }
