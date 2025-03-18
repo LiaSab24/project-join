@@ -271,16 +271,6 @@ main {
   color: var(--clr-lightBlue);
 }
 
-.submenu-overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  background-color: transparent;
-  z-index: 1;
-}
-
 .input-error{
   color: #FF001F;
   font-size: var(--fs-16-12);

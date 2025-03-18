@@ -212,7 +212,7 @@ function highlightContact(indexContact) {
     document.getElementById("id" + indexContact).classList.add("contact-clicked");
 }
 
-/**
+/** 
  * This function shows the clicked contact in a large view
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array

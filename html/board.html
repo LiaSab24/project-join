@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../fonts/fonts.css">
   <link rel="stylesheet" href="../styles/board.css">
   <link rel="stylesheet" href="../styles/header.css">
-  <link rel="stylesheet" href="../styles/sidebar.css"> 
+  <link rel="stylesheet" href="../styles/sidebar.css">
   <link rel="stylesheet" href="../styles/add_task.css">
   <link rel="stylesheet" href="../styles/boardMobile.css">
 
@@ -87,7 +87,7 @@
       </div>
 
       <div class="task-wrapper">
-        <div class="task-headline"> 
+        <div class="task-headline">
           <h2>Done</h2>
           <br>
         </div>
@@ -118,14 +118,16 @@
       <span>Task succesfully deleted</span>
     </div>
   </section>
-  <section id="noResultSearchInput" class="no-task-message-container d-none">no result matches the search criteria</section>
-  <section onclick="toggleSubmenu()" class="submenu-overlay d-none">
-    <div id="submenu" class="submenu">
-        <p><a href="../html/legal_notice.html">Legal Notice</a></p>
-        <p><a href="../html/privacy_policy.html">Privacy Policy</a></p>
-        <p><a href="/index.html">Logout</a></p>
+  <section id="noResultSearchInput" class="no-task-message-container d-none">no result matches the search criteria
+  </section>
+  <section onclick="toggleSubmenu()" id="submenuOverlay" class="d-none">
+    <div id="submenu" class="submenu" onclick="event.stopImmediatePropagation()">
+      <p class="hide-help-option-desktop"><a href="../html/help.html">Help</a></p>
+      <p><a href="../html/legal_notice.html">Legal Notice</a></p>
+      <p><a href="../html/privacy_policy.html">Privacy Policy</a></p>
+      <p><a href="/index.html">Logout</a></p>
     </div>
-</section>
+  </section>
   <script>includeHTML();</script>
 </body>
 

@@ -41,7 +41,6 @@ async function init() {
   userIndexInContactsArray();
   if (document.getElementById("header")) {
     headerUser();
-    fillSubmenu();
   }
   initializeSidebar();
   setActiveMenuLink();
@@ -276,20 +275,7 @@ function checkFilledInput(id) {
  * This function toggles the visibilty of the submenu (and its transparent background-overlay) onclick
  */
 function toggleSubmenu() {
-  document.querySelector(".submenu-overlay").classList.toggle("d-none");
-}
-
-/**
- * Adjusts the submenu based on the window size.
- * Adds a help element if the width is less than or equal to 768px.
- */
-function fillSubmenu() {
-  submenuContentRef = document.getElementById("submenu");
-  submenuContentRef.innerHTML = "";
-  if (window.innerWidth <= 900) {
-    submenuContentRef.innerHTML = `<p><a href="./help.html">Help</a></p>`;
-  }
-  submenuContentRef.innerHTML += getSubmenuTemplate();
+  document.getElementById("submenuOverlay").classList.toggle("d-none");
 }
 
 /**
