@@ -85,7 +85,7 @@ function signUpSuccesfully() {
  * This function redirects the user to the log-in-page
  */
 function redirectionToLogIn() {
-    window.location.href = "index.html";
+    window.location.href = "./index.html";
 }
 
 /**
