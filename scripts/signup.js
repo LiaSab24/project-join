@@ -11,7 +11,7 @@ async function initSignUp() {
  */
 function clearSignUpForm() {
     document.getElementById("name").value = "";
-    document.getElementById("mail").value = "";
+    document.getElementById("mail").value = ""; 
     document.getElementById("password").value = "";
     document.getElementById("confirmed").value = "";
     document.getElementById("checkboxSignUp").checked = false;
@@ -73,7 +73,7 @@ function checkPasswordConfirmed() {
  * This function shows the 'sign-up succesfull'-message after adding the user to the users-array and firebase was succesfull
  */
 function signUpSuccesfully() {
-    let signUpMsg = document.getElementById("msgSignUp");
+    let signUpMsg = document.getElementById("userSuccesfullyCreated");
     signUpMsg.classList.remove("d-none");
     setTimeout(function () {
         signUpMsg.classList.add("d-none");
@@ -85,7 +85,7 @@ function signUpSuccesfully() {
  * This function redirects the user to the log-in-page
  */
 function redirectionToLogIn() {
-    window.location.href = "index.html";
+    window.location.href = "/index.html";
 }
 
 /**

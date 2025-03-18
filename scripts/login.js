@@ -24,7 +24,7 @@ function clearLogInForm() {
  * This function reads out the mail and password and if they are filled in correctly and fit to a user, the user is able to log in
  */
 async function LogIn() {
-    let userMail = validateMailInput("addContactMail");
+    let userMail = validateMailInput("mail");
     let userPassword = document.getElementById("password").value;
     if (userMail !== "" && userPassword !== "") {
         loggedInUser = checkUserDataExists();
@@ -44,7 +44,7 @@ async function LogIn() {
 /**
  * This function fills the two defined arrays with the index of each user, who uses the given input (mail and password)
  */
-function checkUserDataExists() {
+function checkUserDataExists() { 
     userMailIndex = [];
     userPasswordIndex = [];
     let userMail = document.getElementById("mail").value;
