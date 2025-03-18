@@ -5,28 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join Board</title>
-  <link rel="icon" type="image/x-icon" href="/assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)" />
-  <link rel="icon" type="image/x-icon" href="/assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" type="image/x-icon" href="../assets/icons/joinBlue.svg" media="(prefers-color-scheme: light)" />
+  <link rel="icon" type="image/x-icon" href="../assets/icons/joinWhite.svg" media="(prefers-color-scheme: dark)" />
 
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../styles/root.css">
-  <link rel="stylesheet" href="/styles/navigation.css">
-  <link rel="stylesheet" href="/fonts/fonts.css">
-  <link rel="stylesheet" href="/styles/board.css">
-  <link rel="stylesheet" href="/styles/header.css">
-  <link rel="stylesheet" href="/styles/sidebar.css">
-  <link rel="stylesheet" href="/styles/add_task.css">
+  <link rel="stylesheet" href="../styles/navigation.css">
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <link rel="stylesheet" href="../styles/board.css">
+  <link rel="stylesheet" href="../styles/boardMobile.css">
+  <link rel="stylesheet" href="../styles/header.css">
+  <link rel="stylesheet" href="../styles/sidebar.css">
+  <link rel="stylesheet" href="../styles/add_task.css">
 
-  <script src="/script.js"></script>
-  <script src="/scripts/include.js"></script>
-  <script src="/scripts/templates.js"></script>
-  <script src="/scripts/board.js"></script>
-  <script src="/scripts/board_overlays.js"></script>f
-  <script src="/scripts/add_task.js"></script>
+  <script src="../script.js"></script>
+  <script src="../scripts/include.js"></script>
+  <script src="../scripts/templates.js"></script>
+  <script src="../scripts/board.js"></script>
+  <script src="../scripts/board_overlays.js"></script>
+  <script src="../scripts/add_task.js"></script>
 </head>
 
 <body onload="initBoard()">
-Kannst du mir einen
   <div w3-include-html="header.html"></div>
   <div w3-include-html="sidebar.html"></div>
   <main>
@@ -38,13 +38,13 @@ Kannst du mir einen
           <input onkeyup="startSearchingTasks()" id="searchInput" type="text" placeholder="Find task">
           <div class="search-input-icons">
             <div class="search-container-seperator"></div>
-            <img src="/assets/icons/search.png" alt="Search" class="search-icon">
+            <img src="../assets/icons/search.png" alt="Search" class="search-icon">
           </div>
         </div>
 
         <button class="button" onclick="boardAddTask('add', 'toDo')">
           <h2>Add Task</h2>
-          <img src="/assets/icons/add.png" alt="Add">
+          <img src="../assets/icons/add.png" alt="Add">
         </button>
       </div>
     </section>
@@ -52,7 +52,7 @@ Kannst du mir einen
       <div class="task-wrapper">
         <div class="task-headline">
           <h2>To Do</h2>
-          <div onclick="boardAddTask('add', 'toDo')" class="icon-container"><img src="/assets/icons/plus-button.png"
+          <div onclick="boardAddTask('add', 'toDo')" class="icon-container"><img src="../assets/icons/plus-button.png"
               alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
@@ -65,7 +65,7 @@ Kannst du mir einen
         <div class="task-headline">
           <h2>In Progress</h2>
           <div onclick="boardAddTask('add', 'inProgress')" class="icon-container"><img
-              src="/assets/icons/plus-button.png" alt="Add Button"></div>
+              src="../assets/icons/plus-button.png" alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTaskInProgress">No tasks in progress</div>
@@ -77,7 +77,7 @@ Kannst du mir einen
         <div class="task-headline">
           <h2>Await Feedback</h2>
           <div onclick="boardAddTask('add', 'awaitFeedback')" class="icon-container"><img
-              src="/assets/icons/plus-button.png" alt="Add Button"></div>
+              src="../assets/icons/plus-button.png" alt="Add Button"></div>
         </div>
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTaskAwaitFeedback">No tasks await feedback</div>
@@ -114,7 +114,14 @@ Kannst du mir einen
     </div>
   </section>
   <section id="noResultSearchInput" class="no-task-message-container d-none">no result matches the search criteria</section>
-  <section onclick="toggleSubmenu()" class="submenu-overlay d-none"></section>
+  <section onclick="toggleSubmenu()" id="submenuOverlay" class="d-none">
+    <div id="submenu" class="submenu" onclick="event.stopImmediatePropagation()">
+        <p class="hide-help-option-desktop"><a href="../html/help.html">Help</a></p>
+        <p><a href="../html/legal_notice.html">Legal Notice</a></p>
+        <p><a href="../html/privacy_policy.html">Privacy Policy</a></p>
+        <p><a href="../index.html">Logout</a></p>
+    </div>
+</section>
   <script>includeHTML();</script>
 </body>
 
