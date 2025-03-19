@@ -54,6 +54,7 @@
   }
   .text {
     font-size: clamp(0.75rem, 0.6121rem + 0.6897vw, 1rem);
+    white-space: nowrap;
   }
 }
 
