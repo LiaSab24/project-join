@@ -132,6 +132,28 @@ function addAssignedContactToList(indexContact) {
         assignedContactsList.innerHTML += getAddTaskContactPB(indexContact);
         profileBadgeColor("addTaskAssignedToListPB" + indexContact, indexContact);
     }
+    shortAssignedToList();
+
+}
+
+/**
+ * This function checks the number of assigned to contacts for a task. If there are more t
+ */
+function shortAssignedToList() {
+    let numberAssignedContacts = document.querySelectorAll(".assigned-contact");
+    document.getElementById("assignedContactsAdditionNumber").innerHTML = (numberAssignedContacts.length - 5);
+    if (numberAssignedContacts.length > 5) {
+        for (let indexAssignedContact = 5; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+            numberAssignedContacts[indexAssignedContact].classList.add("d-none");
+        }
+        document.getElementById("assignedContactsAddition").classList.remove("d-none");
+        
+    } else {
+        for (let indexAssignedContact = 0; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+            numberAssignedContacts[indexAssignedContact].classList.remove("d-none");
+        }
+        document.getElementById("assignedContactsAddition").classList.add("d-none");
+    }
 }
 
 /**
