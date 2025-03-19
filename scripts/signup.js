@@ -11,7 +11,7 @@ async function initSignUp() {
  */
 function clearSignUpForm() {
     document.getElementById("name").value = "";
-    document.getElementById("mail").value = ""; 
+    document.getElementById("mail").value = "";
     document.getElementById("password").value = "";
     document.getElementById("confirmed").value = "";
     document.getElementById("checkboxSignUp").checked = false;
@@ -22,12 +22,12 @@ function clearSignUpForm() {
  * If the user checked the checkbox and assigned a confirmed password, a name and a mail-address the data is added to firebase.
  */
 async function addUser() {
-    let userName = document.getElementById("name").value;
+    let userName = validateNameInput("name");
     let userMail = validateMailInput("mail");
     let userPassword = checkPasswordConfirmed();
+    let checkbox = document.getElementById("checkboxSignUp");
     if (userPassword !== undefined) {
-        let checkbox = document.getElementById("checkboxSignUp");
-        if (checkbox.checked) { 
+        if (checkbox.checked) {
             if (userName !== "" && userMail !== "") {
                 await postData("/users/", {
                     "name": userName,
@@ -38,17 +38,18 @@ async function addUser() {
                 signUpSuccesfully();
                 clearSignUpForm();
             } else {
-                checkFilledInput('name'); 
+                checkFilledInput('name');
                 checkFilledInput('mail');
                 checkFilledInput('password');
                 checkFilledInput('confirmed')
             }
-        } else {
-            document.getElementById("alertCheckbox").classList.remove("d-none");
-            setTimeout(function () {
-                document.getElementById("alertCheckbox").classList.add("d-none");
-            }, 2400);
         }
+    }
+    if (!checkbox.checked) {
+        document.getElementById("alertCheckboxSignUp").classList.remove("invisible");
+        setTimeout(function () {
+            document.getElementById("alertCheckboxSignUp").classList.add("invisible");
+        }, 2400);
     }
 }
 
@@ -58,15 +59,23 @@ async function addUser() {
  */
 function checkPasswordConfirmed() {
     let password = document.getElementById("password").value;
-    let confirmed = document.getElementById("confirmed").value;
-    if (password === confirmed) {
-        return password;
-    } else {
-        document.getElementById("alertPassword").classList.remove("d-none");
+    if (password == "") {
+        document.getElementById("alertPasswordSignUp").classList.remove("invisible");
         setTimeout(function () {
-            document.getElementById("alertPassword").classList.add("d-none");
+            document.getElementById("alertPasswordSignUp").classList.add("invisible");
         }, 2400);
+    } else {
+        let confirmed = document.getElementById("confirmed").value;
+        if (password === confirmed) {
+            return password;
+        } else {
+            document.getElementById("alertConfirmSignUp").classList.remove("invisible");
+            setTimeout(function () {
+                document.getElementById("alertConfirmSignUp").classList.add("invisible");
+            }, 2400);
+        }
     }
+
 }
 
 /**

@@ -8,7 +8,6 @@ async function initLogIn() {
     await init();
     loggedInUser = "";
     clearLogInForm();
-    document.getElementById("alert").classList.add("d-none");
     currentUser = -1;
 }
 
@@ -24,7 +23,7 @@ function clearLogInForm() {
  * This function reads out the mail and password and if they are filled in correctly and fit to a user, the user is able to log in
  */
 async function LogIn() {
-    let userMail = validateMailInput("mail");
+    let userMail = document.getElementById("mail").value
     let userPassword = document.getElementById("password").value;
     if (userMail !== "" && userPassword !== "") {
         loggedInUser = checkUserDataExists();
@@ -32,19 +31,31 @@ async function LogIn() {
             await putData("/currentUser/userId", loggedInUser);
             redirectionToSummary()
         } else {
-            document.getElementById("alert").classList.remove("d-none");
+            document.getElementById("alertLogIn").classList.remove("invisible");
+            document.getElementById("mail").classList.add("requirement-unfulfilled");
+            document.getElementById("password").classList.add("requirement-unfulfilled");
+            setTimeout(function () {
+                document.getElementById("alertLogIn").classList.add("invisible");
+                document.getElementById("mail").classList.remove("requirement-unfulfilled");
+                document.getElementById("password").classList.remove("requirement-unfulfilled");
+            }, 2400);
         }
     } else {
-        document.getElementById("alert").classList.remove("d-none"); 
-        checkFilledInput('mail');
-        checkFilledInput('password');
+        document.getElementById("alertLogIn").classList.remove("invisible");
+        document.getElementById("mail").classList.add("requirement-unfulfilled");
+        document.getElementById("password").classList.add("requirement-unfulfilled");
+        setTimeout(function () {
+            document.getElementById("alertLogIn").classList.add("invisible");
+            document.getElementById("mail").classList.remove("requirement-unfulfilled");
+            document.getElementById("password").classList.remove("requirement-unfulfilled");
+        }, 2400);
     }
-}  
+}
 
 /**
  * This function fills the two defined arrays with the index of each user, who uses the given input (mail and password)
  */
-function checkUserDataExists() { 
+function checkUserDataExists() {
     userMailIndex = [];
     userPasswordIndex = [];
     let userMail = document.getElementById("mail").value;
@@ -75,7 +86,7 @@ function compareMailPassword() {
             }
         }
     }
-return -1
+    return -1
 }
 
 /**
@@ -84,7 +95,7 @@ return -1
  * @param {number} loggedInUser - the id of the logged in user
  */
 async function guestLogin() {
-    loggedInUser = users.length-1;
+    loggedInUser = users.length - 1;
     await putData("/currentUser/userId", loggedInUser);
     redirectionToSummary(loggedInUser);
 }

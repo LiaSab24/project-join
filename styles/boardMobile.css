@@ -123,7 +123,11 @@
         }
 
         .add-task-submit button {
-            margin: 0 56px;
+            margin: 0 40px 0 56px;
+        }
+
+        .add-task-alerts {
+            right: 80px;
         }
     }
 }
@@ -184,7 +188,7 @@
             #subtaskIconAdd {
                 left: 145px;
             }
-    
+
             #subtaskIconsFocus {
                 left: 130px;
             }
@@ -229,6 +233,10 @@
 
         .add-task-submit button {
             margin: 0 20px;
+        }
+
+        .add-task-alerts {
+            right: 100px;
         }
     }
 }
@@ -344,6 +352,14 @@
                 max-width: 420px;
                 margin: 24px;
                 gap: 12px;
+            }
+
+            .add-task-requirements {
+                padding-bottom: 24px;
+            }
+
+            .add-task-alerts {
+                right: -120px;
             }
 
             #addTaskSubmitBtns {
@@ -500,7 +516,11 @@
     #noResultSearchInput {
         transform: scale(1.1);
         bottom: 70% !important;
-    } 
+    }
+
+    .edit-task-overlay .add-task-alerts {
+        right: 70px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -553,6 +573,7 @@
 @media (max-width: 530px) {
     #addTaskOverlay {
         width: 320px;
+
         #addTaskOverlayContent {
             width: auto;
 
@@ -591,6 +612,11 @@
 
             #addTaskSubmit .submit-btns button {
                 transform: scale(0.9);
+            }
+
+            .add-task-alerts {
+                right: -100px;
+                bottom: 20px;
             }
         }
     }

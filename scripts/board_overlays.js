@@ -198,7 +198,7 @@ function shortAssignedToListBoardOverview() {
 
 /**
 * This function is used to assign subtasks as completed
-* 
+*  
 * @param {number} indexSubtask - the index of the subtask in the subtasks-list
 * @param {number} indexTask - the index of the task in the tasks-array
 */
@@ -302,7 +302,11 @@ function saveEditTask(indexTask) {
     } else {
         checkFilledInput("addTaskTitle");
         checkFilledInput("addTaskDate");
-        checkFilledInput("addTaskCategory")
+        checkFilledInput("addTaskCategory");
+        document.getElementById("alertAddTask").classList.remove("invisible");
+        setTimeout(function () {
+            document.getElementById("alertAddTask").classList.add("invisible");
+        }, 2400);
     }
 }
 

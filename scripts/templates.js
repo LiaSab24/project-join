@@ -185,7 +185,7 @@ function getTaskOverviewOverlayTemplate(indexTask) {
                 </button>
             </div>`
 }
- 
+
 /**
  * This template displays a contacts profile badge on the board's task-overview-overlay
  * 
