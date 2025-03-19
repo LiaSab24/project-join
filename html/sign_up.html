@@ -1,4 +1,4 @@
-Ach<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,62 +21,64 @@ Ach<!DOCTYPE html>
 </head>
 
 <body onload="initSignUp()" class="Body-LogIn">
-
-    <div class="Mobile-Header-Icon">
-        <img class="blue-icon" src="../assets/icons/joinBlue.svg" alt="Main Logo in Blue Color" srcset="">
-    </div>
-
-    <div class="log-in-wrapper">
-        <div class="Form-Wrapper">
-            <form>
-                <div class="Head-Line">
-                    <div class="back-arrow">
-                        <a href="/index.html"><img src="../assets/icons/arrow-left-line.png" alt="" srcset=""></a>
-                    </div>
-                    <h1>Sign up</h1>
-                    <img src="../assets/icons/underline.svg" alt="LightBlue Textdecoration Underline" srcset="">
-                </div>
-                <div class="Input-Field">
-                    <input onblur="checkFilledInput('name')" autocomplete="username" id="name" required type="text"
-                        placeholder="Name" minlength="1" maxlength="30">
-                    <input onblur="checkFilledInput('mail')" autocomplete="email" id="mail" required type="email"
-                        placeholder="Email" minlength="1" maxlength="30">
-                    <div class="password-wrapper">
-                        <input onblur="checkFilledInput('password')" autocomplete="new-password" id="password"
-                            name="password" type="password" placeholder="Password" minlength="1" maxlength="18">
-                    </div>
-                    <div class="password-wrapper">
-                        <input onblur="checkFilledInput('confirmed')" autocomplete="current-password" id="confirmed"
-                            name="confirmed" required type="password" placeholder="Confirm Password">
-                    </div>
-                    <span id="alertPassword" class="d-none input-error">Your passwords don´t match. Please try
-                        again</span>
-                    <span id="alertCheckbox" class="d-none input-error">Please accept the Privacy Policy</span>
-                    <span id="alertMail" class="d-none input-error">Please enter a valid email address</span>
-                    <div class="Checkbox-Remember-Me">
-                        <input required type="checkbox" name="Remember-me" id="checkboxSignUp">
-                        <span>I accept the <a href="../privacypolicy.html" target="_blank">Privacy Policy</a></span>
-                    </div>
-                </div>
-                <div class="Button-Area">
-                    <button onclick="addUser(); return false" class="Blue-BTN">Sign up</button>
-                </div>
-            </form>
-
-
-        </div>
-        <section class="messages">
-            <div id="userSuccesfullyCreated" class="succesfull-msg">
-                <span>You signed up succesfully</span>
+    <section>
+        <div class="inner-container">
+            <div class="Mobile-Header-Icon">
+                <img class="blue-icon" src="../assets/icons/joinBlue.svg" alt="Main Logo in Blue Color" srcset="">
             </div>
-        </section>
-    </div>
 
-    <div class="Policy-Area">
-        <a href="./privacy_policy.html" target="_blank">Privacy Policy</a>
-        <a href="./legal_notice.html" target="_blank">Legal notice</a>
-    </div>
+            <div class="log-in-wrapper">
+                <div class="Form-Wrapper">
+                    <form>
+                        <div class="Head-Line">
+                            <div class="back-arrow">
+                                <a href="/index.html"><img src="../assets/icons/arrow-left-line.png" alt="" srcset=""></a>
+                            </div>
+                            <h1>Sign up</h1>
+                            <img src="../assets/icons/underline.svg" alt="LightBlue Textdecoration Underline" srcset="">
+                        </div>
+                        <div class="Input-Field">
+                            <input onblur="checkFilledInput('name')" autocomplete="username" id="name" required type="text"
+                                placeholder="Name" minlength="1" maxlength="30">
+                            <input onblur="checkFilledInput('mail')" autocomplete="email" id="mail" required type="email"
+                                placeholder="Email" minlength="1" maxlength="30">
+                            <div class="password-wrapper">
+                                <input onblur="checkFilledInput('password')" autocomplete="new-password" id="password"
+                                    name="password" type="password" placeholder="Password" minlength="1" maxlength="18">
+                            </div>
+                            <div class="password-wrapper">
+                                <input onblur="checkFilledInput('confirmed')" autocomplete="current-password" id="confirmed"
+                                    name="confirmed" required type="password" placeholder="Confirm Password">
+                            </div>
+                            <span id="alertPassword" class="d-none input-error">Your passwords don´t match. Please try
+                                again</span>
+                            <span id="alertCheckbox" class="d-none input-error">Please accept the Privacy Policy</span>
+                            <span id="alertMail" class="d-none input-error">Please enter a valid email address</span>
+                            <div class="Checkbox-Remember-Me">
+                                <input required type="checkbox" name="Remember-me" id="checkboxSignUp">
+                                <span>I accept the <a href="../privacypolicy.html" target="_blank">Privacy Policy</a></span>
+                            </div>
+                        </div>
+                        <div class="Button-Area">
+                            <button onclick="addUser(); return false" class="Blue-BTN">Sign up</button>
+                        </div>
+                    </form>
 
+
+                </div>
+                <section class="messages">
+                    <div id="userSuccesfullyCreated" class="succesfull-msg">
+                        <span>You signed up succesfully</span>
+                    </div>
+                </section>
+            </div>
+
+            <div class="Policy-Area">
+                <a href="./privacy_policy.html" target="_blank">Privacy Policy</a>
+                <a href="./legal_notice.html" target="_blank">Legal notice</a>
+            </div>
+        </div>
+    </section>   
 </body>
 
 </html>
