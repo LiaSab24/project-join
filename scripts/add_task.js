@@ -137,7 +137,8 @@ function addAssignedContactToList(indexContact) {
 }
 
 /**
- * This function checks the number of assigned to contacts for a task. If there are more t
+ * This function checks the number of assigned to contacts for a task. If there are more than five contacts, only the first five are shown and the other ones are hidden.
+ * The user can see how many more contacts are assigned.
  */
 function shortAssignedToList() {
     let numberAssignedContacts = document.querySelectorAll(".assigned-contact");
