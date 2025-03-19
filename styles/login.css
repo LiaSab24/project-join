@@ -1,3 +1,8 @@
+section {
+  max-width: 1280px;
+  border: 5px solid rgb(152, 30, 50);
+}
+
 h1 {
   margin-bottom: 5px;
 }
@@ -185,7 +190,7 @@ input {
 .sign-up-container {
   position: absolute;
   top: 20px;
-  right: 20px;
+  right: 5%;
   text-decoration: none;
   p {
     margin-right: 10px;
