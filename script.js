@@ -13,7 +13,7 @@ let previousLocation;
 
 const colors = [
   "#ff7a00", // Vivid Orange
-  "#ff5eb3", // Deep Pink
+  "#ff5eb3", // Deep Pink 
   "#6e52ff", // Lavender Blue
   "#9327ff", // Violet
   "#00bee8", // Sky Blue
@@ -263,6 +263,9 @@ function checkFilledInput(contentRefId) {
   if (contentRefId == "addTaskCategory") {
     if (contentRef.placeholder == "Select task category") {
       contentRef.classList.add(unfulfilledRequirement);
+      setTimeout(function () {
+        contentRef.classList.remove(unfulfilledRequirement);
+      }, 2400);
     } else {
       contentRef.classList.remove(unfulfilledRequirement);
     }

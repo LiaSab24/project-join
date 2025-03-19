@@ -155,10 +155,10 @@ async function addContact() {
             "mail": contactMail,
             "phone": contactPhone,
             "color": contactColor
-        });
-        renderAddressBook();
+        }); 
         closeContactsOverlay();
         successfullMsg("contactSuccesfullyCreated");
+        initContacts();
     } else {
         checkFilledInput("addContactName");
         checkFilledInput("addContactMail");
@@ -242,10 +242,10 @@ function updateFocusedContact(indexContact) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 async function saveEditContact(indexContact) {
+    let contactName = validateNameInput("addContactName");
+    let contactMail = validateMailInput("addContactMail");
+    let contactPhone = document.getElementById("addContactPhone").value.trim();
     if (indexContact !== indexContactUser) {
-        let contactName = validateNameInput("addContactName");
-        let contactMail = validateMailInput("addContactMail");
-        let contactPhone = document.getElementById("addContactPhone").value.trim();
         let contactColor = contacts[indexContact].color;
         if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
             await putData("/contacts/" + contacts[indexContact].url, {
@@ -266,7 +266,7 @@ async function saveEditContact(indexContact) {
     } else {
         saveEditContactUser()
     }
-    if (userPhone !== "") {
+    if (contactPhone == "") {
         document.getElementById("alertPhone").classList.remove("invisible");
         setTimeout(function () {
             document.getElementById("alertPhone").classList.add("invisible");
@@ -308,7 +308,7 @@ async function saveEditContactUser() {
         checkFilledInput("addContactMail");
         checkFilledInput("addContactPhone")
     }
-    if (userPhone !== "") {
+    if (userPhone == "") {
         document.getElementById("alertPhone").classList.remove("invisible");
         setTimeout(function () {
             document.getElementById("alertPhone").classList.add("invisible");

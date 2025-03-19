@@ -24,7 +24,7 @@
     --Margin-L: 15px;
     
     --Margin-RL-S: 5px; 
-    --Margin-RL-M: 10px; 
+    --Margin-RL-M: 10px;  
     --Margin-RL-L: 15px;
 }
 
@@ -271,7 +271,6 @@ input[type="checkbox"]:checked {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-
 .Policy-Area {
     display: flex;
     gap: 8px;
@@ -305,4 +304,27 @@ input:focus {
 
 #userSuccesfullyCreated {
     bottom: 0;
+}
+
+.sign-up-alerts {
+    height: 0;
+    width: 0;
+    position: relative;
+    top: -240px;
+    right: -24px;
+    flex-direction: column;
+    z-index: 3;
+    .input-error {
+        margin-bottom: 45px;
+    }
+    #alertCheckboxSignUp {
+        margin-left: 160px;
+        margin-top: -15px;
+        @media (max-width: 700px) {
+            margin-left: 65px;
+        }
+        @media (max-width: 500px) {
+            margin-left: 15px;
+        }
+    }
 }

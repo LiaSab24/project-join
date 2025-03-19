@@ -474,7 +474,7 @@ button img {
   margin-right: 98px;
 }
 
-#addTaskOverlay .overlay-close {
+#addTaskOverlay .overlay-close { 
   align-self: baseline;
 }
 
@@ -712,6 +712,10 @@ button img {
   height: fit-content !important;
   width: 100%;
   margin: 0 !important;
+}
+
+.edit-task-overlay .add-task-alerts {
+  right: 140px;
 }
 
 .edit-task-overlay #addTaskSubmitBtns {

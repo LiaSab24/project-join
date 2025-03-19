@@ -1,4 +1,4 @@
-Ach<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -49,14 +49,17 @@ Ach<!DOCTYPE html>
                         <input onblur="checkFilledInput('confirmed')" autocomplete="current-password" id="confirmed"
                             name="confirmed" required type="password" placeholder="Confirm Password">
                     </div>
-                    <span id="alertPassword" class="d-none input-error">Your passwords don´t match. Please try
-                        again</span>
-                    <span id="alertCheckbox" class="d-none input-error">Please accept the Privacy Policy</span>
-                    <span id="alertMail" class="d-none input-error">Please enter a valid email address</span>
                     <div class="Checkbox-Remember-Me">
                         <input required type="checkbox" name="Remember-me" id="checkboxSignUp">
                         <span>I accept the <a href="../privacypolicy.html" target="_blank">Privacy Policy</a></span>
                     </div>
+                </div>
+                <div class="sign-up-alerts flex">
+                    <span id="alertName" class="input-error invisible">Please enter a valid name</span>
+                    <span id="alertMail" class="input-error invisible">Please enter a valid email address</span>
+                    <span id="alertPasswordSignUp" class="input-error invisible">Please enter a valid password</span>
+                    <span id="alertConfirmSignUp" class="input-error invisible">Please make sure your passwords match</span>
+                    <span id="alertCheckboxSignUp" class="input-error invisible">Please accept the Privacy Policy</span>
                 </div>
                 <div class="Button-Area">
                     <button onclick="addUser(); return false" class="Blue-BTN">Sign up</button>

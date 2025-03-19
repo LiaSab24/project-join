@@ -368,7 +368,11 @@ function addTask() {
     } else {
         checkFilledInput("addTaskTitle");
         checkFilledInput("addTaskDate");
-        checkFilledInput("addTaskCategory")
+        checkFilledInput("addTaskCategory");
+        document.getElementById("alertAddTask").classList.remove("invisible");
+        setTimeout(function () {
+            document.getElementById("alertAddTask").classList.add("invisible");
+        }, 2400);
     }
 }
 
