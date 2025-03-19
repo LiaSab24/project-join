@@ -65,6 +65,10 @@ main {
   display: none !important;
 }
 
+.invisible {
+  color: transparent !important;
+}
+
 .flex {
   display: flex;
 }
@@ -279,6 +283,5 @@ main {
   font-weight: var(--fw-500);
   line-height: 15.6px;
   text-align: start;
-  position: absolute;
-  bottom: 25px;
+  text-wrap: nowrap;
 }

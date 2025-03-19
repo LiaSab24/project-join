@@ -255,11 +255,12 @@ async function successfullMsg(msgId) {
 
 /**
  * This function checks, if a required input is filled in and toggles the "requirement-unfulfilled"-class accordingly
- */
-function checkFilledInput(id) {
-  let contentRef = document.getElementById(id);
+ * @param {string} contentRefId - the id of the element that should be checked
+*/
+function checkFilledInput(contentRefId) {
+  let contentRef = document.getElementById(contentRefId);
   let unfulfilledRequirement = "requirement-unfulfilled";
-  if (id == "addTaskCategory") {
+  if (contentRefId == "addTaskCategory") {
     if (contentRef.placeholder == "Select task category") {
       contentRef.classList.add(unfulfilledRequirement);
     } else {
@@ -270,7 +271,7 @@ function checkFilledInput(id) {
       contentRef.classList.add(unfulfilledRequirement);
       setTimeout(function () {
         contentRef.classList.remove(unfulfilledRequirement);
-      }, 2000);
+      }, 2400);
     } else {
       contentRef.classList.remove(unfulfilledRequirement);
     }
@@ -329,6 +330,26 @@ function adjustUserContact(contentRef) {
 }
 
 /**
+ * This function checks, if the mail-input-value is a proper name.
+ * It returns the email address or shows an alert accordingly.
+ * 
+ * @param {string} contentRef - the id of the element
+ */
+function validateNameInput(contentRef) {
+  let nameInput = document.getElementById(contentRef).value;
+  let firstChar = Number(nameInput.charAt(0));
+  if (nameInput.trim() !== "" && isNaN(firstChar)) {
+    return nameInput.trim()
+  } else {
+    document.getElementById("alertName").classList.remove("invisible");
+    setTimeout(function () {
+      document.getElementById("alertName").classList.add("invisible");
+    }, 2400);
+    return ""
+  }
+}
+
+/**
  * This function checks, if the mail-input-value is a proper email address.
  * It returns the email address or shows an alert accordingly.
  * 
@@ -339,9 +360,9 @@ function validateMailInput(contentRef) {
   if (mailInput.includes("@")) {
     return mailInput.trim()
   } else {
-    document.getElementById("alertMail").classList.remove("d-none");
+    document.getElementById("alertMail").classList.remove("invisible");
     setTimeout(function () {
-      document.getElementById("alertMail").classList.add("d-none");
+      document.getElementById("alertMail").classList.add("invisible");
     }, 2400);
     return ""
   }
