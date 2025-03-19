@@ -136,6 +136,10 @@ form h1 {
     line-height: 56.4px;
 }
 
+form img {
+    margin-top: 12px;
+}
+
 input {
     height: 40px;
     border-radius: 10px;
