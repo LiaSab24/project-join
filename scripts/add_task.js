@@ -20,6 +20,8 @@ async function clearTaskForm() {
     document.getElementById("addTaskCategory").placeholder = "Select task category";
     document.getElementById("addTaskSubtask").value = "";
     document.getElementById("addTaskSubtaskList").innerHTML = "";
+    document.getElementById("prioMedium").classList.add("prioMediumClicked", "clicked");
+    document.getElementById("prioMediumImg").src = "../assets/icons/prioMedium-clicked.svg";
 }
 
 /**
