@@ -14,6 +14,10 @@ main {
     }
 }
 
+.main-width {
+    max-width: 1200px;
+}
+
 label { 
     max-width: 440px;
     font-size: var(--fs-20-16);
