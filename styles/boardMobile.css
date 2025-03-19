@@ -776,4 +776,8 @@
         font-size: 14px;
         padding: 12px;
     }
+
+    .board-header h1 {
+        margin-left: -138px;
+    }
 }
