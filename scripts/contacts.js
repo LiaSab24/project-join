@@ -86,7 +86,11 @@ function clearActiveContacts() {
  */
 function openContactsOverlay() {
     document.getElementById("overlayBg").classList.remove("d-none");
+    document.getElementById("overlayContact").classList.add("animation-open-overlay");
     document.getElementById("overlayContact").classList.remove("d-none");
+    setTimeout(function () {
+        document.getElementById("overlayContact").classList.remove("animation-open-overlay");
+    }, 2400);
 }
 
 /**

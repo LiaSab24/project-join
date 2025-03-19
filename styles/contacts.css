@@ -683,7 +683,6 @@ main {
     justify-self: anchor-center;
     align-self: anchor-center;
     animation-duration: 300ms;
-    animation-timing-function: ease-out;
     z-index: 7;
 
     @media (max-width: 1350px) {
