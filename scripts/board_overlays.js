@@ -69,7 +69,7 @@ async function boardAddTask(overlay, progress, indexTask) {
             openBoardBgOverlay();
             if (overlay == "add") {
                 openBoardAddTaskOverlay(addTaskOverlayContent, progress);
-                clearTaskForm();
+
             } if (overlay == "edit") {
                 adjustBoardEditTaskOverlay(addTaskOverlayContent);
                 document.getElementById("addTaskSubmitBtns").innerHTML += getBoardEditTaskBtnTemplate(indexTask);
@@ -153,15 +153,46 @@ function fillTaskOverviewLists(indexTask) {
     if (tasks[indexTask].assignedTo !== undefined) {
         for (let indexAssignedContact = 0; indexAssignedContact < tasks[indexTask].assignedTo.length; indexAssignedContact++) {
             let indexContact = contacts.findIndex((element) => { return element.name === tasks[indexTask].assignedTo[indexAssignedContact].name })
-            document.getElementById("overviewAssignedContacts" + indexTask).innerHTML += getBoardOverviewContactPB(indexContact);
-            profileBadgeColor("overviewAssignedToListPB" + indexContact, indexContact)
+            document.getElementById("overviewAssignedContacts" + indexTask).innerHTML += getBoardOverviewContactPB(indexTask, indexContact);
+            if (contacts[indexContact] !== undefined) {
+                document.getElementById(indexTask + "contactName" + indexContact).innerHTML = contacts[indexContact].name;
+            } else {
+                document.getElementById(indexTask + "contactName" + indexContact).innerHTML = "You";
+            }
+            profileBadgeColor(indexTask + "overviewAssignedToListPB" + indexContact, indexContact)
         }
+        shortAssignedToListBoardOverview();
+    } else {
+        document.getElementById("hideForNoAssignedTo").classList.add("d-none");
     }
     if (tasks[indexTask].subtasks !== undefined) {
         for (let indexSubtask = 0; indexSubtask < tasks[indexTask].subtasks.length; indexSubtask++) {
             let subtask = tasks[indexTask].subtasks[indexSubtask].subtask;
             document.getElementById("overviewSubtasks" + indexTask).innerHTML += getBoardOverviewSubtask(subtask, indexSubtask, indexTask)
         }
+    } else {
+        document.getElementById("hideForNoSubtasks").classList.add("d-none");
+    }
+}
+
+/**
+ * This function checks the number of assigned to contacts for a task. If there are more than five contacts, only the first five are shown and the other ones are hidden.
+ * The user can see how many more contacts are assigned.
+ */
+function shortAssignedToListBoardOverview() {
+    let numberAssignedContacts = document.querySelectorAll(".overview-contact-assigned");
+    document.getElementById("assignedContactsAdditionNumberBoardOverview").innerHTML = (numberAssignedContacts.length - 5);
+    if (numberAssignedContacts.length > 5) {
+        for (let indexAssignedContact = 5; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+            numberAssignedContacts[indexAssignedContact].classList.add("d-none");
+        }
+        document.getElementById("assignedContactsAdditionBoardOverview").classList.remove("d-none");
+
+    } else {
+        for (let indexAssignedContact = 0; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+            numberAssignedContacts[indexAssignedContact].classList.remove("d-none");
+        }
+        document.getElementById("assignedContactsAdditionBoardOverview").classList.add("d-none");
     }
 }
 
@@ -263,7 +294,7 @@ function saveEditTask(indexTask) {
             "subtasks": taskSubtasks,
             "progress": { "progress": taskProgress }
         });
-        initAddTask();
+        initBoard();
         if (window.location.href !== "http://127.0.0.1:5500/html/add_task.html") {
             successfullMsg("taskSuccesfullyEdited");
             addOnclickToCreateBtn();

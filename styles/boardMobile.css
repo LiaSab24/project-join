@@ -167,6 +167,12 @@
                 width: 100%;
             }
 
+            #addTaskAssignedToList {
+                margin-left: 0;
+                padding-right: 4px;
+                gap: 4px;
+            }
+
             #addTaskDropdownContacts {
                 min-height: 168px;
             }
@@ -206,7 +212,6 @@
         textarea,
         .add-task-form-column,
         .add-task-dropdown,
-        #addTaskAssignedToList,
         #addTaskPriorities,
         .subtask-scrollbar,
         .addTaskSubtaskList div,
@@ -241,7 +246,6 @@
         textarea,
         .add-task-form-column,
         .add-task-dropdown,
-        #addTaskAssignedToList,
         #addTaskPriorities,
         .subtask-scrollbar,
         .addTaskSubtaskList div,
@@ -253,7 +257,7 @@
 
 @media (max-width: 990px) {
     main {
-        margin-left: 232px;
+        margin-left: 232px !important;
     }
 
     button h2 {
@@ -315,6 +319,7 @@
             }
 
             .add-task-dropdown,
+            .assigned-to,
             #addTaskPriorities,
             .subtask-scrollbar {
                 width: 396px;
@@ -365,7 +370,6 @@
         textarea,
         .add-task-form-column,
         .add-task-dropdown,
-        #addTaskAssignedToList,
         #addTaskPriorities,
         .subtask-scrollbar,
         .addTaskSubtaskList div,
@@ -517,7 +521,6 @@
         textarea,
         .add-task-form-column,
         .add-task-dropdown,
-        #addTaskAssignedToList,
         #addTaskPriorities,
         .subtask-scrollbar,
         .addTaskSubtaskList div,
@@ -569,7 +572,7 @@
             textarea,
             .add-task-form-column,
             .add-task-dropdown,
-            #addTaskAssignedToList,
+            .assigned-to,
             #addTaskPriorities,
             .subtask-scrollbar,
             .addTaskSubtaskList div,
@@ -614,12 +617,25 @@
         textarea,
         .add-task-form-column,
         .add-task-dropdown,
-        #addTaskAssignedToList,
+        .assigned-to,
         #addTaskPriorities,
         .subtask-scrollbar,
         .addTaskSubtaskList div,
         .subtask {
             width: 250px !important;
+        }
+
+        #addTaskAssignedToList {
+            margin-left: 10px;
+            padding: 0;
+            margin-top: 16px;
+            gap: 0;
+            flex-wrap: nowrap;
+        }
+
+        .assigned-contact,
+        .profile-badge {
+            margin-left: -10px !important;
         }
 
         #addTaskPriorities div {
@@ -740,7 +756,9 @@
         margin-left: 0 !important;
     }
 
-    
+    .assigned-contacts-addition-overview {
+        margin-left: 10px;
+    }
 }
 
 @media (max-width: 400px) {

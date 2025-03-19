@@ -120,9 +120,14 @@ function getBoardTaskTemplate(indexTask) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function getBoardContactPB(indexTask, indexContact) {
-    return `<div id="boardAssignedToListPB${indexContact}" class="assigned-contact-board${indexTask} profile-badge profile-badge-small">${nameAbbreviation(indexContact)}</div>`
+    return `<div id="${indexTask}boardAssignedToListPB${indexContact}" class="assigned-contact-board${indexTask} profile-badge profile-badge-small">${nameAbbreviation(indexContact)}</div>`
 }
 
+/**
+ * This template creates an overlay that lets the user choose, to which progress-category a task should move for mobile screens.
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
 function getBoardTaskMoveProgressMobile(indexTask) {
     return `<div id="moveProgressMobileMenu${indexTask}" class="move-progress-mobile-menu">
                 <div onclick="updateTaskProgress('toDo', ${indexTask})" class="progressMobileMenuOption">
@@ -164,10 +169,11 @@ function getTaskOverviewOverlayTemplate(indexTask) {
                 <span>Priority:</span>
                 <p>${tasks[indexTask].priority}<img id="prioOverview${indexTask}" src="../assets/icons/prio${tasks[indexTask].priority}.svg"></p>
             </div>
-            <div class="overview-info">Assigned To:</div>
+            <div id="hideForNoAssignedTo" class="overview-info">Assigned To:</div>
             <div id="overviewAssignedContacts${indexTask}" class="overview-contacts">
             </div>
-            <div class="overview-info">Subtasks:</div>
+            <div id="assignedContactsAdditionBoardOverview" class="assigned-contacts-addition-overview profile-badge d-none flex">+<p id="assignedContactsAdditionNumberBoardOverview">0</p></div>
+            <div id="hideForNoSubtasks" class="overview-info">Subtasks:</div>
             <div id="overviewSubtasks${indexTask}" class="overview-subtasks"></div>
             <div class="overview-btns">
                 <button disable onclick="deleteTask(${indexTask})"> 
@@ -179,16 +185,17 @@ function getTaskOverviewOverlayTemplate(indexTask) {
                 </button>
             </div>`
 }
-
+ 
 /**
  * This template displays a contacts profile badge on the board's task-overview-overlay
  * 
+ * @param {number} indexTask - the index of the task in the tasks-array
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function getBoardOverviewContactPB(indexContact) {
+function getBoardOverviewContactPB(indexTask, indexContact) {
     return `<div id="overviewContact${indexContact}" class="overview-contact-assigned">
-                <div id="overviewAssignedToListPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
-                <p>${contacts[indexContact].name}</p>
+                <div id="${indexTask}overviewAssignedToListPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
+                <p id="${indexTask}contactName${indexContact}"></p>
             </div>`
 }
 

@@ -135,7 +135,7 @@ function addAssignedContactToList(indexContact) {
         profileBadgeColor("addTaskAssignedToListPB" + indexContact, indexContact);
     }
     shortAssignedToList();
-
+ 
 }
 
 /**

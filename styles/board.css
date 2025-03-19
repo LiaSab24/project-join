@@ -27,7 +27,7 @@ body::-webkit-scrollbar,
   display: none;
 }
 
-main {
+main { 
   height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
@@ -353,6 +353,10 @@ button img {
   margin-left: -80px;
 }
 
+.assigned-contacts-addition-overview {
+  margin-left: 24px;
+}
+
 .assigned-contacts-and-priority img {
   width: 17px;
 }
@@ -483,6 +487,7 @@ button img {
 }
 
 #addTaskOverlay #addTaskAssignedToList {
+  align-self: start;
   margin-left: 10px;
   z-index: 2;
 }

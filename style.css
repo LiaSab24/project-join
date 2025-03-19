@@ -69,6 +69,10 @@ main {
   display: flex;
 }
 
+.just-start {
+  justify-content: start;
+}
+
 .just-center {
   justify-content: center;
 }

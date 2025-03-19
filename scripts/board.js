@@ -96,7 +96,7 @@ function displayAssignedContacts(indexTask) {
     for (let indexAssignedContact = 0; indexAssignedContact < assignedContacts.length; indexAssignedContact++) {
       let indexContact = contacts.findIndex(index => index.name === assignedContacts[indexAssignedContact].name);
       assignedContactsContentRef.innerHTML += getBoardContactPB(indexTask, indexContact);
-      profileBadgeColor("boardAssignedToListPB" + indexContact, indexContact);
+      profileBadgeColor(indexTask + "boardAssignedToListPB" + indexContact, indexContact);
     }
   } 
   shortAssignedToListBoard(indexTask)
@@ -105,6 +105,8 @@ function displayAssignedContacts(indexTask) {
 /**
  * This function checks the number of assigned to contacts for a task. If there are more than five contacts, only the first five are shown and the other ones are hidden.
  * The user can see how many more contacts are assigned.
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
  */
 function shortAssignedToListBoard(indexTask) {
   let numberAssignedContacts = document.querySelectorAll(".assigned-contact-board" + indexTask);
