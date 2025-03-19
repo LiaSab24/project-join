@@ -100,24 +100,30 @@ function headerUser() {
  * This function adds the "active"-class to sidebar-link of the current page
  */
 function setActiveMenuLink() {
-  let location = window.location.pathname;
+  let location = window.location.href;
+  let currentPage = (name) => {
+    if (location.includes(name)) {
+      return location;
+    }
+  }
+
   switch (location) {
-    case "/Join/html/summary.html":
+    case currentPage("summary"):
       document.getElementById("summaryLink").classList.add("active");
       break;
-    case "/Join/html/add_task.html":
+    case currentPage("add_task"):
       document.getElementById("addTaskLink").classList.add("active");
       break;
-    case "/Join/html/board.html":
+    case currentPage("board"):
       document.getElementById("boardLink").classList.add("active");
       break;
-    case "/Join/html/contacts.html":
+    case currentPage("contacts"):
       document.getElementById("contactsLink").classList.add("active");
       break;
-    case "/Join/html/privacy_policy.html":
+    case currentPage("privacy_policy"):
       document.getElementById("privacyPolicyLink").classList.add("active");
       break;
-    case "/Join/html/legal_notice.html":
+    case currentPage("ledal_notice"):
       document.getElementById("LegalNoticeLink").classList.add("active");
       break;
   }
