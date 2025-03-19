@@ -20,6 +20,8 @@ async function clearTaskForm() {
     document.getElementById("addTaskCategory").placeholder = "Select task category";
     document.getElementById("addTaskSubtask").value = "";
     document.getElementById("addTaskSubtaskList").innerHTML = "";
+    document.getElementById("prioMedium").classList.add("prioMediumClicked", "clicked");
+    document.getElementById("prioMediumImg").src = "../assets/icons/prioMedium-clicked.svg";
 }
 
 /**
@@ -131,6 +133,29 @@ function addAssignedContactToList(indexContact) {
     } else {
         assignedContactsList.innerHTML += getAddTaskContactPB(indexContact);
         profileBadgeColor("addTaskAssignedToListPB" + indexContact, indexContact);
+    }
+    shortAssignedToList();
+
+}
+
+/**
+ * This function checks the number of assigned to contacts for a task. If there are more than five contacts, only the first five are shown and the other ones are hidden.
+ * The user can see how many more contacts are assigned.
+ */
+function shortAssignedToList() {
+    let numberAssignedContacts = document.querySelectorAll(".assigned-contact");
+    document.getElementById("assignedContactsAdditionNumber").innerHTML = (numberAssignedContacts.length - 5);
+    if (numberAssignedContacts.length > 5) {
+        for (let indexAssignedContact = 5; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+            numberAssignedContacts[indexAssignedContact].classList.add("d-none");
+        }
+        document.getElementById("assignedContactsAddition").classList.remove("d-none");
+        
+    } else {
+        for (let indexAssignedContact = 0; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+            numberAssignedContacts[indexAssignedContact].classList.remove("d-none");
+        }
+        document.getElementById("assignedContactsAddition").classList.add("d-none");
     }
 }
 
@@ -332,7 +357,7 @@ function addTask() {
             "progress": { "progress": taskProgress }
         });
         initAddTask();
-        if (window.location.href !== "http://127.0.0.1:5500/html/add_task.html") {
+        if (window.location.href !== "../html/add_task.html") {
             successfullMsg("taskSuccesfullyCreated");
             addOnclickToCreateBtn();
         }
