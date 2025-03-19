@@ -357,7 +357,7 @@ function addTask() {
             "progress": { "progress": taskProgress }
         });
         initAddTask();
-        if (window.location.href !== "http://127.0.0.1:5500/html/add_task.html") {
+        if (window.location.href !== "../html/add_task.html") {
             successfullMsg("taskSuccesfullyCreated");
             addOnclickToCreateBtn();
         }

@@ -100,24 +100,24 @@ function headerUser() {
  * This function adds the "active"-class to sidebar-link of the current page
  */
 function setActiveMenuLink() {
-  let location = window.location.href;
+  let location = window.location.pathname;
   switch (location) {
-    case "http://127.0.0.1:5500/html/summary.html":
+    case "/Join/html/summary.html":
       document.getElementById("summaryLink").classList.add("active");
       break;
-    case "http://127.0.0.1:5500/html/add_task.html":
+    case "/Join/html/add_task.html":
       document.getElementById("addTaskLink").classList.add("active");
       break;
-    case "http://127.0.0.1:5500/html/board.html":
+    case "/Join/html/board.html":
       document.getElementById("boardLink").classList.add("active");
       break;
-    case "http://127.0.0.1:5500/html/contacts.html":
+    case "/Join/html/contacts.html":
       document.getElementById("contactsLink").classList.add("active");
       break;
-    case "http://127.0.0.1:5500/html/privacy_policy.html":
+    case "/Join/html/privacy_policy.html":
       document.getElementById("privacyPolicyLink").classList.add("active");
       break;
-    case "http://127.0.0.1:5500/html/legal_notice.html":
+    case "/Join/html/legal_notice.html":
       document.getElementById("LegalNoticeLink").classList.add("active");
       break;
   }
