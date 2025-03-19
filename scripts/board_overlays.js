@@ -69,7 +69,7 @@ async function boardAddTask(overlay, progress, indexTask) {
             openBoardBgOverlay();
             if (overlay == "add") {
                 openBoardAddTaskOverlay(addTaskOverlayContent, progress);
-
+                clearTaskForm();
             } if (overlay == "edit") {
                 adjustBoardEditTaskOverlay(addTaskOverlayContent);
                 document.getElementById("addTaskSubmitBtns").innerHTML += getBoardEditTaskBtnTemplate(indexTask);
@@ -240,11 +240,11 @@ function fillEditTaskInputs(indexTask) {
     document.getElementById("addTaskTitle").value = tasks[indexTask].title;
     document.getElementById("addTaskDescription").value = tasks[indexTask].description;
     document.getElementById("addTaskDate").value = tasks[indexTask].dueDate;
-    if (tasks[indexTask].priority !== "") {
-        document.getElementById("prio" + tasks[indexTask].priority).classList.add("prio" + tasks[indexTask].priority + "Clicked");
-        document.getElementById("prio" + tasks[indexTask].priority).classList.add("clicked");
-        document.getElementById("prio" + tasks[indexTask].priority + "Img").src = "../assets/icons/prio" + tasks[indexTask].priority + "-clicked.svg";
-    }
+    document.getElementById("prioMedium").classList.remove("prioMediumClicked", "clicked");
+    document.getElementById("prioMediumImg").src = "../assets/icons/prioMedium.svg";
+    document.getElementById("prio" + tasks[indexTask].priority).classList.add("prio" + tasks[indexTask].priority + "Clicked");
+    document.getElementById("prio" + tasks[indexTask].priority).classList.add("clicked");
+    document.getElementById("prio" + tasks[indexTask].priority + "Img").src = "../assets/icons/prio" + tasks[indexTask].priority + "-clicked.svg";
     document.getElementById("addTaskCategory").placeholder = tasks[indexTask].category;
     fillEditTaskFormLists(indexTask);
 }

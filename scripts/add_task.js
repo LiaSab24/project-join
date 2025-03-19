@@ -258,6 +258,7 @@ function selectTaskCategory(category) {
     categoryInput.placeholder = category;
     toggleAddTaskToDropDownMenu('addTaskCategory', 'addTaskDropdownCategories');
     removeAddTaskOverlay();
+    document.getElementById("addTaskCategory").classList.remove("requirement-unfulfilled");
 }
 
 /**
@@ -356,10 +357,13 @@ function addTask() {
             "subtasks": taskSubtasks,
             "progress": { "progress": taskProgress }
         });
-        initAddTask();
-        if (window.location.href !== "../html/add_task.html") {
+        if (window.location.href.includes("board")) {
+            initBoard();
             successfullMsg("taskSuccesfullyCreated");
             addOnclickToCreateBtn();
+        } else {
+            document.getElementById("addTaskCategory").classList.remove("requirement-unfulfilled");
+            initAddTask();
         }
     } else {
         checkFilledInput("addTaskTitle");

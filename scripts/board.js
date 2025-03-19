@@ -149,7 +149,7 @@ function toggleMessageNoTasks() {
     } else {
       noTaskMessagesContentRef.classList.add("d-none");
     }
-  }
+  } 
 }
 
 /**
