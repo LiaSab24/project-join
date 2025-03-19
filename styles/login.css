@@ -2,7 +2,8 @@ section {
   position: relative;
   width: 100%;
   max-width: 1920px;
-  margin: 0 auto;
+  margin-left: 0;      /* <--- Kein Auto-Center */
+  margin-right: auto;  /* <--- Nur rechts auffüllen */
   min-height: 100vh;
   border: 5px solid rgb(152, 30, 117);
   display: flex;
@@ -10,6 +11,7 @@ section {
   align-items: center;
   flex-direction: column;
 }
+
 
 h1 {
   margin-bottom: 5px;
