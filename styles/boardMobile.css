@@ -704,7 +704,6 @@
 
     .board-tasks-list {
         gap: 8px;
-        flex-wrap: wrap;
     }
 
     .search-container {
