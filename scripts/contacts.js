@@ -86,7 +86,11 @@ function clearActiveContacts() {
  */
 function openContactsOverlay() {
     document.getElementById("overlayBg").classList.remove("d-none");
+    document.getElementById("overlayContact").classList.add("animation-open-overlay");
     document.getElementById("overlayContact").classList.remove("d-none");
+    setTimeout(function () {
+        document.getElementById("overlayContact").classList.remove("animation-open-overlay");
+    }, 2400);
 }
 
 /**
@@ -144,7 +148,7 @@ function clearContactForm() {
  * This function reads out the data of the add-contact-form and sends it to firebase to add a new contact
  */
 async function addContact() {
-    let contactName = document.getElementById("addContactName").value;
+    let contactName = validateNameInput("addContactName");
     let contactMail = validateMailInput("addContactMail");
     let contactPhone = document.getElementById("addContactPhone").value.trim();
     let indexContact = contacts.length + 1;
@@ -155,14 +159,20 @@ async function addContact() {
             "mail": contactMail,
             "phone": contactPhone,
             "color": contactColor
-        });
-        renderAddressBook();
+        }); 
         closeContactsOverlay();
         successfullMsg("contactSuccesfullyCreated");
+        initContacts();
     } else {
         checkFilledInput("addContactName");
         checkFilledInput("addContactMail");
         checkFilledInput("addContactPhone")
+    }
+    if (contactPhone == "") {
+        document.getElementById("alertPhone").classList.remove("invisible");
+        setTimeout(function () {
+            document.getElementById("alertPhone").classList.add("invisible");
+        }, 2400);
     }
 }
 
@@ -236,10 +246,10 @@ function updateFocusedContact(indexContact) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 async function saveEditContact(indexContact) {
+    let contactName = validateNameInput("addContactName");
+    let contactMail = validateMailInput("addContactMail");
+    let contactPhone = document.getElementById("addContactPhone").value.trim();
     if (indexContact !== indexContactUser) {
-        let contactName = document.getElementById("addContactName").value;
-        let contactMail = validateMailInput("addContactMail");
-        let contactPhone = document.getElementById("addContactPhone").value.trim();
         let contactColor = contacts[indexContact].color;
         if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
             await putData("/contacts/" + contacts[indexContact].url, {
@@ -260,14 +270,20 @@ async function saveEditContact(indexContact) {
     } else {
         saveEditContactUser()
     }
+    if (contactPhone == "") {
+        document.getElementById("alertPhone").classList.remove("invisible");
+        setTimeout(function () {
+            document.getElementById("alertPhone").classList.add("invisible");
+        }, 2400);
+    }
 }
 
 /**
  * This function reads out the data of the add-contact-form for the edit-overlay and sends it to firebase to replace the previous data (for users and contacts)
  */
 async function saveEditContactUser() {
-    let userName = document.getElementById("addContactName").value;
-    let userMail = document.getElementById("addContactMail").value;
+    let userName = validateNameInput("addContactName");
+    let userMail = validateMailInput("addContactMail");
     let userPhone = document.getElementById("addContactPhone").value.trim();
     let userPassword = users[currentUser].password;
     let userColor = contacts[indexContactUser].color;
@@ -296,6 +312,12 @@ async function saveEditContactUser() {
         checkFilledInput("addContactMail");
         checkFilledInput("addContactPhone")
     }
+    if (userPhone == "") {
+        document.getElementById("alertPhone").classList.remove("invisible");
+        setTimeout(function () {
+            document.getElementById("alertPhone").classList.add("invisible");
+        }, 2400);
+    }
 }
 
 /**
@@ -308,7 +330,7 @@ async function deleteContact(indexContact) {
     successfullMsg("contactSuccesfullyDeleted");
     document.getElementById("focusedContactInformation").innerHTML = "";
     initContacts();
-} 
+}
 
 /**
  * This function checks if the pressed key is a Number and returns it if true.
@@ -317,7 +339,7 @@ async function deleteContact(indexContact) {
 function onlyAllowNumbers(event) {
     if (!isNaN(event.key) || event.key == "+" || event.key == "Backspace") {
         return event.key
-    } else { 
+    } else {
         event.preventDefault()
     }
 }

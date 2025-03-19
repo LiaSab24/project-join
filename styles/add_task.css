@@ -244,7 +244,7 @@ select {
     overflow-y: visible;
     margin: 0 !important;
     position: relative;
-    z-index: 3;
+    z-index: 2;
     background-color: transparent;
 }
 
@@ -411,10 +411,10 @@ select {
     font-size: var(--fs-20-16);
     line-height: 24px;
     @media (max-width: 1330px) {
-        height: 41px;
         width: 121px;
-    }
+    } 
     @media (max-width: 440px) {
+        height: 41px;
         padding: 4px 4px;
         gap: 4px;
     }
@@ -479,6 +479,7 @@ select {
     height: 160px;
     width: 440px;
     margin-top: -16px;
+    margin-bottom: 36px;
     overflow-y: scroll;
     @media (max-width: 1330px) {
         height: fit-content;
@@ -621,6 +622,20 @@ select {
 
 .add-task-requirements p {
     margin-left: -3px;
+}
+
+.add-task-alerts {
+    height: 0;
+    width: 0;
+    position: relative;
+    bottom: 30px;
+    right: -90px;
+    @media (max-width: 900px) {
+        right: -120px;
+    }
+    @media (max-width: 440px) {
+        right: -90px;
+    }
 }
 
 .submit-btns {
