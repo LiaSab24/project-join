@@ -349,6 +349,10 @@ button img {
   max-width: 220px;
 }
 
+.assigned-contacts-addition {
+  margin-left: -80px;
+}
+
 .assigned-contacts-and-priority img {
   width: 17px;
 }

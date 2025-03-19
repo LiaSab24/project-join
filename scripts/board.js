@@ -95,10 +95,32 @@ function displayAssignedContacts(indexTask) {
   if (assignedContacts !== undefined) {
     for (let indexAssignedContact = 0; indexAssignedContact < assignedContacts.length; indexAssignedContact++) {
       let indexContact = contacts.findIndex(index => index.name === assignedContacts[indexAssignedContact].name);
-      assignedContactsContentRef.innerHTML += getBoardContactPB(indexContact);
+      assignedContactsContentRef.innerHTML += getBoardContactPB(indexTask, indexContact);
       profileBadgeColor("boardAssignedToListPB" + indexContact, indexContact);
     }
   } 
+  shortAssignedToListBoard(indexTask)
+}
+
+/**
+ * This function checks the number of assigned to contacts for a task. If there are more than five contacts, only the first five are shown and the other ones are hidden.
+ * The user can see how many more contacts are assigned.
+ */
+function shortAssignedToListBoard(indexTask) {
+  let numberAssignedContacts = document.querySelectorAll(".assigned-contact-board" + indexTask);
+  document.getElementById("assignedContactsAdditionNumberBoard" + indexTask).innerHTML = (numberAssignedContacts.length - 5);
+  if (numberAssignedContacts.length > 5) {
+      for (let indexAssignedContact = 5; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+          numberAssignedContacts[indexAssignedContact].classList.add("d-none");
+      }
+      document.getElementById("assignedContactsAdditionBoard" + indexTask).classList.remove("d-none");
+      
+  } else {
+      for (let indexAssignedContact = 0; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+          numberAssignedContacts[indexAssignedContact].classList.remove("d-none");
+      }
+      document.getElementById("assignedContactsAdditionBoard" + indexTask).classList.add("d-none");
+  }
 }
 
 /**

@@ -107,6 +107,7 @@ function getBoardTaskTemplate(indexTask) {
                 </div>
                 <div class="assigned-contacts-and-priority">
                     <div id="assignedContacts${indexTask}" class="task-assignees"></div>
+                    <div id="assignedContactsAdditionBoard${indexTask}" class="assigned-contacts-addition profile-badge profile-badge-small d-none flex">+<p id="assignedContactsAdditionNumberBoard${indexTask}">0</p></div>
                     <img id="prio${indexTask}" src="../assets/icons/prio${tasks[indexTask].priority}.svg">
                 </div>
             </div>`
@@ -115,10 +116,11 @@ function getBoardTaskTemplate(indexTask) {
 /**
  * This template displays a contacts profile badge on the board's task-card
  * 
+ * @param {number} indexTask - the index of the task in the tasks-array
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function getBoardContactPB(indexContact) {
-    return `<div id="boardAssignedToListPB${indexContact}" class="profile-badge profile-badge-small">${nameAbbreviation(indexContact)}</div>`
+function getBoardContactPB(indexTask, indexContact) {
+    return `<div id="boardAssignedToListPB${indexContact}" class="assigned-contact-board${indexTask} profile-badge profile-badge-small">${nameAbbreviation(indexContact)}</div>`
 }
 
 function getBoardTaskMoveProgressMobile(indexTask) {
