@@ -58,7 +58,7 @@
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTask">No tasks to do</div>
         </div>
-        <div id="toDo" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div id="toDo" class="board-tasks-list" ondrop="drop(event)" ondragover="showDropdownArea('toDo'), event.preventDefault()"></div>
       </div>
 
       <div class="task-wrapper">
@@ -70,7 +70,8 @@
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTaskInProgress">No tasks in progress</div>
         </div>
-        <div id="inProgress" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div id="inProgress" class="board-tasks-list" ondrop="drop(event)" ondragover="showDropdownArea('inProgress'), event.preventDefault()">
+        </div>
       </div>
 
       <div class="task-wrapper">
@@ -82,18 +83,18 @@
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTaskAwaitFeedback">No tasks await feedback</div>
         </div>
-        <div id="awaitFeedback" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div id="awaitFeedback" class="board-tasks-list" ondrop="drop(event)" ondragover="showDropdownArea('awaitFeedback'), event.preventDefault()"></div>
       </div>
 
       <div class="task-wrapper">
         <div class="task-headline">
-          <h2>Done</h2>
+          <h2>Done</h2> 
           <br>
         </div>
         <div class="no-task-message-container margin">
           <div class="no-task-message" id="noTaskDone">No tasks done</div>
         </div>
-        <div id="done" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div id="done" class="board-tasks-list" ondrop="drop(event)" ondragover="showDropdownArea('done'), event.preventDefault()"></div>
       </div>
     </section>
 

@@ -7,7 +7,7 @@ async function initBoard() {
   renderTasks();
   toggleMessageNoTasks();
 }
- 
+
 /**
  * This function clears each of the progress-catergories
  */
@@ -98,7 +98,7 @@ function displayAssignedContacts(indexTask) {
       assignedContactsContentRef.innerHTML += getBoardContactPB(indexTask, indexContact);
       profileBadgeColor(indexTask + "boardAssignedToListPB" + indexContact, indexContact);
     }
-  } 
+  }
   shortAssignedToListBoard(indexTask)
 }
 
@@ -112,16 +112,16 @@ function shortAssignedToListBoard(indexTask) {
   let numberAssignedContacts = document.querySelectorAll(".assigned-contact-board" + indexTask);
   document.getElementById("assignedContactsAdditionNumberBoard" + indexTask).innerHTML = (numberAssignedContacts.length - 5);
   if (numberAssignedContacts.length > 5) {
-      for (let indexAssignedContact = 5; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
-          numberAssignedContacts[indexAssignedContact].classList.add("d-none");
-      }
-      document.getElementById("assignedContactsAdditionBoard" + indexTask).classList.remove("d-none");
-      
+    for (let indexAssignedContact = 5; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+      numberAssignedContacts[indexAssignedContact].classList.add("d-none");
+    }
+    document.getElementById("assignedContactsAdditionBoard" + indexTask).classList.remove("d-none");
+
   } else {
-      for (let indexAssignedContact = 0; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
-          numberAssignedContacts[indexAssignedContact].classList.remove("d-none");
-      }
-      document.getElementById("assignedContactsAdditionBoard" + indexTask).classList.add("d-none");
+    for (let indexAssignedContact = 0; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+      numberAssignedContacts[indexAssignedContact].classList.remove("d-none");
+    }
+    document.getElementById("assignedContactsAdditionBoard" + indexTask).classList.add("d-none");
   }
 }
 
@@ -149,7 +149,7 @@ function toggleMessageNoTasks() {
     } else {
       noTaskMessagesContentRef.classList.add("d-none");
     }
-  } 
+  }
 }
 
 /**
@@ -192,7 +192,7 @@ function displayFilteredTasks(searchInput) {
       }
     }
   }
-  if (document.querySelectorAll(".task-card").length == 0){
+  if (document.querySelectorAll(".task-card").length == 0) {
     document.getElementById("noResultSearchInput").classList.remove("d-none");
   }
 }
@@ -212,16 +212,25 @@ function filterTasks(searchInput) {
     } else {
       filteredTasks.push(0)
     }
-  } 
+  }
 }
 
+
 /**
- * Prevents the default behavior to allow dropping an element.
+ * shows the position, where the elemnt would be visible if the user drops it
  * 
- * @param {DragEvent} event - The drag event.
+ * @param {string} contentRefId - the id of the possible drop area
  */
-function allowDrop(event) {
-  event.preventDefault();
+function showDropdownArea(contentRefId) {
+  let taskProgressCategory = document.getElementById(contentRefId);
+  let dropDownArea = document.getElementById("dropdownArea");
+  if (dropDownArea) {
+    dropDownArea.remove();
+  }
+  if (taskProgressCategory.contains(dropDownArea) == false) {
+    document.getElementById(contentRefId).innerHTML += `<div ondrop="event.preventDefault()" ondragover="event.preventDefault()" id="dropdownArea" class="dropdown-area"><div ondrop="event.preventDefault()" ondragover="event.preventDefault()"></div></div>`;
+  }
+  return
 }
 
 /**
@@ -237,8 +246,11 @@ function drag(event) {
  * Handles the drop event by moving the dragged task to a new column and updating its progress.
  * 
  * @param {DragEvent} event - The drop event.
- */ 
+ */
 function drop(event) {
+  if (document.getElementById("dropdownArea")) {
+    document.getElementById("dropdownArea").remove();
+  }
   event.preventDefault();
   let data = event.dataTransfer.getData("text");
   let draggedElement = document.getElementById(data);
@@ -258,7 +270,7 @@ function drop(event) {
  * @param {string} progress - the progress of the task (toDo, inProgress, awaitFeedback, done)
  * @param {number} indexTask - the index of the task in the tasks-array
  */
-async function updateTaskProgress(progress, indexTask) { 
+async function updateTaskProgress(progress, indexTask) {
   if (tasks[indexTask].progress !== progress) {
     await putData("/tasks/" + tasks[indexTask].url + "/progress", {
       "progress": progress

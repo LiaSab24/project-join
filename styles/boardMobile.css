@@ -720,6 +720,7 @@
         padding: 8px
     }
 
+    .dropdown-area div,
     .task-card {
         width: 90%;
         font-size: 14px;
