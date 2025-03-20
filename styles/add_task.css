@@ -543,6 +543,7 @@ select {
     margin-top: -16px;
     margin-bottom: 36px;
     overflow-y: auto;
+    overflow-x: hidden;
 
     @media (max-width: 1330px) {
         height: fit-content;

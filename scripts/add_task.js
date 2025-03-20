@@ -135,7 +135,7 @@ function addAssignedContactToList(indexContact) {
         profileBadgeColor("addTaskAssignedToListPB" + indexContact, indexContact);
     }
     shortAssignedToList();
- 
+
 }
 
 /**
@@ -150,7 +150,7 @@ function shortAssignedToList() {
             numberAssignedContacts[indexAssignedContact].classList.add("d-none");
         }
         document.getElementById("assignedContactsAddition").classList.remove("d-none");
-        
+
     } else {
         for (let indexAssignedContact = 0; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
             numberAssignedContacts[indexAssignedContact].classList.remove("d-none");
@@ -305,9 +305,11 @@ function addSubtaskToList() {
 function editSubtask(indexSubtask) {
     addAddTaskOverlay();
     let subtaskContentRef = document.getElementById("subtask" + indexSubtask);
-    let subtask = subtaskContentRef.innerText;
-    subtaskContentRef.classList.add("subtask-edit");
-    subtaskContentRef.innerHTML = getAddTaskSubtaskEditTemplate(subtask, indexSubtask);
+    if (subtaskContentRef.innerText !== null) {
+        let subtask = subtaskContentRef.innerText;
+        subtaskContentRef.classList.add("subtask-edit");
+        subtaskContentRef.innerHTML = getAddTaskSubtaskEditTemplate(subtask, indexSubtask);
+    }
 }
 
 /**
