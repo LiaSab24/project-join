@@ -200,7 +200,7 @@
                 <form class="overlay-form">
                     <input onblur="checkFilledInput('addContactName')" id="addContactName" type="text"
                         placeholder="Name" required minlength="1" maxlength="30">
-                    <input onblur="checkFilledInput('addContactMail')" id="addContactMail" type="mail"
+                    <input onkeydown="onlyAllowMailAddress(event)" onblur="checkFilledInput('addContactMail')" id="addContactMail" type="mail"
                         placeholder="Email" required minlength="1" maxlength="30">
                     <input onkeydown="onlyAllowNumbers(event)" onblur="checkFilledInput('addContactPhone')"
                         id="addContactPhone" type="tel" placeholder="Phone" required minlength="1" maxlength="18">

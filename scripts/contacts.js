@@ -351,3 +351,17 @@ function onlyAllowNumbers(event) {
         event.preventDefault()
     }
 }
+
+/**
+ * This function checks if the pressed key is a not space and returns it if true.
+ * Furthermore it only returns '@' if the input does not already contain it.
+ */
+function onlyAllowMailAddress(event) {
+    if (event.key == " ") {
+        event.preventDefault();
+    } else if (event.key == "@" && document.getElementById("addContactMail").value.includes("@")) {
+        event.preventDefault();
+    } else {
+        return event.key;
+    }
+}

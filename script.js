@@ -83,7 +83,7 @@ function userIndexInContactsArray() {
   let userMail = users[currentUser].mail;
   indexContactUser = contacts.map(function (element) {
     return element.mail;
-  }).indexOf(userMail);
+  }).indexOf(userMail); 
 }
 
 /**
@@ -360,8 +360,9 @@ function validateNameInput(contentRef) {
  */
 function validateMailInput(contentRef) {
   let mailInput = document.getElementById(contentRef).value;
-  if (mailInput.includes("@")) {
-    return mailInput.trim()
+  let charsBetweenAtAndDot = mailInput.lastIndexOf(".") - mailInput.indexOf("@");
+  if (mailInput.includes("@") && mailInput.includes(".") && mailInput.charAt(0) !=="@" && mailInput.charAt(0) !=="." && mailInput.slice(-1) !== "." & mailInput.slice(-1) !== "@" && charsBetweenAtAndDot >= 2) {
+    return mailInput.toLowerCase();
   } else {
     document.getElementById("alertMail").classList.remove("invisible");
     setTimeout(function () {
@@ -369,7 +370,7 @@ function validateMailInput(contentRef) {
     }, 2400);
     return ""
   }
-}
+} 
 
 /**
  * This function lets the user navigate throught the sidbar without needing to click
