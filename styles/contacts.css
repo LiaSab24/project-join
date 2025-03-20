@@ -713,7 +713,7 @@ main {
 
 @keyframes openOverlay {
     from {
-        right: -100%;
+        right: -200%;
     }
 
     to {
@@ -731,7 +731,7 @@ main {
     }
 
     to {
-        right: -100%;
+        right: -200%;
     }
 }
 

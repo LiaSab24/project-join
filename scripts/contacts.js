@@ -87,6 +87,7 @@ function clearActiveContacts() {
 function openContactsOverlay() {
     document.getElementById("overlayBg").classList.remove("d-none");
     document.getElementById("overlayContact").classList.add("animation-open-overlay");
+    document.getElementById("overlayContact").classList.remove("animation-close-overlay");
     document.getElementById("overlayContact").classList.remove("d-none");
     setTimeout(function () {
         document.getElementById("overlayContact").classList.remove("animation-open-overlay");
@@ -98,12 +99,15 @@ function openContactsOverlay() {
  */
 function closeContactsOverlay() {
     document.getElementById("menuEditDeleteMobile").classList.add("d-none")
-    document.getElementById("overlayBg").classList.remove("animation-open-overlay");
-    document.getElementById("overlayContact").classList.remove("animation-close-overlay");
+    document.getElementById("overlayContact").classList.add("animation-close-overlay");
+    document.getElementById("overlayContact").classList.remove("animation-open-overlay");
     setTimeout(function () {
         document.getElementById("overlayContact").classList.add("d-none");
         document.getElementById("overlayBg").classList.add("d-none");
-    }, 300);
+    }, 250);
+    setTimeout(function () {
+        document.getElementById("overlayContact").classList.remove("animation-close-overlay");
+    }, 2400);
     clearContactForm();
 }
 
