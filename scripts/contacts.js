@@ -213,8 +213,7 @@ function mobileArrowBackwards() {
  * This function toggles the visibilty of the delete-/edit-contact-menu for mobile
  */
 function toggleEditDeleteMenuMobile() {
-    document.getElementById("overlayBg").classList.remove("d-none")
-    document.getElementById("menuEditDeleteMobile").classList.remove("d-none")
+    document.getElementById("menuEditDeleteMobile").classList.toggle("d-none");
 }
 
 /**
@@ -334,6 +333,9 @@ async function deleteContact(indexContact) {
     successfullMsg("contactSuccesfullyDeleted");
     document.getElementById("focusedContactInformation").innerHTML = "";
     initContacts();
+    if (window.innerWidth <= 1000) {
+        mobileArrowBackwards();
+    }
 }
 
 /**

@@ -314,11 +314,11 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function getbtnsMenuMobileTemplate(indexContact) {
-    return `<button onclick="openContactsOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
+    return `<button onclick="openContactsOverlay(), adjustOverlayToEdit(${indexContact}), toggleEditDeleteMenuMobile()" class="focused-contact-btns">
                 <div id="contactsEditIcon"></div>
                 <span>Edit</span>
             </button>
-            <button id="deleteBtnContacts" onclick="deleteContact(${indexContact})" class="focused-contact-btns">
+            <button id="deleteBtnContacts" onclick="deleteContact(${indexContact}), toggleEditDeleteMenuMobile()" class="focused-contact-btns">
                 <div id="contactsDeleteIcon"></div>
                 <span>Delete</span>
             </button>`

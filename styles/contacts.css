@@ -156,14 +156,15 @@ main {
     width: 116px;
     padding: 10px;
     position: absolute;
-    bottom: 28px;
+    bottom: 24px;
     right: 28px;
-    background-color: var(--clr-lightGray);
+    background-color: var(--clr-white);
     border-radius: 20px;
     border-bottom-right-radius: 0px;
     display: flex;
     flex-direction: column;
     z-index: 6;
+    box-shadow: var(--shadow-stronger);
 
     @media (max-width: 900px) {
         bottom: 108px;
@@ -184,17 +185,14 @@ main {
     justify-content: start;
     background-color: transparent;
     font-size: var(--fs-16);
+    font-weight: 400;
     box-shadow: none;
-    color: var(--clr-white);
+    color: var(--clr-primary);
 }
 
 #menuEditDeleteMobile button:active {
     box-shadow: none;
     color: var(--clr-white);
-}
-
-#menuEditDeleteMobile button div {
-    filter: brightness(0) invert(1);
 }
 
 .contacts-list {
