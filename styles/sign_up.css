@@ -28,6 +28,10 @@
     --Margin-RL-L: 15px;
 }
 
+body {
+    margin: 0 auto;
+}
+
 .inner-container {
     display: flex;
     justify-content: center;
