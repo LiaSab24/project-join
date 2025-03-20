@@ -1,12 +1,13 @@
 body,
 html {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 main {
     overflow-y: auto;
     height: calc(100vh - 96px);
     max-width: 1920px !important;
+
     @media (max-width: 990px) {
         margin-left: 16px;
         display: flex;
@@ -14,24 +15,25 @@ main {
     }
 }
 
-label { 
+label {
     max-width: 440px;
     font-size: var(--fs-20-16);
     line-height: 24px;
     color: var(--clr-primary);
+
     @media (max-width: 990px) {
         max-width: 396px;
         margin-bottom: 4px;
     }
-}  
+}
 
-textarea { 
+textarea {
     height: 120px;
     max-width: 440px;
     margin-top: 4px;
     margin-bottom: 20px;
     padding: 12px 16px;
-    border: 1px solid #D1D1D1; 
+    border: 1px solid #D1D1D1;
     border-radius: 10px;
     color: var(--clr-primary);
     font-family: Inter;
@@ -39,6 +41,7 @@ textarea {
     font-weight: var(--fw-400);
     line-height: 24px;
     resize: none;
+
     @media (max-width: 990px) {
         max-width: 396px;
         padding: 18px 21px;
@@ -87,6 +90,7 @@ select {
     color: var(--clr-primary);
     font-size: var(--fs-20-16);
     cursor: pointer;
+
     @media (max-width: 990px) {
         max-width: 396px;
         padding: 8px 21px;
@@ -151,18 +155,24 @@ select {
     font-weight: var(--fw-700);
     font-size: var(--fs-61-47);
     line-height: 73.2px;
+
     @media (max-width: 1330px) {
         margin-left: 24px;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         width: 396px;
         margin-left: 256px;
         margin-top: 48px;
         align-self: center;
     }
+
     @media (max-width: 900px) {
         margin-left: 24px;
     }
+
     @media (max-width: 440px) {
         width: 280px;
     }
@@ -171,15 +181,20 @@ select {
 #addTaskForm {
     margin-top: 48px;
     margin-left: 72px;
+
     @media (max-width: 1330px) {
         margin-left: 0;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         flex-direction: column;
         align-items: center;
         margin-top: 32px;
         margin-left: 232px;
     }
+
     @media (max-width: 900px) {
         margin: 0;
         margin-top: 32px;
@@ -190,15 +205,23 @@ select {
     flex-direction: column;
     width: 440px;
     margin: 0 24px;
+
     @media (max-width: 1330px) {
         width: 380px;
-    };
+    }
+
+    ;
+
     @media (max-width: 1110px) {
         width: 320px;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         width: 396px;
     }
+
     @media (max-width: 440px) {
         margin: 0;
         width: 280px;
@@ -252,7 +275,7 @@ select {
 #addTaskDropdownCategories {
     min-height: 224px;
     background-color: var(--clr-white);
-    width: 440px; 
+    width: 440px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     box-shadow: 0px 0px 14px 3px #0000000A;
@@ -260,19 +283,32 @@ select {
     font-size: var(--fs-20-16);
     line-height: 24px;
     flex-direction: column;
+
     @media (max-width: 1330px) {
         width: 380px;
-    };
+    }
+
+    ;
+
     @media (max-width: 1110px) {
         width: 320px;
         box-shadow: none;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         width: 396px;
-    };
+    }
+
+    ;
+
     @media (max-width: 900px) {
         width: 396px;
-    };
+    }
+
+    ;
+
     @media (max-width: 440px) {
         width: 280px;
     }
@@ -287,7 +323,7 @@ select {
     width: 100%;
     padding: 7px 16px;
     border-radius: 10px;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 #addTaskCategory {
@@ -329,11 +365,13 @@ select {
 
 .option-contact-assigned {
     background-color: var(--clr-primary);
-    color: var(--clr-white);;
+    color: var(--clr-white);
+    ;
 }
 
 .option-contact-assigned:hover {
-    background-color: var(--clr-click);;
+    background-color: var(--clr-click);
+    ;
 }
 
 .checkbox-contact-assigned {
@@ -352,9 +390,11 @@ select {
     justify-content: start;
     gap: 8px;
     flex-wrap: wrap;
+
     @media (max-width: 990px) {
         margin-bottom: 20px;
     }
+
     @media (max-width: 440px) {
         gap: 4px;
         padding-right: 4px;
@@ -363,6 +403,7 @@ select {
 
 #assignedContactsAddition {
     margin-top: 16px;
+
     @media (max-width: 990px) {
         margin-top: 0;
     }
@@ -378,6 +419,7 @@ select {
     width: 2px;
     border-radius: 1px;
     background-color: #D1D1D1;
+
     @media (max-width: 990px) {
         display: none !important;
     }
@@ -401,14 +443,17 @@ select {
     border: none;
     border-radius: 10px;
     gap: 8px;
-    background-color: var(--clr-white);;
+    background-color: var(--clr-white);
+    ;
     box-shadow: 0px 0px 4px 0px #0000001A;
     font-weight: var(--fw-400);
     font-size: var(--fs-20-16);
     line-height: 24px;
+
     @media (max-width: 1330px) {
         width: 121px;
-    } 
+    }
+
     @media (max-width: 440px) {
         height: 41px;
         padding: 4px 4px;
@@ -437,35 +482,52 @@ select {
     position: relative;
     bottom: 36px;
     left: 405px;
+
     @media (max-width: 1330px) {
         left: 345px;
-    };
+    }
+
+    ;
+
     @media (max-width: 1110px) {
         left: 285px;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         left: 365px;
     }
+
     @media (max-width: 440px) {
         left: 250px;
     }
 }
 
 #subtaskIconsFocus {
+    height: 24px;
     flex-direction: row !important;
     gap: 6px;
     position: relative;
     bottom: 36px;
     left: 377px;
+
     @media (max-width: 1330px) {
         left: 314px;
-    };
+    }
+
+    ;
+
     @media (max-width: 1110px) {
         left: 259px;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         left: 334px;
     }
+
     @media (max-width: 440px) {
         left: 219px;
     }
@@ -476,14 +538,34 @@ select {
     width: 440px;
     margin-top: -16px;
     margin-bottom: 36px;
-    overflow-y: scroll;
+    overflow-y: auto;
+
     @media (max-width: 1330px) {
         height: fit-content;
         max-height: 160px;
     }
 }
 
-.subtask-scrollbar::-webkit-scrollbar {
+.custom-scrollbar::-webkit-scrollbar {
+    height: 100%;
+    width: 16px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--bg-gray);
+}
+
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    border: 5px solid var(--bg-gray);
+    background: var(--clr-lighterGray);
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:vertical:start:increment {
+    display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:vertical:end:increment {
     display: none;
 }
 
@@ -501,20 +583,33 @@ select {
     list-style-position: inside;
     word-break: break-all;
     cursor: pointer;
+
     @media (max-width: 1330px) {
         width: 380px;
-    };
+    }
+
+    ;
+
     @media (max-width: 1110px) {
         width: 320px;
         box-shadow: none;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         width: 396px;
         padding: 4px 16px;
-    };
+    }
+
+    ;
+
     @media (max-width: 900px) {
         width: 396px;
-    };
+    }
+
+    ;
+
     @media (max-width: 440px) {
         width: 280px;
     }
@@ -553,20 +648,33 @@ select {
     border-bottom: solid 1px #29ABE2;
     border-radius: 0;
     z-index: 2;
+
     @media (max-width: 1330px) {
         width: 380px;
-    };
+    }
+
+    ;
+
     @media (max-width: 1110px) {
         width: 320px;
         box-shadow: none;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         width: 396px;
         padding: 4px 0 4px 16px;
-    };
+    }
+
+    ;
+
     @media (max-width: 900px) {
         width: 396px;
-    };
+    }
+
+    ;
+
     @media (max-width: 440px) {
         width: 280px;
     }
@@ -591,6 +699,7 @@ select {
     margin-left: 96px;
     display: flex;
     justify-content: space-between;
+
     @media (max-width: 990px) {
         width: 100%;
         max-width: 396px;
@@ -599,10 +708,12 @@ select {
         flex-direction: column;
         align-self: center;
     }
+
     @media (max-width: 900px) {
         margin-left: 0;
         margin-bottom: 110px;
     }
+
     @media (max-width: 440px) {
         width: 280px;
     }
@@ -611,6 +722,7 @@ select {
 .add-task-requirements {
     margin-top: 37px;
     display: flex;
+
     @media (max-width: 990px) {
         margin-top: 12px;
     }
@@ -626,9 +738,11 @@ select {
     position: relative;
     bottom: 30px;
     right: -90px;
+
     @media (max-width: 900px) {
         right: -120px;
     }
+
     @media (max-width: 440px) {
         right: -90px;
     }
@@ -638,6 +752,7 @@ select {
     display: flex;
     gap: 16px;
     margin-right: 24px;
+
     @media (max-width: 990px) {
         width: 100%;
         margin-top: 40px;
@@ -654,6 +769,7 @@ select {
     align-items: center;
     justify-content: center;
     gap: 4px;
+
     @media (max-width: 440px) {
         padding: 6px;
         gap: 2px;

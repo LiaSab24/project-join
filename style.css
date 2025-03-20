@@ -108,12 +108,13 @@ main {
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 24px;
+  width: 24px; 
   overflow-y: auto 53px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
   background: var(--clr-white);
+  
 }
 
 .custom-scrollbar::-webkit-scrollbar-button {
