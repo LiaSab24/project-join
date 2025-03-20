@@ -87,6 +87,10 @@
                 align-self: anchor-center;
             }
 
+            #addTaskDropdownContacts {
+                min-height: 168px;
+            }
+
             .subtask-scrollbar {
                 width: 380px;
             }
@@ -212,7 +216,7 @@
 
             .add-task-submit {
                 width: 716px;
-                margin: 0 32px 32px 32px;
+                margin: 32px;
             }
         }
     }

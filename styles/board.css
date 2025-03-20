@@ -478,18 +478,21 @@ button img {
   align-self: baseline;
 }
 
-#addTaskOverlay #addTaskAssignedTo {
-  z-index: 4 !important;
+#addTaskOverlay .assigned-to {
+  z-index: 3;
 }
 
 #addTaskOverlay #addTaskDropdownContacts {
-  z-index: 3;
+  z-index: 4 !important;
 }
 
 #addTaskOverlay #addTaskAssignedToList {
   align-self: start;
   margin-left: 10px;
   z-index: 2;
+  .profile-badge {
+    z-index: 2;
+  }
 }
 
 #addTaskOverlay .subtask-scrollbar,

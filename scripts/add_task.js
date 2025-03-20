@@ -364,6 +364,7 @@ function addTask() {
         } else {
             document.getElementById("addTaskCategory").classList.remove("requirement-unfulfilled");
             initAddTask();
+            successfullMsg("addTaskTaskSuccesfullyCreated");
         }
     } else {
         checkFilledInput("addTaskTitle");

@@ -247,7 +247,7 @@ select {
 
 #addTaskAssignedTo,
 #addTaskCategory {
-    z-index: 1;
+    z-index: 5 !important;
 }
 
 #addTaskAssignedTo::placeholder,
@@ -264,7 +264,7 @@ select {
     overflow-y: visible;
     margin: 0 !important;
     position: relative;
-    z-index: 2;
+    z-index: 4;
     background-color: transparent;
 }
 
@@ -367,7 +367,6 @@ select {
 .option-contact-assigned {
     background-color: var(--clr-primary);
     color: var(--clr-white);
-    ;
 }
 
 .option-contact-assigned:hover {
@@ -411,7 +410,7 @@ select {
 }
 
 #addTaskAssignedToList div {
-    cursor: pointer;
+    cursor: default;
     margin: 0;
 }
 
