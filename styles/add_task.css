@@ -179,6 +179,7 @@ select {
 }
 
 #addTaskForm {
+    max-width: 1049px;
     margin-top: 48px;
     margin-left: 72px;
 
@@ -544,6 +545,14 @@ select {
         height: fit-content;
         max-height: 160px;
     }
+
+    @media (max-width: 990px) {
+        width: 396px;
+    }
+
+    @media (max-width: 440px) {
+        width: 280px;
+    }
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -696,6 +705,7 @@ select {
 }
 
 .add-task-submit {
+    max-width: 1049px;
     margin-left: 96px;
     display: flex;
     justify-content: space-between;

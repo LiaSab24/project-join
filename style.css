@@ -114,7 +114,6 @@ main {
 
 .custom-scrollbar::-webkit-scrollbar-track {
   background: var(--clr-white);
-  
 }
 
 .custom-scrollbar::-webkit-scrollbar-button {
