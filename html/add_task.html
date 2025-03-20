@@ -104,21 +104,21 @@
                         </div>
                     </div>
 
-                    <label id="subtaskLabel" for="addTaskSubtask">Subtasks</label>
-                    <input onfocus="changeSubtaskIcons()" onfocusout="changeSubtaskIcons()" type="text" id="addTaskSubtask"
-                        placeholder="Add new subtask">
-                    <img id="subtaskIconAdd" class="subtask-icon" src="../assets/icons/add-task-subtask-add.svg">
-                    <div id="subtaskIconsFocus" class="d-none">
-                        <img onclick="clearSubtasksInput()" class="subtask-icon"
-                            src="../assets/icons/add-task-subtask-reject.svg">
-                        <img onclick="addSubtaskToList()" class="subtask-icon"
-                            src="../assets/icons/add-task-subtask-submit.svg">
-                    </div>
-                    <div class="subtask-scrollbar">
-                        <ul id="addTaskSubtaskList" class="flex"></ul>
-                    </div>
+                <label id="subtaskLabel" for="addTaskSubtask">Subtasks</label>
+                <input onfocus="changeSubtaskIcons()" onfocusout="changeSubtaskIcons()" type="text" id="addTaskSubtask"
+                    placeholder="Add new subtask">
+                <img id="subtaskIconAdd" class="subtask-icon" src="../assets/icons/add-task-subtask-add.svg">
+                <div id="subtaskIconsFocus" class="d-none">
+                    <img onclick="clearSubtasksInput()" class="subtask-icon"
+                        src="../assets/icons/add-task-subtask-reject.svg">
+                    <img onclick="addSubtaskToList()" class="subtask-icon"
+                        src="../assets/icons/add-task-subtask-submit.svg">
                 </div>
-            </form>
+                <div class="subtask-scrollbar">
+                    <ul id="addTaskSubtaskList" class="flex"></ul>
+                </div>
+            </div>
+        </form>
 
             <div id="addTaskSubmit" class="add-task-submit">
                 <div class="add-task-requirements">
@@ -126,17 +126,21 @@
                     <p>This field is required</p>
                 </div>
 
-                <div id="addTaskSubmitBtns" class="submit-btns">
-                    <button onclick="initAddTask()" class="cancel-btn" id="addTaskCancel">
-                        Cancel
-                        <div class="cancel-img"></div>
-                    </button>
-                    <button onclick="addTask()" class="create-btn progress-toDo" id="addTaskCreate">
-                        Create Task
-                        <img src="../assets/icons/create-btn.svg">
-                    </button>
+            <div id="addTaskSubmitBtns" class="submit-btns">
+                <div class="add-task-alerts flex">
+                    <span id="alertAddTask" class="input-error invisible">Please fill in the required inputs</span>
                 </div>
+
+                <button onclick="initAddTask()" class="cancel-btn" id="addTaskCancel">
+                    Cancel
+                    <div class="cancel-img"></div>
+                </button>
+                <button onclick="addTask()" class="create-btn progress-toDo" id="addTaskCreate">
+                    Create Task
+                    <img src="../assets/icons/create-btn.svg">
+                </button>
             </div>
+        </div>
 
             <div onclick="removeAddTaskOverlay()" id="addTaskOverlayBg" class="d-none"></div>
 
@@ -150,6 +154,11 @@
             </section>
         </div>
     </main>
+    <section class="messages">
+        <div id="addTaskTaskSuccesfullyCreated" class="succesfull-msg">
+          <span>Task succesfully created</span>
+        </div>
+      </section>
     <script>includeHTML();</script>
 </body>
 

@@ -87,9 +87,19 @@
                 align-self: anchor-center;
             }
 
+            #addTaskDropdownContacts {
+                min-height: 168px;
+            }
+
+            .subtask-scrollbar {
+                width: 380px;
+            }
+
             .add-task-submit {
                 width: 80%;
-                margin-top: 96px;
+                margin-top: 0px;
+                margin-right: 120px;
+                margin-bottom: 36px;
             }
         }
     }
@@ -135,7 +145,7 @@
 @media (max-width: 1160px) {
     #addTaskOverlay {
         #addTaskOverlayContent {
-            height: 700px;
+            max-height: 750px;
             width: fit-content;
 
             .title {
@@ -182,7 +192,14 @@
             }
 
             .subtask-scrollbar {
-                max-height: 90px;
+                max-height: 95px;
+                margin-bottom: 16px;
+            }
+
+            .subtask {
+                margin-bottom: 4px;
+                padding: 4px 12px;
+                line-height: 22px;
             }
 
             #subtaskIconAdd {
@@ -199,7 +216,7 @@
 
             .add-task-submit {
                 width: 716px;
-                margin: 0 24px;
+                margin: 32px;
             }
         }
     }

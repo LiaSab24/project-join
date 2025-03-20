@@ -27,7 +27,7 @@ body::-webkit-scrollbar,
   display: none;
 }
 
-main { 
+main {
   height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
@@ -474,28 +474,36 @@ button img {
   margin-right: 98px;
 }
 
-#addTaskOverlay .overlay-close { 
+#addTaskOverlay .overlay-close {
   align-self: baseline;
 }
 
-#addTaskOverlay #addTaskAssignedTo {
-  z-index: 4 !important;
+#addTaskOverlay .assigned-to {
+  z-index: 3;
 }
 
 #addTaskOverlay #addTaskDropdownContacts {
-  z-index: 3;
+  z-index: 4 !important;
 }
 
 #addTaskOverlay #addTaskAssignedToList {
   align-self: start;
   margin-left: 10px;
   z-index: 2;
+  .profile-badge {
+    z-index: 2;
+  }
+}
+
+#addTaskOverlay .subtask-scrollbar,
+.edit-task-overlay .subtask-scrollbar {
+  max-height: 130px;
 }
 
 #addTaskOverlay .add-task-submit {
   width: 956px;
   position: relative;
-  bottom: 64px;
+  top: 0px;
   justify-content: space-between;
 }
 
@@ -699,7 +707,7 @@ button img {
   flex-direction: column;
   align-self: center;
   gap: 24px;
-  padding-bottom: 40px !important;
+  padding-bottom: 12px !important;
   flex: 1;
 }
 
@@ -766,4 +774,16 @@ button img {
   color: #a8a8a8;
   opacity: 1;
   transform: scale(1.4)
+}
+
+#addTaskOverlay,
+.edit-task-overlay {
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--clr-white);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    border: 5px solid var(--clr-white);
+    background: var(--clr-lighterGray);
+  }
 }

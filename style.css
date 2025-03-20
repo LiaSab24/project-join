@@ -108,7 +108,7 @@ main {
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 24px;
+  width: 24px; 
   overflow-y: auto 53px;
 }
 

@@ -87,6 +87,7 @@ function clearActiveContacts() {
 function openContactsOverlay() {
     document.getElementById("overlayBg").classList.remove("d-none");
     document.getElementById("overlayContact").classList.add("animation-open-overlay");
+    document.getElementById("overlayContact").classList.remove("animation-close-overlay");
     document.getElementById("overlayContact").classList.remove("d-none");
     setTimeout(function () {
         document.getElementById("overlayContact").classList.remove("animation-open-overlay");
@@ -98,12 +99,15 @@ function openContactsOverlay() {
  */
 function closeContactsOverlay() {
     document.getElementById("menuEditDeleteMobile").classList.add("d-none")
-    document.getElementById("overlayBg").classList.remove("animation-open-overlay");
-    document.getElementById("overlayContact").classList.remove("animation-close-overlay");
+    document.getElementById("overlayContact").classList.add("animation-close-overlay");
+    document.getElementById("overlayContact").classList.remove("animation-open-overlay");
     setTimeout(function () {
         document.getElementById("overlayContact").classList.add("d-none");
         document.getElementById("overlayBg").classList.add("d-none");
-    }, 300);
+    }, 250);
+    setTimeout(function () {
+        document.getElementById("overlayContact").classList.remove("animation-close-overlay");
+    }, 2400);
     clearContactForm();
 }
 
@@ -159,7 +163,7 @@ async function addContact() {
             "mail": contactMail,
             "phone": contactPhone,
             "color": contactColor
-        }); 
+        });
         closeContactsOverlay();
         successfullMsg("contactSuccesfullyCreated");
         initContacts();
@@ -209,8 +213,7 @@ function mobileArrowBackwards() {
  * This function toggles the visibilty of the delete-/edit-contact-menu for mobile
  */
 function toggleEditDeleteMenuMobile() {
-    document.getElementById("overlayBg").classList.remove("d-none")
-    document.getElementById("menuEditDeleteMobile").classList.remove("d-none")
+    document.getElementById("menuEditDeleteMobile").classList.toggle("d-none");
 }
 
 /**
@@ -330,6 +333,9 @@ async function deleteContact(indexContact) {
     successfullMsg("contactSuccesfullyDeleted");
     document.getElementById("focusedContactInformation").innerHTML = "";
     initContacts();
+    if (window.innerWidth <= 1000) {
+        mobileArrowBackwards();
+    }
 }
 
 /**
@@ -337,9 +343,25 @@ async function deleteContact(indexContact) {
  * Like this, only numbers (and "+") are valide inputs
  */
 function onlyAllowNumbers(event) {
-    if (!isNaN(event.key) || event.key == "+" || event.key == "Backspace") {
-        return event.key
+    if (!isNaN(event.key) || event.key == "Backspace") {
+        return event.key;
+    } else if (event.key == "+" && document.getElementById("addContactPhone").value.includes("+") == false) {
+        return event.key;
     } else {
         event.preventDefault()
+    }
+}
+
+/**
+ * This function checks if the pressed key is a not space and returns it if true.
+ * Furthermore it only returns '@' if the input does not already contain it.
+ */
+function onlyAllowMailAddress(event) {
+    if (event.key == " ") {
+        event.preventDefault();
+    } else if (event.key == "@" && document.getElementById("addContactMail").value.includes("@")) {
+        event.preventDefault();
+    } else {
+        return event.key;
     }
 }
