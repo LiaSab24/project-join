@@ -163,7 +163,7 @@ async function addContact() {
             "mail": contactMail,
             "phone": contactPhone,
             "color": contactColor
-        }); 
+        });
         closeContactsOverlay();
         successfullMsg("contactSuccesfullyCreated");
         initContacts();
@@ -343,8 +343,10 @@ async function deleteContact(indexContact) {
  * Like this, only numbers (and "+") are valide inputs
  */
 function onlyAllowNumbers(event) {
-    if (!isNaN(event.key) || event.key == "+" || event.key == "Backspace") {
-        return event.key
+    if (!isNaN(event.key) || event.key == "Backspace") {
+        return event.key;
+    } else if (event.key == "+" && document.getElementById("addContactPhone").value.includes("+") == false) {
+        return event.key;
     } else {
         event.preventDefault()
     }
