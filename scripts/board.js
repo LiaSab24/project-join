@@ -6,6 +6,7 @@ async function initBoard() {
   clearTaskProgressCategories();
   renderTasks();
   toggleMessageNoTasks();
+  renderDropdownAreas();
 }
 
 /**
@@ -152,6 +153,13 @@ function toggleMessageNoTasks() {
   }
 }
 
+function renderDropdownAreas() {
+  document.getElementById("toDo").innerHTML += getBoardDropDownAreaTemplate("toDo");
+  document.getElementById("inProgress").innerHTML += getBoardDropDownAreaTemplate("inProgress");
+  document.getElementById("awaitFeedback").innerHTML += getBoardDropDownAreaTemplate("awaitFeedback");
+  document.getElementById("done").innerHTML += getBoardDropDownAreaTemplate("done");
+}
+
 /**
  * This function checks if the searchInput contains three or more characters. If so, it executes the displayFilteredTasks()-function
  * If not, it fills the progress-categories with the corresponding tasks.
@@ -222,15 +230,32 @@ function filterTasks(searchInput) {
  * @param {string} contentRefId - the id of the possible drop area
  */
 function showDropdownArea(contentRefId) {
-  let taskProgressCategory = document.getElementById(contentRefId);
-  let dropDownArea = document.getElementById("dropdownArea");
-  if (dropDownArea) {
-    dropDownArea.remove();
-  }
-  if (taskProgressCategory.contains(dropDownArea) == false) {
-    document.getElementById(contentRefId).innerHTML += `<div ondrop="event.preventDefault()" ondragover="event.preventDefault()" id="dropdownArea" class="dropdown-area"><div ondrop="event.preventDefault()" ondragover="event.preventDefault()"></div></div>`;
-  }
-  return
+  let dropDownArea = document.getElementById("dropdownArea" + contentRefId);
+  dropDownArea.classList.remove("d-none");
+  // if (dropDownArea) {
+  //   dropDownArea.remove();
+  // }
+  // if (taskProgressCategory.contains(dropDownArea) == false) {
+  //   document.getElementById(contentRefId).innerHTML += ;
+  // }
+  // return
+}
+
+/**
+ * shows the position, where the elemnt would be visible if the user drops it
+ * 
+ * @param {string} contentRefId - the id of the possible drop area
+ */
+function hideDropdownArea(contentRefId) {
+  let dropDownArea = document.getElementById("dropdownArea" + contentRefId);
+  dropDownArea.classList.add("d-none");
+  // if (dropDownArea) {
+  //   dropDownArea.remove();
+  // }
+  // if (taskProgressCategory.contains(dropDownArea) == false) {
+  //   document.getElementById(contentRefId).innerHTML += ;
+  // }
+  // return
 }
 
 /**
@@ -242,15 +267,14 @@ function drag(event) {
   event.dataTransfer.setData("text", event.target.id);
 }
 
+
+
 /**
  * Handles the drop event by moving the dragged task to a new column and updating its progress.
  * 
  * @param {DragEvent} event - The drop event.
  */
 function drop(event) {
-  if (document.getElementById("dropdownArea")) {
-    document.getElementById("dropdownArea").remove();
-  }
   event.preventDefault();
   let data = event.dataTransfer.getData("text");
   let draggedElement = document.getElementById(data);

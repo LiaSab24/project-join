@@ -87,6 +87,18 @@ function getBoardCloseBtnTemplate() {
 }
 
 /**
+ * This template creates a (by default invisible) marked area, where a dragged element can be released. Ondragover it becomes visible.
+ * 
+ * @param {string} contentRefId - the id of the possible drop area
+ */
+function getBoardDropDownAreaTemplate(contentRefId) {
+    return `<div ondrop="event.preventDefault()" id="dropdownArea${contentRefId}" class="dropdown-area d-none">
+                <div ondrop="drop(event)"></div>
+            </div>`
+}
+
+
+/**
  * This template creates a task-card with some information vor a task
  * 
  * @param {number} indexTask - the index of the task in the tasks-array
