@@ -262,6 +262,7 @@ function drag(event) {
  */
 function drop(event) {
   event.preventDefault();
+  event.stopPropagation();
   hideDropdownAreas();
   let data = event.dataTransfer.getData("text");
   let draggedElement = document.getElementById(data);
