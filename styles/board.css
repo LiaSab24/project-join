@@ -805,3 +805,10 @@ button img {
     background: var(--clr-lighterGray);
   }
 }
+
+.board-tasks-list.highlight-drop {
+  background-color: #f0f0f0;
+  border: 2px dashed var(--clr-lightBlue);
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}

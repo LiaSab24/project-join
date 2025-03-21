@@ -231,14 +231,9 @@ function filterTasks(searchInput) {
  */
 function showDropdownArea(contentRefId) {
   let dropDownArea = document.getElementById("dropdownArea" + contentRefId);
+  let dropContainer = document.getElementById(contentRefId);
   dropDownArea.classList.remove("d-none");
-  // if (dropDownArea) {
-  //   dropDownArea.remove();
-  // }
-  // if (taskProgressCategory.contains(dropDownArea) == false) {
-  //   document.getElementById(contentRefId).innerHTML += ;
-  // }
-  // return
+  dropContainer.classList.add("highlight-drop");
 }
 
 /**
@@ -248,14 +243,9 @@ function showDropdownArea(contentRefId) {
  */
 function hideDropdownArea(contentRefId) {
   let dropDownArea = document.getElementById("dropdownArea" + contentRefId);
+  let dropContainer = document.getElementById(contentRefId);
   dropDownArea.classList.add("d-none");
-  // if (dropDownArea) {
-  //   dropDownArea.remove();
-  // }
-  // if (taskProgressCategory.contains(dropDownArea) == false) {
-  //   document.getElementById(contentRefId).innerHTML += ;
-  // }
-  // return
+  dropContainer.classList.remove("highlight-drop");
 }
 
 /**
