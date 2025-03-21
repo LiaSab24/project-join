@@ -40,6 +40,7 @@
     }
 
     .board-tasks-list {
+        width: 100%;
         display: flex;
         gap: 12px;
         justify-content: flex-start;
@@ -515,7 +516,6 @@
     }
 
     .task-card {
-        width: 100%;
         max-width: 400px;
         margin: 0;
     }
@@ -720,8 +720,13 @@
         padding: 8px
     }
 
-    .dropdown-area div,
     .task-card {
+        width: 250px;
+        font-size: 14px;
+        padding: 16px;
+    }
+
+    .dropdown-area div {
         width: 90%;
         font-size: 14px;
         padding: 8px;
