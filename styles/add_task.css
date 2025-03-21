@@ -251,7 +251,7 @@ select {
 
 #addTaskAssignedTo,
 #addTaskCategory {
-    z-index: 5 !important;
+    z-index: 4 !important;
 }
 
 #addTaskAssignedTo::placeholder,
