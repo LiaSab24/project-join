@@ -6,7 +6,6 @@ async function initBoard() {
   clearTaskProgressCategories();
   renderTasks();
   toggleMessageNoTasks();
-  renderDropdownAreas();
 }
 
 /**
@@ -34,6 +33,7 @@ function renderTasks() {
       document.getElementById("prio" + indexTask).src = "";
     }
   }
+  renderDropdownAreas();
 }
 
 /** 

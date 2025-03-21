@@ -104,7 +104,7 @@ function getBoardDropDownAreaTemplate(contentRefId) {
  * @param {number} indexTask - the index of the task in the tasks-array
  */
 function getBoardTaskTemplate(indexTask) {
-    return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="openTaskOverview(${indexTask})">
+    return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" ondragend="hideDropdownAreas()" onclick="openTaskOverview(${indexTask})">
                 <div class="flex just-space-b">
                     <div class="task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ', '-')}">${tasks[indexTask].category}</div>
                     <div onclick="moveTaskProgressMobile(${indexTask}); event.stopImmediatePropagation()" id="moveProgressMobile${indexTask}" class="move-progress-mobile"></div>
