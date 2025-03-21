@@ -41,15 +41,14 @@ async function addUser() {
                 checkFilledInput('name');
                 checkFilledInput('mail');
                 checkFilledInput('password');
-                checkFilledInput('confirmed')
+                checkFilledInput('confirmed');
             }
+        } else {
+            document.getElementById("alertCheckboxSignUp").classList.remove("invisible");
+            setTimeout(function () {
+                document.getElementById("alertCheckboxSignUp").classList.add("invisible");
+            }, 2400);
         }
-    }
-    if (!checkbox.checked) {
-        document.getElementById("alertCheckboxSignUp").classList.remove("invisible");
-        setTimeout(function () {
-            document.getElementById("alertCheckboxSignUp").classList.add("invisible");
-        }, 2400);
     }
 }
 
