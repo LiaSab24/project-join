@@ -12,7 +12,7 @@ main {
     @media (max-width: 1000px) {
         justify-content: center;
         margin-top: 0 !important;
-        margin-left: 0;
+        margin-left: 0; 
     }
 
     @media (max-width: 900px) {

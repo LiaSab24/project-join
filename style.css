@@ -186,7 +186,7 @@ main {
   height: 74px;
   border-radius: 20px;
   position: relative;
-  bottom: 40vh;
+  bottom: 50vh;
   left: -100vb;
   display: flex;
   align-items: center;
@@ -209,11 +209,11 @@ main {
   }
 
   25% {
-    left: 40vb;
+    left: 50vb;
   }
 
   75% {
-    left: 40vb;
+    left: 50vb;
   }
 
   100% {
