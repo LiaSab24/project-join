@@ -816,3 +816,8 @@ button img {
   transition: background-color 0.2s ease;
   height: auto;
 }
+
+.dragging {
+  opacity: 0.5;
+  transform: scale(1.05);
+}
