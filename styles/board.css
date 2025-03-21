@@ -806,9 +806,10 @@ button img {
   }
 }
 
-.board-tasks-list.highlight-drop {
-  background-color: #f0f0f0;
-  border: 2px dashed var(--clr-lightBlue);
-  border-radius: 8px;
+.highlight-drop {
+  background-color: rgba(240, 240, 240, 0.8);
+  border: 2px dashed var(--clr-lightGray);
+  border-radius: 12px;
   transition: background-color 0.2s ease;
+  height: auto;
 }

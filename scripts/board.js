@@ -223,7 +223,6 @@ function filterTasks(searchInput) {
   }
 }
 
-
 /**
  * shows the position, where the elemnt would be visible if the user drops it
  * 
@@ -256,8 +255,6 @@ function hideDropdownArea(contentRefId) {
 function drag(event) {
   event.dataTransfer.setData("text", event.target.id);
 }
-
-
 
 /**
  * Handles the drop event by moving the dragged task to a new column and updating its progress.
