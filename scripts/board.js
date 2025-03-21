@@ -223,17 +223,14 @@ function filterTasks(searchInput) {
   }
 }
 
-
 /**
- * shows the position, where the elemnt would be visible if the user drops it
- * 
- * @param {string} contentRefId - the id of the possible drop area
+ * This function gives all dropdown-areas the "d-none"-class
  */
-function showDropdownArea(contentRefId) {
-  let dropDownArea = document.getElementById("dropdownArea" + contentRefId);
-  let dropContainer = document.getElementById(contentRefId);
-  dropDownArea.classList.remove("d-none");
-  dropContainer.classList.add("highlight-drop");
+function hideDropdownAreas() {
+  document.getElementById("dropdownAreatoDo").classList.add("d-none");
+  document.getElementById("dropdownAreainProgress").classList.add("d-none");
+  document.getElementById("dropdownAreaawaitFeedback").classList.add("d-none");
+  document.getElementById("dropdownAreadone").classList.add("d-none");
 }
 
 /**
@@ -241,11 +238,11 @@ function showDropdownArea(contentRefId) {
  * 
  * @param {string} contentRefId - the id of the possible drop area
  */
-function hideDropdownArea(contentRefId) {
+function showDropdownArea(contentRefId) {
+  hideDropdownAreas();
   let dropDownArea = document.getElementById("dropdownArea" + contentRefId);
-  let dropContainer = document.getElementById(contentRefId);
-  dropDownArea.classList.add("d-none");
-  dropContainer.classList.remove("highlight-drop");
+  dropDownArea.classList.remove("d-none");
+
 }
 
 /**
@@ -258,7 +255,6 @@ function drag(event) {
 }
 
 
-
 /**
  * Handles the drop event by moving the dragged task to a new column and updating its progress.
  * 
@@ -266,6 +262,7 @@ function drag(event) {
  */
 function drop(event) {
   event.preventDefault();
+  hideDropdownAreas();
   let data = event.dataTransfer.getData("text");
   let draggedElement = document.getElementById(data);
   let dropContainer = event.target.closest(".board-tasks-list");

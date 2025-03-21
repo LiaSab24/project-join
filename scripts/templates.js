@@ -92,11 +92,11 @@ function getBoardCloseBtnTemplate() {
  * @param {string} contentRefId - the id of the possible drop area
  */
 function getBoardDropDownAreaTemplate(contentRefId) {
-    return `<div ondrop="event.preventDefault()" id="dropdownArea${contentRefId}" class="dropdown-area d-none">
-                <div ondrop="drop(event)"></div>
+    return `<div id="dropdownArea${contentRefId}" class="dropdown-area d-none">
+                <div ondrop="drop(event)" ondragover="event.preventDefault()" ondragenter="showDropdownArea('${contentRefId}')"></div>
             </div>`
 }
-
+ 
 
 /**
  * This template creates a task-card with some information vor a task

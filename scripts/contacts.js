@@ -21,14 +21,16 @@ function adjustToWindowSize() {
         if (window.innerWidth <= 900) {
             document.getElementById("addNewContactBtnDesktop").classList.add("d-none");
             document.getElementById("addNewContactBtnMobile").classList.remove("d-none");
+            document.getElementById("contactFocus").style.display = "none";
         }
         else {
             document.getElementById("addNewContactBtnDesktop").classList.remove("d-none")
             document.getElementById("addNewContactBtnMobile").classList.add("d-none");
             document.getElementById("arrowBackwardsMobile").classList.remove("d-none");
-            if (document.getElementById("contactFocus").style.display == "flex") {
-                document.getElementById("addresbookHideMobile").classList.add("d-none");
-                document.getElementById("btnsMenuMobile").classList.remove("d-none");
+            if (document.getElementById("contactFocus").style.display = "flex") {
+                document.getElementById("contactFocus").style.display = "none";
+                document.getElementById("addresbookHideMobile").classList.remove("d-none");
+                document.getElementById("btnsMenuMobile").classList.add("d-none");
             }
         }
     } else {
@@ -339,7 +341,7 @@ async function deleteContact(indexContact) {
 }
 
 /**
- * This function checks if the pressed key is a Number and returns it if true.
+ * This function checks if the pressed key is a N umber and returns it if true.
  * Like this, only numbers (and "+") are valide inputs
  */
 function onlyAllowNumbers(event) {
