@@ -282,7 +282,7 @@ input[type="checkbox"]:checked {
 
 .Policy-Area {
     display: flex;
-    gap: 8px;
+    gap: 16px;
     position: fixed;
     bottom: 12px;
 }
