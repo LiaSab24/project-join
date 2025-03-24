@@ -364,7 +364,6 @@ main {
   font-size: var(--fs-47-36);
   line-height: 56.4px;
   color: var(--clr-primary);
-
   @media(max-width: 1300px) {
     white-space: break-spaces;
   }
