@@ -160,9 +160,10 @@ input {
 
 .blue-btn {
   width: 110px;
+  display: flex;
+  justify-content: center;
   background: var(--clr-primary);
   color: var(--clr-white);
-  padding: 10px 20px;
   border-radius: var(--border-radius);
   cursor: pointer;
   border: none;
@@ -221,8 +222,8 @@ input {
 .policy-container {
   position: absolute;
   bottom: 20px;
-  gap: 15px;
-  margin-left: 24px;
+  display: flex;
+  gap: 16px;
   a {
     text-decoration: none;
     color: var(--clr-lightGray);
