@@ -22,11 +22,11 @@ function clearSignUpForm() {
  * If the user checked the checkbox and assigned a confirmed password, a name and a mail-address the data is added to firebase.
  */
 async function addUser() {
-    let userName = document.getElementById("name").value;
-    let userMail = document.getElementById("mail").value;
+    let userName = validateNameInput("name");
+    let userMail = validateMailInput("mail");
     let userPassword = checkPasswordConfirmed();
+    let checkbox = document.getElementById("checkboxSignUp");
     if (userPassword !== undefined) {
-        let checkbox = document.getElementById("checkboxSignUp");
         if (checkbox.checked) {
             if (userName !== "" && userMail !== "") {
                 await postData("/users/", {
@@ -41,12 +41,12 @@ async function addUser() {
                 checkFilledInput('name');
                 checkFilledInput('mail');
                 checkFilledInput('password');
-                checkFilledInput('confirmed')
+                checkFilledInput('confirmed');
             }
         } else {
-            document.getElementById("alertCheckbox").classList.remove("d-none");
+            document.getElementById("alertCheckboxSignUp").classList.remove("invisible");
             setTimeout(function () {
-                document.getElementById("alertCheckbox").classList.add("d-none");
+                document.getElementById("alertCheckboxSignUp").classList.add("invisible");
             }, 2400);
         }
     }
@@ -58,22 +58,30 @@ async function addUser() {
  */
 function checkPasswordConfirmed() {
     let password = document.getElementById("password").value;
-    let confirmed = document.getElementById("confirmed").value;
-    if (password === confirmed) {
-        return password;
-    } else {
-        document.getElementById("alertPassword").classList.remove("d-none");
+    if (password == "") {
+        document.getElementById("alertPasswordSignUp").classList.remove("invisible");
         setTimeout(function () {
-            document.getElementById("alertPassword").classList.add("d-none");
+            document.getElementById("alertPasswordSignUp").classList.add("invisible");
         }, 2400);
+    } else {
+        let confirmed = document.getElementById("confirmed").value;
+        if (password === confirmed) {
+            return password;
+        } else {
+            document.getElementById("alertConfirmSignUp").classList.remove("invisible");
+            setTimeout(function () {
+                document.getElementById("alertConfirmSignUp").classList.add("invisible");
+            }, 2400);
+        }
     }
+
 }
 
 /**
  * This function shows the 'sign-up succesfull'-message after adding the user to the users-array and firebase was succesfull
  */
 function signUpSuccesfully() {
-    let signUpMsg = document.getElementById("msgSignUp");
+    let signUpMsg = document.getElementById("userSuccesfullyCreated");
     signUpMsg.classList.remove("d-none");
     setTimeout(function () {
         signUpMsg.classList.add("d-none");
@@ -85,7 +93,7 @@ function signUpSuccesfully() {
  * This function redirects the user to the log-in-page
  */
 function redirectionToLogIn() {
-    window.location.href = "index.html";
+    window.location.href = "/index.html";
 }
 
 /**

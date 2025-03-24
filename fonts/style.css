@@ -47,12 +47,6 @@ h5 {
 main {
   margin-left: 232px;
   overflow: hidden;
-  padding: 80px 40px 40px 65px;
-  @media (max-width: 900px) {
-    margin: 0;
-    margin-bottom: 100px;
-    padding: 16px;
-  }
 }
 
 /* customs css */
@@ -61,22 +55,18 @@ main {
   p {
     margin: 8px 0 16px;
   }
+  @media (max-width: 900px) {
+    margin: 0;
+    margin-bottom: 100px;
+  }
 }
 
 .d-none {
   display: none !important;
 }
 
-.invisible {
-  color: transparent !important;
-}
-
 .flex {
   display: flex;
-}
-
-.just-start {
-  justify-content: start;
 }
 
 .just-center {
@@ -110,7 +100,7 @@ main {
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 24px; 
+  width: 24px;
   overflow-y: auto 53px;
 }
 
@@ -188,8 +178,8 @@ main {
   height: 74px;
   border-radius: 20px;
   position: relative;
-  bottom: 50vh;
-  left: -200vb;
+  bottom: 40vh;
+  left: -100vb;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -197,7 +187,6 @@ main {
   box-shadow: var(--shadow-nuevo);
   color: var(--clr-white);
   font-size: var(--fs-20);
-  z-index: 8;
   @media (max-width: 900px) {
     width: 300px;
     height: 60px;
@@ -212,11 +201,11 @@ main {
   }
 
   25% {
-    left: 50vb;
+    left: 40vb;
   }
 
   75% {
-    left: 50vb;
+    left: 40vb;
   }
 
   100% {
@@ -286,5 +275,6 @@ main {
   font-weight: var(--fw-500);
   line-height: 15.6px;
   text-align: start;
-  text-wrap: nowrap;
+  position: absolute;
+  bottom: 25px;
 }

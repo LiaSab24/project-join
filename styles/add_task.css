@@ -1,26 +1,37 @@
+body,
+html {
+    overflow: hidden;
+}
+
 main {
+    overflow-y: auto;
+    height: calc(100vh - 96px);
+    max-width: 1920px !important;
+
     @media (max-width: 990px) {
-        margin: 0 16px;
+        margin-left: 16px;
         display: flex;
         flex-direction: column;
     }
-    @media (max-width: 900px) {
-        margin-bottom: 110px;
-    }
 }
 
-label {
+.main-width {
+    max-width: 1200px;
+}
+
+label { 
     max-width: 440px;
     font-size: var(--fs-20-16);
     line-height: 24px;
     color: var(--clr-primary);
+
     @media (max-width: 990px) {
         max-width: 396px;
         margin-bottom: 4px;
     }
-} 
+}
 
-textarea { 
+textarea {
     height: 120px;
     max-width: 440px;
     margin-top: 4px;
@@ -34,6 +45,7 @@ textarea {
     font-weight: var(--fw-400);
     line-height: 24px;
     resize: none;
+
     @media (max-width: 990px) {
         max-width: 396px;
         padding: 18px 21px;
@@ -44,7 +56,7 @@ textarea::-webkit-resizer {
     height: 19px;
     width: 19px;
     position: relative;
-    background-image: url("/assets/icons/textarea-resizer.svg");
+    background-image: url("../assets/icons/textarea-resizer.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -82,6 +94,7 @@ select {
     color: var(--clr-primary);
     font-size: var(--fs-20-16);
     cursor: pointer;
+
     @media (max-width: 990px) {
         max-width: 396px;
         padding: 8px 21px;
@@ -120,14 +133,14 @@ select {
 }
 
 .add-task-select-menu {
-    background-image: url("/assets/icons/add-task-dropdown-down.svg");
+    background-image: url("../assets/icons/add-task-dropdown-down.svg");
     background-repeat: no-repeat;
     background-position-x: 98%;
     background-position-y: 50%;
 }
 
 .add-task-select-menu:focus {
-    background-image: url("/assets/icons/add-task-dropdown-up.svg");
+    background-image: url("../assets/icons/add-task-dropdown-up.svg");
 }
 
 .required-star {
@@ -146,35 +159,47 @@ select {
     font-weight: var(--fw-700);
     font-size: var(--fs-61-47);
     line-height: 73.2px;
+
     @media (max-width: 1330px) {
         margin-left: 24px;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         width: 396px;
         margin-left: 256px;
         margin-top: 48px;
         align-self: center;
     }
+
     @media (max-width: 900px) {
         margin-left: 24px;
     }
+
     @media (max-width: 440px) {
         width: 280px;
     }
 }
 
 #addTaskForm {
+    max-width: 1049px;
     margin-top: 48px;
     margin-left: 72px;
+
     @media (max-width: 1330px) {
         margin-left: 0;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         flex-direction: column;
         align-items: center;
         margin-top: 32px;
         margin-left: 232px;
     }
+
     @media (max-width: 900px) {
         margin: 0;
         margin-top: 32px;
@@ -185,15 +210,23 @@ select {
     flex-direction: column;
     width: 440px;
     margin: 0 24px;
+
     @media (max-width: 1330px) {
         width: 380px;
-    };
+    }
+
+    ;
+
     @media (max-width: 1110px) {
         width: 320px;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         width: 396px;
     }
+
     @media (max-width: 440px) {
         margin: 0;
         width: 280px;
@@ -218,7 +251,7 @@ select {
 
 #addTaskAssignedTo,
 #addTaskCategory {
-    z-index: 1;
+    z-index: 4 !important;
 }
 
 #addTaskAssignedTo::placeholder,
@@ -231,60 +264,63 @@ select {
 }
 
 .add-task-dropdown {
-    max-height: 290px;
-    width: 440px; 
-    padding-top: 10px;
+    height: 0;
+    overflow-y: visible;
     margin: 0 !important;
-    position: absolute;
-    border-radius: 10px;
-    background-color: var(--clr-white);
-    z-index: 2;
-    box-shadow: 0px 0px 14px 3px #0000000A;
-    font-weight: var(--fw-400);
-    font-size: var(--fs-20-16);
-    line-height: 24px;
-    flex-direction: column;
-    @media (max-width: 1330px) {
-        width: 380px;
-    };
-    @media (max-width: 1110px) {
-        width: 320px;
-        box-shadow: none;
-    };
-    @media (max-width: 990px) {
-        width: 396px;
-    };
-    @media (max-width: 900px) {
-        width: 396px;
-    };
-    @media (max-width: 440px) {
-        width: 280px;
-    }
+    position: relative;
+    z-index: 4;
+    background-color: transparent;
 }
 
 .add-task-current-select {
     z-index: 3 !important;
 }
 
-#addTaskDropdownContacts {
-    top: 656px;
-    overflow-y: scroll;
-    @media (max-width: 990px) {
-        top: 591px;
+#addTaskDropdownContacts,
+#addTaskDropdownCategories {
+    min-height: 224px;
+    background-color: var(--clr-white);
+    width: 440px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 0px 0px 14px 3px #0000000A;
+    font-weight: var(--fw-400);
+    font-size: var(--fs-20-16);
+    line-height: 24px;
+    flex-direction: column;
+
+    @media (max-width: 1330px) {
+        width: 380px;
     }
+
+    ;
+
+    @media (max-width: 1110px) {
+        width: 320px;
+        box-shadow: none;
+    }
+
+    ;
+
+    @media (max-width: 990px) {
+        width: 396px;
+    }
+
+    ;
+
     @media (max-width: 900px) {
-        top: 575px;
+        width: 396px;
+    }
+
+    ;
+
+    @media (max-width: 440px) {
+        width: 280px;
     }
 }
 
-#addTaskDropdownCategories {
-    top: 595px;
-    @media (max-width: 990px) {
-        top: 897px;
-    }
-    @media (max-width: 900px) {
-        top: 881px;
-    }
+#addTaskDropdownContacts {
+    overflow-y: scroll;
 }
 
 .add-task-dropdown-option {
@@ -295,8 +331,16 @@ select {
     cursor: pointer;
 }
 
+#addTaskCategory {
+    margin: 0;
+}
+
+#subtaskLabel {
+    margin-top: 20px;
+}
+
 .add-task-dropdown-option:hover {
-    background-color:var(--clr-white);
+    background-color: #EEEEEE;
 }
 
 .add-task-dropdown-option div {
@@ -311,10 +355,14 @@ select {
     width: 42px;
 }
 
+.add-task-dropdown-option div span {
+    flex: 1;
+}
+
 .add-task-assigned-to-checkbox {
     height: 24px;
     width: 24px;
-    background-image: url("/assets/icons/checkbox-icon-unchecked.svg");
+    background-image: url("../assets/icons/checkbox-icon-unchecked.svg");
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: center;
@@ -322,31 +370,51 @@ select {
 
 .option-contact-assigned {
     background-color: var(--clr-primary);
-    color: var(--clr-white);;
+    color: var(--clr-white);
 }
 
 .option-contact-assigned:hover {
-    background-color: var(--clr-click);;
+    background-color: var(--clr-click);
+    ;
 }
 
 .checkbox-contact-assigned {
-    background-image: url("/assets/icons/checkbox-icon-checked-light.svg");
+    background-image: url("../assets/icons/checkbox-icon-checked-light.svg");
+}
+
+.assigned-to {
+    width: 100%;
 }
 
 #addTaskAssignedToList {
     height: fit-content;
-    width: 440px;
-    margin-top: 8px;
+    padding-top: 16px;
+    padding-right: 8px;
     flex-direction: row !important;
+    justify-content: start;
     gap: 8px;
     flex-wrap: wrap;
+
     @media (max-width: 990px) {
         margin-bottom: 20px;
+    }
+
+    @media (max-width: 440px) {
+        gap: 4px;
+        padding-right: 4px;
+    }
+}
+
+#assignedContactsAddition {
+    margin-top: 16px;
+
+    @media (max-width: 990px) {
+        margin-top: 0;
     }
 }
 
 #addTaskAssignedToList div {
-    cursor: pointer;
+    cursor: default;
     margin: 0;
 }
 
@@ -355,13 +423,14 @@ select {
     width: 2px;
     border-radius: 1px;
     background-color: #D1D1D1;
+
     @media (max-width: 990px) {
         display: none !important;
     }
 }
 
 #addTaskDate::-webkit-calendar-picker-indicator {
-    background-image: url("/assets/icons/add-task-calendar.svg");
+    background-image: url("../assets/icons/add-task-calendar.svg");
 }
 
 #addTaskPriorities {
@@ -378,16 +447,19 @@ select {
     border: none;
     border-radius: 10px;
     gap: 8px;
-    background-color: var(--clr-white);;
+    background-color: var(--clr-white);
+    ;
     box-shadow: 0px 0px 4px 0px #0000001A;
     font-weight: var(--fw-400);
     font-size: var(--fs-20-16);
     line-height: 24px;
+
     @media (max-width: 1330px) {
-        height: 41px;
         width: 121px;
     }
+
     @media (max-width: 440px) {
+        height: 41px;
         padding: 4px 4px;
         gap: 4px;
     }
@@ -414,35 +486,52 @@ select {
     position: relative;
     bottom: 36px;
     left: 405px;
+
     @media (max-width: 1330px) {
         left: 345px;
-    };
+    }
+
+    ;
+
     @media (max-width: 1110px) {
         left: 285px;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         left: 365px;
     }
+
     @media (max-width: 440px) {
         left: 250px;
     }
 }
 
 #subtaskIconsFocus {
+    height: 24px;
     flex-direction: row !important;
     gap: 6px;
     position: relative;
     bottom: 36px;
     left: 377px;
+
     @media (max-width: 1330px) {
         left: 314px;
-    };
+    }
+
+    ;
+
     @media (max-width: 1110px) {
         left: 259px;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         left: 334px;
     }
+
     @media (max-width: 440px) {
         left: 219px;
     }
@@ -452,14 +541,44 @@ select {
     height: 160px;
     width: 440px;
     margin-top: -16px;
-    overflow-y: scroll;
+    margin-bottom: 36px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
     @media (max-width: 1330px) {
         height: fit-content;
         max-height: 160px;
     }
+
+    @media (max-width: 990px) {
+        width: 396px;
+    }
+
+    @media (max-width: 440px) {
+        width: 280px;
+    }
 }
 
-.subtask-scrollbar::-webkit-scrollbar {
+.custom-scrollbar::-webkit-scrollbar {
+    height: 100%;
+    width: 16px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--bg-gray);
+}
+
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    border: 5px solid var(--bg-gray);
+    background: var(--clr-lighterGray);
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:vertical:start:increment {
+    display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:vertical:end:increment {
     display: none;
 }
 
@@ -477,20 +596,33 @@ select {
     list-style-position: inside;
     word-break: break-all;
     cursor: pointer;
+
     @media (max-width: 1330px) {
         width: 380px;
-    };
+    }
+
+    ;
+
     @media (max-width: 1110px) {
         width: 320px;
         box-shadow: none;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         width: 396px;
         padding: 4px 16px;
-    };
+    }
+
+    ;
+
     @media (max-width: 900px) {
         width: 396px;
-    };
+    }
+
+    ;
+
     @media (max-width: 440px) {
         width: 280px;
     }
@@ -529,20 +661,33 @@ select {
     border-bottom: solid 1px #29ABE2;
     border-radius: 0;
     z-index: 2;
+
     @media (max-width: 1330px) {
         width: 380px;
-    };
+    }
+
+    ;
+
     @media (max-width: 1110px) {
         width: 320px;
         box-shadow: none;
-    };
+    }
+
+    ;
+
     @media (max-width: 990px) {
         width: 396px;
         padding: 4px 0 4px 16px;
-    };
+    }
+
+    ;
+
     @media (max-width: 900px) {
         width: 396px;
-    };
+    }
+
+    ;
+
     @media (max-width: 440px) {
         width: 280px;
     }
@@ -564,9 +709,11 @@ select {
 }
 
 .add-task-submit {
+    max-width: 1049px;
     margin-left: 96px;
     display: flex;
     justify-content: space-between;
+
     @media (max-width: 990px) {
         width: 100%;
         max-width: 396px;
@@ -575,9 +722,12 @@ select {
         flex-direction: column;
         align-self: center;
     }
+
     @media (max-width: 900px) {
         margin-left: 0;
+        margin-bottom: 110px;
     }
+
     @media (max-width: 440px) {
         width: 280px;
     }
@@ -586,6 +736,7 @@ select {
 .add-task-requirements {
     margin-top: 37px;
     display: flex;
+
     @media (max-width: 990px) {
         margin-top: 12px;
     }
@@ -595,10 +746,27 @@ select {
     margin-left: -3px;
 }
 
+.add-task-alerts {
+    height: 0;
+    width: 0;
+    position: relative;
+    bottom: 30px;
+    right: -90px;
+
+    @media (max-width: 900px) {
+        right: -120px;
+    }
+
+    @media (max-width: 440px) {
+        right: -90px;
+    }
+}
+
 .submit-btns {
     display: flex;
     gap: 16px;
     margin-right: 24px;
+
     @media (max-width: 990px) {
         width: 100%;
         margin-top: 40px;
@@ -615,6 +783,7 @@ select {
     align-items: center;
     justify-content: center;
     gap: 4px;
+
     @media (max-width: 440px) {
         padding: 6px;
         gap: 2px;
@@ -631,7 +800,7 @@ select {
 .cancel-img {
     height: 24px;
     width: 24px;
-    background-image: url("/assets/icons/cancel-btn.svg");
+    background-image: url("../assets/icons/cancel-btn.svg");
 }
 
 .cancel-btn:hover {
@@ -642,7 +811,7 @@ select {
 }
 
 .cancel-btn:hover .cancel-img {
-    background-image: url("/assets/icons/cancel-btn-hover.svg");
+    background-image: url("../assets/icons/cancel-btn-hover.svg");
 }
 
 .create-btn {

@@ -20,6 +20,8 @@ async function clearTaskForm() {
     document.getElementById("addTaskCategory").placeholder = "Select task category";
     document.getElementById("addTaskSubtask").value = "";
     document.getElementById("addTaskSubtaskList").innerHTML = "";
+    document.getElementById("prioMedium").classList.add("prioMediumClicked", "clicked");
+    document.getElementById("prioMediumImg").src = "../assets/icons/prioMedium-clicked.svg";
 }
 
 /**
@@ -132,6 +134,29 @@ function addAssignedContactToList(indexContact) {
         assignedContactsList.innerHTML += getAddTaskContactPB(indexContact);
         profileBadgeColor("addTaskAssignedToListPB" + indexContact, indexContact);
     }
+    shortAssignedToList();
+
+}
+
+/**
+ * This function checks the number of assigned to contacts for a task. If there are more than five contacts, only the first five are shown and the other ones are hidden.
+ * The user can see how many more contacts are assigned.
+ */
+function shortAssignedToList() {
+    let numberAssignedContacts = document.querySelectorAll(".assigned-contact");
+    document.getElementById("assignedContactsAdditionNumber").innerHTML = (numberAssignedContacts.length - 5);
+    if (numberAssignedContacts.length > 5) {
+        for (let indexAssignedContact = 5; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+            numberAssignedContacts[indexAssignedContact].classList.add("d-none");
+        }
+        document.getElementById("assignedContactsAddition").classList.remove("d-none");
+
+    } else {
+        for (let indexAssignedContact = 0; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+            numberAssignedContacts[indexAssignedContact].classList.remove("d-none");
+        }
+        document.getElementById("assignedContactsAddition").classList.add("d-none");
+    }
 }
 
 /**
@@ -233,6 +258,7 @@ function selectTaskCategory(category) {
     categoryInput.placeholder = category;
     toggleAddTaskToDropDownMenu('addTaskCategory', 'addTaskDropdownCategories');
     removeAddTaskOverlay();
+    document.getElementById("addTaskCategory").classList.remove("requirement-unfulfilled");
 }
 
 /**
@@ -279,9 +305,11 @@ function addSubtaskToList() {
 function editSubtask(indexSubtask) {
     addAddTaskOverlay();
     let subtaskContentRef = document.getElementById("subtask" + indexSubtask);
-    let subtask = subtaskContentRef.innerText;
-    subtaskContentRef.classList.add("subtask-edit");
-    subtaskContentRef.innerHTML = getAddTaskSubtaskEditTemplate(subtask, indexSubtask);
+    if (subtaskContentRef.innerText !== null) {
+        let subtask = subtaskContentRef.innerText;
+        subtaskContentRef.classList.add("subtask-edit");
+        subtaskContentRef.innerHTML = getAddTaskSubtaskEditTemplate(subtask, indexSubtask);
+    }
 }
 
 /**
@@ -331,15 +359,25 @@ function addTask() {
             "subtasks": taskSubtasks,
             "progress": { "progress": taskProgress }
         });
-        initAddTask();
-        if (window.location.href !== "http://127.0.0.1:5500/html/add_task.html") {
+        if (window.location.href.includes("board")) {
+            initBoard();
             successfullMsg("taskSuccesfullyCreated");
             addOnclickToCreateBtn();
+        } else {
+            document.getElementById("addTaskCategory").classList.remove("requirement-unfulfilled");
+            successfullMsg("addTaskTaskSuccesfullyCreated");
+            setTimeout(function () {
+                window.location.href = "./board.html";
+            }, 1600);
         }
     } else {
         checkFilledInput("addTaskTitle");
         checkFilledInput("addTaskDate");
-        checkFilledInput("addTaskCategory")
+        checkFilledInput("addTaskCategory");
+        document.getElementById("alertAddTask").classList.remove("invisible");
+        setTimeout(function () {
+            document.getElementById("alertAddTask").classList.add("invisible");
+        }, 2400);
     }
 }
 

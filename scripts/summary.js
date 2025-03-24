@@ -121,5 +121,5 @@ function guestGreeting() {
  * This function redirects the user to the board-page
  */
 function redirectionToBoard() {
-    window.location.href = "http://127.0.0.1:5500/html/board.html";
+    window.location.href = "../html/board.html";
 }

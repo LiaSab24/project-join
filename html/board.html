@@ -13,10 +13,10 @@
   <link rel="stylesheet" href="../styles/navigation.css">
   <link rel="stylesheet" href="../fonts/fonts.css">
   <link rel="stylesheet" href="../styles/board.css">
+  <link rel="stylesheet" href="../styles/boardMobile.css">
   <link rel="stylesheet" href="../styles/header.css">
   <link rel="stylesheet" href="../styles/sidebar.css">
   <link rel="stylesheet" href="../styles/add_task.css">
-  <link rel="stylesheet" href="../styles/boardMobile.css">
 
   <script src="../script.js"></script>
   <script src="../scripts/include.js"></script>
@@ -27,7 +27,6 @@
 </head>
 
 <body onload="initBoard()">
-  <div id="overlayBg" class="overlay-bg"></div>
   <div w3-include-html="header.html"></div>
   <div w3-include-html="sidebar.html"></div>
   <main>
@@ -59,7 +58,7 @@
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTask">No tasks to do</div>
         </div>
-        <div id="toDo" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div id="toDo" class="board-tasks-list" ondrop="drop(event)" ondragover="event.preventDefault()" ondragenter="showDropdownArea('toDo')"></div>
       </div>
 
       <div class="task-wrapper">
@@ -71,7 +70,8 @@
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTaskInProgress">No tasks in progress</div>
         </div>
-        <div id="inProgress" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div id="inProgress" class="board-tasks-list" ondrop="drop(event)" ondragover="event.preventDefault()" ondragenter="showDropdownArea('inProgress')">
+        </div>
       </div>
 
       <div class="task-wrapper">
@@ -83,26 +83,30 @@
         <div class="no-task-message-container">
           <div class="no-task-message" id="noTaskAwaitFeedback">No tasks await feedback</div>
         </div>
-        <div id="awaitFeedback" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div id="awaitFeedback" class="board-tasks-list" ondrop="drop(event)" ondragover="event.preventDefault()" ondragenter="showDropdownArea('awaitFeedback')"></div>
       </div>
 
       <div class="task-wrapper">
         <div class="task-headline">
-          <h2>Done</h2>
+          <h2>Done</h2> 
           <br>
         </div>
         <div class="no-task-message-container margin">
           <div class="no-task-message" id="noTaskDone">No tasks done</div>
         </div>
-        <div id="done" class="board-tasks-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div id="done" class="board-tasks-list" ondrop="drop(event)" ondragover="event.preventDefault()" ondragenter="showDropdownArea('done')"></div>
       </div>
     </section>
 
   </main>
   <section id="boardOverlayBg" class="d-none" onclick="closeOverlays()"></section>
-  <section id="addTaskOverlay" class="d-none"></section>
+  <section id="addTaskOverlay" class="d-none">
+    <div id="addTaskOverlayContent"></div>
+  </section>
   <section id="overviewOverlay" class="d-none"></section>
-  <section id="editTaskOverlay" class="d-none"></section>
+  <section id="editTaskOverlay" class="d-none">
+    <div id="editTaskOverlayContent"></div>
+  </section>
   <section class="messages">
     <div id="taskSuccesfullyCreated" class="succesfull-msg">
       <span>Task succesfully created</span>
@@ -115,7 +119,14 @@
     </div>
   </section>
   <section id="noResultSearchInput" class="no-task-message-container d-none">no result matches the search criteria</section>
-  <section onclick="toggleSubmenu()" class="submenu-overlay d-none"></section>
+  <section onclick="toggleSubmenu()" id="submenuOverlay" class="d-none">
+    <div id="submenu" class="submenu" onclick="event.stopImmediatePropagation()">
+        <p class="hide-help-option-desktop"><a href="../html/help.html">Help</a></p>
+        <p><a href="../html/legal_notice.html">Legal Notice</a></p>
+        <p><a href="../html/privacy_policy.html">Privacy Policy</a></p>
+        <p><a href="../index.html">Logout</a></p>
+    </div>
+</section>
   <script>includeHTML();</script>
 </body>
 

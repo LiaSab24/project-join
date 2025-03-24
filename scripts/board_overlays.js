@@ -1,4 +1,14 @@
 /**
+ * This function lets users with mobile devices move a task to another progress-category
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function moveTaskProgressMobile(indexTask) {
+    openBoardBgOverlay();
+    document.getElementById("boardOverlayBg").innerHTML += getBoardTaskMoveProgressMobile(indexTask);
+}
+
+/**
  * This function is closes all Board-Overlays
  */
 function closeOverlays() {
@@ -7,7 +17,9 @@ function closeOverlays() {
     document.getElementById("addTaskOverlay").classList.add("d-none");
     document.getElementById("overviewOverlay").classList.add("d-none");
     document.getElementById("editTaskOverlay").classList.add("d-none");
+    document.getElementById("editTaskOverlayContent").innerHTML = "";
     document.getElementById("addTaskOverlay").classList.remove("edit-task-overlay");
+    document.getElementById("addTaskOverlayContent").innerHTML = "";
     renderTasks();
 }
 
@@ -16,12 +28,13 @@ function closeOverlays() {
  */
 function openBoardBgOverlay() {
     let boardOverlayBgContentRef = document.getElementById("boardOverlayBg");
-    boardOverlayBgContentRef.classList.remove("d-none");;
+    boardOverlayBgContentRef.innerHTML = "";
+    boardOverlayBgContentRef.classList.remove("d-none");
     setTimeout(function () {
         boardOverlayBgContentRef.classList.add("overlay-active");
     }, 100);
 }
- 
+
 /**
  * This function opens the editTaskOverlay for the clicked task, which gives the user the ability to edit the information
  * 
@@ -29,8 +42,9 @@ function openBoardBgOverlay() {
  */
 async function openEditTaskOverlay(progress, indexTask) {
     closeOverlays();
-    let overlayContentRef = document.getElementById("editTaskOverlay");
-    overlayContentRef.classList.remove("d-none");
+    let overlayRef = document.getElementById("editTaskOverlay");
+    let overlayContentRef = document.getElementById("editTaskOverlayContent");
+    overlayRef.classList.remove("d-none");
     overlayContentRef.innerHTML = "";
     overlayContentRef += await boardAddTask('edit', progress, indexTask);
 }
@@ -73,8 +87,8 @@ async function boardAddTask(overlay, progress, indexTask) {
 * @param {string} progress - the progress-category, where the new task should be in after submitting
 */
 async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
-    let addTaskOverlayContentRef = document.getElementById("addTaskOverlay");
-    addTaskOverlayContentRef.classList.remove("d-none");
+    document.getElementById("addTaskOverlay").classList.remove("d-none");
+    let addTaskOverlayContentRef = document.getElementById("addTaskOverlayContent");
     addTaskOverlayContentRef.innerHTML = "";
     addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
     document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
@@ -99,11 +113,12 @@ function adjustAddTaskProgress(progress) {
  * @param {html} addTaskOverlayContent - the html-content of the main-part of the add_task.html
  */
 async function adjustBoardEditTaskOverlay(addTaskOverlayContent) {
-    let addTaskOverlayContentRef = document.getElementById("addTaskOverlay");
-    addTaskOverlayContentRef.classList.remove("d-none");
-    addTaskOverlayContentRef.classList.add("edit-task-overlay");
-    addTaskOverlayContentRef.innerHTML = "";
-    addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
+    let editTaskOverlayRef = document.getElementById("editTaskOverlay");
+    let editTaskOverlayContentRef = document.getElementById("editTaskOverlayContent");
+    editTaskOverlayRef.classList.remove("d-none");
+    editTaskOverlayContentRef.classList.add("edit-task-overlay");
+    editTaskOverlayContentRef.innerHTML = "";
+    editTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
     document.getElementById("addTaskH1").innerHTML = "";
     document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
     document.getElementById("addTaskForm").classList.add("custom-scrollbar");
@@ -113,7 +128,7 @@ async function adjustBoardEditTaskOverlay(addTaskOverlayContent) {
 * This function opens the overviewOverlay for the clicked task, which gives an overview over the task-information
 * 
 * @param {number} indexTask - the index of the task in the tasks-array
-*/ 
+*/
 function openTaskOverview(indexTask) {
     openBoardBgOverlay();
     let overlayContentRef = document.getElementById("overviewOverlay");
@@ -138,21 +153,52 @@ function fillTaskOverviewLists(indexTask) {
     if (tasks[indexTask].assignedTo !== undefined) {
         for (let indexAssignedContact = 0; indexAssignedContact < tasks[indexTask].assignedTo.length; indexAssignedContact++) {
             let indexContact = contacts.findIndex((element) => { return element.name === tasks[indexTask].assignedTo[indexAssignedContact].name })
-            document.getElementById("overviewAssignedContacts" + indexTask).innerHTML += getBoardOverviewContactPB(indexContact);
-            profileBadgeColor("overviewAssignedToListPB" + indexContact, indexContact)
+            document.getElementById("overviewAssignedContacts" + indexTask).innerHTML += getBoardOverviewContactPB(indexTask, indexContact);
+            if (contacts[indexContact] !== undefined) {
+                document.getElementById(indexTask + "contactName" + indexContact).innerHTML = contacts[indexContact].name;
+            } else {
+                document.getElementById(indexTask + "contactName" + indexContact).innerHTML = "You";
+            }
+            profileBadgeColor(indexTask + "overviewAssignedToListPB" + indexContact, indexContact)
         }
+        shortAssignedToListBoardOverview();
+    } else {
+        document.getElementById("hideForNoAssignedTo").classList.add("d-none");
     }
     if (tasks[indexTask].subtasks !== undefined) {
         for (let indexSubtask = 0; indexSubtask < tasks[indexTask].subtasks.length; indexSubtask++) {
             let subtask = tasks[indexTask].subtasks[indexSubtask].subtask;
             document.getElementById("overviewSubtasks" + indexTask).innerHTML += getBoardOverviewSubtask(subtask, indexSubtask, indexTask)
         }
+    } else {
+        document.getElementById("hideForNoSubtasks").classList.add("d-none");
+    }
+}
+
+/**
+ * This function checks the number of assigned to contacts for a task. If there are more than five contacts, only the first five are shown and the other ones are hidden.
+ * The user can see how many more contacts are assigned.
+ */
+function shortAssignedToListBoardOverview() {
+    let numberAssignedContacts = document.querySelectorAll(".overview-contact-assigned");
+    document.getElementById("assignedContactsAdditionNumberBoardOverview").innerHTML = (numberAssignedContacts.length - 5);
+    if (numberAssignedContacts.length > 5) {
+        for (let indexAssignedContact = 5; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+            numberAssignedContacts[indexAssignedContact].classList.add("d-none");
+        }
+        document.getElementById("assignedContactsAdditionBoardOverview").classList.remove("d-none");
+
+    } else {
+        for (let indexAssignedContact = 0; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+            numberAssignedContacts[indexAssignedContact].classList.remove("d-none");
+        }
+        document.getElementById("assignedContactsAdditionBoardOverview").classList.add("d-none");
     }
 }
 
 /**
 * This function is used to assign subtasks as completed
-* 
+*  
 * @param {number} indexSubtask - the index of the subtask in the subtasks-list
 * @param {number} indexTask - the index of the task in the tasks-array
 */
@@ -194,11 +240,11 @@ function fillEditTaskInputs(indexTask) {
     document.getElementById("addTaskTitle").value = tasks[indexTask].title;
     document.getElementById("addTaskDescription").value = tasks[indexTask].description;
     document.getElementById("addTaskDate").value = tasks[indexTask].dueDate;
-    if (tasks[indexTask].priority !== "") {
-        document.getElementById("prio" + tasks[indexTask].priority).classList.add("prio" + tasks[indexTask].priority + "Clicked");
-        document.getElementById("prio" + tasks[indexTask].priority).classList.add("clicked");
-        document.getElementById("prio" + tasks[indexTask].priority + "Img").src = "../assets/icons/prio" + tasks[indexTask].priority + "-clicked.svg";
-    }
+    document.getElementById("prioMedium").classList.remove("prioMediumClicked", "clicked");
+    document.getElementById("prioMediumImg").src = "../assets/icons/prioMedium.svg";
+    document.getElementById("prio" + tasks[indexTask].priority).classList.add("prio" + tasks[indexTask].priority + "Clicked");
+    document.getElementById("prio" + tasks[indexTask].priority).classList.add("clicked");
+    document.getElementById("prio" + tasks[indexTask].priority + "Img").src = "../assets/icons/prio" + tasks[indexTask].priority + "-clicked.svg";
     document.getElementById("addTaskCategory").placeholder = tasks[indexTask].category;
     fillEditTaskFormLists(indexTask);
 }
@@ -248,7 +294,7 @@ function saveEditTask(indexTask) {
             "subtasks": taskSubtasks,
             "progress": { "progress": taskProgress }
         });
-        initAddTask();
+        initBoard();
         if (window.location.href !== "http://127.0.0.1:5500/html/add_task.html") {
             successfullMsg("taskSuccesfullyEdited");
             addOnclickToCreateBtn();
@@ -256,7 +302,11 @@ function saveEditTask(indexTask) {
     } else {
         checkFilledInput("addTaskTitle");
         checkFilledInput("addTaskDate");
-        checkFilledInput("addTaskCategory")
+        checkFilledInput("addTaskCategory");
+        document.getElementById("alertAddTask").classList.remove("invisible");
+        setTimeout(function () {
+            document.getElementById("alertAddTask").classList.add("invisible");
+        }, 2400);
     }
 }
 

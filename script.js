@@ -13,7 +13,7 @@ let previousLocation;
 
 const colors = [
   "#ff7a00", // Vivid Orange
-  "#ff5eb3", // Deep Pink
+  "#ff5eb3", // Deep Pink 
   "#6e52ff", // Lavender Blue
   "#9327ff", // Violet
   "#00bee8", // Sky Blue
@@ -41,7 +41,6 @@ async function init() {
   userIndexInContactsArray();
   if (document.getElementById("header")) {
     headerUser();
-    fillSubmenu();
   }
   initializeSidebar();
   setActiveMenuLink();
@@ -84,7 +83,7 @@ function userIndexInContactsArray() {
   let userMail = users[currentUser].mail;
   indexContactUser = contacts.map(function (element) {
     return element.mail;
-  }).indexOf(userMail);
+  }).indexOf(userMail); 
 }
 
 /**
@@ -102,23 +101,29 @@ function headerUser() {
  */
 function setActiveMenuLink() {
   let location = window.location.href;
+  let currentPage = (name) => {
+    if (location.includes(name)) {
+      return location;
+    }
+  }
+
   switch (location) {
-    case "http://127.0.0.1:5500/html/summary.html":
+    case currentPage("summary"):
       document.getElementById("summaryLink").classList.add("active");
       break;
-    case "http://127.0.0.1:5500/html/add_task.html":
+    case currentPage("add_task"):
       document.getElementById("addTaskLink").classList.add("active");
       break;
-    case "http://127.0.0.1:5500/html/board.html":
+    case currentPage("board"):
       document.getElementById("boardLink").classList.add("active");
       break;
-    case "http://127.0.0.1:5500/html/contacts.html":
+    case currentPage("contacts"):
       document.getElementById("contactsLink").classList.add("active");
       break;
-    case "http://127.0.0.1:5500/html/privacy_policy.html":
+    case currentPage("privacy_policy"):
       document.getElementById("privacyPolicyLink").classList.add("active");
       break;
-    case "http://127.0.0.1:5500/html/legal_notice.html":
+    case currentPage("ledal_notice"):
       document.getElementById("LegalNoticeLink").classList.add("active");
       break;
   }
@@ -183,7 +188,7 @@ async function deleteData(path = "") {
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-async function assignRandomColor(indexContact) {
+function assignRandomColor(indexContact) {
   if (contactColors[indexContact]) {
     return contactColors[indexContact];
   }
@@ -193,7 +198,6 @@ async function assignRandomColor(indexContact) {
   let assignedColor = availableColors.splice(randomIndex, 1)[0];
 
   contactColors[indexContact] = assignedColor;
-  //localStorage.setItem("contactColors", JSON.stringify(contactColors));
   return assignedColor;
 }
 
@@ -236,7 +240,11 @@ function nameAbbreviation(indexContact) {
  */
 async function successfullMsg(msgId) {
   let successAnimation = document.getElementById(msgId);
-  successAnimation.style.animationName = "msgSuccesfull";
+  if (window.innerWidth <= 900) {
+    successAnimation.style.animationName = "msgSuccesfullMobile";
+  } else {
+    successAnimation.style.animationName = "msgSuccesfullDesktop";
+  }
   successAnimation.style.animationDuration = "1600ms";
   setTimeout(function () {
     successAnimation.style.animationName = "";
@@ -247,13 +255,17 @@ async function successfullMsg(msgId) {
 
 /**
  * This function checks, if a required input is filled in and toggles the "requirement-unfulfilled"-class accordingly
- */
-function checkFilledInput(id) {
-  let contentRef = document.getElementById(id);
+ * @param {string} contentRefId - the id of the element that should be checked
+*/
+function checkFilledInput(contentRefId) {
+  let contentRef = document.getElementById(contentRefId);
   let unfulfilledRequirement = "requirement-unfulfilled";
-  if (id == "addTaskCategory") {
+  if (contentRefId == "addTaskCategory") {
     if (contentRef.placeholder == "Select task category") {
       contentRef.classList.add(unfulfilledRequirement);
+      setTimeout(function () {
+        contentRef.classList.remove(unfulfilledRequirement);
+      }, 2400);
     } else {
       contentRef.classList.remove(unfulfilledRequirement);
     }
@@ -262,7 +274,7 @@ function checkFilledInput(id) {
       contentRef.classList.add(unfulfilledRequirement);
       setTimeout(function () {
         contentRef.classList.remove(unfulfilledRequirement);
-      }, 2000);
+      }, 2400);
     } else {
       contentRef.classList.remove(unfulfilledRequirement);
     }
@@ -273,21 +285,7 @@ function checkFilledInput(id) {
  * This function toggles the visibilty of the submenu (and its transparent background-overlay) onclick
  */
 function toggleSubmenu() {
-  document.getElementById("submenu").classList.toggle('d-none');
-  document.querySelector(".submenu-overlay").classList.toggle("d-none");
-}
-
-/**
- * Adjusts the submenu based on the window size.
- * Adds a help element if the width is less than or equal to 768px.
- */
-function fillSubmenu() {
-  submenuContentRef = document.getElementById("submenu");
-  submenuContentRef.innerHTML = "";
-  if (window.innerWidth <= 768) {
-    submenuContentRef.innerHTML = `<p><a href="./help.html">Help</a></p>`;
-  }
-  submenuContentRef.innerHTML += getSubmenuTemplate();
+  document.getElementById("submenuOverlay").classList.toggle("d-none");
 }
 
 /**
@@ -333,6 +331,46 @@ function adjustUserContact(contentRef) {
     document.getElementById(contentRef + indexContactUser).innerHTML += " (You)";
   }
 }
+
+/**
+ * This function checks, if the mail-input-value is a proper name.
+ * It returns the email address or shows an alert accordingly.
+ * 
+ * @param {string} contentRef - the id of the element
+ */
+function validateNameInput(contentRef) {
+  let nameInput = document.getElementById(contentRef).value;
+  let firstChar = Number(nameInput.charAt(0));
+  if (nameInput.trim() !== "" && isNaN(firstChar)) {
+    return nameInput.trim()
+  } else {
+    document.getElementById("alertName").classList.remove("invisible");
+    setTimeout(function () {
+      document.getElementById("alertName").classList.add("invisible");
+    }, 2400);
+    return ""
+  }
+}
+
+/**
+ * This function checks, if the mail-input-value is a proper email address.
+ * It returns the email address or shows an alert accordingly.
+ * 
+ * @param {string} contentRef - the id of the element
+ */
+function validateMailInput(contentRef) {
+  let mailInput = document.getElementById(contentRef).value;
+  let charsBetweenAtAndDot = mailInput.lastIndexOf(".") - mailInput.indexOf("@");
+  if (mailInput.includes("@") && mailInput.includes(".") && mailInput.charAt(0) !=="@" && mailInput.charAt(0) !=="." && mailInput.slice(-1) !== "." & mailInput.slice(-1) !== "@" && charsBetweenAtAndDot >= 2) {
+    return mailInput.toLowerCase();
+  } else {
+    document.getElementById("alertMail").classList.remove("invisible");
+    setTimeout(function () {
+      document.getElementById("alertMail").classList.add("invisible");
+    }, 2400);
+    return ""
+  }
+} 
 
 /**
  * This function lets the user navigate throught the sidbar without needing to click

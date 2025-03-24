@@ -87,13 +87,28 @@ function getBoardCloseBtnTemplate() {
 }
 
 /**
+ * This template creates a (by default invisible) marked area, where a dragged element can be released. Ondragover it becomes visible.
+ * 
+ * @param {string} contentRefId - the id of the possible drop area
+ */
+function getBoardDropDownAreaTemplate(contentRefId) {
+    return `<div id="dropdownArea${contentRefId}" class="dropdown-area d-none">
+                <div ondrop="drop(event)" ondragover="event.preventDefault()" ondragenter="showDropdownArea('${contentRefId}')"></div>
+            </div>`
+}
+ 
+
+/**
  * This template creates a task-card with some information vor a task
  * 
  * @param {number} indexTask - the index of the task in the tasks-array
  */
 function getBoardTaskTemplate(indexTask) {
-    return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" onclick="openTaskOverview(${indexTask})">
-                <div class="task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ', '-')}">${tasks[indexTask].category}</div>
+    return `<div class="task-card" id="task${indexTask}" draggable="true" ondragstart="drag(event)" ondragend="hideDropdownAreas()" onclick="openTaskOverview(${indexTask})">
+                <div class="flex just-space-b">
+                    <div class="task-badge category-${(tasks[indexTask].category.toLowerCase()).replace(' ', '-')}">${tasks[indexTask].category}</div>
+                    <div onclick="moveTaskProgressMobile(${indexTask}); event.stopImmediatePropagation()" id="moveProgressMobile${indexTask}" class="move-progress-mobile"></div>
+                </div>
                 <div class="task-title">${tasks[indexTask].title}</div>
                 <div class="task-description">${tasks[indexTask].description}</div>
                 <div id="boardProgressSubtask${indexTask}" class="task-progress">
@@ -104,6 +119,7 @@ function getBoardTaskTemplate(indexTask) {
                 </div>
                 <div class="assigned-contacts-and-priority">
                     <div id="assignedContacts${indexTask}" class="task-assignees"></div>
+                    <div id="assignedContactsAdditionBoard${indexTask}" class="assigned-contacts-addition profile-badge profile-badge-small d-none flex">+<p id="assignedContactsAdditionNumberBoard${indexTask}">0</p></div>
                     <img id="prio${indexTask}" src="../assets/icons/prio${tasks[indexTask].priority}.svg">
                 </div>
             </div>`
@@ -112,10 +128,37 @@ function getBoardTaskTemplate(indexTask) {
 /**
  * This template displays a contacts profile badge on the board's task-card
  * 
+ * @param {number} indexTask - the index of the task in the tasks-array
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function getBoardContactPB(indexContact) {
-    return `<div id="boardAssignedToListPB${indexContact}" class="profile-badge profile-badge-small">${nameAbbreviation(indexContact)}</div>`
+function getBoardContactPB(indexTask, indexContact) {
+    return `<div id="${indexTask}boardAssignedToListPB${indexContact}" class="assigned-contact-board${indexTask} profile-badge profile-badge-small">${nameAbbreviation(indexContact)}</div>`
+}
+
+/**
+ * This template creates an overlay that lets the user choose, to which progress-category a task should move for mobile screens.
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function getBoardTaskMoveProgressMobile(indexTask) {
+    return `<div id="moveProgressMobileMenu${indexTask}" class="move-progress-mobile-menu">
+                <div onclick="updateTaskProgress('toDo', ${indexTask})" class="progressMobileMenuOption">
+                    <div id="moveProgressToDo${indexTask}" class="move-progress-mobile"></div>
+                    <p>To-Do</p>
+                </div>
+                <div onclick="updateTaskProgress('inProgress', ${indexTask})" class="progressMobileMenuOption">
+                    <div id="moveProgressInProgress${indexTask}" class="move-progress-mobile"></div>
+                    <p>In Progress</p>
+                </div>
+                <div onclick="updateTaskProgress('awaitFeedback', ${indexTask})" class="progressMobileMenuOption">
+                    <div id="moveProgressAwaitFeedback${indexTask}" class="move-progress-mobile"></div>
+                    <p>Await Feedback</p>
+                </div>
+                <div onclick="updateTaskProgress('done', ${indexTask})" class="progressMobileMenuOption">
+                    <div id="moveProgressDone${indexTask}" class="move-progress-mobile"></div>
+                    <p>Done</p>
+                </div>
+            </div>`
 }
 
 /**
@@ -138,13 +181,14 @@ function getTaskOverviewOverlayTemplate(indexTask) {
                 <span>Priority:</span>
                 <p>${tasks[indexTask].priority}<img id="prioOverview${indexTask}" src="../assets/icons/prio${tasks[indexTask].priority}.svg"></p>
             </div>
-            <div class="overview-info">Assigned To:</div>
+            <div id="hideForNoAssignedTo" class="overview-info">Assigned To:</div>
             <div id="overviewAssignedContacts${indexTask}" class="overview-contacts">
             </div>
-            <div class="overview-info">Subtasks:</div>
+            <div id="assignedContactsAdditionBoardOverview" class="assigned-contacts-addition-overview profile-badge d-none flex">+<p id="assignedContactsAdditionNumberBoardOverview">0</p></div>
+            <div id="hideForNoSubtasks" class="overview-info">Subtasks:</div>
             <div id="overviewSubtasks${indexTask}" class="overview-subtasks"></div>
             <div class="overview-btns">
-                <button disable onclick="deleteTask(${indexTask})">
+                <button disable onclick="deleteTask(${indexTask})"> 
                     <div class="overview-task-delete"></div> Delete
                 </button>
                 <div class="overview-btns-seperator"></div>
@@ -157,12 +201,13 @@ function getTaskOverviewOverlayTemplate(indexTask) {
 /**
  * This template displays a contacts profile badge on the board's task-overview-overlay
  * 
+ * @param {number} indexTask - the index of the task in the tasks-array
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function getBoardOverviewContactPB(indexContact) {
+function getBoardOverviewContactPB(indexTask, indexContact) {
     return `<div id="overviewContact${indexContact}" class="overview-contact-assigned">
-                <div id="overviewAssignedToListPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
-                <p>${contacts[indexContact].name}</p>
+                <div id="${indexTask}overviewAssignedToListPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
+                <p id="${indexTask}contactName${indexContact}"></p>
             </div>`
 }
 
@@ -265,7 +310,7 @@ function getContactsOverlayAddBtnsTemplate() {
  */
 function getContactsOverlayEditBtnsTemplate(indexContact) {
     return `<button onclick="clearContactForm(); return false" class="reject-btn" id="contactsOverlayDelete">
-                Delete
+                Clear
                 <div class="reject-img"></div>
             </button>
             <button id="contactsOverlaySave" onclick="saveEditContact(${indexContact}); return false"
@@ -281,21 +326,12 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function getbtnsMenuMobileTemplate(indexContact) {
-    return `<button onclick="openContactsOverlay(), adjustOverlayToEdit(${indexContact})" class="focused-contact-btns">
+    return `<button onclick="openContactsOverlay(), adjustOverlayToEdit(${indexContact}), toggleEditDeleteMenuMobile()" class="focused-contact-btns">
                 <div id="contactsEditIcon"></div>
                 <span>Edit</span>
             </button>
-            <button id="deleteBtnContacts" onclick="deleteContact(${indexContact})" class="focused-contact-btns">
+            <button id="deleteBtnContacts" onclick="deleteContact(${indexContact}), toggleEditDeleteMenuMobile()" class="focused-contact-btns">
                 <div id="contactsDeleteIcon"></div>
                 <span>Delete</span>
             </button>`
-}
-
-/**
- * This template fills the submenu with the necessary links
- */
-function getSubmenuTemplate() {
-    return `<p><a href="../html/legal_notice.html">Legal Notice</a></p>
-            <p><a href="../html/privacy_policy.html">Privacy Policy</a></p>
-            <p><a href="../html/index.html">Logout</a></p>`
 }

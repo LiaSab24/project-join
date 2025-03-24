@@ -17,12 +17,18 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: var(--clr-white); 
+  background: var(--clr-white);
   overflow-x: hidden !important;
+  overflow-y: auto;
+}
+
+body::-webkit-scrollbar,
+.task-container::-webkit-scrollbar {
+  display: none;
 }
 
 main {
-  min-height: calc(100vh - 80px);
+  height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -44,6 +50,7 @@ h2 {
   justify-content: space-between;
   align-items: center;
   padding: var(--header-padding);
+  margin-right: 135px;
 }
 
 .input-container {
@@ -134,10 +141,10 @@ button img {
   padding: var(--header-padding);
   gap: var(--gap-size-task);
   overflow-x: auto;
-  padding: 0 24px;
 }
 
 .task-wrapper {
+  height: 100%;
   padding: var(--task-padding);
   flex: 1;
   width: 246px;
@@ -153,6 +160,7 @@ button img {
 
 .icon-container {
   position: relative;
+  z-index: 1;
 }
 
 .icon-container img {
@@ -180,9 +188,31 @@ button img {
   background-color: #e7e7e7;
 }
 
+.dropdown-area {
+  height: 0;
+  width: 0;
+  pointer-events: all;
+}
+
+.dropdown-area div {
+  height: 263px;
+  width: 244px;
+  margin-top: 16px;
+  position: relative;
+  background-color: transparent;
+  border: 1px dotted var(--clr-lightGray);
+  border-radius: 30px;
+  box-shadow: var(--shadow-nuevo);
+  pointer-events: all;
+}
+
 .board-tasks-list {
-  height: 688px;
+  height: 100%;
   width: 252px;
+  padding-bottom: 24px;
+  border: 2px dashed transparent;
+  border-radius: 12px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .margin {
@@ -192,10 +222,9 @@ button img {
 .task-card {
   background: var(--clr-white);
   border-radius: var(--border-radius-task);
-  box-shadow: var(--shadow-nuevo);
+  box-shadow: 0px 0px 10px 3px #00000014;
   padding: var(--task-padding);
   margin-top: 16px;
-  max-height: 263px;
   width: 100%;
   gap: 24px;
   display: flex;
@@ -215,6 +244,54 @@ button img {
   border-radius: 8px;
   font-size: 16px;
   font-weight: var(--fw-400);
+}
+
+.move-progress-mobile {
+  width: 27px;
+  height: 27px;
+  background-image: url("../assets/img/arrow-left-line.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  filter: grayscale(1);
+  border-radius: 50%;
+  display: none;
+
+  &:hover {
+    background-color: #efeaea;
+    cursor: pointer;
+  }
+
+  @media (max-width: 900px) {
+    display: block;
+  }
+}
+
+.move-progress-mobile-menu {
+  position: relative;
+  background: var(--clr-white);
+  border-radius: var(--border-radius-task);
+  box-shadow: var(--shadow-nuevo);
+  padding: var(--task-padding);
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  z-index: 6;
+
+  .progressMobileMenuOption {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: #efeaea;
+      cursor: pointer;
+    }
+  }
 }
 
 .category-bug-fix {
@@ -292,6 +369,14 @@ button img {
   max-width: 220px;
 }
 
+.assigned-contacts-addition {
+  margin-left: -80px;
+}
+
+.assigned-contacts-addition-overview {
+  margin-left: 24px;
+}
+
 .assigned-contacts-and-priority img {
   width: 17px;
 }
@@ -349,7 +434,9 @@ button img {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
 }
 
 #addTaskOverlay {
@@ -357,11 +444,26 @@ button img {
   width: 1116px;
   border-radius: 30px;
   background: var(--clr-white);
-  z-index: 4;
+  z-index: 6;
   position: fixed;
-  top: 100px;
-  align-self: center;
-  margin-left: 245px;
+  align-self: anchor-center;
+  justify-self: anchor-center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#addTaskOverlayContent,
+#editTaskOverlayContent {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  align-items: end;
+}
+
+#editTaskOverlayContent::-webkit-scrollbar,
+#addTaskOverlayContent::-webkit-scrollbar {
+  display: none !important;
 }
 
 #animation {
@@ -373,55 +475,83 @@ button img {
 }
 
 #addTaskOverlay .title {
+  max-width: 1016px;
   margin-top: 64px;
   margin-right: 32px;
-  margin-left: 74px;
+  margin-left: 96px;
   padding: 0;
   display: flex;
   justify-content: space-between;
 }
 
+#addTaskOverlay #addTaskForm {
+  flex: 1;
+}
+
 #addTaskOverlay #addTaskForm,
 #addTaskOverlay .add-task-submit {
   margin-left: 74px;
-  margin-right: 74px;
+  margin-right: 98px;
 }
 
 #addTaskOverlay .overlay-close {
   align-self: baseline;
 }
 
-#addTaskOverlay #addTaskAssignedTo {
-  z-index: 4 !important;
-}
-
-#addTaskOverlay #addTaskDropdownContacts {
-  top: 515px;
+#addTaskOverlay .assigned-to {
   z-index: 3;
 }
 
-#addTaskOverlay #addTaskAssignedToList {
-  margin-left: 10px;
-  z-index: 2;
+#addTaskOverlay #addTaskDropdownContacts {
+  z-index: 4 !important;
 }
 
-#addTaskOverlay #addTaskDropdownCategories {
-  top: 455px;
+#addTaskOverlay #addTaskAssignedToList {
+  align-self: start;
+  margin-left: 10px;
+  z-index: 2;
+  .profile-badge {
+    z-index: 2;
+  }
+}
+
+#addTaskOverlay .subtask-scrollbar,
+.edit-task-overlay .subtask-scrollbar {
+  max-height: 130px;
+}
+
+#addTaskOverlay .add-task-submit {
+  width: 956px;
+  position: relative;
+  top: 0px;
+  justify-content: space-between;
+}
+
+#addTaskOverlay .add-task-requirements {
+  margin-left: 4px;
+}
+
+#addTaskOverlay #addTaskSubmitBtns {
+  margin-right: 0;
+}
+
+#addTaskOverlay #addTaskCancel {
+  background-color: var(--clr-white);
+  color: var(--clr-primary)
 }
 
 #overviewOverlay,
 .edit-task-overlay {
   width: clamp(320px, 80vw, 600px) !important;
   position: fixed;
-  top: 135px;
-  align-self: center;
+  align-self: anchor-center;
+  justify-self: anchor-center;
   display: flex;
   flex-direction: column !important;
-  align-self: center !important;
-  background-color: white;
+  background-color: var(--clr-white);
   border-radius: 30px;
   box-shadow: var(--shadow-barrasuperior);
-  z-index: 3;
+  z-index: 5;
   padding: 48px 40px !important;
   gap: 16px !important;
 }
@@ -536,7 +666,7 @@ button img {
 }
 
 .overview-btns button {
-  height: 100%; 
+  height: 100%;
   background-color: transparent;
   color: var(--clr-primary);
   gap: 8px;
@@ -580,24 +710,71 @@ button img {
 }
 
 .edit-task-overlay {
-  margin-left: 0 !important;
+  height: fit-content;
+  max-height: 800px;
+  align-items: center;
+  padding: 48px 40px 30px 40px !important;
 }
 
 .edit-task-overlay .title {
-  margin-top: 14px !important;
-  margin-right: 5px !important;
-  margin-left: 24px !important;
-  margin-bottom: 10px !important;
-  justify-content: flex-end !important;
+  padding: 0;
+  margin: 0 !important;
 }
 
 .edit-task-overlay #addTaskForm {
   margin: 0 !important;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  align-self: center;
   gap: 24px;
-  padding-bottom: 40px !important;
+  padding-bottom: 12px !important;
+  flex: 1;
+}
+
+.edit-task-overlay #addTaskAssignedToList {
+  display: flex;
+  flex-direction: row !important;
+}
+
+.edit-task-overlay .add-task-submit {
+  height: fit-content !important;
+  width: 100%;
+  margin: 0 !important;
+}
+
+.edit-task-overlay .add-task-alerts {
+  right: 140px;
+}
+
+.edit-task-overlay #addTaskSubmitBtns {
+  width: 100%;
+  margin: 0;
+  justify-content: flex-end;
+}
+
+.edit-task-overlay .submit-btns button {
+  width: 89px;
+  gap: 4px;
+  font-size: 21px;
+}
+
+.edit-task-overlay .submit-btns img {
+  height: 24px;
+  width: 24px;
+
+}
+
+.edit-task-overlay .subtask-scrollbar {
+  height: fit-content;
+  max-height: 160px;
+}
+
+.edit-task-overlay #addTaskDropdownContacts {
+  top: 426px !important;
+}
+
+.edit-task-overlay #addTaskDropdownCategories {
+  top: 502px !important; 
 }
 
 .edit-task-overlay .add-task-seperator,
@@ -617,4 +794,29 @@ button img {
   color: #a8a8a8;
   opacity: 1;
   transform: scale(1.4)
+}
+
+#addTaskOverlay,
+.edit-task-overlay {
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--clr-white);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    border: 5px solid var(--clr-white);
+    background: var(--clr-lighterGray);
+  }
+}
+
+.highlight-drop {
+  background-color: rgba(240, 240, 240, 0.8);
+  border: 2px dashed var(--clr-lightGray);
+  border-radius: 12px;
+  transition: background-color 0.2s ease;
+  height: auto;
+}
+
+.dragging {
+  opacity: 0.5;
+  transform: scale(1.05);
 }

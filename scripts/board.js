@@ -7,7 +7,7 @@ async function initBoard() {
   renderTasks();
   toggleMessageNoTasks();
 }
- 
+
 /**
  * This function clears each of the progress-catergories
  */
@@ -33,6 +33,7 @@ function renderTasks() {
       document.getElementById("prio" + indexTask).src = "";
     }
   }
+  renderDropdownAreas();
 }
 
 /** 
@@ -95,10 +96,34 @@ function displayAssignedContacts(indexTask) {
   if (assignedContacts !== undefined) {
     for (let indexAssignedContact = 0; indexAssignedContact < assignedContacts.length; indexAssignedContact++) {
       let indexContact = contacts.findIndex(index => index.name === assignedContacts[indexAssignedContact].name);
-      assignedContactsContentRef.innerHTML += getBoardContactPB(indexContact);
-      profileBadgeColor("boardAssignedToListPB" + indexContact, indexContact);
+      assignedContactsContentRef.innerHTML += getBoardContactPB(indexTask, indexContact);
+      profileBadgeColor(indexTask + "boardAssignedToListPB" + indexContact, indexContact);
     }
-  } 
+  }
+  shortAssignedToListBoard(indexTask)
+}
+
+/**
+ * This function checks the number of assigned to contacts for a task. If there are more than five contacts, only the first five are shown and the other ones are hidden.
+ * The user can see how many more contacts are assigned.
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function shortAssignedToListBoard(indexTask) {
+  let numberAssignedContacts = document.querySelectorAll(".assigned-contact-board" + indexTask);
+  document.getElementById("assignedContactsAdditionNumberBoard" + indexTask).innerHTML = (numberAssignedContacts.length - 5);
+  if (numberAssignedContacts.length > 5) {
+    for (let indexAssignedContact = 5; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+      numberAssignedContacts[indexAssignedContact].classList.add("d-none");
+    }
+    document.getElementById("assignedContactsAdditionBoard" + indexTask).classList.remove("d-none");
+
+  } else {
+    for (let indexAssignedContact = 0; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
+      numberAssignedContacts[indexAssignedContact].classList.remove("d-none");
+    }
+    document.getElementById("assignedContactsAdditionBoard" + indexTask).classList.add("d-none");
+  }
 }
 
 /**
@@ -126,6 +151,13 @@ function toggleMessageNoTasks() {
       noTaskMessagesContentRef.classList.add("d-none");
     }
   }
+}
+
+function renderDropdownAreas() {
+  document.getElementById("toDo").innerHTML += getBoardDropDownAreaTemplate("toDo");
+  document.getElementById("inProgress").innerHTML += getBoardDropDownAreaTemplate("inProgress");
+  document.getElementById("awaitFeedback").innerHTML += getBoardDropDownAreaTemplate("awaitFeedback");
+  document.getElementById("done").innerHTML += getBoardDropDownAreaTemplate("done");
 }
 
 /**
@@ -168,7 +200,7 @@ function displayFilteredTasks(searchInput) {
       }
     }
   }
-  if (document.querySelectorAll(".task-card").length == 0){
+  if (document.querySelectorAll(".task-card").length == 0) {
     document.getElementById("noResultSearchInput").classList.remove("d-none");
   }
 }
@@ -188,16 +220,29 @@ function filterTasks(searchInput) {
     } else {
       filteredTasks.push(0)
     }
-  } 
+  }
 }
 
 /**
- * Prevents the default behavior to allow dropping an element.
- * 
- * @param {DragEvent} event - The drag event.
+ * This function gives all dropdown-areas the "d-none"-class
  */
-function allowDrop(event) {
-  event.preventDefault();
+function hideDropdownAreas() {
+  document.getElementById("dropdownAreatoDo").classList.add("d-none");
+  document.getElementById("dropdownAreainProgress").classList.add("d-none");
+  document.getElementById("dropdownAreaawaitFeedback").classList.add("d-none");
+  document.getElementById("dropdownAreadone").classList.add("d-none");
+}
+
+/**
+ * shows the position, where the elemnt would be visible if the user drops it
+ * 
+ * @param {string} contentRefId - the id of the possible drop area
+ */
+function showDropdownArea(contentRefId) {
+  hideDropdownAreas();
+  let dropDownArea = document.getElementById("dropdownArea" + contentRefId);
+  dropDownArea.classList.remove("d-none");
+
 }
 
 /**
@@ -209,13 +254,16 @@ function drag(event) {
   event.dataTransfer.setData("text", event.target.id);
 }
 
+
 /**
  * Handles the drop event by moving the dragged task to a new column and updating its progress.
  * 
  * @param {DragEvent} event - The drop event.
- */ 
+ */
 function drop(event) {
   event.preventDefault();
+  event.stopPropagation();
+  hideDropdownAreas();
   let data = event.dataTransfer.getData("text");
   let draggedElement = document.getElementById(data);
   let dropContainer = event.target.closest(".board-tasks-list");
@@ -224,7 +272,6 @@ function drop(event) {
     updateTaskProgress(dropContainer.id, indexTask);
     dropContainer.innerHTML += draggedElement.outerHTML;
     draggedElement.remove();
-    toggleMessageNoTasks();
   }
 }
 
@@ -235,10 +282,12 @@ function drop(event) {
  * @param {string} progress - the progress of the task (toDo, inProgress, awaitFeedback, done)
  * @param {number} indexTask - the index of the task in the tasks-array
  */
-function updateTaskProgress(progress, indexTask) {
+async function updateTaskProgress(progress, indexTask) {
   if (tasks[indexTask].progress !== progress) {
-    putData("/tasks/" + tasks[indexTask].url + "/progress", {
+    await putData("/tasks/" + tasks[indexTask].url + "/progress", {
       "progress": progress
     });
+    initBoard();
+    toggleMessageNoTasks();
   }
 }

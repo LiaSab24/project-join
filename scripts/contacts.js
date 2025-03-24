@@ -21,16 +21,24 @@ function adjustToWindowSize() {
         if (window.innerWidth <= 900) {
             document.getElementById("addNewContactBtnDesktop").classList.add("d-none");
             document.getElementById("addNewContactBtnMobile").classList.remove("d-none");
-        }
-        else {
+            document.getElementById("contactFocus").style.display = "none";
+            document.getElementById("addresbookHideMobile").classList.remove("d-none");
+        } else {
             document.getElementById("addNewContactBtnDesktop").classList.remove("d-none")
             document.getElementById("addNewContactBtnMobile").classList.add("d-none");
+            document.getElementById("arrowBackwardsMobile").classList.remove("d-none");
+            if (document.getElementById("contactFocus").style.display = "flex") {
+                document.getElementById("contactFocus").style.display = "none";
+                document.getElementById("addresbookHideMobile").classList.remove("d-none");
+                document.getElementById("btnsMenuMobile").classList.add("d-none");
+            }
         }
     } else {
         document.getElementById("addresbookHideMobile").classList.remove("d-none");
         document.getElementById("arrowBackwardsMobile").classList.add("d-none");
         document.getElementById("addNewContactBtnMobile").classList.add("d-none");
         document.getElementById("btnsMenuMobile").classList.add("d-none");
+        document.getElementById("contactFocus").style.display = "flex";
     }
 }
 
@@ -80,7 +88,12 @@ function clearActiveContacts() {
  */
 function openContactsOverlay() {
     document.getElementById("overlayBg").classList.remove("d-none");
+    document.getElementById("overlayContact").classList.add("animation-open-overlay");
+    document.getElementById("overlayContact").classList.remove("animation-close-overlay");
     document.getElementById("overlayContact").classList.remove("d-none");
+    setTimeout(function () {
+        document.getElementById("overlayContact").classList.remove("animation-open-overlay");
+    }, 2400);
 }
 
 /**
@@ -88,12 +101,15 @@ function openContactsOverlay() {
  */
 function closeContactsOverlay() {
     document.getElementById("menuEditDeleteMobile").classList.add("d-none")
-    document.getElementById("overlayBg").classList.remove("animation-open-overlay");
-    document.getElementById("overlayContact").classList.remove("animation-close-overlay");
+    document.getElementById("overlayContact").classList.add("animation-close-overlay");
+    document.getElementById("overlayContact").classList.remove("animation-open-overlay");
     setTimeout(function () {
         document.getElementById("overlayContact").classList.add("d-none");
         document.getElementById("overlayBg").classList.add("d-none");
-    }, 300);
+    }, 250);
+    setTimeout(function () {
+        document.getElementById("overlayContact").classList.remove("animation-close-overlay");
+    }, 2400);
     clearContactForm();
 }
 
@@ -138,19 +154,19 @@ function clearContactForm() {
  * This function reads out the data of the add-contact-form and sends it to firebase to add a new contact
  */
 async function addContact() {
-    let contactName = document.getElementById("addContactName").value;
-    let contactMail = document.getElementById("addContactMail").value;
-    let contactPhone = document.getElementById("addContactPhone").value;
+    let contactName = validateNameInput("addContactName");
+    let contactMail = validateMailInput("addContactMail");
+    let contactPhone = document.getElementById("addContactPhone").value.trim();
     let indexContact = contacts.length + 1;
     if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
         let contactColor = await assignRandomColor(indexContact);
-        postData("/contacts/", {
+        await postData("/contacts/", {
             "name": contactName,
             "mail": contactMail,
             "phone": contactPhone,
             "color": contactColor
         });
-        toggleContactsOverlay();
+        closeContactsOverlay();
         successfullMsg("contactSuccesfullyCreated");
         initContacts();
     } else {
@@ -158,7 +174,13 @@ async function addContact() {
         checkFilledInput("addContactMail");
         checkFilledInput("addContactPhone")
     }
-} 
+    if (contactPhone == "") {
+        document.getElementById("alertPhone").classList.remove("invisible");
+        setTimeout(function () {
+            document.getElementById("alertPhone").classList.add("invisible");
+        }, 2400);
+    }
+}
 
 /**
  * This function redirects to different functions that are used to display the clicked contact 
@@ -193,8 +215,7 @@ function mobileArrowBackwards() {
  * This function toggles the visibilty of the delete-/edit-contact-menu for mobile
  */
 function toggleEditDeleteMenuMobile() {
-    document.getElementById("overlayBg").classList.remove("d-none")
-    document.getElementById("menuEditDeleteMobile").classList.remove("d-none")
+    document.getElementById("menuEditDeleteMobile").classList.toggle("d-none");
 }
 
 /**
@@ -206,7 +227,7 @@ function highlightContact(indexContact) {
     document.getElementById("id" + indexContact).classList.add("contact-clicked");
 }
 
-/**
+/** 
  * This function shows the clicked contact in a large view
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
@@ -230,10 +251,10 @@ function updateFocusedContact(indexContact) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 async function saveEditContact(indexContact) {
+    let contactName = validateNameInput("addContactName");
+    let contactMail = validateMailInput("addContactMail");
+    let contactPhone = document.getElementById("addContactPhone").value.trim();
     if (indexContact !== indexContactUser) {
-        let contactName = document.getElementById("addContactName").value;
-        let contactMail = document.getElementById("addContactMail").value;
-        let contactPhone = document.getElementById("addContactPhone").value;
         let contactColor = contacts[indexContact].color;
         if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
             await putData("/contacts/" + contacts[indexContact].url, {
@@ -244,7 +265,7 @@ async function saveEditContact(indexContact) {
             });
             contactClicked(indexContact);
             successfullMsg("contactSuccesfullyEdited");
-            toggleContactsOverlay();
+            closeContactsOverlay();
             initContacts();
         } else {
             checkFilledInput("addContactName");
@@ -254,15 +275,21 @@ async function saveEditContact(indexContact) {
     } else {
         saveEditContactUser()
     }
+    if (contactPhone == "") {
+        document.getElementById("alertPhone").classList.remove("invisible");
+        setTimeout(function () {
+            document.getElementById("alertPhone").classList.add("invisible");
+        }, 2400);
+    }
 }
 
 /**
  * This function reads out the data of the add-contact-form for the edit-overlay and sends it to firebase to replace the previous data (for users and contacts)
  */
 async function saveEditContactUser() {
-    let userName = document.getElementById("addContactName").value;
-    let userMail = document.getElementById("addContactMail").value;
-    let userPhone = document.getElementById("addContactPhone").value;
+    let userName = validateNameInput("addContactName");
+    let userMail = validateMailInput("addContactMail");
+    let userPhone = document.getElementById("addContactPhone").value.trim();
     let userPassword = users[currentUser].password;
     let userColor = contacts[indexContactUser].color;
     if (userName !== "" && userMail !== "" && userPhone !== "") {
@@ -283,12 +310,18 @@ async function saveEditContactUser() {
         });
         contactClicked(indexContactUser);
         successfullMsg("contactSuccesfullyEdited");
-        toggleContactsOverlay();
+        closeContactsOverlay();
         initContacts();
     } else {
         checkFilledInput("addContactName");
         checkFilledInput("addContactMail");
         checkFilledInput("addContactPhone")
+    }
+    if (userPhone == "") {
+        document.getElementById("alertPhone").classList.remove("invisible");
+        setTimeout(function () {
+            document.getElementById("alertPhone").classList.add("invisible");
+        }, 2400);
     }
 }
 
@@ -298,9 +331,39 @@ async function saveEditContactUser() {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 async function deleteContact(indexContact) {
-    console.log("/contacts/" + contacts[indexContact].url)
     await deleteData("/contacts/" + contacts[indexContact].url);
     successfullMsg("contactSuccesfullyDeleted");
     document.getElementById("focusedContactInformation").innerHTML = "";
     initContacts();
-} 
+    if (window.innerWidth <= 1000) {
+        mobileArrowBackwards();
+    }
+}
+
+/**
+ * This function checks if the pressed key is a N umber and returns it if true.
+ * Like this, only numbers (and "+") are valide inputs
+ */
+function onlyAllowNumbers(event) {
+    if (!isNaN(event.key) || event.key == "Backspace") {
+        return event.key;
+    } else if (event.key == "+" && document.getElementById("addContactPhone").value.includes("+") == false) {
+        return event.key;
+    } else {
+        event.preventDefault()
+    }
+}
+
+/**
+ * This function checks if the pressed key is a not space and returns it if true.
+ * Furthermore it only returns '@' if the input does not already contain it.
+ */
+function onlyAllowMailAddress(event) {
+    if (event.key == " ") {
+        event.preventDefault();
+    } else if (event.key == "@" && document.getElementById("addContactMail").value.includes("@")) {
+        event.preventDefault();
+    } else {
+        return event.key;
+    }
+}
