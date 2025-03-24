@@ -365,8 +365,10 @@ function addTask() {
             addOnclickToCreateBtn();
         } else {
             document.getElementById("addTaskCategory").classList.remove("requirement-unfulfilled");
-            initAddTask();
             successfullMsg("addTaskTaskSuccesfullyCreated");
+            setTimeout(function () {
+                window.location.href = "./board.html";
+            }, 1600);
         }
     } else {
         checkFilledInput("addTaskTitle");
