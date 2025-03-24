@@ -1,4 +1,4 @@
-const addressBookContentRef = document.getElementsByClassName("contactsLetter");
+const addressBookContentRef = document.getElementsByClassName("contacts-letter");
 
 /**
  * This function is the inital function, when contacts.html is loading and executes the init()-function and furher necessary contacts-functions
