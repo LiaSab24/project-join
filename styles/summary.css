@@ -1,9 +1,6 @@
 main {
   max-width: 1208px;
   overflow-y: auto;
-  @media(max-width: 900px) {
-    margin: 0;
-  }
 }
 
 .responsive-margin {
@@ -56,6 +53,7 @@ main {
 }
 
 
+
 .title-seperator {
   height: 59px;
   width: 3px;
@@ -85,6 +83,7 @@ main {
   @media(max-width: 1400px) {
     margin-left: 48px;
   }
+
   @media(max-width: 1100px) {
     margin-right: 30px;
     margin-left: 28px;
@@ -102,7 +101,13 @@ main {
     width: 396px;
     height: 384px;
   }
+
+  @media(max-width: 500px) {
+    height: 310px;
+    width: 310px;
+  }
 }
+
 
 .summary-container {
   height: 168px;
