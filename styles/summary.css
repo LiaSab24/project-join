@@ -1,7 +1,9 @@
 main {
-  max-width: 1440px;
-  padding-top: 64px;
+  margin-top: 64px;
+  padding-left: 96px;
+  padding-bottom: 64px;
 }
+
 
 .responsive-text {
   font-size: clamp(18px, 3vw, 27px);
@@ -41,11 +43,14 @@ main {
 }
 
 .summary-content {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 64px;
-  padding-top: 64px;
 }
+
 
 .summary-overview {
   display: flex;
@@ -269,6 +274,39 @@ main {
   min-width: 250px;
   white-space: nowrap;
   word-break: break-word;
+  z-index: 1;
+
+  @media(max-width: 1400px) {
+    width: fit-content;
+    margin-left: 40px;
+    justify-content: center;
+  }
+  @media(max-width: 1100px) {
+    margin-left: 20px;
+  }
+  @media(max-width: 1000px) {
+    position: fixed;
+    top: 96px;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding-right: 232px;
+    padding-bottom: 232px;
+    background-color: #f6f7f8;
+    align-items: center;
+    opacity: 0;
+    animation-name: greeting;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    pointer-events: all;
+  }
+  @media(max-width: 900px) {
+    height: auto;
+    top: 80px;
+    bottom: 80px;
+    padding: 0;
+  }
 }
 
 @keyframes greeting {
@@ -278,19 +316,13 @@ main {
 }
 
 .greeting-daytime {
+  font-size: clamp(28px, 4vw, 40px);
   font-weight: 500;
-  font-size: var(--fs-47-36);
-  color: var(--clr-primary);
-  white-space: nowrap;
-
-  @media(max-width: 1300px) {
-    white-space: break-spaces;
-  }
 }
 
 .greeting-username {
-  font-size: clamp(24px, 5vw, 47px);
-  line-height: 1.2;
+  font-size: clamp(40px, 7vw, 72px);
+  font-weight: var(--fw-700);
   color: var(--clr-lightBlue);
   white-space: normal;
   word-break: break-word;
