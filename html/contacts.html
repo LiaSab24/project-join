@@ -27,7 +27,7 @@
 
     <main class="flex">
         <section id="addresbookHideMobile" class="address-book custom-scrollbar flex align-center">
-            <div id="addNewContactBtnDesktop" class="add-new-contact flex align-center just-center">
+            <div class="add-new-contact flex align-center just-center">
                 <button onclick="openContactsOverlay(); adjustOverlayToAdd()"
                     class="blue-btn flex align-center just-center">
                     <span>Add new contact</span>
@@ -194,15 +194,17 @@
         </section>
 
         <section id="contactFocus" class="contact-focus flex">
-            <div class="title flex align-center">
-                <h1>Contacts</h1>
-                <div class="title-seperator"></div>
-                <p>Better with a team</p>
-                <img id="arrowBackwardsMobile" class="d-none" onclick="mobileArrowBackwards()"
-                    src="../assets/img/arrow-left-line.png">
+            <div class="flex just-space-b">
+                <div class="title flex align-center">
+                    <h1>Contacts</h1>
+                    <div class="title-seperator"></div>
+                    <p>Better with a team</p>
+                </div>
+                <img id="arrowBackwardsMobile" class="arrow-backwards-mobile" onclick="mobileArrowBackwards()"
+                        src="../assets/img/arrow-left-line.png">
             </div>
-
-            <div id="focusedContactInformation" class="animation-focused-contact"></div>
+            
+            <div id="focusedContactInformation"></div>
         </section>
     </main>
 
@@ -270,18 +272,20 @@
         </section>
     </section>
 
-    <section id="addNewContactBtnMobile" class="add-new-contact d-none">
-        <button onclick="openContactsOverlay(), adjustOverlayToAdd()">
+    <section onclick="closeContactsOverlay()" id="overlayInvisible" class="overlay overlay-invisible d-none"></section>
+
+    <section id="btnsMenuMobile" class="contact-btn-mobile">
+        <button onclick="toggleEditDeleteMenuMobile()" class="blue-btn flex just-center">
+            <img src="../assets/icons/btns-menu-mobile.svg" alt="edit/delete contact">
+        </button>
+        <div id="menuEditDeleteMobile" class="contact-edit-delete-menu-mobile focused-profile-btns d-none"></div>
+    </section>
+
+    <section id="addNewContactBtnMobile" class="contact-btn-mobile">
+        <button onclick="openContactsOverlay(), adjustOverlayToAdd()" class="blue-btn flex just-center">
             <img src="../assets/icons/contacts-add.svg" alt="add contact">
         </button>
     </section>
-    <section id="btnsMenuMobile" class="add-new-contact d-none">
-        <button onclick="toggleEditDeleteMenuMobile()">
-            <img src="../assets/icons/btns-menu-mobile.svg" alt="edit/delete contact">
-        </button>
-        <div id="menuEditDeleteMobile" class="d-none"></div>
-    </section>
-
 
     <section class="messages">
         <div id="contactSuccesfullyCreated" class="succesfull-msg">

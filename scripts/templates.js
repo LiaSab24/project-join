@@ -277,11 +277,11 @@ function getFocusedContactTemplate(indexContact) {
             </div>
             <div class="focused-profile-information">
                 <p>Contact Information</p>
-                <div>
+                <div class="flex just-space-b">
                     <span class="contact-opportunity">Email</span>
                     <span class="contact-mail">${contacts[indexContact].mail}</span>
                 </div>
-                <div>
+                <div class="flex just-space-b">
                     <span class="contact-opportunity">Phone</span>
                     <span>${contacts[indexContact].phone}</span>
                 </div>
@@ -292,7 +292,7 @@ function getFocusedContactTemplate(indexContact) {
  * This template creates the two necessary buttons for the contacts-overlay 'Add contact'
  */
 function getContactsOverlayAddBtnsTemplate() {
-    return `<button onclick="clearContactForm(); return false" class="white-btn" id="contactsOverlayCancel">
+    return `<button onclick="clearContactForm(); return false" class="white-btn cancel-btn-hide-mobile" id="contactsOverlayCancel">
                 Cancel
                 <div class="cancel-btn-icon"></div>
             </button>
@@ -300,7 +300,7 @@ function getContactsOverlayAddBtnsTemplate() {
                 class="blue-btn">
                 Create Contact
                 <img src="../assets/icons/create-btn.svg">
-            </button>`
+            </button>` 
 }
 
 /**
@@ -325,13 +325,13 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function getbtnsMenuMobileTemplate(indexContact) {
+function getMenuMobileTemplate(indexContact) {
     return `<button onclick="openContactsOverlay(), adjustOverlayToEdit(${indexContact}), toggleEditDeleteMenuMobile()" class="focused-contact-btns">
-                <div id="contactsEditIcon"></div>
+                <div id="contactsEditIcon" class="focused-profile-btn-icon contacts-edit-icon"></div>
                 <span>Edit</span>
             </button>
             <button id="deleteBtnContacts" onclick="deleteContact(${indexContact}), toggleEditDeleteMenuMobile()" class="focused-contact-btns">
-                <div id="contactsDeleteIcon"></div>
+                <div id="contactsDeleteIcon" class="focused-profile-btn-icon contacts-delete-icon"></div>
                 <span>Delete</span>
             </button>`
 }

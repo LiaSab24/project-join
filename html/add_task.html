@@ -53,7 +53,8 @@
                     </div>
                     <div class="assigned-to flex align-center just-start">
                         <div id="addTaskAssignedToList" class="flex"></div>
-                        <div id="assignedContactsAddition" class="profile-badge d-none flex">+<p id="assignedContactsAdditionNumber">0</p>
+                        <div id="assignedContactsAddition" class="profile-badge d-none flex">+<p
+                                id="assignedContactsAdditionNumber">0</p>
                         </div>
                     </div>
                 </div>
@@ -70,11 +71,13 @@
 
                     <label for="addTaskPriorities">Prio</label>
                     <div id="addTaskPriorities" class="flex just-space-b">
-                        <div id="prioUrgent" onclick="priorityBtnBg('prioUrgent')" class="flex align-center just-center">
+                        <div id="prioUrgent" onclick="priorityBtnBg('prioUrgent')"
+                            class="flex align-center just-center">
                             Urgent
                             <img id="prioUrgentImg" src="../assets/icons/prioUrgent.svg">
                         </div>
-                        <div id="prioMedium" onclick="priorityBtnBg('prioMedium')" class="flex align-center just-center">
+                        <div id="prioMedium" onclick="priorityBtnBg('prioMedium')"
+                            class="flex align-center just-center">
                             Medium
                             <img id="prioMediumImg" src="../assets/icons/prioMedium.svg">
                         </div>
@@ -102,23 +105,23 @@
                             <div onclick="selectTaskCategory('User Story')"
                                 class="add-task-dropdown-option flex align-center just-space-b">User Story</div>
                         </div>
-                    </div> 
+                    </div>
 
-                <label id="subtaskLabel" for="addTaskSubtask">Subtasks</label>
-                <input onfocus="changeSubtaskIcons()" onfocusout="changeSubtaskIcons()" type="text" id="addTaskSubtask"
-                    placeholder="Add new subtask">
-                <img id="subtaskIconAdd" class="subtask-icon" src="../assets/icons/add-task-subtask-add.svg">
-                <div id="subtaskIconsFocus" class="d-none">
-                    <img onclick="clearSubtasksInput()" class="subtask-icon"
-                        src="../assets/icons/add-task-subtask-reject.svg">
-                    <img onclick="addSubtaskToList()" class="subtask-icon"
-                        src="../assets/icons/add-task-subtask-submit.svg">
+                    <label id="subtaskLabel" for="addTaskSubtask">Subtasks</label>
+                    <input onfocus="changeSubtaskIcons()" onfocusout="changeSubtaskIcons()" type="text"
+                        id="addTaskSubtask" placeholder="Add new subtask">
+                    <img id="subtaskIconAdd" class="subtask-icon" src="../assets/icons/add-task-subtask-add.svg">
+                    <div id="subtaskIconsFocus" class="d-none">
+                        <img onclick="clearSubtasksInput()" class="subtask-icon"
+                            src="../assets/icons/add-task-subtask-reject.svg">
+                        <img onclick="addSubtaskToList()" class="subtask-icon"
+                            src="../assets/icons/add-task-subtask-submit.svg">
+                    </div>
+                    <div class="subtask-scrollbar">
+                        <ul id="addTaskSubtaskList" class="flex"></ul>
+                    </div>
                 </div>
-                <div class="subtask-scrollbar">
-                    <ul id="addTaskSubtaskList" class="flex"></ul>
-                </div>
-            </div>
-        </form>
+            </form>
 
             <div id="addTaskSubmit" class="add-task-submit">
                 <div class="add-task-requirements">
@@ -126,23 +129,23 @@
                     <p>This field is required</p>
                 </div>
 
-            <div id="addTaskSubmitBtns" class="submit-btns">
-                <div class="add-task-alerts flex">
-                    <span id="alertAddTask" class="input-error invisible">Please fill in the required inputs</span>
+                <div id="addTaskSubmitBtns" class="submit-btns">
+                    <div class="add-task-alerts flex">
+                        <span id="alertAddTask" class="input-error invisible">Please fill in the required inputs</span>
+                    </div>
+
+                    <button onclick="initAddTask()" class="cancel-btn" id="addTaskCancel">
+                        Cancel
+                        <div class="cancel-img"></div>
+                    </button>
+                    <button onclick="addTask()" class="create-btn progress-toDo" id="addTaskCreate">
+                        Create Task
+                        <img src="../assets/icons/create-btn.svg">
+                    </button>
                 </div>
-
-                <button onclick="initAddTask()" class="cancel-btn" id="addTaskCancel">
-                    Cancel
-                    <div class="cancel-img"></div>
-                </button>
-                <button onclick="addTask()" class="create-btn progress-toDo" id="addTaskCreate">
-                    Create Task
-                    <img src="../assets/icons/create-btn.svg">
-                </button>
             </div>
-        </div>
 
-            <div onclick="removeAddTaskOverlay()" id="addTaskOverlayBg" class="d-none"></div>
+            <section onclick="removeAddTaskOverlay()" id="addTaskOverlayBg" class="d-none"></section>
 
             <section onclick="toggleSubmenu()" id="submenuOverlay" class="d-none">
                 <div id="submenu" class="submenu" onclick="event.stopImmediatePropagation()">
@@ -156,9 +159,9 @@
     </main>
     <section class="messages">
         <div id="addTaskTaskSuccesfullyCreated" class="succesfull-msg">
-          <span>Task succesfully created</span>
+            <span>Task succesfully created</span>
         </div>
-      </section>
+    </section>
     <script>includeHTML();</script>
 </body>
 
