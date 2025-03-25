@@ -1,9 +1,6 @@
 main {
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: clamp(12px, 5vw, 96px);
-  padding-block: 64px;
-  overflow-y: auto;
+  max-width: 1440px;
+  padding-top: 64px;
 }
 
 .responsive-text {
@@ -32,8 +29,9 @@ main {
 }
 
 .title-seperator {
-  height: clamp(3px, 5vw, 59px);
-  width: clamp(3px, 5vw, 3px);
+  height: 59px;
+  width: 3px;
+  background-color: var(--clr-lightBlue);
 }
 
 .title p {
@@ -43,11 +41,10 @@ main {
 }
 
 .summary-content {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 64px;
+  padding-top: 64px;
 }
 
 .summary-overview {
@@ -267,7 +264,6 @@ main {
 .summary-greeting {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   justify-content: center;
   flex: 1;
   min-width: 250px;
