@@ -316,20 +316,19 @@ main {
 }
 
 .summary-greeting {
-  width: 385px;
+
   display: flex;
   flex-direction: column;
   gap: 3px;
   z-index: 1;
+  padding: 40px;
+  white-space: nowrap;
 
   @media(max-width: 1400px) {
     width: fit-content;
-    margin-left: 40px;
     justify-content: center;
   }
-  @media(max-width: 1100px) {
-    margin-left: 20px;
-  }
+
   @media(max-width: 1000px) {
     position: fixed;
     top: 96px;
@@ -364,7 +363,6 @@ main {
 .greeting-daytime {
   font-weight: 500;
   font-size: var(--fs-47-36);
-  line-height: 56.4px;
   color: var(--clr-primary);
 
   @media(max-width: 1300px) {
@@ -375,7 +373,6 @@ main {
 .greeting-username{
   font-weight: 700;
   font-size: var(--fs-64-47);
-  line-height: 76.8px;
   color: var(--clr-lightBlue);
   @media(max-width: 1400px) {
     overflow: hidden;
