@@ -191,11 +191,12 @@ main {
 
 .to-dos div {
   width: 264px;
-  gap: 18px;
+
   @media(max-width: 1300px) {
     gap: 10px;
     width: 186px;
   }
+
   @media(max-width: 500px) {
     gap: 6px;
     width: 145px;
@@ -248,8 +249,6 @@ main {
 
 
 .deadline-urgent p {
-  display: flex;
-  flex-direction: column;
   @media(max-width: 500px) {
     transform: scale(0.8);
   }
@@ -327,9 +326,11 @@ main {
     margin-left: 40px;
     justify-content: center;
   }
+
   @media(max-width: 1100px) {
     margin-left: 20px;
   }
+
   @media(max-width: 1000px) {
     position: fixed;
     top: 96px;
@@ -347,6 +348,7 @@ main {
     animation-iteration-count: 1;
     pointer-events: all;
   }
+
   @media(max-width: 900px) {
     height: auto;
     top: 80px;
@@ -361,7 +363,7 @@ main {
   100% {opacity: 0%; pointer-events: none;}
 }
 
-#greetingDaytime {
+.greeting-daytime {
   font-weight: 500;
   font-size: var(--fs-47-36);
   line-height: 56.4px;
@@ -372,15 +374,17 @@ main {
   }
 }
 
-#userName {
+.greeting-username {
   font-weight: 700;
   font-size: var(--fs-64-47);
   line-height: 76.8px;
   color: var(--clr-lightBlue);
+
   @media(max-width: 1400px) {
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   @media(max-width: 1000px) {
     max-width: 100%;
     padding: 0 24px;
