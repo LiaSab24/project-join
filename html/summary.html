@@ -25,26 +25,26 @@
   <div w3-include-html="header.html"></div>
   <div w3-include-html="sidebar.html"></div>
  
-  <main>  
-    <section class="title">
+  <main class="responsive-margin">  
+    <section class="title responsive-margin">
       <h1>Join 360</h1>  
       <div class="title-seperator"></div>
       <p>Key Metrics at a Glance</p>
       <div class="responsive-title-seperator"></div>
     </section>
 
-    <section class="summary-content flex align-center">
-      <div class="summary-overview flex">
+    <section class="summary-content flex align-center responsive-margin">
+      <div class="summary-overview flex responsive-margin">
         <div class="to-dos">
           <div onclick="redirectionToBoard()" class="summary-container flex just-center align-center">
-            <div id="summaryIconToDo"></div>
+            <div id="summaryIconToDo" class="summary-icons summary-icon--todo"></div>
             <p>
               <span id="counterTasksToDo" class="summary-number">0</span>
               <span class="number-explanation">To-Do</span>
             </p>
           </div>
           <div onclick="redirectionToBoard()" class="summary-container flex just-center align-center">
-            <div id="summaryIconDone"></div>
+            <div id="summaryIconDone" class="summary-icons summary-icon--done"></div>
             <p>
               <span id="counterTasksDone" class="summary-number">0</span>
               <span class="number-explanation">Done</span>
@@ -93,8 +93,8 @@
       </div>
 
       <div id="summaryGreeting" class="summary-greeting flex">
-        <p id="greetingDaytime"></p>
-        <p id="userName"></p>
+        <p id="greetingDaytime" class="greeting-daytime"></p>
+        <p id="userName" class="greeting-username"></p>
       </div>
     </section>
   </main>
