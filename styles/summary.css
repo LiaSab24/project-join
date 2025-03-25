@@ -74,6 +74,22 @@ main {
   }
 }
 
+.summary-icon--todo,
+.summary-icon--done,
+.deadline-urgent img {
+  height: 70px;
+  width: 70px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* .to-dos {
+  height: 70px;
+  width: 70px;
+  background-repeat: no-repeat;
+  background-size: contain;
+} */
+
 #summaryIconToDo,
 #summaryIconDone,
 .deadline-urgent img {
