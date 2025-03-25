@@ -73,6 +73,15 @@ main {
     height: 90px;
   }
 }
+/* 
+.summary-icon--todo,
+.summary-icon--done,
+.deadline-urgent img {
+  height: 70px;
+  width: 70px;
+  background-repeat: no-repeat;
+  background-size: contain;
+} */
 
 .summary-icon--todo,
 .summary-icon--done,
@@ -81,15 +90,18 @@ main {
   width: 70px;
   background-repeat: no-repeat;
   background-size: contain;
+
+  @media(max-width: 1300px) {
+    height: 40px;
+    width: 40px;
+  }
+  
+  @media(max-width: 500px) {
+    height: 32px;
+    width: 32px;
+  }
 }
-
-/* .to-dos {
-  height: 70px;
-  width: 70px;
-  background-repeat: no-repeat;
-  background-size: contain;
-} */
-
+/* 
 #summaryIconToDo,
 #summaryIconDone,
 .deadline-urgent img {
@@ -107,7 +119,7 @@ main {
     height: 32px;
     width: 32px;
   }
-}
+} */
 
 .summary-icon--todo {
   background-image: url("../assets/icons/summary-todo.svg");
