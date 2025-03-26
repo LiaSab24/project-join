@@ -21,9 +21,11 @@ function adjustToWindowSize() {
         if (document.querySelector('.contact-clicked')) {
             document.getElementById("addresbookHideMobile").classList.add("d-none");
             document.getElementById("contactFocus").style.display = "flex";
+            document.getElementById("btnsMenuMobile").classList.remove("d-none");
         } else {
             document.getElementById("addresbookHideMobile").classList.remove("d-none");
             document.getElementById("contactFocus").style.display = "none";
+            document.getElementById("btnsMenuMobile").classList.add("d-none");s
         }
     } else {
         document.getElementById("addresbookHideMobile").classList.remove("d-none");
@@ -178,7 +180,7 @@ async function addContact() {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function contactClicked(indexContact) {
-    if (window.innerWidth <= 1000) {
+    if (window.innerWidth <= 900) {
         document.getElementById("addresbookHideMobile").classList.add("d-none");
         document.getElementById("contactFocus").style.display = "flex";
         document.getElementById("addNewContactBtnMobile").classList.add("d-none");

@@ -307,12 +307,19 @@ main {
 }
 
 .overlay-contact {
+    height: 100vh;
+    max-height: 596px;
     position: fixed;
     top: 50%;
     left: 50%;
     display: flex;
     transform: translate(-50%, -50%);
     animation-duration: 300ms;
+    overflow-y: scroll;
+}
+
+.overlay-contact::-webkit-scrollbar {
+    display: none;
 }
 
 .overlay-title {
@@ -348,6 +355,11 @@ main {
     border-bottom-right-radius: 30px;
     flex-direction: column;
     background-color: var(--clr-white);
+
+    .overlay-close {
+        height: 32px;
+        width: 32px;
+    }
 
     .overlay-contact-inputs {
         .profile-badge {
@@ -431,46 +443,6 @@ main {
     }
 }
 
-/* .contact-succesfull-msg {
-    width: 326px;
-    height: 74px;
-    border-radius: 20px;
-    position: relative;
-    top: -200px;
-    right: -100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--clr-primary);
-    box-shadow: 0px 0px 4px 0px #00000026;
-    color: var(--clr-white);
-    font-weight: var(--fw-400);
-    font-size: var(--fs-20);
-    line-height: 24px;
-}
-
-@keyframes contactSuccesfull {
-    0% {
-        top: -200px;
-        right: -100%;
-    }
-
-    25% {
-        top: -200px;
-        right: -800px;
-    }
-
-    75% {
-        top: -200px;
-        right: -800px;
-    }
-
-    100% {
-        top: -200px;
-        right: -100%;
-    }
-} */
-
 @media (min-width: 901px) {
 
     .contact-btn-mobile,
@@ -521,6 +493,99 @@ main {
         .focused-profile-badge {
             height: 100px;
             width: 100px;
+        }
+    }
+
+    .overlay-contact {
+        height: 100vh;
+        max-height: 760px;
+        width: 396px;
+        flex-direction: column;
+    }
+
+    .overlay-title {
+        min-height: 352px;
+        width: 100%;
+        padding: 66px 24px;
+        border-top-right-radius: 30px;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 0;
+        flex-direction: column;
+
+        .overlay-join-logo {
+            display: none;
+        }
+    }
+
+    .overlay-contact-information {
+        min-height: 408px;
+        width: 100%;
+        padding: 60px 16px 62px 16px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 30px;
+        border-bottom-left-radius: 30px;
+
+        .overlay-close {
+            filter: invert(1);
+            position: sticky;
+
+            img {
+                position: relative;
+                bottom: 392px;
+            }
+        }
+
+        .overlay-contact-inputs {
+            justify-content: center;
+            flex-direction: column;
+
+            .profile-badge {
+                height: 0;
+                width: 100%;
+                justify-content: flex-start;
+
+                div {
+                    height: 120px;
+                    width: 120px;
+                    position: relative;
+                    top: calc(50% - 28px);
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    justify-content: center;
+                }
+            }
+
+            .overlay-form {
+                padding: 0;
+                gap: 15px;
+                flex-direction: column;
+
+                .overlay-input {
+                    input {
+                        height: 41px;
+                        width: 100%;
+                        max-width: 364px;
+                    }
+
+                    .overlay-input-icon img {
+                        height: 41px;
+                    }
+                }
+
+                .contact-submit-btns {
+                    padding: 32px 0 0 0;
+                    gap: 20px;
+                    justify-content: center;
+
+                    button {
+                        padding: 18px 10px;
+                    }
+                }
+
+                .cancel-btn-hide-mobile {
+                    display: none;
+                }
+            }
         }
     }
 }
@@ -581,81 +646,6 @@ main {
     .focused-profile-information {
         padding-top: 0px;
     }
-
-    .overlay-contact {
-        width: 396px;
-        flex-direction: column;
-    }
-
-    .overlay-title {
-        height: 352px;
-        width: 100%;
-        padding: 66px 24px;
-        border-top-right-radius: 30px;
-        border-top-left-radius: 30px;
-        border-bottom-left-radius: 0;
-        flex-direction: column;
-
-        .overlay-join-logo {
-            display: none;
-        }
-    }
-
-    .overlay-contact-information {
-        height: 408px;
-        width: 100%;
-        padding: 93px 16px 62px 16px;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 30px;
-        border-bottom-left-radius: 30px;
-
-        .overlay-contact-inputs {
-            justify-content: center;
-            .profile-badge {
-                height: 0;
-                width: 0;
-
-                div {
-                    height: 120px;
-                    width: 120px;
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                }
-            }
-
-            .overlay-form {
-                padding: 0;
-                gap: 24px;
-                flex-direction: column;
-
-                .overlay-input {
-                    input {
-                        height: 41px;
-                        width: 100%;
-                        max-width: 364px;
-                    }
-
-                    .overlay-input-icon img {
-                        height: 41px;
-                    }
-                }
-
-                .contact-submit-btns {
-                    gap: 20px;
-                    justify-content: center;
-
-                    button {
-                        padding: 18px 10px;
-                    }
-                }
-                .cancel-btn-hide-mobile {
-                    display: none;
-                }
-            }
-        }
-    }
 }
 
 @media (max-width: 500px) {
@@ -689,4 +679,59 @@ main {
         text-overflow: ellipsis;
     }
 
+    .overlay-contact {
+        height: 100vh;
+        max-height: 643px;
+        width: 290px;
+    }
+
+    .overlay-title {
+        min-height: auto;
+        width: 100%;
+        padding: 56px 20px;
+    }
+
+    .overlay-contact-information {
+        min-height: auto;
+        width: 100%;
+        padding: 40px 12px;
+
+        .overlay-close {
+            img {
+                bottom: 325px;
+            }
+        }
+
+        .overlay-contact-inputs {
+            .profile-badge {
+                div {
+                    height: 100px;
+                    width: 100px;
+                    top: calc(50% - 20px);
+                }
+            }
+
+            .overlay-form {
+                gap: 12px;
+
+                .overlay-input {
+                    input {
+                        height: 36px;
+                    }
+
+                    .overlay-input-icon img {
+                        height: 36px;
+                    }
+                }
+
+                .contact-submit-btns {
+                    padding: 24px 0 0 0;
+
+                    button {
+                        padding: 14px 10px;
+                    }
+                }
+            }
+        }
+    }
 }
