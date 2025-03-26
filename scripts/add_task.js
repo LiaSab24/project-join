@@ -19,7 +19,7 @@ async function clearTaskForm() {
     clearPriorityBtns();
     document.getElementById("addTaskCategory").placeholder = "Select task category";
     document.getElementById("addTaskSubtask").value = "";
-    document.getElementById("addTaskSubtaskList").innerHTML = "";
+    document.getElementById("addTaskSubtaskListContent").innerHTML = "";
     document.getElementById("prioMedium").classList.add("prioMediumClicked", "clicked");
     document.getElementById("prioMediumImg").src = "../assets/icons/prioMedium-clicked.svg";
 }
@@ -30,7 +30,7 @@ async function clearTaskForm() {
 function clearAssignedTo() {
     document.getElementById("addTaskDropdownContacts").classList.add("d-none");
     document.getElementById("addTaskDropdownContacts").innerHTML = "";
-    document.getElementById("addTaskAssignedToList").innerHTML = "";
+    document.getElementById("addTaskAssignedToListContent").innerHTML = "";
 }
 
 /**
@@ -113,9 +113,9 @@ function fillAssignedToDropDownMenu() {
  */
 function contactAssigned(contentRef, indexContact) {
     let assignedContact = document.getElementById(contentRef + indexContact);
-    assignedContact.classList.toggle("option-contact-assigned");
+    assignedContact.classList.toggle("dropdown-option-assigned");
     let assignedToCheckbox = document.getElementById("assignedToCheckbox" + indexContact);
-    assignedToCheckbox.classList.toggle("checkbox-contact-assigned");
+    assignedToCheckbox.classList.toggle("dropdown-option-checkbox-assigned");
     addAssignedContactToList(indexContact);
 }
 
@@ -126,7 +126,7 @@ function contactAssigned(contentRef, indexContact) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function addAssignedContactToList(indexContact) {
-    let assignedContactsList = document.getElementById("addTaskAssignedToList");
+    let assignedContactsList = document.getElementById("addTaskAssignedToListContent");
     let assignedContact = document.getElementById("addTaskAssignedToListPB" + indexContact);
     if (assignedContact) {
         assignedContact.remove();
@@ -221,16 +221,16 @@ function classListAssignedContacts() {
         let indexContact = assignedContactsList[indexAssignedContact].id.replace("addTaskAssignedToListPB", " ").trim();
         if (document.getElementById("assignedToOption" + indexContact)) {
             let contentRef = document.getElementById("assignedToOption" + indexContact);
-            contentRef.classList.add("option-contact-assigned");
+            contentRef.classList.add("dropdown-option-assigned");
             let assignedToCheckbox = document.getElementById("assignedToCheckbox" + indexContact);
-            assignedToCheckbox.classList.add("checkbox-contact-assigned");
+            assignedToCheckbox.classList.add("dropdown-option-checkbox-assigned");
         }
     }
     if (document.getElementById("addTaskAssignedToListPB" + indexContactUser)) {
         let contentRef = document.getElementById("assignedToUserOption" + indexContactUser);
-        contentRef.classList.add("option-contact-assigned");
+        contentRef.classList.add("dropdown-option-assigned");
         let assignedToCheckbox = document.getElementById("assignedToCheckbox" + indexContactUser);
-        assignedToCheckbox.classList.add("checkbox-contact-assigned");
+        assignedToCheckbox.classList.add("dropdown-option-checkbox-assigned");
     }
 }
 
@@ -288,7 +288,7 @@ function clearSubtasksInput() {
 function addSubtaskToList() {
     const subtasksInputContentRef = document.getElementById("addTaskSubtask");
     let subtask = subtasksInputContentRef.value.trim();
-    const subtasksListContentRef = document.getElementById("addTaskSubtaskList");
+    const subtasksListContentRef = document.getElementById("addTaskSubtaskListContent");
     let indexSubtask = document.querySelectorAll(".subtask").length;
     if (subtask !== "") {
         subtasksListContentRef.innerHTML += getAddTaskSubtaskTemplate(subtask, indexSubtask);
@@ -339,7 +339,7 @@ function confirmEditSubtask(indexSubtask) {
 /**
  * This function reads out the data of the add-task-form and adds the task to tasks-array and firebase
  */
-function addTask() {
+function addTask() { 
     if (requirementsFullfilled()) {
         let taskTitle = document.getElementById("addTaskTitle").value;
         let taskDescription = document.getElementById("addTaskDescription").value;
