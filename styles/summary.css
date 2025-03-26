@@ -1,59 +1,66 @@
 
-::-webkit-scrollbar {
-  display: none;
-}
-
 .title {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: clamp(16px, 2vw, 32px);
+  gap: 27px;
+
+  h1 {
+    white-space: nowrap;
+  }
+  p {
+    white-space: nowrap;
+    font-size: var(--fs-27-20);
+    color: var(--clr-primary);
+  }
+  @media (max-width: 900px) {
+    width: fit-content;
+    margin: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }
 
 .title-seperator {
   height: 59px;
   width: 3px;
   background-color: var(--clr-lightBlue);
+  @media (max-width: 900px) {
+    display: none;
+  }
 }
 
-.title p {
-  white-space: nowrap;
-  font-size: var(--fs-27-20);
-  color: var(--clr-primary);
+.responsive-title-seperator {
+  height: 3px;
+  width: 90px;
+  background-color: var(--clr-lightBlue);
+  @media (min-width: 901px) {
+    display: none;
+  }
 }
 
 .summary-content {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 64px;
-  padding-top: 64px;
+  padding-top: 56px;
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
 }
 
 .summary-overview {
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
-  gap: 24px;
+  gap: 28px;
+  @media (max-width: 900px) {
+    width: 100%;
+    height: fit-content;
+  }
 }
 
 .summary-container {
-  height: 168px;
-  border-radius: 30px;
-  background-color: #FFFFFF;
-  box-shadow: 0px 0px 4px 0px #0000001A;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  @media(max-width: 1300px) {
-    height: 110px;
-  }
-  @media(max-width: 500px) {
-    height: 90px;
-  }
+  padding: 38px 56px;
+  border-radius: var(--border-radius-bg);
+  background-color: var(--clr-white);
+  box-shadow: var(--shadow-nuevo);
 }
 
 .summary-container:hover {
@@ -82,36 +89,35 @@
   text-align: center;
 }
 
-.to-dos {
-  display: flex;
-  justify-content: space-between;
-}
 
 .to-dos {
+  gap: 32px;
+  @media (max-width: 900px) {
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 400px) {
+    flex-direction: column;
+    gap: 24px;
+    div {
+      width: 100%;
+    }
+  }
+
   .summary-container {
-    width: 264px;
     gap: 18px;
-
-    @media(max-width: 1300px) {
-      gap: 10px;
-      width: 186px;
-    }
-    @media(max-width: 500px) {
-      gap: 6px;
-      width: 145px;
-    }
-
+    width: 100%;
     .summary-icon--todo {
       background-image: url("../assets/icons/summary-todo.svg");
-      width: 74px;
-      height: 74px;
+      width: 70px;
+      height: 70px;
       background-repeat: no-repeat;
     }
     
     .summary-icon--done {
       background-image: url("../assets/icons/summary-done.svg");
-      width: 74px;
-      height: 74px;
+      width: 70px;
+      height: 70px;
       background-repeat: no-repeat;
     }
   }
@@ -132,21 +138,18 @@
   display: flex;
   flex-direction: column;
   font-size: var(--fs-20-14);
-  @media(max-width: 500px) {
-    transform: scale(0.8);
-  }
 }
 
 .deadline {
-  width: 560px;
-  display: flex;
-  justify-content: space-between;
-
-  @media(max-width: 1300px) {
-    width: 396px;
-  }
-  @media(max-width: 500px) {
+  padding: 38px 0;
+  gap: 18px;
+  @media (max-width: 400px) {
     width: 100%;
+    flex-direction: column;
+    .deadline-seperator {
+      height: 2px;
+      width: 180px;
+    }
   }
 }
 
@@ -156,33 +159,22 @@
 
 .deadline-urgent {
   flex: 0.5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 18px;
-  @media(max-width: 1300px) {
-    gap: 10px;
-  }
-  @media(max-width: 500px) {
-    gap: 6px;
+  p {
+    flex-direction: column;
   }
 }
 
-.deadline-urgent p {
-  display: flex;
-  flex-direction: column;
-  @media(max-width: 500px) {
-    transform: scale(0.8);
-  }
+.deadline-date p {
+  font-weight: 700;
+  font-size: var(--fs-20-16);
+  line-height: 25.2px;
 }
 
 .deadline-seperator {
   height: 102px;
   width: 2px;
   background-color: #D1D1D1;
-  @media(max-width: 1300px) {
-    height: 68px;
-  }
 }
 
 .deadline-date {
@@ -206,42 +198,41 @@
 }
 
 .tasks {
-  display: flex;
-  justify-content: space-between;
+  gap: 24px;
+  div {
+    padding: 25px 0;
+    width: 33%;
+    p {
+      font-size: var(--fs-20-14);
+      color: var(--clr-primary);
+      flex-direction: column;
+    }
+  }
+  @media (max-width: 400px) {
+    flex-direction: column;
+    gap: 16px;
+    div {
+      width: 100%;
+    }
+  }
 }
 
-.tasks div {
-  width: 168px;
-  @media(max-width: 1300px) {
-    width: 116px;
-  }
-  @media(max-width: 500px) {
-    gap: 6px;
-    width: 90px;
-  }
-}
-
-.tasks div p {
-  width: 83px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: var(--fs-20-14);
-  color: var(--clr-primary);
-  @media(max-width: 1300px) {
-    transform: scale(0.9);
-  }
-  @media(max-width: 500px) {
-    transform: scale(0.7);
-  }
+@keyframes greeting {
+  0% {opacity: 100%;}
+  30% {opacity: 100%;}
+  100% {opacity: 0%; pointer-events: none;}
 }
 
 .summary-greeting {
+  outline: 2px dashed purple;
+  width: fit-content;
+  height: fit-content;
   flex-direction: column;
   flex: 1;
   min-width: 250px;
   white-space: nowrap;
   z-index: 1;
+  gap: 3px;
 
   @media(max-width: 1400px) {
     width: fit-content;
@@ -251,7 +242,7 @@
   @media(max-width: 1100px) {
     margin-left: 20px;
   }
-  /* @media(max-width: 1000px) {
+  @media(max-width: 1000px) {
     position: fixed;
     top: 96px;
     bottom: 0;
@@ -267,31 +258,30 @@
     animation-duration: 3s;
     animation-iteration-count: 1;
     pointer-events: all;
-  } */
+  }
   @media(max-width: 900px) {
     height: auto;
     top: 80px;
     bottom: 80px;
     padding: 0;
+  @media (max-width: 900px) {
+    display: flex;
+    animation: greeting 3s ease-in-out forwards;
   }
 }
 
-@keyframes greeting {
-  0% {opacity: 100%;}
-  30% {opacity: 100%;}
-  100% {opacity: 0%; pointer-events: none;}
-}
 
 .greeting-daytime {
-  font-size: clamp(28px, 4vw, 47px);
   font-weight: 500;
+  font-size: var(--fs-47-36);
+  color: var(--clr-primary);
+  white-space: nowrap;
 }
 
 .greeting-username {
-  font-size: clamp(40px, 7vw, 61px);
-  font-weight: var(--fw-700);
+  font-weight: 700;
+  font-size: var(--fs-64-47);
   color: var(--clr-lightBlue);
   white-space: normal;
   word-break: break-word;
 }
-
