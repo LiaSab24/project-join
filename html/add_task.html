@@ -110,9 +110,11 @@
                     <div class="subtasks-input-icons flex align-center">
                         <img id="subtaskIconAdd" class="subtask-icon" src="../assets/icons/add-task-subtask-add.svg">
                         <div id="subtaskIconsFocus" class="d-none">
-                            <img onclick="clearSubtasksInput()" class="subtask-icon" src="../assets/icons/add-task-subtask-reject.svg">
+                            <img onclick="clearSubtasksInput()" class="subtask-icon"
+                                src="../assets/icons/add-task-subtask-reject.svg">
                             <div class="subtask-icons-seperator"></div>
-                            <img onclick="addSubtaskToList()" class="subtask-icon" src="../assets/icons/add-task-subtask-submit.svg">
+                            <img onclick="addSubtaskToList()" class="subtask-icon"
+                                src="../assets/icons/add-task-subtask-submit.svg">
                         </div>
                     </div>
                 </div>
@@ -122,29 +124,30 @@
             </div>
         </form>
 
-        <div id="addTaskSubmit" class="add-task-submit add-task-content">
-            <div class="add-task-requirements">
+        <div id="addTaskSubmit" class="add-task-footer add-task-content flex just-space-b">
+            <div class="add-task-requirements flex">
                 <span class="required-star">*</span>
                 <p>This field is required</p>
             </div>
 
-            <div id="addTaskSubmitBtns" class="submit-btns">
+            <div class="add-task-submit flex just-space-b">
                 <div class="add-task-alerts flex">
                     <span id="alertAddTask" class="input-error invisible">Please fill in the required inputs</span>
                 </div>
-
-                <button onclick="initAddTask()" class="cancel-btn" id="addTaskCancel">
-                    Cancel
-                    <div class="cancel-img"></div>
-                </button>
-                <button onclick="addTask()" class="create-btn progress-toDo" id="addTaskCreate">
-                    Create Task
-                    <img src="../assets/icons/create-btn.svg">
-                </button>
+                <div id="addTaskSubmitBtns"class="add-task-submit-btns flex">
+                    <button onclick="initAddTask()" class="white-btn" id="addTaskCancel">
+                        Cancel
+                        <div class="cancel-img"></div>
+                    </button>
+                    <button onclick="addTask()" class="blue-btn progress-toDo" id="addTaskCreate">
+                        Create Task
+                        <img src="../assets/icons/create-btn.svg">
+                    </button>
+                </div>
             </div>
         </div>
 
-        <section onclick="removeAddTaskOverlay()" id="addTaskOverlayBg" class="d-none"></section>
+        <section onclick="removeAddTaskOverlay()" id="addTaskOverlayBg" class="add-task-overlay-bg d-none"></section>
 
         <section onclick="toggleSubmenu()" id="submenuOverlay" class="d-none">
             <div id="submenu" class="submenu" onclick="event.stopImmediatePropagation()">

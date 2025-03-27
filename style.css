@@ -235,24 +235,6 @@ main {
   }
 }
 
-/* @keyframes msgSuccesfullMobile {
-  0% {
-    left: -100vb;
-  }
-
-  25% {
-    left: 1vb;
-  }
-
-  75% {
-    left: 1vb;
-  }
-
-  100% {
-    left: -100vb;
-  }
-} */
-
 /** This class is added, when input requirement is unfulfilled **/
 .requirement-unfulfilled {
   outline: 1px solid #FF001F !important;

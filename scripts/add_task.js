@@ -320,6 +320,7 @@ function editSubtask(indexSubtask) {
 function deleteSubtask(indexSubtask) {
     let subtaskContentRef = document.getElementById("subtask" + indexSubtask);
     subtaskContentRef.remove();
+    removeAddTaskOverlay();
 }
 
 /**
@@ -334,6 +335,7 @@ function confirmEditSubtask(indexSubtask) {
         subtaskContentRef.classList.remove("subtask-edit");
         subtaskContentRef.innerHTML = getAddTaskSubtaskListElementTemplate(subtask, indexSubtask);
     }
+    removeAddTaskOverlay();
 }
 
 /**
