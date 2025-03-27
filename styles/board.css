@@ -149,6 +149,48 @@ button {
   z-index: 5;
 }
 
+.add-task-overlay {
+  height: fit-content;
+  min-width: 280px;
+  max-width: 1116px;
+  border-radius: 30px;
+  background: var(--clr-white);
+  z-index: 6;
+  position: fixed;
+  align-self: anchor-center;
+  justify-self: anchor-center;
+  overflow: hidden;
+  .add-task-overlay-content {
+    padding: 48px 40px;
+    overflow-y: scroll;
+    @media (max-width: 900px) {
+      padding: 32px 24px;
+    }
+    .title {
+      display: flex;
+      justify-content: space-between;
+      .overlay-close {
+        align-self: baseline;
+        &:hover {
+          cursor: pointer;
+          border-radius: 56px;
+          background-color: var(--clr-lightGray);
+        }
+      }
+    }
+    form {
+      padding: 48px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+      .add-task-form-column {
+        flex-direction: column;
+        gap: 16px;
+        flex: 1;
+        min-width: 280px;
+      }
+    }
+  }
+}
 .task-card {
   background: var(--card-bg);
   border-radius: var(--border-radius-task);
