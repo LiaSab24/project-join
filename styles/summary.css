@@ -217,7 +217,7 @@
   height: fit-content;
   flex-direction: column;
   flex: 1;
-  white-space: nowrap;
+  white-space: normal;
   z-index: 1;
   gap: 3px;
   @media(max-width: 1400px) {
@@ -249,7 +249,7 @@
   font-weight: 500;
   font-size: var(--fs-47-36);
   color: var(--clr-primary);
-  white-space: nowrap;
+  white-space: normal;
   @media(max-width: 552px) {
     text-align: start;
   }
@@ -259,8 +259,17 @@
   font-weight: 700;
   font-size: var(--fs-64-47);
   color: var(--clr-lightBlue);
-  white-space: normal;
-  word-break: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 218px;
+  display: inline-block;
+  @media (max-width: 900px) {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    max-width: none;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
