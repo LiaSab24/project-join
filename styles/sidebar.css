@@ -61,19 +61,20 @@
 .active {
   background-color: #091931;
   color: #ffffff;
+  padding: 8px 0;
 }
 
 .nav {
   padding-top: 24px;
-  padding-left: 52px;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4px;
   .nav-link {
-    padding: 8px;
+    padding: 8px 0;
     color: #a8a8a8;
     text-decoration: none;
+    text-align: center;
     &:hover {
       color: #ffffff;
     }
