@@ -70,10 +70,12 @@
   flex-direction: column;
   gap: 4px;
   .nav-link {
-    padding: 8px 0;
     color: #a8a8a8;
     text-decoration: none;
     text-align: center;
+    p {
+      line-height: 3;
+    }
     &:hover {
       color: #ffffff;
     }
