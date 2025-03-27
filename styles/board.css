@@ -34,6 +34,9 @@ main {
   justify-content: flex-start;
   width: auto !important;
   max-width: 100% !important;
+
+  padding: 0;
+  overflow-y: auto;
 }
 
 h1 {
