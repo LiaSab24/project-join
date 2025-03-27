@@ -230,10 +230,10 @@
     height: 100%;
     width: 100%;
     margin: 0;
-    padding-right: 232px;
-    padding-bottom: 232px;
     background-color: #f6f7f8;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     opacity: 0;
   }
   @media(max-width: 900px) {
@@ -250,6 +250,9 @@
   font-size: var(--fs-47-36);
   color: var(--clr-primary);
   white-space: nowrap;
+  @media(max-width: 552px) {
+    text-align: start;
+  }
 }
 
 .greeting-username {
