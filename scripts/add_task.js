@@ -293,7 +293,7 @@ function addSubtaskToList() {
     if (subtask !== "") {
         subtasksListContentRef.innerHTML += getAddTaskSubtaskTemplate(subtask, indexSubtask);
         clearSubtasksInput();
-    }
+    } 
 }
 
 /**

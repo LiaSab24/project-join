@@ -120,11 +120,11 @@ function setActiveMenuLink() {
     case currentPage("contacts"):
       document.getElementById("contactsLink").classList.add("active");
       break;
-    case currentPage("privacy_policy"):
+    case currentPage("privacy_policy"): 
       document.getElementById("privacyPolicyLink").classList.add("active");
       break;
-    case currentPage("ledal_notice"):
-      document.getElementById("LegalNoticeLink").classList.add("active");
+    case currentPage("legal_notice"):
+      document.getElementById("legalNoticeLink").classList.add("active");
       break;
   }
 }
