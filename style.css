@@ -47,6 +47,7 @@ h5 {
 }
 
 main {
+  max-width: 1920px;
   margin-left: 232px;
   overflow: hidden;
   padding: 80px 40px 40px 65px;
