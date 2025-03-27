@@ -78,7 +78,7 @@ input:focus {
 
 .add-task-content {
     max-width: 978px;
-    margin: 0 clamp(2rem, -48.9804rem + 62.7451vw, 6rem);
+    margin: 0 calc(7rem - clamp(1rem, 14.3333rem + -14.8148vw, 6rem));
 }
 
 .title {
@@ -100,7 +100,7 @@ input:focus {
     .add-task-seperator {
         height: 424px;
         width: 2px;
-        margin: 0 48px;
+        margin: 0 calc(4rem - clamp(1rem, 12.0000rem + -16.0000vw, 3rem));
         border-radius: 1px;
         background-color: var(--clr-lighterGray);
     }
@@ -199,6 +199,10 @@ input:focus {
     gap: 8px;
 }
 
+.add-task-date {
+    padding: 11px 21px;
+}
+
 .add-task-date::-webkit-calendar-picker-indicator {
     cursor: pointer;
     background-image: url("../assets/icons/add-task-calendar.svg");
@@ -215,7 +219,7 @@ input:focus {
         border-radius: 10px;
         background-color: var(--clr-white);
         box-shadow: 0px 0px 4px 0px #0000001A;
-        font-size: var(--fs-20-16);
+        font-size: calc(2.25rem - clamp(1rem, 2.3750rem + -2.0000vw, 1.25rem));
     }
 
     div:hover {
@@ -259,7 +263,7 @@ input:focus {
     }
 
     .subtasks-input-icons {
-        height: 100%;
+        height: 47px;
         width: 0;
 
         .subtask-icon {
@@ -339,7 +343,7 @@ input:focus {
             }
 
             .subtask-edit-icons {
-                padding-right: 12px;
+                margin-right: 8px;
                 cursor: pointer;
             }
         }
@@ -352,13 +356,13 @@ input:focus {
 }
 
 .add-task-footer {
-    padding-bottom: 32px;
+    padding-bottom: 20px;
     align-items: flex-end;
 
     .add-task-requirements {
         p {
             margin-left: -3px;
-        }
+        } 
     }
 
     .add-task-submit {
@@ -407,4 +411,155 @@ input:focus {
     left: 0;
     z-index: 1;
     background-color: transparent;
+}
+
+@media (max-width: 1100px) {
+    textarea {
+        height: 88px;
+        padding: 18px 21px;
+    }
+
+    input {
+        padding: 10px 21px;
+    }
+
+    .add-task-date {
+        padding: 8px 21px;
+    }
+
+    .add-task-priorities {
+        gap: 10px;
+        div {
+            padding: 12px 8px;
+            gap: 6px;
+        }
+    }
+
+    .add-task-subtasks {
+        .subtasks-input-icons {
+            height: 43px;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .add-task-content {
+        width: 100%;
+        max-width: 396px;
+    }
+
+    .title {
+        padding-top: 48px;
+        padding-bottom: 16px;
+    }
+
+    .add-task-form {
+        flex-direction: column;
+        align-items: center;
+
+        .add-task-form-column {
+            margin-top: 0;
+        }
+
+        .add-task-seperator {
+            display: none;
+        }
+    }
+
+    .add-task-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 32px;
+
+        .add-task-submit {
+            flex-direction: column;
+
+            .add-task-alerts {
+                justify-content: flex-start;
+
+                .input-error {
+                    transform: translateX(90%) translateY(-24px);
+                }
+            }
+
+            .add-task-submit-btns {
+                gap: 32px;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+
+    textarea,
+    .add-task-date {
+        padding: 8px 12px;
+    }
+
+    input {
+        padding: 10px 12px;
+    }
+
+    .add-task-content {
+        padding: 0 12px;
+    }
+
+    .title {
+        padding-top: 36px;
+        padding-bottom: 12px;
+    }
+
+    .assigned-to-list,
+    .assigned-to-list-content {
+        gap: 4px;
+    }
+
+    .add-task-priorities {
+        gap: 6px;
+        div {
+            padding: 10px 6px;
+            gap: 2px;
+            font-size: clamp(0.875rem, 0.6528rem + 1.1111vw, 1rem);
+            img {
+                transform: scale(0.8);
+            }
+        }
+    }
+
+    .subtasks-list {
+        height: 78px;
+    }
+
+    .add-task-footer {
+        padding-top: 24px;
+        .add-task-requirements {
+            p {
+                font-size: clamp(0.875rem, 0.6528rem + 1.1111vw, 1rem);
+            }
+        }
+    
+        .add-task-submit {
+            .add-task-alerts {
+                .input-error {
+                    transform: translateX(56%) translateY(-24px);
+                }
+            }
+    
+            .add-task-submit-btns {
+                gap: 16px;
+    
+                button {
+                    padding: calc(1.625rem - clamp(0.625rem, 1.6667rem + -3.3333vw, 1rem));
+                    gap: 4px;
+                    font-size: calc(2.25rem - clamp(1rem, 1.6944rem + -2.2222vw, 1.25rem));
+                }   
+            }
+        }
+    }
 }
