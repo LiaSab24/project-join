@@ -91,7 +91,6 @@
       width: 100%;
     }
   }
-
   .summary-container {
     width: 100%;
     .summary-icon--todo {
@@ -106,6 +105,9 @@
       width: 70px;
       height: 70px;
       background-repeat: no-repeat;
+    }
+    @media (max-width: 489px) {
+      padding: 38px 0;
     }
   }
 
