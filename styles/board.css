@@ -572,7 +572,14 @@ button {
   width: 42px;
 }
 
+label {
+  font-size: var(--fs-20-16);
+  color: var(--clr-primary);
+}
 
+.required-star {
+  color: var(--clr-required-star);
+}
 
 
 
