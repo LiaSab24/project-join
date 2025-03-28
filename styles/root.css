@@ -34,6 +34,9 @@
   --clr-darkBlue: #007cee;
   --clr-lightGray: #A8A8A8;
   --clr-lighterGray: #DCDCDC;
+  --clr-seperator: #D1d1d1;
+  --clr-required-star: #FF8090;
+  --clr-error: #FF001F;
   
   /* colors user*/
   --clr-user1: #ff7a00;

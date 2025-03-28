@@ -164,8 +164,8 @@ function renderDropdownAreas() {
  * This function checks if the searchInput contains three or more characters. If so, it executes the displayFilteredTasks()-function
  * If not, it fills the progress-categories with the corresponding tasks.
  */
-function startSearchingTasks() {
-  let searchInputRef = document.getElementById("searchInput");
+function startSearchingTasks(inputID) {
+  let searchInputRef = document.getElementById(inputID);
   let searchInput = searchInputRef.value.toLowerCase();
   clearTaskProgressCategories();
   searchInputRef.disabled = true;
