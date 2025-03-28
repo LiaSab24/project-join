@@ -3,7 +3,7 @@
   padding: 90px 90px 30px;
 
   @media (max-width: 900px) {
-    padding: 0;
+    padding: 24px 0 0 0;
   }
 
   .arrow-container {
