@@ -83,7 +83,6 @@
   gap: 32px;
   @media (max-width: 900px) {
     gap: 24px;
-    flex-wrap: wrap;
   }
   @media (max-width: 400px) {
     flex-direction: column;
@@ -92,9 +91,7 @@
       width: 100%;
     }
   }
-
   .summary-container {
-    gap: 18px;
     width: 100%;
     .summary-icon--todo {
       background-image: url("../assets/icons/summary-todo.svg");
@@ -108,6 +105,9 @@
       width: 70px;
       height: 70px;
       background-repeat: no-repeat;
+    }
+    @media (max-width: 489px) {
+      padding: 38px 0;
     }
   }
 
@@ -187,7 +187,7 @@
 }
 
 .tasks {
-  gap: 24px;
+  gap: 29px;
   div {
     padding: 25px 0;
     width: 33%;
@@ -217,7 +217,7 @@
   height: fit-content;
   flex-direction: column;
   flex: 1;
-  white-space: nowrap;
+  white-space: normal;
   z-index: 1;
   gap: 3px;
   @media(max-width: 1400px) {
@@ -249,7 +249,7 @@
   font-weight: 500;
   font-size: var(--fs-47-36);
   color: var(--clr-primary);
-  white-space: nowrap;
+  white-space: normal;
   @media(max-width: 552px) {
     text-align: start;
   }
@@ -260,7 +260,20 @@
   font-size: var(--fs-64-47);
   color: var(--clr-lightBlue);
   white-space: normal;
-  word-break: break-word;
+  display: inline-block;
+  @media (max-width: 1128px) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 230px;
+    display: inline-block;
+  }
+  @media (max-width: 900px) {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    max-width: none;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {

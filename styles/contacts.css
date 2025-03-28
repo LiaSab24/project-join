@@ -386,12 +386,13 @@ main {
 
                 input {
                     width: 422px;
-                    padding: 13px 21px;
+                    padding: 13px 41px 13px 21px;
                     z-index: 3;
                     border: 1px solid #D1D1D1;
                     border-radius: 10px;
                     color: var(--clr-primary);
                     font-size: var(--fs-20);
+                    text-overflow: ellipsis;
                 }
 
                 input::placeholder {
@@ -572,6 +573,7 @@ main {
                         height: 41px;
                         width: 100%;
                         max-width: 364px;
+                        padding: 13px 41px 13px 14px;
                     }
 
                     .overlay-input-icon img {
