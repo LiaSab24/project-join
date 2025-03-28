@@ -369,7 +369,195 @@ button {
 
 /* <section id="overviewOverlay" class="d-none edit-task-overlay"> ------ */
 /* ---------------------------------------------------------------------- */
+.edit-task-overlay {
+  min-width: 280px;
+  max-width: 1116px;
+  width: 90%;
+  border-radius: 30px;
+  background: var(--clr-white);
+  z-index: 6;
+  position: fixed;
+  align-self: anchor-center;
+  justify-self: anchor-center;
 
+  .edit-task-overlay-content {
+    padding: 48px 40px;
+    overflow-y: scroll;
+
+    @media (max-width: 900px) {
+      padding: 32px 24px;
+    }
+
+    form {
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-bottom: 20px;
+
+      .add-task-form-column {
+        flex-direction: column;
+        gap: 10px;
+        flex: 1;
+        width: 100%;
+        min-width: 250px;
+        max-width: 440px;
+        .subtasks-list {
+          height: 130px;
+          overflow-y: auto;
+          overflow-x: hidden;
+      
+          ul {
+            flex-direction: column-reverse;
+            gap: 6px;
+      
+            .subtask {
+              min-height: 36px;
+              padding: 6px 60px 6px 16px;
+              border-radius: 10px;
+              list-style-position: inside;
+              word-break: auto-phrase;
+              cursor: pointer;
+      
+              .subtask-list-icons {
+                display: none;
+                gap: 4px;
+              }
+            }
+      
+            .subtask:hover {
+              padding: 6px 8px 6px 16px;
+              background-color: var(--clr-lighterGray);
+      
+              .subtask-list-icons {
+                display: flex;
+              }
+            }
+      
+            .subtask-edit {
+              padding: 0;
+              border-bottom: solid 1px #29ABE2;
+              border-radius: 0;
+              background-color: var(--clr-white);
+              z-index: 2;
+      
+              .subtask-edit-input {
+                width: 100%;
+                padding: 4px 16px;
+                border: unset;
+                border-radius: 0;
+                font-size: var(--fs-16);
+              }
+      
+              .subtask-edit-input:focus {
+                outline: unset;
+              }
+      
+              .subtask-edit-icons {
+                margin-right: 8px;
+                cursor: pointer;
+              }
+            }
+      
+            .subtask-edit:hover {
+              padding: 0;
+              background-color: var(--clr-white);
+            }
+          }
+        }
+      }
+      input {
+        padding: 8px 16px;
+        border: 1px solid var(--clr-gray);
+        border-radius: 10px;
+        color: var(--clr-primary);
+        font-size: var(--fs-20-16);
+      }
+      .add-task-seperator {
+        height: 424px;
+        width: 2px;
+        margin: 0 calc(4rem - clamp(1rem, 12.0000rem + -16.0000vw, 3rem));
+        border-radius: 1px;
+        background-color: var(--clr-lighterGray);
+      }
+      label {
+        padding-top: 16px;
+      }
+
+      textarea {
+        height: 120px;
+        padding: 12px 16px;
+        border: 1px solid #D1D1D1;
+        border-radius: 10px;
+        color: var(--clr-primary);
+        font-family: Inter;
+        font-size: var(--fs-20-16);
+        resize: none;
+      }
+
+      .assigned-to-list,
+      .assigned-to-list-content {
+        gap: 8px;
+      }
+
+      .add-task-priorities {
+        gap: 16px;
+        div {
+          width: 100%;
+          padding: 16px 10px;
+          gap: 8px;
+          border: unset;
+          border-radius: 10px;
+          background-color: var(--clr-white);
+          box-shadow: 0px 0px 4px 0px #0000001A;
+          font-size: calc(2.25rem - clamp(1rem, 2.3750rem + -2.0000vw, 1.25rem));
+          &:hover {
+            box-shadow: 0px 4px 4px 0px #00000040;
+            cursor: pointer;
+          }
+        }
+        .prioUrgentClicked {
+          background-color: var(--urgent-clr);
+          box-shadow: none;
+          color: var(--clr-white);
+        }
+
+        .prioMediumClicked {
+          background-color: var(--medium-clr);
+          box-shadow: none;
+          color: var(--clr-white);
+        }
+
+        .prioLowClicked {
+          background-color: var(--low-clr);
+          box-shadow: none;
+          color: var(--clr-white);
+        }
+      }
+    }
+  }
+  .add-task-footer {
+    align-items: flex-end;
+    .add-task-submit-btns {
+      gap: 25px;
+    
+      button {
+        display: flex;
+        padding: 8px;
+        gap: 4px;
+        font-size: var(--fs-20);
+      }
+    
+      .white-btn .cancel-img {
+        height: 24px;
+        width: 24px;
+        background-image: url("../assets/icons/cancel-btn.svg");
+      }
+    
+      .white-btn:hover .cancel-img {
+        background-image: url("../assets/icons/cancel-btn-hover.svg");
+      }
+    }  
+  }
+}
 
 
 
