@@ -185,7 +185,7 @@ main {
   bottom: calc(50% + 74px);
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 8;
+  z-index: 12;
 
   @media (max-width: 900px) {
     bottom: calc(50% + 60px);
