@@ -86,7 +86,6 @@
   }
   @media (max-width: 400px) {
     flex-direction: column;
-    gap: 24px;
     div {
       width: 100%;
     }
@@ -98,6 +97,9 @@
       width: 70px;
       height: 70px;
       background-repeat: no-repeat;
+      @media (max-width: 589px) {
+        padding: -38px 0;
+      }
     }
     
     .summary-icon--done {
@@ -106,7 +108,7 @@
       height: 70px;
       background-repeat: no-repeat;
     }
-    @media (max-width: 489px) {
+    @media (max-width: 589px) {
       padding: 38px 0;
     }
   }
