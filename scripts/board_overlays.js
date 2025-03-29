@@ -122,6 +122,8 @@ async function adjustBoardEditTaskOverlay(addTaskOverlayContent) {
     document.getElementById("addTaskH1").innerHTML = "";
     document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
     document.getElementById("addTaskForm").classList.add("custom-scrollbar");
+    document.getElementById("addTaskCancel").classList.add("d-none");
+    document.getElementById("addTaskCreate").classList.add("d-none")
 }
 
 /**
