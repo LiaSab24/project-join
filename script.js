@@ -83,7 +83,7 @@ function userIndexInContactsArray() {
   let userMail = users[currentUser].mail;
   indexContactUser = contacts.map(function (element) {
     return element.mail;
-  }).indexOf(userMail); 
+  }).indexOf(userMail);
 }
 
 /**
@@ -120,11 +120,11 @@ function setActiveMenuLink() {
     case currentPage("contacts"):
       document.getElementById("contactsLink").classList.add("active");
       break;
-    case currentPage("privacy_policy"):
+    case currentPage("privacy_policy"): 
       document.getElementById("privacyPolicyLink").classList.add("active");
       break;
-    case currentPage("ledal_notice"):
-      document.getElementById("LegalNoticeLink").classList.add("active");
+    case currentPage("legal_notice"):
+      document.getElementById("legalNoticeLink").classList.add("active");
       break;
   }
 }
@@ -240,15 +240,9 @@ function nameAbbreviation(indexContact) {
  */
 async function successfullMsg(msgId) {
   let successAnimation = document.getElementById(msgId);
-  if (window.innerWidth <= 900) {
-    successAnimation.style.animationName = "msgSuccesfullMobile";
-  } else {
-    successAnimation.style.animationName = "msgSuccesfullDesktop";
-  }
-  successAnimation.style.animationDuration = "1600ms";
+  successAnimation.style.animationName = "msgSuccesfull";
   setTimeout(function () {
     successAnimation.style.animationName = "";
-    successAnimation.style.animationDuration = "";
     init();
   }, 1600);
 }
@@ -361,7 +355,7 @@ function validateNameInput(contentRef) {
 function validateMailInput(contentRef) {
   let mailInput = document.getElementById(contentRef).value;
   let charsBetweenAtAndDot = mailInput.lastIndexOf(".") - mailInput.indexOf("@");
-  if (mailInput.includes("@") && mailInput.includes(".") && mailInput.charAt(0) !=="@" && mailInput.charAt(0) !=="." && mailInput.slice(-1) !== "." & mailInput.slice(-1) !== "@" && charsBetweenAtAndDot >= 2) {
+  if (mailInput.includes("@") && mailInput.includes(".") && mailInput.charAt(0) !== "@" && mailInput.charAt(0) !== "." && mailInput.slice(-1) !== "." & mailInput.slice(-1) !== "@" && charsBetweenAtAndDot >= 2) {
     return mailInput.toLowerCase();
   } else {
     document.getElementById("alertMail").classList.remove("invisible");
@@ -370,7 +364,7 @@ function validateMailInput(contentRef) {
     }, 2400);
     return ""
   }
-} 
+}
 
 /**
  * This function lets the user navigate throught the sidbar without needing to click

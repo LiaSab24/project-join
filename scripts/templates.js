@@ -4,12 +4,12 @@
  * @param {number} indexUser - the index of the user in the contacts-array
  */
 function getAddTaskDropdownListUserOption(indexUser) {
-    return `<div onclick="contactAssigned('assignedToUserOption', ${indexUser})" id="assignedToUserOption${indexUser}" class="add-task-dropdown-option user-option flex align-center just-space-b">
+    return `<div onclick="contactAssigned('assignedToUserOption', ${indexUser})" id="assignedToUserOption${indexUser}" class="dropdown-option user-option flex align-center just-space-b">
                 <div class="flex align-center">
                     <div id="assignedToPB${indexUser}" class="profile-badge">${nameAbbreviation(indexUser)}</div>
                     <span>You</span>
                 </div>
-                <div id="assignedToCheckbox${indexUser}" class="add-task-assigned-to-checkbox"></div>
+                <div id="assignedToCheckbox${indexUser}" class="dropdown-option-checkbox"></div>
             </div>`
 }
 
@@ -19,12 +19,12 @@ function getAddTaskDropdownListUserOption(indexUser) {
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
 function getAddTaskDropdownListContacts(indexContact) {
-    return `<div onclick="contactAssigned('assignedToOption', ${indexContact})" id="assignedToOption${indexContact}" class="add-task-dropdown-option flex align-center just-space-b">
+    return `<div onclick="contactAssigned('assignedToOption', ${indexContact})" id="assignedToOption${indexContact}" class="dropdown-option flex align-center just-space-b">
                 <div class="flex align-center">
                     <div id="assignedToPB${indexContact}" class="profile-badge">${nameAbbreviation(indexContact)}</div>
                     <span>${contacts[indexContact].name}</span>
                 </div>
-                <div id="assignedToCheckbox${indexContact}" class="add-task-assigned-to-checkbox"></div>
+                <div id="assignedToCheckbox${indexContact}" class="dropdown-option-checkbox"></div>
             </div>`
 }
  
@@ -56,10 +56,10 @@ function getAddTaskSubtaskTemplate(subtask, indexSubtask) {
  * @param {number} indexSubtask - the index of the subtask in the subtasks-list
  */
 function getAddTaskSubtaskListElementTemplate(subtask, indexSubtask) {
-    return `<li class="subtask-element">${subtask}</li>
+    return `<li>${subtask}</li>
             <div class="subtask-list-icons">
                 <img onclick="editSubtask(${indexSubtask})" class="subtask-icon" src="../assets/icons/add-task-subtask-edit.svg">
-                <div class="subtask-list-icons-seperator"></div>
+                <div class="subtask-icons-seperator"></div>
                 <img onclick="deleteSubtask(${indexSubtask})" class="subtask-icon" src="../assets/icons/add-task-subtask-delete.svg">
             </div>`
 }
@@ -71,10 +71,10 @@ function getAddTaskSubtaskListElementTemplate(subtask, indexSubtask) {
  * @param {number} indexSubtask - the index of the subtask in the subtasks-list
  */
 function getAddTaskSubtaskEditTemplate(subtask, indexSubtask) {
-    return `<input id="subtaskEditInput" value="${subtask}">
-            <div class="subtask-edit-icons">
+    return `<input id="subtaskEditInput" class="subtask-edit-input" value="${subtask}">
+            <div class="subtask-edit-icons flex">
                 <img onclick="deleteSubtask(${indexSubtask})" class="subtask-icon" src="../assets/icons/add-task-subtask-delete.svg">
-                <div class="subtask-list-icons-seperator"></div>
+                <div class="subtask-icons-seperator"></div>
                 <img onclick="confirmEditSubtask(${indexSubtask})" class="subtask-icon" src="../assets/icons/add-task-subtask-submit.svg">
             </div>`
 }

@@ -145,7 +145,7 @@ function toggleMessageNoTasks() {
   for (let indexProgressCategory = 0; indexProgressCategory < taskProgressCategories.length; indexProgressCategory++) {
     let taskProgressContentRef = document.getElementsByClassName("board-tasks-list")[indexProgressCategory];
     let noTaskMessagesContentRef = document.getElementsByClassName("no-task-message-container")[indexProgressCategory];
-    if (taskProgressContentRef.innerHTML == "") {
+    if (taskProgressContentRef.querySelectorAll(".task-card").length == 0) {
       noTaskMessagesContentRef.classList.remove("d-none");
     } else {
       noTaskMessagesContentRef.classList.add("d-none");

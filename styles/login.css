@@ -15,7 +15,7 @@ h1 {
 
 @keyframes changeBgToDefault {
   0% {
-    background: var(--clr-white); 
+    background: var(--clr-white);
   }
 
   100% {
@@ -29,6 +29,7 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   animation: moveToTopLeft 1s ease-in-out forwards;
+
   @media (min-width: 1920px) {
     margin-left: -20px;
   }
@@ -117,17 +118,21 @@ h1 {
   justify-self: anchor-center;
   align-self: anchor-center;
   margin: auto;
+
   @media (max-width: 900px) {
     width: 80%;
     padding: 32px 16px;
   }
 }
+
 .form-wrapper {
   width: 100%;
 }
+
 .hero {
   text-align: center;
   margin-bottom: 20px;
+
   @media (max-width: 900px) {
     margin-bottom: 30px;
   }
@@ -140,7 +145,7 @@ h1 {
 }
 
 input {
-  width: 100%;
+  width: 422px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: var(--border-radius);
@@ -148,10 +153,23 @@ input {
   color: var(--clr-primary);
 }
 
+input,
+.password-wrapper {
+  @media (max-width: 900px) {
+    width: 364px;
+    max-width: 100%;
+  }
+}
+
 .button-container {
   margin-top: 15px;
   gap: 35px;
-  @media  (max-width: 900px) {
+
+  button {
+    max-width: 123px;
+  }
+
+  @media (max-width: 900px) {
     flex-direction: column;
     gap: 21px;
     margin-top: 30px;
@@ -169,6 +187,7 @@ input {
   border: none;
   font-weight: var(--fw-700);
   transition: all .3s ease-in-out;
+
   @media (max-width: 900px) {
     width: 180px;
   }
@@ -186,9 +205,10 @@ input {
   padding: 10px 20px;
   border-radius: var(--border-radius);
   cursor: pointer;
+
   @media (max-width: 900px) {
-      width: 180px;
-    }
+    width: 180px;
+  }
 }
 
 .white-btn:hover {
@@ -204,15 +224,18 @@ input {
   display: flex;
   align-items: center;
   text-decoration: none;
+
   p {
     margin-right: 10px;
     text-align: left;
   }
+
   @media (max-width: 900px) {
     top: 85%;
     left: 50%;
     transform: translateX(-50%);
     width: 75%;
+
     .blue-btn {
       max-width: 100px;
     }
@@ -224,9 +247,11 @@ input {
   bottom: 20px;
   display: flex;
   gap: 16px;
+
   a {
     text-decoration: none;
     color: var(--clr-lightGray);
+
     &:hover {
       color: var(--clr-lightBlue);
     }
@@ -234,21 +259,21 @@ input {
 }
 
 input[type="text"] {
-    background-image: url('../assets/icons/user.svg');
-    background-repeat: no-repeat;
-    background-position: 95%;
+  background-image: url('../assets/icons/user.svg');
+  background-repeat: no-repeat;
+  background-position: 95%;
 }
 
 input[type="email"] {
-    background-image: url('../assets/icons/mail.svg');
-    background-repeat: no-repeat;
-    background-position: 95%;
+  background-image: url('../assets/icons/mail.svg');
+  background-repeat: no-repeat;
+  background-position: 95%;
 }
 
 input[type="password"] {
-    background-image: url('../assets/icons/lock.svg');
-    background-repeat: no-repeat;
-    background-position: 95%;
+  background-image: url('../assets/icons/lock.svg');
+  background-repeat: no-repeat;
+  background-position: 95%;
 }
 
 input[type="text"][name="password"] {
