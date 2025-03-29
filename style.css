@@ -172,7 +172,7 @@ main {
   align-self: flex-end;
 }
 
-.overlay-close:hover img {
+.overlay-close:hover {
   cursor: pointer;
   border-radius: 56px;
   background-color: var(--clr-lighterGray);

@@ -35,8 +35,11 @@ async function addUser() {
                     "password": userPassword
                 });
                 await addUserToContacts(userName, userMail);
-                signUpSuccesfully();
+                successfullMsg("userSuccesfullyCreated");
                 clearSignUpForm();
+                setTimeout(function () {
+                    redirectionToLogIn();
+                }, 1800);
             } else {
                 checkFilledInput('name');
                 checkFilledInput('mail');
@@ -78,22 +81,10 @@ function checkPasswordConfirmed() {
 }
 
 /**
- * This function shows the 'sign-up succesfull'-message after adding the user to the users-array and firebase was succesfull
- */
-function signUpSuccesfully() {
-    let signUpMsg = document.getElementById("userSuccesfullyCreated");
-    signUpMsg.classList.remove("d-none");
-    setTimeout(function () {
-        signUpMsg.classList.add("d-none");
-        redirectionToLogIn();
-    }, 2400);
-}
-
-/**
  * This function redirects the user to the log-in-page
  */
 function redirectionToLogIn() {
-    window.location.href = "/index.html";
+    window.location.href = "../index.html";
 }
 
 /**

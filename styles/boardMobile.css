@@ -23,7 +23,7 @@
         margin-right: 24px;
     }
 
-    .task-container {
+    .task-container { 
         display: flex;
         flex-direction: column;
         gap: 16px;
@@ -170,17 +170,15 @@
     }
 
     #addTaskOverlay {
+        height: 100%;
         #addTaskOverlayContent {
+            padding: 0 20px 0 20px;
             .title {
                 padding: 0;
             }
 
             #addTaskForm {
                 margin: 0;
-            }
-
-            .subtasks-list {
-                height: fit-content !important;
             }
 
             .add-task-submit {
@@ -286,6 +284,14 @@
             bottom: 50%;
         }
 
+        .add-task-submit {
+            width: 100%;
+            max-width: 396px;
+            #addTaskSubmitBtns {
+                align-self: self-end;
+            }
+        }
+
     }
 
     #editTaskOverlay {
@@ -354,6 +360,7 @@
             .add-task-dropdown,
             .assigned-to,
             #addTaskPriorities,
+            .add-task-subtasks,
             .subtask-scrollbar,
             .addTaskSubtaskList div,
             .subtask,
@@ -485,6 +492,9 @@
         #editTaskOverlayContent {
             padding-left: 0 !important;
             padding-right: 0 !important;
+            .overlay-close {
+                margin-right: 16px;
+            }
         }
     }
 }

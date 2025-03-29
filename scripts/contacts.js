@@ -190,7 +190,7 @@ function contactClicked(indexContact) {
     clearActiveContacts();
     highlightContact(indexContact);
     updateFocusedContact(indexContact);
-    document.getElementById("menuEditDeleteMobile").innerHTML = getMenuMobileTemplate(indexContact)
+    document.getElementById("menuEditDeleteMobile").innerHTML = getContactsMenuMobileTemplate(indexContact)
 }
 
 /**

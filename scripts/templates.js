@@ -56,7 +56,7 @@ function getAddTaskSubtaskTemplate(subtask, indexSubtask) {
  * @param {number} indexSubtask - the index of the subtask in the subtasks-list
  */
 function getAddTaskSubtaskListElementTemplate(subtask, indexSubtask) {
-    return `<li>${subtask}</li>
+    return `<li class="subtask-content">${subtask}</li>
             <div class="subtask-list-icons">
                 <img onclick="editSubtask(${indexSubtask})" class="subtask-icon" src="../assets/icons/add-task-subtask-edit.svg">
                 <div class="subtask-icons-seperator"></div>
@@ -219,7 +219,7 @@ function getBoardOverviewContactPB(indexTask, indexContact) {
  * @param {number} indexTask - the index of the task in the tasks-array
  */
 function getBoardOverviewSubtask(subtask, indexSubtask, indexTask) {
-    return `<div onclick="completedSubtask(${indexSubtask}, ${indexTask})" id="overviewAssignedSubtask" class="overview-subtasks-assigned">
+    return `<div onclick="completedSubtask(${indexSubtask}, ${indexTask})" id="overviewAssignedSubtask${indexSubtask}" class="overview-subtasks-assigned">
                 <div id="overviewCheckbox${indexSubtask}" class="board-overview-checkbox checkbox-completed-${tasks[indexTask].subtasks[indexSubtask].completed}"></div>
                 <p id="subtaskContent${indexSubtask}">${subtask}</p>
             </div>`
@@ -325,7 +325,7 @@ function getContactsOverlayEditBtnsTemplate(indexContact) {
  * 
  * @param {number} indexContact - the index of the contact in the contacts-array
  */
-function getMenuMobileTemplate(indexContact) {
+function getContactsMenuMobileTemplate(indexContact) { 
     return `<button onclick="openContactsOverlay(), adjustOverlayToEdit(${indexContact}), toggleEditDeleteMenuMobile()" class="focused-contact-btns">
                 <div id="contactsEditIcon" class="focused-profile-btn-icon contacts-edit-icon"></div>
                 <span>Edit</span>

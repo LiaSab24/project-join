@@ -446,7 +446,7 @@ function getTaskPriority() {
  * This function is part of the addTask()-function and creates and returns an array with all the subtasks in the subtask-list
  */
 function getSubtasks() {
-    let subtasks = document.querySelectorAll(".subtask-element");
+    let subtasks = document.querySelectorAll(".subtask-content");
     let subtasksArray = [];
     for (let indexSubtask = 0; indexSubtask < subtasks.length; indexSubtask++) {
         subtasksArray.push({

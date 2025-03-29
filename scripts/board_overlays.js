@@ -266,7 +266,7 @@ function fillEditTaskFormLists(indexTask) {
     if (tasks[indexTask].subtasks !== undefined) {
         for (let indexSubtask = 0; indexSubtask < tasks[indexTask].subtasks.length; indexSubtask++) {
             let subtask = tasks[indexTask].subtasks[indexSubtask].subtask;
-            document.getElementById("addTaskSubtaskList").innerHTML += getAddTaskSubtaskTemplate(subtask, indexSubtask)
+            document.getElementById("addTaskSubtaskListContent").innerHTML += getAddTaskSubtaskTemplate(subtask, indexSubtask)
         }
     }
 }

@@ -16,7 +16,7 @@ function clearTaskProgressCategories() {
   document.getElementById("inProgress").innerHTML = "";
   document.getElementById("awaitFeedback").innerHTML = "";
   document.getElementById("done").innerHTML = "";
-}
+} 
 
 /** 
  * This function creates a task-card for each task in its corresponding progress-category
@@ -27,7 +27,7 @@ function renderTasks() {
     let taskProgress = tasks[indexTask].progress.progress;
     let taskProgressContentRef = document.getElementById(taskProgress);
     taskProgressContentRef.innerHTML += getBoardTaskTemplate(indexTask);
-    hideSubtasksProgressForNoSubtasks(indexTask);
+    hideSubtasksProgressForNoSubtasks(indexTask); 
     displayAssignedContacts(indexTask);
     if (tasks[indexTask].priority == "") {
       document.getElementById("prio" + indexTask).src = "";
