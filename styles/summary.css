@@ -237,12 +237,13 @@
     opacity: 0;
   }
   @media(max-width: 900px) {
-    top: 80px;
-    bottom: 80px;
+    top: 30%;
+    bottom: auto;
+    transform: translateY(-30%);
     padding: 0;
-    display: flex;
     animation: greeting 3s ease-in-out forwards;
   }
+  
 }
 
 .greeting-daytime {

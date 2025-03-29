@@ -60,7 +60,7 @@
 
 .active {
   background-color: var(--clr-click);
-  color:var(--clr-white);
+  color: var(--clr-white);
 }
 
 .nav {
@@ -70,6 +70,7 @@
   flex-direction: column;
   gap: 4px;
   .nav-link {
+    padding: 8px;
     color: var(--clr-lightGray);
     text-decoration: none;
     text-align: center;
