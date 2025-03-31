@@ -25,7 +25,7 @@ function adjustToWindowSize() {
         } else {
             document.getElementById("addresbookHideMobile").classList.remove("d-none");
             document.getElementById("contactFocus").style.display = "none";
-            document.getElementById("btnsMenuMobile").classList.add("d-none"); s
+            document.getElementById("btnsMenuMobile").classList.add("d-none");
         }
     } else {
         document.getElementById("addresbookHideMobile").classList.remove("d-none");
@@ -288,29 +288,40 @@ async function saveEditContact(indexContact) {
 }
 
 /**
- * This function reads out the data of the add-contact-form for the edit-overlay and sends it to firebase to replace the previous data (for users and contacts)
+ * This function checks if the inputs are valide and saves the edited contact
  */
 async function saveEditContactUser() {
     let userName = validateNameInput("addContactName");
     let userMail = validateMailInput("addContactMail");
     let userPhone = document.getElementById("addContactPhone").value.trim();
-    let userPassword = users[currentUser].password;
-    let userColor = contacts[indexContactUser].color;
     if (userName !== "" && userMail !== "" && userPhone !== "") {
-        await putData("/users/" + users[currentUser].url, {
-            "name": userName,
-            "mail": userMail,
-            "password": userPassword
-        });
-        await putData("/contacts/" + contacts[indexContactUser].url, {
-            "name": userName,
-            "mail": userMail,
-            "phone": userPhone,
-            "color": userColor
-        });
+        await editContactUser(userName, userMail, userPhone);
         contactSuccessfully("Edited", indexContactUser);
     } else { checkContactsInputs() }
     if (userPhone == "") { contactsPhoneRequirementUnfullfilled(); }
+}
+
+/**
+ * This function sends the data of the add-contact-form to firebase to replaces the previous data (for users and contacts)
+ * 
+ * @param {string} userName - the name of the edited user
+ * @param {string} userMail - the mail address of the edited user
+ * @param {string} userPhone - the phone number of the edited user
+ */
+async function editContactUser(userName, userMail, userPhone) {
+    let userPassword = users[currentUser].password;
+    let userColor = contacts[indexContactUser].color;
+    await putData("/users/" + users[currentUser].url, {
+        "name": userName,
+        "mail": userMail,
+        "password": userPassword
+    });
+    await putData("/contacts/" + contacts[indexContactUser].url, {
+        "name": userName,
+        "mail": userMail,
+        "phone": userPhone,
+        "color": userColor
+    });
 }
 
 /**
