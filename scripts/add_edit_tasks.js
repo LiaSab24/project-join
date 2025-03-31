@@ -70,9 +70,9 @@ function checkDateInput() {
     let dateInput = new Date(document.getElementById("addTaskDate").value);
     dateInput.setHours(0, 0, 0, 0);
     if (document.getElementById("addTaskDate").value == "") {
-        checkFilledInput("addTaskTitle");
+        checkFilledInput("addTaskDate");
     } else {
-        if (dateInput - today >= 0 || today == dateInput) {
+        if (dateInput - today >= 0) {
             return document.getElementById("addTaskDate").value
         }
         else { 
