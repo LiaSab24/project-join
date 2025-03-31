@@ -136,6 +136,7 @@ button img {
 }
 
 .task-container {
+  max-width: 1440px;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -146,7 +147,7 @@ button img {
 }
 
 .task-wrapper {
-  height: 100%;
+  height: fit-content;
   padding: var(--task-padding);
   flex: 1;
   width: 246px;
@@ -209,8 +210,8 @@ button img {
 }
 
 .board-tasks-list {
-  height: 100%;
-  width: 252px;
+ /* height: 100%;
+  width: 252px;  */
   padding-bottom: 24px;
   border: 2px dashed transparent;
   border-radius: 12px;
