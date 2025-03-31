@@ -211,6 +211,10 @@ input:focus {
     background-image: url("../assets/icons/add-task-calendar.svg");
 }
 
+.date-error {
+    padding-left: 12px;
+}
+
 .add-task-priorities {
     gap: 16px;
 

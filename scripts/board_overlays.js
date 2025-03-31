@@ -184,7 +184,6 @@ function shortAssignedToListBoardOverview() {
             numberAssignedContacts[indexAssignedContact].classList.add("d-none");
         }
         document.getElementById("assignedContactsAdditionBoardOverview").classList.remove("d-none");
-
     } else {
         for (let indexAssignedContact = 0; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
             numberAssignedContacts[indexAssignedContact].classList.remove("d-none");

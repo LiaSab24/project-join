@@ -3,28 +3,18 @@
  */
 function addTask() {
     if (requirementsFullfilled()) {
-        let taskTitle = document.getElementById("addTaskTitle").value;
-        let taskDescription = document.getElementById("addTaskDescription").value;
-        let taskAssignedTo = getAssignedContacts();
-        let taskDueDate = document.getElementById("addTaskDate").value;
-        let taskPriority = getTaskPriority();
-        let taskCategory = checkTaskCategory();
-        let taskSubtasks = getSubtasks();
-        let taskProgress = getAddProgress();
         postData("/tasks/", {
-            "title": taskTitle,
-            "description": taskDescription,
-            "assignedTo": taskAssignedTo,
-            "dueDate": taskDueDate,
-            "priority": taskPriority,
-            "category": taskCategory,
-            "subtasks": taskSubtasks,
-            "progress": { "progress": taskProgress }
+            "title": document.getElementById("addTaskTitle").value,
+            "description": document.getElementById("addTaskDescription").value,
+            "assignedTo": getAssignedContacts(),
+            "dueDate": getDueDate(),
+            "priority": getTaskPriority(),
+            "category": checkTaskCategory(),
+            "subtasks": getSubtasks(),
+            "progress": { "progress": getAddProgress() }
         });
         currentPageFunctions();
-    } else {
-        requirementsUnfullfilled();
-    }
+    } else { requirementsUnfullfilled() }
 }
 
 /**
@@ -70,6 +60,49 @@ function getAssignedContacts() {
 }
 
 /**
+ * This function checks if the picked date is valide (not in the past)
+ */
+function getDueDate() {
+    let dateInput = document.getElementById("addTaskDate").value;
+    console.log(dateInput);
+    let currentMonth = new Date().getMonth()+1;
+    let today = new Date().getFullYear() + "-" + currentMonth.toLocaleString().padStart(2,"0") + "-" + new Date().getDate();
+    console.log(today);
+    // let currentYear = new Date().getFullYear();
+    // let currentMonth = new Date().getMonth()+1;
+    // let currentDay = new Date().getDate();
+    // console.log(dateInput.slice(0, 4))
+    // console.log(currentYear);
+    // console.log(dateInput.slice(5, 7))
+    // console.log(currentMonth);
+    // console.log(dateInput.slice(8, 10))
+    // console.log(currentDay);
+    // console.log(dateInput.slice(0, 4) - currentYear)
+
+    // if (dateInput.slice(0, 4) - currentYear >= 0) {
+    //     console.log("year")
+    //     if (dateInput.slice(5, 7) - currentMonth >= 0) {
+    //         console.log("month")
+    //         if (dateInput.slice(8, 10) - currentDay >= 0) {
+    //             console.log("day")
+    //         }
+    //     }
+    // } else {
+    //     console.log("no")
+    // }
+
+    // let upCommingDeadline;
+
+    // upCommingDeadline = 
+    //     Math.abs(dateInput - today) < Math.abs(upCommingDeadline - today) ? dateInput : upCommingDeadline
+    // ;
+
+    // console.log(upCommingDeadline)
+
+    // console.log(Math.abs(dateInput - today))
+}
+
+/**
  * This function adds the user (if assigned) to the assignedContactsArray for a task
  * 
  * @param {Array} assignedContactsArray - the array for the contacts that are assigned for a task
@@ -109,7 +142,7 @@ function getSubtasks() {
     }
     return subtasksArray;
 }
-
+ 
 /**
  * This function is part of the addTask()-function and returns the progress-category, where the new task should be added
  */
@@ -117,12 +150,9 @@ function getAddProgress() {
     let progressContentRef = document.getElementById("addTaskCreate").classList[1];
     switch (progressContentRef) {
         default:
-        case "progress-toDo":
-            return "toDo"
-        case "progress-inProgress":
-            return "inProgress"
-        case "progress-awaitFeedback":
-            return "awaitFeedback"
+        case "progress-toDo": return "toDo"
+        case "progress-inProgress": return "inProgress"
+        case "progress-awaitFeedback": return "awaitFeedback"
     }
 }
 
@@ -161,45 +191,30 @@ function requirementsUnfullfilled() {
  */
 function saveEditTask(indexTask) {
     if (requirementsFullfilled()) {
-        let taskTitle = document.getElementById("addTaskTitle").value;
-        let taskDescription = document.getElementById("addTaskDescription").value;
-        let taskAssignedTo = getAssignedContacts();
-        let taskDueDate = document.getElementById("addTaskDate").value;
-        let taskPriority = getTaskPriority();
-        let taskCategory = checkTaskCategory();
-        let taskSubtasks = getSubtasks();
-        let taskProgress = getEditProgress();
         putData("/tasks/" + tasks[indexTask].url, {
-            "title": taskTitle,
-            "description": taskDescription,
-            "assignedTo": taskAssignedTo,
-            "dueDate": taskDueDate,
-            "priority": taskPriority,
-            "category": taskCategory,
-            "subtasks": taskSubtasks,
-            "progress": { "progress": taskProgress }
+            "title": document.getElementById("addTaskTitle").value,
+            "description": document.getElementById("addTaskDescription").value,
+            "assignedTo": getAssignedContacts(),
+            "dueDate": document.getElementById("addTaskDate").value,
+            "priority": getTaskPriority(),
+            "category": checkTaskCategory(),
+            "subtasks": getSubtasks(),
+            "progress": { "progress": getEditProgress() }
         });
         boardOnlyFunctions();
-    } else {
-        requirementsUnfullfilled();
-    }
+    } else { requirementsUnfullfilled() }
 }
 
 /**
  * This function is part of the saveEditTask()-function and returns the progress-category, where the edited task is in
  */
 function getEditProgress() {
-    let progressContentRef = document.getElementById("editTaskOk").classList[1];
-    switch (progressContentRef) {
+    switch (document.getElementById("editTaskOk").classList[1]) {
         default:
-        case "progress-toDo":
-            return "toDo"
-        case "progress-inProgress":
-            return "inProgress"
-        case "progress-awaitFeedback":
-            return "awaitFeedback"
-        case "progress-done":
-            return "done"
+        case "progress-toDo": return "toDo"
+        case "progress-inProgress": return "inProgress"
+        case "progress-awaitFeedback": return "awaitFeedback"
+        case "progress-done": return "done"
     }
 }
 

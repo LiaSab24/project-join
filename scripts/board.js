@@ -6,7 +6,7 @@ async function initBoard() {
   clearTaskProgressCategories();
   renderTasks();
   toggleMessageNoTasks();
-} 
+}
 
 /**
  * This function clears each of the progress-catergories
@@ -16,7 +16,7 @@ function clearTaskProgressCategories() {
   document.getElementById("inProgress").innerHTML = "";
   document.getElementById("awaitFeedback").innerHTML = "";
   document.getElementById("done").innerHTML = "";
-} 
+}
 
 /** 
  * This function creates a task-card for each task in its corresponding progress-category
@@ -27,7 +27,7 @@ function renderTasks() {
     let taskProgress = tasks[indexTask].progress.progress;
     let taskProgressContentRef = document.getElementById(taskProgress);
     taskProgressContentRef.innerHTML += getBoardTaskTemplate(indexTask);
-    hideSubtasksProgressForNoSubtasks(indexTask); 
+    hideSubtasksProgressForNoSubtasks(indexTask);
     displayAssignedContacts(indexTask);
     if (tasks[indexTask].priority == "") {
       document.getElementById("prio" + indexTask).src = "";
@@ -165,11 +165,10 @@ function renderDropdownAreas() {
  */
 function startSearchingTasks() {
   let searchInputRef = document.getElementById("searchInput");
-  let searchInput = searchInputRef.value.toLowerCase();
   clearTaskProgressCategories();
   searchInputRef.disabled = true;
-  if (searchInput.length >= 3) {
-    displayFilteredTasks(searchInput);
+  if (searchInputRef.value.toLowerCase().length >= 3) {
+    displayFilteredTasks(searchInputRef.value.toLowerCase());
   } else {
     clearTaskProgressCategories();
     renderTasks();
@@ -189,9 +188,7 @@ function displayFilteredTasks(searchInput) {
   filterTasks(searchInput);
   for (let indexTask = 0; indexTask < filteredTasks.length; indexTask++) {
     if (filteredTasks[indexTask] != 0) {
-      let taskProgress = tasks[indexTask].progress.progress;
-      let taskProgressContentRef = document.getElementById(taskProgress);
-      taskProgressContentRef.innerHTML += getBoardTaskTemplate(indexTask);
+      document.getElementById(tasks[indexTask].progress.progress).innerHTML += getBoardTaskTemplate(indexTask);
       hideSubtasksProgressForNoSubtasks(indexTask);
       displayAssignedContacts(indexTask);
       if (tasks[indexTask].priority == "") {

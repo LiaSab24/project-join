@@ -19,7 +19,7 @@ const colors = [
   "#00bee8", // Sky Blue
   "#1fd7c1", // Turquoise
   "#ff745e", // Coral
-  "#ffa335", // Amber
+  "#ffa335", // Amber 
   "#fc71ff", // Fuchsia
   "#ffc701", // Golden Yellow
   "#0038ff", // Royal Blue
@@ -42,7 +42,8 @@ async function init() {
   if (document.getElementById("header")) {
     headerUser();
   }
-  initializeSidebar();
+  initializeSidebarMenuLinks();
+  initializeSidebarNavLinks();
   setActiveMenuLink();
 }
 
@@ -109,23 +110,17 @@ function setActiveMenuLink() {
 
   switch (location) {
     case currentPage("summary"):
-      document.getElementById("summaryLink").classList.add("active");
-      break;
+      document.getElementById("summaryLink").classList.add("active"); break;
     case currentPage("add_task"):
-      document.getElementById("addTaskLink").classList.add("active");
-      break;
+      document.getElementById("addTaskLink").classList.add("active"); break;
     case currentPage("board"):
-      document.getElementById("boardLink").classList.add("active");
-      break;
+      document.getElementById("boardLink").classList.add("active"); break;
     case currentPage("contacts"):
-      document.getElementById("contactsLink").classList.add("active");
-      break;
-    case currentPage("privacy_policy"): 
-      document.getElementById("privacyPolicyLink").classList.add("active");
-      break;
+      document.getElementById("contactsLink").classList.add("active"); break;
+    case currentPage("privacy_policy"):
+      document.getElementById("privacyPolicyLink").classList.add("active"); break;
     case currentPage("legal_notice"):
-      document.getElementById("legalNoticeLink").classList.add("active");
-      break;
+      document.getElementById("legalNoticeLink").classList.add("active"); break;
   }
 }
 
@@ -253,27 +248,35 @@ async function successfullMsg(msgId) {
 */
 function checkFilledInput(contentRefId) {
   let contentRef = document.getElementById(contentRefId);
-  let unfulfilledRequirement = "requirement-unfulfilled";
   if (contentRefId == "addTaskCategory") {
-    if (contentRef.placeholder == "Select task category") {
-      contentRef.classList.add(unfulfilledRequirement);
-      setTimeout(function () {
-        contentRef.classList.remove(unfulfilledRequirement);
-      }, 2400);
-    } else {
-      contentRef.classList.remove(unfulfilledRequirement);
-    }
+    checkFilledInputTaskCategory();
   } else {
     if (contentRef.value == "") {
-      contentRef.classList.add(unfulfilledRequirement);
+      contentRef.classList.add("requirement-unfulfilled");
       setTimeout(function () {
-        contentRef.classList.remove(unfulfilledRequirement);
+        contentRef.classList.remove("requirement-unfulfilled");
       }, 2400);
     } else {
-      contentRef.classList.remove(unfulfilledRequirement);
+      contentRef.classList.remove("requirement-unfulfilled");
     }
   }
 }
+
+/**
+ * This function checks, if a task-category is chosen and toggles the "requirement-unfulfilled"-class accordingly
+*/
+function checkFilledInputTaskCategory() {
+  let contentRef = document.getElementById("addTaskCategory");
+  if (contentRef.placeholder == "Select task category") {
+    contentRef.classList.add("requirement-unfulfilled");
+    setTimeout(function () {
+      contentRef.classList.remove("requirement-unfulfilled");
+    }, 2400);
+  } else {
+    contentRef.classList.remove("requirement-unfulfilled");
+  }
+}
+
 
 /**
  * This function toggles the visibilty of the submenu (and its transparent background-overlay) onclick
@@ -367,12 +370,10 @@ function validateMailInput(contentRef) {
 }
 
 /**
- * This function lets the user navigate throught the sidbar without needing to click
+ * This function lets the user navigate throught the sidear menu-links without needing to click
  */
-function initializeSidebar() {
-  const menuLinks = document.querySelectorAll('.menu-link');
-  const navLinks = document.querySelectorAll('.nav-link');
-  menuLinks.forEach(link => {
+function initializeSidebarMenuLinks() {
+  document.querySelectorAll('.menu-link').forEach(link => {
     link.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -380,7 +381,13 @@ function initializeSidebar() {
       }
     });
   });
-  navLinks.forEach(link => {
+}
+
+/**
+ * This function lets the user navigate throught the sidebar nav-links without needing to click
+ */
+function initializeSidebarNavLinks() {
+  document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();

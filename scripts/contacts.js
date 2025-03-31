@@ -63,6 +63,8 @@ function hideNotUsedLetters() {
     for (let indexLetter = 0; indexLetter < letterContentRef.length; indexLetter++) {
         if (addressBookContentRef[indexLetter].innerHTML == "") {
             letterContentRef[indexLetter].classList.add("d-none");
+        } else {
+            letterContentRef[indexLetter].classList.remove("d-none");
         }
     }
 }
@@ -148,19 +150,16 @@ function clearContactForm() {
 async function addContact() {
     let contactName = validateNameInput("addContactName");
     let contactMail = validateMailInput("addContactMail");
-    let contactPhone = document.getElementById("addContactPhone").value.trim();
-    let indexContact = contacts.length + 1;
-    if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
-        let contactColor = await assignRandomColor(indexContact);
+    if (contactName !== "" && contactMail !== "" && document.getElementById("addContactPhone").value.trim() !== "") {
         await postData("/contacts/", {
             "name": contactName,
             "mail": contactMail,
-            "phone": contactPhone,
-            "color": contactColor
+            "phone": document.getElementById("addContactPhone").value.trim(),
+            "color": await assignRandomColor(contacts.length + 1)
         });
         contactSuccessfully("Created");
     } else { checkContactsInputs() }
-    if (contactPhone == "") { contactsPhoneRequirementUnfullfilled() }
+    if (document.getElementById("addContactPhone").value.trim() == "") { contactsPhoneRequirementUnfullfilled() }
 }
 
 /**
@@ -169,10 +168,10 @@ async function addContact() {
  * @param {string} activity - whether the contact should be added or edited
  * @param {number} indexContact - the index of the contact in the contacts-array (or indexContactUser, if the user is edited)
  */
-async function contactSuccessfully(activity, indexContact) {
-    closeContactsOverlay();
+function contactSuccessfully(activity, indexContact) {
     successfullMsg("contactSuccesfully" + activity);
-    await initContacts();
+    initContacts();
+    closeContactsOverlay();
     if (activity == "Edited") {
         contactClicked(indexContact);
     }
@@ -271,20 +270,18 @@ function updateFocusedContact(indexContact) {
 async function saveEditContact(indexContact) {
     let contactName = validateNameInput("addContactName");
     let contactMail = validateMailInput("addContactMail");
-    let contactPhone = document.getElementById("addContactPhone").value.trim();
     if (indexContact !== indexContactUser) {
-        let contactColor = contacts[indexContact].color;
-        if (contactName !== "" && contactMail !== "" && contactPhone !== "") {
+        if (contactName !== "" && contactMail !== "" && document.getElementById("addContactPhone").value.trim() !== "") {
             await putData("/contacts/" + contacts[indexContact].url, {
                 "name": contactName,
                 "mail": contactMail,
-                "phone": contactPhone,
-                "color": contactColor
+                "phone": document.getElementById("addContactPhone").value.trim(),
+                "color": contacts[indexContact].color
             });
             contactSuccessfully("Edited", indexContact);
         } else { checkContactsInputs() }
     } else { saveEditContactUser() }
-    if (contactPhone == "") { contactsPhoneRequirementUnfullfilled() }
+    if (document.getElementById("addContactPhone").value.trim() == "") { contactsPhoneRequirementUnfullfilled() }
 }
 
 /**
@@ -293,12 +290,11 @@ async function saveEditContact(indexContact) {
 async function saveEditContactUser() {
     let userName = validateNameInput("addContactName");
     let userMail = validateMailInput("addContactMail");
-    let userPhone = document.getElementById("addContactPhone").value.trim();
-    if (userName !== "" && userMail !== "" && userPhone !== "") {
-        await editContactUser(userName, userMail, userPhone);
+    if (userName !== "" && userMail !== "" && document.getElementById("addContactPhone").value.trim() !== "") {
+        await editContactUser(userName, userMail);
         contactSuccessfully("Edited", indexContactUser);
     } else { checkContactsInputs() }
-    if (userPhone == "") { contactsPhoneRequirementUnfullfilled(); }
+    if (document.getElementById("addContactPhone").value.trim() == "") { contactsPhoneRequirementUnfullfilled(); }
 }
 
 /**
@@ -306,21 +302,18 @@ async function saveEditContactUser() {
  * 
  * @param {string} userName - the name of the edited user
  * @param {string} userMail - the mail address of the edited user
- * @param {string} userPhone - the phone number of the edited user
  */
-async function editContactUser(userName, userMail, userPhone) {
-    let userPassword = users[currentUser].password;
-    let userColor = contacts[indexContactUser].color;
+async function editContactUser(userName, userMail) {
     await putData("/users/" + users[currentUser].url, {
         "name": userName,
         "mail": userMail,
-        "password": userPassword
+        "password": users[currentUser].password
     });
     await putData("/contacts/" + contacts[indexContactUser].url, {
         "name": userName,
         "mail": userMail,
-        "phone": userPhone,
-        "color": userColor
+        "phone": document.getElementById("addContactPhone").value.trim(),
+        "color": contacts[indexContactUser].color
     });
 }
 

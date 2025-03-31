@@ -21,14 +21,14 @@
     <script src="../scripts/add_task.js"></script>
     <script src="../scripts/add_edit_tasks.js"></script>
 </head>
- 
+
 <body onload="initAddTask()">
     <div w3-include-html="header.html"></div>
     <div w3-include-html="sidebar.html"></div>
 
     <main>
         <section id="addTask" class="add-task">
-            <h1 id="addTaskH1" class="title add-task-content">Add Task</h1>
+            <h1 id="addTaskH1" class="title add-task-content" onclick="getDueDate() ">Add Task</h1>
 
             <form id="addTaskForm" class="add-task-form add-task-content flex just-space-b">
                 <div class="add-task-form-column flex">
@@ -68,6 +68,9 @@
                     </label>
                     <input onblur="checkFilledInput('addTaskDate')" form="dd/mm/yyyy" id="addTaskDate"
                         class="add-task-date" type="date" min="1920-01-01" max="2100-12-31" required>
+                    <div class="add-task-alerts flex">
+                        <span id="alertAddTaskDate" class="input-error date-error invisible">Please enter a valide date</span>
+                    </div>
 
                     <label for="addTaskPriorities">Priority</label>
                     <div id="addTaskPriorities" class="add-task-priorities flex just-space-b">
@@ -152,7 +155,8 @@
                 </div>
             </section>
 
-            <section onclick="removeAddTaskOverlay()" id="addTaskOverlayBg" class="add-task-overlay-bg d-none"></section>
+            <section onclick="removeAddTaskOverlay()" id="addTaskOverlayBg" class="add-task-overlay-bg d-none">
+            </section>
 
             <section onclick="toggleSubmenu()" id="submenuOverlay" class="d-none">
                 <div id="submenu" class="submenu" onclick="event.stopImmediatePropagation()">

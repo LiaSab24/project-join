@@ -24,24 +24,17 @@ function clearSignUpForm() {
 async function addUser() {
     let userName = validateNameInput("name");
     let userMail = validateMailInput("mail");
-    let userPassword = checkPasswordConfirmed();
-    let checkbox = document.getElementById("checkboxSignUp");
-    if (userPassword !== undefined) {
-        if (checkbox.checked) {
+    if (checkPasswordConfirmed() !== undefined) {
+        if (document.getElementById("checkboxSignUp").checked) {
             if (userName !== "" && userMail !== "") {
                 await postData("/users/", {
                     "name": userName,
                     "mail": userMail,
-                    "password": userPassword
+                    "password": document.getElementById("password").value
                 });
                 await addUserToContacts(userName, userMail);
-                signUpSuccessfully();
-            } else {
-                signUpUnsuccessfully();
-            }
-        } else {
-            logInRequirementsUnfullfilled("Checkbox");
-        }
+            } else { signUpUnsuccessfully() }
+        } else { logInRequirementsUnfullfilled("Checkbox"); }
     }
 }
 
@@ -69,9 +62,9 @@ function checkPasswordConfirmed() {
  * @param {string} requirement - the unfullfilled requirement (Checkbox, Password, Confirm)
  */
 function logInRequirementsUnfullfilled(requirement) {
-    document.getElementById("alert"+requirement+"SignUp").classList.remove("invisible");
+    document.getElementById("alert" + requirement + "SignUp").classList.remove("invisible");
     setTimeout(function () {
-        document.getElementById("alert"+requirement+"SignUp").classList.add("invisible");
+        document.getElementById("alert" + requirement + "SignUp").classList.add("invisible");
     }, 2400);
 }
 
@@ -81,18 +74,19 @@ function logInRequirementsUnfullfilled(requirement) {
 async function addUserToContacts(userName, userMail) {
     let indexContact = contacts.length + 1;
     let contactColor = await assignRandomColor(indexContact);
-    postData("/contacts/", {
+    await postData("/contacts/", {
         "name": userName,
         "mail": userMail,
         "phone": "",
         "color": contactColor
     });
+    signUpSuccessfully();
 }
 
 /**
  * This function executes the necessary functions for a successfull sign-up
  */
-function signUpSuccessfully () {
+function signUpSuccessfully() {
     successfullMsg("userSuccesfullyCreated");
     clearSignUpForm();
     setTimeout(function () {

@@ -4,7 +4,7 @@
 async function initAddTask() {
     await init();
     clearTaskForm();
-    fillAssignedToDropDownMenu();
+    fillAssignedToDropDownMenu(); 
 }
 
 /**
@@ -176,7 +176,7 @@ function startSearchingContacts() {
     searchInputRef.focus();
     classListAssignedContacts();
 }
-
+ 
 /**
  * This function fills the dropdownlist with the filtered elements.
  * 
@@ -329,6 +329,8 @@ function confirmEditSubtask(indexSubtask) {
     if (subtask !== "") {
         subtaskContentRef.classList.remove("subtask-edit");
         subtaskContentRef.innerHTML = getAddTaskSubtaskListElementTemplate(subtask, indexSubtask);
+    } else {
+        deleteSubtask(indexSubtask);
     }
     removeAddTaskOverlay();
 }

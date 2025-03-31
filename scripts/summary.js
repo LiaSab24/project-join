@@ -11,7 +11,7 @@ async function initSummary() {
     tasksToDo = 0;
     tasksInProgress = 0;
     tasksAwaitFeedback = 0;
-    tasksDone = 0;
+    tasksDone = 0; 
     showTasksNumbers();
     showNextDeadline()
     greetingDaytime();
@@ -44,18 +44,10 @@ function countTasksInProgressCategories() {
     for (let indexTask = 0; indexTask < tasks.length; indexTask++) {
         let taskProgress = tasks[indexTask].progress.progress;
         switch (taskProgress) {
-            case "toDo":
-                tasksToDo++;
-                break;
-            case "inProgress":
-                tasksInProgress++;
-                break;
-            case "awaitFeedback":
-                tasksAwaitFeedback++;
-                break;
-            case "done":
-                tasksDone++;
-                break;
+            case "toDo": tasksToDo++; break;
+            case "inProgress": tasksInProgress++; break;
+            case "awaitFeedback": tasksAwaitFeedback++; break;
+            case "done": tasksDone++; break;
         }
     }
 }
@@ -64,7 +56,6 @@ function countTasksInProgressCategories() {
  * This function sorts out, wich of the tasks dueDate values is the closest to the current date and fills in the "nextDeadline"-container accordingly
  */
 function showNextDeadline() {
-    let deadlineContentRef = document.getElementById("nextDeadline");
     let today = new Date();
     let deadlines = [];
     for (let indexTask = 0; indexTask < tasks.length; indexTask++) {
@@ -77,7 +68,7 @@ function showNextDeadline() {
     let upCommingDeadlineMonth = upCommingDeadline.toLocaleString('en-us', { month: 'long' });
     let upCommingDeadlineDay = upCommingDeadline.getDate();
     let upCommingDeadlineYear = upCommingDeadline.getFullYear();
-    deadlineContentRef.innerHTML = upCommingDeadlineMonth + " " + upCommingDeadlineDay + ", " + upCommingDeadlineYear;
+    document.getElementById("nextDeadline").innerHTML = upCommingDeadlineMonth + " " + upCommingDeadlineDay + ", " + upCommingDeadlineYear;
 }
 
 /**
@@ -110,7 +101,7 @@ function guestGreeting() {
     const greetingContentRef = document.getElementById("greetingDaytime");
     let originallyGreeting = greetingContentRef.innerHTML;
     let newGreeting = originallyGreeting.replace(",", " ").trim();
-    if(window.innerWidth <= 1000 && !greetingContentRef.innerHTML.includes("!")) {
+    if (window.innerWidth <= 1000 && !greetingContentRef.innerHTML.includes("!")) {
         greetingContentRef.innerHTML = newGreeting + "!";
     } else {
         greetingContentRef.innerHTML = newGreeting.replace("!", " ").trim();
