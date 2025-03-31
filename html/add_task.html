@@ -28,7 +28,7 @@
 
     <main>
         <section id="addTask" class="add-task">
-            <h1 id="addTaskH1" class="title add-task-content" onclick="getDueDate() ">Add Task</h1>
+            <h1 id="addTaskH1" class="title add-task-content">Add Task</h1>
 
             <form id="addTaskForm" class="add-task-form add-task-content flex just-space-b">
                 <div class="add-task-form-column flex">
@@ -66,10 +66,10 @@
                         Due date
                         <span class="required-star">*</span>
                     </label>
-                    <input onblur="checkFilledInput('addTaskDate')" form="dd/mm/yyyy" id="addTaskDate"
+                    <input onblur="checkFilledInput('addTaskDate'), checkDateInput()" form="dd/mm/yyyy" id="addTaskDate"
                         class="add-task-date" type="date" min="1920-01-01" max="2100-12-31" required>
                     <div class="add-task-alerts flex">
-                        <span id="alertAddTaskDate" class="input-error date-error invisible">Please enter a valide date</span>
+                        <span id="alertAddTaskDate" class="input-error date-error invisible">Please enter a valid date</span>
                     </div>
 
                     <label for="addTaskPriorities">Priority</label>

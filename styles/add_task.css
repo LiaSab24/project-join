@@ -107,6 +107,10 @@ input:focus {
         border-radius: 1px;
         background-color: var(--clr-lighterGray);
     }
+
+    .add-task-alerts {
+        height: 0;
+    }
 }
 
 .add-task-assigned-to:focus {

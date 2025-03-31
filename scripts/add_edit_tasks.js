@@ -7,7 +7,7 @@ function addTask() {
             "title": document.getElementById("addTaskTitle").value,
             "description": document.getElementById("addTaskDescription").value,
             "assignedTo": getAssignedContacts(),
-            "dueDate": getDueDate(),
+            "dueDate": checkDateInput(),
             "priority": getTaskPriority(),
             "category": checkTaskCategory(),
             "subtasks": getSubtasks(),
@@ -23,9 +23,11 @@ function addTask() {
 function requirementsFullfilled() {
     if (document.getElementById("addTaskTitle").value !== "" &&
         document.getElementById("addTaskDate").value !== "" &&
+        checkDateInput() !== false &&
         document.getElementById("addTaskCategory").placeholder !== "Select task category") {
         return true;
     } else {
+        checkDateInput();
         return false;
     }
 }
@@ -62,44 +64,31 @@ function getAssignedContacts() {
 /**
  * This function checks if the picked date is valide (not in the past)
  */
-function getDueDate() {
-    let dateInput = document.getElementById("addTaskDate").value;
-    console.log(dateInput);
-    let currentMonth = new Date().getMonth()+1;
-    let today = new Date().getFullYear() + "-" + currentMonth.toLocaleString().padStart(2,"0") + "-" + new Date().getDate();
-    console.log(today);
-    // let currentYear = new Date().getFullYear();
-    // let currentMonth = new Date().getMonth()+1;
-    // let currentDay = new Date().getDate();
-    // console.log(dateInput.slice(0, 4))
-    // console.log(currentYear);
-    // console.log(dateInput.slice(5, 7))
-    // console.log(currentMonth);
-    // console.log(dateInput.slice(8, 10))
-    // console.log(currentDay);
-    // console.log(dateInput.slice(0, 4) - currentYear)
+function checkDateInput() {
+    let today = new Date();
+    today.setHours(0, 0, 0, 0);
+    let dateInput = new Date(document.getElementById("addTaskDate").value);
+    dateInput.setHours(0, 0, 0, 0);
+    if (document.getElementById("addTaskDate").value == "") {
+        checkFilledInput("addTaskTitle");
+    } else {
+        if (dateInput - today >= 0 || today == dateInput) {
+            return document.getElementById("addTaskDate").value
+        }
+        else { 
+            dateInputInvalid();
+            return false; 
+        }
+    }
+}
 
-    // if (dateInput.slice(0, 4) - currentYear >= 0) {
-    //     console.log("year")
-    //     if (dateInput.slice(5, 7) - currentMonth >= 0) {
-    //         console.log("month")
-    //         if (dateInput.slice(8, 10) - currentDay >= 0) {
-    //             console.log("day")
-    //         }
-    //     }
-    // } else {
-    //     console.log("no")
-    // }
-
-    // let upCommingDeadline;
-
-    // upCommingDeadline = 
-    //     Math.abs(dateInput - today) < Math.abs(upCommingDeadline - today) ? dateInput : upCommingDeadline
-    // ;
-
-    // console.log(upCommingDeadline)
-
-    // console.log(Math.abs(dateInput - today))
+function dateInputInvalid() {
+    document.getElementById("alertAddTaskDate").classList.remove("invisible");
+    document.getElementById("addTaskDate").classList.add("requirement-unfulfilled");
+    setTimeout(function () {
+        document.getElementById("alertAddTaskDate").classList.add("invisible");
+        document.getElementById("addTaskDate").classList.remove("requirement-unfulfilled");
+    }, 2400);
 }
 
 /**
@@ -142,7 +131,7 @@ function getSubtasks() {
     }
     return subtasksArray;
 }
- 
+
 /**
  * This function is part of the addTask()-function and returns the progress-category, where the new task should be added
  */

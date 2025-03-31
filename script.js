@@ -381,7 +381,7 @@ function initializeSidebarMenuLinks() {
       }
     });
   });
-}
+} 
 
 /**
  * This function lets the user navigate throught the sidebar nav-links without needing to click

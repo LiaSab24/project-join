@@ -511,6 +511,10 @@ button img {
   margin-right: 98px;
 }
 
+#addTaskOverlay .add-task-alerts {
+  align-self: start;
+}
+
 #addTaskOverlay .overlay-close {
   align-self: baseline;
 }
