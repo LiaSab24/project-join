@@ -25,7 +25,7 @@ function adjustToWindowSize() {
         } else {
             document.getElementById("addresbookHideMobile").classList.remove("d-none");
             document.getElementById("contactFocus").style.display = "none";
-            document.getElementById("btnsMenuMobile").classList.add("d-none");s
+            document.getElementById("btnsMenuMobile").classList.add("d-none"); s
         }
     } else {
         document.getElementById("addresbookHideMobile").classList.remove("d-none");
@@ -128,8 +128,8 @@ function adjustOverlayToEdit(indexContact) {
     document.getElementById("addContactName").value = contacts[indexContact].name;
     document.getElementById("addContactMail").value = contacts[indexContact].mail;
     document.getElementById("addContactPhone").value = contacts[indexContact].phone;
-    profileBadgeColor("overlayProfileBadge", indexContact)
-    document.getElementById("overlayProfileBadge").innerHTML = nameAbbreviation(indexContact)
+    profileBadgeColor("overlayProfileBadge", indexContact);
+    document.getElementById("overlayProfileBadge").innerHTML = nameAbbreviation(indexContact);
     document.getElementById("contactsSubmitBtns").innerHTML = getContactsOverlayEditBtnsTemplate(indexContact);
 }
 
@@ -158,20 +158,43 @@ async function addContact() {
             "phone": contactPhone,
             "color": contactColor
         });
-        closeContactsOverlay();
-        successfullMsg("contactSuccesfullyCreated");
-        initContacts();
-    } else {
-        checkFilledInput("addContactName");
-        checkFilledInput("addContactMail");
-        checkFilledInput("addContactPhone")
+        contactSuccessfully("Created");
+    } else { checkContactsInputs() }
+    if (contactPhone == "") { contactsPhoneRequirementUnfullfilled() }
+}
+
+/**
+ * This function redirects to different functions that are used to display the clicked contact 
+ * 
+ * @param {string} activity - whether the contact should be added or edited
+ * @param {number} indexContact - the index of the contact in the contacts-array (or indexContactUser, if the user is edited)
+ */
+async function contactSuccessfully(activity, indexContact) {
+    closeContactsOverlay();
+    successfullMsg("contactSuccesfully" + activity);
+    await initContacts();
+    if (activity == "Edited") {
+        contactClicked(indexContact);
     }
-    if (contactPhone == "") {
-        document.getElementById("alertPhone").classList.remove("invisible");
-        setTimeout(function () {
-            document.getElementById("alertPhone").classList.add("invisible");
-        }, 2400);
-    }
+}
+
+/**
+ * This function executes the checkFilledInput-functions for each of the inputs
+ */
+function checkContactsInputs() {
+    checkFilledInput("addContactName");
+    checkFilledInput("addContactMail");
+    checkFilledInput("addContactPhone");
+}
+
+/**
+ * This function shows the alertPhone, if the contactPhone-input is empty
+ */
+function contactsPhoneRequirementUnfullfilled() {
+    document.getElementById("alertPhone").classList.remove("invisible");
+    setTimeout(function () {
+        document.getElementById("alertPhone").classList.add("invisible");
+    }, 2400);
 }
 
 /**
@@ -258,24 +281,10 @@ async function saveEditContact(indexContact) {
                 "phone": contactPhone,
                 "color": contactColor
             });
-            contactClicked(indexContact);
-            successfullMsg("contactSuccesfullyEdited");
-            closeContactsOverlay();
-            initContacts();
-        } else {
-            checkFilledInput("addContactName");
-            checkFilledInput("addContactMail");
-            checkFilledInput("addContactPhone")
-        }
-    } else {
-        saveEditContactUser()
-    }
-    if (contactPhone == "") {
-        document.getElementById("alertPhone").classList.remove("invisible");
-        setTimeout(function () {
-            document.getElementById("alertPhone").classList.add("invisible");
-        }, 2400);
-    }
+            contactSuccessfully("Edited", indexContact);
+        } else { checkContactsInputs() }
+    } else { saveEditContactUser() }
+    if (contactPhone == "") { contactsPhoneRequirementUnfullfilled() }
 }
 
 /**
@@ -288,36 +297,20 @@ async function saveEditContactUser() {
     let userPassword = users[currentUser].password;
     let userColor = contacts[indexContactUser].color;
     if (userName !== "" && userMail !== "" && userPhone !== "") {
-        setTimeout(function () {
-            putData("/users/" + users[currentUser].url, {
-                "name": userName,
-                "mail": userMail,
-                "password": userPassword
-            });
+        await putData("/users/" + users[currentUser].url, {
+            "name": userName,
+            "mail": userMail,
+            "password": userPassword
         });
-        setTimeout(function () {
-            putData("/contacts/" + contacts[indexContactUser].url, {
-                "name": userName,
-                "mail": userMail,
-                "phone": userPhone,
-                "color": userColor
-            });
+        await putData("/contacts/" + contacts[indexContactUser].url, {
+            "name": userName,
+            "mail": userMail,
+            "phone": userPhone,
+            "color": userColor
         });
-        contactClicked(indexContactUser);
-        successfullMsg("contactSuccesfullyEdited");
-        closeContactsOverlay();
-        initContacts();
-    } else {
-        checkFilledInput("addContactName");
-        checkFilledInput("addContactMail");
-        checkFilledInput("addContactPhone")
-    }
-    if (userPhone == "") {
-        document.getElementById("alertPhone").classList.remove("invisible");
-        setTimeout(function () {
-            document.getElementById("alertPhone").classList.add("invisible");
-        }, 2400);
-    }
+        contactSuccessfully("Edited", indexContactUser);
+    } else { checkContactsInputs() }
+    if (userPhone == "") { contactsPhoneRequirementUnfullfilled(); }
 }
 
 /**
