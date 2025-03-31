@@ -1,3 +1,8 @@
+main {
+  @media(max-width: 1100px) {
+    padding: 80px 12px 40px 24px;
+  }
+}
 
 .title {
   gap: 27px;
@@ -5,11 +10,13 @@
   h1 {
     white-space: nowrap;
   }
+
   p {
     white-space: nowrap;
     font-size: var(--fs-27-20);
     color: var(--clr-primary);
   }
+
   @media (max-width: 900px) {
     width: fit-content;
     margin: 0;
@@ -23,6 +30,7 @@
   height: 59px;
   width: 3px;
   background-color: var(--clr-lightBlue);
+
   @media (max-width: 900px) {
     display: none;
   }
@@ -32,6 +40,7 @@
   height: 3px;
   width: 90px;
   background-color: var(--clr-lightBlue);
+
   @media (min-width: 901px) {
     display: none;
   }
@@ -40,10 +49,14 @@
 .summary-content {
   padding-top: 56px;
   gap: 40px;
+
+  @media(max-width: 1100px) {
+    gap: 32px;
+  }
+
   @media (max-width: 900px) {
     flex-direction: column;
     align-items: flex-start;
-    gap: 32px;
   }
 }
 
@@ -51,6 +64,11 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 28px;
+
+  @media(max-width: 1100px) {
+    gap: 24px;
+  }
+
   @media (max-width: 900px) {
     width: 100%;
     height: fit-content;
@@ -81,33 +99,40 @@
 
 .to-dos {
   gap: 32px;
-  @media (max-width: 900px) {
+
+  @media(max-width: 1100px) {
     gap: 24px;
   }
+
   @media (max-width: 400px) {
     flex-direction: column;
+
     div {
       width: 100%;
     }
   }
+
   .summary-container {
     width: 100%;
+
     .summary-icon--todo {
       background-image: url("../assets/icons/summary-todo.svg");
       width: 70px;
       height: 70px;
       background-repeat: no-repeat;
+
       @media (max-width: 589px) {
         padding: -38px 0;
       }
     }
-    
+
     .summary-icon--done {
       background-image: url("../assets/icons/summary-done.svg");
       width: 70px;
       height: 70px;
       background-repeat: no-repeat;
     }
+
     @media (max-width: 589px) {
       padding: 38px 0;
     }
@@ -117,7 +142,7 @@
     .summary-icon--todo {
       background-image: url("../assets/icons/summary-todo-hover.svg");
     }
-    
+
     .summary-icon--done {
       background-image: url("../assets/icons/summary-done-hover.svg");
     }
@@ -134,9 +159,11 @@
 .deadline {
   padding: 38px 0;
   gap: 18px;
+
   @media (max-width: 400px) {
     width: 100%;
     flex-direction: column;
+
     .deadline-seperator {
       height: 2px;
       width: 180px;
@@ -145,12 +172,14 @@
 }
 
 .deadline:hover {
-  transform: scaleX(105%) scaleY(110%);
+  transform: scaleX(105%) scaleY(110%) !important;
+
 }
 
 .deadline-urgent {
   flex: 0.5;
   gap: 18px;
+
   p {
     flex-direction: column;
   }
@@ -190,18 +219,26 @@
 
 .tasks {
   gap: 29px;
+
   div {
     padding: 25px 0;
     width: 33%;
+
     p {
       font-size: var(--fs-20-14);
       color: var(--clr-primary);
       flex-direction: column;
     }
   }
+
+  @media(max-width: 1100px) {
+    gap: 24px;
+  }
+
   @media (max-width: 400px) {
     flex-direction: column;
     gap: 16px;
+
     div {
       width: 100%;
     }
@@ -209,22 +246,35 @@
 }
 
 @keyframes greeting {
-  0% {opacity: 100%;}
-  30% {opacity: 100%;}
-  100% {opacity: 0%; pointer-events: none;}
+  0% {
+    opacity: 100%;
+  }
+
+  30% {
+    opacity: 100%;
+  }
+
+  100% {
+    opacity: 0%;
+    pointer-events: none;
+  }
 }
 
 .summary-greeting {
-  width: fit-content;
   height: fit-content;
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
   flex-direction: column;
   flex: 1;
   white-space: normal;
   z-index: 1;
   gap: 3px;
+
   @media(max-width: 1400px) {
     justify-content: center;
   }
+
   @media(max-width: 1000px) {
     position: fixed;
     top: 96px;
@@ -232,20 +282,24 @@
     height: 100%;
     width: 100%;
     margin: 0;
+    margin-left: -112px;
+    padding-bottom: 232px;
     background-color: #f6f7f8;
     align-items: center;
-    justify-content: center;
-    text-align: center;
     opacity: 0;
+    animation-name: greeting;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    pointer-events: all;
   }
+
   @media(max-width: 900px) {
-    top: 30%;
-    bottom: auto;
-    transform: translateY(-30%);
+    height: auto;
+    top: 80px;
+    bottom: 80px;
     padding: 0;
-    animation: greeting 3s ease-in-out forwards;
+    margin: 0;
   }
-  
 }
 
 .greeting-daytime {
@@ -253,6 +307,9 @@
   font-size: var(--fs-47-36);
   color: var(--clr-primary);
   white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   @media(max-width: 552px) {
     text-align: start;
   }
@@ -264,18 +321,21 @@
   color: var(--clr-lightBlue);
   white-space: normal;
   display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   @media (max-width: 1128px) {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 230px;
-    display: inline-block;
   }
-  @media (max-width: 900px) {
+
+  @media (max-width: 1000px) {
     white-space: normal;
     overflow: visible;
     text-overflow: unset;
-    max-width: none;
+    max-width: fit-content;
   }
 }
 

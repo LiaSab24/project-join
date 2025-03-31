@@ -10,7 +10,9 @@ function closeOverlays() {
     document.getElementById("editTaskOverlayContent").innerHTML = "";
     document.getElementById("addTaskOverlay").classList.remove("edit-task-overlay");
     document.getElementById("addTaskOverlayContent").innerHTML = "";
+    document.getElementById("searchInput").value = "";
     renderTasks();
+    toggleMessageNoTasks();
 }
 
 /**
