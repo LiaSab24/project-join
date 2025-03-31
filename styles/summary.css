@@ -299,6 +299,7 @@ main {
     bottom: 80px;
     padding: 0;
     margin: 0;
+    margin-left: -24px;
   }
 }
 
