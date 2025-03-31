@@ -1,14 +1,4 @@
 /**
- * This function lets users with mobile devices move a task to another progress-category
- * 
- * @param {number} indexTask - the index of the task in the tasks-array
- */
-function moveTaskProgressMobile(indexTask) {
-    openBoardBgOverlay();
-    document.getElementById("boardOverlayBg").innerHTML += getBoardTaskMoveProgressMobile(indexTask);
-}
-
-/**
  * This function is closes all Board-Overlays
  */
 function closeOverlays() {
@@ -67,16 +57,8 @@ async function boardAddTask(overlay, progress, indexTask) {
             let addTaskOverlayContent = doc.querySelector('#addTask').innerHTML;
             initBoard();
             openBoardBgOverlay();
-            if (overlay == "add") {
-                openBoardAddTaskOverlay(addTaskOverlayContent, progress);
-                clearTaskForm();
-            } if (overlay == "edit") {
-                adjustBoardEditTaskOverlay(addTaskOverlayContent);
-                document.getElementById("addTaskSubmitBtns").innerHTML += getBoardEditTaskBtnTemplate(indexTask);
-                document.getElementById("editTaskOk").classList.add("progress-" + progress);
-                fillEditTaskInputs(indexTask);
-            }
-            fillAssignedToDropDownMenu();
+            if (overlay == "add") { openBoardAddTaskOverlay(addTaskOverlayContent, progress) }
+            if (overlay == "edit") { adjustBoardEditTaskOverlay(addTaskOverlayContent, progress, indexTask) }
         })
 }
 
@@ -93,6 +75,8 @@ async function openBoardAddTaskOverlay(addTaskOverlayContent, progress) {
     addTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
     document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
     adjustAddTaskProgress(progress);
+    clearTaskForm();
+    fillAssignedToDropDownMenu();
 }
 
 /**
@@ -111,19 +95,22 @@ function adjustAddTaskProgress(progress) {
  * This function is part of the boardAddTask()-function and adds visibility of the #addTaskOverlay
  * 
  * @param {html} addTaskOverlayContent - the html-content of the main-part of the add_task.html
+ * @param {string} progress - the progress-category, where the new task should be in after submitting
+ * @param {number} indexTask - the index of the task in the tasks-array
  */
-async function adjustBoardEditTaskOverlay(addTaskOverlayContent) {
-    let editTaskOverlayRef = document.getElementById("editTaskOverlay");
-    let editTaskOverlayContentRef = document.getElementById("editTaskOverlayContent");
-    editTaskOverlayRef.classList.remove("d-none");
-    editTaskOverlayContentRef.classList.add("edit-task-overlay");
-    editTaskOverlayContentRef.innerHTML = "";
-    editTaskOverlayContentRef.innerHTML = addTaskOverlayContent;
+async function adjustBoardEditTaskOverlay(addTaskOverlayContent, progress, indexTask) {
+    document.getElementById("editTaskOverlay").classList.remove("d-none");
+    document.getElementById("editTaskOverlayContent").classList.add("edit-task-overlay");
+    document.getElementById("editTaskOverlayContent").innerHTML = addTaskOverlayContent;
     document.getElementById("addTaskH1").innerHTML = "";
     document.getElementById("addTaskH1").innerHTML += getBoardCloseBtnTemplate();
     document.getElementById("addTaskForm").classList.add("custom-scrollbar");
     document.getElementById("addTaskCancel").classList.add("d-none");
-    document.getElementById("addTaskCreate").classList.add("d-none")
+    document.getElementById("addTaskCreate").classList.add("d-none");
+    document.getElementById("addTaskSubmitBtns").innerHTML += getBoardEditTaskBtnTemplate(indexTask);
+    document.getElementById("editTaskOk").classList.add("progress-" + progress);
+    fillEditTaskInputs(indexTask);
+    fillAssignedToDropDownMenu();
 }
 
 /**
@@ -147,34 +134,40 @@ function openTaskOverview(indexTask) {
 }
 
 /**
-* This function is part of the openTaskOverview()-function fills the "overviewAssignedContacts" and "overviewSubtasks" for the contact in the edit-overlay
+* This function is part of the openTaskOverview()-function and fills the "overviewAssignedContacts" and "overviewSubtasks" for the contact in the edit-overlay
 * 
 * @param {number} indexTask - the index of the task in the tasks-array
 */
 function fillTaskOverviewLists(indexTask) {
     if (tasks[indexTask].assignedTo !== undefined) {
-        for (let indexAssignedContact = 0; indexAssignedContact < tasks[indexTask].assignedTo.length; indexAssignedContact++) {
-            let indexContact = contacts.findIndex((element) => { return element.name === tasks[indexTask].assignedTo[indexAssignedContact].name })
-            document.getElementById("overviewAssignedContacts" + indexTask).innerHTML += getBoardOverviewContactPB(indexTask, indexContact);
-            if (contacts[indexContact] !== undefined) {
-                document.getElementById(indexTask + "contactName" + indexContact).innerHTML = contacts[indexContact].name;
-            } else {
-                document.getElementById(indexTask + "contactName" + indexContact).innerHTML = "You";
-            }
-            profileBadgeColor(indexTask + "overviewAssignedToListPB" + indexContact, indexContact)
-        }
-        shortAssignedToListBoardOverview();
+        assignedToOverviewList(indexTask);
     } else {
         document.getElementById("hideForNoAssignedTo").classList.add("d-none");
     }
     if (tasks[indexTask].subtasks !== undefined) {
-        for (let indexSubtask = 0; indexSubtask < tasks[indexTask].subtasks.length; indexSubtask++) {
-            let subtask = tasks[indexTask].subtasks[indexSubtask].subtask;
-            document.getElementById("overviewSubtasks" + indexTask).innerHTML += getBoardOverviewSubtask(subtask, indexSubtask, indexTask)
-        }
+        subtasksOverviewList(indexTask);
     } else {
         document.getElementById("hideForNoSubtasks").classList.add("d-none");
     }
+}
+
+/**
+* This function is part of the fillTaskOverviewLists()-function and displays the assigned contacts on the board-overview-overlay
+* 
+* @param {number} indexTask - the index of the task in the tasks-array
+*/
+function assignedToOverviewList(indexTask) {
+    for (let indexAssignedContact = 0; indexAssignedContact < tasks[indexTask].assignedTo.length; indexAssignedContact++) {
+        let indexContact = contacts.findIndex((element) => { return element.name === tasks[indexTask].assignedTo[indexAssignedContact].name })
+        document.getElementById("overviewAssignedContacts" + indexTask).innerHTML += getBoardOverviewContactPB(indexTask, indexContact);
+        if (contacts[indexContact] !== undefined) {
+            document.getElementById(indexTask + "contactName" + indexContact).innerHTML = contacts[indexContact].name;
+        } else {
+            document.getElementById(indexTask + "contactName" + indexContact).innerHTML = "You";
+        }
+        profileBadgeColor(indexTask + "overviewAssignedToListPB" + indexContact, indexContact)
+    }
+    shortAssignedToListBoardOverview();
 }
 
 /**
@@ -195,6 +188,18 @@ function shortAssignedToListBoardOverview() {
             numberAssignedContacts[indexAssignedContact].classList.remove("d-none");
         }
         document.getElementById("assignedContactsAdditionBoardOverview").classList.add("d-none");
+    }
+}
+
+/**
+* This function is part of the fillTaskOverviewLists()-function and displays the subtasks on the board-overview-overlay
+* 
+* @param {number} indexTask - the index of the task in the tasks-array
+*/
+function subtasksOverviewList(indexTask) {
+    for (let indexSubtask = 0; indexSubtask < tasks[indexTask].subtasks.length; indexSubtask++) {
+        let subtask = tasks[indexTask].subtasks[indexSubtask].subtask;
+        document.getElementById("overviewSubtasks" + indexTask).innerHTML += getBoardOverviewSubtask(subtask, indexSubtask, indexTask)
     }
 }
 
@@ -272,63 +277,6 @@ function fillEditTaskFormLists(indexTask) {
 }
 
 /**
- * This function lets the user save changes for a task, wich are used tot edit the data in firebase and the tasks-array
- * 
- * @param {number} indexTask - the index of the task in the tasks-array
- */
-function saveEditTask(indexTask) {
-    if (requirementsFullfilled()) {
-        let taskTitle = document.getElementById("addTaskTitle").value;
-        let taskDescription = document.getElementById("addTaskDescription").value;
-        let taskAssignedTo = getAssignedContacts();
-        let taskDueDate = document.getElementById("addTaskDate").value;
-        let taskPriority = getTaskPriority();
-        let taskCategory = checkTaskCategory();
-        let taskSubtasks = getSubtasks();
-        let taskProgress = getEditProgress();
-        putData("/tasks/" + tasks[indexTask].url, {
-            "title": taskTitle,
-            "description": taskDescription,
-            "assignedTo": taskAssignedTo,
-            "dueDate": taskDueDate,
-            "priority": taskPriority,
-            "category": taskCategory,
-            "subtasks": taskSubtasks,
-            "progress": { "progress": taskProgress }
-        });
-        initBoard();
-        if (window.location.href !== "http://127.0.0.1:5500/html/add_task.html") {
-            successfullMsg("taskSuccesfullyEdited");
-            addOnclickToCreateBtn();
-        }
-    } else {
-        checkFilledInput("addTaskTitle");
-        checkFilledInput("addTaskDate");
-        checkFilledInput("addTaskCategory");
-        document.getElementById("alertAddTask").classList.remove("invisible");
-        setTimeout(function () {
-            document.getElementById("alertAddTask").classList.add("invisible");
-        }, 2400);
-    }
-}
-
-/**
- * This function is part of the saveEditTask()-function and returns the progress-category, where the edited task is in
- */
-function getEditProgress() {
-    let progressContentRef = document.getElementById("editTaskOk").classList[1];
-    switch (progressContentRef) {
-        default:
-        case "progress-toDo":
-            return "toDo"
-        case "progress-inProgress":
-            return "inProgress"
-        case "progress-awaitFeedback":
-            return "awaitFeedback"
-    }
-}
-
-/**
  * This function sends the path of the task that should be deleted to firebase
  * 
  * @param {number} indexTask - the index of the task in the tasks-array
@@ -338,13 +286,4 @@ async function deleteTask(indexTask) {
     successfullMsg("taskSuccesfullyDeleted");
     closeOverlays();
     initBoard();
-}
-
-/**
- * This function adds an onclick-event to the #addTaskCreate-Button for the #addTaskOverlay
- */
-function addOnclickToCreateBtn() {
-    let addTaskCreateBtn = document.getElementById("addTaskCreate");
-    addTaskCreateBtn.addEventListener("click", closeOverlays());
-    addTaskCreateBtn.addEventListener("click", initBoard());
 }
