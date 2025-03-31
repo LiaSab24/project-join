@@ -35,22 +35,12 @@ async function addUser() {
                     "password": userPassword
                 });
                 await addUserToContacts(userName, userMail);
-                successfullMsg("userSuccesfullyCreated");
-                clearSignUpForm();
-                setTimeout(function () {
-                    redirectionToLogIn();
-                }, 1800);
+                signUpSuccessfully();
             } else {
-                checkFilledInput('name');
-                checkFilledInput('mail');
-                checkFilledInput('password');
-                checkFilledInput('confirmed');
+                signUpUnsuccessfully();
             }
         } else {
-            document.getElementById("alertCheckboxSignUp").classList.remove("invisible");
-            setTimeout(function () {
-                document.getElementById("alertCheckboxSignUp").classList.add("invisible");
-            }, 2400);
+            logInRequirementsUnfullfilled("Checkbox");
         }
     }
 }
@@ -62,29 +52,27 @@ async function addUser() {
 function checkPasswordConfirmed() {
     let password = document.getElementById("password").value;
     if (password == "") {
-        document.getElementById("alertPasswordSignUp").classList.remove("invisible");
-        setTimeout(function () {
-            document.getElementById("alertPasswordSignUp").classList.add("invisible");
-        }, 2400);
+        logInRequirementsUnfullfilled("Password");
     } else {
         let confirmed = document.getElementById("confirmed").value;
         if (password === confirmed) {
             return password;
         } else {
-            document.getElementById("alertConfirmSignUp").classList.remove("invisible");
-            setTimeout(function () {
-                document.getElementById("alertConfirmSignUp").classList.add("invisible");
-            }, 2400);
+            logInRequirementsUnfullfilled("Confirm");
         }
     }
-
 }
 
 /**
- * This function redirects the user to the log-in-page
+ * This function checks which signup-requirements are unfullfilled and gives the user feedback accordingly (alerts and marked inputs)
+ * 
+ * @param {string} requirement - the unfullfilled requirement (Checkbox, Password, Confirm)
  */
-function redirectionToLogIn() {
-    window.location.href = "../index.html";
+function logInRequirementsUnfullfilled(requirement) {
+    document.getElementById("alert"+requirement+"SignUp").classList.remove("invisible");
+    setTimeout(function () {
+        document.getElementById("alert"+requirement+"SignUp").classList.add("invisible");
+    }, 2400);
 }
 
 /**
@@ -99,4 +87,32 @@ async function addUserToContacts(userName, userMail) {
         "phone": "",
         "color": contactColor
     });
+}
+
+/**
+ * This function executes the necessary functions for a successfull sign-up
+ */
+function signUpSuccessfully () {
+    successfullMsg("userSuccesfullyCreated");
+    clearSignUpForm();
+    setTimeout(function () {
+        redirectionToLogIn();
+    }, 1800);
+}
+
+/**
+ * This function redirects the user to the log-in-page
+ */
+function redirectionToLogIn() {
+    window.location.href = "../index.html";
+}
+
+/**
+ * This function executes the necessary functions for a unsuccessfull sign-up
+ */
+function signUpUnsuccessfully() {
+    checkFilledInput('name');
+    checkFilledInput('mail');
+    checkFilledInput('password');
+    checkFilledInput('confirmed');
 }
