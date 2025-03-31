@@ -6,7 +6,7 @@ async function initBoard() {
   clearTaskProgressCategories();
   renderTasks();
   toggleMessageNoTasks();
-}
+} 
 
 /**
  * This function clears each of the progress-catergories
@@ -117,7 +117,6 @@ function shortAssignedToListBoard(indexTask) {
       numberAssignedContacts[indexAssignedContact].classList.add("d-none");
     }
     document.getElementById("assignedContactsAdditionBoard" + indexTask).classList.remove("d-none");
-
   } else {
     for (let indexAssignedContact = 0; indexAssignedContact < numberAssignedContacts.length; indexAssignedContact++) {
       numberAssignedContacts[indexAssignedContact].classList.remove("d-none");
@@ -200,6 +199,13 @@ function displayFilteredTasks(searchInput) {
       }
     }
   }
+  showNoResultsAlert()
+}
+
+/**
+* This function shows the "no result matches the search criteria"-message if no tasks could have been found.
+*/
+function showNoResultsAlert() {
   if (document.querySelectorAll(".task-card").length == 0) {
     document.getElementById("noResultSearchInput").classList.remove("d-none");
   }
@@ -290,4 +296,14 @@ async function updateTaskProgress(progress, indexTask) {
     initBoard();
     toggleMessageNoTasks();
   }
+}
+
+/**
+ * This function lets users with mobile devices move a task to another progress-category
+ * 
+ * @param {number} indexTask - the index of the task in the tasks-array
+ */
+function moveTaskProgressMobile(indexTask) {
+  openBoardBgOverlay();
+  document.getElementById("boardOverlayBg").innerHTML += getBoardTaskMoveProgressMobile(indexTask);
 }
