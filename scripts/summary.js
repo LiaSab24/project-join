@@ -37,7 +37,7 @@ function showTasksNumbers() {
     document.getElementById("counterTasksUrgent").innerHTML = urgentTasks;
 }
 
-/**
+/**  
  * This function iterates through the task progresses of the tasks-array and counts up the according task-progress-number
  */
 function countTasksInProgressCategories() {

@@ -4,6 +4,7 @@
   background: var(--clr-white);
   box-shadow: var(--shadow-barrasuperior);
   position: relative;
+  z-index: 2;
 
   .header-text {
     font-size: 1.25rem;
