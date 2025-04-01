@@ -14,9 +14,6 @@ body::-webkit-scrollbar,
 
 .input-container {
   gap: 32px;
-  /*@media (max-width: 900px) {
-    display: none;
-  }  */
 }
 
 .search-container {
